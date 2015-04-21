@@ -1,0 +1,81 @@
+{{#list}}
+<div class="invest {{ status.toLowerCase() }}">           
+    <table border="0" cellspacing="0" cellpadding="0" class="invest-table">
+        <colgroup>
+            <col width="660px" />
+            <col width="300px" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="invest-1-1">
+                    <span class="item">
+                        <span class="text-id">ID </span>{{ id }}
+                    </span>
+                    <span class="item">
+                        <img src="/assets/img/invest/anyun/axd.png" />{{ corporationName }}
+                    </span>
+                    <span class="item">
+                        <span><img src="/assets/img/invest/anyun/investCount.png">投标数<b>{{ bidAmount }}</b></span>
+                    </span>
+                </td>
+
+                <td class="invest-1-2">
+                    <span><img src="/assets/img/invest/anyun/money.png" /></span>
+                    <span class="text-rest-money">剩余金额</span>
+                    <span class="pull-right">
+                        <span class="rest-money">{{available}}</span>
+                        <span class="rest-money-unit">元</span>
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="invest-2-1">
+                    <!-- 
+                    <i class="mark1">实</i>
+                    <i class="mark2">抵</i>
+                    <i class="mark3">担</i>
+                    -->
+                    <a href="loan/{{ id }}" class="invest-title" target="_blank">
+                        {{title}}
+                    </a>
+                </td>
+
+                <td class="invest-2-2">
+                    <div class="progress">
+                        <div class="progress-bar" style="width:{{ investPercent }}%;"></div>
+                    </div>
+                    <span class="progress-value">{{ investPercent }}%</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="invest-3-1">
+                    <span class="item">
+                        <img src="/assets/img/invest/anyun/lilv.png">
+                        年化利率：<span class="lilv">{{ rate }}</span> %
+                    </span>
+                    <span class="item">
+                        <img src="/assets/img/invest/anyun/duration.png">
+                        <span class="duration">{{ fduration }}</span>{{ fdurunit }}
+                    </span>
+                    <span class="item">
+                        <img src="/assets/img/invest/anyun/money.png">
+                        <span class="amount">{{ amount }}</span>{{ amountUnit }}
+                    </span>
+                    <span class="item">
+                        <img src="/assets/img/invest/anyun/repayMethod.png" alt="">
+                        <span class="repayMethod">{{ RepaymentMethod[method][0] }}</span>
+                    </span>
+                </td>
+
+                <td class="invest-3-2">
+                    <a href="/loan/{{ id }}" target="_blank" class="btn btn-default btn-invest">
+                        立即投资
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{{/list}}

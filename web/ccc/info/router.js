@@ -1,0 +1,49 @@
+'use strict';
+var router = module.exports = require('@ds/base')
+    .createSubApp(__dirname);
+
+//实现列表左侧切换
+router.get(/^\/info/, function (req, res, next) {    
+    // 定位tab
+    var tabs = [{
+        text: '关于我们',
+        url: '/info/index'
+    }, {
+        text: '联系我们',
+        url: '/info/contactus'
+    }, {
+        text: '相关政策',
+        url: '/info/policy'
+    }, {
+        text: '加入我们',
+        url: '/info/recruit'       
+    }];
+
+    var path = req.path.replace(/\/$/, '');
+    var tabIndex;
+
+    for (var index = 0, length = tabs.length; index < length; index++) {
+        var tab = tabs[index];
+        if (tab.url === path) {
+            tabIndex = index;
+            break;
+        }        
+    }
+    
+    // default to /info/index
+    tabIndex = tabIndex || 0;
+    
+    // decide title
+    res.locals.title = tabs[tabIndex].text;
+    
+    // expose to view
+    res.locals.tabs = tabs;
+    res.locals.tabIndex = tabIndex;
+    
+    // assign user数据
+    var user = res.locals.user;
+    res.expose(user, "user");
+    
+    // load middleware to find view base on req.path
+    next();
+});

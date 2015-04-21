@@ -1,0 +1,203 @@
+{{>layouts.default.head}}
+<link rel="stylesheet" href="/assets/css/access/login.css">
+<link rel="stylesheet" href="/assets/css/access/register.css" />
+<link rel="stylesheet" href="/ccc/loan/css/detail.css">
+{{>layouts.default.header}}
+
+<div class="after-header">
+    <div class="current-container">
+        <div class="invest-usage">{{loans.title}}</div>
+        <div class="risk-level">
+            风险等级 {{loans.riskGrade}}
+            <!--<span class="glyphicon glyphicon-question-sign question-mark" data-toggle="tooltip"
+            data-placement="right" data-html="true" title="<p align='left'>AAA：信誉极好，几乎无风险 	表示企业信用程度高、资金实力雄厚，资产质量优良，各项指标先进，经济效益明显，清偿支付能力强，企业陷入财务困境的可能性极小。<br />AA：信誉优良，基本无风险 	表示企业信用程度较高，企业资金实力较强，资产质量较好，各项指标先进，经营管理状况良好，经济效益稳定，有较强的清偿与支付能力。<br />
+A：信誉较好，具备支付能力，风险较小 	表示企业信用程度良好，企业资金实力、资产质量一般，有一定实力，各项经济指标处于中上等水平，经济效益不够稳定，清偿与支付能力尚可，受外部经济条件影响，偿债能力产生波动，但无大的风险。 
+</p>"></span>-->
+
+            <div class="tooltip-container"></div>
+        </div>
+        <div class="name">
+            {{#if loans.providerProjectCode }}<a href="/verify/loan?code={{loans.fProjectCode}}" target="_blank">{{loans.fProjectType}}{{loans.fProjectCode}}</a>{{/if}}
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="">
+    <div class="current-container">
+        <div class="invest-data-wrapper">
+            <div class="invest-datas">
+                <ul class="row-1">
+                    <li>
+                        <div><span class="num">{{loans.rate}}</span>%</div>
+                        <div class="invest-data-text">年化利率</div>
+                    </li>
+                    <li>
+                        <div><span class="num">{{loans.fduration}}</span>{{loans.fdurunit}}</div>
+                        <div class="invest-data-text">期限</div>
+                    </li>
+                    <li>
+                        <div><span class="num">{{loans.amount / 10000}}</span>万</div>
+                        <div class="invest-data-text">金额</div>
+                    </li>
+                    <li>
+                        <div class="num">{{loans.method}}</div>
+                        <div class="invest-data-text">还款方式</div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+                <ul class="row-2">
+                    <li>
+                        <div class="row-2-1"><span class="date">{{loans.dueDate}}</span></div>
+                        <div class="row-2-2">筹款到期日</div>
+                    </li>                    
+                    <li>
+                        <div class="row-2-1"><span class="num">{{loans.loanRequest.investRule.stepAmount }}</span>元</div>
+                        <div class="row-2-2">投资增额梯度</div>
+                    </li>
+                    <li>
+                        <div class="row-2-1"><span class="num">{{loans.loanRequest.investRule.minAmount}}</span>元</div>
+                        <div class="invest-data-text">起投金额</div>
+                    </li>
+                    <li>
+                        <div class="row-2-1"><span class="num">{{loans.loanRequest.investRule.maxAmount }}</span>元</div>
+                        <div class="row-2-2">最大投资额</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div class="insurance-datas">
+                <span class="insurance-company">{{loans.corporationNames}}</span>
+                <span class="insurance-type"><a href="/company/hanhua" target="_blank">{{loans.corporationShortName}}</a>&nbsp;&nbsp;全额本息担保</span>
+            </div>
+        </div>
+
+        <div class="do-invest-wrapper">
+
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="invest-info-wrapper">
+    <div class="current-container">
+        <div class="invest-info">
+            <div class="text-invest-info">项目信息</div>
+            <div class="info">
+                <ul class="col-1">                   
+                    <li><span class="text">项目编号</span><span class="value">{{loans.loanRequest.serial}}</span>
+                    </li>
+                    <!--<li><span class="text">合同编号</span><span class="value">{{loans.contractCode }}</span>
+                    </li>-->
+                    <li><span class="text">所在区域</span><span class="value">{{loans.location}}</span>
+                    </li>
+                    <li><span class="text">行业类别</span><span class="value">{{loans.industry}}</span>
+                    </li>
+                    <li><span class="text">借款用途</span><span class="value">{{loans.purpose}}</span>
+                    </li>
+                </ul>
+
+                <ul class="col-2">
+                    <li><span class="text">借款申请日</span><span class="value">{{loans.loanRequest.timeSubmit}}</span>
+                    </li>
+                    <li><span class="text">借款成立日</span><span class="value">{{loans.timeSettled}}</span>
+                    </li>
+                    <li><span class="text">借款到期日</span><span class="value">{{loans.borrowDueDate}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="insurance-info">
+            <div class="text-related-data">相关资料</div>
+            <div class="insurance-wrapper">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="invest-detail-wrapper">
+    <div class="current-container">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active" data-step='0'><a href="###">还款计划</a>
+            </li>
+            <li role="presentation" class="" data-step='1'><a href="###">投资记录</a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="tab-panels">
+            <div class="tab-panel active">
+                <table class="table repay-plan">
+                    <thead>
+                        <th>期次</th>
+                        <th>预期还款时间</th>
+                        <th>应收本息(元)</th>
+                        <th>应收本金(元)</th>
+                        <th>应收利息(元)</th>
+                        <th>剩余本金(元)</th>
+                    </thead>
+                    {{#replay}}
+                    <tr>
+                        <th>{{@index + 1}}</th>
+                        <th>{{dueDate}}</th>
+                        <th class="col-current-period">{{amount}}</th>
+                        <th>{{amountPrincipal}}</th>
+                        <th>{{amountInterest}}</th>
+                        <th>{{amountOutstanding}}</th>
+                    </tr>
+                    {{/replay}}
+                </table>
+            </div>
+            <div class="tab-panel">
+                <table class="table repay-plan">
+                    <thead>
+                        <th>成交时间</th>
+                        <th>投资人</th>
+                        <th>投资金额(元)</th>
+                    </thead>
+                    {{#invests}}
+                    <tr>
+                        <th>{{submitTime}}</th>
+                        <th>{{userLoginName}}</th>
+                        <th>{{amount}}</th>
+                    </tr>
+                    {{/invests}}
+                </table>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div id="big-pic-container">
+    
+</div>
+{{>layouts.default.footer}}
+<script>
+    {{{state}}}
+</script>
+<script>
+    CC.loan = {
+        rule: {
+            min: {{loans.loanRequest.investRule.minAmount}},
+            max: {{loans.loanRequest.investRule.maxAmount}},
+            step: {{loans.loanRequest.investRule.stepAmount}},
+            balance: {{loans.balance}}
+        },
+        investPercent: {{loans.investPercent}},
+        amount: {{loans.amount}},
+        investAmount: {{loans.investAmount}},
+        timeLeft: '{{loans.timeLeft}}',
+        status: '{{loans.status}}',
+        id: '{{loans.id}}',
+        requestId: '{{loans.loanRequest.id}}',
+        timeElapsed: '{{loans.timeElapsed}}',
+        bidNumber: {{loans.bidNumber}},
+        timeOpen: {{loans.timeOpen}},
+        serverDate: {{loans.serverDate}}
+    };
+</script>
+<script src="/js/main/investDetail.js"></script>
+

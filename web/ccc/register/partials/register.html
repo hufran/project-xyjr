@@ -1,0 +1,138 @@
+{{#if visible }}
+<div class="popup-register">
+    <div class="row register-form">
+        <h3>立即注册<small>30秒轻松注册</small></h3>
+        <div class="close" on-click="close"></div>
+        {{#if step1 }}
+        <ul class="nav-step">
+            <li class="active">
+                1.提交注册申请
+            </li>
+<!--
+            <li class="arrow">
+                <img src="/assets/img/main/register/nav_arrow.png" alt="">
+            </li>
+-->
+            <li>
+                2.绑定手机号码
+            </li>
+        </ul>
+        <form role="form" class="form">
+            <div class="errors">
+                {{#if errors.visible }}
+                <div class="content">
+                    {{errors.msg}}
+                </div>
+                {{/if}}
+            </div>
+            {{#if isLegacy}}
+                <div class="form-group">
+                    <input type="text" class="form-control username" value="{{user.loginName}}" placeholder="用户名">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control password" value="{{user.password}}" placeholder="密码">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control repassword" value="{{user.repassword}}" placeholder="确认密码">
+                </div>
+            {{ else }}
+                <div class="form-group">
+                   <label>用户名:</label>
+                    <input type="text" class="form-control username" value="{{user.loginName}}">
+                </div>
+                <div class="form-group">
+                   <label>密码:</label>
+                    <input type="password" class="form-control password" value="{{user.password}}">
+                </div>
+                <div class="form-group">
+                   <label>确认密码:</label>
+                    <input type="password" class="form-control repassword" value="{{user.repassword}}">
+                </div>
+            {{/if}}
+            <div>
+                <input type="checkbox" checked="{{user.agreement}}" >我已阅读并同意<a href="#" on-click="maskRegistAgreement">《盈投保平台注册服务协议》</a>
+            </div>
+            <button type="button" on-click="doNext" class="btn do-login btn-success btn-large">下一步</button>
+        </form>
+        {{/if}} {{#if step2 }}
+        <ul class="nav-step">
+            <li>
+                1.提交注册申请
+            </li>
+            <li class="arrow">
+                <img src="/assets/img/main/register/nav_arrow.png" alt="">
+            </li>
+            <li class="active">
+                2.绑定手机号码
+            </li>
+        </ul>
+        <form role="form" class="form">
+            <div class="errors">
+                {{#if errors.visible }}
+                <div class="content">
+                    {{errors.msg}}
+                </div>
+                {{/if}}
+            </div>
+            {{#if isLegacy}}
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{user.mobile}}" placeholder="常用手机号码">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control captcha smsCaptcha pull-left" value="{{user.smsCaptcha}}"
+                    placeholder="验证码">{{#if countDown.visible == true }}
+                    <button type="button" disabled class="btn btn-default">
+                        {{countDown.leftSeconds}}秒后重新发送
+                    </button>
+                    {{/if}} {{#if countDown.visible == false }}
+                    <button type="button" on-click="getSmsCaptcha" class="btn btn-default">
+                        获取验证码
+                    </button>
+                    {{/if}}
+                    <div class="clearfix"></div>
+                </div>
+            {{ else }}
+                <div class="form-group">
+                   <label>常用手机号码:</label>
+                    <input type="text" class="form-control" value="{{user.mobile}}">
+                </div>
+                <div class="form-group">
+                   <label for="">验证码</label>
+                   <div class="clearfix"></div>
+                    <input type="text" class="form-control captcha smsCaptcha pull-left" value="{{user.smsCaptcha}}">
+                    {{#if countDown.visible == true }}
+                    <button type="button" disabled class="btn btn-default">
+                        {{countDown.leftSeconds}}秒后重新发送
+                    </button>
+                    {{/if}} {{#if countDown.visible == false }}
+                    <button type="button" on-click="getSmsCaptcha" class="btn btn-default">
+                        获取验证码
+                    </button>
+                    {{/if}}
+                    <div class="clearfix"></div>
+                </div>
+            {{/if}}
+            <button class="btn btn-default" on-click="previous" style="margin: 20px 0 0 0">上一步</button>
+            <button type="submit" on-click="doRegister" on-enter='doRegister' class="btn do-login btn-success btn-large">立即注册</button>
+        </form>
+        {{/if}}
+        {{#if step3}}
+            <div class="register-success">
+                <div class="success-img">
+                </div>
+                <div class="success-content">
+                    <h3 class="register-name">
+                        {{user.loginName}}
+                    </h3>
+                    <p>恭喜您注册成功,请绑定第三方支付进行投资</p>
+                    <div class="register-btn">
+                        <a href="/account/umpay" class="btn btn-success">去开通</a>
+                        <a href="/">逛一逛</a>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</div>
+
+{{/if}}

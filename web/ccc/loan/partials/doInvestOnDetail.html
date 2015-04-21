@@ -1,0 +1,137 @@
+{{#if user }}
+    {{! 已登录,但是没开第三方支付 }}
+    {{#if !user.accountId}}
+        <div class="prompt-open-3rdpay">
+            <h3>请先开通第三方支付托管</h3>
+            <p>
+                为了保证安全,您的所有操作金额都将通过第三方平台进行中转操作,所以请先到联动优势进行开户。
+            </p>
+        </div>
+        <div class="invest-button-wrapper">
+            <a class="btn btn-warning invest-button" href="/account/umpay">立即开通</a>
+        </div>
+    {{else}}
+        {{! 已登录 }}
+        
+		{{! 未签订无密投资}}
+		{{#if !(agreement && agreement.invest)}}
+			<div class="space space-50"></div>
+			<p class="no-assign">签订快速投资协议后才能参与抢标</p>
+			<div class="space space-30"></div>
+			<p class="no-assign">
+				<a href="/account/agreement" class="btn btn-orange" target="_blank">立即签订</a>
+			</p>
+		{{else}}
+        <!--第一部分-->
+        <div class="invest-header">
+            <div class="text-invest">投资金额</div>
+            
+            {{#if loan.status == "SETTLED" }}
+                <div class="invest-status">已结算</div>
+            {{/if}}
+            
+            {{#if loan.status == "SCHEDULED" }}
+                <div class="invest-status">即将开始</div>
+            {{/if}}
+            
+            {{#if loan.status == "FINISHED" }}
+                <div class="invest-status">已满标</div>
+            {{/if}}
+            
+            {{#if loan.status == "CLEARED" }}
+                <div class="invest-status">还款结束</div>
+            {{/if}}
+            
+            {{#if loan.status == "OPENED" }}
+                <div class="available-amount">可投金额:<span>￥{{loan.rule.balance}}</span></div>
+            {{/if}}
+            <div class="clearfix"></div>
+        </div>
+        
+        <!--第二部分-->
+        {{#if loan.status == "SETTLED" || loan.status == "FINISHED" || loan.status == "CLEARED" }}
+            <div class="invest-not-available">
+                <ul>
+                    <li>融资总额 : {{loan.amount / 10000}}万</li>
+                    <li>投资人数 : {{loan.bidNumber }}</li>
+                    <li>满标用时 : {{loan.timeElapsed}}</li>
+                </ul>
+            </div>
+            <div class="invest-button-wrapper">
+            <a href="/invest/list" class="btn btn-default">关注其他项目</a>
+            </div>
+        {{/if}}
+        
+        {{#if loan.status == "SCHEDULED" }}
+            <div class="not-login-wrapper">
+            <div class="available-amount">
+               <span class="big">{{loan.rule.balance}}</span>可投金额(元)
+            </div>
+            <div class="left-time">距开标时间:<span class="next-time"></span></div>
+        </div>
+            <div class="invest-button-wrapper">
+            <a href="/invest/list" class="btn btn-default">关注其他项目</a>
+            </div>
+        {{/if}}
+        
+        {{#if loan.status == "OPENED"}}
+            <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
+                <div class="form-group invest-input-wrapper">
+                    <span class="rmb-symbol">￥</span>
+                    <input type="hidden" name="loanId" value="{{loan.id}}">
+                    <input type="text" name="amount" class="form-control invest-input" placeholder="输入投资金额" value="{{ inputNum }}" />
+
+                    <!-- 反馈 -->
+                    {{#if errors.visible}}
+                    <div class="tooltip">
+                        <div class="tooltip-arrow"></div>
+                        <div class="tooltip-inner">
+                            <span class="glyphicon glyphicon-exclamation-sign icon"></span>
+                            <span class="text">{{ errors.msg }}</span>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="para3">
+                    <div class="rest-money">余额:￥{{user.availableAmount}}</div>
+                    <div class="charge"><a href="/account/recharge">充值</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="invest-progress-wrapper">
+                    <div class="invest-progress">
+                        <div class="invest-progress-bar" style="width: {{loan.investPercent*100}}%;">
+                        </div>
+                    </div>
+                    <div class="invest-progress-percent">{{rate}}%</div>
+                    <div class="time-left">剩余时间:{{loan.timeLeft}}</div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="invest-button-wrapper">
+                    <input type="submit" class="btn btn-warning invest-button" value="立即投标" />
+                </div>
+            </form>
+		{{/if}}
+    {{/if}}
+{{/if}}
+{{else}}
+        {{! 未登录 }}
+        <div class="invest-header">
+            <div class="text-invest">投资金额</div>
+            <div class="clearfix"></div>
+        </div>
+        
+        <div class="not-login-wrapper">
+            <div class="available-amount"><span class="big">{{loan.rule.balance}}</span>可投金额(元)</div>
+             {{#if loan.status == "SCHEDULED" }}
+                <div class="left-time">
+                    <div class="left-time">距开标时间:<span class="next-time"></span></div>
+                </div>
+            {{/if}}
+        </div>
+        
+        <div class="invest-button-wrapper">
+            <input type="submit" class="btn btn-warning invest-button" on-click="doLogin" value="立即登录" />
+        </div>
+{{/if}}

@@ -1,0 +1,44 @@
+<div class="amount-info-wp">
+    <span>可用余额(元)<em>{{availableAmount}}</em></span>
+</div>
+<div class="space space-30"></div>
+<div class="ccc-banks-wrap">
+    <div class="bankcards-wrap">
+		{{#each bankcards}}
+		<div class="bankcard-box {{account.bank}}">
+			<div class="bank-img"
+			style="visibility:hidden;background-position: 10px -{{account.imgPos+3}}px"></div>
+			<div class="bankcard-no center">
+				<span>{{Faccount}}</span>
+			</div>
+		</div>
+		{{/each}}
+        
+		{{loadMessage}}
+    </div>
+    <div class="space space-30"></div>
+    <div class="recharge-form-wrap">
+        <h4>提现金额</h4>
+        <div class="space space-10"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <form role="form" name="withdrawForm" action="{{active}}" method="post" target="_blank">
+                    <div class="form-group has-error- has-feedback">
+                        <span class="form-control-feedback">
+                        	<i class="fa fa-rmb"></i>
+                        </span>
+                        <input type="text" name="withdraw" class="form-control input-lg" id="withdraw"
+                        style="width: 300px"
+                        on-keyup="changeValue">
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}">{{submitText}}</button>
+                </form>
+            </div>
+            <div class="col-md-7">
+            	<p class="help-block text-danger">
+					{{submitMessage}}
+            	</p>
+            </div>
+        </div>
+    </div>
+</div>

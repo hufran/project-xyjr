@@ -1,0 +1,94 @@
+{{#if !payment}}
+<div class="row">
+	<div class="space space-30"></div>
+	<div class="col-md-12 align-center">
+		<p class="text-warning">您还没有开户，开户后才能绑定银行卡</p>
+		<div class="space space-40"></div>
+		<p>
+			<a href="/account/umpay" class="btn btn-orange">立即开通</a>
+		</p>
+	</div>
+</div>
+{{else}}
+<!--要绑定银行卡-->
+{{#if status === 0}}
+<div class="bind-card-wrapper">
+    <!-- 尚未绑卡提醒 -->
+    <div class="errorNoBindedYet">
+        <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 
+        {{#if !edit}}            
+            绑定银行卡方可使用提现功能，为了保证您的资金安全，请务必绑定本人银行卡！
+        {{ else }}
+            请选择您要更换绑定的银行卡。为了保证您的资金安全，请务必设置为本人银行卡
+        {{/if}}
+    </div>
+
+    <form action="/upayment/bindCard" method="POST" on-submit="bind-card-submit" target="_blank">
+        <div class="banks-container control-group">
+           <div class="space space-30"></div>
+            <div class="ccc-banks-wrap">
+                <div class="banks-wrap-offset">
+                    {{#each banks}}
+                    <div class="bank" on-click="selectBank">
+                        <div class="bank-img" style="background-position: 10px -{{imgPos+3}}px" data-code="{{code}}"
+                        data-name="{{name}}"></div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="space space-30"></div>
+            </div>
+        </div>
+
+        <div class="do-bind-card">
+            <div class="row row-1">
+                <div class="form-title col-md-6">银行卡号码（该银行卡仅于提现时使用）</div>
+            </div>
+
+
+            <div class="row row-2">
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="cardId" value="{{cardId}}" placeholder="请在此输入您的借记卡（储蓄卡）银行卡号" />
+                    <input type="hidden" name="bank" value="{{bank}}" />
+                    <input type="hidden" name="option" value="0" />
+                </div>
+                <div class="col-md-4">
+                    <p class="help-block text-danger">
+                        {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}}
+                        {{#msg.CARD_NULL}}请输入银行卡号{{/msg.CARD_NULL}}
+                        {{#msg.CARD_INVALID}}银行卡号有误{{/msg.CARD_INVALID}}
+            	    </p>
+                </div>
+            </div>
+
+            <div class="row row-3">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-large btn-success">确认绑定</button>
+                </div>
+            </div>
+            <div class="space space-10"></div>
+            <!--<div class="row row-4">
+                <div class="col-md-12 notice">重要提示：下个页面请不要勾选“同意开通借记卡快捷支付”，以免出现绑定失败的情况！</div>
+            </div>
+            <div class="space space-30"></div>-->
+        </div>
+    </form>
+</div>
+{{/if}}
+
+<!--已绑-->
+{{#if status === 1}}
+<div class="binded-card-wrapper">
+    <!--一张银行卡-->
+    <div class="bank-card">
+        <div class="card-img {{bankAccount.bank}}">
+        </div>
+
+        <div class="card-num">
+            {{bankAccount.Faccount}}
+        </div>
+    </div>
+
+<!--    <button class="btn btn-sm btn-success btn-change-card" on-click="updateBank">更换银行卡</button>-->
+</div>
+{{/if}}
+{{/if}}

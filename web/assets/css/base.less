@@ -1,0 +1,90 @@
+@import (inline)"../../node_modules/typo.css/typo.css";
+@import "./bootstrap.less";
+body, button, input, select, textarea {
+    font-family: Avenir, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+}
+@import "./font-awesome.less";
+@import "./variables.less";
+@import "./func.less";
+@import "./partials.less";
+@import "./tools.less";
+@import "./btn.less";
+
+@import "./modules/cccBox.less";
+@import "../../node_modules/eonasdan-bootstrap-datetimepicker/src/less/bootstrap-datetimepicker.less";
+
+// login
+@import "./access/login.less";
+@import "./access/register.less";
+@import "../../ccc/agreement/css/serviceAgreement.less";
+
+// 全局配置
+body {
+    font-family: "微软雅黑", 'Microsoft Yahei', '幼圆', 'YouYuan SimYou?', SimSun,
+		'宋体', Helvetica, Arial, sans-serif;
+}
+
+// 全局页面icon
+ .page-icon {
+    background: url(/assets/img/main/icon_all.png) no-repeat 0 0;
+}
+
+.ccc-container {
+	max-width: 960px;
+	*width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// reset .navbar-brand(logo)
+a.navbar-brand {
+	padding-left: 0;
+}
+
+// reset table thead border
+.table {
+    margin-bottom: 0;
+}
+
+.table > thead > tr > th {
+	border-bottom-width: 1px;
+	padding: 8px 0;
+	color: #999;
+}
+.table > thead > tr > th, .table > tbody > tr > td {
+	vertical-align: middle;
+    font-size: 12px;
+}
+
+// disabled outline
+a, button {
+	outline: none!important;
+}
+
+// reset tooltip
+.tooltip-inner {
+	border-radius: 0;
+}
+
+// Contextual colors
+.text-muted {
+  color: @text-muted;
+}
+.text-primary {
+  .text-emphasis-variant(@brand-primary);
+}
+.text-success {
+  .text-emphasis-variant(@state-success-text);
+}
+.text-success-light {
+  .text-emphasis-variant(#13C817);
+}
+.text-info {
+  .text-emphasis-variant(@state-info-text);
+}
+.text-warning {
+  .text-emphasis-variant(@state-warning-text);
+}
+.text-danger {
+  .text-emphasis-variant(@state-danger-text);
+}

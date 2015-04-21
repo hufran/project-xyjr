@@ -1,0 +1,40 @@
+{{>layouts.default.head}}
+<link rel="stylesheet" href="/css/common.css">
+{{>layouts.default.header}}
+<div id="banner-container">
+    {{>banner}}
+</div>
+<div class="page-info">
+    <div id="info-left">
+        {{>list}}
+    </div>
+    <div id="info-right">
+        <div class="aboutus-container">
+            <h1 class="info-title">
+                关于我们
+            </h1>
+            <div class="aboutus-wrpper">
+                <div class="aboutus">
+                    <p>
+                       盈投保 隶属于淘当铺，公司成立于2013年3月，公司全称为“爱当宝信息咨询（北京）有限公司”，总部位于首都北京，是中国一家新兴P2P（个人对个人）网络信用借贷平台。 
+                    </p>
+                    
+                    <p>
+                        盈投保采用创新的技术和理念，通过互联网建立一个安全、高效、诚信的平台，规范了个人之间的借贷行为，使之更加安全、更有效率。让人们有机会得到帮助，以及帮助到需要的朋友，同时得到更好的回报。我们深信，依赖现代网络创新技术将民间借贷引入互联网的模式，定会在快捷、便利、透明的体系下得到更健康长足的发展，并实现利益最大化！
+公司于2013年3月成立当月获得蓝驰资本、北极光等国际投资机构1000万美金的首轮投资，2014年5月再次获得蓝驰资本、挚信资本等3500万美金B轮融资，团队成员均来自金融及互联网行业。目前公司在北京、上海、广州设有运营中心，已拥有上千家典当行客户资源，业务遍及全国多个重点城市，2015年底预计将突破50个重点城市。
+                    </p>
+                </div>
+                
+                <div class="imgs">
+                    {{#[1,2,3,4,5,6,7]}}
+                    <img src="/ccc/info/img/aboutus/{{ this }}.jpg" />
+                    {{/}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear_left"></div>
+</div>
+{{>layouts.default.footer}}
+<script src="/js/main/common.js"></script>
+

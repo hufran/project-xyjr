@@ -1,0 +1,127 @@
+{{>layouts.default.head}}
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/assets/css/modules/cccAnimate.css">
+{{>layouts.default.header}}
+
+<!-- 轮播组件 -->
+<div class="carousel-wrapper">
+    <!-- 在carousel上的 按钮 等 -->
+    <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
+    <div class="current-container info-wrapper">
+        <div class="info">
+            <p class="para1">
+                简单、快速、收益高！
+            </p>
+
+            <p class="para2">
+                盈投保历史年化收益率
+            </p>
+
+            <p class="para3">
+                平均 <span class="rate">12%-20%</span>
+            </p>
+
+            <p class="para4">
+                <a href="/invest/list" class="btn">我要投资</a>
+                {{#if user.loginName}}
+                    <a href="/account" class="btn">我的账户</a>
+                {{else}}
+                    <a href="#" id="btn-login-on-carousel" class="btn">立即登录</a>
+                {{/if}}
+            </p>
+        </div>
+    </div>
+    
+    <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            {{#carousel}}
+                <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
+                </li>
+            {{/}}
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            {{#carousel}}
+            <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
+                <a href="{{this.link}}" target="_blank">
+                    <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center; width: 100%; height: 360px;" >    
+                    </div>
+                </a>
+            </div>
+            {{/carousel}}
+        </div>
+    </div>
+</div>
+
+<div class="current-container">
+    <!-- 公告 -->
+    <div class="announce">
+        <div class="newest">
+            <div class="bg"></div>
+            <div class="small">最新公告</div>
+            <div class="big">
+                <a href="/cms/p/{{latestPublication.id}}" target="_blank">{{latestPublication.title}}</a>
+            </div>
+        </div>
+        <div class="more">
+            <a href="/cms/news" target="_blank">更多&gt;&gt;</a>
+        </div>
+    </div>
+</div>
+
+<div class="product-wrapper">
+   <div class="current-container">
+        <img src="/ccc/index/img/tedian/01.png" alt="">
+        <img src="/ccc/index/img/tedian/02.png" alt="">
+        <img src="/ccc/index/img/tedian/03.png" alt="">
+        <img src="/ccc/index/img/tedian/04.png" alt="">
+        <div class="clearfix"></div>
+   </div>
+</div>
+
+<div class="projects-wrapper">
+    <div class="current-container">
+        <div style="display:none;">hello</div>
+        <div class="project-header">
+            <div class="left">
+                <span class="text-hot-project">热点项目</span>
+                <span class="next-time">
+                </span>
+            </div>
+
+            <div class="right">
+                <a href="invest/list">更多&gt;&gt;</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="invests-list-wrapper">
+            <ul class="invest-list">
+                <li class="invest-li">
+					<p class="loading" style="padding: 45px;">加载中...</p>
+                </li>
+            </ul>
+        </div>
+        <div class="space space-30"></div>
+    </div>
+    <div class="space space-30"></div>
+</div>
+<div class="space space-30"></div>
+
+<div class="partner-wrapper current-container">
+    <h1 class="partner-title">合作伙伴</h1>
+    <ul>
+        {{#partners}}
+        <li>
+           <img src="/ccc/index/img/partners/{{ . }}" alt="">
+        </li>
+        {{/}}
+    </ul>
+    <div class="clearfix"></div>
+</div>
+
+<div class="space space-50"></div>
+{{>layouts.default.footer}}
+<script src="/js/main/index.js"></script>

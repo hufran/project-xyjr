@@ -1,0 +1,58 @@
+/*
+  弹出层登录框样式
+*/
+
+.popup-login {
+    height: 450px;
+    width: 500px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -225px 0 0 -250px;
+    z-index: 10000;
+    .login-form {
+        border: 1px solid #ddd;
+        margin: 0 auto;
+        background: #fff;
+        .close {
+            height: 31px;
+            width: 30px;
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: url(/assets/img/main/close.png);
+            opacity: 1;
+        }
+        h3 {
+            text-indent: 20px;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0 10px 0px;
+            width: 95%;
+            margin: 0 auto;
+        }
+        .form {
+            width: 300px;
+            margin: 5px auto 10px auto;
+            padding-bottom: 20px;
+            .errors {
+                height: 30px;
+                font-size: 16px;
+                color: #da5d5d;
+                text-indent: 15px;
+                margin: 0 0 10px 0;
+                .content {
+                    background: #f2dede;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+            }
+            .captcha {
+                width: 150px;
+            }
+            .do-login {
+                margin: 20px 0 0 0;
+            }
+        }
+    }
+}
