@@ -7,7 +7,6 @@
 var Ractive = require('ractive/ractive-legacy');
 var LoginService = require('./service')
     .LoginService;
-var $  = global.jQuery = require('jquery');
 var CommonService = require('assets/js/modules/common')
     .CommonService;
 var popupRegister = require('ccc/register/js/lib')
@@ -31,7 +30,6 @@ exports.popupLogin = {
                     image: '',
                     token: ''
                 },
-                isLegacy: CC.isLegacy,
                 visible: false,
                 errors: {
                     visible: false,
@@ -44,6 +42,7 @@ exports.popupLogin = {
 
         // 初始化captcha
         // showCaptcha();
+
         popupLoginRactive.on('close', function () {
             this.set('visible', false);
             maskLayer.close();
@@ -63,7 +62,6 @@ exports.popupLogin = {
                                     'password'), function (err,
                                     body) {
                                     self.set('password', '');
-                                    self.set('loginName', '');
                                     if (body.success) {
                                         bus('session:user')
                                             .push(body.user);

@@ -181,30 +181,42 @@ exports.popupRegister = {
                                             body,
                                             error) {
                                             if (body.success) {
-                                                
-                                                bus('session:user')
-                                                    .push(body.user);
-                                                LoginService.doLogin(
+                                                var params =
+                                                    'code=' +
+                                                    self.get(
+                                                        'user.invitation'
+                                                ) +
+                                                    '&settoused=1&associator=' +
                                                     popupRegisterRactive
                                                     .get(
                                                         'user.loginName'
-                                                    ),
-                                                    popupRegisterRactive
-                                                    .get(
-                                                        'user.password'
-                                                    ));
-                                                popupRegisterRactive
-                                                    .set(
-                                                        'step1',
-                                                        false);
-                                                popupRegisterRactive
-                                                    .set(
-                                                        'step2',
-                                                        false);
-                                                popupRegisterRactive
-                                                    .set(
-                                                        'step3',
-                                                        true);
+                                                );
+                                                RegisterService.checkInvitation(
+                                                    params, function () {
+                                                        bus('session:user')
+                                                            .push(body.user);
+                                                        LoginService.doLogin(
+                                                            popupRegisterRactive
+                                                            .get(
+                                                                'user.loginName'
+                                                            ),
+                                                            popupRegisterRactive
+                                                            .get(
+                                                                'user.password'
+                                                            ));
+                                                        popupRegisterRactive
+                                                            .set(
+                                                                'step1',
+                                                                false);
+                                                        popupRegisterRactive
+                                                            .set(
+                                                                'step2',
+                                                                false);
+                                                        popupRegisterRactive
+                                                            .set(
+                                                                'step3',
+                                                                true);
+                                                    });
 
                                             } else {
                                                 showErrors(error[0]

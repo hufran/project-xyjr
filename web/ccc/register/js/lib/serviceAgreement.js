@@ -1,5 +1,5 @@
 /**
- * @file 盈投保平台服务规则的交互逻辑层
+ * @file 长江财富服务规则的交互逻辑层
  * @author lilulu(lilulu@hanhua.com)
  */
 

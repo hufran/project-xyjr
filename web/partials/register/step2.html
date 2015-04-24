@@ -1,0 +1,125 @@
+<form name="regFormStep2" class="register-form" action="/register" method="POST">
+    <div class="item-c">
+        <div class="label-c">姓名</div>
+        <input name="text" type="text" name="userName" data-text="姓名" value="{{user.name}}" placeholder="请输入您的真实姓名" />
+        {{#if msg.name}}
+        <div class="item-msg">
+            <span class="error">{{msg.name}}</span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="item-c">
+        <div class="label-c">身份证号</div>
+        <input name="text2" type="text" name="idNumber" data-text="身份证号" value="{{user.idNumber}}" placeholder="请输入您的身份证号码" />
+        {{#if msg.idNumber}}
+        <div class="item-msg">
+            <span class="error">{{msg.idNumber}}</span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="item-c">
+        <div class="label-c">电子邮箱</div>
+        <input name="text" type="text" name="email" data-text="电子邮箱" value="{{#if user.email != 'null@creditcloud.com'}}{{user.email}}{{/if}}" placeholder="请输入您的电子邮箱" />
+        {{#if msg.email}}
+        <div class="item-msg">
+            <span class="error">{{msg.email}}</span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="item4-c" data-key="city">
+        <div class="label-c">居住省市</div>
+        <div class="selbox-c province-wp">
+            <div class="sel-c">
+                <select name="province" class="select1">
+                    <option value="" data-selected="true">请选择省份</option>
+                    {{#each provinceInfos:i}}
+                        <option value="{{provinceInfos[i].provinceCode}}" 
+                            {{#if provinceInfos[i].provinceCode == userInfo.personal.address.province}}data-selected="true"{{/if}}>{{provinceInfos[i].provinceName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="selbox-c city-wp">
+            <div class="sel-c">
+                <select name="city" class="select2" data-text="省市县区">
+                    <option value="" data-selected="true">请选择城市</option>
+                    {{#each citys:i}}
+                        <option value="{{citys[i][0]}}">{{citys[i][2]}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="selbox-c city-wp">
+            <div class="sel-c">
+                <select name="country" class="select5" data-text="省市县区">
+                    <option value="" data-selected="true">请选择地区</option>
+                    {{#each citys:i}}
+                        <option value="{{citys[i][0]}}">{{citys[i][2]}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        {{#if msg.city}}
+        <div class="item-msg reg-ml">
+            <span class="error">{{msg.city}}</span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="item4-c" data-key="jobs">
+        <div class="label-c">职业信息</div>
+        <div class="selbox-c industry-wp">
+            <div class="sel-c">
+                <select name="industry" class="select3">
+                    <option value="" data-selected="true">请选择行业</option>
+                    {{#each industry:i}}
+                        <option value="{{industryCode}}">{{industryName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="selbox-c job-wp">
+            <div class="sel-c">
+                <select name="jobs" class="select4" data-text="职业信息">
+                    <option value="" data-selected="true">请选择职业</option>
+                    {{#each jobs:i}}
+                        <option value="{{workerCode}}">{{workerName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        {{#if msg.jobs}}
+        <div class="item-msg reg-ml">
+            <span class="error">{{msg.jobs}}</span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="item4-c">
+        <div class="label-c">年收入</div>
+        <div class="btnbox-c" style="margin-left:14px">
+            <a href="javascript:;" data-value="SALARY_BELOW_50000" class="srbtn-c">5万以下</a>
+            <a href="javascript:;" data-value="SALARY_50001_100000" class="srbtn-c">5万-10万</a>
+            <a href="javascript:;" data-value="SALARY_100001_200000" class="srbtn-c">10-20万</a>
+            <a href="javascript:;" data-value="SALARY_200001_500000" class="srbtn-c">20万-50万</a>
+            <a href="javascript:;" data-value="SALARY_ABOVE_500001" class="srbtn-c">50万以上</a>
+            <input type="hidden" name="salary" value="">
+        </div>
+        {{#if msg.salary}}
+        <div class="item-msg reg-ml">
+            <span class="error">{{msg.salary}}</span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="item3-c">
+        <span>
+            <button type="submit" class="btn btn-reset post-btn-step2">
+                <img src="/assets/img/register/next-c.png" width="240" height="40" border="0" />
+            </button>
+        </span>
+        <a href="javascript:;" class="ml100-c" on-click="goNext">跳过</a>
+        {{#if msg.updateErr}}
+        <div class="item-msg">
+            <span class="error">{{msg.updateErr}}</span>
+        </div>
+        {{/if}}
+    </div>
+</form>

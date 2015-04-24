@@ -1,10 +1,11 @@
 /**
- * @file 盈投保平台服务规则的交互逻辑层
+ * @file 长江财富服务规则的交互逻辑层
  * @author lilulu(lilulu@hanhua.com)
  */
 
 "use strict";
 var Ractive = require('ractive/ractive-legacy');
+var maskLayer = require('assets/js/lib/maskLayer');
 exports.popupRegistAgreement = {
     instance: false,
     init: function () {
@@ -24,11 +25,12 @@ exports.popupRegistAgreement = {
 
         popupRegistAgreementRactive.on('close', function () {
             this.set('visible', false);
-            //utils.maskLayer.close();
+            maskLayer.close();
         });
     },
 
     show: function (postCloseHook) {
+        var popupRegistAgreementRactive = this.popupRegistAgreementRactive;
         if (!this.instance) {
             this.init();
             this.instance = true;
@@ -40,6 +42,11 @@ exports.popupRegistAgreement = {
                     listener.cancel();
                 });
         }
+        maskLayer.show({
+            onClick: function () {
+                popupRegistAgreementRactive.fire('close');
+            }
+        });
         this.popupRegistAgreementRactive.set('visible', true);
     }
 };
