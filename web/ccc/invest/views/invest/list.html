@@ -5,14 +5,14 @@
 {{>layouts.default.header}}
 
 <!-- after header -->
-<div class="after-header">
+<!-- <div class="after-header">
     <span class="project-list">项目列表</span>
     <span class="benefit-calculator">收益计算器</span>
-</div>
+</div> -->
 
 <hr />
 <!-- 筛选条件 -->
-<div class="condition-container">
+<!-- <div class="condition-container">
     <div class="condition-wrapper">
         <ul class="condition">
             <li class="condition-li">
@@ -60,17 +60,58 @@
         </ul>
         <div class="clearfix"></div>
     </div>
-</div>
+</div> -->
+<div id="main-container">
+    <div class="s-content u-pos-r-center">
+        <div class="s-nav-view">
+            <ul class="u-nolist-ul sRate">
+                <li class="selectTitle">年利率化：</li>
+                <li class="s__is-selected" data-min-rate="0" data-max-rate="100">不限</li>
+                <li data-min-rate="0" data-max-rate="10">10%以下</li>
+                <li data-min-rate="10" data-max-rate="12">10%－12%</li>
+                <li data-min-rate="13" data-max-rate="15">13%－15%</li>
+                <li data-min-rate="16" data-max-rate="20">16%－20%</li>
+                <li data-min-rate="20" data-max-rate="100">20%以上</li>
+            </ul>
+            <ul class="u-nolist-ul sDuration">
+                <li class="selectTitle">借贷期限：</li>
+                <li class="s__is-selected"  data-min-duration="0" data-max-duration="100">不限</li>
+                <li data-min-duration="0" data-max-duration="1">0－1个月</li>
+                <li data-min-duration="1" data-max-duration="3">1-3个月</li>
+                <li data-min-duration="3" data-max-duration="6">3-6个月</li>
+                <li data-min-duration="6" data-max-duration="12">6-12个月</li>
+                <li data-min-duration="12" data-max-duration="100">一年以上</li>
+            </ul>
+            <ul class="u-nolist-ul sStatus">
+                <li class="selectTitle">投标状态：</li>
+                <li class="s__is-selected" data-status="SCHEDULED">不限</li>
+                <li data-status="OPENED">融资中</li>
+                <li data-status="SETTLED">融资成功</li>
+                <li data-status="CLEARED">还款结束</li>
+            </ul>
+        </div>
 
+        <p style="margin:20px 0;"><!-- 最新公告: PHP吉大利好     207328 --> </p>
+
+        <table>
+            <tr>
+                <th style="width:200px;">项目</th>
+                <th style="width:122px;">年利率化</th>
+                <th style="width:90px;">期限</th>
+                <th style="width:120px;">金额</th>
+                <th style="width:250px;">进度</th>
+                <th style="width:215px;">我要投资</th>
+            </tr>
+        </table>
+
+        <div class="invest-list-wrapper">
+            <p style="padding: 45px;">加载中...</p>
+        </div>
+    </div>
+</div>
 <!--<hr />-->
-<div class="invest-list-wrapper">
-	<p style="padding: 45px;">加载中...</p>
-</div>
-
-<div class="space space-20"></div>
 <div class="invest-pager-wrapper" id="invest-pager"></div>
 <div class="space space-30"></div>
-
 {{>layouts.default.footer}}
 <script>{{{state}}}</script>
 <script src="/js/main/investList.js"></script>
