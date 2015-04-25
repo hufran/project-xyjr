@@ -1,0 +1,56 @@
+{{#list}}
+<div class="loanItemWrapper">
+    <div class="loanPartOne">
+        <div class="loantitle">
+            <a href="/loan/{{ id }}" class="invest-title" target="_blank">
+                {{title}}
+            </a>
+        </div>
+        <div class="loanPurpose">{{ purpose }}</div>
+        <div class="loanRepayMethod">{{ RepaymentMethod[method][0] }}</div>
+    </div>
+    <div class="loanRate">{{ rate }}%</div>
+    <div class="duration">{{ fduration }}{{ fdurunit }}</div>
+    <div class="amount">${{ amount }}{{ amountUnit }}</div>
+    <div class="investPercent">
+        <div class="percentWrapper">
+            <div class="percent" style="width:{{ investPercent }}%"></div>
+            <div class="realPercent">{{ investPercent }}%</div>
+        </div>
+        <div class="leftTime">
+            {{#if finished }}
+                已结束
+            {{ else }}
+             剩余时间: {{ leftTime }}
+            {{/if}}
+        </div>
+    </div>
+    <div class="investBtn">
+        {{#if status === 'OPENED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">立即投资</div>
+            </a>
+        {{/if}}
+        {{#if status === 'SCHEDULED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn">即将开始</div>
+            </a>
+        {{/if}}
+        {{#if status === 'FINISHED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn" style="background:grey">已满标</div>
+            </a> 
+        {{/if}}
+        {{#if status === 'SETTLED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn" style="background:grey">还款中</div> 
+            </a> 
+        {{/if}}
+        {{#if status === 'CLEARED'}}
+            <a href="/loan/{{id}}">
+                <div class="investbtn" style="background:grey">还款结束</div> 
+            </a> 
+        {{/if}}
+    </div>
+</div>
+{{/list}}

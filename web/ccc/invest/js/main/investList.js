@@ -37,8 +37,42 @@ function jsonToParams(params) {
     return str;
 }
 
+function formateLeftTime(leftTime){
+    var diffmin = leftTime / 1000 / 60;
+    var str = "";
+    if (diffmin > 0) {
+        var _day = Math.ceil(diffmin / 60 / 24);
+        if( _day > 1){
+            str = _day+"天";
+        }else{
+            var _hour = Math.ceil(diffmin / 60);
+            if(_hour > 1){
+                str = _hour+"小时";
+            }else{
+                str = Math.ceil(diffmin)+"分";
+            }
+        }
+    }else {
+        var sec = Math.ceil(leftTime / 1000);
+        str = sec+"秒";
+    }
+    return str;
+}
+
 function formatItem(item) {
+    var purposeMap = {
+        "SHORTTERM" : "短期周转",
+        "PERSONAL" : "个人信贷",
+        "INVESTMENT" : "投资创业",
+        "CAR" : "车辆融资",
+        "HOUSE" : "房产融资",
+        "CORPORATION" : "企业融资",
+        "OTHER" : "其它借款"
+    };
+        
+
     item.rate = item.rate / 100;
+    item.purpose = purposeMap[item.purpose];
     item.investPercent = parseInt(item.investPercent * 100, 10);
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
@@ -57,6 +91,11 @@ function formatItem(item) {
         item.amount = (item.amount / 10000);
     } else {
         item.amountUnit = '元';
+    }
+
+    item.leftTime = formateLeftTime(item.timeLeft);
+    if (item.leftTime == "0秒") {
+        item.finished = true;
     }
     //格式化序列号
     if( item.providerProjectCode ){
@@ -81,7 +120,7 @@ function parseLoanList(list) {
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
-        template: require('partials/singleInvest.html'),
+        template: require('partials/singleInvestList.html'),
         data: {
             list: parseLoanList(res.results),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
@@ -93,54 +132,92 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         this.set(e.keypath + ".hovering", hovering);
     });
 
-
-    $('select.condition-rate')
-        .on('change', function () {
-            var option = this.options[this.selectedIndex];
-        
-            var minRate = $(option)
+    $('.sRate li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var minRate = $(this)
                 .data('min-rate');
-            var maxRate = $(option)
+            var maxRate = $(this)
                 .data('max-rate');
-        
+
             params.currentPage = 1;
             params.minRate = minRate;
             params.maxRate = maxRate;
             render(params);
-        });
+        }
+    });
 
-    $('select.condition-status')
-        .on('change', function () {
-            var status = this.value;
+    $('.sDuration li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var minDuration = $(this)
+                .data('min-duration');
+            var maxDuration = $(this)
+                .data('max-duration');
+
+            params.currentPage = 1;
+            params.minDuration = minDuration;
+            params.maxDuration = maxDuration;
+            render(params);
+        }
+    });
+
+    $('.sStatus li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var status = $(this).data("status");
             params.status = status;
             params.currentPage = 1;
             render(params);
-        });
+        }
+    });
+    // $('select.condition-rate')
+    //     .on('change', function () {
+    //         var option = this.options[this.selectedIndex];
+        
+    //         var minRate = $(option)
+    //             .data('min-rate');
+    //         var maxRate = $(option)
+    //             .data('max-rate');
+        
+    //         params.currentPage = 1;
+    //         params.minRate = minRate;
+    //         params.maxRate = maxRate;
+    //         render(params);
+    //     });
 
-    $('select.condition-durations')
-        .on('change', function () {
-            var option = this.options[this.selectedIndex];
-            var minDuration = $(option)
-                .data('min-duration');
-            var maxDuration = $(option)
-                .data('max-duration');
-            params.minDuration = minDuration;
-            params.maxDuration = maxDuration;
-            params.currentPage = 1;
-            render(params);
-        });
+    // $('select.condition-status')
+    //     .on('change', function () {
+    //         var status = this.value;
+    //         params.status = status;
+    //         params.currentPage = 1;
+    //         render(params);
+    //     });
 
-    $('select.condition-method')
-        .on('change', function () {
-            var method = this.value;
-            params.currentPage = 1;
-            if (method) {
-                params.method = method;
-            } else {
-                delete params.method;
-            }
-            render(params);
-        });
+    // $('select.condition-durations')
+    //     .on('change', function () {
+    //         var option = this.options[this.selectedIndex];
+    //         var minDuration = $(option)
+    //             .data('min-duration');
+    //         var maxDuration = $(option)
+    //             .data('max-duration');
+    //         params.minDuration = minDuration;
+    //         params.maxDuration = maxDuration;
+    //         params.currentPage = 1;
+    //         render(params);
+    //     });
+
+    // $('select.condition-method')
+    //     .on('change', function () {
+    //         var method = this.value;
+    //         params.currentPage = 1;
+    //         if (method) {
+    //             params.method = method;
+    //         } else {
+    //             delete params.method;
+    //         }
+    //         render(params);
+    //     });
 
 
     function render(params) {
