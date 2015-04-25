@@ -1,0 +1,29 @@
+<div class="ccc-register-wrap">
+    {{#HIDE}}
+    {{#if step.show}}
+    <div class="sjjr-center-c">
+        {{#if step.current == 1}}
+        <img src="/assets/img/register/zc1-c.png" />
+        {{/if}}
+        {{#if step.current == 2}}
+        <img src="/assets/img/register/zc2-c.png" />
+        {{/if}}
+        {{#if step.current == 3}}
+        <img src="/assets/img/register/zc3-c.png" />
+        {{/if}}
+    </div>
+    {{/if}}
+    {{/HIDE}}
+    
+    {{#if step.current == 1}}
+        {{>step1}}
+    {{/if}}
+    
+    {{#if step.current == 2}}
+        {{>step2}}
+    {{/if}}
+    
+    {{#if step.current == 3}}
+        {{>step3}}
+    {{/if}}
+</div>

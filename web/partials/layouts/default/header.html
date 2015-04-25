@@ -1,6 +1,32 @@
 <!-- 导航开始 -->
-<div id="header-wraper">
-    {{>layouts.default.headerInner}}
+<div class="s-header">
+    <div class="s-header-info">
+        <div class="s-header-info-content u-pos-r-center">
+            {{#if !user.loginName}}
+            <a href="/login">登陆</a>
+            <a href="/register">注册</a>
+            {{else}}
+            <a href="/logout">退出</a>
+            <a href="/account">{{user.loginName}}</a>
+            {{/if}}
+            <a href="#">帮助</a>
+            <p class="s-hot-line">热线：400 000 0000 ( 9:00-22:00 )</p>
+        </div>
+    </div>
+    <div class="s-header-menu">
+        <div class="s-header-menu-content u-pos-r-center">
+            <a href="/">
+                <img class="s-icon" src="/assets/img/logo.png">
+            </a>
+            <ul class="u-nolist-ul">
+                <li class="s__is-selected">我要投资</li>
+                <li>安全保障</li>
+                <li>新手指引</li>
+                <li>关于我们</li>
+                <li class="s__highlight">我的账户</li>
+            </ul>
+        </div>
+    </div>
 </div>
 <!-- 导航结束 -->
 <script src="/assets/js/main/header.js" async defer></script>

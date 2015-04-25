@@ -1,10 +1,10 @@
-/**
- * @file 注册的数据交互层
- * @author huip(hui.peng@creditcloud.com)
- */
-
 'use strict';
 var request = require('cc-superagent-promise');
+
+function isEmail(mail) {
+    var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+    return re.test(mail);
+}
 
 exports.RegisterService = {
     checkLoginName: function (loginName, next) {
@@ -36,17 +36,36 @@ exports.RegisterService = {
             });
     },
     checkInvitation: function (params,next) {
-        
-        return next({
-            success: true,
-            message: null
-        });
-        
         request
             .get('/register/invitation?' + params)
             .end()
             .then(function (res) {
                 next(res);
+            });
+    },
+    
+    // 通过邮箱或组验证码，判断组是否存在(企业码)
+    checkGroupExist: function (value, next) {
+        var key = 'groupCode';
+        if (isEmail(value)) {
+            value = '@' + value.split('@')[1];
+            key = 'email';
+        }
+        // groupCode  email
+        request
+            .get('/api/v2/users/groupExist?' + key + '=' + value)
+            .end()
+            .then(function (res) {
+                next(res.body.success, res.body.error);
+            });
+    },
+    // 通过手机号判断用户是否已被邀请
+    checkIsIsInvited: function (mobile, next) {
+        request
+            .get('/api/v2/users/isInvited/' + mobile)
+            .end()
+            .then(function (res) {
+                next(res.body.success, res.body.error);
             });
     }
 };
