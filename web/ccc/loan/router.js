@@ -135,6 +135,8 @@ function parseLoan(loan) {
         'CORPORATION': '企业融资',
         'OTHER': '其它借款'
     };
+    console.log(loan);
+    loan.investPercent = Math.floor(loan.investPercent * 100);
     loan.rate = loan.rate / 100;
     loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
     if (loan.timeSettled) {
@@ -150,6 +152,19 @@ function parseLoan(loan) {
         loan.timeSettled = moment(loan.timeSettled)
             .format('YYYY-MM-DD');
     }
+    if (loan.amount >= 10000) {
+        loan.aUnit = '万';
+        loan.amount = (loan.amount / 10000);
+    } else {
+        loan.aUnit = '元';
+    }
+    loan.leftAmount = loan.balance;
+    if (loan.leftAmount >= 10000) {
+        loan.amountUnit = '万';
+        loan.leftAmount = (loan.leftAmount / 10000);
+    } else {
+        loan.amountUnit = '元';
+    }
     loan.loanRequest.timeSubmit = moment(loan.loanRequest.timeSubmit)
         .format('YYYY-MM-DD');
     loan.dueDate = moment(loan.dueDate)
@@ -158,6 +173,7 @@ function parseLoan(loan) {
     loan.timeLeft = formatLeftTime(loan.timeLeft);
     loan.purpose = purposeMap[loan.purpose];
     //格式化期限
+    loan.months = loan.duration.totalMonths;
     if (loan.duration.days > 0) {
         if (typeof loan.duration.totalDays === "undefined") {
             loan.fduration = loan.duration.days;                            

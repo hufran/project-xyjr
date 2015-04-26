@@ -14,6 +14,8 @@ global.jQuery = $; // bootstrap 插件需要
 require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
 
+var Cal = require('assets/js/modules/cccCalculator');
+
 // cccConfirm
 var Confirm = require('assets/js/modules/cccConfirm');
 
@@ -163,8 +165,9 @@ setTimeout((function () {
             });
     }
 
-    investRactive.on('doLogin', function () {
-        popupLogin.show();
+    $('.benefit-calculator')
+    .on('click', function () {
+        Cal.create();
     });
 }), 100);
 
