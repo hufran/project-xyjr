@@ -109,7 +109,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="invest-button-wrapper">
-                    <input type="submit" class="btn btn-warning invest-button" value="立即投标" />
+                    <input type="submit" class="btn btn-warning invest-button" value="立即投标"  style="background:#ff9000"/>
+                    <span class="benefit-calculator">收益计算</span>
                 </div>
             </form>
 		{{/if}}
@@ -132,6 +133,6 @@
         </div>
         
         <div class="invest-button-wrapper">
-            <input type="submit" class="btn btn-warning invest-button" on-click="doLogin" value="立即登录" />
+            <a href="/login"><input type="submit" class="btn btn-warning invest-button" value="立即登录" /></a>
         </div>
 {{/if}}
