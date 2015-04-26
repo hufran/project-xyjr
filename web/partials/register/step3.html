@@ -1,10 +1,11 @@
+{{#HIDE}}
 <div class="sjjr-center-c">
     <img src="/assets/img/register/zccg-c.png" width="113" height="164" />
     <div class="psty1">
-       恭喜您已经成为世纪金融的用户，您可以进入
-       <a href="/account"> 用户中心 </a>
-       完善个人信息，也可以享受世纪金融 为您提供的各项服务。 {{countTime}}秒钟后跳转到首页，点击 
-       <a href="/"> 这里 </a>立即跳转。</div>
+        恭喜您已经成为世纪金融的用户，您可以进入
+        <a href="/account"> 用户中心 </a>
+        完善个人信息，也可以享受世纪金融 为您提供的各项服务。 {{countTime}}秒钟后跳转到首页，点击
+        <a href="/"> 这里 </a>立即跳转。</div>
 </div>
 <div class="imgbox-c">
     <a href="/market">
@@ -20,3 +21,30 @@
         <img src="/assets/img/register/wkzx-c.png" />
     </a>
 </div>
+{{/HIDE}}
+
+
+
+
+<form name="regFormStep2" class="register-form" action="/register" method="POST">
+    <div id="main-container">
+        <div class="s-sign-view u-pos-r-center">
+            <div class="u-segment">
+                <img src="/assets/img/reg-3.png" />
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <h2 style="text-align:center;padding-bottom: 30px">恭喜您注册成功</h2>
+                        <p>
+                            您可以进入<a href="/account"> 我的账户 </a>，{{countTime}}秒钟后跳转到首页，点击
+                        <a href="/"> 这里 </a>立即跳转。
+                        </p>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</form>

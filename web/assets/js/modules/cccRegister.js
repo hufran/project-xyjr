@@ -98,7 +98,7 @@ module.exports = function (options) {
             // 注册服务协议弹窗
             $('.ccc-agreement').click(function(){
                 Agreement({
-                    title: '世纪金融注册服务协议',
+                    title: '注册服务协议',
                     ok: function() {
                         self.clearMsg('agreement');
                     }
@@ -251,11 +251,9 @@ module.exports = function (options) {
             });
         },
         stepTwoVer: [
-            'userName',
+            'name',//'userName',
             'idNumber',
-            'email',
-            'city',
-            'jobs'
+            'email'
         ],
         bindStep2Actions: function () {
             var self = this;
@@ -330,12 +328,6 @@ module.exports = function (options) {
                     } else {
                         self.clearMsg('email');
                     }
-                }
-                
-                if (!self.get('salary')) {
-                    self.showMsg('请选择年收入', 'salary');
-                } else {
-                    self.clearMsg('salary');
                 }
                 
                 if (!self.get('ACCESS')) {
@@ -430,6 +422,7 @@ module.exports = function (options) {
                 if (left > 0) {
                     obj.html(msg.replace('$', left--));
                 } else {
+                    console.log(previousText);
                     obj.html(previousText);
                     obj.removeClass('disabled');
                     clearInterval(interval);
