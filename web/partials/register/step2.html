@@ -1,3 +1,4 @@
+{{#HIDE}}
 <form name="regFormStep2" class="register-form" action="/register" method="POST">
     <div class="item-c">
         <div class="label-c">姓名</div>
@@ -121,5 +122,82 @@
             <span class="error">{{msg.updateErr}}</span>
         </div>
         {{/if}}
+    </div>
+</form>
+{{/HIDE}}
+
+
+
+
+<form name="regFormStep2" class="register-form" action="/register" method="POST">
+    <div id="main-container">
+        <div class="s-sign-view u-pos-r-center">
+            <!--use class: u-segment__step1 : u-segment__step2 : u-segment__step3 to change status, !must change class not just add class-->
+            <div class="u-segment">
+                <img src="/assets/img/reg-2.png" />
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <label class="s__is-require"></label>姓名：</td>
+                    <td>
+                        <input type="text" name="name" data-text="姓名" value="{{user.name}}" placeholder="请输入您的真实姓名" />
+                        {{#if msg.name}}
+                        <div class="item-msg">
+                            <span class="error">{{msg.name}}</span>
+                        </div>
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="s__is-require"></label>身份证号：</td>
+                    <td>
+                        <input type="text" name="idNumber" data-text="身份证号" value="{{user.idNumber}}" placeholder="请输入您的身份证号码" />
+                        {{#if msg.idNumber}}
+                        <div class="item-msg">
+                            <span class="error">{{msg.idNumber}}</span>
+                        </div>
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="s__is-require"></label>电子邮箱：</td>
+                    <td>
+                        <input type="text" name="email" data-text="电子邮箱" 
+                            value="{{#if user.email != 'null@creditcloud.com'}}{{user.email}}{{/if}}" placeholder="请输入您的电子邮箱" />
+                        {{#if msg.email}}
+                        <div class="item-msg">
+                            <span class="error">{{msg.email}}</span>
+                        </div>
+                        {{/if}}
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="padding-top:15px">
+                        <button type="submit" class="s-btn-submit post-btn-step1">下一步</button>
+                        <div class="item-msg">
+                            {{#if msg.post}}
+                            <span class="error">{{msg.post}}</span>
+                            {{/if}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="u-tabel-text-ali__cen" style="padding-top: 10px">
+                        <a href="javascript:;" class="ml100-c" on-click="goNext">跳过</a>
+                        {{#if !msg.updateErr}}
+                        <div class="item-msg">
+                            <span class="error" style="padding-left:68px;padding-top:10px">{{msg.updateErr}}</span>
+                        </div>
+                        {{/if}}
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
     </div>
 </form>

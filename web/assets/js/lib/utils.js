@@ -1,7 +1,3 @@
-/**
- * @file 基础共用js组件
- * @author huip(hui.peng@creditcloud.com)
- */
 "use strict";
 var reduce = require('lodash-node/compat/collections/reduce');
 module.exports = (function () {
@@ -40,17 +36,18 @@ module.exports = (function () {
             }
 
             if (!('' + registerName)
-                .match(reg)) {                
+                .match(reg)) {
                 next(false, 'LOGINNAME_INVALID');
                 return;
             }
-            
+
             if (registerName.indexOf('-') >= 0) {
                 next(false, 'LOGINNAME_INVALID');
                 return;
             }
 
-            if (registerName.length < 2 || registerName.length > 30) {
+            if (registerName.length < 2 || registerName.length >
+                30) {
                 next(false, 'LOGINNAME_SIZE');
                 return;
             }
@@ -75,15 +72,27 @@ module.exports = (function () {
         checkRePassword: function (password, repassword, next) {
 
             if (!repassword || !repassword.length) {
-                next(false, 'PASSWORD_AGAIN_NULL');
+                next(false, 'REPASSWROD_NULL');
                 return;
             }
 
             if (repassword !== password) {
-                next(false, 'PASSWORD_AGAIN_INVALID');
+                next(false, 'REPASSWORD_INVALID');
                 return;
             }
 
+            next(true, null);
+        },
+
+        checkEmail: function (email, next) {
+            if (!email || !email.length) {
+                next(false, 'EMAIL_NULL');
+                return;
+            }
+            if (!('' + email).match(/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/)) {
+                next(false, 'EMAIL_INVALID');
+                return;
+            }
             next(true, null);
         },
         checkMobile: function (mobile, next) {
@@ -99,8 +108,7 @@ module.exports = (function () {
             next(true, null);
         },
         checkIdNumber: function (idNumber, next) {
-            idNumber = ('' + idNumber)
-                .replace(/^\s+|\s+$/g, '');
+            idNumber = ('' + idNumber).replace(/^\s+|\s+$/g, '');
             var pcode = []; //只有这些数字开头的代码才是合法的
             pcode.push("11"); //北京
             pcode.push("12"); //天津
@@ -134,25 +142,46 @@ module.exports = (function () {
             pcode.push("64"); //宁夏
             pcode.push("65"); //新疆
             if (!~pcode.indexOf(idNumber.substring(0, 2))) {
-                next(false, 'IDNUMBER_INVALID');
-                return;
+                if (next) {
+                    next(false, 'IDNUMBER_INVALID');
+                } else {
+                    return {
+                        success: false,
+                        data: 'IDNUMBER_INVALID'
+                    };
+                }
             }
 
-            var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4,
+            var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9,
+                10, 5, 8, 4,
                 2
             ];
-            var validEnding = ["1", "0", "X", "9", "8", "7", "6", "5", "4",
+            var validEnding = ["1", "0", "X", "9", "8", "7",
+                "6", "5", "4",
                 "3", "2"
             ];
-
-            if (idNumber[17] != validEnding[reduce(factor, function (r, n,
-                i) {
-                return r + n * ~~idNumber[i];
-            }, 0) % 11]) {
-                next(false, 'IDNUMBER_INVALID');
-                return;
+            
+            if (idNumber[17] != validEnding[reduce(factor,
+                function (r, n, i) {
+                    return r + n * ~~idNumber[i];
+                }, 0) % 11]) {
+                if (next) {
+                    next(false, 'IDNUMBER_INVALID');
+                } else {
+                    return {
+                        success: false,
+                        data: 'IDNUMBER_INVALID'
+                    };
+                }
             }
-            next(true, null);
+            if (next) {
+                next(true, null);
+            } else {
+                return {
+                    success: true,
+                    data: null
+                };
+            }
         },
         checkName: function (name, next) {
             if (!name || !name.length) {
@@ -165,14 +194,28 @@ module.exports = (function () {
                 return;
             }
             next(true, null);
+        },
+        checkSmsCaptcha: function (sms, next) {
+            if (!sms || !sms.length) {
+                next(false, 'SMSCAPTCHA_NULL');
+                return;
+            }
+
+            if (sms.length !== 6) {
+                next(false, 'SMSCAPTCHA_INVALID');
+                return;
+            }
+            next(true, null);
         }
     };
 
     var ErrorMsg = {
         PASSWORD_NULL: '请填写密码,不能为空字符',
-        PASSWORD_LENGTH: '请填写至少 6 位密码，不能包含空字符',
+        PASSWORD_LENGTH: '密码由6-20位数字和字母组成，区分大小写，不能包含空字符',
         PASSWORD_AGAIN_NULL: '请填写密码确认',
         PASSWORD_AGAIN_INVALID: '两次输入的密码不一致',
+        REPASSWORD_NULL: '请填写密码确认',
+        REPASSWORD_INVALID: '两次输入的密码不一致',
         MOBILE_USED: '手机号码已被使用',
         MOBILE_CAPTCHA_NULL: '请填写手机短信验证码',
         MOBILE_CAPTCHA_INVALID: '验证码无效或已过期，请尝试重新发送',
@@ -193,12 +236,15 @@ module.exports = (function () {
         EMAIL_NULL: '请填写电子邮箱',
         EMAIL_INVALID: '请输入正确的邮箱',
         IDNUMBER_INVALID: '请正确填写 18 位身份证号码',
-        LOGIN_INVALID: '用户名或密码错误',
+        LOGIN_INVALID: '手机号或密码错误',
         INVALID_CAPTCHA: '验证码错误',
         LOGINNAME_NOT_MATCH: '手机号码与登录名不匹配',
         INVITATION_INVALID: 'H码无效',
         INVITATION_NULL: 'H码为空',
-        PAYMENT_ACCOUNT_CREATE_ERROR: '国政通实名认证校验未通过'
+        PAYMENT_ACCOUNT_CREATE_ERROR: '国政通实名认证校验未通过',
+        SMSCAPTCHA_INVALID: '验证码为6位',
+        SMSCAPTCHA_NULL: '验证码不能为空',
+        IDNUMBER_NULL: '身份证号不能为空'
     };
 
     var CountDown = function () {};
@@ -216,7 +262,8 @@ module.exports = (function () {
                 }
                 return i;
             };
-            var leftTime = (new Date(time)) - (new Date(serverDate));
+            var leftTime = (new Date(time)) - (new Date(
+                serverDate));
             if (leftTime < 0) {
                 return;
             }
@@ -241,7 +288,8 @@ module.exports = (function () {
             ss = checkTime(ss);
             var o = {
                 day: dd,
-                hour: parseInt(hh, 10) + (dd > 0 ? dd * 24 : 0),
+                hour: parseInt(hh, 10) + (dd > 0 ? dd * 24 :
+                    0),
                 min: mm,
                 sec: ss
             };
@@ -280,13 +328,16 @@ module.exports = (function () {
         str = str.trim();
         var result = '';
         if (str.length === 16) {
-            result = str.substring(0, 4) + ' ' + '**** ****' + ' ' + str.substring(
-                12);
+            result = str.substring(0, 4) + ' ' + '**** ****' + ' ' +
+                str.substring(
+                    12);
         } else if (str.length === 19) {
-            result = str.substring(0, 6) + ' ' + '*******' + ' ' + str.substring(
-                13);
+            result = str.substring(0, 6) + ' ' + '*******' + ' ' +
+                str.substring(
+                    13);
         } else {
-            console.error('Bank account number ' + str + ' is invalid');
+            console.error('Bank account number ' + str +
+                ' is invalid');
             result = str;
         }
         //return result.replace(/\s/g, '&nbsp;')
@@ -309,7 +360,8 @@ module.exports = (function () {
         var t = "",
             i;
         for (i = 0; i < l.length; i++) {
-            t += l[i] + ((i + 1) % 3 === 0 && (i + 1) !== l.length ? "," :
+            t += l[i] + ((i + 1) % 3 === 0 && (i + 1) !== l.length ?
+                "," :
                 "");
         }
         if (r) {
@@ -335,15 +387,16 @@ module.exports = (function () {
             if (offset === 0) {
                 return percent.substring(0, percent.indexOf("."));
             } else {
-                return percent.substring(0, percent.indexOf(".") + (offset +
-                    1));
+                return percent.substring(0, percent.indexOf(".") +
+                    (offset +
+                        1));
             }
         }
     };
 
     // format timeElapsed 
 
-    var timeElapsed = function (timeElapsed) {
+    var timeElapsed = function (timeElapsed, isobj) {
         if (timeElapsed < 0) {
             return;
         }
@@ -379,16 +432,73 @@ module.exports = (function () {
         if (d) {
             result = '' + d + '天' + result;
         }
-        return result;
+        return !isobj ? result : {
+            day: d,
+            hour: h,
+            min: m,
+            sec: parseInt(s)
+        };
     };
-	
-	var ieCheck = function () {
-		var version = typeof navigator !== 'undefined' &&
-		navigator.appVersion &&
-		navigator.appVersion.match(/MSIE ([\d.]+)/);
 
-		return version ? Number(version[1]) || 0 : 0;
-	};
+    var ieCheck = function () {
+        var version = typeof navigator !== 'undefined' &&
+            navigator.appVersion &&
+            navigator.appVersion.match(/MSIE ([\d.]+)/);
+
+        return version ? Number(version[1]) || 0 : 0;
+    };
+    
+    var match = {
+        mobile: function (mobile) {
+            var req = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+            return !!mobile.toString().match(req);
+        },
+        amount: function (amount) {
+            var exp = /^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/;
+            return exp.test(amount);
+        },
+        email: function (email) {
+            var exp = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+            return exp.test(email);
+        },
+        // 6到20位数字字母密码
+        password: function (s){
+            return !!s.match(/[0-9a-zA-Z]{6,20}/);
+        }
+    };
+    
+    
+    var tool = {
+        jsonToParams: function (params) {
+            var str = '';
+            for (var key in params) {
+                if (typeof params[key] === 'object') {
+                    for (var i=0; i<params[key].length; i++) {
+                        str += '&' + key + '=' + params[key][i];
+                    }
+                } else {
+                    if (params.hasOwnProperty(key)) {
+                        str += '&' + key + '=' + params[key];
+                    }
+                }
+            }
+            return str;
+        },
+        setDate: function(date) {
+            var _date, y, m, d;
+            _date = date.split("-");
+            y = parseInt(_date[0]);
+            m = parseInt(_date[1]);
+            d = parseInt(_date[2]);
+            if (m < 10) {
+                m = '0' + m;
+            }
+            if (d < 10) {
+                d = '0' + d;
+            }
+            return y + '-' + m + '-' + d;
+        },
+    };
 
     // 暴露接口
     return {
@@ -403,7 +513,9 @@ module.exports = (function () {
         },
         bankAccount: bankAccount,
         i18n: require('@ds/i18n')['zh-cn'].enums,
-		ieCheck: ieCheck
+        ieCheck: ieCheck,
+        match: match,
+        tool: tool
     };
 
 })();
