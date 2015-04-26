@@ -6,18 +6,24 @@ var router = module.exports = require('@ds/base')
 router.get(/^\/info/, function (req, res, next) {    
     // 定位tab
     var tabs = [{
-        text: '关于我们',
+        text: '九信金融',
         url: '/info/index'
+    }, {
+        text: '集团背景',
+        url: '/info/group' 
     }, {
         text: '联系我们',
         url: '/info/contactus'
-    }, {
-        text: '相关政策',
-        url: '/info/policy'
-    }, {
-        text: '加入我们',
-        url: '/info/recruit'       
-    }];
+    }, 
+    // {
+    //     text: '相关政策',
+    //     url: '/info/policy'
+    // }, {
+    //     text: '加入我们',
+    //     url: '/info/recruit'       
+    // }
+
+    ];
 
     var path = req.path.replace(/\/$/, '');
     var tabIndex;

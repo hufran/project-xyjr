@@ -20,10 +20,16 @@
             </a>
             <ul class="u-nolist-ul">
                 <li class="s__is-selected"><a href="/invest/list">我要投资</a></li>
-                <li>安全保障</li>
+                <li><a href="/safe">安全保障</a></li>
                 <li>新手指引</li>
-                <li>关于我们</li>
-                <li class="s__highlight">我的账户</li>
+                <li><a href="/info/index">关于我们</a></li>
+                <li class="s__highlight">   
+                    {{#if !user.loginName}}
+                        <a href="/login" style="color:#EC9730;">我的账户</a>
+                    {{ else }}
+                        <a href="/account" style="color:#EC9730;">我的账户</a>
+                    {{/if}}
+                </li>
             </ul>
         </div>
     </div>
