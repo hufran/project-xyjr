@@ -11,6 +11,7 @@ var forgotRactive = new Ractive({
     el: '.page-forgot',
     template: template,
     data: {
+        success: false,
         captcha: {
             img: '',
             token: ''
@@ -65,9 +66,22 @@ forgotRactive.on('doReset', function (e) {
                 msg) {
                 if (!err) {
                     showErrors(msg);
+                    CommonService.getCaptcha(function (res) {
+                        forgotRactive.set('captcha', {
+                            img: res.captcha,
+                            token: res.token
+                        });
+                    });
                 } else {
-                    disableErrors();
-                    window.location.href = '/';
+                    //disableErrors();
+                    //showErrors('密码修改成功，新密码已发送到您的手机号，请重新登录', true);
+                    forgotRactive.set('success', true);
+                    /*
+                    setTimeout(function(){
+                        showErrors('正转跳至登录页面...', true);
+                        window.location.href = '/login';
+                    }, 2500);
+                    */
                 }
                 return false;
             });
@@ -78,11 +92,13 @@ forgotRactive.on('doReset', function (e) {
 });
 
 // show errors
-function showErrors(error) {
+function showErrors(error, isSucc) {
+    isSucc = isSucc || false;
     forgotRactive
         .set('errors', {
             visible: true,
-            msg: utils.errorMsg[error]
+            isSucc: isSucc,
+            msg: !isSucc ? utils.errorMsg[error] : error
         });
 }
 

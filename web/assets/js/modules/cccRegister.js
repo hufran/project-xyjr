@@ -11,12 +11,7 @@ var LoginService = require('assets/js/service/login');
 var CommonService = require('assets/js/modules/common')
     .CommonService;
 var utils = require('assets/js/lib/utils');
-//require('assets/js/lib/select2css');
-//var industryInfos = require('ccc/insurance/js/industry.json');
-//var workerInfos = require('ccc/insurance/js/worker.json');
-//var provinceInfos = require('ccc/insurance/js/province.json'); // province 信息
-//var cityInfos = require('ccc/insurance/js/city.json'); // 城市信息
-//var areaInfos = require('ccc/insurance/js/area.json'); // 区/县 信息
+var format = require('@ds/format');
 
 module.exports = function (options) {
     
@@ -53,9 +48,9 @@ module.exports = function (options) {
             },
             //provinceInfos: provinceInfos,
             //area: Area,
-            citys: [],
+            //citys: [],
             //industry: industryInfos,
-            jobs: [],
+            //jobs: [],
             countTime: 5, // 最后一步转跳时间
             agreementType: config.agreementType,
             popup: config.popup,
@@ -71,7 +66,7 @@ module.exports = function (options) {
             'mobile',
             'password',
             'repassword',
-            'smsCaptcha',
+            'captcha',//'smsCaptcha',
             'agreement'
         ],
         defaultEmail: 'null@creditcloud.com',
@@ -82,6 +77,7 @@ module.exports = function (options) {
             this.$loginName = $(this.el).find('input[name=loginName]');
             this.$mobile = $(this.el).find('input[name=mobile]');
             this.$smsCaptcha = $(this.el).find('input[name=smsCaptcha]');
+            this.$captcha = $(this.el).find('input[name=captcha]');
             this.$password = $(this.el).find('input[name=password]');
             this.$repassword = $(this.el).find('input[name=repassword]');
             this.$agreement = $(this.el).find('input[name=agreement]');
@@ -91,14 +87,29 @@ module.exports = function (options) {
             this.bindActions();
             this.bindStep2Actions();
             this.bindEvents();
+            
+            this.captChaImg = $(this.el).find('.captcha-img');
+            
+            this.getCaptCha();
+            window.xx = registerRac;
         },
+        
+        captcha: {},
+        getCaptCha: function() {
+            var self = this;
+            CommonService.getCaptcha(function (data) {
+                self.captcha = data;
+                self.captChaImg.attr('src', data.captcha);
+            });
+        },
+        
         bindActions: function () {
             var self = this;
             
             // 注册服务协议弹窗
             $('.ccc-agreement').click(function(){
                 Agreement({
-                    title: '世纪金融注册服务协议',
+                    title: '注册服务协议',
                     ok: function() {
                         self.clearMsg('agreement');
                     }
@@ -240,165 +251,127 @@ module.exports = function (options) {
                                     email: self.defaultEmail,
                                     mobile_captcha: self.$smsCaptcha.val()
                                 };
+                                self.userData = userData;
+                                self.set('Fmobile', format.mask(userData.mobile, 3, 4));
                                 
+                                self.$postStep1.text('处理中...').addClass('disabled');
+                                
+                                self.captcha.captcha = self.$captcha.val();
+                                
+                                // 检测图形验证码
+                                self.clearMsg('captcha');
+                                CommonService.checkCaptcha(self.captcha, function(data) {
+                                    self.resetForm();
+                                    if (!data.success) {
+                                        self.getCaptCha();
+                                        self.showMsg(utils.errorMsg[data.error[0].message], 'post');
+                                    }else {
+                                        self.set('msg.post', null);
+                                        self.set('step.current', 2);
+                                        self.bindStep2Actions();
+                                        self.sendSmsCaptcha();
+                                    }
+                                });
+                                /*
                                 self.service.doRegister(userData, function (r, error) {
                                     self.regCallback(userData, r, error);
                                 });
+                                */
                             }
                         });
                     }
                 });
             });
+            
+            $(this.el).find('.captcha-img').on('click', function (e) {
+                e.preventDefault();
+                self.getCaptCha();
+            });
         },
         stepTwoVer: [
-            'userName',
+            'name',//'userName',
             'idNumber',
-            'email',
-            'city',
-            'jobs'
+            'email'
         ],
         bindStep2Actions: function () {
             var self = this;
             // step2 el
             this.$postStep2 = $('button.post-btn-step2');
             
-            
-            
-            
-            $('.srbtn-c').on('click', function(e){
-                var $this = $(this);
-                var value = $(this).data('value');
-                $('.srbtn-c.selected').removeClass('selected');
-                $this.addClass('selected');
-                self.set('salary', value);
-                $('[name=salary]').val(value);
-                self.clearMsg('salary');
-            });
-            
-            $.each(this.stepTwoVer, function (index, value) {
-                var ele = $('[name=' + value + ']');
-                ele.focusin(function(){
-                    self.clearMsg(value);
-                });
-            });
-            
-            $('.tag_select_wrap').on('click', function(){
-                self.clearMsg($(this).parent().parent().parent().data('key'));
-            });
-            
-            $('form[name=regFormStep2]').submit(function(e){
-                var $this = $(this);
+            $(this.el).find('[name=regFormStep2]').submit(function(e){
+                var smsCaptcha = $.trim($(self.el).find('[name=smsCaptcha]').val());
                 if (e && e.preventDefault){
                     e.preventDefault();
                 } else {
                     window.event.returnValue = false;
                 }
                 
-                if (self.$postStep2.hasClass('disabled')) {
+                self.clearMsg('smsCaptcha');
+                self.set('ACCESS', true);
+                
+                if (self.$postStep1.hasClass('disabled')) {
                     return;
                 }
                 
-                self.set('ACCESS', true);
-                
-                if (config.debug) {
-                    console.log('debug:register:step2:submit', $(this).serialize());
-                }
-                
-                $.each(self.stepTwoVer, function (index, value) {
-                    var ele = $('[name=' + value + ']');
-                    if (!ele.val().length) {
-                        self.showMsg(ele.data('text') + '不能为空', value);
-                    } else {
-                        self.clearMsg(value);
-                    }
-                });
-                
-                var $idNumber = $('[name=regFormStep2] [name=idNumber]');
-                if ($idNumber.val() !== '') {
-                    var _ver = utils.formValidator.checkIdNumber($idNumber.val());
-                    if (!_ver.success) {
-                        self.showMsg('身份证号格式错误', 'idNumber');
-                    } else {
-                        self.clearMsg('idNumber');
-                    }
-                }
-                
-                var $email = $('[name=regFormStep2] [name=email]');
-                if ($email.val() !== '') {
-                    if (!utils.match.email($email.val())) {
-                        self.showMsg('邮箱格式错误', 'email');
-                    } else {
-                        self.clearMsg('email');
-                    }
-                }
-                
-                if (!self.get('salary')) {
-                    self.showMsg('请选择年收入', 'salary');
-                } else {
-                    self.clearMsg('salary');
+                if (smsCaptcha === '') {
+                    self.showMsg('短信验证码不能为空', 'smsCaptcha');
                 }
                 
                 if (!self.get('ACCESS')) {
                     return;
                 }
                 
-                var api = '/api/v2/user/MYSELF/update/userInfo';
-                $.post(api, $this.serialize(), function(r){
-                    if (r.success) {
-                        LoginService.login({
-                            loginName: self.loginName,
-                            password: self.password
-                        }, function (result) {
-                            if (result.success) {
-                                self.fire('goNext');
-                                CC.user = result.user;
-                            } else {
-                                location.href = '/login';
-                            }
-                        });
-                    } else {
-                        self.showMsg('信息保存失败，您可以在个人中心重新尝试编辑', 'updateErr');
-                        setTimeout(function(){
-                            self.fire('goNext');
-                        }, 4000);
-                    }
-                }).error(function(r){
-                    self.showMsg('信息保存失败：' + r.statusText, 'updateErr');
-                    setTimeout(function(){
-                        self.fire('goNext');
-                    }, 4000);
+                self.userData.mobile_captcha = smsCaptcha;
+                
+                self.service.doRegister(self.userData, function (r, error) {
+                    self.regCallback(self.userData, r, error);
                 });
             });
         },
         
+        sendSmsCaptcha: function(obj){
+            var self = this;
+            var $this = obj || $(this.el).find('.get-captcha-tigger');
+            
+            this.set('smsSended', false);
+            
+            if ($this.hasClass('disabled')) {
+                return;
+            }
+            if (self.userData.mobile === '') {
+                self.showMsg(utils.errorMsg.MOBILE_NULL, 'mobile');
+                return;
+            }
+            self.service.checkMobile(self.userData.mobile, function (flag, error) {
+                if (!flag) {
+                    self.showMsg(utils.errorMsg[error[0].message], 'mobile');
+                } else {
+                    CommonService.getSmsCaptcha(self.userData.mobile, function (r) {
+                        if (r.success) {
+                            self.set('smsSended', true);
+                            self.countDown($this);
+                        }
+                    });
+                }
+            });
+        },
         bindEvents: function () {
             var self = this;
             this.on('getcaptcha', function(e){
                 var $this = $(e.node);
-                if ($this.hasClass('disabled')) {
-                    return;
-                }
-                if (self.$mobile.val() === '') {
-                    self.showMsg(utils.errorMsg.MOBILE_NULL, 'mobile');
-                    return;
-                }
-                self.service.checkMobile(self.$mobile.val(), function (flag, error) {
-                    if (!flag) {
-                        self.showMsg(utils.errorMsg[error[0].message], 'mobile');
-                    } else {
-                        CommonService.getSmsCaptcha(self.$mobile.val(), function (r) {
-                            if (r.success) {
-                                self.countDown($this);
-                            }
-                        });
-                    }
-                });
+                self.sendSmsCaptcha($this);
             });
             
             // 跳过第二步
             this.on('goNext', function(){
                 self.set('step.current', 3);
                 self.startCountDownRedirect();
+            });
+            
+            this.on('oneStep', function(){
+                self.set('step.current', 1);
+                self.bindActions();
+                self.bindEvents();
             });
             
             // 切换到popup login视图
@@ -453,6 +426,7 @@ module.exports = function (options) {
                     //location.href = config.redirectWhenSuccess;
                     if (result.success) {
                         CC.user = result.user;
+                        /*
                         if (config.fastMode) {
                             self.set('step.current', 3);
                             self.startCountDownRedirect();
@@ -460,6 +434,9 @@ module.exports = function (options) {
                             self.set('step.current', 2);
                             self.bindStep2Actions();
                         }
+                        */
+                        self.set('step.current', 3);
+                        self.startCountDownRedirect();
                     } else {
                         location.href = '/login';
                     }
@@ -473,7 +450,7 @@ module.exports = function (options) {
         },
         
         resetForm: function () {
-            this.$postStep1.removeClass('disabled');
+            this.$postStep1.removeClass('disabled').text('下一步');
         },
         
         showMsg: function (msg, key) {

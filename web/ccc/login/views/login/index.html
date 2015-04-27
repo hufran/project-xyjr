@@ -3,54 +3,6 @@
 <link rel="stylesheet" href="/css/style.css">
 {{>layouts.default.header}}
 
-<!-- 内容 -->
-{{#HIDE}}
-<div class="zmcf_wrapper ccc-container">
-    <div class="zmcf_content">
-        <div class="log_head">登录</div>
-        <form id="loginForm" class="clearfix" action="/login" method="POST">
-            <div class="zmcf_hint_error errors has-error error-wrap">
-
-            </div>
-            <div class="inner">
-                <ul class="zmcf_logreg_list">
-                    {{#if !isLegacy}}
-                    <p>手机号:</p>
-                    <li>
-                        <span class="user"></span>
-                        <input type="text" placeholder="手机号码" class="logreg_input" name="loginName">
-                    </li>
-                    <p>用户密码:</p>
-                    <li><span class="pass"></span>
-                        <input type="password" class="logreg_input" name="password" placeholder="用户密码">
-                    </li>
-                    <li class="loginSub">
-                        <button type="submit" class="btn logreg_btn do-login">登录</button>
-                    </li>
-                    {{ else }}
-                    <li>
-                        <span class="user"></span>
-                        <input type="text" placeholder="手机号码" class="logreg_input" name="loginName">
-                    </li>
-                    <li><span class="pass"></span>
-                        <input type="password" class="logreg_input" name="password" placeholder="用户密码">
-                    </li>
-                    <li class="loginSub">
-                        <button type="submit" class="btn logreg_btn do-login">登录</button>
-                    </li>
-                    {{/if}}
-                </ul>
-                <div class="go_reg">
-                    还不是会员？<a href="/register">免费注册</a>
-                    <a href="/forgot" class="zmcf_forget">忘记密码</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-{{/HIDE}}
-
-
 <div id="main-container">
 
     <div class="s-login-view u-pos-r-center">
@@ -59,7 +11,7 @@
             <div class="s-login-box-header">
                 <p>没有账号？<a href="/register">立即注册</a>
                 </p>
-                <h3>登陆</h3>
+                <h3>登录</h3>
             </div>
             <form id="loginForm" action="/login" method="POST">
                 <div><i class="mdi mdi-account"></i>
@@ -69,9 +21,9 @@
                     <input type="password" name="password" placeholder="密码" />
                 </div>
                 <p>
-                    <a href="/fogot">忘记密码？</a>
+                    <a href="/forgot">忘记密码？</a>
                 </p>
-                <button type="submit" class="do-login">登陆</button>
+                <button type="submit" class="do-login">登录</button>
                 <p class="login-error"></p>
             </form>
         </div>
@@ -82,4 +34,3 @@
 
 {{>layouts.default.footer}}
 <script src="/js/main/login.js"></script>
-<!-- 内容end -->

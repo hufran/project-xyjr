@@ -1,3 +1,4 @@
+{{#HIDE}}
 <div class="content-odd-container">
     <div class="content-wrapper">
         <form role="form" class="form">
@@ -42,7 +43,64 @@
                 </div>
             {{/if}}
 
-            <button type="submit" on-click="doReset" class="btn do-login btn-success btn-large">重置密码</button>
+            <button type="submit" on-click="doReset" class="btn do-login btn-primary btn-large">重置密码</button>
         </form>
     </div>
+</div>
+{{/HIDE}}
+
+
+<div id="main-container">
+    <h4 class="s-title u-pos-r-center">找回密码</h4>
+    {{#if success}}
+    <table class="s-alert-view u-pos-r-center">
+        <tr>
+            <td>
+                <img src="assets/img/smile.png" />
+                <h2>恭喜您，已经成功重置您的密码！</h2>
+                <p>新密码已经通过短信发送到您的手机，请使用新密码登陆。</p>
+                <a href="/login" class="btn btn-orange" style="width: 200px;margin-top: 70px">立即登陆</a>
+            </td>
+        </tr>
+    </table>
+    {{else}}
+    <div class="s-alert-view u-pos-r-center">
+        <form role="form" class="form">
+            <div class="errors">
+                {{#if errors.visible }}
+                <div class="content {{#if errors.isSucc}}errors-succ{{/if}}">
+                    {{errors.msg}}
+                </div>
+                {{/if}}
+            </div>
+            <table class="u-pos-r-center">
+                <tr>
+                    <td>用户名：</td>
+                    <td>
+                        <input type="text" class="form-control" value="{{user.loginName}}" placeholder="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>手机号：</td>
+                    <td>
+                        <input type="text" class="form-control" value="{{user.mobile}}" placeholder="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>验证码：</td>
+                    <td>
+                        <input type="text" class="form-control captcha pull-left" value="{{captcha.text}}" placeholder="">
+                        <img src="{{captcha.img}}" 
+                            on-click="changeCaptcha" alt="captcha" 
+                            class="pull-left" width="150" height="">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="pull-left" on-click="doReset" style="margin-top:0">重置密码</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    {{/if}}
 </div>
