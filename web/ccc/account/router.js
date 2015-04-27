@@ -51,8 +51,11 @@ router.get(/^\/account/, function (req, res, next) {
             text: '无密协议',
             url: '/account/agreement'
         }, {
-            text: '修改密码',
+            text: '平台密码',
             url: '/account/settings'
+        }, {
+            text: '托管密码',
+            url: '/account/paypwd'
         }]
     }, {
         text: '还款管理',
@@ -202,6 +205,7 @@ router.get('/account/funds', function (req, res) {
     "umpay", // 托管账户
     "bankcard", // 银行卡信息
     "settings", // 对应修改密码
+    "paypwd",
 ].forEach(function (tabName) {
     router.get('/account/' + tabName, function (req, res) {
         req.uest('/api/v2/user/MYSELF/agreement')
