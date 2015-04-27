@@ -1,5 +1,5 @@
 /**
- * @file 盈投保平台服务规则的交互逻辑层
+ * @file 九信金融平台服务规则的交互逻辑层
  * @author lilulu(lilulu@hanhua.com)
  */
 
@@ -30,7 +30,7 @@ exports.popupDepositAgreement = {
         popupDepositAgreementRactive.on('close', function () {
             this.set('visible', false);
             maskLayer.close();
-        });                          
+        });
     },
 
     show: function () {
