@@ -73,3 +73,139 @@
 #arrow-right:hover {
     background: url(/ccc/help/img/index/right_arrow_dark.png) no-repeat;
 }
+
+
+.s-dark-cell, .s-light-cell{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.s-light-cell{
+    background-color: white;
+}
+
+.s-dark-cell{
+    background-color: #F3F2EF;
+}
+
+.s-cell__I .s-cell-content{
+    text-align: center;
+}
+
+.s-cell__I .s-cell-content p{
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.s-cell__I .s-cell-content p:first-child{
+    font-size: 1.1em;
+    line-height: 40px;
+    color: #324075;
+}
+
+.s-cell__I .s-cell-content p:last-child{
+    font-size: 0.8em;
+    color: #666666;
+}
+
+.s-cell__II .s-cell-content>p{
+    font-size: 0.8em;
+    color: #666;
+    padding-right: 200px;
+    padding-left: 200px;
+}
+
+.s-cell__II p{
+    text-align: center;
+}
+
+.s-cell__II .s-cell-content>p:first-child{
+    font-size: 1.1em;
+    line-height: 40px;
+    color: #324075;
+}
+
+.s-cell__II table{
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 299px;
+    text-align: center;
+}
+
+.s-cell__II table tr td{
+    padding-right: 40px;
+    text-align: center;
+}
+
+.s-cell__II table tr td:last-child{
+    padding-right: 0px;
+    padding-left: 40px;
+}
+
+.s-cell__II table tr td p{
+    font-size: 0.8em;
+    color: #666666;
+    margin: 5px 0;
+}
+
+.s-cell__II .s-cell-content>p{
+    font-size: 0.8em;
+    color: #666;
+    padding-right: 200px;
+    padding-left: 200px;
+}
+
+.s-cell__II .s-cell-content>p:nth-child(3){
+    font-size: 1.1em;
+    line-height: 40px;
+    color: #324075;
+}
+
+.s-cell__II .s-cell-content>img{
+    position: relative;
+    left: 230px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.s-cell__III p{
+    text-align: center;
+}
+
+.s-cell__III .s-cell-content>p:first-child{
+    font-size: 1.1em;
+    line-height: 40px;
+    color: #324075;
+}
+
+.s-cell__III .s-cell-content img:nth-child(2){
+    margin-left: 61px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.s-cell__III .s-cell-content img:nth-child(3){
+    margin-left: 417px;
+    margin-top: 80px;
+}
+
+.s-cell__III .s-cell-content p:nth-child(4){
+    width: 220px;
+    margin-left: 389px;
+    margin-top: 10px;
+}
+
+.s-cell__III .s-cell-content button{
+    position: relative;
+    left: 399px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 32px;
+    border: none;
+    background-color: #CB9934;
+    border-radius: 4px;
+    color: white;
+    font-size: 1.2em;
+}

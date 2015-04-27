@@ -7,24 +7,26 @@ var router = module.exports = require('@ds/base')
 router.get(/^\/help/, function (req, res, next) {    
     // 定位tab
     var tabs = [{
-        text: '名词解释',
-        url: '/help/noun'
-    },{
-        text: '常见问题',
-        url: '/help/common',        
-    }, {
-        text: '投资人问题',
-        url: '/help/invester'
-    }, {
-        text: '借款人问题',
-        url: '/help/borrower'
-    }, {
-        text: '帐号问题',
+        text: '账户安全',
         url: '/help/account'
     }, {
-        text: '安全保障问题',
-        url: '/help/safety',        
-    }, ];
+        text: '投资收益',
+        url: '/help/invester'
+    }, {
+        text: '充值提现',
+        url: '/help/borrower'
+    }, {
+        text: '注册登录',
+        url: '/help/common',        
+    },
+    // {
+    //     text: '名词解释',
+    //     url: '/help/noun'
+    // }, {
+    //     text: '安全保障问题',
+    //     url: '/help/safety',        
+    // },
+     ];
 
     var path = req.path.replace(/\/$/, '');
     var tabIndex;
@@ -49,7 +51,13 @@ router.get(/^\/help/, function (req, res, next) {
     next();
 });
 
-router.get(['/help','/help/noun'], function (req, res) {    
+router.get('/help', function (req, res) {    
+    res.render('help/index', {
+        title: '新手指引'
+    });
+});
+
+router.get('/help/noun', function (req, res) {    
     res.render('help/noun', {
         title: '名词解释'
     });
@@ -63,7 +71,7 @@ router.get('/help/common', function (req, res) {
 
 router.get('/help/invester', function (req, res) {    
     res.render('help/invester', {
-        title: '投资人问题'
+        title: '投资收益'
     });
 });
 
@@ -75,7 +83,7 @@ router.get('/help/borrower', function (req, res) {
 
 router.get('/help/account', function (req, res) {    
     res.render('help/account', {
-        title: '帐号问题'
+        title: '账户安全'
     });
 });
 

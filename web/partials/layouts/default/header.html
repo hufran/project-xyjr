@@ -9,7 +9,7 @@
             <a href="/logout">退出</a>
             <a href="/account">{{user.loginName}}</a>
             {{/if}}
-            <a href="#">帮助</a>
+            <a href="/help/account">帮助</a>
             <p class="s-hot-line">热线：400 000 0000 ( 9:00-22:00 )</p>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <ul class="u-nolist-ul">
                 <li class="s__is-selected"><a href="/invest/list">我要投资</a></li>
                 <li><a href="/safe">安全保障</a></li>
-                <li>新手指引</li>
+                <li><a href="/help">新手指引</a></li>
                 <li><a href="/info/index">关于我们</a></li>
                 <li class="s__highlight">   
                     {{#if !user.loginName}}
