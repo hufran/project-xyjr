@@ -28,9 +28,11 @@ router.get('/cms/:channelName', function (req, res) {
                 .end()
                 .then(function (r) {
                     res.render(channelName + '/list', {
+                        title: getChannelIdByName(channelName),
                         news: formatNews(r.body.results),
                         totalPage: createList(Math.ceil(r.body.totalSize /
                             pageSize)),
+                        channelName: getChannelIdByName(channelName),
                         current: parseInt(current, 10)
                     });
                 });
@@ -52,10 +54,12 @@ router.get('/cms/p/:id', function (req, res) {
 
 function getChannelIdByName(channel) {
     var channelMap = {
-        news: '最新公告'
+        news: '最新公告',
+        medias: '媒体报道'
     };
     return channelMap[channel];
 }
+
 
 function formatNews(news) {
     for (var i = 0; i < news.length; i++) {

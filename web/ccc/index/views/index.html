@@ -8,28 +8,30 @@
     <!-- 在carousel上的 按钮 等 -->
     <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
     <div class="current-container info-wrapper">
+        {{#if !user}}
         <div class="info">
-            <p class="para1">
-                简单、快速、收益高！
-            </p>
-
-            <p class="para2">
-                盈投保历史年化收益率
-            </p>
-
-            <p class="para3">
-                平均 <span class="rate">12%-20%</span>
-            </p>
-
-            <p class="para4">
-                <a href="/invest/list" class="btn">我要投资</a>
-                {{#if user.loginName}}
-                    <a href="/account" class="btn">我的账户</a>
-                {{else}}
-                    <a href="#" id="btn-login-on-carousel" class="btn">立即登录</a>
-                {{/if}}
-            </p>
+            <div class="error"></div>
+            <div class="formwrapper">
+                <form> 
+                    <div class="row">
+                        <span class="iuser"></span>
+                        <input type="text" name="loginName" id="loginName" placeholder="用户名">
+                    </div>
+                    <div class="row" style="margin-bottom:10px;">
+                        <span class="ipass"></span>
+                        <input type="password" name="password" id="password" placeholder="密码">
+                    </div>
+                    <div class="row">
+                        <button type="button" class="loginBtn">立即登录</button>
+                    </div>
+                    <div class="row">
+                        <span style="float:right;" class="reg"><a href="/register">免费注册</a></span>
+                        <span style="float:right;" class="forgetPass"><a href="/forgot">忘记密码</a></span>
+                    </div>
+                </form>
+            </div>
         </div>
+        {{/if}}
     </div>
     
     <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
@@ -55,33 +57,100 @@
     </div>
 </div>
 
-<div class="current-container">
-    <!-- 公告 -->
-    <div class="announce">
-        <div class="newest">
-            <div class="bg"></div>
-            <div class="small">最新公告</div>
-            <div class="big">
-                <a href="/cms/p/{{latestPublication.id}}" target="_blank">{{latestPublication.title}}</a>
+<div class="cwrapper" style="border-bottom:1px #ccc solid">
+    <div class="current-container" >
+        <!-- 公告 -->
+        <div class="announce">
+            <div class="newest">
+                <div class="bg"></div>
+                <div class="small">最新公告</div>
+                <div class="big">
+                    {{#latestOne}}
+                        <a href="/cms/p/{{this.id}}" target="_blank" style="text-decoration:none">{{this.title}}</a>
+                    {{/latestOne}}
+                </div>
             </div>
-        </div>
-        <div class="more">
-            <a href="/cms/news" target="_blank">更多&gt;&gt;</a>
+            <div class="more">
+                <a href="/cms/news" target="_blank" style="text-decoration:none">更多&gt;&gt;</a>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="product-wrapper">
-   <div class="current-container">
-        <img src="/ccc/index/img/tedian/01.png" alt="">
-        <img src="/ccc/index/img/tedian/02.png" alt="">
-        <img src="/ccc/index/img/tedian/03.png" alt="">
-        <img src="/ccc/index/img/tedian/04.png" alt="">
-        <div class="clearfix"></div>
-   </div>
-</div>
+<div class="s-content u-pos-r-center">
+        <table class="s-top-table">
+            <tr>
+                <td><img src="/img/ser0.png" /></td>
+                <td><img src="/img/ser1.png" /></td>
+                <td><img src="/img/ser2.png" /></td>
+                <td><img src="/img/ser3.png" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>实力雄厚</h3>
+                    <p>注册资金20亿元 九鼎投资独资子公司</p>
+                </td>
+                <td>
+                    <h3>收益稳健</h3>
+                    <p>年化收益8-10% 期限最低1个月</p>
+                </td>
+                <td>
+                    <h3>安全可靠</h3>
+                    <p>九鼎投资100%本息保障 顶级私募立体风控体系</p>
+                </td>
+                <td>
+                    <h3>资金托管</h3>
+                    <p>资金流转全程由第三方 支付平台监管</p>
+                </td>
+            </tr>
+        </table>
 
-<div class="projects-wrapper">
+        <table class="s-list-table">
+            <tr>
+                <th style="width:278px;">项目</th>
+                <th style="width:137px;">年化利率</th>
+                <th style="width:92px;">期限</th>
+                <th style="width:195px;">金额</th>
+                <th style="width:105px;">进度</th>
+                <th style="width:191px;">状态/操作</th>
+            </tr>
+        </table>
+        <div class="invests-list-wrapper">
+            <ul class="invest-list">
+                <li class="invest-li">
+                    <p class="loading" style="padding: 45px;">加载中...</p>
+                </li>
+            </ul>
+        </div>
+        <p class="u-float-right"><a href="/invest/list" style="text-decoration:none;color:#324075">查看更多</a></p>
+
+        <div class="s-split-view">
+            <div class="s-right-view">
+                <a href="/cms/medias" target="_blank">
+                    <p class="u-float-right" style="color:#324075">more&nbsp;&gt;</p>
+                </a>
+                <h4>媒体报道</h4>
+                <ul style="list-style-type: disc;">
+                    {{#latestNews}}
+                        <li><a href="/cms/p/{{this.id}}" target="_blank" style="text-decoration:none">{{this.title}}</a></li>
+                    {{/latestNews}}
+                </ul>
+            </div>
+            <div class="s-left-view">
+                <a href="/cms/news" target="_blank">
+                    <p class="u-float-right" style="color:#324075">more&nbsp;&gt;</p>
+                </a>
+                <h4>最新公告</h4>
+                <ul style="list-style-type: disc;">
+                    {{#latestPublication}}
+                        <li><a href="/cms/p/{{this.id}}" target="_blank" style="text-decoration:none">{{this.title}}</a></li>
+                    {{/latestPublication}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<!-- <div class="projects-wrapper">
     <div class="current-container">
         <div style="display:none;">hello</div>
         <div class="project-header">
@@ -120,7 +189,7 @@
         {{/}}
     </ul>
     <div class="clearfix"></div>
-</div>
+</div> -->
 
 <div class="space space-50"></div>
 {{>layouts.default.footer}}

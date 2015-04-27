@@ -92,9 +92,12 @@ function formatItem(item) {
     } else {
         item.amountUnit = '元';
     }
-
-    item.leftTime = formateLeftTime(item.timeLeft);
-    if (item.leftTime == "0秒") {
+    if (item.status == "OPENED") {
+        item.leftTime = formateLeftTime(item.timeLeft);
+        item.open = true;
+    } else if (item.status == "SCHEDULED"){
+        item.scheduled = true;
+    } else {
         item.finished = true;
     }
     //格式化序列号
