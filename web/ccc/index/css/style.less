@@ -34,7 +34,7 @@
 }
 
 .current-container {
-    width: 960px;
+    width: 998px;
     margin: 0 auto;
 }
 
@@ -46,58 +46,88 @@
 
     .info{
         position: absolute;
-        right: 15px;
-        top: 0;
-        height: 360px;
-        width: 360px;
-
-        opacity: 0.7;
-        background-color: #000;
+        right: 0px;
+        top: 25px;
+        height: 310px;
+        width: 300px;
         z-index: 10;
         color: #fff;
         padding: 10px;
-
-        .para1{
-            font-style: italic;
-            font-weight: 100;
-            font-size: 210%;
-
-            margin-top: 80px;
-            margin-bottom: 10px;
-            margin-left: 10px;
-
-            border-bottom: 1px solid #333;
+        /*background: url(/img/quickloginBg.png) no-repeat center center;*/
+        background: #C7C7C7;
+        /*opacity: 0.7;*/
+        .error {
+            height: 40px;
+            line-height: 40px;
+            color: red;
+            width: 220px;
+            margin: 0 auto;
         }
-
-        .para2{
-            font-size: 180%;
-            margin-top: 50px;
-            text-align: right;
-            margin-right: 40px;
-        }
-
-        .para3{
-            text-align: right;
-            margin-right: 40px;
-            margin-top: 5px;
-
-            .rate{
-                font-size: 170%;
-            }
-        }
-
-        .para4{
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            margin-left: -10px;
-            .btn{
-                margin-left: 10px;
-                opacity: 1;
-                color: #fff;
-                background-color: #098fcf;
-                padding: 10px 30px;
-                font-size: 16px;
+        .formwrapper {
+            width: 220px;
+            margin: 0 auto;
+            height: 220px;
+            margin-top: 30px;
+            .row {
+                margin: 0;
+                height: 55px;
+                position: relative;
+                .iuser {
+                    display: block;
+                    width: 32px;
+                    height: 32px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: url(/img/quickicon.png) no-repeat center 9px;
+                }
+                .ipass {
+                    display: block;
+                    width: 32px;
+                    height: 32px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: url(/img/quickicon.png) no-repeat center -30px;
+                }
+                .loginBtn {
+                    width: 220px;
+                    height: 32px;
+                    background: #B98B2F;
+                    text-align: center;
+                    line-height: 32px;
+                    border:none;
+                    border-radius: 5px;
+                    color: #fff;
+                    &:focus {
+                        outline:none;
+                    };
+                }
+                .reg {
+                    a {
+                        text-decoration: none;
+                        color: #B98B2F;
+                        margin-left: 10px;
+                    }
+                }
+                .forgetPass {
+                    a {
+                        text-decoration: none;
+                        color: #fff;
+                    }
+                }
+                input {
+                    width: 220px;
+                    height: 32px;
+                    background: #fff;
+                    border: none;
+                    font-size: 13px;
+                    text-indent: 35px;
+                    font-weight: bold;
+                    &:focus {
+                        outline:none;
+                    }
+                }
             }
         }
     }
@@ -106,10 +136,8 @@
 // 最新公告
 .announce {
     color: #a0a0a7;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    padding: 10px 0;
     overflow: hidden;
-    
     .newest {
         float: left;
 
@@ -235,4 +263,322 @@
             margin-top: 10px;
         }
     }
+}
+
+/*外包*/
+
+a{ text-decoration: none; color: inherit; }
+
+.s-login-view-wrapper{
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 360px;
+    /*background-color: #D4D4D4;*/
+    z-index:999999999;
+}
+
+.s-login-view-wrapper .s-login-content{
+    height: 360px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view{
+    float: right;
+    height: 310px;
+    width: 300px;
+    padding-top: 80px;
+    background-color: #C7C7C7;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view .s-input-wrapper{
+    position: relative;
+    width: 208px;
+    padding-left: 10px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    height: 30px;
+    color: #939393;
+    line-height: 30px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view .s-input-wrapper input{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    outline: none;
+    width: 180px;
+    height: 30px;
+    margin-left: 20px;
+    border: none;
+    background-color: white;
+    font-size: 1.1em;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view input[type=submit]{
+    width: 220px;
+    height: 32px;
+    border: none;
+    margin-top: 20px;
+    margin-left: 40px;
+    color: white;
+    font-size: 1.1em;
+    border-radius: 6px;
+    background-color: #B98B2F;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view p a{
+    text-decoration: none;
+    color: #B98B2F;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view p{
+    color: #B98B2F;
+    margin-top: 20px;
+    margin-right: 40px;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view p:last-child a{
+    color: white;
+}
+
+.s-login-view-wrapper .s-login-content .s-login-view p:last-child{
+    margin-right: 10px;
+}
+
+.s-information-bar{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 0.8em;
+    color: #666666;
+}
+
+.s-content>.u-float-right{
+    line-height: 50px;
+    font-size: 0.8em;
+    color: blue;
+    cursor: pointer;
+}
+
+.s-content .s-top-table{
+    width: 998px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+
+.s-content .s-top-table h3{
+    font-weight: bold;
+    color: #324075;
+}
+
+.s-content .s-top-table p{
+    font-size: 0.8em;
+}
+
+.s-content .s-top-table td{
+    width: 248px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+
+.s-content .s-list-table{
+    width: 998px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666666;
+}
+
+.s-content .s-list-table tr{
+    height: 80px;
+}
+.s-content .s-list-table tr:first-child{
+    height: 30px;
+}
+
+.s-content .s-list-table th{
+    background-color: #C7C7C7;
+    line-height: 30px;
+    color: #666666;
+    text-align: center;
+}
+
+.s-content .s-list-table tr td:first-child{
+    color: #324075;
+    font-weight: 200;
+}
+
+.s-content .s-list-table tr td{
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.s-content .s-list-table tr td button{
+    width: 80px;
+    height: 32px;
+    background-color: #324075;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+.s-content .s-list-table tr td button.s__is-uneventable{
+    background-color: transparent;
+    color: #B98B2F;
+}
+
+.s-content .s-list-table tr td .s-pro-circle{
+    position: relative;
+    left: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid #B98B2F;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
+
+.s-content .s-list-table tr td .s-pro-circle.s__step2{
+    border-top: 2px solid #B98B2F;
+    border-left: 2px solid #B98B2F;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
+
+.s-content .s-list-table tr td .s-pro-circle.s__step3{
+    border-top: 2px solid #B98B2F;
+    border-left: 2px solid #B98B2F;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid #B98B2F;
+}
+
+.s-content .s-list-table tr td .s-pro-circle.s__step4{
+    border: 2px solid #B98B2F;
+}
+
+.s-split-view{
+    width: 998px;
+    overflow: hidden;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.s-split-view .u-float-right{
+    line-height: 30px;
+    color: blue;
+}
+
+.s-split-view .s-right-view{
+    width: 400px;
+    float: right;
+}
+
+.s-split-view .s-left-view{
+    width: 400px;
+}
+
+.s-split-view h4{
+    padding-left: 10px;
+    margin-bottom: 10px;
+    border-left: 3px solid #324075;
+}
+
+.s-split-view ul{
+    margin-left: 50px;
+    font-size: 0.8em;
+    color: #666666;
+    line-height: 40px;
+    border-top: 2px solid #e5e5e5;
+}
+
+/*loan*/
+.loanWrapper {
+    width: 998px;
+    height: 80px;
+    border-bottom: 1px #ccc solid;
+    > div {
+        float: left;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        color: #666666;
+    }
+    .event {
+        width: 278px;
+        color: #324075;
+        a {
+            text-decoration: none;
+        }
+    }
+    .rate {
+        width: 137px;
+    }
+    .duration {
+        width: 92px;
+    }
+    .amount {
+        width: 195px;
+    }
+    .process {
+        width: 105px;
+        percentage {
+            width: 46px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 12px;
+            position: relative;
+            left: 43px;
+            top: 15px;
+        }
+        .percent {
+            font-size: 12px;
+            color: #ff9000;
+        }
+        .percentageNum {
+            font-size: 12px;
+            color: #666666;
+            font-weight: bold;
+            position:relative;
+            bottom: 0px;
+            left: 1px;
+        }
+    }
+    .opre {
+        width: 191px;
+        .investbtn {
+            width: 120px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            background: #E58606;
+            color: #fff;
+            border-radius: 5px;
+            position: relative;
+            left:47px;
+            top: 32px;
+            cursor: pointer;
+        }
+    }
+}
+.easyPieChart {
+    position: relative;
+    text-align: center;
+}
+.easyPieChart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
 }

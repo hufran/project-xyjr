@@ -18,9 +18,13 @@
             <div class="realPercent">{{ investPercent }}%</div>
         </div>
         <div class="leftTime">
-            {{#if finished }}
+            {{#if finished}}
                 已结束
-            {{ else }}
+            {{/if}}
+            {{#if scheduled}}
+                未开始
+            {{/if}}
+            {{#if open}}
              剩余时间: {{ leftTime }}
             {{/if}}
         </div>

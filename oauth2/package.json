@@ -9,7 +9,7 @@
         "test": "echo 'no test yet' && exit 0"
     },
     "dependencies": {
-        "@cc/oauth2": "^1.0.1",
+        "@cc/oauth2": "^1.0.2",
         "config": "^1.10.0"
     }
 }

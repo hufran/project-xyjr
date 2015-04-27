@@ -9,26 +9,7 @@ var IndexService = require('./service')
     .IndexService;
 var utils = require('assets/js/lib/utils');
 var i18n = require('@ds/i18n')['zh-cn'];
-
-//$(".carousel-wrapper")
-//    .find(".left")
-//    .css({
-//        width: $carousel.css('margin-left'),
-//        height: $carousel.height(),
-//        top: $carousel.offset()
-//            .top
-//    });
-//$(".carousel-wrapper")
-//    .find(".right")
-//    .css({
-//        width: $carousel.css('margin-right'),
-//        height: $carousel.height(),
-//        left: $carousel.offset()
-//            .left + $carousel.width(),
-//        top: $carousel.offset()
-//            .top
-//    });
-
+require('assets/js/lib/jquery.easy-pie-chart.js')
 
 $carousel
     .on('slid.bs.carousel', function (e) {
@@ -47,10 +28,11 @@ IndexService.getLoanSummary(function (list) {
         }
     });
 
+    initailEasyPieChart();
+
 });
 
 IndexService.getLatestScheduled(function (loan) {
-    console.log(loan);
     var serverDate = loan.serverDate;
     var leftTime = utils.countDown.getCountDownTime(loan.timeOpen,
         serverDate);
@@ -83,3 +65,73 @@ $("#btn-login-on-carousel").click(function(e){
         original: e
     });
 });
+
+function initailEasyPieChart() {
+    ///////////////////////////////////////////////////////////
+    // 初始化饼状图
+    ///////////////////////////////////////////////////////////
+    $(function () {
+        var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
+        $(".easy-pie-chart").each(function () {
+            var percentage = $(this).data("percent");
+            // 100%进度条颜色显示为背景色
+            var color = percentage === 100 ? "#B98B2F" : '#B98B2F';
+            $(this).easyPieChart({
+                barColor: color,
+                trackColor: '#ddd',
+                scaleColor: false,
+                lineCap: 'butt',
+                lineWidth: 2,
+                animate: oldie ? false : 1000,
+                size: 45,
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                }
+            });
+            $(this).find("span.percentageNum").html(percentage+"%");
+        });
+
+    });
+};
+
+
+function showError(message){
+    var errorMaps = {
+        USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-888-7758解锁。',
+        FAILED: '手机号或密码错误'
+    };
+    var $error = $(".error");
+    $error.text(errorMaps[message]); 
+};
+
+function clearError(){
+    var $error = $(".error");
+    $error.text("");
+}
+$('.loginBtn')
+    .click(function (){
+        var username = $("#loginName").val();
+        var password = $("#password").val();
+        if (username && password) {
+            $.post('/ajaxLogin', {
+                loginName : username,
+                password : password
+            }, function (data){
+                if (!data.success) {
+                    showError(data.error_description.result);
+                } else {
+                    clearError();
+                    window.location.reload();
+                }
+            });
+        }
+
+    });
+    
+
+$(document)
+    .keyup(function (e) {
+        if(e.keyCode == 13) {
+            $(".loginBtn").trigger('click');
+        }
+    });
