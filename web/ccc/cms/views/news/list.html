@@ -8,10 +8,13 @@
             <div class="list-main">
                 {{#news}}
                     <dl>
-                    <dd><a href="/cms/p/{{this.id}}">{{this.title}}</a>
-                    </dd>
-                    <dt>{{this.pubDate}}</dt> 
-                </dl>
+                        <dd><a href="/cms/p/{{this.id}}">{{this.title}}</a>
+                        </dd>
+                        <dt>{{this.pubDate}} </dt> 
+                        <b class="arrow icon-angle-down toggleBtn"></b>
+                        <div class="content">{{{this.content}}}</div>
+                    </dl>
+                    
                 {{/news}}
                 <div class="clear_left"></div>
             </div>
@@ -38,4 +41,5 @@
     </div>
 </div>
 {{>layouts.default.footer}}
+<script src="/js/main/list.js"></script>
 <script src="/assets/js/main/header.js"></script>
