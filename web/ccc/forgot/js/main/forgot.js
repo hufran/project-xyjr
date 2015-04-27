@@ -11,6 +11,7 @@ var forgotRactive = new Ractive({
     el: '.page-forgot',
     template: template,
     data: {
+        success: false,
         captcha: {
             img: '',
             token: ''
@@ -73,11 +74,14 @@ forgotRactive.on('doReset', function (e) {
                     });
                 } else {
                     //disableErrors();
-                    showErrors('密码修改成功，新密码已发送到您的手机号，请重新登录', true);
+                    //showErrors('密码修改成功，新密码已发送到您的手机号，请重新登录', true);
+                    forgotRactive.set('success', true);
+                    /*
                     setTimeout(function(){
-                        showErrors('正转跳至登陆页面...', true);
+                        showErrors('正转跳至登录页面...', true);
                         window.location.href = '/login';
                     }, 2500);
+                    */
                 }
                 return false;
             });

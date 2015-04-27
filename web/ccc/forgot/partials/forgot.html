@@ -52,6 +52,18 @@
 
 <div id="main-container">
     <h4 class="s-title u-pos-r-center">找回密码</h4>
+    {{#if success}}
+    <table class="s-alert-view u-pos-r-center">
+        <tr>
+            <td>
+                <img src="assets/img/smile.png" />
+                <h2>恭喜您，已经成功重置您的密码！</h2>
+                <p>新密码已经通过短信发送到您的手机，请使用新密码登陆。</p>
+                <a href="/login" class="btn btn-orange" style="width: 200px;margin-top: 70px">立即登陆</a>
+            </td>
+        </tr>
+    </table>
+    {{else}}
     <div class="s-alert-view u-pos-r-center">
         <form role="form" class="form">
             <div class="errors">
@@ -65,7 +77,7 @@
                 <tr>
                     <td>用户名：</td>
                     <td>
-                        <input type="text" class="form-control" value="{{user.loginName}}" placeholder="用户名">
+                        <input type="text" class="form-control" value="{{user.loginName}}" placeholder="">
                     </td>
                 </tr>
                 <tr>
@@ -85,9 +97,10 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><button class="pull-left" on-click="doReset">重置密码</button></td>
+                    <td><button class="pull-left" on-click="doReset" style="margin-top:0">重置密码</button></td>
                 </tr>
             </table>
         </form>
     </div>
+    {{/if}}
 </div>
