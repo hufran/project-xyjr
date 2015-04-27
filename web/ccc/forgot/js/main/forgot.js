@@ -75,7 +75,7 @@ forgotRactive.on('doReset', function (e) {
                     //disableErrors();
                     showErrors('密码修改成功，新密码已发送到您的手机号，请重新登录', true);
                     setTimeout(function(){
-                        showErrors('正转跳至登陆页面...', true);
+                        showErrors('正转跳至登录页面...', true);
                         window.location.href = '/login';
                     }, 2500);
                 }
