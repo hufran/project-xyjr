@@ -44,7 +44,7 @@ HeaderRactive.on('logout', function () {
 });
 
 global.HeaderRactive = HeaderRactive;
-// 手机上盈投保hover
+// 手机上九信金融hover
 // not need in yingtoubao.com
 //$(".mobile")
 //    .hover(function () {
