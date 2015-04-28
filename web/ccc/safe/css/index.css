@@ -135,7 +135,7 @@
 /*waibao */
 .s-view{
     position: relative;
-    height: 500px;
+    /*height: 500px;*/
     width: 100%;
 }
 .s-darkview{
@@ -146,7 +146,7 @@
 }
 .s-view .s-view-content{
     position: relative;
-    height: 500px;
+    height: 420px;
 }
 .s-view .s-view-title{
     line-height: 100px;
