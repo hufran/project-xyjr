@@ -103,7 +103,7 @@ _.each({
 			console.log(parms);
             req.uest.post('/api/v2/upayment' + api + '/user/MYSELF' + parms)
                 .type("form")
-                .send()
+                .send({placementId:req.body.placementId})
                 .end()
                 .then(function (r) {
 					console.log(r.body);

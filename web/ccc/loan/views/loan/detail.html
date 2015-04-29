@@ -201,16 +201,21 @@
             min: {{loans.loanRequest.investRule.minAmount}},
             max: {{loans.loanRequest.investRule.maxAmount}},
             step: {{loans.loanRequest.investRule.stepAmount}},
-            balance: {{loans.balance}}
+            balance: {{loans.balance}},
+            dw: '{{loans.amountUnit}}',
+            leftAmount : {{loans.leftAmount}}
         },
+        title: '{{loans.title}}',
         investPercent: {{loans.investPercent}},
         amount: {{loans.amount}},
+        cAmount: '{{loans.amount}}{{loans.aUnit}}',
         investAmount: {{loans.investAmount}},
         timeLeft: '{{loans.timeLeft}}',
         status: '{{loans.status}}',
         id: '{{loans.id}}',
         requestId: '{{loans.loanRequest.id}}',
         timeElapsed: '{{loans.timeElapsed}}',
+        duration: '{{loans.months}}',
         bidNumber: {{loans.bidNumber}},
         timeOpen: {{loans.timeOpen}},
         serverDate: {{loans.serverDate}}

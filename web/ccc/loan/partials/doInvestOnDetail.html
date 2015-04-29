@@ -92,6 +92,17 @@
                     </div>
                     {{/if}}
                 </div>
+                {{#if selectOption}}
+                <div class="selectOption">
+                    <span class="sif">使用奖卷</span>
+                    <select name="placementId" id="couponSelection" style="width: 160px; float: left; margin: 0;height:30px;position:relative;left:10px;top:5px;">
+                        <option value="">无</option>
+                        {{#each selectOption}}
+                            <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                {{/if}}
                 <div class="para3">
                     <div class="rest-money">余额:￥{{user.availableAmount}}</div>
                     <div class="charge"><a href="/account/recharge">充值</a>

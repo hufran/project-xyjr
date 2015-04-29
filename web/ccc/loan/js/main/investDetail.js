@@ -148,7 +148,34 @@ setTimeout((function () {
         }
     }
 
-
+     function parsedata(o) {
+        var type =  {
+            'CASH': '现金卷',
+            'INTEREST': '加息券',
+            'PRINCIPAL': '增值卷',
+            'REBATE': '返现卷'
+        };
+        for (var i = 0; i < o.length; i++) {
+            var canuse = o[i].disabled;
+            o[i] = o[i].placement;
+            if (o[i].couponPackage.type === 'INTEREST') {
+                o[i].interest  = true;
+                o[i].displayValue = (parseFloat(o[i].couponPackage.parValue)/100).toFixed(1) + '%';
+            } else if (o[i].couponPackage.type === 'CASH') {
+                o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
+            } else if (o[i].couponPackage.type === 'PRINCIPAL') {
+                o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
+            } else if (o[i].couponPackage.type === 'REBATE') {
+                o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
+            };
+            o[i].id = o[i].id;
+            o[i].typeKey = type[o[i].couponPackage.type];
+            o[i].minimumInvest = o[i].couponPackage.minimumInvest + "元";
+            o[i].canuse = canuse;
+        }
+        return o;
+    };
+    
     function showErrors(error) {
         investRactive
             .set('errors', {
@@ -169,6 +196,22 @@ setTimeout((function () {
     .on('click', function () {
         Cal.create();
     });
+
+    $('.invest-input')
+    .on('keyup',function(){
+        var months = CC.loan.duration;
+        var amount = $(this).val();
+
+        $.post('/loan/selectOption',{
+            amount:amount,
+            months:months
+        }, function (o) {
+            if (o.success) {
+                investRactive.set('selectOption',parsedata(o.data));
+            }
+        });
+    });
+
 }), 100);
 
 
