@@ -53,7 +53,7 @@ router.get(/^\/help/, function (req, res, next) {
 
 router.get('/help', function (req, res) {    
     res.render('help/index', {
-        title: '新手指引'
+        title: '新手指引-九信金融，您的私人财富管家！'
     });
 });
 
