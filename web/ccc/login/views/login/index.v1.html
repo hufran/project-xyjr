@@ -3,8 +3,8 @@
 <link rel="stylesheet" href="/css/style.css">
 {{>layouts.default.header}}
 
-{{#HIDE}}
 <div id="main-container">
+
     <div class="s-login-view u-pos-r-center">
         <div class="s-img-view"></div>
         <div class="s-login-box">
@@ -27,31 +27,10 @@
                 <p class="login-error"></p>
             </form>
         </div>
+
     </div>
+
 </div>
-{{/if}}
-
-
-<div id="main-container">
-    <img src="/img/bg-log.png" />
-    <div class="s-login-view u-pos-ab-h-cen">
-        <div class="s-login-window u-pos-ab-v-cen">
-            <form id="loginForm" action="/login" method="POST">
-                <div class="s-input-wrapper">
-                    <i class="mdi mdi-account"></i>
-                    <i class="mdi mdi-lock-open"></i>
-                    <input type="text" name="loginName" placeholder="用户名/手机" />
-                    <input type="password" name="password" placeholder="密码" />
-                </div>
-                <a href="/forgot" class="u-float-right">忘记密码？</a>
-                <input type="submit"  class="do-login cursor-pointer" value="登录" />
-                <button onclick="location.href='/register'">注册</button>
-                <p class="login-error"></p>
-            </form>
-        </div>
-    </div>
-</div>
-
 
 {{>layouts.default.footer}}
 <script src="/js/main/login.js"></script>
