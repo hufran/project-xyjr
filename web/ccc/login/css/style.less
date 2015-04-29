@@ -103,7 +103,8 @@
 */
 
 
-
+/*
+// v1
 .s-login-view{
     position: relative;
     width: 998px;
@@ -188,4 +189,141 @@ p.login-error {
     width: 100%;
     padding-left: 91px;
     padding-top: 15px;
+}
+*/
+
+
+.u-pos-ab-h-cen{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.u-pos-ab-v-cen {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#main-container>img{
+    width: 100%;
+    height: auto;
+    margin-bottom: -5px;
+}
+
+#main-container .s-login-view{
+    width: 998px;
+    top: 0px;
+    height: 100%;
+    z-index: 1;
+}
+
+#main-container .s-login-view .s-login-window{
+    right: 0px;
+    width: 388px;
+    height: auto;
+    padding-top: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.38);
+}
+
+#main-container .s-login-view .s-login-window .s-input-wrapper{
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: white;
+    padding: 10px;
+
+    -moz-box-shadow: 2px 2px 7px rgba(0,0,0,.58) inset;
+    -webkit-box-shadow: 2px 2px 7px rgba(0,0,0,.58) inset;
+    box-shadow: 2px 2px 7px rgba(0,0,0,.58) inset;
+}
+
+#main-container .s-login-view .s-login-window .s-input-wrapper .mdi{
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    width: 56px;
+    text-align: center;
+    line-height: 56px;
+    color: #939393;
+}
+#main-container .s-login-view .s-login-window .s-input-wrapper .mdi.mdi-lock-open{
+    top: 66px;
+}
+
+#main-container .s-login-view .s-login-window .s-input-wrapper input{
+    outline: none;
+    height: 56px;
+    padding-left: 56px;
+    width: 252px;
+    font-size: 1.2em;
+    border: none;
+    width: 100%;
+}
+#main-container .s-login-view .s-login-window .s-input-wrapper input[type=text]{
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#main-container .s-login-view .s-login-window a{
+    line-height: 40px;
+    text-decoration: none;
+    color: #324075;
+}
+
+#main-container .s-login-view .s-login-window input[type=submit],  #main-container .s-login-view .s-login-window button{
+    display: block;
+    width: 328px;
+    height: 42px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    color: white;
+}
+
+#main-container .s-login-view .s-login-window input[type=submit]{
+    background-color: #324075;
+}
+
+#main-container .s-login-view .s-login-window button{
+    margin-top: 20px;
+    background-color: #E98800;
+}
+
+p.login-error {
+    text-align: left!important;
+    width: 100%;
+    padding-top: 15px;
+    color: red;
+}
+
+.s-login-window {
+    .mdi {
+        width: 20px!important;
+        height: 20px!important;
+        left: 26px!important;
+        background-color: transparent;
+        background-image: url(/img/login-icon.png);
+        background-repeat: no-repeat;
+    }
+    .mdi.mdi-account {
+        top: 27px!important;
+        background-position: 2px 1px;
+    }
+    .mdi.mdi-lock-open {
+        top: 84px!important;
+        background-position: -107px 1px;
+    }
 }
