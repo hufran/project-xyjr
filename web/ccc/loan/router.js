@@ -1,7 +1,7 @@
 'use strict';
 var router = module.exports = require('@ds/base')
     .createSubApp(__dirname);
-
+var bodyParser = require('body-parser');
 var moment = require('moment');
 require('moment/locale/zh-cn');
 
@@ -115,6 +115,23 @@ router.get('/loan/:requestId/proof', function (req, res) {
         })
     );
 
+});
+
+
+router.post('/loan/selectOption', bodyParser(), function (req, res) {
+    var amount = parseInt(req.body.amount,10);
+    var months = parseInt(req.body.months,10);
+    var sendObj = {
+        amount: amount,
+        months:months
+    };
+    req.uest('post', '/api/v2/coupon/MYSELF/listCoupon')
+        .type('form')
+        .send(sendObj)
+        .end()
+        .then(function (r){
+            res.json(r.body);
+        })
 });
 
 function parseLoan(loan) {
