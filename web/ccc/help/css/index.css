@@ -107,6 +107,8 @@
     font-size: 12px;
     line-height: 24px;
     color: #666666;
+    text-align: left;
+    text-indent: 30px;
 }
 
 .s-cell__II .s-cell-content>p{

@@ -1,0 +1,26 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/jason/.nvm/versions/io.js/v1.4.2/bin/iojs',
+1 verbose cli   '/Users/jason/.nvm/versions/io.js/v1.4.2/bin/npm',
+1 verbose cli   '--userconfig=/Users/jason/.ccnpmrc',
+1 verbose cli   '--disturl=http://npm.taobao.org/mirrors/iojs',
+1 verbose cli   '--cache=/Users/jason/.ccnpm',
+1 verbose cli   '--registry=http://npmcc.creditcloud.com',
+1 verbose cli   'run',
+1 verbose cli   'dev' ]
+2 info using npm@2.6.1
+3 info using node@v1.4.2
+4 verbose stack Error: ENOENT: no such file or directory, open '/Users/jason/work/project-jxjr/package.json'
+4 verbose stack     at Error (native)
+5 verbose cwd /Users/jason/work/project-jxjr
+6 error Darwin 14.1.0
+7 error argv "/Users/jason/.nvm/versions/io.js/v1.4.2/bin/iojs" "/Users/jason/.nvm/versions/io.js/v1.4.2/bin/npm" "--userconfig=/Users/jason/.ccnpmrc" "--disturl=http://npm.taobao.org/mirrors/iojs" "--cache=/Users/jason/.ccnpm" "--registry=http://npmcc.creditcloud.com" "run" "dev"
+8 error node v1.4.2
+9 error npm  v2.6.1
+10 error path /Users/jason/work/project-jxjr/package.json
+11 error code ENOENT
+12 error errno -2
+13 error syscall open
+14 error enoent ENOENT: no such file or directory, open '/Users/jason/work/project-jxjr/package.json'
+14 error enoent This is most likely not a problem with npm itself
+14 error enoent and is related to npm not being able to find a file.
+15 verbose exit [ -2, true ]
