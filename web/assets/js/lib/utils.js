@@ -450,7 +450,7 @@ module.exports = (function () {
     
     var match = {
         mobile: function (mobile) {
-            var req = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+            var req = /^[1][3|5|7|8][0-9]{9}$/;
             return !!mobile.toString().match(req);
         },
         amount: function (amount) {
