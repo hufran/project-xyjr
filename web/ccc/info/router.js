@@ -41,7 +41,7 @@ router.get(/^\/info/, function (req, res, next) {
     
     // decide title
     // res.locals.title = tabs[tabIndex].text;
-    res.locals.title = "关于我们-九信金融，您的私人财富管家！";
+    res.locals.title = "关于我们，您的私人财富管家！";
     res.locals.description = '九信金融是国内知名金融集团九鼎投资倾力打造的互联网金融平台。九鼎投资是第一家登陆国内资本市场的私募股权机构，为“中国PE第一股”，净资产超100亿元，总市值近700亿元。';
     
     // expose to view
