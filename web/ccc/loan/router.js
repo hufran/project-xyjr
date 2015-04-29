@@ -152,7 +152,8 @@ function parseLoan(loan) {
         'CORPORATION': '企业融资',
         'OTHER': '其它借款'
     };
-    console.log(loan);
+    // console.log(loan);
+    // console.log(loan.investPercent);
     loan.investPercent = Math.floor(loan.investPercent * 100);
     loan.rate = loan.rate / 100;
     loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
