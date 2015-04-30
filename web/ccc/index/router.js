@@ -3,6 +3,7 @@ var router = module.exports = require('@ds/base')
     .createSubApp(__dirname);
 router.get('/', function (req, res, next) {
     var user = res.locals.user;
+    res.locals.title = '九信金融';
     res.expose(user, "user");
     res.locals.carousel = req.uest(
         '/api/v2/cms/carousel_detail')
