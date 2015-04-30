@@ -186,20 +186,20 @@ router.get('/account', function (req, res) {
         .then(function (r) {
             _.assign(res.locals.user, r.body);
             res.render('account/index', {
-                title: '我的账户'
+                title: '我的账户|九信金融'
             });
         });
 });
 
 router.get('/account/invest', function (req, res) {
     res.render('account/invest', {
-        title: '我的债权'
+        title: '我的债权|九信金融'
     });
 });
 
 router.get('/account/funds', function (req, res) {
     res.render('account/funds', {
-        title: '交易记录'
+        title: '交易记录|九信金融'
     });
 });
 
@@ -221,7 +221,7 @@ router.get('/account/funds', function (req, res) {
                 }
                 res.render('account/settings', {
                     tabName: tabName,
-                    title: '账户管理'
+                    title: '账户管理|九信金融'
                 });
             });
     });
@@ -239,7 +239,7 @@ router.get('/account/agreement', function (req, res) {
             }
             res.render('account/settings', {
                 tabName: 'agreement',
-                title: '账户管理'
+                title: '账户管理|九信金融'
             });
         });
 });
@@ -248,7 +248,7 @@ router.get('/account/loan', function (req, res) {
     //    res.render('account/loan',{});
     res.render('account/loan', {
         //tabName: tabName,
-        title: '还款管理'
+        title: '还款管理|九信金融'
     });
 });
 
