@@ -5,7 +5,7 @@
             {{title}}
         </a>
     </div>
-    <div class="rate">{{ rate }}%</div>
+    <div class="rate">{{ rate }}<i>%</i></div>
     <div class="duration">{{ fduration }}{{ fdurunit }}</div>
     <div class="amount">{{ amount }}{{ amountUnit }}</div>
     <div class="process">
@@ -23,22 +23,22 @@
         {{/if}}
         {{#if status === 'SCHEDULED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn">即将开始</div>
+                <div class="investbtn" style="background:lightgrey; color: #B88A38">即将开始</div>
             </a>
         {{/if}}
         {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:grey">已满标</div>
+                <div class="investbtn" style="background:lightgrey; color: #B88A38">已满标</div>
             </a> 
         {{/if}}
         {{#if status === 'SETTLED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:grey">还款中</div> 
+                <div class="investbtn" style="background:lightgrey; color: #B88A38">还款中</div> 
             </a> 
         {{/if}}
         {{#if status === 'CLEARED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:grey">还款结束</div> 
+                <div class="investbtn" style="background:lightgrey; color: #B88A38">还款结束</div> 
             </a> 
         {{/if}}
     </div>
