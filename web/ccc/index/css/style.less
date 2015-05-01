@@ -135,11 +135,15 @@
 
 // 最新公告
 .announce {
+    font-size: 14px;
     color: #a0a0a7;
     padding: 10px 0;
     overflow: hidden;
+
     .newest {
         float: left;
+        color: #222D4F;
+        font-weight: bold;
 
         .bg {
             display: inline-block;
@@ -154,27 +158,20 @@
         .small {
             display: inline-block;
             vertical-align: middle;
-            font-size: 12px;
             line-height: 24px;
-            border-right: 1px solid #a0a0a7;
-            padding-right: 15px;
-            color: #a0a0a7;
+            padding-right: 1em;
         }
 
         .big {
             display: inline-block;
-            margin-left: 15px;
-            font-size: 16px;
             line-height: 24px;
             vertical-align: middle;
-            color: #a0a0a7;
         }
     }
 
     .more { 
         float: right; 
-        color: #838383;
-        font-size: 12px;
+        color: #CA983E;
         line-height: 24px;
         vertical-align: middle;
     }
@@ -351,6 +348,47 @@ a{ text-decoration: none; color: inherit; }
     margin-right: 10px;
 }
 
+.s-spotlight {
+    padding: 60px 0;
+    margin-bottom: 50px;
+    background: url(/img/spotlight-bg.png) no-repeat center;
+    background-size: cover;
+
+    .item {
+        @width: 120px;
+
+        text-align: center;
+
+        .img {
+            display: block;
+            width: @width;
+            height: 100px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            background: url(/img/spotlight-icons.png) no-repeat top left;
+
+            &.icon-1 {
+                background-position: -(0 * @width) 0;
+            }
+            &.icon-2 {
+                background-position: -(1 * @width) 0;
+            }
+            &.icon-3 {
+                background-position: -(2 * @width) 0;
+            }
+            &.icon-4 {
+                background-position: -(3 * @width) 0;
+            }
+        }
+
+        .note {
+            color: #FFF;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+    }
+}
+
 .s-information-bar{
     width: 100%;
     height: 40px;
@@ -367,29 +405,6 @@ a{ text-decoration: none; color: inherit; }
     cursor: pointer;
 }
 
-.s-content .s-top-table{
-    width: 998px;
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 80px;
-}
-
-.s-content .s-top-table h3{
-    font-weight: bold;
-    color: #324075;
-}
-
-.s-content .s-top-table p{
-    font-size: 0.8em;
-}
-
-.s-content .s-top-table td{
-    width: 248px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 10px;
-}
-
 .s-content .s-list-table{
     width: 998px;
     border-collapse: collapse;
@@ -398,18 +413,12 @@ a{ text-decoration: none; color: inherit; }
     color: #666666;
 }
 
-.s-content .s-list-table tr{
-    height: 80px;
-}
-.s-content .s-list-table tr:first-child{
-    height: 30px;
-}
-
 .s-content .s-list-table th{
-    background-color: #C7C7C7;
-    line-height: 30px;
-    color: #666666;
+    background-color: #D7C69D;
+    color: #FFF;
     text-align: center;
+    font-size: 18px;
+    line-height: 57px;
 }
 
 .s-content .s-list-table tr td:first-child{
@@ -476,31 +485,42 @@ a{ text-decoration: none; color: inherit; }
 }
 
 .s-split-view .u-float-right{
-    line-height: 30px;
-    color: blue;
+    line-height: 66px;
+    padding-right: 36px;
+    color: #ABABAB;
 }
 
 .s-split-view .s-right-view{
-    width: 400px;
+    width: 46%;
     float: right;
 }
 
 .s-split-view .s-left-view{
-    width: 400px;
+    width: 46%;
 }
 
 .s-split-view h4{
-    padding-left: 10px;
+    padding: 16px 24px 12px;
     margin-bottom: 10px;
-    border-left: 3px solid #324075;
+    border-radius: 4px;
+    background-color: #354473;
+    line-height: 1;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 24px;
+
+    &:before {
+        content: "";
+        border-left: 5px solid #FFF;
+        padding-right: 6px;
+    }
 }
 
-.s-split-view ul{
-    margin-left: 50px;
-    font-size: 0.8em;
+.s-split-view ul {
+    margin-left: 40px;
+    font-size: 14px;
     color: #666666;
     line-height: 40px;
-    border-top: 2px solid #e5e5e5;
 }
 
 /*loan*/
@@ -517,13 +537,21 @@ a{ text-decoration: none; color: inherit; }
     }
     .event {
         width: 278px;
-        color: #324075;
+        color: #232D4F;
         a {
+            font-size: 18px;
             text-decoration: none;
         }
     }
     .rate {
+        color: #E7880C;
         width: 137px;
+        font-size: 24px;
+        font-weight: bold;
+
+        i {
+            font-size: 18px;
+        }
     }
     .duration {
         width: 92px;
@@ -563,7 +591,7 @@ a{ text-decoration: none; color: inherit; }
             height: 35px;
             text-align: center;
             line-height: 35px;
-            background: #E58606;
+            background: #2A375F;
             color: #fff;
             border-radius: 5px;
             position: relative;
