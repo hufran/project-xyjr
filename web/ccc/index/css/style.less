@@ -5,6 +5,8 @@
 .carousel-wrapper {
 	width: 100%;
 	overflow: hidden;
+    position: relative;
+
     .carousel {
         width: 100%;
         margin: 0 auto 0;
@@ -42,35 +44,31 @@
  * carousel 上的方块
  */
 .info-wrapper{
-    position: relative;
-
     .info{
         position: absolute;
-        right: 0px;
-        top: 25px;
-        height: 310px;
-        width: 300px;
+        top: 0;
+        left: 0;
+        right: 0;
         z-index: 10;
         color: #fff;
-        padding: 10px;
-        background: url(/img/quickloginBg.png) no-repeat center center;
-        /*background: #C7C7C7;*/
-        /*opacity: 0.7;*/
+        padding: 10px 0;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.46);
         .error {
             height: 40px;
             line-height: 40px;
             color: red;
             width: 220px;
             margin: 0 auto;
+
+            &:empty {
+                display: none;
+            }
         }
         .formwrapper {
-            width: 220px;
-            margin: 0 auto;
-            height: 220px;
-            margin-top: 30px;
             .row {
+                display: inline-block;
                 margin: 0;
-                height: 55px;
                 position: relative;
                 .iuser {
                     display: block;
@@ -91,12 +89,14 @@
                     background: url(/img/quickicon.png) no-repeat center -30px;
                 }
                 .loginBtn {
-                    width: 220px;
                     height: 32px;
-                    background: #B98B2F;
+                    width: 70px;
+                    top: 1px;
+                    position: relative;
+                    font-size: 18px;
+                    background: #676d82;
                     text-align: center;
-                    line-height: 32px;
-                    border:none;
+                    border: none;
                     border-radius: 5px;
                     color: #fff;
                     &:focus {
@@ -111,13 +111,16 @@
                     }
                 }
                 .forgetPass {
+                    padding: 0 10px;
                     a {
-                        text-decoration: none;
-                        color: #fff;
+                        text-decoration: underline;
+                        color: rgb(255, 255, 255);
+                        color: rgba(255, 255, 255, 0.5);
                     }
                 }
                 input {
-                    width: 220px;
+                    border-radius: 4px;
+                    width: 180px;
                     height: 32px;
                     background: #fff;
                     border: none;
@@ -126,6 +129,30 @@
                     font-weight: bold;
                     &:focus {
                         outline:none;
+                    }
+                }
+
+                .wechat {
+                    position: relative;
+                    display: block;
+                    padding-left: 16px;
+                    border-left: 1px solid;
+                    border-left-color: rgb(255, 255, 255);
+                    border-left-color: rgba(255, 255, 255, 0.5);
+
+                    .icon {
+                        cursor: pointer;
+                    }
+
+                    .dropdown {
+                        position: absolute;
+                        top: 40px;
+                        right: 0;
+                        display: none;
+                    }
+
+                    .icon:hover + .dropdown {
+                        display: block;
                     }
                 }
             }
@@ -538,9 +565,11 @@ a{ text-decoration: none; color: inherit; }
     .event {
         width: 278px;
         color: #232D4F;
+        text-align: left;
         a {
             font-size: 18px;
             text-decoration: none;
+            padding-left: 40px;
         }
     }
     .rate {

@@ -10,26 +10,32 @@
     <div class="current-container info-wrapper">
         {{#if !user}}
         <div class="info">
-            <div class="error"></div>
-            <div class="formwrapper">
-                <form> 
+            <div class="formwrapper u-pos-r-center">
+                <a href="/register"><img src="/img/register-btn.png"></a>
+                <form class="pull-right"> 
                     <div class="row">
                         <span class="iuser"></span>
                         <input type="text" name="loginName" id="loginName" placeholder="用户名/手机号">
                     </div>
-                    <div class="row" style="margin-bottom:10px;">
+                    <div class="row">
                         <span class="ipass"></span>
                         <input type="password" name="password" id="password" placeholder="密码">
                     </div>
                     <div class="row">
-                        <button type="button" class="loginBtn">立即登录</button>
+                        <button type="button" class="loginBtn">登 录</button>
                     </div>
                     <div class="row">
-                        <span style="float:right;" class="reg"><a href="/register">免费注册</a></span>
-                        <span style="float:right;" class="forgetPass"><a href="/forgot">忘记密码</a></span>
+                        <span class="forgetPass"><a href="/forgot"><i>忘记密码？</i></a></span>
+                    </div>
+                    <div class="row">
+                        <span class="wechat">
+                            <img class="icon" src="/assets/img/wx.png" />
+                            <img class="dropdown" src="/assets/img/2wm.jpg" width="150" title="九信金融" alt="九信金融" />
+                        </span>
                     </div>
                 </form>
             </div>
+            <div class="error"></div>
         </div>
         {{/if}}
     </div>
