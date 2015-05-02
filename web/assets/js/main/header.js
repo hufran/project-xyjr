@@ -44,6 +44,13 @@ HeaderRactive.on('logout', function () {
 });
 
 global.HeaderRactive = HeaderRactive;
+
+
+$('.s__top15').mouseover(function() {
+    $(this).next().css('display', '');
+}).mouseout(function() {
+    $(this).next().css('display', 'none');
+});
 // 手机上九信金融hover
 // not need in yingtoubao.com
 //$(".mobile")
