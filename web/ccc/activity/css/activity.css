@@ -44,7 +44,7 @@
     line-height: 40px;
 }
 
-.s-activity-view .s-content-view button{
+.s-activity-view .s-content-view a{
     position: relative;
     margin-top: 60px;
     margin-left: 385px;
@@ -55,4 +55,9 @@
     border: none;
     background-color: #FFD150;
     color: white;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px;
 }
+
