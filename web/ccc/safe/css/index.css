@@ -177,7 +177,8 @@
     text-align: left; vertical-align: top;
 }
 .s-view table tr td.s__has-bgcolor-w{
-    background-color: #ffffff; padding-top: 40px;
+    background-color: #ffffff;
+    padding-top: 70px;
 }
 .s-view table tr td.s__v-top{
     vertical-align: top;
@@ -209,13 +210,13 @@
     padding-left: 30px;
     padding-right: 30px;
 }
-.s-view table.s-c-4   {
-    margin-left: 0px;
+.s-view table.s-c-4 {
+    margin: 0 auto;
 }
 .s-view table.s-c-4 td{
     position: relative;
-    width: 249px;
-    height: 280px;
+    width: 244px;
+    height: 340px;
     border-right: solid #f3f2ef 5px;
     overflow: hidden;
 }
@@ -232,7 +233,7 @@
     width: 100%;
     height: 50%;
     top: 50%;
-    background-color: #ffd700;
+    background-color: #D4AF6E;
     color: #ffffff;
 }
 .s-view table.s-c-4 td .s-mouse-show .s-m-s-content p{
