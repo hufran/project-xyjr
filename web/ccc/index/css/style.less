@@ -433,7 +433,7 @@ a{ text-decoration: none; color: inherit; }
 }
 
 .s-content .s-list-table{
-    width: 998px;
+    width: 100%;
     border-collapse: collapse;
     text-align: center;
     font-size: 0.9em;
@@ -504,7 +504,6 @@ a{ text-decoration: none; color: inherit; }
 }
 
 .s-split-view{
-    width: 998px;
     overflow: hidden;
     margin-top: 100px;
     margin-bottom: 30px;
@@ -533,7 +532,6 @@ a{ text-decoration: none; color: inherit; }
     background-color: #354473;
     line-height: 1;
     color: #FFF;
-    font-weight: bold;
     font-size: 24px;
 
     &:before {
@@ -552,18 +550,20 @@ a{ text-decoration: none; color: inherit; }
 
 /*loan*/
 .loanWrapper {
-    width: 998px;
+    width: 100%;
+    display: table;
     height: 80px;
     border-bottom: 1px #ccc solid;
     > div {
-        float: left;
+        display: table-cell;
         height: 80px;
         line-height: 80px;
         text-align: center;
         color: #666666;
+        vertical-align: top;
     }
     .event {
-        width: 278px;
+        width: 320px;
         color: #232D4F;
         text-align: left;
         a {
@@ -574,9 +574,10 @@ a{ text-decoration: none; color: inherit; }
     }
     .rate {
         color: #E7880C;
-        width: 137px;
+        width: 170px;
+        padding-left: 24px;
         font-size: 24px;
-        font-weight: bold;
+        text-align: left;
 
         i {
             font-size: 18px;
@@ -584,9 +585,12 @@ a{ text-decoration: none; color: inherit; }
     }
     .duration {
         width: 92px;
+        text-align: left;
     }
     .amount {
         width: 195px;
+        padding-left: 60px;
+        text-align: left;
     }
     .process {
         width: 105px;
