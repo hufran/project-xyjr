@@ -25,14 +25,16 @@
                             <div class="name">总投资金额</div>
                             <div class="value">{{loans.amount}}<span style="font-size:16px;">{{loans.aUnit}}</span></div>
                         </div>
-                        <div class="item">
+                        <div class="item" style="border-right:none">
                             <div class="name">借款期限</div>
                             <div class="value">{{loans.fduration}}<span style="font-size:16px;">{{loans.fdurunit}}</span></div>
                         </div> 
+<!--
                         <div class="item" style="border-right:none">
                             <div class="name">剩余可投金额</div>
                             <div class="value">{{loans.leftAmount}}<span style="font-size:16px;">{{loans.amountUnit}}</span></div>
                         </div>
+-->
                     </div>
                     <div class="h30"></div>
                     <div class="innerBottom">
@@ -48,12 +50,13 @@
                                 </div>
                             </div>
                             <div class="itemt">
-                                单笔最高投资金额 : &nbsp;&nbsp;&nbsp;{{loans.loanRequest.investRule.maxAmount}}元
+                                保障方式 : 100%本金 + 利息
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="h20"></div>
+<!--
                 <div class="loanbottom">
                     <span class="swra">
                         <span class="yel circle"></span>{{ loans.method}} 
@@ -62,6 +65,7 @@
                         <span class="red circle"></span>保障本息
                     </span>
                 </div>
+-->
                 
             </div>
         </div>
