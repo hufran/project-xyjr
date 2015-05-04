@@ -99,6 +99,7 @@ function init (type) {
 			},
 			parseData: function(o) {
 	            for (var i = 0; i < o.length; i++) {
+	            	console.log(o);
 	                o[i].displayName = o[i].couponPackage.displayName;
 	                o[i].parValue = o[i].couponPackage.parValue;
 	                o[i].type = o[i].couponPackage.type;
@@ -146,7 +147,7 @@ function init (type) {
 	                o[i].totalAmount = o[i].couponPackage.totalAmount;
 	                o[i].timeIssued = o[i].couponPackage.timeIssued;
 	                o[i].timeStart = o[i].couponPackage.timeStart;
-	                if(o[i].timeExpire == null) {
+	                if(o[i].couponPackage.timeExpire == null) {
 	                	o[i].timeExpire = "永不过期";
 	                } else {
 	                	o[i].timeExpire = (new Date(o[i].couponPackage.timeExpire)).Format("yyyy-MM-dd");
