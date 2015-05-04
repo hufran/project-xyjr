@@ -53,43 +53,43 @@ router.get(/^\/help/, function (req, res, next) {
 
 router.get('/help', function (req, res) {    
     res.render('help/index', {
-        title: '新手指引，您的私人财富管家！|九信金融'
+        title: '新手指引|九信金融-国内首家PE系互联网金融平台'
     });
 });
 
 router.get('/help/noun', function (req, res) {    
     res.render('help/noun', {
-        title: '名词解释|九信金融'
+        title: '新手指引|九信金融-国内首家PE系互联网金融平台'
     });
 });
 
 router.get('/help/common', function (req, res) {    
     res.render('help/common', {
-        title: '常见问题|九信金融'
+        title: '新手指引|九信金融-国内首家PE系互联网金融平台'
     });
 });
 
 router.get('/help/invester', function (req, res) {    
     res.render('help/invester', {
-        title: '投资收益|九信金融'
+        title: '新手指引|九信金融-国内首家PE系互联网金融平台'
     });
 });
 
 router.get('/help/borrower', function (req, res) {    
     res.render('help/borrower', {
-        title: '借款人问题|九信金融'
+        title: '新手指引|九信金融-国内首家PE系互联网金融平台'
     });
 });
 
 router.get('/help/account', function (req, res) {    
     res.render('help/account', {
-        title: '账户安全|九信金融'
+        title: '新手指引|九信金融-国内首家PE系互联网金融平台'
     });
 });
 
 router.get('/help/safety', function (req, res) {    
     res.render('help/safety', {
-        title: '安全保障问题|九信金融'
+        title: '新手指引|九信金融-国内首家PE系互联网金融平台'
     });
 });
 

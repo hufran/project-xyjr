@@ -179,6 +179,8 @@
 .s-view table tr td.s__has-bgcolor-w{
     background-color: #ffffff;
     padding-top: 70px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
 .s-view table tr td.s__v-top{
     vertical-align: top;
@@ -227,6 +229,7 @@
     background-color: transparent;
     left: 0px;
     top: 0px;
+    font-size: 12px;
 }
 .s-view table.s-c-4 td .s-mouse-show .s-m-s-content{
     position: absolute;
