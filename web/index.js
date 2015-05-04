@@ -28,8 +28,8 @@ app.locals.rushHeads = [
     '<meta name="renderer" content="ie-stand">',
     '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">',
     '<script>' + consoleCode + '</script>',
-    '<!--[if lt IE 9]><script src="/assets/js/ie8fix.js" defer></script><![endif]-->',
-    '<script src="/assets/js/common/global.js" async defer></script>'
+    '<!--[if lt IE 9]><script src="/assets/js/ie8fix.js"></script><![endif]-->',
+    '<script src="/assets/js/common/global.js" async></script>'
 ];
 app.use(function (req, res, next) {
     var ua = userAgent.parse(req.headers['user-agent']);
