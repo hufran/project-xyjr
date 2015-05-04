@@ -231,6 +231,7 @@
     top: 0px;
     font-size: 12px;
     top: 72px\0;
+    top: 0px \9;
 }
 .s-view table.s-c-4 td .s-mouse-show .s-m-s-content{
     position: absolute;
@@ -255,6 +256,6 @@
     transform: translate3d(-50%,-50%,0);
 }
 .s-view table.s-c-4 td .s-mouse-show:hover{
-    top: -100%;
     top: -79%\0;
+    top: -100% \9;
 }
