@@ -146,7 +146,11 @@ function init (type) {
 	                o[i].totalAmount = o[i].couponPackage.totalAmount;
 	                o[i].timeIssued = o[i].couponPackage.timeIssued;
 	                o[i].timeStart = o[i].couponPackage.timeStart;
-	                o[i].timeExpire = (new Date(o[i].couponPackage.timeExpire)).Format("yyyy-MM-dd");
+	                if(o[i].timeExpire == null) {
+	                	o[i].timeExpire = "永不过期";
+	                } else {
+	                	o[i].timeExpire = (new Date(o[i].couponPackage.timeExpire)).Format("yyyy-MM-dd");
+	                }
 	                if (o[i].description === "") {
 	                    o[i].description = "暂无描述";
 	                }
