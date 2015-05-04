@@ -30,9 +30,9 @@ var ractive = new Ractive({
 
 var popupDepositAgreement = require('ccc/agreement/js/main/depositAgreement')
     .popupDepositAgreement;
-ractive.on('maskDepositAgreement', function () {
+ractive.on('maskDepositAgreement', function (e) {
+    e.original.preventDefault();
     popupDepositAgreement.show();
-    //alert("事件出发");
 });
 
 // 要开户

@@ -93,6 +93,14 @@ function parseLoanList(loans) {
         } else {
             item.amountUnit = '元';
         }
+        if (item.status === "OPENED") {
+            item.leftTime = formateLeftTime(item.timeLeft);
+            item.open = true;
+        } else if (item.status === "SCHEDULED"){
+            item.scheduled = true;
+        } else {
+            item.finished = true;
+        }
         //格式化序列号
         if( item.providerProjectCode ){
             if( item.providerProjectCode.indexOf('#') > 0 ){
@@ -107,4 +115,26 @@ function parseLoanList(loans) {
         return item;
     }
     return loanList;
+}
+
+function formateLeftTime(leftTime){
+    var diffmin = leftTime / 1000 / 60;
+    var str = "";
+    if (diffmin > 0) {
+        var _day = Math.ceil(diffmin / 60 / 24);
+        if( _day > 1){
+            str = _day+"天";
+        }else{
+            var _hour = Math.ceil(diffmin / 60);
+            if(_hour > 1){
+                str = _hour+"小时";
+            }else{
+                str = Math.ceil(diffmin)+"分";
+            }
+        }
+    }else {
+        var sec = Math.ceil(leftTime / 1000);
+        str = sec+"秒";
+    }
+    return str;
 }
