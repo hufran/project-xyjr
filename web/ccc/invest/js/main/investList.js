@@ -3,11 +3,13 @@
 "use strict";
 
 var Ractive = require('ractive/ractive-legacy');
-var $ = require('jquery');
+var $ = global.jQuery = require('jquery');
 var i18n = require('@ds/i18n')['zh-cn'];
 
 var InvestListService = require('ccc/invest/js/main/service/list')
     .InvestListService;
+
+require('assets/js/lib/jquery.easy-pie-chart.js')
 
 // 收益计算器
 var Cal = require('assets/js/modules/cccCalculator');
@@ -129,6 +131,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
+    initailEasyPieChart();
     renderPager(res);
     investRactive.on("mouseover mouseleave", function (e) {
         var hovering = e.name === "mouseover";
@@ -228,6 +231,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             function (
                 res) {
                 investRactive.set('list', parseLoanList(res.results));
+                initailEasyPieChart();
                 renderPager(res, params.currentPage);
             });
     }
@@ -296,3 +300,31 @@ function createList(len, current) {
     }
     return arr;
 }
+
+function initailEasyPieChart() {
+    ///////////////////////////////////////////////////////////
+    // 初始化饼状图
+    ///////////////////////////////////////////////////////////
+    $(function () {
+        var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
+        $(".easy-pie-chart").each(function () {
+            var percentage = $(this).data("percent");
+            // 100%进度条颜色显示为背景色
+            var color = percentage === 100 ? "#B98B2F" : '#B98B2F';
+            $(this).easyPieChart({
+                barColor: color,
+                trackColor: '#ddd',
+                scaleColor: false,
+                lineCap: 'butt',
+                lineWidth: 2,
+                animate: oldie ? false : 1000,
+                size: 45,
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                }
+            });
+            $(this).find("span.percentageNum").html(percentage+"%");
+        });
+
+    });
+};

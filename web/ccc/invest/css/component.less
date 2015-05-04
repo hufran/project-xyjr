@@ -220,6 +220,7 @@ hr {
     height: 99px;
     width: 100%;
     background: #fff;
+    border-bottom: 1px solid #ccc;
     .loanPartOne {
         float: left;
         width: 200px;
@@ -247,7 +248,7 @@ hr {
         height: 100%;
         width: 122px;
         line-height: 100px;
-        text-align: center;
+        text-align: left;
         font-size: 24px;
         color: #E7880C;
         font-weight: bold;
@@ -260,7 +261,7 @@ hr {
         float: left;
         height: 100%;
         width: 90px;
-        text-align: center;
+        text-align: left;
         line-height: 100px;
         font-size: 16px;
         color: #333333;
@@ -270,56 +271,20 @@ hr {
         float: left;
         height: 100%;
         width: 120px;
-        text-align: center;
+        text-align: left;
         line-height: 100px;
         font-size: 16px;
         color: #333333;
         font-weight: bold;
     }
-    .investPercent {
-        float: left;
+    .process {
         width: 250px;
-        height: 100%;
-        .percentWrapper {
-            width: 200px;
-            height: 50px;
-            margin-top: 25px;
-            margin-left: 25px;
-            position: relative;
-            color: transparent;
-            height: 16px;
-            border-radius: 8px;
-            background-color: #E1E1E1;
-            line-height: 16px;
-            font-size: 12px;
-            text-align: center;
-            color: #fff;
-            .percent {
-                height: 16px;
-                background: #324075;
-                border-radius: 8px;
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
-            .realPercent {
-                width: 200px;
-                position: absolute;
-                left: 0;
-                top: 0;
-                text-align: center;
-                height: 16px;
-                line-height: 16px;
-                color: #fff;
-            }
-        }
-        .leftTime {
-            height: 50px;
-            width: 200px;
-            margin-left: 25px;
-            font-size: 12px;
-            text-align: center;
-            line-height: 50px;
+        float: left;
+        position: relative;
+        .investPercent {
+            float: left;
+            width: 250px;
+            height: 100%;
         }
     }
     .investBtn {
@@ -340,6 +305,15 @@ hr {
             cursor: pointer;
         }
     }
+}
+.easyPieChart {
+    position: relative;
+    text-align: center;
+}
+.easyPieChart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 

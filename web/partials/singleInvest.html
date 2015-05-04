@@ -9,21 +9,9 @@
     <div class="duration">{{ fduration }}{{ fdurunit }}</div>
     <div class="amount">{{ amount }}{{ amountUnit }}</div>
     <div class="process">
-        <div class="investPercent">
-            <div class="percentWrapper">
-                <div class="percent" style="width:{{ investPercent }}%"></div>
-                <div class="realPercent">{{ investPercent }}%</div>
-            </div>
-            <div class="leftTime">
-                {{#if finished}}
-                    已结束
-                {{/if}}
-                {{#if scheduled}}
-                    未开始
-                {{/if}}
-                {{#if open}}
-                 剩余时间: {{ leftTime }}
-                {{/if}}
+        <div class="rate-chart">	 
+          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="left:37.5px;top:17.5px">
+            <span class="percentageNum">{{ investPercent }} </span>
             </div>
         </div>
     </div>
