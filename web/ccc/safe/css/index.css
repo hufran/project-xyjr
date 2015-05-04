@@ -230,7 +230,8 @@
     left: 0px;
     top: 0px;
     font-size: 12px;
-    top: 72px\0;
+    top: 0px\9;
+    top: 72px\9\0;
 }
 .s-view table.s-c-4 td .s-mouse-show .s-m-s-content{
     position: absolute;
@@ -247,7 +248,7 @@
     width: 121px;
     height: 190px;
     margin: -95px 0px 0 -60px\0;
-    margin: -95px 0px 0 -60px\9;
+    margin: -95px 0px 0 -60px\0\9;
     -webkit-transform: translate3d(-50%,-50%,0);
     -moz-transform: translate3d(-50%,-50%,0);
     -ms-transform: translate3d(-50%,-50%,0);
@@ -256,5 +257,6 @@
 }
 .s-view table.s-c-4 td .s-mouse-show:hover{
     top: -100%;
-    top: -79%\0;
+    top: -100%\9;
+    top: -79%\0\9;
 }

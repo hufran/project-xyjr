@@ -75,21 +75,21 @@ app.use(cookieParser());
 app.get('/comingsoon', function (req, res, next) {
     res.end('coming soon...');
 });
-app.use(function (req, res, next) {
-    var pass =  'a80ccd635609152eca5d6e8b8cd952554762dc61d557d831323c8f06e7cc86ca';
-    console.log(req.url);
-    if (req.cookies) {
-        if (req.cookies && req.cookies.pass === pass) {
-            return next();
-        }
-    }
-    console.log(req.query);
-    if (req.query && req.query.pass === pass) {
-        res.cookie('pass', pass, {maxAge: 1000*60*60*24});
-        return res.redirect(req.url.replace(/([?&])pass=a80ccd635609152eca5d6e8b8cd952554762dc61d557d831323c8f06e7cc86ca/, '$1').replace(/\?$/, ''));
-    }
-    return res.redirect('/comingsoon');
-});
+//app.use(function (req, res, next) {
+//    var pass =  'a80ccd635609152eca5d6e8b8cd952554762dc61d557d831323c8f06e7cc86ca';
+//    console.log(req.url);
+//    if (req.cookies) {
+//        if (req.cookies && req.cookies.pass === pass) {
+//            return next();
+//        }
+//    }
+//    console.log(req.query);
+//    if (req.query && req.query.pass === pass) {
+//        res.cookie('pass', pass, {maxAge: 1000*60*60*24});
+//        return res.redirect(req.url.replace(/([?&])pass=a80ccd635609152eca5d6e8b8cd952554762dc61d557d831323c8f06e7cc86ca/, '$1').replace(/\?$/, ''));
+//    }
+//    return res.redirect('/comingsoon');
+//});
 
 // 给 req 添加 req.uest 方法
 require('express-req-uest')(app, {
