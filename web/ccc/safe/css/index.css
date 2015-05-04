@@ -230,6 +230,7 @@
     left: 0px;
     top: 0px;
     font-size: 12px;
+    top: 72px\0;
 }
 .s-view table.s-c-4 td .s-mouse-show .s-m-s-content{
     position: absolute;
@@ -245,7 +246,7 @@
     left: 50%;
     width: 121px;
     height: 190px;
-    margin: -95px 0px 0 -60px\0/IE9;
+    margin: -95px 0px 0 -60px\0;
     margin: -95px 0px 0 -60px\9;
     -webkit-transform: translate3d(-50%,-50%,0);
     -moz-transform: translate3d(-50%,-50%,0);
