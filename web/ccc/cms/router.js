@@ -42,10 +42,12 @@ router.get('/cms/:channelName', function (req, res) {
 router.get('/cms/p/:id', function (req, res) {
     var user = res.locals.user;
     res.expose(user, "user");
+   
     req.uest(
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
+         res.locals.title = r.body.title + '九信金融-国内首家PE系互联网金融平台';
             res.render('news/detail', {
                 detail: formatDetail(r.body)
             });

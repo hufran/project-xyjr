@@ -36,7 +36,7 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
     .userInfo,
     function (req, res) {
         var user = res.locals.user;
-        res.expose(user, "user");
+        
 
         // agreement
         var agreement = null;
@@ -59,7 +59,10 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
                 .end()
                 .then(function (r) {
                     var result = parseLoan(r.body);
-                    requestId = result.loanRequest.id;                     
+                    requestId = result.loanRequest.id;    
+                    res.locals.title = result.title + '-' + result.loanRequest.description.substring(0, 100) + '|九信金融-国内首家PE系互联网金融平台';
+                    res.locals.description = result.loanRequest.description;
+                    res.expose(user, "user");
                     return result;
                 }),
             invests: req.uest(
