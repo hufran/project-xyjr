@@ -108,9 +108,9 @@ module.exports = {
     // 邀请码配置文件
     urlInvitation: "http://118.244.210.161/_api/p2pcheckinvitecode?output=json",
     // 从config.json拿过来的
-    urlBackend: "http://120.132.61.208:4100/",
+    urlBackend: "http://123.59.61.50/",
     oauth2client: {
-        id: "46abdff4-8519-11e4-83fc-52540012b552",
-        secret: "8b56f59db4d18f6779f8857f5f2c972d4598a2e5f785878e5985363251a62a6b"
+         id: "a266a555-856c-49d9-8941-f1d68a03c551",
+         secret: "726bfcfdb267ea0fd971481640c9efe59a3786d6d961e96296eb9229f42dd1f9"
     }
 };
