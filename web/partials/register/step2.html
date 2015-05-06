@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <span style="display:inline-block;margin-bottom:23px">验证码：</span>
+                        <span style="display:inline-block;margin-bottom:8px">验证码：</span>
                     </td>
                     <td style="padding: 20px 0">
                         <input type="text" name="smsCaptcha" class="input-captcha" style="width:150px!important" placeholder="请输入短信验证码" />
@@ -31,8 +31,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td style="padding-top:15px">
+                    <td colspan=2 style="padding-top:15px">
+                        <button type="submit" class="s-btn-submit previous-step" on-click="oneStep">上一步</a> &nbsp; &nbsp;
                         <button type="submit" class="s-btn-submit post-btn-step2">下一步</button>
                         <div class="item-msg">
                             {{#if msg.post}}
@@ -43,8 +43,6 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="u-tabel-text-ali__cen" style="padding-top: 10px">
-                        <a href="javascript:;" class="ml100-c" on-click="oneStep">上一步</a> &nbsp; &nbsp;
-                        <a href="javascript:;" class="ml100-c" on-click="goNext">跳过</a>
                         {{#if !msg.updateErr}}
                         <div class="item-msg">
                             <span class="error" style="padding-left:68px;padding-top:10px">{{msg.updateErr}}</span>
