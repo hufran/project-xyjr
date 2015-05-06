@@ -22,7 +22,7 @@ _.each({
 }, function (api, fe) {
     router.post('/upayment' + fe, bodyParser(),
         function (req, res, next) {
-            //console.log(req.body);
+            console.log(req.body);
             req.body.retUrl = (req.connection.encrypted ? 'https://' :
                 'http://') + req.headers.host;        
             //debug(fe + ' request: %j', req.body);
@@ -36,6 +36,13 @@ _.each({
                 .send(req.body)
                 .end()
                 .then(function (r) {
+                    console.log(r.body);
+                    if (r.body.error && r.body.error[0].message ==='WITHDRAW_EXCEED_LIMIT') {
+                        return res.render('payment/return', {
+                            customText: '您今日申请提现次数过多，请明天再试。',
+                            data: r.body
+                        });
+                    }
                     res.render('payment/post', {
                         postUrl: upayUrl,
                         data: r.body.data
@@ -61,7 +68,7 @@ _.each({
             req.uest.get('/api/v2' + req.url)
                 .end()
                 .then(function (r) {
-                   // console.log(r.body);
+                    console.log(r.body);
                     res.render('payment/return', {
                         optype: optype,
                         data: r.body
