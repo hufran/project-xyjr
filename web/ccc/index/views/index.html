@@ -11,28 +11,58 @@
         {{#if !user}}
         <div class="info">
             <div class="formwrapper u-pos-r-center">
-                <a href="/register" id="zhuchehaoli"><img src="/img/register-btn.png"></a>
-                <form class="pull-right"> 
-                    <div class="row">
-                        
-                        <input type="text" name="loginName" id="loginName" placeholder="用户名/手机号">
+                <div class="cols">
+                    <div class="col">
+                        <div style="height: 65px;" class="vertical-center">
+                            <div style="color: #ffffff; float: left; font-family: 'arial regular'">
+                                <div style="font-size: 14px; line-height: 14px; margin-bottom: 5px;">Hotline:</div>
+                                <div class="cols">
+                                    <div class="col">
+                                        <div style="font-size: 20px; line-height: 20px;">400 100 0099</div>
+                                    </div>
+                                    <div class="col">
+                                        <div style="font-size: 12px; line-height: 20px; padding-left: 5px;">(9:00 - 21:00)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <input type="password" name="password" id="password" placeholder="密码">
+                    <div class="col float-right">
+                        <div style="height: 65px;" class="vertical-center">
+                            <form>
+                                <div class="row">
+                                    
+                                    <input type="text" name="loginName" id="loginName" placeholder="用户名/手机号">
+                                </div>
+                                <div class="row">
+                                    <input type="password" name="password" id="password" placeholder="密码">
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="loginBtn" id="tonglandenglu">登 录</button>
+                                </div>
+                                <div class="row">
+                                    <a href="/register" target="_self">
+                                        <button type="button" class="loginBtn" id="tonglanzhuce">注 册</button>
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <span class="forgetPass"><a href="/forgot"><i>忘记密码？</i></a></span>
+                                </div>
+                                <div class="row">
+                                    <span class="wechat">
+                                        <img class="icon" src="/assets/img/wx.png" />
+                                        <img class="dropdown" src="/assets/img/2wm.jpg" width="150" title="九信金融" alt="九信金融" />
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <a href="http://weibo.com/jiuxinfinance" target="_blank">
+                                        <img src="/ccc/index/img/icon/weibo-38x38.png" style="opacity: 0.7;">
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="row">
-                        <button type="button" class="loginBtn" id="tonglandenglu">登 录</button>
-                    </div>
-                    <div class="row">
-                        <span class="forgetPass"><a href="/forgot"><i>忘记密码？</i></a></span>
-                    </div>
-                    <div class="row">
-                        <span class="wechat">
-                            <img class="icon" src="/assets/img/wx.png" />
-                            <img class="dropdown" src="/assets/img/2wm.jpg" width="150" title="九信金融" alt="九信金融" />
-                        </span>
-                    </div>
-                </form>
+                </div>
             </div>
             <div class="error"></div>
         </div>
