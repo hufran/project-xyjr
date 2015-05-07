@@ -37,7 +37,11 @@ _.each({
                 .end()
                 .then(function (r) {
                     console.log(r.body);
-                    if (r.body.error && r.body.error[0].message ==='WITHDRAW_EXCEED_LIMIT') {
+                    var emsg;
+                    try {
+                        emsg = r.body.error[0].message;
+                    } catch(e){}
+                    if (emsg ==='WITHDRAW_EXCEED_LIMIT') {
                         return res.render('payment/return', {
                             customText: '您今日申请提现次数过多，请明天再试。',
                             data: r.body
