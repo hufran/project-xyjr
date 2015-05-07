@@ -94,3 +94,35 @@ a, input, textarea, button {
 .text-danger {
   .text-emphasis-variant(@state-danger-text);
 }
+
+
+.side {
+    position: fixed;
+    right: 0;
+    top: 350px;
+    z-index: 100;
+    ul > li {
+        position: relative;
+        height: 51px;
+       > a,
+       > span {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            display: block;
+            overflow: hidden;
+            width: 54px;
+            height: 51px;
+            
+            background: #ca983e;
+            text-decoration: none;
+            font: 14px/51px "微软雅黑";
+            color: #fff;
+            &:hover {
+                opacity: 1;
+                background: #f7971c;
+            }
+        }
+    }   
+}
