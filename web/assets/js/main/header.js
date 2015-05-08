@@ -51,6 +51,9 @@ $('.s__top15').mouseover(function() {
 }).mouseout(function() {
     $(this).next().css('display', 'none');
 });
+
+//顶拦滚动悬浮
+
 // 手机上九信金融hover
 // not need in yingtoubao.com
 //$(".mobile")

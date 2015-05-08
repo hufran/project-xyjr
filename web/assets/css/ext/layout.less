@@ -52,6 +52,15 @@ body{
     width: 100%;
     height: 100px;
     background-color: white;
+    &.floating{
+        width: 100%;
+        position: fixed;
+        height: 100px;
+        background-color: white;
+        top: 0px;
+        z-index: 16;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
 }
 .s-header-menu-content{
     width: 998px;
@@ -104,8 +113,21 @@ body{
     line-height: 100px;
 }
 .s-footer .s-footer-nav .s-footer-nav-content .s-footer-link .s__top15{
+    &.bottomWb{
+        background:url("/assets/img/wb.png") no-repeat center center;
+        &:hover{
+            background:url("/assets/img/icon/wb-golden.png") no-repeat 0px 0px;
+        }
+    }
     position: relative;
-    top: 15px;
+    height: 38px;
+    width: 38px;
+    background: url("/assets/img/wx.png") no-repeat center center;
+    display: inline-block;
+    &:hover{
+        background:url("/assets/img/icon/wx-golden.png") no-repeat 1px 1px;
+    } 
+    top: 30px;
 }
 .s-footer .s-footer-nav .s-footer-nav-content .u-nolist-ul-normal{
     position: absolute;
@@ -118,8 +140,20 @@ body{
     line-height: 60px;
 }
 .s-footer .s-footer-nav .s-footer-nav-content .s-footer-nav-item__right{
-    float: right;;
+    float: right;
     font-size: 1.2em;
+    .chatWithServer{
+        cursor: pointer;
+        vertical-align: middle;
+        margin-left: 7px;
+        background: url("/assets/img/lt.png") no-repeat 0px 0px;
+        display: inline-block;
+        height: 24px;
+        width: 24px;
+        &:hover{
+            background:url("/assets/img/lt-golden.png") no-repeat 0px 0px;
+        }
+    }
 }
 .s-footer .s-footer-info {
     height: 60px;
@@ -166,6 +200,12 @@ body{
     height: 20px;
     text-align: left;
     line-height: 20px;
+    a{
+        &:hover{
+            color:#ca983e;
+            text-decoration: none;
+        }
+    }
 }
 .helpcenter {
     display: block;

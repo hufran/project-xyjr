@@ -108,32 +108,34 @@ function clearError(){
     var $error = $(".error");
     $error.text("");
 }
-$('.loginBtn')
-    .click(function (){
-        var username = $("#loginName").val();
-        var password = $("#password").val();
-        if (username && password) {
-            $.post('/ajaxLogin', {
-                loginName : username,
-                password : password
-            }, function (data){
-                if (!data.success) {
-                    showError(data.error_description.result);
-                } else {
-                    clearError();
-                    window.location.reload();
-                }
-            });
-        }else{
-            location.href=$(this).parent().attr('href');
-        }
 
+function verifyAndLogin(){
+    var username = $("#loginName").val();
+    var password = $("#password").val();
+    if (username && password) {
+        $.post('/ajaxLogin', {
+            loginName : username,
+            password : password
+        }, function (data){
+            if (!data.success) {
+                showError(data.error_description.result);
+            } else {
+                clearError();
+                window.location.reload();
+            }
+        });
+    }
+}
+$('.loginBtn:eq(0)')
+    .click(function (){
+        
+        verifyAndLogin();
     });
     
 
 $(document)
     .keyup(function (e) {
         if(e.keyCode == 13) {
-            $(".loginBtn").trigger('click');
+            verifyAndLogin();
         }
     });
