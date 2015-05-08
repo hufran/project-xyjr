@@ -124,6 +124,8 @@ $('.loginBtn')
                     window.location.reload();
                 }
             });
+        }else{
+            location.href=$(this).parent().attr('href');
         }
 
     });
