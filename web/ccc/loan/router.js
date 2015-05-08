@@ -53,6 +53,7 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
             }
         }
 
+        res.expose(user, "user");
         res.render('loan/detail', {
             loans: req.uest(
                 '/api/v2/loan/' + req.params.id)
@@ -62,7 +63,6 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
                     requestId = result.loanRequest.id;    
                     res.locals.title = result.title + '-' + result.loanRequest.description.substring(0, 100) + '|九信金融-国内首家PE系互联网金融平台';
                     res.locals.description = result.loanRequest.description;
-                    res.expose(user, "user");
                     return result;
                 }),
             invests: req.uest(
