@@ -4,8 +4,8 @@
         <div class="s-header-info-content u-pos-r-center">
             <a href="/help/account" class="helpcenter" style="border:none"><span class="yuan">?</span>帮助中心</a>
             {{#if !user.loginName}}
-            <a href="/register" style="border:none">注册</a>
-            <a href="/login">登录</a>
+            <a href="/register" id="dingbuzhuce" style="border:none">注册</a>
+            <a href="/login" id="dingbudenglu">登录</a>
             {{else}}
             <a href="/logout" style="border:none">退出</a>
             <a href="/account" style="width: 200px; text-align: right; padding-right: 10px;">{{user.loginName}}</a>
@@ -14,14 +14,9 @@
     </div>
     <div class="s-header-menu">
         <div class="s-header-menu-content u-pos-r-center">
-            <a href="/" style="float:left" alt="九信金融" title="九信金融">
-                <img class="s-icon" src="/assets/img/jxlogo.png">
+            <a href="/" style="float: left;" alt="九信金融" title="九信金融">
+                <img class="s-icon" src="/ccc/index/img/icon/logo-323-49.png">
             </a>
-            <div class="hot">
-                <div class="htitle">Hotline:</div>
-                <div class="num">400 100 0099</div>
-                <div class="time">(9:00 - 21:00)</div>
-            </div>
             <ul class="u-nolist-ul">
                 <li class="s__is-selected"><a href="/">首&nbsp;&nbsp;页</a></li>
                 <li><a href="/touzi/list">我要投资</a></li>
@@ -30,7 +25,7 @@
                 <li><a href="/info/index">关于我们</a></li>
                 <li class="s__highlight" style="margin-right:0">   
                     {{#if !user.loginName}}
-                        <a href="/login" class="account">我的账户</a>
+                        <a href="/login" class="account" id="wodezhanghu">我的账户</a>
                     {{ else }}
                         <a href="/account" class="account">我的账户</a>
                     {{/if}}

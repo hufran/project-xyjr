@@ -101,6 +101,7 @@ hr {
 .s-content .s-nav-view .u-nolist-ul{
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
+    overflow: hidden;
 }
 
 .s-content .s-nav-view .u-nolist-ul:last-child{
@@ -108,14 +109,25 @@ hr {
 }
 
 .s-content .s-nav-view .u-nolist-ul li{
-    padding: 4px 15px;
+    // padding: 4px 15px;
+    width: 86px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
     color: #6d6c6c;
     cursor: pointer;
+    display: block;
+    float: left;
 }
 
 .s-content .s-nav-view .u-nolist-ul li:hover{
     background-color: #ca983e;
     color: white;
+}
+
+.s-content .s-nav-view .u-nolist-ul li.selectTitle:hover{
+    background-color: initial;
+    color: initial;
 }
 
 .s-content .s-nav-view .u-nolist-ul li.s__is-selected{
@@ -159,6 +171,10 @@ hr {
     color: white;
     height: 36px;
     text-align: center;
+}
+
+.s-content table th:last-child{
+    padding-right: 60px;
 }
 
 .s-content table td{
@@ -230,7 +246,7 @@ hr {
             width: 100%;
             height: 65px;
             line-height: 65px;
-            text-indent: 30px;
+            text-indent: 60px;
             font-size: 1em;
             color: #324075;
         }
@@ -250,11 +266,11 @@ hr {
         width: 200px;
         line-height: 65px;
         text-align: center;
-        font-size: 24px;
+        font-size: 16px;
         color: #E7880C;
 
         i {
-            font-size: 18px;
+            font-size: 14px;
         }
     }
     .duration {
@@ -263,17 +279,18 @@ hr {
         width: 200px;
         text-align: center;
         line-height: 65px;
-        font-size: 16px;
+        font-size: 14px;
         color: #333333;
     }
     .amount {
         float: left;
         height: 100%;
         width: 120px;
-        text-align: center;
+        text-align: right;
         line-height: 65px;
-        font-size: 16px;
+        font-size: 14px;
         color: #333333;
+        padding-right: 40px;
     }
     .process {
         width: 200px;
@@ -291,6 +308,7 @@ hr {
         height: 100%;
         text-align: center;
         padding-top: 15px;
+        padding-right: 60px;
         .investbtn {
             width: 120px;
             height: 35px;

@@ -126,3 +126,43 @@ a, input, textarea, button {
         }
     }   
 }
+
+
+.vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.horizontal-center {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cols:before,
+.cols:after {
+  display: table;
+  content: " ";
+  line-height: 0;
+}
+.cols:after {
+  clear: both;
+}
+.cols.collapse {
+  place: holder;
+}
+.cols >.col,
+.cols >* {
+  float: left;
+}
+.cols >.col.float-right,
+.cols >*.float-right {
+  float: right;
+}
+.cols.right >.col,
+.cols.from-right >.col,
+.cols.right >*,
+.cols.from-right >* {
+  float: right;
+}
+
