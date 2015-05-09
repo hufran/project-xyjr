@@ -140,13 +140,16 @@ function verifyAndLogin(){
                 window.location.reload();
             }
         });
+    }else{
+        showError('FAILED');
     }
 }
-$('.loginBtn:eq(0)')
-    .click(function (){
-        
+$('.loginBtn').click(function (){
         verifyAndLogin();
     });
+$('.registerBtn').click(function(){
+    location.href="/register"
+})
 
 window.onscroll=function(){
     var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop,headerEle;
