@@ -9,6 +9,8 @@ var IndexService = require('./service')
     .IndexService;
 var utils = require('assets/js/lib/utils');
 var i18n = require('@ds/i18n')['zh-cn'];
+var loginElement=document.getElementsByClassName?document.getElementsByClassName('info')[0]:$('.info')[0];
+
 require('assets/js/lib/jquery.easy-pie-chart.js')
 
 $carousel
@@ -102,6 +104,20 @@ function showError(message){
     };
     var $error = $(".error");
     $error.text(errorMaps[message]); 
+    $error.addClass('show');
+    setTimeout(function(){
+        $error.css({
+            opacity:'1'
+        })
+    });
+    setTimeout(function(){
+        $error.css({
+            opacity:'0'
+        })
+    },1500);
+    setTimeout(function(){
+        $error.removeClass('show');
+    },2000);
 };
 
 function clearError(){
@@ -131,7 +147,18 @@ $('.loginBtn:eq(0)')
         
         verifyAndLogin();
     });
+
+window.onscroll=function(){
+    var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop,headerEle;
+    if(loginElement){
+        if(scrollTopOffset>=129){
+            loginElement.className='info floating';
+        }else{
+            loginElement.className='info';
+        }
+    }
     
+}
 
 $(document)
     .keyup(function (e) {

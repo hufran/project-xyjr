@@ -54,14 +54,27 @@
         height: 65px;
         background-color: rgb(0, 0, 0);
         background-color: rgba(0, 0, 0, 0.46);
-
+        &.floating{
+            position: fixed;
+            z-index: 16;
+        }
         .error {
             height: 40px;
             line-height: 40px;
             color: red;
             width: 220px;
             margin: 0 auto;
-
+            background: #fff;
+            text-align: center;
+            border-radius: 3px;
+            color: #b1150a;
+            position: relative;
+            display: none;
+            transition:opacity 0.20s ease-in;
+            opacity: 0;
+            &.show{
+                display: block;
+            }
             &:empty {
                 display: none;
             }
@@ -115,8 +128,13 @@
                     padding: 0 10px;
                     a {
                         text-decoration: underline;
-                        color: rgb(255, 255, 255);
+                        color: #ffffff;
                         color: rgba(255, 255, 255, 0.5);
+                        font-size: 12px;
+                        font-style: normal;
+                        i{
+                            font-style: normal;
+                        }
                     }
                 }
                 input {
@@ -143,6 +161,14 @@
 
                     .icon {
                         cursor: pointer;
+                        display: inline-block;
+                        width: 38px;
+                        height: 38px;
+                        background: url("/assets/img/wx.png") no-repeat center center;
+                        vertical-align: middle;
+                        &:hover{
+                            background: url("/assets/img/icon/wx-golden.png") no-repeat 1px 1px;
+                        }
                     }
 
                     .dropdown {
@@ -154,6 +180,19 @@
 
                     .icon:hover + .dropdown {
                         display: block;
+                    }
+                }
+                a{
+                    .weiboIcon{
+                        cursor: pointer;
+                        display: inline-block;
+                        width: 38px;
+                        height: 38px;
+                        background: url("/assets/img/wb.png") no-repeat center center;
+                        vertical-align: middle;
+                        &:hover{
+                            background: url("/assets/img/icon/wb-golden.png") no-repeat 0px 0px;
+                        }
                     }
                 }
             }
