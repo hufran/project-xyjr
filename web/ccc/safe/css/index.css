@@ -289,9 +289,13 @@
     padding: 80px 30px;
     color: #fff;
 }
+.fengkong-ab p{
+    text-align: left;
+}
 .fengkong-ab li:hover .side-a {
     display: none;
 }
 .fengkong-ab li:hover .side-b {
     display: block;
+
 }
