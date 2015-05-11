@@ -274,6 +274,7 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
             imgLen: imgs.length
         };
         popupBigPic.show(options);
+        init();
         return false;
 
     });
@@ -307,6 +308,7 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
     });
     
     // 大图浏览时切换
+    function init() {
     var timer;
     popupBigPic.popupBigPicRactive.on("prev-big next-big", function (e) {
         if (e.name === "prev-big") {
@@ -327,7 +329,7 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
 
         return false;
     });
-
+    }
 });
 
 

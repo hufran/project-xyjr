@@ -53,6 +53,7 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
             }
         }
 
+
         var repayments = req.uest(
                 '/api/v2/loan/' + req.params.id +
                 '/repayments')
