@@ -230,9 +230,12 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         InvestListService.getLoanListWithCondition(jsonToParams(params),
             function (
                 res) {
-                investRactive.set('list', parseLoanList(res.results));
-                initailEasyPieChart();
-                renderPager(res, params.currentPage);
+                investRactive.set('list', []);
+                setTimeout(function () {
+                    investRactive.set('list', parseLoanList(res.results));
+                    initailEasyPieChart();
+                    renderPager(res, params.currentPage);
+                }, 1);
             });
     }
 
