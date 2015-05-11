@@ -53,7 +53,25 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
             }
         }
 
-        res.render('loan/detail', {
+        var repayments = req.uest(
+                '/api/v2/loan/' + req.params.id +
+                '/repayments')
+                .end()
+                .then(function (r) {
+
+                    if (Array.isArray(r.body.data)) {
+                        var repayments = [];
+                        for (var i = 0; i < r.body.data.length; i++) {
+                            repayments.push(r.body.data[i].repayment);
+                        }
+                        return repayments;
+                    } else {
+                        return r.body.data.repayments;
+                    }
+                })
+        res.expose(user, "user");
+
+        var locals = {
             loans: req.uest(
                 '/api/v2/loan/' + req.params.id)
                 .end()
@@ -62,7 +80,6 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
                     requestId = result.loanRequest.id;    
                     res.locals.title = result.title + '-' + result.loanRequest.description.substring(0, 100) + '|九信金融-国内首家PE系互联网金融平台';
                     res.locals.description = result.loanRequest.description;
-                    res.expose(user, "user");
                     return result;
                 }),
             invests: req.uest(
@@ -82,23 +99,14 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
                     return r.body;
                 }),
             // TODO 如何共享 loanRequestId 减少请求次数
-            replay: req.uest(
-                '/api/v2/loan/' + req.params.id +
-                '/repayments')
-                .end()
-                .then(function (r) {
+            replay: repayments
+        };
 
-                    if (Array.isArray(r.body.data)) {
-                        var repayments = [];
-                        for (var i = 0; i < r.body.data.length; i++) {
-                            repayments.push(r.body.data[i].repayment);
-                        }
-                        return repayments;
-                    } else {
-                        return r.body.data.repayments;
-                    }
-                })
-        });
+        repayments.then(function (repayments) {
+            console.log(repayments)
+            res.expose(repayments, 'repayments');
+            res.render('loan/detail', locals)
+        })
     });
 
 router.get('/loan/:requestId/proof', function (req, res) {
@@ -191,6 +199,7 @@ function parseLoan(loan) {
     loan.dueDate = moment(loan.dueDate)
         .format('YYYY-MM-DD');
     loan.method = methodZh[loan.method];
+    loan.timeLeftStamp=loan.timeLeft;
     loan.timeLeft = formatLeftTime(loan.timeLeft);
     loan.purpose = purposeMap[loan.purpose];
     //格式化期限
@@ -230,8 +239,13 @@ function formatLeftTime(leftTime) {
     leftTime -= mm * 1000 * 60;
     var ss = Math.floor(leftTime / 1000);
     leftTime -= ss * 1000;
-
-    return dd + '天' + hh + '小时' + mm + '分';
+    var obj=JSON.stringify({
+        dd:dd,
+        hh:hh,
+        mm:mm,
+        ss:ss
+    });
+    return obj;
 }
 
 function formatBorrowDueDate(timeSettled, duration) {
