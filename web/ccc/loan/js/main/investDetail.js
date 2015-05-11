@@ -76,7 +76,8 @@ setTimeout((function () {
             errors: {
                 visible: false,
                 msg: ''
-            }
+            },
+            backUrl: CC.backUrl
         }
     });
     //
