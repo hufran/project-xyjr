@@ -3,7 +3,6 @@
 .current-container {
     width: 998px;
     margin: 0 auto;
-    border: 1px solid #c7c7c8;
     margin-top: 30px;
 }
 
@@ -58,14 +57,14 @@
 
 // 左边的显示信息
 .invest-data-wrapper {
-    width: 616px;
+    width: 550px;
     float: left;
-    border-right: 1px solid #c7c7c8;
     background: #fff;
+    border-radius: 3px;
     .investContainer {
         width: 500px;
-        height: 311px;
-        margin: 0 30px;
+        height: 315px;
+        margin: 0 25px;
         .investTitle {
             height: 40px;
             .serial {
@@ -80,7 +79,13 @@
                 line-height: 25px;
                 font-size: 20px;
                 font-weight: bold;
-                border-bottom: 1px solid #c7c7c8;
+            }
+            .protocol{
+                font-size: 14px;
+                color: #ca983e;
+                text-decoration: underline;
+                float: right;
+                line-height: 40px;
             }
         }
         .loanbottom {
@@ -111,43 +116,65 @@
         }
         .content {
             height: 180px;
+            margin-top: 10px;
             .inner {
-                height: 60px;
+                height: 160px;
                 .item {
                     float: left;
                     width: 125px;
                     height: 100%;
-                    border-right: 1px solid #c7c7c8;
+                    border-radius: 3px;
+                    background-color: #f2f2f2;
+                    margin-right: 5px;
+                    text-indent: 20px;
+                    &.itemFirst{
+                        width: 120px;
+                    }
+                    &.itemSecond{
+                        width: 165px;
+                    }
+                    &.itemThird{
+                        width: 205px;
+                        margin-right: 0px;
+                    }
                     .name {
                         width: 100%;
                         height: 30px;
                         line-height: 30px;
-                        text-indent: 10px;
                         color: #939393;
-                        font-size: 14px;
+                        font-size: 16px;
+                        margin-top: 35px;
                     }
                     .value {
+                        margin-top: 15px;
                         width: 100%;
                         height: 30px;
                         line-height: 30px;
-                        color: #333333;
-                        text-indent: 10px;
+                        color: #232B50;
                         font-size: 24px;
                         font-weight: bold;
-                        font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+                        font-family:sans-serif, Hiragino Sans GB;
+                        span{
+                            position: relative;
+                            font-size: 16px;
+                            top: -1px;
+                        }
                     }
                 }    
             }
             .innerBottom {
-                height: 60px;
-                .left {
-                    float: left;
-                    width: 250px;
-                    height: 100%;
-                    .itemt {
-                        height: 30px;
-                        line-height: 30px;
-                        font-size: 12px;
+                margin-top: 15px;
+                .itemt {
+                    height: 25px;
+                    line-height: 25px;
+                    font-size: 14px;
+                    .goldenDot{
+                        color: #ca983e;
+                        margin-right: 5px;
+                    }
+                    .blueDot{
+                        color: #232B50;
+                        margin-right: 5px;
                     }
                 }
                 .right {
@@ -291,13 +318,174 @@
 
 // 右边的投标
 .do-invest-wrapper {
+    position: relative;
     float: right;
-    width: 380px;
-    height: 271px;
+    width: 440px;
+    height: 315px;
     margin: 0 0 40px 0;
-    padding: 15px 80px;
+    background-color: #fff;
+    border-radius: 3px;
+    text-align: center;
     /*background-image: url(/assets/img/box_bj.jpg);*/
+    .tooltip {
+            @bg: #fdf8e4;
+            @color: #c09956;
+            top: 35px;
+            left: 219px;
+            opacity: 1;
+            display: block;
 
+            .tooltip-arrow {
+                position: absolute;
+                border-width: 5px 5px 0;
+                border-top-color: @bg;
+                bottom: -5px;
+                left: 10%;
+            }
+
+            .tooltip-inner {
+                padding: 5px 10px;
+
+                .icon {
+                    // 感叹号图标
+                    color: #fe0002;
+                    margin-right: 5px;
+                }
+
+                background-color: @bg;
+                max-width: 200px;
+                color: @color;
+            }
+        }
+    //已结标
+    .status{
+        background: #f5f5f5;
+        .info{
+            height: 150px;
+            margin-top: 30px;
+            background-color: #fff;
+            border-radius: 3px;
+            .valiableInvest{
+                float: left;
+                width: 160px;
+                display: inline-block;
+                text-align: left;
+                text-indent: 26px;
+                .tip{
+                    font-size: 16px;
+                    color: #6b6b6b;
+                }
+                .money{
+                    color: #222d4f;
+                    font-size: 30px;
+                    margin-top: 5px;
+                    margin-bottom: 12px;
+                }
+            } 
+            .time{
+                width: 180px;
+                height: 30px;
+                color: #222d4f;
+                font-size: 14px;
+                float: right;
+                i.clock{
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    background: url("/ccc/loan/img/icon.png") no-repeat 0px 0px;
+                    vertical-align: middle;
+                }
+                i{
+                    font-style: normal;
+                    margin:0px 2px;
+                }
+            }
+        }
+        .userBlock{
+            height: 130px;
+            margin-top: 5px;
+            background-color: #e8e8e8;
+            border-radius: 3px;
+              font-size: 16px;
+            color: #6b6b6b;
+            padding: 30px 30px 0px 30px;
+            position: relative;
+            .leftMoney{
+                font-size: 16px;
+                color: #6b6b6b;
+                text-align: left;
+                margin-bottom: 15px;
+                .red{
+                    color: #980a0a;
+                    font-style: normal;
+                }
+            }
+            .input{
+                .invest-input{
+                    width: 220px;
+                    float: left;
+                }
+                .invest-button{
+                    float: right;
+                    height: 34px;
+                    width: 140px;
+                    color: #fff;
+                    background: #ca983e;
+                    font-size: 16px;
+                    line-height: 34px;
+                    padding: 0;
+                    border: none;
+                }
+            }
+            p{
+                color: #6b6b6b;
+                text-align: center;
+                font-size: 14px;
+            }
+            .loginBtn{
+                height: 34px;
+                color: #fff;
+                background: #ca983e;
+                font-size: 16px;
+                line-height: 34px;
+                padding: 0;
+                border: none;
+                display: block;
+                width: 240px;
+                border-radius: 3px; 
+                margin: 0 auto; 
+                margin-top: 10px;
+                &:hover{
+                    text-decoration:none;
+                }        
+            }
+
+        }
+    }
+    
+    .finishBlock{
+        vertical-align: middle;
+        margin-top: 60px;
+    }
+    //
+    .cleared{
+        margin-top: 67px;
+    }
+    //
+    .settled{
+        margin-top: 58px;
+    }
+    .repayDuration{
+        width: 200px;
+        color: #000;
+        font-size: 14px;
+        background-color: #fff;
+        position: absolute;
+        top: 172px;
+        text-align: center;
+        left: 50%;
+        margin-left: -100px;
+    }
     // 已登录,但是没开第三方支付
     .prompt-open-3rdpay {
         h3 {
@@ -312,7 +500,23 @@
             color: #999;
         }
     }
-
+    .left-time { 
+        margin: 130px 0 60px;
+        color: #666;
+        font-size: 17px;
+        text-align: center;
+        i{
+            font-style: normal;
+            font-size: 26px;
+            color: #ca983e;
+            margin: 5px;
+            font-family: sans-serif;
+        }
+        .text{
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
     // 未登录
     .not-login-wrapper {
         text-align: center;
@@ -323,7 +527,7 @@
             margin-right: 5px;
         }
 
-        .left-time { margin: 5px 0 60px; }
+        
     }
     
     //未签订协议,按钮及文字样式
@@ -384,8 +588,8 @@
         .tooltip {
             @bg: #fdf8e4;
             @color: #c09956;
-            top: -28px;
-            left: 25px;
+            top: 27px;
+            left: 214px;
             opacity: 1;
             display: block;
 
@@ -527,6 +731,7 @@
                 .value {
                     width: 125px;  
                     color: #000;
+
                 }
             }
 
@@ -652,6 +857,8 @@
         background: #fff;
     }
     .nav-tabs {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #f5f5f5;
         li{
             a{
                 display: block;
@@ -663,21 +870,18 @@
                 font-size: 14px;
                 border:none;
                 text-align: center;
-                border-right:1px solid #dddddd; 
-                border-bottom:1px solid #dddddd; 
-                background: #EDEDED;
+                background: #e8e8e8;
+                margin-right: 5px;
             }
         }
         
         .active{
             a,a:focus,a:hover {
                 font-size: 14px;
-                border-top: none;
-                border-left: none;
-                border-bottom:none;
+                border: none;
                 text-align: center;
-                color: #6E7CC2;
-                background: #fff;
+                color: #fff;
+                background: #ca983e;
             }
         }
     }
