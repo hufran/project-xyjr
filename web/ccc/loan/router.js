@@ -36,8 +36,9 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
     .userInfo,
     function (req, res) {
         var user = res.locals.user;
-        
-
+        var buffer = new Buffer(req.path);
+        var backUrl = buffer.toString('base64');
+        res.expose(backUrl, 'backUrl');
         // agreement
         var agreement = null;
         if (res.locals.user && res.locals.user.accountId) {
