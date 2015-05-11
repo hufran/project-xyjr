@@ -9,6 +9,8 @@ var IndexService = require('./service')
     .IndexService;
 var utils = require('assets/js/lib/utils');
 var i18n = require('@ds/i18n')['zh-cn'];
+var loginElement=document.getElementsByClassName?document.getElementsByClassName('info')[0]:$('.info')[0];
+
 require('assets/js/lib/jquery.easy-pie-chart.js')
 
 $carousel
@@ -102,38 +104,68 @@ function showError(message){
     };
     var $error = $(".error");
     $error.text(errorMaps[message]); 
+    $error.addClass('show');
+    setTimeout(function(){
+        $error.css({
+            opacity:'1'
+        })
+    });
+    setTimeout(function(){
+        $error.css({
+            opacity:'0'
+        })
+    },1500);
+    setTimeout(function(){
+        $error.removeClass('show');
+    },2000);
 };
 
 function clearError(){
     var $error = $(".error");
     $error.text("");
 }
-$('.loginBtn')
-    .click(function (){
-        var username = $("#loginName").val();
-        var password = $("#password").val();
-        if (username && password) {
-            $.post('/ajaxLogin', {
-                loginName : username,
-                password : password
-            }, function (data){
-                if (!data.success) {
-                    showError(data.error_description.result);
-                } else {
-                    clearError();
-                    window.location.reload();
-                }
-            });
-        }else{
-            location.href=$(this).parent().attr('href');
-        }
 
+function verifyAndLogin(){
+    var username = $("#loginName").val();
+    var password = $("#password").val();
+    if (username && password) {
+        $.post('/ajaxLogin', {
+            loginName : username,
+            password : password
+        }, function (data){
+            if (!data.success) {
+                showError(data.error_description.result);
+            } else {
+                clearError();
+                window.location.reload();
+            }
+        });
+    }else{
+        showError('FAILED');
+    }
+}
+$('.loginBtn').click(function (){
+        verifyAndLogin();
     });
+$('.registerBtn').click(function(){
+    location.href="/register"
+})
+
+window.onscroll=function(){
+    var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop,headerEle;
+    if(loginElement){
+        if(scrollTopOffset>=129){
+            loginElement.className='info floating';
+        }else{
+            loginElement.className='info';
+        }
+    }
     
+}
 
 $(document)
     .keyup(function (e) {
         if(e.keyCode == 13) {
-            $(".loginBtn").trigger('click');
+            verifyAndLogin();
         }
     });

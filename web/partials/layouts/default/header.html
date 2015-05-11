@@ -18,11 +18,11 @@
                 <img class="s-icon" src="/ccc/index/img/icon/logo-323-49.png">
             </a>
             <ul class="u-nolist-ul">
-                <li class="s__is-selected"><a href="/">首&nbsp;&nbsp;页</a></li>
-                <li><a href="/touzi/list">我要投资</a></li>
-                <li><a href="/safe">安全保障</a></li>
-                <li><a href="/help">新手指引</a></li>
-                <li><a href="/info/index">关于我们</a></li>
+                <li {{#if currentChannel === 'index'}}class="s__is-selected"{{/if}}><a href="/">首&nbsp;&nbsp;页</a></li>
+                <li {{#if currentChannel === 'touzi'}}class="s__is-selected"{{/if}}><a href="/touzi/list">我要投资</a></li>
+                <li {{#if currentChannel === 'safe'}}class="s__is-selected"{{/if}}><a href="/safe">安全保障</a></li>
+                <li {{#if currentChannel === 'help'}}class="s__is-selected"{{/if}}><a href="/help">新手指引</a></li>
+                <li {{#if currentChannel === 'info'}}class="s__is-selected"{{/if}}><a href="/info/index">关于我们</a></li>
                 <li class="s__highlight" style="margin-right:0">   
                     {{#if !user.loginName}}
                         <a href="/login" class="account" id="wodezhanghu">我的账户</a>

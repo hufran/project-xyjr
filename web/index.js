@@ -32,7 +32,7 @@ app.locals.rushHeads = [
     '<script src="/assets/js/common/global.js" async></script>'
 ];
 app.use(function (req, res, next) {
-    var ua = userAgent.parse(req.headers['user-agent']);
+    var ua = userAgent.parse(req.headers['user-agent']),currentChannel="",originalUrl=req.originalUrl;
     if (ua.family === 'IE' && ua.major < 10) {
         res.locals.isLegacy = false;
         if (ua.major < 9) {
@@ -48,6 +48,19 @@ app.use(function (req, res, next) {
             '<!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->',
         ];
     }
+    //判断当前频道
+    if(originalUrl=="/"||originalUrl=="/index"){
+        currentChannel='index';
+    }else if(/touzi/.test(originalUrl)){
+        currentChannel='touzi';
+    }else if(/safe/.test(originalUrl)){
+        currentChannel='safe';
+    }else if(/help/.test(originalUrl)){
+        currentChannel='help';
+    }else if(/info/.test(originalUrl)){
+        currentChannel='info';
+    }
+    res.locals.currentChannel=currentChannel;
     next();
 });
 app.use(require('express-promise')());
