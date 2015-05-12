@@ -89,7 +89,7 @@
                             <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
                                 <div class="clearfix" style="margin-bottom: 5px">
                                     <input type="hidden" name="loanId" value="{{loan.id}}">
-                                    <input type="text" name="amount" class="form-control invest-input" placeholder="最少为{{rule.min}}，且为{{rule.step}}的倍数" value="{{ inputNum }}" />
+                                    <input type="text" name="amount" class="form-control invest-input" placeholder="最少为{{loan.rule.min}}，且为{{loan.rule.step}}的倍数" value="{{ inputNum }}" />
                                     <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
                                 </div>
                                 <!--预计总收益：{}-->
@@ -103,7 +103,7 @@
                                     </select>
                                 </div>
                                 {{/if}}
-                                <span style="float: left">预计总收益：{{(loan.totalInterest * inputNum / loan.amount).toFixed(2) || 0}}</span>
+                                <span style="float: left">预计总收益：{{(loan.totalInterest * (inum||0) / loan.amount).toFixed(2)}}</span>
                                 {{#if errors.visible}}
                                 <div class="tooltip">
                                     <div class="tooltip-arrow"></div>
