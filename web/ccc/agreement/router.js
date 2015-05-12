@@ -18,3 +18,7 @@ router.get('/mobile/service', function (req, res) {
         title: '九信金融平台服务规则'
     });
 });
+
+router.get('/agreement/loan/protocol', function(req, res) {
+    res.sendFile(__dirname + '/img/protocol.pdf');
+});

@@ -36,6 +36,33 @@ $("[data-toggle=tooltip]")
 setTimeout((function () {
     global.CC.loan.timeElapsed = utils.format.timeElapsed(global.CC.loan
         .timeElapsed);
+    global.CC.loan.timeLeft=JSON.parse(global.CC.loan.timeLeft);
+    var leftTime=global.CC.loan.timeLeft;
+    var timeLeftToal=leftTime.ss+leftTime.mm*60+leftTime.hh*60*60+leftTime.dd*60*60*24;
+    setInterval(function(){
+        timeLeftToal-=1;
+        var dd=parseInt(timeLeftToal/(60*60*24),10),
+        hh=parseInt((timeLeftToal-dd*60*60*24)/(60*60),10),
+        mm=parseInt((timeLeftToal-dd*60*60*24-hh*60*60)/60,10),
+        ss=parseInt(timeLeftToal-dd*60*60*24-hh*60*60-mm*60,10);
+        var newTimeleftTotal={
+            dd:dd,
+            hh:hh,
+            mm:mm,
+            ss:ss
+        }
+        $('.firstLine>.time>span').html('<i>'+newTimeleftTotal.dd+'</i>日<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
+    },1000)
+    //获取最后还款日期
+    if(CC.repayments instanceof Array&&CC.repayments.length>0){
+        global.CC.loan.lastRepaymentsDate=CC.repayments[0].dueDate;
+        for(var i=0;i<CC.repayments.length;i++){
+            if(global.CC.loan.lastRepaymentsDate<CC.repayments[i].dueDate){
+                global.CC.loan.lastRepaymentsDate=CC.repayments[i].dueDate;
+            }
+        };
+    }
+    
     var investRactive = new Ractive({
         el: ".do-invest-wrapper",
         template: require('ccc/loan/partials/doInvestOnDetail.html'),
@@ -49,10 +76,15 @@ setTimeout((function () {
             errors: {
                 visible: false,
                 msg: ''
-            }
+            },
+            backUrl: CC.backUrl
         }
     });
+    //
     investRactive.set('user', CC.user);
+    if($('.invest-submit').length>0){
+
+    }
     investRactive.on("invest-submit", function (e) {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         if (isNaN(num)) {
@@ -147,6 +179,7 @@ setTimeout((function () {
             }), 1000);
         }
     }
+
 
      function parsedata(o) {
         var type =  {

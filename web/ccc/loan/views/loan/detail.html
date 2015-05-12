@@ -12,22 +12,23 @@
                 <div class="h20"></div>
                 <div class="investTitle">
                     <!-- <div class="serial">ID:230193</div> -->
+                    <a class="protocol" target="_blank" href="/agreement/loan/protocol">借贷协议（范本）</a>
                     <div class="title" style="height:40px;line-height:40px;">{{loans.title}}</div>
+
                 </div>
                 <div class="content">
-                    <div class="h30"></div>
                     <div class="inner">
-                        <div class="item">
-                            <div class="name" style="text-indent:0">年化利率</div>
-                            <div class="value" style="text-indent:0">{{loans.rate}}%</div>
+                        <div class="item itemFirst">
+                            <div class="name">年化利率</div>
+                            <div class="value">{{loans.rate}}%</div>
                         </div>
-                        <div class="item">
+                        <div class="item itemSecond">
                             <div class="name">期限</div>
-                            <div class="value">{{loans.fduration}}<span style="font-size:16px;">{{loans.fdurunit}}</span></div>
+                            <div class="value">{{loans.fduration}}<span>{{loans.fdurunit}}</span></div>
                         </div> 
-                        <div class="item" style="border-right:none">
+                        <div class="item itemThird" style="border-right:none">
                             <div class="name">总额</div>
-                            <div class="value">{{loans.amount}}<span style="font-size:16px;">{{loans.aUnit}}</span></div>
+                            <div class="value">{{loans.amount}}<span>{{loans.aUnit}}</span></div>
                         </div>
                         
 <!--
@@ -37,23 +38,21 @@
                         </div>
 -->
                     </div>
-                    <div class="h30"></div>
                     <div class="innerBottom">
-                        <div class="left">
-                            <div class="itemt">发布时间 : &nbsp;&nbsp;&nbsp;{{loans.loanRequest.timeSubmit}}</div>
-                            <div class="itemt">还款方式 : &nbsp;&nbsp;&nbsp;{{loans.method}}</div>
-                        </div> 
-                        <div class="right">
+                        <ul>
+                            <li><div class="itemt"><i class="goldenDot">&bull;</i>保障方式 : 100%本金 + 利息</div></li>
+                            <li><div class="itemt"><i class="blueDot">&bull;</i>还款方式 : &nbsp;&nbsp;&nbsp;{{loans.method}}</div></li>
+                        </ul>
+                        
+                        
+                            
+                            <!-- <div class="itemt">发布时间 : &nbsp;&nbsp;&nbsp;{{loans.loanRequest.timeSubmit}}</div>
                             <div class="itemt">项目进度 :  
                                 <div class="percentWrapper">
                                     <div class="percent" style="width:{{ loans.investPercent }}%"></div>
                                     <div class="realPercent">{{ loans.investPercent }}%</div>
                                 </div>
-                            </div>
-                            <div class="itemt">
-                                保障方式 : 100%本金 + 利息
-                            </div>
-                        </div>
+                            </div> -->
                     </div>
                 </div>
                 <div class="h20"></div>
@@ -117,7 +116,7 @@
 </div> -->
 <div class="invest-detail-wrapper">
     <div class="current-container scontent">
-        <ul class="nav nav-tabs" style="background:#fff;">
+        <ul class="nav nav-tabs">
              <li role="presentation" class="active" data-step='2'><a href="###">项目信息</a>
             </li>
             <li role="presentation" data-step='0'><a href="###">还款计划</a>

@@ -15,10 +15,12 @@ router.get('/login', function (req, res, next) {
     if (req.cookies.ccat) {
         return res.redirect('/');
     }
+    //res.redirect("back");
     next();
 });
 router.post('/login', bodyParser('json'), function (req, res) {
     res.locals.backUrl = req.body.backUrl;
+    console.log(req.body.backUrl);
     var location = req.body.location;
     var sendObj = {
         username: req.body.loginName,
@@ -48,6 +50,7 @@ router.post('/login', bodyParser('json'), function (req, res) {
         .end()
         .then(function (r) {
             console.log(r.body);
+            console.log("###", res.locals.backUrl);
             if (r.body && r.body.user) {
                 res.cookie('ccat', r.body.access_token, {
                     maxAge: 30 * 60 * 1000
@@ -68,7 +71,9 @@ router.post('/login', bodyParser('json'), function (req, res) {
 });
 
 // ajax login api
-router.post('/ajaxLogin', bodyParser('json'), function (req, res) {
+router.post('/ajaxLogin', bodyParser(), function (req, res) {
+    res.locals.backUrl = req.body.backUrl;
+    console.log(res.locals.backUrl);
     var sendObj = {
         username: req.body.loginName,
         password: req.body.password,
@@ -89,7 +94,7 @@ router.post('/ajaxLogin', bodyParser('json'), function (req, res) {
                     maxAge: 30 * 60 * 1000
                 });
                 if (res.locals.backUrl) {
-                    r.body.redirect = new Buffer(res.locals.backUrl, 'base64');
+                    r.body.redirect = new Buffer(res.locals.backUrl, 'base64').toString('utf-8');
                 }
             } else {
                 r.body.success = false;

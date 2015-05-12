@@ -16,6 +16,7 @@
             <form id="loginForm" action="/login" method="POST">
                 <div><i class="mdi mdi-account"></i>
                     <input type="text" name="loginName" placeholder="用户名/手机" />
+                    <input type="hidden" name="backUrl" value="{{backUrl}}">
                 </div>
                 <div><i class="mdi mdi-lock"></i>
                     <input type="password" name="password" placeholder="密码" />
@@ -42,6 +43,7 @@
                     <i class="mdi mdi-lock-open"></i>
                     <input type="text" name="loginName" placeholder="用户名/手机" />
                     <input type="password" name="password" placeholder="密码" />
+                    <input type="hidden" name="backUrl" value="{{backUrl}}">
                 </div>
                 <a href="/forgot" class="u-float-right">忘记密码？</a>
                 <input type="submit"  class="do-login cursor-pointer" value="登录" />
