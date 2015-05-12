@@ -414,13 +414,35 @@
                 font-size: 16px;
                 color: #6b6b6b;
                 text-align: left;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
+                text-indent: 15px;
                 .red{
                     color: #980a0a;
                     font-style: normal;
                 }
+
             }
             .input{
+                .expect{
+                    font-size: 14px;
+                    float: left;
+                    text-indent: 15px;
+                    margin-bottom: 3px;
+                }
+                .selectOption{
+                    clear: both;
+                    text-align: left;
+                    select{
+                        background: #eba6a6;
+                        height: 20px;
+                        color: #fff;
+                        font-size: 14px;
+                        border: none;
+                        line-height: 20px;
+                        margin-top: 2px;
+                        text-indent: 8px;
+                    }
+                }
                 .invest-input{
                     width: 220px;
                     float: left;
@@ -872,6 +894,8 @@
                 text-align: center;
                 background: #e8e8e8;
                 margin-right: 5px;
+                border-top-right-radius: 3px;
+                border-top-left-radius: 3px;
             }
         }
         
@@ -882,35 +906,58 @@
                 text-align: center;
                 color: #fff;
                 background: #ca983e;
+
             }
         }
     }
 
     .tab-panels {
-        margin-top: 30px;
+        margin-top: 60px;
+        .tab-panel{
+            .repay-plan{
+                width: 800px;
+                margin: 0px auto;
+                thead{
+                    tr{
+                        line-height: 25px;
+                          color: #232d4f;
+                          font-size: 14px;
+                          background-color: #e8e8e8;
+                    }
+                }
+            }
+            .repay-record{
+                thead{
+                    th{
+                        width: 33%;
+                    }
+                }
+            }
+        }
         .loanInfoWrapper {
             width: 900px;
             min-height: 500px;
             margin: 20px auto;
             .loanInfo {
                 float: left;
-                width: 568px;
+                width: 800px;
                 min-height: 500px;
-                border: 1px #e3e2e2 solid;
+                margin-left: 30px;
                 .eventCont {
-                    min-height: 150px;
                     margin: 10px 20px;
                     font-size: 14px;
                     line-height: 2;
                     word-spacing: 8px;
+                    color: #666;
                     letter-spacing: 1px;
+                    margin-bottom: 30px;
                 }
                 .eventItem {
-                    background: #f3f3f3;
                     height: 30px;
                     line-height: 30px;
-                    font-size: 12px;
+                    font-size: 20px;
                     text-indent: 20px;
+                    color: #232d4f;
                 }
                 
             }
@@ -1031,12 +1078,11 @@
     }
     
     .table > tbody > tr > th {
-        color: #959595;
-        text-align: center;
-        font-size: 12px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid #ddd;
+          text-align: center;
+          font-size: 14px;
+          line-height: 60px;
+          color: #666;
+          border-bottom: 1px solid #ddd;
     }
     
     .table > tbody > tr > th.col-current-period {
