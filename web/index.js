@@ -89,7 +89,7 @@ app.get('/comingsoon', function (req, res, next) {
     res.end('coming soon...');
 });
 app.use(function (req, res, next) {
-    if (req.url.match(/\^u?payment\/)) {
+    if (req.url.match(/^\/u?payment\//)) {
         return next();
     }
     var pass =  'a80ccd635609152eca5d6e8b8cd952554762dc61d557d831323c8f06e7cc86ca';
