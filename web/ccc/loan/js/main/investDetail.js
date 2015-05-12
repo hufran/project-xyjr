@@ -234,7 +234,7 @@ setTimeout((function () {
     .on('keyup',function(){
         var months = CC.loan.duration;
         var amount = $(this).val();
-        investRactive.set('inputNum', parseFloat(amount));
+        investRactive.set('inum', parseFloat(amount));
 
         $.post('/loan/selectOption',{
             amount:amount,
