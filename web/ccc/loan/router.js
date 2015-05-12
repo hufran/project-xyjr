@@ -187,6 +187,7 @@ function parseLoan(loan) {
         loan.timeSettled = moment(loan.timeSettled)
             .format('YYYY-MM-DD');
     }
+    loan.originalAmount = loan.amount;
     if (loan.amount >= 10000) {
         loan.aUnit = '万';
         loan.amount = (loan.amount / 10000);

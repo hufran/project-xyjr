@@ -76,7 +76,7 @@
                     <div class="firstLine">
                         <div class="valiableInvest">
                             <div class="tip">可投金额（元）： </div>
-                            <div class="money">{{loan.amount-loan.investAmount}}</div>   
+                            <div class="money">{{loan.rule.balance}}</div>   
                         </div>
                         <div class="time"><i class="clock"></i><span><i>{{loan.timeLeft.dd}}</i>日<i>{{loan.timeLeft.hh}}</i>时<i>{{loan.timeLeft.mm}}</i>分<i>{{loan.timeLeft.ss}}</i>秒</span></div>
                     </div>
@@ -103,7 +103,7 @@
                                     </select>
                                 </div>
                                 {{/if}}
-                                <span style="float: left">预计总收益：{{(loan.totalInterest * (inum||0) / loan.amount).toFixed(2)}}</span>
+                                <span style="float: left">预计总收益：{{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}</span>
                                 {{#if errors.visible}}
                                 <div class="tooltip">
                                     <div class="tooltip-arrow"></div>
