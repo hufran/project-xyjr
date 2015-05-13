@@ -12,6 +12,7 @@ var glob = require('glob');
 GLOBAL._ = require('lodash');
 GLOBAL.Promise = require('bluebird'); // 目前 bluebird 实现的 Promise 性能比 V8 原生快很多，所以全局使用 bluebird
 var port = parseInt(process.env.PORT, 10) || config.port;
+var log = require('bunyan-hub-logger')({app: 'web', name: 'app'});
 
 var consoleCode = fs.readFileSync(require.resolve('console/console.js'),
     'utf-8');
@@ -33,6 +34,7 @@ app.locals.rushHeads = [
 ];
 app.use(function (req, res, next) {
     var ua = userAgent.parse(req.headers['user-agent']),currentChannel="",originalUrl=req.originalUrl;
+    log.debug({ua: ua, req: req});
     if (ua.family === 'IE' && ua.major < 10) {
         res.locals.isLegacy = false;
         if (ua.major < 9) {
