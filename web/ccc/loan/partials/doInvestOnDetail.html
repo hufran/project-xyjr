@@ -87,15 +87,16 @@
                         <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i></div>
                         <div class="input">
                             <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
-                                <div class="clearfix" style="margin-bottom: 5px">
+                                <div class="clearfix" style="margin-bottom: 1px">
                                     <input type="hidden" name="loanId" value="{{loan.id}}">
                                     <input type="text" name="amount" class="form-control invest-input" placeholder="最少为{{loan.rule.min}}，且为{{loan.rule.step}}的倍数" value="{{ inputNum }}" />
                                     <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
                                 </div>
                                 <!--预计总收益：{}-->
+                                <span class="expect">预计总收益：{{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</span>
                                 {{#if selectOption}}
-                                <div class="selectOption" style="float: right">
-                                    <select name="placementId" id="couponSelection" style="width: 200px; float: right; margin: 0;height:30px;">
+                                <div class="selectOption">
+                                    <select name="placementId" id="couponSelection">
                                         <option value="">使用奖卷: 无</option>
                                         {{#each selectOption}}
                                             <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
@@ -103,7 +104,7 @@
                                     </select>
                                 </div>
                                 {{/if}}
-                                <span style="float: left">预计总收益：{{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}</span>
+                                
                                 {{#if errors.visible}}
                                 <div class="tooltip">
                                     <div class="tooltip-arrow"></div>
