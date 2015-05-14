@@ -83,69 +83,67 @@
                     <img src="/ccc/loan/img/进度条.png">
                  </div>
                 <div class="userBlock">
-                        {{#if user}}
-    {{! 已登录,但是没开第三方支付 }}
-    {{#if !user.accountId}}
-        <div class="prompt-open-3rdpay">
-            <p style="margin-bottom: 20px">开通第三方支付托管账户后才能参与投资</p>
-        </div>
-        <div class="invest-button-wrapper">
-            <a class="btn btn-warning invest-button" style="float: none" href="/account/umpay">立即开通</a>
-        </div>
-    {{else}}
-        {{! 已登录 }}
-        
-        {{! 未签订无密投资}}
-        {{#if !(user.agreement && user.agreement.invest)}}
-            <div class="space space-10"></div>
-            <p class="no-assign">签订快速投资协议后才能参与投资</p>
-            <div class="space space-20"></div>
-            <p class="no-assign invest-button-wrapper">
-                <a href="/account/agreement" class="btn invest-button" target="_blank">立即签订</a>
-            </p>
-    {{else}}
-                        <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i></div>
-                        <div class="input">
-                            <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
-                                <div class="clearfix" style="margin-bottom: 1px">
-                                    <input type="hidden" name="loanId" value="{{loan.id}}">
-                                    <input type="text" name="amount" class="form-control invest-input" style="font-size: 13px" placeholder="最少为{{loan.rule.min}}，且为{{loan.rule.step}}的倍数" value="{{ inputNum }}" />
-                                    <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
-                                </div>
-                                <!--预计总收益：{}-->
-                                <span class="expect">预计总收益：{{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</span>
-                                {{#if selectOption}}
-                                <div class="selectOption">
-                                    <select name="placementId" id="couponSelection">
-                                        <option value="">使用奖卷: 无</option>
-                                        {{#each selectOption}}
-                                            <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
-                                        {{/each}}
-                                    </select>
-                                </div>
-                                {{/if}}
-                                
-                                {{#if errors.visible}}
-                                <div class="tooltip">
-                                    <div class="tooltip-arrow"></div>
-                                    <div class="tooltip-inner">
-                                        <span class="glyphicon glyphicon-exclamation-sign icon"></span>
-                                        <span class="text">{{ errors.msg }}</span>
-                                    </div>
-                                </div>
-                                {{/if}}
-                            </form>
-                        </div>
+                    {{#if user}}
+                        {{! 已登录,但是没开第三方支付 }}
+                        {{#if !user.accountId}}
+                            <div class="prompt-open-3rdpay">
+                                <p style="margin-bottom: 20px">开通第三方支付托管账户后才能参与投资</p>
+                            </div>
+                            <div class="invest-button-wrapper">
+                                <a class="btn btn-warning invest-button" style="float: none" href="/account/umpay">立即开通</a>
+                            </div>
                         {{else}}
+                            {{! 已登录 }}
+                            {{! 未签订无密投资}}
+                            {{#if !(user.agreement && user.agreement.invest)}}
+                                <div class="space space-10"></div>
+                                <p class="no-assign">签订快速投资协议后才能参与投资</p>
+                                <div class="space space-20"></div>
+                                <p class="no-assign invest-button-wrapper">
+                                    <a href="/account/agreement" class="btn invest-button" target="_blank">立即签订</a>
+                                </p>
+                            {{else}}
+                                <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i></div>
+                                <div class="input">
+                                    <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
+                                        <div class="clearfix" style="margin-bottom: 1px">
+                                            <input type="hidden" name="loanId" value="{{loan.id}}">
+                                            <input type="text" name="amount" class="form-control invest-input" style="font-size: 13px" placeholder="最少为{{loan.rule.min}}，且为{{loan.rule.step}}的倍数" value="{{ inputNum }}" />
+                                            <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
+                                        </div>
+                                        <!--预计总收益：{}-->
+                                        <span class="expect">预计总收益：{{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</span>
+                                        {{#if selectOption}}
+                                        <div class="selectOption">
+                                            <select name="placementId" id="couponSelection">
+                                                <option value="">使用奖卷: 无</option>
+                                                {{#each selectOption}}
+                                                    <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                        {{/if}}
+                                        {{#if errors.visible}}
+                                        <div class="tooltip">
+                                            <div class="tooltip-arrow"></div>
+                                            <div class="tooltip-inner">
+                                                <span class="glyphicon glyphicon-exclamation-sign icon"></span>
+                                                <span class="text">{{ errors.msg }}</span>
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                    </form>
+                                </div>
+                            {{/if}}
+                        {{/if}}
+                    {{else}}
                         <p>
-                            登陆后进行投资，并可查看投资余额
+                            登录后进行投资，并可查看投资余额
                         </p>
                         <a href="/login?url={{backUrl}}" class="loginBtn">
-                            立即登陆
+                            立即登录
                         </a>
-                        {{/if}}
-                        {{/if}}
-                        {{/if}}
+                    {{/if}}
                     </div>
             </div>
     {{/if}}
