@@ -3,6 +3,7 @@ var router = module.exports = require('express')
     .Router();
 var qs = require('qs');
 var bodyParser = require('body-parser');
+var log = require('bunyan-hub-logger')({app: 'web', name: 'umpay'});
 
 //require('cc-debug');
 //var debug = require('debug')('cc:ds:upayment');
@@ -22,7 +23,11 @@ _.each({
 }, function (api, fe) {
     router.post('/upayment' + fe, bodyParser(),
         function (req, res, next) {
-            console.log(req.body);
+            log.info({
+                type: 'upayment'+fe+'/request',
+                req: req,
+                body: req.body
+            });
             req.body.retUrl = (req.connection.encrypted ? 'https://' :
                 'http://') + req.headers.host;        
             //debug(fe + ' request: %j', req.body);
@@ -36,7 +41,11 @@ _.each({
                 .send(req.body)
                 .end()
                 .then(function (r) {
-                    console.log(r.body);
+                    log.info({
+                        type: 'upayment'+fe+'/post',
+                        req: req,
+                        body: r.body
+                    });
                     var emsg;
                     try {
                         emsg = r.body.error[0].message;
@@ -66,13 +75,20 @@ _.each({
     '/bindAgreementReturn': '签订用户协议',
     '/unbindAgreementReturn': '解除用户已签订协议'
 }, function (optype, fe) {
-    router.get('/upayment' + fe,
+    router.get('/upayment' + fe + '/request',
         function (req, res) {    
-        console.log(req.url);
+            log.info({
+                type: 'upayment'+fe,
+                req: req,
+            });
             req.uest.get('/api/v2' + req.url)
                 .end()
                 .then(function (r) {
-                    console.log(r.body);
+                    log.info({
+                        type: 'upayment'+fe+'/result',
+                        req: req,
+                        body: r.body
+                    });
                     res.render('payment/return', {
                         optype: optype,
                         data: r.body
@@ -111,13 +127,23 @@ _.each({
     router.post('/upayment' + fe, bodyParser(),
         function (req, res) {
 			var parms = '/loan/' + req.body.loanId + '/amount/' + req.body.amount;
-			console.log(parms);
+            log.info({
+                type: 'upayment/tenderNoPw/request',
+                req: req,
+                params: parms,
+                body: req.body,
+            });
             req.uest.post('/api/v2/upayment' + api + '/user/MYSELF' + parms)
                 .type("form")
                 .send({placementId:req.body.placementId})
                 .end()
                 .then(function (r) {
-					console.log(r.body);
+                    log.info({
+                        type: 'upayment/tenderNoPw/result',
+                        req: req,
+                        params: parms,
+                        body: r.body,
+                    });
                     res.render('payment/return', {
                         postUrl: upayUrl,
                         data: r.body.data,
