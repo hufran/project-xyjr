@@ -988,9 +988,9 @@
                                   "resolved": "http://npmcc.creditcloud.com/window-size/-/window-size-0.1.0.tgz"
                                 },
                                 "wordwrap": {
-                                  "version": "0.0.2",
+                                  "version": "0.0.3",
                                   "from": "wordwrap@0.0.2",
-                                  "resolved": "http://npmcc.creditcloud.com/wordwrap/-/wordwrap-0.0.2.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/wordwrap/-/wordwrap-0.0.3.tgz"
                                 }
                               }
                             },
@@ -4722,9 +4722,9 @@
               "resolved": "http://npmcc.creditcloud.com/through/download/through-2.3.7.tgz"
             },
             "uglify-js": {
-              "version": "2.4.20",
+              "version": "2.4.21",
               "from": "uglify-js@>=2.4.0 <2.5.0",
-              "resolved": "http://npmcc.creditcloud.com/uglify-js/download/uglify-js-2.4.20.tgz",
+              "resolved": "http://npmcc.creditcloud.com/uglify-js/-/uglify-js-2.4.21.tgz",
               "dependencies": {
                 "async": {
                   "version": "0.2.10",
@@ -4824,6 +4824,134 @@
       "version": "0.1.2",
       "from": "browserify-common-prelude@>=0.1.1 <0.2.0",
       "resolved": "http://npmcc.creditcloud.com/browserify-common-prelude/download/browserify-common-prelude-0.1.2.tgz"
+    },
+    "bunyan-hub-logger": {
+      "version": "1.1.2",
+      "from": "bunyan-hub-logger@*",
+      "resolved": "http://registry.npmjs.org/bunyan-hub-logger/-/bunyan-hub-logger-1.1.2.tgz",
+      "dependencies": {
+        "bunyan": {
+          "version": "1.3.5",
+          "from": "bunyan@>=1.3.4 <2.0.0",
+          "resolved": "http://registry.npmjs.org/bunyan/-/bunyan-1.3.5.tgz",
+          "dependencies": {
+            "dtrace-provider": {
+              "version": "0.4.0",
+              "from": "dtrace-provider@>=0.4.0 <0.5.0",
+              "resolved": "http://registry.npmjs.org/dtrace-provider/-/dtrace-provider-0.4.0.tgz",
+              "dependencies": {
+                "nan": {
+                  "version": "1.5.3",
+                  "from": "nan@>=1.5.1 <1.6.0",
+                  "resolved": "http://registry.npmjs.org/nan/-/nan-1.5.3.tgz"
+                }
+              }
+            },
+            "mv": {
+              "version": "2.0.3",
+              "from": "mv@>=2.0.0 <3.0.0",
+              "resolved": "http://registry.npmjs.org/mv/-/mv-2.0.3.tgz",
+              "dependencies": {
+                "ncp": {
+                  "version": "0.6.0",
+                  "from": "ncp@>=0.6.0 <0.7.0",
+                  "resolved": "http://registry.npmjs.org/ncp/-/ncp-0.6.0.tgz"
+                },
+                "rimraf": {
+                  "version": "2.2.8",
+                  "from": "rimraf@>=2.2.8 <2.3.0",
+                  "resolved": "http://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz"
+                }
+              }
+            },
+            "safe-json-stringify": {
+              "version": "1.0.3",
+              "from": "safe-json-stringify@>=1.0.0 <2.0.0",
+              "resolved": "http://registry.npmjs.org/safe-json-stringify/-/safe-json-stringify-1.0.3.tgz"
+            }
+          }
+        },
+        "bunyan-pub-stream": {
+          "version": "1.0.1",
+          "from": "bunyan-pub-stream@>=1.0.1 <2.0.0",
+          "resolved": "http://registry.npmjs.org/bunyan-pub-stream/-/bunyan-pub-stream-1.0.1.tgz",
+          "dependencies": {
+            "destroy": {
+              "version": "1.0.3",
+              "from": "destroy@>=1.0.3 <2.0.0",
+              "resolved": "http://npmcc.creditcloud.com/destroy/-/destroy-1.0.3.tgz"
+            }
+          }
+        },
+        "lodash.assign": {
+          "version": "3.1.0",
+          "from": "lodash.assign@>=3.0.0 <4.0.0",
+          "resolved": "http://registry.npmjs.org/lodash.assign/-/lodash.assign-3.1.0.tgz",
+          "dependencies": {
+            "lodash._baseassign": {
+              "version": "3.1.1",
+              "from": "lodash._baseassign@>=3.0.0 <4.0.0",
+              "resolved": "http://registry.npmjs.org/lodash._baseassign/-/lodash._baseassign-3.1.1.tgz",
+              "dependencies": {
+                "lodash._basecopy": {
+                  "version": "3.0.1",
+                  "from": "lodash._basecopy@>=3.0.0 <4.0.0",
+                  "resolved": "http://npmcc.creditcloud.com/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz"
+                }
+              }
+            },
+            "lodash._createassigner": {
+              "version": "3.1.0",
+              "from": "lodash._createassigner@>=3.0.0 <4.0.0",
+              "resolved": "http://registry.npmjs.org/lodash._createassigner/-/lodash._createassigner-3.1.0.tgz",
+              "dependencies": {
+                "lodash._bindcallback": {
+                  "version": "3.0.1",
+                  "from": "lodash._bindcallback@>=3.0.0 <4.0.0",
+                  "resolved": "http://registry.npmjs.org/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz"
+                },
+                "lodash._isiterateecall": {
+                  "version": "3.0.7",
+                  "from": "lodash._isiterateecall@>=3.0.0 <4.0.0",
+                  "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.7.tgz"
+                },
+                "lodash.restparam": {
+                  "version": "3.6.1",
+                  "from": "lodash.restparam@>=3.0.0 <4.0.0",
+                  "resolved": "http://npmcc.creditcloud.com/lodash.restparam/download/lodash.restparam-3.6.1.tgz"
+                }
+              }
+            },
+            "lodash.isnative": {
+              "version": "3.0.2",
+              "from": "lodash.isnative@>=3.0.0 <4.0.0",
+              "resolved": "http://npmcc.creditcloud.com/lodash.isnative/download/lodash.isnative-3.0.2.tgz"
+            },
+            "lodash.keys": {
+              "version": "3.0.7",
+              "from": "lodash.keys@>=3.0.0 <4.0.0",
+              "resolved": "http://npmcc.creditcloud.com/lodash.keys/download/lodash.keys-3.0.7.tgz",
+              "dependencies": {
+                "lodash.isarguments": {
+                  "version": "3.0.2",
+                  "from": "lodash.isarguments@>=3.0.0 <4.0.0",
+                  "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/download/lodash.isarguments-3.0.2.tgz"
+                },
+                "lodash.isarray": {
+                  "version": "3.0.2",
+                  "from": "lodash.isarray@>=3.0.0 <4.0.0",
+                  "resolved": "http://npmcc.creditcloud.com/lodash.isarray/download/lodash.isarray-3.0.2.tgz"
+                }
+              }
+            }
+          }
+        },
+        "uuid": {
+          "version": "2.0.1",
+          "from": "uuid@>=2.0.1 <3.0.0",
+          "resolved": "http://registry.npmjs.org/uuid/-/uuid-2.0.1.tgz"
+        }
+      }
     },
     "cc-debug": {
       "version": "0.0.11",
@@ -5285,9 +5413,9 @@
           }
         },
         "once": {
-          "version": "1.3.1",
+          "version": "1.3.2",
           "from": "once@>=1.3.0 <2.0.0",
-          "resolved": "http://npmcc.creditcloud.com/once/download/once-1.3.1.tgz",
+          "resolved": "http://npmcc.creditcloud.com/once/download/once-1.3.2.tgz",
           "dependencies": {
             "wrappy": {
               "version": "1.0.1",

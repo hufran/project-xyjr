@@ -35,6 +35,9 @@ app.locals.rushHeads = [
 app.use(function (req, res, next) {
     var ua = userAgent.parse(req.headers['user-agent']),currentChannel="",originalUrl=req.originalUrl;
     log.debug({ua: ua, req: req});
+    if (ua.family === 'IE' && ua.major === 7 && req.headers['user-agent'].indexOf('Trident/7') > -1) {
+        ua.major = 11; // IE11 send 'MSIE 7.0' in compatible mode, so fix it by our own
+    }
     if (ua.family === 'IE' && ua.major < 10) {
         res.locals.isLegacy = false;
         if (ua.major < 9) {
