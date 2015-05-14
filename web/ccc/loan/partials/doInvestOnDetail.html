@@ -90,7 +90,7 @@
             <p style="margin-bottom: 20px">开通第三方支付托管账户后才能参与投资</p>
         </div>
         <div class="invest-button-wrapper">
-            <a class="btn btn-warning invest-button" style="float: none; " href="/account/umpay">立即开通</a>
+            <a class="btn btn-warning invest-button" style="float: none" href="/account/umpay">立即开通</a>
         </div>
     {{else}}
         {{! 已登录 }}
@@ -100,8 +100,8 @@
             <div class="space space-10"></div>
             <p class="no-assign">签订快速投资协议后才能参与投资</p>
             <div class="space space-20"></div>
-            <p class="no-assign">
-                <a href="/account/agreement" class="btn btn-orange" style="background: #ca983e;" target="_blank">立即签订</a>
+            <p class="no-assign invest-button-wrapper">
+                <a href="/account/agreement" class="btn invest-button" target="_blank">立即签订</a>
             </p>
     {{else}}
                         <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i></div>
