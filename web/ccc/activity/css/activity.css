@@ -9,7 +9,7 @@
 .s-activity-view{
     position: relative;
     margin-top: -170px;
-    margin-bottom: -10px;
+    margin-bottom: -210px;
 }
 
 .s-activity-view img{
@@ -19,7 +19,7 @@
 
 .s-activity-view .s-content-view{
     position: absolute;
-    bottom: 100px;
+    bottom: 200px;
     left: 0px;
     width: 100%;
     height: 40%;
