@@ -165,6 +165,28 @@ body{
 }
 .s-footer .s-footer-info .s-footer-info-content{
     position: relative;
+    .symantecSeal{
+        position: absolute;
+        right: 151px;
+        top: 40px;
+        img{
+            width: 100px;
+        }
+        .bk{
+            display: block;
+        }
+        .normal{
+            display: none;
+        }
+        &:hover{
+            .bk{
+                display: none;
+            }
+            .normal{
+                display: block;
+            }
+        }
+    }
 }
 .s-footer .s-footer-info .s-footer-info-content p{
     line-height: 60px;

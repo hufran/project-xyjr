@@ -230,10 +230,8 @@ setTimeout((function () {
         Cal.create();
     });
 
-    $('.invest-input')
-    .on('keyup',function(){
+    function showSelect(amount){
         var months = CC.loan.duration;
-        var amount = $(this).val();
         investRactive.set('inum', parseFloat(amount));
         disableErrors()
         $.post('/loan/selectOption',{
@@ -244,6 +242,13 @@ setTimeout((function () {
                 investRactive.set('selectOption',parsedata(o.data));
             }
         });
+    }
+    //初始化选项
+    showSelect(0);
+
+    $('.invest-input')
+    .on('keyup',function(){
+        showSelect($(this).val());
     });
 
 }), 100);
