@@ -75,10 +75,10 @@ _.each({
     '/bindAgreementReturn': '签订用户协议',
     '/unbindAgreementReturn': '解除用户已签订协议'
 }, function (optype, fe) {
-    router.get('/upayment' + fe + '/request',
-        function (req, res) {    
+    router.get('/upayment' + fe,
+        function (req, res) {
             log.info({
-                type: 'upayment'+fe,
+                type: 'upayment'+fe + '/request',
                 req: req,
             });
             req.uest.get('/api/v2' + req.url)
