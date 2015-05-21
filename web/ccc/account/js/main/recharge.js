@@ -29,7 +29,8 @@ new Ractive({
             BANK_NULL: false,
             AMOUNT_NULL: false,
             AMOUNT_INVALID: false
-        }
+        },
+        amountValue: 10000000
     },
     onrender: function () {
         var self = this;        
@@ -52,14 +53,17 @@ new Ractive({
         this.on('showPersonal', function () {            
             this.set('showPersonal',1);
             this.set('showCompany',0);
+            this.set('amountValue',10000000);
             $("#personalBtn").addClass("active");
             $("#companyBtn").removeClass("active");
             $(".header-text").text("个人充值(只支持借记卡)");
+
         });
         
         this.on('showCompany', function () {            
             this.set('showPersonal',0);
             this.set('showCompany',1);
+            this.set('amountValue',100000000);
             $("#companyBtn").addClass("active");
             $("#personalBtn").removeClass("active");
             $(".header-text").text("企业充值(只支持借记卡)");
@@ -116,7 +120,7 @@ new Ractive({
                 self.$amount.focus();
                 //self.set('msg.AMOUNT_NULL', true);
                 return false;
-            } else if (!self.match(self.$amount.val()) || parseFloat(self.$amount.val()) > 10000000) {
+            } else if (!self.match(self.$amount.val()) || parseFloat(self.$amount.val()) > parseFloat(self.get('amountValue'))) {
                 e.preventDefault();
                 self.set('msg.AMOUNT_INVALID', true);
                 self.$amount.focus();
