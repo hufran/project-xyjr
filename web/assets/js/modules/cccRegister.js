@@ -27,7 +27,7 @@ module.exports = function (options) {
         fastMode: false,
         popup: false, // 是否是popup形式的切换(主要是在login和register视图之间的切换)
         agreementType: 'popup',
-        redirectWhenSuccess: '/account',
+        redirectWhenSuccess: '/account/umpay',
         smsCaptchaWaitTime: 60, // 手机短信发送时间间隔(s)
         changeToLogin: function(){},
         debug: false

@@ -54,7 +54,7 @@ new Ractive({
             this.set('showCompany',0);
             $("#personalBtn").addClass("active");
             $("#companyBtn").removeClass("active");
-            $(".header-text").text("个人充值");
+            $(".header-text").text("个人充值(只支持借记卡)");
         });
         
         this.on('showCompany', function () {            
@@ -62,7 +62,7 @@ new Ractive({
             this.set('showCompany',1);
             $("#companyBtn").addClass("active");
             $("#personalBtn").removeClass("active");
-            $(".header-text").text("企业充值");
+            $(".header-text").text("企业充值(只支持借记卡)");
         });
         
         this.on('selectBank', function (e) {           
@@ -116,7 +116,7 @@ new Ractive({
                 self.$amount.focus();
                 //self.set('msg.AMOUNT_NULL', true);
                 return false;
-            } else if (!self.match(self.$amount.val())) {
+            } else if (!self.match(self.$amount.val()) || parseFloat(self.$amount.val()) > 10000000) {
                 e.preventDefault();
                 self.set('msg.AMOUNT_INVALID', true);
                 self.$amount.focus();

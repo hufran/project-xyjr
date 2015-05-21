@@ -101,6 +101,7 @@
                                     <a href="/account/agreement" class="btn sign-button" target="_blank">立即签订</a>
                                 </p>
                             {{else}}
+                                <a href="/account/recharge" class="btn btn-warning" style="float: right;padding: 3px;font-size: 12px;">充值</a>
                                 <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i></div>
                                 <div class="input">
                                     <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">

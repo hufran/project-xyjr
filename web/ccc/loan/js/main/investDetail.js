@@ -110,7 +110,7 @@ setTimeout((function () {
         }
         if (((num - global.CC.loan.rule.min) % global.CC.loan.rule.step) !==
             0) {
-            showErrors('不符合投资规则!');
+            showErrors('不符合投资规则!最少为'+global.CC.loan.rule.min+'，且为'+global.CC.loan.rule.min+'的倍数');
             return false;
         }
         if (num > CC.user.availableAmount) {
