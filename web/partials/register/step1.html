@@ -12,7 +12,7 @@
                             <label class="s__is-require">*</label>用户名：</td>
                         </span>
                     <td>
-                        <input type="text" name="loginName" placeholder="请输入用户名" />
+                        <input type="text" name="loginName" placeholder="请输入2至15位中英文字符、数字或下划线" />
                         <div class="item-msg">
                             {{#if msg.loginName}}
                             <span class="error">{{msg.loginName}}</span>
@@ -48,7 +48,7 @@
                             <label class="s__is-require">*</label>登录密码：</td>
                         </span>
                     <td>
-                        <input type="password" name="password" placeholder="请您输入登录密码" />
+                        <input type="password" name="password" placeholder="请输入6-20位由数字和大小写字母组成，不包含空字符" />
                         <div class="item-msg">
                             {{#if msg.password}}
                             <span class="error">{{msg.password}}</span>

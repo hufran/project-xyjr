@@ -23,6 +23,16 @@ module.exports = (function () {
                 return;
             }
 
+            if (!('' + loginName).match(/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/)) {
+                next(false, 'LOGINNAME_NOT_EMAIL');
+                return;
+            }
+
+            if (!('' + loginName).match(/^[1][3|5|7|8][0-9]{9}$/)) {
+                next(false, 'LOGINNAME_NOT_MOBILE');
+                return;
+            }
+
             next(true, null);
         },
 
@@ -231,6 +241,7 @@ module.exports = (function () {
         LOGINNAME_INVALID: '2至15位中英文字符、数字或下划线',
         LOGINNAME_SIZE: '2至15位中英文字符、数字或下划线',
         LOGINNAME_NOT_MOBILE: '用户名不能是手机号（注册后可以用手机号登录）',
+        LOGINNAME_NOT_EMAIL: '用户名不能是邮箱',
         NAME_NULL: '请填写真实姓名',
         NAME_INVALID: '真实姓名错误，应为2-15位中文汉字',
         EMAIL_NULL: '请填写电子邮箱',

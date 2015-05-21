@@ -3,7 +3,7 @@
 <div class="has-line">
     <div class="row ccc-container">
         <div class="col-md-12">
-            <div class="header-text pull-left">个人充值</div>
+            <div class="header-text pull-left">个人充值(只支持借记卡)</div>
             <div class="ccc-tab pull-right" data-header-selector=".header-text">
                 <ul class="tabs">
                     <li class="active" id="personalBtn"><a href="javascript:void(0);" on-click="showPersonal">个人充值</a>
@@ -42,7 +42,7 @@
                         	<i class="fa fa-rmb"></i>
                         </span>
                         <input type="text" name="rechargeValue" class="form-control input-lg" id="rechargeValue"
-                        on-keyup="changeValue">
+                        on-keyup="changeValue" placeholder="单笔充值最高10000000元">
                     </div>
                     <button type="submit" class="btn btn-warning btn-lg">确认充值</button>
                 </form>
