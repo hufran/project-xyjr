@@ -23,12 +23,12 @@ module.exports = (function () {
                 return;
             }
 
-            if (!('' + loginName).match(/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/)) {
+            if (!!('' + loginName).match(/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/)) {
                 next(false, 'LOGINNAME_NOT_EMAIL');
                 return;
             }
 
-            if (!('' + loginName).match(/^[1][3|5|7|8][0-9]{9}$/)) {
+            if (!!('' + loginName).match(/^[1][3|5|7|8][0-9]{9}$/)) {
                 next(false, 'LOGINNAME_NOT_MOBILE');
                 return;
             }
