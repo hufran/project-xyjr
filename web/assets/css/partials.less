@@ -539,7 +539,7 @@
     width: 250px;
     height: 75px;
 }
-.u-nolist-ul li a {
+ li a {
     color: #666;
     text-decoration: none;
     width: 75px;
@@ -556,10 +556,17 @@
     border-bottom: 3px solid #b5a16b;
     color: #232d4e;
 }
-.ssfooter li a {
+.ssfooter.u-nolist-ul li{
+     margin-right: 25px;
+     padding-right: 0;
+}
+.ssfooter.u-nolist-ul li a {
     color: #C7C7C8;
     text-decoration: none;
+    display: inherit;
     &:hover {
         color: #b5a16b;
+        border-bottom:none;
+        background: transparent;
     };
 }
