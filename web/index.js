@@ -30,7 +30,11 @@ app.locals.rushHeads = [
     '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">',
     '<meta http-equiv="X-UA-Compatible" content="IE=9"/>',
     '<script>' + consoleCode + '</script>',
-    '<!--[if lt IE 9]><script src="/assets/js/ie8fix.js"></script><script src="/assets/js/PIE_IE678.js"></script><![endif]-->',
+    '<!--[if lt IE 9]>',
+    '<script src="/assets/js/ie8fix.js"></script>',
+    '<script src="/assets/js/PIE_IE678.js"></script>',
+    '<script src="/assets/js/jquery.placeholder.min.js"></script>',
+    '<![endif]-->',
     '<script src="/assets/js/common/global.js" async></script>'
 ];
 app.use(function (req, res, next) {
@@ -43,6 +47,11 @@ app.use(function (req, res, next) {
         res.locals.isLegacy = false;
         if (ua.major < 9) {
             res.locals.noMediaQueries = true;
+            if (window.PIE) {
+                $('*').each(function() {
+                    PIE.attach(this);
+                }).placeholder();
+            }
         }
     } else {
         res.locals.isLegacy = true;
