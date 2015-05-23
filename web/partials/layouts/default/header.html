@@ -8,13 +8,13 @@
             <span class="weiboIcon" ><a href="http://weibo.com/jiuxinfinance" target="_blank"></a></span>
             <a href="/help/account"><span class="why"></span></a>
             {{#if !user.loginName}}
-            <a href="/login?url=L2FjY291bnQ=" class="account" id="wodezhanghu">我的账户</a>
-            <a href="/register" id="dingbuzhuce" style="border:none">[注册]</a>
-            <a href="/login" id="dingbudenglu">[登录]</a>
+            <a href="/register" id="dingbuzhuce" class="text" style="border-left: 1px solid #fff;">注册</a>
+            <a href="/login" id="dingbudenglu" class="text">登录</a>
+            <!--a href="/login?url=L2FjY291bnQ=" class="account" id="wodezhanghu">我的账户</a-->
             {{else}}
             <a href="/account" class="account">我的账户</a>
-            <a href="/logout" style="border:none">[退出]</a>
-            <a href="/account" style="width: 200px; text-align: right; padding-right: 10px; color:#b5a16b;">{{user.loginName}}</a>
+            <a href="/logout" class="text" style="border-left: 1px solid #fff;">退出</a>
+            <a href="/account" class="text"style="width: 200px; text-align: right; padding-right: 10px; color:#b5a16b;">{{user.loginName}}</a>
             {{/if}}
         </div>
     </div>
