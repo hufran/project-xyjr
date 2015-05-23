@@ -31,6 +31,7 @@ app.locals.rushHeads = [
     '<meta http-equiv="X-UA-Compatible" content="IE=9"/>',
     '<script>' + consoleCode + '</script>',
     '<!--[if lt IE 9]>',
+    '<script src="/assets/js/jquery.min.js"></script>',
     '<script src="/assets/js/ie8fix.js"></script>',
     '<script src="/assets/js/PIE_IE678.js"></script>',
     '<script src="/assets/js/jquery.placeholder.min.js"></script>',
