@@ -11,7 +11,7 @@ body{
 .s-header{
     position: relative;
     width: 100%;
-    height: 128px;
+    height: 115px;
     -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.27);
     -moz-box-shadow: 0 1px 6px rgba(0,0,0,.27);
     -ms-box-shadow: 0 1px 6px rgba(0,0,0,.27);
@@ -20,11 +20,12 @@ body{
 }
 .s-header-info{
     width: 100%;
-    height: 28px;
-    background-color: #676D83;
+    height: 40px;
+    background-color: #232d4e;
 }
 .s-header-info-content{
     position: relative;
+    top: 6px;
     margin: 0 auto;
     width: 998px;
     height: inherit;
@@ -38,19 +39,67 @@ body{
 }
 .s-header-info-content a{
     float: right;
-    display: block;
-    border-right: 1px #fff solid;
-    width: 55px;
-    height: 16px;
-    line-height: 15px;
+    display: inline-block;
+      margin-left: 10px;
+    height: 20px;
+    line-height: 20px;
     text-align: center;
     position: relative;
     top: 6px;
     text-decoration: none;
 }
+.s-header-info-content .dropdown{
+    display:none;
+}
+.s-header-info-content span{
+    display: inline-block;
+    margin: 5px 10px;
+    height: 20px;
+    width:24px;
+    text-align: center;
+}
+.s-header-info-content span.yuan {
+    height: 20px;
+    width: 20px;
+    color: #000;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    background: #fff;
+    border:none;
+    margin:0;
+}
+.s-header-info-content span.weixinIcon{
+    background: url("/assets/img/weixinIcon.png") no-repeat center center;
+}
+.s-header-info-content span.weixinIcon:hover{
+    background: url("/assets/img/weixin.png") no-repeat center center;
+}
+.s-header-info-content span.weixinIcon:hover + img.dropdown{
+    display: inline-block;
+    position: absolute;
+    z-index: 999;
+    top: 28px;
+    margin-left: -100px;
+}
+.s-header-info-content span.weiboIcon{
+    background: url("/assets/img/weiboIcon.png") no-repeat center center;
+}
+.s-header-info-content span.weiboIcon:hover{
+    background: url("/assets/img/weibo.png") no-repeat center center;
+}
+.s-header-info-content a.account {
+    display:inline-block;
+    color:#232d4e;
+    width:85px;
+    height:20px;
+    line-height:20px;
+    background:#b5a16b;
+    text-align:center;
+}
 .s-header-menu{
     width: 100%;
-    height: 100px;
+    height: 75px;
     background-color: white;
     &.floating{
         width: 100%;
@@ -67,22 +116,25 @@ body{
     height: inherit;
 }
 .s-header-menu-content .s-icon{
-    margin-top: 26px;
+    margin-top: 17px;
 }
 .s-header-menu-content .u-nolist-ul{
     float: right;
-    height: 100px;
-    line-height: 100px;
+    height: 75px;
+    line-height: 75px;
 }
 .s-header-menu-content .u-nolist-ul li{
-    /*margin-left: 33px;*/
+    margin-left: 33px;
     cursor: pointer;
 }
 .s-header-menu-content .u-nolist-ul li:last-child{
     margin-left: 25px;
 }
 .s-header-menu-content .u-nolist-ul li.s__is-selected a{
-    color: #ca983e;
+    background: #ededed;
+    height: 75px;
+    border-bottom: 3px solid #b5a16b;
+    color: #232d4e;
     &:hover{
         text-decoration:none;
     }
@@ -227,7 +279,7 @@ body{
     line-height: 20px;
     a{
         &:hover{
-            color:#ca983e;
+            color:#b5a16b;
             text-decoration: none;
         }
     }
@@ -241,18 +293,7 @@ body{
     border-radius: 10px;
     background: #373f5d;
 }
-.yuan {
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-    color: #000;
-    border-radius: 50%;
-    line-height: 12px;
-    text-align: center;
-    background: #fff;
-    margin-top: 4px;
-    margin-right: 5px;
-}
+
 .hot {
     line-height: 8px;
     float: left;
@@ -268,11 +309,9 @@ body{
     height: 29px;
     line-height: 29px;
     font-size: 20px;
-    color: #ca983e;
+    color: #b5a16b;
 }
 .u-nolist-ul li {
-    margin-right: 35px;
+    margin: 0;
 }
-.account {
-    display:inline-block;color:#fff!important;width:85px;height:25px;line-height:25px;background:#ca983e;text-align:center;border-radius:5px;
-}
+
