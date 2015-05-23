@@ -9,6 +9,7 @@ var config = require('config');
 var cookieParser = require('cookie-parser');
 var userAgent = require('useragent');
 var glob = require('glob');
+var $ = require('glob');
 GLOBAL._ = require('lodash');
 GLOBAL.Promise = require('bluebird'); // 目前 bluebird 实现的 Promise 性能比 V8 原生快很多，所以全局使用 bluebird
 var port = parseInt(process.env.PORT, 10) || config.port;
@@ -31,6 +32,7 @@ app.locals.rushHeads = [
     '<meta http-equiv="X-UA-Compatible" content="IE=9"/>',
     '<script>' + consoleCode + '</script>',
     '<!--[if lt IE 9]>',
+    '<script src="/assets/js/jquery.min.js"></script>',
     '<script src="/assets/js/ie8fix.js"></script>',
     '<script src="/assets/js/PIE_IE678.js"></script>',
     '<script src="/assets/js/jquery.placeholder.min.js"></script>',
