@@ -28,7 +28,7 @@ app.locals.rushHeads = [
     //'<meta name="renderer" content="webkit">', // 临时解决360极速模式下transform-rotate问题,优先ie stand模式
     '<meta name="renderer" content="ie-stand">',
     '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">',
-    '<meta http-equiv="X-UA-Compatible" content="IE=9" />',
+    '<meta http-equiv="X-UA-Compatible" content="IE=9"/>',
     '<script>' + consoleCode + '</script>',
     '<!--[if lt IE 9]><script src="/assets/js/ie8fix.js"></script><script src="/assets/js/PIE_IE678.js"></script><![endif]-->',
     '<script src="/assets/js/common/global.js" async></script>'
