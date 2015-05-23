@@ -55,15 +55,15 @@ body{
 .s-header-info-content a.text{
     height: 16px;
     line-height: 16px;
-    top: 8px;
+    top: 7px;
 }
 .s-header-info-content .dropdown{
     display:none;
 }
 .s-header-info-content span{
     display: inline-block;
-    margin: 5px 10px;
-    height: 20px;
+    margin: 5px;
+    height: 23px;
     width:24px;
     text-align: center;
 }
@@ -72,13 +72,13 @@ body{
     width: 20px;
     background: url("/assets/img/why.png");
     border:none;
-    margin:0;
+    margin: -2px
 }
 .s-header-info-content span.weixinIcon{
-    background: url("/assets/img/weixinIcon.png") no-repeat center center;
+    background: url("/assets/img/weixinIcon.png") no-repeat center 3px;
 }
 .s-header-info-content span.weixinIcon:hover{
-    background: url("/assets/img/weixin.png") no-repeat center center;
+    background: url("/assets/img/weixin.png") no-repeat center 3px;
 }
 .s-header-info-content span.weixinIcon:hover + img.dropdown{
     display: inline-block;
@@ -93,14 +93,16 @@ body{
 .s-header-info-content span.weiboIcon:hover{
     background: url("/assets/img/weibo.png") no-repeat center center;
 }
-.s-header-info-content a.account {
-    display:inline-block;
+.s-header-info-content a.account:hover {
+    /*display:inline-block;
     color:#232d4e;
     width:85px;
     height:20px;
     line-height:20px;
     background:#b5a16b;
-    text-align:center;
+    text-align:center;*/
+    
+    text-decoration: underline;
 }
 .s-header-menu{
     width: 100%;
@@ -136,7 +138,7 @@ body{
     margin-left: 25px;
 }
 .s-header-menu-content .u-nolist-ul li.s__is-selected a{
-    background: #ededed;
+    /*background: #ededed;*/
     height: 75px;
     border-bottom: 3px solid #b5a16b;
     color: #232d4e;

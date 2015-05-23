@@ -3,18 +3,18 @@
     <div class="s-header-info">
         <div class="s-header-info-content u-pos-r-center">
             <img src="/assets/img/head_hotline.png" style="margin: 8px;display: inline-block;float: left;"/>
+            <span class="weiboIcon" ><a href="http://weibo.com/jiuxinfinance" target="_blank"></a></span>
             <span class="weixinIcon"></span>   
             <img class="dropdown" src="/assets/img/2wm.jpg" width="150" title="九信金融" alt="九信金融" />
-            <span class="weiboIcon" ><a href="http://weibo.com/jiuxinfinance" target="_blank"></a></span>
             <a href="/help/account"><span class="why"></span></a>
             {{#if !user.loginName}}
             <a href="/register" id="dingbuzhuce" class="text" style="border-left: 1px solid #fff;">注册</a>
             <a href="/login" id="dingbudenglu" class="text">登录</a>
             <!--a href="/login?url=L2FjY291bnQ=" class="account" id="wodezhanghu">我的账户</a-->
             {{else}}
-            <a href="/account" class="account">我的账户</a>
+            <a href="/account" class="text account" style="color:#b5a16b;">我的账户</a>
             <a href="/logout" class="text" style="border-left: 1px solid #fff;">退出</a>
-            <a href="/account" class="text"style="width: 200px; text-align: right; padding-right: 10px; color:#b5a16b;">{{user.loginName}}</a>
+            <a class="text" style="width: 200px; text-align: right; padding-right: 10px; ">欢迎您 {{user.loginName}}</a>
             {{/if}}
         </div>
     </div>
