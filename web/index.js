@@ -28,8 +28,9 @@ app.locals.rushHeads = [
     //'<meta name="renderer" content="webkit">', // 临时解决360极速模式下transform-rotate问题,优先ie stand模式
     '<meta name="renderer" content="ie-stand">',
     '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">',
+    '<meta http-equiv="X-UA-Compatible" content="IE=9" />',
     '<script>' + consoleCode + '</script>',
-    '<!--[if IE]><script src="/assets/js/ie8fix.js"></script><![endif]-->',
+    '<!--[if lt IE 9]><script src="/assets/js/ie8fix.js"></script><script src="/assets/js/PIE_IE678.js"></script><![endif]-->',
     '<script src="/assets/js/common/global.js" async></script>'
 ];
 app.use(function (req, res, next) {
@@ -50,7 +51,7 @@ app.use(function (req, res, next) {
     if (req.path.indexOf('/app') < 0) {
         res.locals.rushHeads = [
             '<link rel="stylesheet" href="/assets/css/base.css" />',
-            '<!--[if IE]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->',
+            '<!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->',
         ];
     }
     //判断当前频道
