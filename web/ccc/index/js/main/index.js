@@ -31,8 +31,30 @@ IndexService.getLoanSummary(function (list) {
     });
 
     initailEasyPieChart();
+    ininconut();
 
 });
+
+function ininconut () {
+    $(".opre > .investbtn").each(function () {
+        var t = $(this);
+        var id = t.data("id");  
+        var openTime = t.data("open");  
+        var serverDate = t.data("serv");  
+        var leftTime = utils.countDown.getCountDownTime(openTime, serverDate);
+        t.html('<span class="text">'+ leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+        var interval = setInterval((function () {
+            serverDate += 1000;
+            var leftTime = utils.countDown.getCountDownTime(openTime, serverDate);
+            if(!+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                clearInterval(interval);
+                t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+            }else{
+                t.html('<span class="text">'+ leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+            }
+        }), 1000);
+    });
+};
 
 IndexService.getLatestScheduled(function (loan) {
     var serverDate = loan.serverDate;
@@ -49,7 +71,6 @@ IndexService.getLatestScheduled(function (loan) {
             }
         }
     });
-
     setInterval((function () {
         serverDate += 1000;
         var leftTime = utils.countDown.getCountDownTime(loan.timeOpen,

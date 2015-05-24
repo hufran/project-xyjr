@@ -10,7 +10,7 @@ exports.popupRepayRactive = {
     init: function () {
 
         this.popupRepayRactive = new Ractive({
-            el: '#service-agreement-wraper',
+            el: '#quickRepay-agreement-wraper',
             template: template,
             data: {
                 visible: false
@@ -33,12 +33,12 @@ exports.popupRepayRactive = {
             this.init();
             this.instance = true;
         }
+        this.popupRepayRactive.set('visible', true);
         var popupRepayRactive = this.popupRepayRactive;
         maskLayer.show({
             onClick: function () {
                 popupRepayRactive.fire('close');
             }
         });
-        this.popupRepayRactive.set('visible', true);
     }
 };

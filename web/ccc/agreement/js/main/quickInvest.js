@@ -10,7 +10,7 @@ exports.popupInvestRactive = {
     init: function () {
 
         this.popupInvestRactive = new Ractive({
-            el: '#service-agreement-wraper',
+            el: '#quickInvest-agreement-wraper',
             template: template,
             data: {
                 visible: false
@@ -33,12 +33,12 @@ exports.popupInvestRactive = {
             this.init();
             this.instance = true;
         }
+        this.popupInvestRactive.set('visible', true);
         var popupInvestRactive = this.popupInvestRactive;
         maskLayer.show({
             onClick: function () {
                 popupInvestRactive.fire('close');
             }
         });
-        this.popupInvestRactive.set('visible', true);
     }
 };
