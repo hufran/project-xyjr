@@ -28,21 +28,21 @@
             </a>
         {{/if}}
         {{#if status === 'SCHEDULED'}}
-            <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"  data-serv="{{ serverDate }}" style="background:lightgrey; color: #B88A38">即将开始</div>
+            <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"  data-serv="{{ serverDate }}" style="background:lightgrey; color: #b5a16b">即将开始</div>
         {{/if}}
         {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #B88A38">已满标</div>
+                <div class="investbtn" style="background:lightgrey; color: #b5a16b">已满标</div>
             </a> 
         {{/if}}
         {{#if status === 'SETTLED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #B88A38">还款中</div>
+                <div class="investbtn" style="background:lightgrey; color: #b5a16b">还款中</div>
             </a> 
         {{/if}}
         {{#if status === 'CLEARED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #B88A38">还款结束</div>
+                <div class="investbtn" style="background:lightgrey; color: #b5a16b">还款结束</div>
             </a> 
         {{/if}}
     </div>
