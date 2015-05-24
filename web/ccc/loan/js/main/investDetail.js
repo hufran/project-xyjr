@@ -165,17 +165,21 @@ setTimeout((function () {
                     }
                 }
             });
-
-            setInterval((function () {
+            var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime(
                     global.CC
                     .loan.timeOpen, serverDate);
-                countDownRactive.set('countDown', {
-                    hours: leftTime.hour,
-                    minutes: leftTime.min,
-                    seconds: leftTime.sec
-                });
+                if(!+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                    clearInterval(interval);
+                    window.location.reload();
+                }else{
+                    countDownRactive.set('countDown', {
+                        hours: leftTime.hour,
+                        minutes: leftTime.min,
+                        seconds: leftTime.sec
+                    });
+                }
             }), 1000);
         }
     }

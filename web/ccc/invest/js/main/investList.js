@@ -8,7 +8,7 @@ var i18n = require('@ds/i18n')['zh-cn'];
 
 var InvestListService = require('ccc/invest/js/main/service/list')
     .InvestListService;
-
+var utils = require('assets/js/lib/utils');
 require('assets/js/lib/jquery.easy-pie-chart.js')
 
 // 收益计算器
@@ -132,6 +132,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         }
     });
     initailEasyPieChart();
+    ininconut();
     renderPager(res);
     investRactive.on("mouseover mouseleave", function (e) {
         var hovering = e.name === "mouseover";
@@ -234,6 +235,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
                 setTimeout(function () {
                     investRactive.set('list', parseLoanList(res.results));
                     initailEasyPieChart();
+                    ininconut();
                     renderPager(res, params.currentPage);
                 }, 1);
             });
@@ -302,7 +304,30 @@ function createList(len, current) {
         arr[j++] = current + i + 1;
     }
     return arr;
-}
+};
+
+function ininconut () {
+    $(".investBtn > .investbtn").each(function () {
+        var t = $(this);
+        if(t.data("status") === 'SCHEDULED'){
+            var id = t.data("id");  
+            var openTime = t.data("open");  
+            var serverDate = t.data("serv");  
+            var leftTime = utils.countDown.getCountDownTime(openTime, serverDate);
+            t.html('<span class="text">'+ leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+            var interval = setInterval((function () {
+                serverDate += 1000;
+                var leftTime = utils.countDown.getCountDownTime(openTime, serverDate);
+                if(!+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                    clearInterval(interval);
+                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+                }else{
+                    t.html('<span class="text">'+ leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+                }
+            }), 1000);
+        }
+    });
+};
 
 function initailEasyPieChart() {
     ///////////////////////////////////////////////////////////
