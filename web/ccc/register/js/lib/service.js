@@ -9,7 +9,7 @@ function isEmail(mail) {
 exports.RegisterService = {
     checkLoginName: function (loginName, next) {
         request
-            .post('/api/v2/register/check_login_name')
+            .post('/api/v2/users/check/login_name')
             .send('loginName=' + loginName)
             .end()
             .then(function (res) {
