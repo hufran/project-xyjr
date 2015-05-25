@@ -20,7 +20,6 @@ router.get('/login', function (req, res, next) {
 });
 router.post('/login', bodyParser('json'), function (req, res) {
     res.locals.backUrl = req.body.backUrl;
-    console.log(req.body.backUrl);
     var location = req.body.location;
     var sendObj = {
         username: req.body.loginName,
@@ -49,8 +48,6 @@ router.post('/login', bodyParser('json'), function (req, res) {
         .send(sendObj)
         .end()
         .then(function (r) {
-            console.log(r.body);
-            console.log("###", res.locals.backUrl);
             if (r.body && r.body.user) {
                 res.cookie('ccat', r.body.access_token, {
                     maxAge: 30 * 60 * 1000
@@ -73,7 +70,6 @@ router.post('/login', bodyParser('json'), function (req, res) {
 // ajax login api
 router.post('/ajaxLogin', bodyParser(), function (req, res) {
     res.locals.backUrl = req.body.backUrl;
-    console.log(res.locals.backUrl);
     var sendObj = {
         username: req.body.loginName,
         password: req.body.password,
@@ -87,7 +83,6 @@ router.post('/ajaxLogin', bodyParser(), function (req, res) {
         .send(sendObj)
         .end()
         .then(function (r) {
-            console.log(r.body);
             if (r.body && r.body.user) {
                 r.body.success = true;
                 res.cookie('ccat', r.body.access_token, {
