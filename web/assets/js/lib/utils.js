@@ -309,6 +309,48 @@ module.exports = (function () {
             } else {
                 return o;
             }
+        },
+        getCountDownTime2: function (time, serverDate, next) {
+            time = parseInt(time, 10);
+            if (!time || time === null) {
+                return;
+            }
+
+            var checkTime = function (i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            };
+            var leftTime = (new Date(time)) - (new Date(
+                serverDate));
+            if (leftTime < 0) {
+                return;
+            }
+            var dd = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+            leftTime -= dd * 1000 * 60 * 60 * 24;
+            var hh = Math.floor(leftTime / 1000 / 60 / 60);
+            leftTime -= hh * 1000 * 60 * 60;
+            var mm = Math.floor(leftTime / 1000 / 60);
+            leftTime -= mm * 1000 * 60;
+            var ss = Math.floor(leftTime / 1000);
+            leftTime -= ss * 1000;
+            dd = checkTime(dd);
+            hh = checkTime(hh);
+            mm = checkTime(mm);
+            ss = checkTime(ss);
+            var o = {
+                day: dd,
+                hour: parseInt(hh, 10) + (dd > 0 ? dd * 24 :
+                    0),
+                min: mm,
+                sec: ss
+            };
+            if (next) {
+                next(o);
+            } else {
+                return o;
+            }
         }
     };
 
