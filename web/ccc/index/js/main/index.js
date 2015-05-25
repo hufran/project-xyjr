@@ -41,11 +41,11 @@ function ininconut () {
         var id = t.data("id");  
         var openTime = t.data("open");  
         var serverDate = t.data("serv");  
-        var leftTime = utils.countDown.getCountDownTime(openTime, serverDate);
+        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
         t.html('<span class="text">'+ leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
         var interval = setInterval((function () {
             serverDate += 1000;
-            var leftTime = utils.countDown.getCountDownTime(openTime, serverDate);
+            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             if(!+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
                 clearInterval(interval);
                 t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
@@ -58,7 +58,7 @@ function ininconut () {
 
 IndexService.getLatestScheduled(function (loan) {
     var serverDate = loan.serverDate;
-    var leftTime = utils.countDown.getCountDownTime(loan.timeOpen,
+    var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
         serverDate);
     var countDownRactive = new Ractive({
         el: ".next-time",
@@ -73,7 +73,7 @@ IndexService.getLatestScheduled(function (loan) {
     });
     setInterval((function () {
         serverDate += 1000;
-        var leftTime = utils.countDown.getCountDownTime(loan.timeOpen,
+        var leftTime = utils.countDown.getCountDownTime2(loan.timeOpen,
             serverDate);
         countDownRactive.set('countDown', {
             hours: leftTime.hour,

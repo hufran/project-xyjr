@@ -150,7 +150,7 @@ setTimeout((function () {
     // 初始化倒计时
     if (global.CC.loan.timeOpen > 0) {
         var serverDate = global.CC.loan.serverDate;
-        var leftTime = utils.countDown.getCountDownTime(global.CC.loan.timeOpen,
+        var leftTime = utils.countDown.getCountDownTime2(global.CC.loan.timeOpen,
             serverDate);
         if (leftTime) {
             var countDownRactive = new Ractive({
@@ -167,7 +167,7 @@ setTimeout((function () {
             });
             var interval = setInterval((function () {
                 serverDate += 1000;
-                var leftTime = utils.countDown.getCountDownTime(
+                var leftTime = utils.countDown.getCountDownTime2(
                     global.CC
                     .loan.timeOpen, serverDate);
                 if(!+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
