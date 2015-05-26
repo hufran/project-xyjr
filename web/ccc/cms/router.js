@@ -64,6 +64,7 @@ function getChannelIdByName(channel) {
 
 
 function formatNews(news) {
+    news = news || [];
     for (var i = 0; i < news.length; i++) {
         news[i].pubDate = moment(news[i].pubDate)
             .format('YYYY-MM-DD');
