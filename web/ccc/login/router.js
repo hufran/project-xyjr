@@ -11,6 +11,7 @@ var errorsMap = {
 
 router.get('/login', function (req, res, next) {
     res.locals.backUrl = req.query.url;
+    res.locals.title = "登陆页面|九信金融-国内首家PE系互联网金融平台";
     res.locals.errors = errorsMap[req.query.errors] || '';
     if (req.cookies.ccat) {
         return res.redirect('/');

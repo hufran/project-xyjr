@@ -45,6 +45,11 @@
             <img src="/ccc/loan/img/还款完成.png" class="cleared">
         {{/if}}
 
+        {{#if loan.status == "ARCHIVED" }}
+            <!-- <div class="invest-status">还款结束</div> -->
+            <img src="/ccc/loan/img/还款完成.png" class="cleared">
+        {{/if}}
+
         {{#if loan.status == "SETTLED" }}
             <!-- <div class="invest-status">已结算</div> -->
             <img src="/ccc/loan/img/还款中.png" class="settled">

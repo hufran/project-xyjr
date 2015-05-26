@@ -55,3 +55,13 @@ router.get(/^\/info/, function (req, res, next) {
     // load middleware to find view base on req.path
     next();
 });
+router.get('/info/group', function (req, res) {    
+    res.render('info/group', {
+        title: '股东背景|九信金融-国内首家PE系互联网金融平台'
+    });
+});
+router.get('/info/contactus', function (req, res) {    
+    res.render('info/contactus', {
+        title: '联系我们|九信金融-国内首家PE系互联网金融平台'
+    });
+});

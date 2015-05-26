@@ -355,13 +355,35 @@ module.exports = function (options) {
                 }
             });
         },
+        sendVoiceCaptcha: function(obj){
+            var self = this;
+            var $hint = obj || $(this.el).find('.get-captcha-hint');
+            if (self.userData.mobile === '') {
+                self.showMsg(utils.errorMsg.MOBILE_NULL, 'mobile');
+                return;
+            }
+            self.service.checkMobile(self.userData.mobile, function (flag, error) {
+                if (!flag) {
+                    self.showMsg(utils.errorMsg[error[0].message], 'mobile');
+                } else {
+                    CommonService.getVoiceCaptcha(self.userData.mobile, function (r) {
+                        if (r.success) {
+                             $hint.text('请等待人工语音提示')；
+                        }
+                    });
+                }
+            });
+        },
         bindEvents: function () {
             var self = this;
             this.on('getcaptcha', function(e){
                 var $this = $(e.node);
                 self.sendSmsCaptcha($this);
             });
-            
+            this.on('getvoice', function(e){
+                var $this = $(e.node);
+                self.sendSmsCaptcha($this);
+            });
             // 跳过第二步
             this.on('goNext', function(){
                 self.set('step.current', 3);

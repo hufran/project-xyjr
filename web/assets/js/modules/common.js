@@ -34,6 +34,13 @@ exports.CommonService = {
                 next(res.body);
             });
     },
+    getVoiceCaptcha: function (mobile, next) {
+        request('GET', '/api/v2/register/voiceCaptcha?mobile=' + mobile)
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
+    },
     getUserInfo: function (next) {
         return cache.userInfo ? cache.userInfo :
             (cache.userInfo = request('GET', '/user/info')

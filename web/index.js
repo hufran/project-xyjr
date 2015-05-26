@@ -98,7 +98,8 @@ if (app.get('env') !== 'development') {
 app.use(cookieParser());
 
 app.get('/comingsoon', function (req, res, next) {
-    res.end('coming soon...');
+    res.redirect('/');
+    //res.end('coming soon...');
 });
 app.use(function (req, res, next) {
     //if (req.url.match(/^\/u?payment\//)) {
