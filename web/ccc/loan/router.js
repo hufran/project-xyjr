@@ -106,7 +106,6 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
         };
 
         repayments.then(function (repayments) {
-            console.log(repayments)
             res.expose(repayments, 'repayments');
             res.render('loan/detail', _.assign(locals, {
                 totalInterest: repayments.reduce(function (p, r) {

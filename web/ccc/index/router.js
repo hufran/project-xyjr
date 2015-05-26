@@ -16,7 +16,6 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-            console.log(data);
             var data = parseCMStitle(data.slice(0,1));
             return data;
         });

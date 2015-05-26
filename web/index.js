@@ -14,7 +14,7 @@ GLOBAL.Promise = require('bluebird'); // 目前 bluebird 实现的 Promise 性�
 var port = parseInt(process.env.PORT, 10) || config.port;
 var log = require('bunyan-hub-logger')({app: 'web', name: 'app'});
 
-var consoleCode = fs.readFileSync(require.resolve('console/console.js'),
+var consoleCode = fs.readFileSync(require.resolve('console-polyfill'),
     'utf-8');
 var app = module.exports = require('@ds/base')
     .createApp(__dirname);
@@ -25,10 +25,11 @@ app.locals.PAY = _.assign({}, config.payment);
 
 app.locals.rushHeads = [
     '<!doctype html>',
-    //'<meta name="renderer" content="webkit">', // 临时解决360极速模式下transform-rotate问题,优先ie stand模式
-    '<meta name="renderer" content="ie-stand">',
+    '<meta charset="UTF-8">',
+    '<!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->',
+    '<meta name="renderer" content="webkit">',
     '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">',
-    '<meta http-equiv="X-UA-Compatible" content="IE=9"/>',
+    //'<meta http-equiv="X-UA-Compatible" content="IE=9"/>',
     '<script>' + consoleCode + '</script>',
     '<!--[if lt IE 10]>',
     '<script src="/assets/js/jquery.min.js"></script>',
@@ -48,11 +49,6 @@ app.use(function (req, res, next) {
         res.locals.isLegacy = false;
         if (ua.major < 9) {
             res.locals.noMediaQueries = true;
-            if (window.PIE) {
-                $('*').each(function() {
-                    PIE.attach(this);
-                }).placeholder();
-            }
         }
     } else {
         res.locals.isLegacy = true;
