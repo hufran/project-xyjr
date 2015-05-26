@@ -382,7 +382,7 @@ module.exports = function (options) {
             });
             this.on('getvoice', function(e){
                 var $this = $(e.node);
-                self.sendSmsCaptcha($this);
+                self.sendVoiceCaptcha($this);
             });
             // 跳过第二步
             this.on('goNext', function(){
