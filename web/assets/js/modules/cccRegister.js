@@ -357,7 +357,7 @@ module.exports = function (options) {
         },
         sendVoiceCaptcha: function(obj){
             var self = this;
-            var $hint = obj || $(this.el).find('.get-captcha-hint');
+            var $hint = obj.prev('.get-voice') || $(this.el).find('.get-captcha-hint');
             if (self.userData.mobile === '') {
                 self.showMsg(utils.errorMsg.MOBILE_NULL, 'mobile');
                 return;
@@ -368,7 +368,7 @@ module.exports = function (options) {
                 } else {
                     CommonService.getVoiceCaptcha(self.userData.mobile, function (r) {
                         if (r.success) {
-                             $hint.text('请等待人工语音提示')；
+                             $hint.text('请等待语音提示，');
                         }
                     });
                 }
@@ -427,6 +427,7 @@ module.exports = function (options) {
                 } else {
                     obj.html(previousText);
                     obj.removeClass('disabled');
+                    $('.get-voice').show();
                     clearInterval(interval);
                 }
             }), 1000);
