@@ -357,7 +357,7 @@ module.exports = function (options) {
         },
         sendVoiceCaptcha: function(obj){
             var self = this;
-            var $hint = obj.prev('.get-voice') || $(this.el).find('.get-captcha-hint');
+            var $hint = obj.prev('.get-captcha-hint') || $(this.el).find('.get-captcha-hint');
             if (self.userData.mobile === '') {
                 self.showMsg(utils.errorMsg.MOBILE_NULL, 'mobile');
                 return;
