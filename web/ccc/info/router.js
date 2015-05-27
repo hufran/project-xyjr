@@ -50,7 +50,10 @@ router.get(/^\/info/, function (req, res, next) {
     
     // assign user数据
     var user = res.locals.user;
-    res.expose(user, "user");
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
     
     // load middleware to find view base on req.path
     next();

@@ -71,7 +71,10 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
                         return r.body.data.repayments;
                     }
                 })
-        res.expose(user, "user");
+        if (user && user.idNumber) {
+            delete user.idNumber;
+        }
+        res.expose(user, 'user');
 
         var locals = {
             loans: req.uest(

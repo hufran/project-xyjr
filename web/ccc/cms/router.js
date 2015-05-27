@@ -6,7 +6,10 @@ var pageSize = 10;
 
 router.get('/cms/:channelName', function (req, res) {
     var user = res.locals.user;
-    res.expose(user, "user");
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
     req.uest(
         '/api/v2/cms/channels')
         .end()
@@ -41,7 +44,10 @@ router.get('/cms/:channelName', function (req, res) {
 
 router.get('/cms/p/:id', function (req, res) {
     var user = res.locals.user;
-    res.expose(user, "user");
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
    
     req.uest(
         '/api/v2/cms/article/' + req.params.id)
