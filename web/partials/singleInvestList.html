@@ -28,7 +28,7 @@
             </a>
         {{/if}}
         {{#if status === 'SCHEDULED'}}
-            <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"  data-serv="{{ serverDate }}" style="background:transparent; color: #b5a16b">即将开始</div>
+            <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"  data-serv="{{ serverDate }}" style="background:transparent; color: #b5a16b;width: 150px;text-align: left;">即将开始</div>
         {{/if}}
         {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
