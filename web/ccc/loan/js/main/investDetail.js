@@ -159,6 +159,7 @@ setTimeout((function () {
                     'ccc/loan/partials/countDown.html'),
                 data: {
                     countDown: {
+                        days: leftTime.day,
                         hours: leftTime.hour,
                         minutes: leftTime.min,
                         seconds: leftTime.sec
@@ -170,11 +171,12 @@ setTimeout((function () {
                 var leftTime = utils.countDown.getCountDownTime2(
                     global.CC
                     .loan.timeOpen, serverDate);
-                if(!+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
                     clearInterval(interval);
                     window.location.reload();
                 }else{
                     countDownRactive.set('countDown', {
+                        days: leftTime.day,
                         hours: leftTime.hour,
                         minutes: leftTime.min,
                         seconds: leftTime.sec
