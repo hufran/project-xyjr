@@ -47,7 +47,10 @@ router.get(/^\/help/, function (req, res, next) {
     res.locals.tabIndex = tabIndex;
     // assign user数据
     var user = res.locals.user;
-    res.expose(user, "user");
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
     next();
 });
 
