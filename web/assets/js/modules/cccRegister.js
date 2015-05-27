@@ -357,7 +357,11 @@ module.exports = function (options) {
         },
         sendVoiceCaptcha: function(obj){
             var self = this;
+<<<<<<< HEAD
             var $hint = obj.prev('.get-voice') || $(this.el).find('.get-captcha-hint');
+=======
+            var $hint = obj.prev('.get-captcha-hint') || $(this.el).find('.get-captcha-hint');
+>>>>>>> upstream/master
             if (self.userData.mobile === '') {
                 self.showMsg(utils.errorMsg.MOBILE_NULL, 'mobile');
                 return;
@@ -382,7 +386,7 @@ module.exports = function (options) {
             });
             this.on('getvoice', function(e){
                 var $this = $(e.node);
-                self.sendSmsCaptcha($this);
+                self.sendVoiceCaptcha($this);
             });
             // 跳过第二步
             this.on('goNext', function(){

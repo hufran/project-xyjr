@@ -341,8 +341,7 @@ module.exports = (function () {
             ss = checkTime(ss);
             var o = {
                 day: dd,
-                hour: parseInt(hh, 10) + (dd > 0 ? dd * 24 :
-                    0),
+                hour: hh,
                 min: mm,
                 sec: ss
             };
