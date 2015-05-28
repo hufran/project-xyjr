@@ -7,7 +7,7 @@
 var $  = global.jQuery = require('jquery');
 var Ractive = require('ractive/ractive-legacy');
 var request = require('cc-superagent-promise');
-
+var utils = require('assets/js/lib/utils');
 var popupLogin = require('ccc/login/js/lib')
     .popupLogin;
 var popupRegister = require('ccc/register/js/lib')
@@ -51,7 +51,12 @@ $('.s__top15').mouseover(function() {
 }).mouseout(function() {
     $(this).next().css('display', 'none');
 });
-
+$(function(){
+    utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){
+        BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA1'});
+        BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA2'});
+    });
+});
 //顶拦滚动悬浮
 
 // 手机上九信金融hover

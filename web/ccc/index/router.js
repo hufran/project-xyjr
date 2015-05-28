@@ -25,6 +25,7 @@ router.get('/', function (req, res, next) {
         .get('body')
         .then( function(data) {
             //var data = parseCMStitle(data.slice(0,5));
+            var data = data.slice(0,5);
             return data;
         });
             
@@ -34,6 +35,7 @@ router.get('/', function (req, res, next) {
         .get('body')
         .then( function(data) {
             //var data = parseCMStitle(data.slice(0,5));
+            var data = data.slice(0,5);
             return data;
         });
     // res.locals.friendsLinks = req.uest(
