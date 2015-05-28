@@ -6,7 +6,10 @@ var pageSize = 10;
 
 router.get('/cms/:channelName', function (req, res) {
     var user = res.locals.user;
-    res.expose(user, "user");
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
     req.uest(
         '/api/v2/cms/channels')
         .end()
@@ -41,13 +44,17 @@ router.get('/cms/:channelName', function (req, res) {
 
 router.get('/cms/p/:id', function (req, res) {
     var user = res.locals.user;
-    res.expose(user, "user");
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
    
     req.uest(
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-         res.locals.title = r.body.title + '|九信金融-国内首家PE系互联网金融平台';
+            res.locals.title = r.body.title + '|九信金融-国内首家PE系互联网金融平台';
+            res.locals.description = '九信金融由国内知名投资机构九鼎投资倾力打造，是国内首家私募系互联网金融平台。平台由九信投资管理有限公司（www.jiuxinfinance.com）运营，注册资金20亿元人民币。九鼎投资是第一家登陆国内资本市场的私募股权机构，为“中国PE第一股”，净资产超100亿元。';
             res.render('news/detail', {
                 detail: formatDetail(r.body)
             });
@@ -64,6 +71,7 @@ function getChannelIdByName(channel) {
 
 
 function formatNews(news) {
+    news = news || [];
     for (var i = 0; i < news.length; i++) {
         news[i].pubDate = moment(news[i].pubDate)
             .format('YYYY-MM-DD');

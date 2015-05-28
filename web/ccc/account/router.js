@@ -95,7 +95,10 @@ router.get(/^\/account/, function (req, res, next) {
 
     // assign user数据
     var user = res.locals.user;
-    res.expose(user, "user");
+    if (user && user.idNumber) {
+        delete user.idNumber;
+    }
+    res.expose(user, 'user');
     // 检测用户是否登录
     if (!user) {
         next();

@@ -335,14 +335,13 @@ module.exports = (function () {
             leftTime -= mm * 1000 * 60;
             var ss = Math.floor(leftTime / 1000);
             leftTime -= ss * 1000;
-            dd = checkTime(dd);
+            //dd = checkTime(dd);
             hh = checkTime(hh);
             mm = checkTime(mm);
             ss = checkTime(ss);
             var o = {
                 day: dd,
-                hour: parseInt(hh, 10) + (dd > 0 ? dd * 24 :
-                    0),
+                hour: hh,
                 min: mm,
                 sec: ss
             };
@@ -551,6 +550,27 @@ module.exports = (function () {
             }
             return y + '-' + m + '-' + d;
         },
+
+        loadScript: function(url, callback) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            if (script.readyState) {
+                //IE
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        callback();
+                    }
+                }
+            } else {
+                //非IE
+                script.onload = function () {
+                    callback();
+                }
+            }
+            script.src = url;
+            document.getElementsByTagName("head")[0].appendChild(script);
+        }
     };
 
     // 暴露接口

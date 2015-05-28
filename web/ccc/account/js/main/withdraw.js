@@ -20,7 +20,9 @@ new Ractive({
 			AMOUNT_NULL: '请输入提现金额',
 			AMOUNT_INVALID: '输入的金额有误',
 			AMOUNT_POOR: '您的可用余额不足',
-			ERROR: '请求出现错误'
+			AMOUNT_ALL: '不足100元时请全部提现',
+			ERROR: '请求出现错误',
+
 		},
 		disabled: false,
 		submitText: '确认提现',
@@ -66,14 +68,18 @@ new Ractive({
 				self.set('submitMessage', null);
 				self.set('error', false);
 				return;
-			}
-			
-			if (!self.match(amount)) {
+			} else if (!self.match(amount)) {
 				self.set('submitMessage', self.get('msg.AMOUNT_INVALID'));
 				return;
+			} else if (parseFloat(amount) > CC.user.availableAmount) {
+				self.set('submitMessage', self.get('msg.AMOUNT_POOR'));
+				return;
+			} else if (parseFloat(amount) < 100 && parseFloat(amount) != CC.user.availableAmount) {
+				self.set('submitMessage', self.get('msg.AMOUNT_ALL'));
+				return;
+			} else {
+				self.set('submitMessage', null);
 			}
-			
-			self.set('submitMessage', (parseFloat(amount) > CC.user.availableAmount) ? self.get('msg.AMOUNT_POOR') : null);
 		});
 		
 		this.$form.submit(function(e){
@@ -102,6 +108,13 @@ new Ractive({
 				return false;
 			}
 			
+			else if (parseFloat(amount) < 100 && parseFloat(amount) != CC.user.availableAmount) {
+				e.preventDefault();
+				self.set('submitMessage', self.get('msg.AMOUNT_ALL'));
+				self.$amount.focus();
+				return false;
+			}
+
 			else if (self.get('error')) {
 				e.preventDefault();
 				self.set('submitMessage', self.get('msg.ERROR'));

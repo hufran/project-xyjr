@@ -4,3 +4,6 @@
 .idea
 node_modules
 npm-debug.log
+
+oauth2/config/local.js
+web/config/local.js

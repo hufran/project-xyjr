@@ -38,7 +38,6 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
         var user = res.locals.user;
         var buffer = new Buffer(req.path);
         var backUrl = buffer.toString('base64');
-        res.locals.title = '投资详情|九信金融-国内首家PE系互联网金融平台';
         res.expose(backUrl, 'backUrl');
         // agreement
         var agreement = null;
@@ -72,7 +71,10 @@ router.get('/loan/:id', require('../../middlewares/userPayment')
                         return r.body.data.repayments;
                     }
                 })
-        res.expose(user, "user");
+        if (user && user.idNumber) {
+            delete user.idNumber;
+        }
+        res.expose(user, 'user');
 
         var locals = {
             loans: req.uest(
