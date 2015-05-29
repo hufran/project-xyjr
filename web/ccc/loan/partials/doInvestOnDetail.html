@@ -82,7 +82,7 @@
                             <div class="tip">可投金额（元）： </div>
                             <div class="money">{{loan.rule.balance}}</div>   
                         </div>
-                        <div class="time"><i class="clock"></i><span><i>{{loan.timeLeft.dd}}</i>日<i>{{loan.timeLeft.hh}}</i>时<i>{{loan.timeLeft.mm}}</i>分<i>{{loan.timeLeft.ss}}</i>秒</span></div>
+                        <div class="time"><i class="clock"></i><span>{{#if loan.timeLeft.dd != 0}}<i>{{loan.timeLeft.dd}}</i>日{{/if}}<i>{{loan.timeLeft.hh}}</i>时<i>{{loan.timeLeft.mm}}</i>分<i>{{loan.timeLeft.ss}}</i>秒</span></div>
                     </div>
                     <img src="/ccc/loan/img/进度条.png">
                  </div>
