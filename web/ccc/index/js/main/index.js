@@ -174,7 +174,7 @@ $('.loginBtn').click(function (){
 $('.registerBtn').click(function(){
     location.href="/register"
 })
-
+//var sideUp = $('#sideUp');
 window.onscroll=function(){
     var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop,headerEle;
     if(loginElement){
@@ -184,7 +184,6 @@ window.onscroll=function(){
             loginElement.className='info';
         }
     }
-    
 }
 
 $(document).keyup(function (e) {
