@@ -51,6 +51,17 @@ $('.s__top15').mouseover(function() {
 }).mouseout(function() {
     $(this).next().css('display', 'none');
 });
+var sideUp = $('#sideUp');
+window.onscroll=function(){
+    var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop;
+    if(scrollTopOffset  >= 500){  //document.documentElement.clientWidth
+        sideUp.show();
+    }else{
+        sideUp.hide();
+    }
+    
+}
+
 $(function(){
     utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA1'});

@@ -552,24 +552,24 @@ module.exports = (function () {
         },
 
         loadScript: function(url, callback) {
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            if (script.readyState) {
+            var _script = document.createElement("script");
+            _script.setAttribute('type','text/javascript');
+            _script.setAttribute('src',url);
+            document.getElementsByTagName("head")[0].appendChild(_script);
+            if (_script.readyState) {
                 //IE
-                script.onreadystatechange = function () {
-                    if (script.readyState == "loaded" || script.readyState == "complete") {
-                        script.onreadystatechange = null;
+                _script.onreadystatechange = function () {
+                    if (_script.readyState == "loaded" || _script.readyState == "complete") {
+                        _script.onreadystatechange = null;
                         callback();
                     }
                 }
             } else {
                 //非IE
-                script.onload = function () {
+                _script.onload = function () {
                     callback();
                 }
             }
-            script.src = url;
-            document.getElementsByTagName("head")[0].appendChild(script);
         }
     };
 

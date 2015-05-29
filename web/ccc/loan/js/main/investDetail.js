@@ -190,10 +190,10 @@ setTimeout((function () {
 
      function parsedata(o) {
         var type =  {
-            'CASH': '现金卷',
+            'CASH': '现金券',
             'INTEREST': '加息券',
-            'PRINCIPAL': '增值卷',
-            'REBATE': '返现卷'
+            'PRINCIPAL': '增值券',
+            'REBATE': '返现券'
         };
         for (var i = 0; i < o.length; i++) {
             var canuse = o[i].disabled;
