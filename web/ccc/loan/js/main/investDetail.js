@@ -51,7 +51,8 @@ setTimeout((function () {
             mm:mm,
             ss:ss
         }
-        $('.firstLine>.time>span').html('<i>'+newTimeleftTotal.dd+'</i>日<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
+        var days = newTimeleftTotal.dd ? '<i>'+newTimeleftTotal.dd+'</i>日' : '';
+        $('.firstLine>.time>span').html(days + '<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
     },1000)
     //获取最后还款日期
     if(CC.repayments instanceof Array&&CC.repayments.length>0){
