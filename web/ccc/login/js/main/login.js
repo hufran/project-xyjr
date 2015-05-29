@@ -85,9 +85,6 @@ $('#loginForm').submit(function(e){
     });
     
    /* $.post('/ajaxLogin', $this.serialize(), function(r){
-        xhrFields: {
-            withCredentials: true;
-        }
         if (r.success) {
             $postBtn.text('登录成功');
             location.href = (r.redirect) ? r.redirect:'/invest/list';
