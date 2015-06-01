@@ -5,7 +5,7 @@ router.get('/', function (req, res, next) {
     var user = res.locals.user;
     res.locals.title = '九信金融-国内首家PE系互联网金融平台｜P2P理财｜投资理财｜P2P网贷';
     res.locals.keywords = '互联网金融，P2P理财，P2P网贷，网络融资，投资理财，九信金融，九信金融官网';
-    res.locals.description = '九信金融由国内知名投资机构九鼎投资倾力打造，是国内首家私募系互联网金融平台。平台由九信投资管理有限公司（www.jiuxinfinance.com）运营，注册资金20亿元人民币。九鼎投资是第一家登陆国内资本市场的私募股权机构，为“中国PE第一股”，净资产超100亿元。';
+    res.locals.description = '九信金融是九鼎投资（净资产超110亿元上市公司）旗下互联网金融平台，为您提供P2P理财、投资理财、P2P网贷等专业、安全、稳健产品。上市公司担保，本息全额保障，8年PE风控经验，第三方资金托管，是投资者首选的的P2P投资理财平台！';
     if (user && user.idNumber) {
         delete user.idNumber;
     }
