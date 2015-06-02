@@ -280,7 +280,7 @@ app.get('/__introspect',
         next();
     });
 
-app.listen(port, function () {
+app.listen(port, '0.0.0.0', function () {
     console.log("server listening at http://127.0.0.1:%d", this.address()
         .port);
 });
