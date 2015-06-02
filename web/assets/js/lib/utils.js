@@ -563,12 +563,12 @@ module.exports = (function () {
                         _script.onreadystatechange = null;
                         callback();
                     }
-                }
+                };
             } else {
                 //非IE
                 _script.onload = function () {
                     callback();
-                }
+                };
             }
         }
     };
