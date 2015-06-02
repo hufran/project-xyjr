@@ -72,15 +72,15 @@ $('#loginForm').submit(function(e){
         return;
     }
     
-    $postBtn.addClass('disabled').html('登录中...');
+    $postBtn.addClass('disabled')//.html('登录中...');
 
     request.post('/ajaxLogin').type('form').send($this.serialize()).end().get('body').then(function(r){
         if (r.success) {
-            $postBtn.text('登录成功');
+            //$postBtn.text('登录成功');
             location.href = (r.redirect) ? r.redirect:'/invest/list';
         } else {
             $error.text(errorMaps[r.error_description.result]);
-            $postBtn.removeClass('disabled').text('登录');
+            $postBtn.removeClass('disabled')//.text('登录');
         }
     });
     
