@@ -63,6 +63,9 @@ router.get(/^\/account/, function (req, res, next) {
     }, {
         text: '我的红包',
         url: '/account/coupon'
+    },{
+        text:'我的邀请',
+        url:'/account/invite'
     }];
 
     var path = req.path.replace(/\/$/, '');

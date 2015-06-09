@@ -12,7 +12,8 @@ var CommonService = require('assets/js/modules/common')
     .CommonService;
 var utils = require('assets/js/lib/utils');
 var format = require('@ds/format');
-
+var search = window.location.search;
+var referral = search?search.split('=')[1]: '';
 module.exports = function (options) {
     
     var defaults = {
@@ -323,9 +324,17 @@ module.exports = function (options) {
                 
                 self.userData.mobile_captcha = smsCaptcha;
                 
-                self.service.doRegister(self.userData, function (r, error) {
-                    self.regCallback(self.userData, r, error);
-                });
+                if (referral) {
+                    self.service.checkMobile(referral, function(data) {
+                        if (!data) {
+                             self.userData.referral = referral;
+                        }
+                        console.log(self.userData);
+                        self.service.doRegister(self.userData, function (r, error) {
+                            self.regCallback(self.userData, r, error);
+                        });
+                    });
+                }
             });
         },
         
