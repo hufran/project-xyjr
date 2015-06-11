@@ -1,0 +1,52 @@
+<!--
+<div class="tab-panel panel-HOLDING active">
+    <ul> 
+        {{#messages.results}}
+            <li class="message" data-index="{{@index}}" on-click="showMessageContent">
+                <span class="title">{{body.title}}</span> 
+                <br/>
+   
+                <span class="sentTime">{{moment(body.sentTime).format('YYYY-MM-DD HH:mm:ss')}}</span>
+             
+                {{#if current == @index && clickCount[@index] % 2 }}
+                    <div class="messageContent">
+                        {{body.content}}
+                    </div>
+                {{/if}}
+                <br/>
+            </li>
+            <br/>
+        {{/messages.results}}
+    </ul>
+</div> 
+-->
+
+<div class="tab-panel panel-HOLDING active">
+    <table class="table table-striped">
+<!--   <caption>条纹表格布局</caption>-->
+           <thead>
+              <tr>
+                 <th>标题</th>
+                 <th>内容</th>
+                 <th>时间</th>
+              </tr>
+           </thead>
+           {{#message}}
+           <tbody>
+              <tr>
+                 <td>{{body.title}}</td>
+                 <td>{{body.content}}</td>
+                 <td>{{body.sentTime}}</td>
+              </tr>
+           </tbody>
+           {{/message}}
+    </table>     
+</div>
+
+<div class="ccc-paging" id="page">
+    <a data-page="{{current - 1}}" on-click="last">上一页</a>
+    {{#pages}}
+        <span data-page="{{@index+1}}" on-click="current" class="{{#if current == @index }}current{{else}}page{{/if}}">{{@index+1}}</span>
+    {{/pages}}
+    <a on-click="next">下一页</a>
+</div>
