@@ -36,7 +36,7 @@
               <tr>
                  <td>{{body.title}}</td>
                  <td>{{body.content}}</td>
-                 <td>{{body.sentTime}}</td>
+                 <td>{{moment(body.sentTime).format('YYYY-MM-DD HH:mm:ss')}}</td>
               </tr>
            </tbody>
            {{/message}}

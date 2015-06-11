@@ -44,7 +44,7 @@ function setPage(){
 }
 setPage();
 render(current);
- messageRactive.set('pages', pageContent);
+messageRactive.set('pages', pageContent);
 function render(index) {
     messageRactive.set('message', pageContent[index]);
 }
