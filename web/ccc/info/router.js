@@ -2,28 +2,18 @@
 var router = module.exports = require('@ds/base')
     .createSubApp(__dirname);
 
+var tabs = [{
+    text: '九信金融',
+    url: '/info/index'
+}, {
+    text: '股东背景',
+    url: '/info/group' 
+}, {
+    text: '联系我们',
+    url: '/info/contactus'
+}];
 //实现列表左侧切换
-router.get(/^\/info/, function (req, res, next) {    
-    // 定位tab
-    var tabs = [{
-        text: '九信金融',
-        url: '/info/index'
-    }, {
-        text: '股东背景',
-        url: '/info/group' 
-    }, {
-        text: '联系我们',
-        url: '/info/contactus'
-    }, 
-    // {
-    //     text: '相关政策',
-    //     url: '/info/policy'
-    // }, {
-    //     text: '加入我们',
-    //     url: '/info/recruit'       
-    // }
-
-    ];
+router.get(/^\/info/, function (req, res, next) {
 
     var path = req.path.replace(/\/$/, '');
     var tabIndex;
@@ -38,7 +28,6 @@ router.get(/^\/info/, function (req, res, next) {
     
     // default to /info/index
     tabIndex = tabIndex || 0;
-    
     // decide title
     // res.locals.title = tabs[tabIndex].text;
     res.locals.title = "关于我们|九信金融-国内首家PE系互联网金融平台";
@@ -58,13 +47,18 @@ router.get(/^\/info/, function (req, res, next) {
     // load middleware to find view base on req.path
     next();
 });
-router.get('/info/group', function (req, res) {    
-    res.render('info/group', {
-        title: '股东背景|九信金融-国内首家PE系互联网金融平台'
+tabs.forEach(function(item) {
+    router.get(item.url, function(req, res) {
+        articals(req, '公司简介', item.text).then(function(r) {
+            res.render('info/index', {
+                content: r.body[0].content,
+                cTitle: item.text
+            });
+        });
     });
 });
-router.get('/info/contactus', function (req, res) {    
-    res.render('info/contactus', {
-        title: '联系我们|九信金融-国内首家PE系互联网金融平台'
-    });
-});
+
+
+function articals(req, cate, name) {
+    return req.uest(encodeURI('/api/v2/cms/'+cate+'/'+name)).end();
+}
