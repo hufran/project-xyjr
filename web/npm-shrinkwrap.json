@@ -773,7 +773,7 @@
     },
     "@ds/build": {
       "version": "0.3.1",
-      "from": "http://npmcc.creditcloud.com/@ds/build/download/@ds/build-0.3.1.tgz",
+      "from": "@ds/build@>=0.3.0 <0.4.0",
       "resolved": "http://npmcc.creditcloud.com/@ds/build/download/@ds/build-0.3.1.tgz",
       "dependencies": {
         "gulp-factor-bundle": {
@@ -782,9 +782,9 @@
           "resolved": "http://npmcc.creditcloud.com/gulp-factor-bundle/download/gulp-factor-bundle-0.1.3.tgz",
           "dependencies": {
             "factor-bundle": {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "from": "factor-bundle@>=2.3.3 <3.0.0",
-              "resolved": "http://npmcc.creditcloud.com/factor-bundle/download/factor-bundle-2.4.0.tgz",
+              "resolved": "http://npmcc.creditcloud.com/factor-bundle/-/factor-bundle-2.4.1.tgz",
               "dependencies": {
                 "JSONStream": {
                   "version": "0.8.4",
@@ -824,9 +824,9 @@
                               "resolved": "http://npmcc.creditcloud.com/source-map/download/source-map-0.3.0.tgz",
                               "dependencies": {
                                 "amdefine": {
-                                  "version": "0.1.0",
+                                  "version": "0.1.1",
                                   "from": "amdefine@>=0.0.4",
-                                  "resolved": "http://npmcc.creditcloud.com/amdefine/download/amdefine-0.1.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/amdefine/-/amdefine-0.1.1.tgz"
                                 }
                               }
                             }
@@ -843,9 +843,9 @@
                           "resolved": "http://npmcc.creditcloud.com/source-map/download/source-map-0.1.43.tgz",
                           "dependencies": {
                             "amdefine": {
-                              "version": "0.1.0",
+                              "version": "0.1.1",
                               "from": "amdefine@>=0.0.4",
-                              "resolved": "http://npmcc.creditcloud.com/amdefine/download/amdefine-0.1.0.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/amdefine/-/amdefine-0.1.1.tgz"
                             }
                           }
                         }
@@ -918,9 +918,9 @@
                                   "resolved": "http://npmcc.creditcloud.com/source-map/download/source-map-0.1.43.tgz",
                                   "dependencies": {
                                     "amdefine": {
-                                      "version": "0.1.0",
+                                      "version": "0.1.1",
                                       "from": "amdefine@>=0.0.4",
-                                      "resolved": "http://npmcc.creditcloud.com/amdefine/download/amdefine-0.1.0.tgz"
+                                      "resolved": "http://npmcc.creditcloud.com/amdefine/-/amdefine-0.1.1.tgz"
                                     }
                                   }
                                 },
@@ -946,9 +946,9 @@
                           "resolved": "http://npmcc.creditcloud.com/through/download/through-2.3.7.tgz"
                         },
                         "uglify-js": {
-                          "version": "2.4.21",
+                          "version": "2.4.23",
                           "from": "uglify-js@>=2.4.0 <2.5.0",
-                          "resolved": "http://npmcc.creditcloud.com/uglify-js/-/uglify-js-2.4.21.tgz",
+                          "resolved": "http://npmcc.creditcloud.com/uglify-js/-/uglify-js-2.4.23.tgz",
                           "dependencies": {
                             "async": {
                               "version": "0.2.10",
@@ -961,9 +961,9 @@
                               "resolved": "http://npmcc.creditcloud.com/source-map/download/source-map-0.1.34.tgz",
                               "dependencies": {
                                 "amdefine": {
-                                  "version": "0.1.0",
+                                  "version": "0.1.1",
                                   "from": "amdefine@>=0.0.4",
-                                  "resolved": "http://npmcc.creditcloud.com/amdefine/download/amdefine-0.1.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/amdefine/-/amdefine-0.1.1.tgz"
                                 }
                               }
                             },
@@ -978,9 +978,9 @@
                               "resolved": "http://npmcc.creditcloud.com/yargs/download/yargs-3.5.4.tgz",
                               "dependencies": {
                                 "camelcase": {
-                                  "version": "1.0.2",
+                                  "version": "1.1.0",
                                   "from": "camelcase@>=1.0.2 <2.0.0",
-                                  "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                                 },
                                 "decamelize": {
                                   "version": "1.0.0",
@@ -995,7 +995,7 @@
                                 "wordwrap": {
                                   "version": "0.0.2",
                                   "from": "wordwrap@0.0.2",
-                                  "resolved": "http://npmcc.creditcloud.com/wordwrap/-/wordwrap-0.0.2.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/wordwrap/download/wordwrap-0.0.2.tgz"
                                 }
                               }
                             }
@@ -1089,7 +1089,7 @@
                         "indexof": {
                           "version": "0.0.1",
                           "from": "indexof@0.0.1",
-                          "resolved": "http://npmcc.creditcloud.com/indexof/-/indexof-0.0.1.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/indexof/download/indexof-0.0.1.tgz"
                         }
                       }
                     }
@@ -1300,9 +1300,9 @@
                           "resolved": "http://npmcc.creditcloud.com/camelcase-keys/download/camelcase-keys-1.0.0.tgz",
                           "dependencies": {
                             "camelcase": {
-                              "version": "1.0.2",
+                              "version": "1.1.0",
                               "from": "camelcase@>=1.0.1 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                             },
                             "map-obj": {
                               "version": "1.0.1",
@@ -1317,14 +1317,21 @@
                           "resolved": "http://npmcc.creditcloud.com/indent-string/download/indent-string-1.2.1.tgz",
                           "dependencies": {
                             "repeating": {
-                              "version": "1.1.2",
+                              "version": "1.1.3",
                               "from": "repeating@>=1.1.0 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/repeating/download/repeating-1.1.2.tgz",
+                              "resolved": "http://npmcc.creditcloud.com/repeating/-/repeating-1.1.3.tgz",
                               "dependencies": {
                                 "is-finite": {
-                                  "version": "1.0.0",
+                                  "version": "1.0.1",
                                   "from": "is-finite@>=1.0.0 <2.0.0",
-                                  "resolved": "http://npmcc.creditcloud.com/is-finite/download/is-finite-1.0.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/is-finite/-/is-finite-1.0.1.tgz",
+                                  "dependencies": {
+                                    "number-is-nan": {
+                                      "version": "1.0.0",
+                                      "from": "number-is-nan@>=1.0.0 <2.0.0",
+                                      "resolved": "http://npmcc.creditcloud.com/number-is-nan/-/number-is-nan-1.0.0.tgz"
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -1336,9 +1343,9 @@
                           "resolved": "http://npmcc.creditcloud.com/minimist/download/minimist-1.1.1.tgz"
                         },
                         "object-assign": {
-                          "version": "2.0.0",
+                          "version": "2.1.1",
                           "from": "object-assign@>=2.0.0 <3.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/object-assign/download/object-assign-2.0.0.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/object-assign/-/object-assign-2.1.1.tgz"
                         }
                       }
                     }
@@ -1584,9 +1591,9 @@
                       "resolved": "http://npmcc.creditcloud.com/inherits/download/inherits-2.0.1.tgz"
                     },
                     "minimatch": {
-                      "version": "2.0.7",
+                      "version": "2.0.8",
                       "from": "minimatch@>=2.0.1 <3.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/minimatch/download/minimatch-2.0.7.tgz",
+                      "resolved": "http://npmcc.creditcloud.com/minimatch/-/minimatch-2.0.8.tgz",
                       "dependencies": {
                         "brace-expansion": {
                           "version": "1.1.0",
@@ -1601,7 +1608,7 @@
                             "concat-map": {
                               "version": "0.0.1",
                               "from": "concat-map@0.0.1",
-                              "resolved": "http://npmcc.creditcloud.com/concat-map/-/concat-map-0.0.1.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/concat-map/download/concat-map-0.0.1.tgz"
                             }
                           }
                         }
@@ -1640,15 +1647,15 @@
                   "dependencies": {
                     "array-uniq": {
                       "version": "1.0.2",
-                      "from": "array-uniq@>=1.0.2 <2.0.0",
+                      "from": "array-uniq@>=1.0.1 <2.0.0",
                       "resolved": "http://npmcc.creditcloud.com/array-uniq/download/array-uniq-1.0.2.tgz"
                     }
                   }
                 },
                 "minimatch": {
-                  "version": "2.0.7",
+                  "version": "2.0.8",
                   "from": "minimatch@>=2.0.1 <3.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/minimatch/download/minimatch-2.0.7.tgz",
+                  "resolved": "http://npmcc.creditcloud.com/minimatch/-/minimatch-2.0.8.tgz",
                   "dependencies": {
                     "brace-expansion": {
                       "version": "1.1.0",
@@ -1663,7 +1670,7 @@
                         "concat-map": {
                           "version": "0.0.1",
                           "from": "concat-map@0.0.1",
-                          "resolved": "http://npmcc.creditcloud.com/concat-map/-/concat-map-0.0.1.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/concat-map/download/concat-map-0.0.1.tgz"
                         }
                       }
                     }
@@ -1695,13 +1702,13 @@
                   "dependencies": {
                     "source-map": {
                       "version": "0.1.43",
-                      "from": "source-map@>=0.1.39 <0.2.0",
+                      "from": "source-map@>=0.1.31 <0.2.0",
                       "resolved": "http://npmcc.creditcloud.com/source-map/download/source-map-0.1.43.tgz",
                       "dependencies": {
                         "amdefine": {
-                          "version": "0.1.0",
+                          "version": "0.1.1",
                           "from": "amdefine@>=0.0.4",
-                          "resolved": "http://npmcc.creditcloud.com/amdefine/download/amdefine-0.1.0.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/amdefine/-/amdefine-0.1.1.tgz"
                         }
                       }
                     }
@@ -1716,7 +1723,7 @@
             },
             "gulp-util": {
               "version": "2.2.20",
-              "from": "gulp-util@>=2.2.17 <3.0.0",
+              "from": "gulp-util@>=2.2.14 <3.0.0",
               "resolved": "http://npmcc.creditcloud.com/gulp-util/download/gulp-util-2.2.20.tgz",
               "dependencies": {
                 "chalk": {
@@ -1786,9 +1793,9 @@
                           "resolved": "http://npmcc.creditcloud.com/camelcase-keys/download/camelcase-keys-1.0.0.tgz",
                           "dependencies": {
                             "camelcase": {
-                              "version": "1.0.2",
+                              "version": "1.1.0",
                               "from": "camelcase@>=1.0.1 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                             },
                             "map-obj": {
                               "version": "1.0.1",
@@ -1803,14 +1810,21 @@
                           "resolved": "http://npmcc.creditcloud.com/indent-string/download/indent-string-1.2.1.tgz",
                           "dependencies": {
                             "repeating": {
-                              "version": "1.1.2",
+                              "version": "1.1.3",
                               "from": "repeating@>=1.1.0 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/repeating/download/repeating-1.1.2.tgz",
+                              "resolved": "http://npmcc.creditcloud.com/repeating/-/repeating-1.1.3.tgz",
                               "dependencies": {
                                 "is-finite": {
-                                  "version": "1.0.0",
+                                  "version": "1.0.1",
                                   "from": "is-finite@>=1.0.0 <2.0.0",
-                                  "resolved": "http://npmcc.creditcloud.com/is-finite/download/is-finite-1.0.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/is-finite/-/is-finite-1.0.1.tgz",
+                                  "dependencies": {
+                                    "number-is-nan": {
+                                      "version": "1.0.0",
+                                      "from": "number-is-nan@>=1.0.0 <2.0.0",
+                                      "resolved": "http://npmcc.creditcloud.com/number-is-nan/-/number-is-nan-1.0.0.tgz"
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -1822,9 +1836,9 @@
                           "resolved": "http://npmcc.creditcloud.com/minimist/download/minimist-1.1.1.tgz"
                         },
                         "object-assign": {
-                          "version": "2.0.0",
+                          "version": "2.1.1",
                           "from": "object-assign@>=2.0.0 <3.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/object-assign/download/object-assign-2.0.0.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/object-assign/-/object-assign-2.1.1.tgz"
                         }
                       }
                     }
@@ -2048,9 +2062,9 @@
           "resolved": "http://npmcc.creditcloud.com/gulp-rev/download/gulp-rev-3.0.1.tgz",
           "dependencies": {
             "gulp-util": {
-              "version": "3.0.4",
+              "version": "3.0.5",
               "from": "gulp-util@>=3.0.0 <4.0.0",
-              "resolved": "http://npmcc.creditcloud.com/gulp-util/download/gulp-util-3.0.4.tgz",
+              "resolved": "http://npmcc.creditcloud.com/gulp-util/-/gulp-util-3.0.5.tgz",
               "dependencies": {
                 "array-differ": {
                   "version": "1.0.0",
@@ -2063,9 +2077,9 @@
                   "resolved": "http://npmcc.creditcloud.com/array-uniq/download/array-uniq-1.0.2.tgz"
                 },
                 "beeper": {
-                  "version": "1.0.0",
+                  "version": "1.1.0",
                   "from": "beeper@>=1.0.0 <2.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/beeper/download/beeper-1.0.0.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/beeper/-/beeper-1.1.0.tgz"
                 },
                 "chalk": {
                   "version": "1.0.0",
@@ -2089,7 +2103,7 @@
                       "dependencies": {
                         "ansi-regex": {
                           "version": "1.1.1",
-                          "from": "ansi-regex@>=1.0.0 <2.0.0",
+                          "from": "ansi-regex@>=1.1.0 <2.0.0",
                           "resolved": "http://npmcc.creditcloud.com/ansi-regex/download/ansi-regex-1.1.1.tgz"
                         },
                         "get-stdin": {
@@ -2139,9 +2153,9 @@
                           "resolved": "http://npmcc.creditcloud.com/camelcase-keys/download/camelcase-keys-1.0.0.tgz",
                           "dependencies": {
                             "camelcase": {
-                              "version": "1.0.2",
+                              "version": "1.1.0",
                               "from": "camelcase@>=1.0.1 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                             },
                             "map-obj": {
                               "version": "1.0.1",
@@ -2156,14 +2170,21 @@
                           "resolved": "http://npmcc.creditcloud.com/indent-string/download/indent-string-1.2.1.tgz",
                           "dependencies": {
                             "repeating": {
-                              "version": "1.1.2",
+                              "version": "1.1.3",
                               "from": "repeating@>=1.1.0 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/repeating/download/repeating-1.1.2.tgz",
+                              "resolved": "http://npmcc.creditcloud.com/repeating/-/repeating-1.1.3.tgz",
                               "dependencies": {
                                 "is-finite": {
-                                  "version": "1.0.0",
+                                  "version": "1.0.1",
                                   "from": "is-finite@>=1.0.0 <2.0.0",
-                                  "resolved": "http://npmcc.creditcloud.com/is-finite/download/is-finite-1.0.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/is-finite/-/is-finite-1.0.1.tgz",
+                                  "dependencies": {
+                                    "number-is-nan": {
+                                      "version": "1.0.0",
+                                      "from": "number-is-nan@>=1.0.0 <2.0.0",
+                                      "resolved": "http://npmcc.creditcloud.com/number-is-nan/-/number-is-nan-1.0.0.tgz"
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -2189,9 +2210,9 @@
                   "resolved": "http://npmcc.creditcloud.com/lodash._reinterpolate/download/lodash._reinterpolate-3.0.0.tgz"
                 },
                 "lodash.template": {
-                  "version": "3.5.1",
+                  "version": "3.6.1",
                   "from": "lodash.template@>=3.0.0 <4.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/lodash.template/download/lodash.template-3.5.1.tgz",
+                  "resolved": "http://npmcc.creditcloud.com/lodash.template/-/lodash.template-3.6.1.tgz",
                   "dependencies": {
                     "lodash._basecopy": {
                       "version": "3.0.1",
@@ -2209,34 +2230,34 @@
                       "resolved": "http://npmcc.creditcloud.com/lodash._basevalues/download/lodash._basevalues-3.0.0.tgz"
                     },
                     "lodash._isiterateecall": {
-                      "version": "3.0.7",
+                      "version": "3.0.9",
                       "from": "lodash._isiterateecall@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.7.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz"
                     },
                     "lodash.escape": {
                       "version": "3.0.0",
                       "from": "lodash.escape@>=3.0.0 <4.0.0",
                       "resolved": "http://npmcc.creditcloud.com/lodash.escape/download/lodash.escape-3.0.0.tgz"
                     },
-                    "lodash.isnative": {
-                      "version": "3.0.2",
-                      "from": "lodash.isnative@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.isnative/download/lodash.isnative-3.0.2.tgz"
-                    },
                     "lodash.keys": {
-                      "version": "3.0.7",
+                      "version": "3.1.1",
                       "from": "lodash.keys@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/download/lodash.keys-3.0.7.tgz",
+                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/-/lodash.keys-3.1.1.tgz",
                       "dependencies": {
+                        "lodash._getnative": {
+                          "version": "3.9.0",
+                          "from": "lodash._getnative@>=3.0.0 <4.0.0",
+                          "resolved": "http://npmcc.creditcloud.com/lodash._getnative/-/lodash._getnative-3.9.0.tgz"
+                        },
                         "lodash.isarguments": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarguments@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/download/lodash.isarguments-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/-/lodash.isarguments-3.0.3.tgz"
                         },
                         "lodash.isarray": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarray@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/download/lodash.isarray-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/-/lodash.isarray-3.0.3.tgz"
                         }
                       }
                     },
@@ -2323,9 +2344,9 @@
               }
             },
             "object-assign": {
-              "version": "2.0.0",
+              "version": "2.1.1",
               "from": "object-assign@>=2.0.0 <3.0.0",
-              "resolved": "http://npmcc.creditcloud.com/object-assign/download/object-assign-2.0.0.tgz"
+              "resolved": "http://npmcc.creditcloud.com/object-assign/-/object-assign-2.1.1.tgz"
             },
             "vinyl-file": {
               "version": "1.1.1",
@@ -2333,9 +2354,9 @@
               "resolved": "http://npmcc.creditcloud.com/vinyl-file/download/vinyl-file-1.1.1.tgz",
               "dependencies": {
                 "graceful-fs": {
-                  "version": "3.0.6",
+                  "version": "3.0.8",
                   "from": "graceful-fs@>=3.0.2 <4.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/graceful-fs/download/graceful-fs-3.0.6.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/graceful-fs/-/graceful-fs-3.0.8.tgz"
                 },
                 "strip-bom": {
                   "version": "1.0.0",
@@ -2381,9 +2402,9 @@
           "resolved": "http://npmcc.creditcloud.com/gulp-rev-outdated/-/gulp-rev-outdated-0.0.8.tgz",
           "dependencies": {
             "gulp-util": {
-              "version": "3.0.4",
+              "version": "3.0.5",
               "from": "gulp-util@>=3.0.0 <4.0.0",
-              "resolved": "http://npmcc.creditcloud.com/gulp-util/download/gulp-util-3.0.4.tgz",
+              "resolved": "http://npmcc.creditcloud.com/gulp-util/-/gulp-util-3.0.5.tgz",
               "dependencies": {
                 "array-differ": {
                   "version": "1.0.0",
@@ -2396,9 +2417,9 @@
                   "resolved": "http://npmcc.creditcloud.com/array-uniq/download/array-uniq-1.0.2.tgz"
                 },
                 "beeper": {
-                  "version": "1.0.0",
+                  "version": "1.1.0",
                   "from": "beeper@>=1.0.0 <2.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/beeper/download/beeper-1.0.0.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/beeper/-/beeper-1.1.0.tgz"
                 },
                 "chalk": {
                   "version": "1.0.0",
@@ -2472,9 +2493,9 @@
                           "resolved": "http://npmcc.creditcloud.com/camelcase-keys/download/camelcase-keys-1.0.0.tgz",
                           "dependencies": {
                             "camelcase": {
-                              "version": "1.0.2",
+                              "version": "1.1.0",
                               "from": "camelcase@>=1.0.1 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                             },
                             "map-obj": {
                               "version": "1.0.1",
@@ -2489,14 +2510,21 @@
                           "resolved": "http://npmcc.creditcloud.com/indent-string/download/indent-string-1.2.1.tgz",
                           "dependencies": {
                             "repeating": {
-                              "version": "1.1.2",
+                              "version": "1.1.3",
                               "from": "repeating@>=1.1.0 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/repeating/download/repeating-1.1.2.tgz",
+                              "resolved": "http://npmcc.creditcloud.com/repeating/-/repeating-1.1.3.tgz",
                               "dependencies": {
                                 "is-finite": {
-                                  "version": "1.0.0",
+                                  "version": "1.0.1",
                                   "from": "is-finite@>=1.0.0 <2.0.0",
-                                  "resolved": "http://npmcc.creditcloud.com/is-finite/download/is-finite-1.0.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/is-finite/-/is-finite-1.0.1.tgz",
+                                  "dependencies": {
+                                    "number-is-nan": {
+                                      "version": "1.0.0",
+                                      "from": "number-is-nan@>=1.0.0 <2.0.0",
+                                      "resolved": "http://npmcc.creditcloud.com/number-is-nan/-/number-is-nan-1.0.0.tgz"
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -2522,9 +2550,9 @@
                   "resolved": "http://npmcc.creditcloud.com/lodash._reinterpolate/download/lodash._reinterpolate-3.0.0.tgz"
                 },
                 "lodash.template": {
-                  "version": "3.5.1",
+                  "version": "3.6.1",
                   "from": "lodash.template@>=3.0.0 <4.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/lodash.template/download/lodash.template-3.5.1.tgz",
+                  "resolved": "http://npmcc.creditcloud.com/lodash.template/-/lodash.template-3.6.1.tgz",
                   "dependencies": {
                     "lodash._basecopy": {
                       "version": "3.0.1",
@@ -2542,34 +2570,34 @@
                       "resolved": "http://npmcc.creditcloud.com/lodash._basevalues/download/lodash._basevalues-3.0.0.tgz"
                     },
                     "lodash._isiterateecall": {
-                      "version": "3.0.7",
+                      "version": "3.0.9",
                       "from": "lodash._isiterateecall@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.7.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz"
                     },
                     "lodash.escape": {
                       "version": "3.0.0",
                       "from": "lodash.escape@>=3.0.0 <4.0.0",
                       "resolved": "http://npmcc.creditcloud.com/lodash.escape/download/lodash.escape-3.0.0.tgz"
                     },
-                    "lodash.isnative": {
-                      "version": "3.0.2",
-                      "from": "lodash.isnative@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.isnative/download/lodash.isnative-3.0.2.tgz"
-                    },
                     "lodash.keys": {
-                      "version": "3.0.7",
+                      "version": "3.1.1",
                       "from": "lodash.keys@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/download/lodash.keys-3.0.7.tgz",
+                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/-/lodash.keys-3.1.1.tgz",
                       "dependencies": {
+                        "lodash._getnative": {
+                          "version": "3.9.0",
+                          "from": "lodash._getnative@>=3.0.0 <4.0.0",
+                          "resolved": "http://npmcc.creditcloud.com/lodash._getnative/-/lodash._getnative-3.9.0.tgz"
+                        },
                         "lodash.isarguments": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarguments@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/download/lodash.isarguments-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/-/lodash.isarguments-3.0.3.tgz"
                         },
                         "lodash.isarray": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarray@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/download/lodash.isarray-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/-/lodash.isarray-3.0.3.tgz"
                         }
                       }
                     },
@@ -2632,9 +2660,9 @@
                   }
                 },
                 "object-assign": {
-                  "version": "2.0.0",
+                  "version": "2.1.1",
                   "from": "object-assign@>=2.0.0 <3.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/object-assign/download/object-assign-2.0.0.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/object-assign/-/object-assign-2.1.1.tgz"
                 },
                 "replace-ext": {
                   "version": "0.0.1",
@@ -2668,9 +2696,9 @@
           "resolved": "http://npmcc.creditcloud.com/gulp-rimraf/download/gulp-rimraf-0.1.1.tgz",
           "dependencies": {
             "gulp-util": {
-              "version": "3.0.4",
+              "version": "3.0.5",
               "from": "gulp-util@>=3.0.1 <4.0.0",
-              "resolved": "http://npmcc.creditcloud.com/gulp-util/download/gulp-util-3.0.4.tgz",
+              "resolved": "http://npmcc.creditcloud.com/gulp-util/-/gulp-util-3.0.5.tgz",
               "dependencies": {
                 "array-differ": {
                   "version": "1.0.0",
@@ -2683,9 +2711,9 @@
                   "resolved": "http://npmcc.creditcloud.com/array-uniq/download/array-uniq-1.0.2.tgz"
                 },
                 "beeper": {
-                  "version": "1.0.0",
+                  "version": "1.1.0",
                   "from": "beeper@>=1.0.0 <2.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/beeper/download/beeper-1.0.0.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/beeper/-/beeper-1.1.0.tgz"
                 },
                 "chalk": {
                   "version": "1.0.0",
@@ -2714,7 +2742,7 @@
                         },
                         "get-stdin": {
                           "version": "4.0.1",
-                          "from": "get-stdin@*",
+                          "from": "get-stdin@>=4.0.1 <5.0.0",
                           "resolved": "http://npmcc.creditcloud.com/get-stdin/download/get-stdin-4.0.1.tgz"
                         }
                       }
@@ -2726,7 +2754,7 @@
                       "dependencies": {
                         "ansi-regex": {
                           "version": "1.1.1",
-                          "from": "ansi-regex@>=1.0.0 <2.0.0",
+                          "from": "ansi-regex@>=1.1.0 <2.0.0",
                           "resolved": "http://npmcc.creditcloud.com/ansi-regex/download/ansi-regex-1.1.1.tgz"
                         }
                       }
@@ -2759,9 +2787,9 @@
                           "resolved": "http://npmcc.creditcloud.com/camelcase-keys/download/camelcase-keys-1.0.0.tgz",
                           "dependencies": {
                             "camelcase": {
-                              "version": "1.0.2",
+                              "version": "1.1.0",
                               "from": "camelcase@>=1.0.1 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                             },
                             "map-obj": {
                               "version": "1.0.1",
@@ -2776,14 +2804,21 @@
                           "resolved": "http://npmcc.creditcloud.com/indent-string/download/indent-string-1.2.1.tgz",
                           "dependencies": {
                             "repeating": {
-                              "version": "1.1.2",
+                              "version": "1.1.3",
                               "from": "repeating@>=1.1.0 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/repeating/download/repeating-1.1.2.tgz",
+                              "resolved": "http://npmcc.creditcloud.com/repeating/-/repeating-1.1.3.tgz",
                               "dependencies": {
                                 "is-finite": {
-                                  "version": "1.0.0",
+                                  "version": "1.0.1",
                                   "from": "is-finite@>=1.0.0 <2.0.0",
-                                  "resolved": "http://npmcc.creditcloud.com/is-finite/download/is-finite-1.0.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/is-finite/-/is-finite-1.0.1.tgz",
+                                  "dependencies": {
+                                    "number-is-nan": {
+                                      "version": "1.0.0",
+                                      "from": "number-is-nan@>=1.0.0 <2.0.0",
+                                      "resolved": "http://npmcc.creditcloud.com/number-is-nan/-/number-is-nan-1.0.0.tgz"
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -2809,9 +2844,9 @@
                   "resolved": "http://npmcc.creditcloud.com/lodash._reinterpolate/download/lodash._reinterpolate-3.0.0.tgz"
                 },
                 "lodash.template": {
-                  "version": "3.5.1",
+                  "version": "3.6.1",
                   "from": "lodash.template@>=3.0.0 <4.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/lodash.template/download/lodash.template-3.5.1.tgz",
+                  "resolved": "http://npmcc.creditcloud.com/lodash.template/-/lodash.template-3.6.1.tgz",
                   "dependencies": {
                     "lodash._basecopy": {
                       "version": "3.0.1",
@@ -2829,34 +2864,34 @@
                       "resolved": "http://npmcc.creditcloud.com/lodash._basevalues/download/lodash._basevalues-3.0.0.tgz"
                     },
                     "lodash._isiterateecall": {
-                      "version": "3.0.7",
+                      "version": "3.0.9",
                       "from": "lodash._isiterateecall@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.7.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz"
                     },
                     "lodash.escape": {
                       "version": "3.0.0",
                       "from": "lodash.escape@>=3.0.0 <4.0.0",
                       "resolved": "http://npmcc.creditcloud.com/lodash.escape/download/lodash.escape-3.0.0.tgz"
                     },
-                    "lodash.isnative": {
-                      "version": "3.0.2",
-                      "from": "lodash.isnative@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.isnative/download/lodash.isnative-3.0.2.tgz"
-                    },
                     "lodash.keys": {
-                      "version": "3.0.7",
+                      "version": "3.1.1",
                       "from": "lodash.keys@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/download/lodash.keys-3.0.7.tgz",
+                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/-/lodash.keys-3.1.1.tgz",
                       "dependencies": {
+                        "lodash._getnative": {
+                          "version": "3.9.0",
+                          "from": "lodash._getnative@>=3.0.0 <4.0.0",
+                          "resolved": "http://npmcc.creditcloud.com/lodash._getnative/-/lodash._getnative-3.9.0.tgz"
+                        },
                         "lodash.isarguments": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarguments@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/download/lodash.isarguments-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/-/lodash.isarguments-3.0.3.tgz"
                         },
                         "lodash.isarray": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarray@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/download/lodash.isarray-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/-/lodash.isarray-3.0.3.tgz"
                         }
                       }
                     },
@@ -2919,9 +2954,9 @@
                   }
                 },
                 "object-assign": {
-                  "version": "2.0.0",
+                  "version": "2.1.1",
                   "from": "object-assign@>=2.0.0 <3.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/object-assign/download/object-assign-2.0.0.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/object-assign/-/object-assign-2.1.1.tgz"
                 },
                 "replace-ext": {
                   "version": "0.0.1",
@@ -2948,9 +2983,9 @@
               }
             },
             "rimraf": {
-              "version": "2.3.3",
+              "version": "2.4.0",
               "from": "rimraf@>=2.2.8 <3.0.0",
-              "resolved": "http://npmcc.creditcloud.com/rimraf/download/rimraf-2.3.3.tgz"
+              "resolved": "http://npmcc.creditcloud.com/rimraf/-/rimraf-2.4.0.tgz"
             }
           }
         },
@@ -2977,9 +3012,9 @@
               "resolved": "http://npmcc.creditcloud.com/deap/download/deap-1.0.0.tgz"
             },
             "gulp-util": {
-              "version": "3.0.4",
+              "version": "3.0.5",
               "from": "gulp-util@>=3.0.0 <4.0.0-0",
-              "resolved": "http://npmcc.creditcloud.com/gulp-util/download/gulp-util-3.0.4.tgz",
+              "resolved": "http://npmcc.creditcloud.com/gulp-util/-/gulp-util-3.0.5.tgz",
               "dependencies": {
                 "array-differ": {
                   "version": "1.0.0",
@@ -2992,9 +3027,9 @@
                   "resolved": "http://npmcc.creditcloud.com/array-uniq/download/array-uniq-1.0.2.tgz"
                 },
                 "beeper": {
-                  "version": "1.0.0",
+                  "version": "1.1.0",
                   "from": "beeper@>=1.0.0 <2.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/beeper/download/beeper-1.0.0.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/beeper/-/beeper-1.1.0.tgz"
                 },
                 "chalk": {
                   "version": "1.0.0",
@@ -3068,9 +3103,9 @@
                           "resolved": "http://npmcc.creditcloud.com/camelcase-keys/download/camelcase-keys-1.0.0.tgz",
                           "dependencies": {
                             "camelcase": {
-                              "version": "1.0.2",
+                              "version": "1.1.0",
                               "from": "camelcase@>=1.0.1 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                              "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                             },
                             "map-obj": {
                               "version": "1.0.1",
@@ -3085,14 +3120,21 @@
                           "resolved": "http://npmcc.creditcloud.com/indent-string/download/indent-string-1.2.1.tgz",
                           "dependencies": {
                             "repeating": {
-                              "version": "1.1.2",
+                              "version": "1.1.3",
                               "from": "repeating@>=1.1.0 <2.0.0",
-                              "resolved": "http://npmcc.creditcloud.com/repeating/download/repeating-1.1.2.tgz",
+                              "resolved": "http://npmcc.creditcloud.com/repeating/-/repeating-1.1.3.tgz",
                               "dependencies": {
                                 "is-finite": {
-                                  "version": "1.0.0",
+                                  "version": "1.0.1",
                                   "from": "is-finite@>=1.0.0 <2.0.0",
-                                  "resolved": "http://npmcc.creditcloud.com/is-finite/download/is-finite-1.0.0.tgz"
+                                  "resolved": "http://npmcc.creditcloud.com/is-finite/-/is-finite-1.0.1.tgz",
+                                  "dependencies": {
+                                    "number-is-nan": {
+                                      "version": "1.0.0",
+                                      "from": "number-is-nan@>=1.0.0 <2.0.0",
+                                      "resolved": "http://npmcc.creditcloud.com/number-is-nan/-/number-is-nan-1.0.0.tgz"
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -3118,9 +3160,9 @@
                   "resolved": "http://npmcc.creditcloud.com/lodash._reinterpolate/download/lodash._reinterpolate-3.0.0.tgz"
                 },
                 "lodash.template": {
-                  "version": "3.5.1",
+                  "version": "3.6.1",
                   "from": "lodash.template@>=3.0.0 <4.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/lodash.template/download/lodash.template-3.5.1.tgz",
+                  "resolved": "http://npmcc.creditcloud.com/lodash.template/-/lodash.template-3.6.1.tgz",
                   "dependencies": {
                     "lodash._basecopy": {
                       "version": "3.0.1",
@@ -3138,34 +3180,34 @@
                       "resolved": "http://npmcc.creditcloud.com/lodash._basevalues/download/lodash._basevalues-3.0.0.tgz"
                     },
                     "lodash._isiterateecall": {
-                      "version": "3.0.7",
+                      "version": "3.0.9",
                       "from": "lodash._isiterateecall@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.7.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz"
                     },
                     "lodash.escape": {
                       "version": "3.0.0",
                       "from": "lodash.escape@>=3.0.0 <4.0.0",
                       "resolved": "http://npmcc.creditcloud.com/lodash.escape/download/lodash.escape-3.0.0.tgz"
                     },
-                    "lodash.isnative": {
-                      "version": "3.0.2",
-                      "from": "lodash.isnative@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.isnative/download/lodash.isnative-3.0.2.tgz"
-                    },
                     "lodash.keys": {
-                      "version": "3.0.7",
+                      "version": "3.1.1",
                       "from": "lodash.keys@>=3.0.0 <4.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/download/lodash.keys-3.0.7.tgz",
+                      "resolved": "http://npmcc.creditcloud.com/lodash.keys/-/lodash.keys-3.1.1.tgz",
                       "dependencies": {
+                        "lodash._getnative": {
+                          "version": "3.9.0",
+                          "from": "lodash._getnative@>=3.0.0 <4.0.0",
+                          "resolved": "http://npmcc.creditcloud.com/lodash._getnative/-/lodash._getnative-3.9.0.tgz"
+                        },
                         "lodash.isarguments": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarguments@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/download/lodash.isarguments-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/-/lodash.isarguments-3.0.3.tgz"
                         },
                         "lodash.isarray": {
-                          "version": "3.0.2",
+                          "version": "3.0.3",
                           "from": "lodash.isarray@>=3.0.0 <4.0.0",
-                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/download/lodash.isarray-3.0.2.tgz"
+                          "resolved": "http://npmcc.creditcloud.com/lodash.isarray/-/lodash.isarray-3.0.3.tgz"
                         }
                       }
                     },
@@ -3228,9 +3270,9 @@
                   }
                 },
                 "object-assign": {
-                  "version": "2.0.0",
+                  "version": "2.1.1",
                   "from": "object-assign@>=2.0.0 <3.0.0",
-                  "resolved": "http://npmcc.creditcloud.com/object-assign/download/object-assign-2.0.0.tgz"
+                  "resolved": "http://npmcc.creditcloud.com/object-assign/-/object-assign-2.1.1.tgz"
                 },
                 "replace-ext": {
                   "version": "0.0.1",
@@ -3272,9 +3314,9 @@
                   "resolved": "http://npmcc.creditcloud.com/source-map/download/source-map-0.1.34.tgz",
                   "dependencies": {
                     "amdefine": {
-                      "version": "0.1.0",
+                      "version": "0.1.1",
                       "from": "amdefine@>=0.0.4",
-                      "resolved": "http://npmcc.creditcloud.com/amdefine/download/amdefine-0.1.0.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/amdefine/-/amdefine-0.1.1.tgz"
                     }
                   }
                 },
@@ -3284,9 +3326,9 @@
                   "resolved": "http://npmcc.creditcloud.com/yargs/download/yargs-3.5.4.tgz",
                   "dependencies": {
                     "camelcase": {
-                      "version": "1.0.2",
+                      "version": "1.1.0",
                       "from": "camelcase@>=1.0.2 <2.0.0",
-                      "resolved": "http://npmcc.creditcloud.com/camelcase/download/camelcase-1.0.2.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/camelcase/-/camelcase-1.1.0.tgz"
                     },
                     "decamelize": {
                       "version": "1.0.0",
@@ -3301,7 +3343,7 @@
                     "wordwrap": {
                       "version": "0.0.2",
                       "from": "wordwrap@0.0.2",
-                      "resolved": "http://npmcc.creditcloud.com/wordwrap/-/wordwrap-0.0.2.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/wordwrap/download/wordwrap-0.0.2.tgz"
                     }
                   }
                 },
@@ -3323,9 +3365,9 @@
                   "resolved": "http://npmcc.creditcloud.com/source-map/download/source-map-0.1.43.tgz",
                   "dependencies": {
                     "amdefine": {
-                      "version": "0.1.0",
+                      "version": "0.1.1",
                       "from": "amdefine@>=0.0.4",
-                      "resolved": "http://npmcc.creditcloud.com/amdefine/download/amdefine-0.1.0.tgz"
+                      "resolved": "http://npmcc.creditcloud.com/amdefine/-/amdefine-0.1.1.tgz"
                     }
                   }
                 }
@@ -3344,9 +3386,9 @@
           "resolved": "http://npmcc.creditcloud.com/stream-cache/-/stream-cache-0.0.2.tgz"
         },
         "stream-combiner": {
-          "version": "0.2.1",
+          "version": "0.2.2",
           "from": "stream-combiner@>=0.2.1 <0.3.0",
-          "resolved": "http://npmcc.creditcloud.com/stream-combiner/download/stream-combiner-0.2.1.tgz",
+          "resolved": "http://npmcc.creditcloud.com/stream-combiner/-/stream-combiner-0.2.2.tgz",
           "dependencies": {
             "duplexer": {
               "version": "0.1.1",
@@ -3384,12 +3426,12 @@
       "dependencies": {
         "async": {
           "version": "0.9.0",
-          "from": "async@>=0.9.0 <0.10.0",
+          "from": "http://npmcc.creditcloud.com/async/download/async-0.9.0.tgz",
           "resolved": "http://npmcc.creditcloud.com/async/download/async-0.9.0.tgz"
         },
         "errto": {
           "version": "0.2.1",
-          "from": "errto@>=0.2.1 <0.3.0",
+          "from": "http://npmcc.creditcloud.com/errto/download/errto-0.2.1.tgz",
           "resolved": "http://npmcc.creditcloud.com/errto/download/errto-0.2.1.tgz"
         }
       }
@@ -4827,119 +4869,119 @@
     },
     "bunyan-hub-logger": {
       "version": "1.1.2",
-      "from": "bunyan-hub-logger@*",
+      "from": "http://registry.npmjs.org/bunyan-hub-logger/-/bunyan-hub-logger-1.1.2.tgz",
       "resolved": "http://registry.npmjs.org/bunyan-hub-logger/-/bunyan-hub-logger-1.1.2.tgz",
       "dependencies": {
         "bunyan": {
           "version": "1.3.5",
-          "from": "bunyan@>=1.3.4 <2.0.0",
+          "from": "http://registry.npmjs.org/bunyan/-/bunyan-1.3.5.tgz",
           "resolved": "http://registry.npmjs.org/bunyan/-/bunyan-1.3.5.tgz",
           "dependencies": {
             "dtrace-provider": {
               "version": "0.4.0",
-              "from": "dtrace-provider@>=0.4.0 <0.5.0",
+              "from": "http://registry.npmjs.org/dtrace-provider/-/dtrace-provider-0.4.0.tgz",
               "resolved": "http://registry.npmjs.org/dtrace-provider/-/dtrace-provider-0.4.0.tgz",
               "dependencies": {
                 "nan": {
                   "version": "1.5.3",
-                  "from": "nan@>=1.5.1 <1.6.0",
+                  "from": "http://registry.npmjs.org/nan/-/nan-1.5.3.tgz",
                   "resolved": "http://registry.npmjs.org/nan/-/nan-1.5.3.tgz"
                 }
               }
             },
             "mv": {
               "version": "2.0.3",
-              "from": "mv@>=2.0.0 <3.0.0",
+              "from": "http://registry.npmjs.org/mv/-/mv-2.0.3.tgz",
               "resolved": "http://registry.npmjs.org/mv/-/mv-2.0.3.tgz",
               "dependencies": {
                 "ncp": {
                   "version": "0.6.0",
-                  "from": "ncp@>=0.6.0 <0.7.0",
+                  "from": "http://registry.npmjs.org/ncp/-/ncp-0.6.0.tgz",
                   "resolved": "http://registry.npmjs.org/ncp/-/ncp-0.6.0.tgz"
                 },
                 "rimraf": {
                   "version": "2.2.8",
-                  "from": "rimraf@>=2.2.8 <2.3.0",
+                  "from": "http://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz",
                   "resolved": "http://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz"
                 }
               }
             },
             "safe-json-stringify": {
               "version": "1.0.3",
-              "from": "safe-json-stringify@>=1.0.0 <2.0.0",
+              "from": "http://registry.npmjs.org/safe-json-stringify/-/safe-json-stringify-1.0.3.tgz",
               "resolved": "http://registry.npmjs.org/safe-json-stringify/-/safe-json-stringify-1.0.3.tgz"
             }
           }
         },
         "bunyan-pub-stream": {
           "version": "1.0.1",
-          "from": "bunyan-pub-stream@>=1.0.1 <2.0.0",
+          "from": "http://registry.npmjs.org/bunyan-pub-stream/-/bunyan-pub-stream-1.0.1.tgz",
           "resolved": "http://registry.npmjs.org/bunyan-pub-stream/-/bunyan-pub-stream-1.0.1.tgz",
           "dependencies": {
             "destroy": {
               "version": "1.0.3",
-              "from": "destroy@>=1.0.3 <2.0.0",
+              "from": "http://npmcc.creditcloud.com/destroy/-/destroy-1.0.3.tgz",
               "resolved": "http://npmcc.creditcloud.com/destroy/-/destroy-1.0.3.tgz"
             }
           }
         },
         "lodash.assign": {
           "version": "3.1.0",
-          "from": "lodash.assign@>=3.0.0 <4.0.0",
+          "from": "http://registry.npmjs.org/lodash.assign/-/lodash.assign-3.1.0.tgz",
           "resolved": "http://registry.npmjs.org/lodash.assign/-/lodash.assign-3.1.0.tgz",
           "dependencies": {
             "lodash._baseassign": {
               "version": "3.1.1",
-              "from": "lodash._baseassign@>=3.0.0 <4.0.0",
+              "from": "http://registry.npmjs.org/lodash._baseassign/-/lodash._baseassign-3.1.1.tgz",
               "resolved": "http://registry.npmjs.org/lodash._baseassign/-/lodash._baseassign-3.1.1.tgz",
               "dependencies": {
                 "lodash._basecopy": {
                   "version": "3.0.1",
-                  "from": "lodash._basecopy@>=3.0.0 <4.0.0",
+                  "from": "http://npmcc.creditcloud.com/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz",
                   "resolved": "http://npmcc.creditcloud.com/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz"
                 }
               }
             },
             "lodash._createassigner": {
               "version": "3.1.0",
-              "from": "lodash._createassigner@>=3.0.0 <4.0.0",
+              "from": "http://registry.npmjs.org/lodash._createassigner/-/lodash._createassigner-3.1.0.tgz",
               "resolved": "http://registry.npmjs.org/lodash._createassigner/-/lodash._createassigner-3.1.0.tgz",
               "dependencies": {
                 "lodash._bindcallback": {
                   "version": "3.0.1",
-                  "from": "lodash._bindcallback@>=3.0.0 <4.0.0",
+                  "from": "http://registry.npmjs.org/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz",
                   "resolved": "http://registry.npmjs.org/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz"
                 },
                 "lodash._isiterateecall": {
                   "version": "3.0.7",
-                  "from": "lodash._isiterateecall@>=3.0.0 <4.0.0",
+                  "from": "http://npmcc.creditcloud.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.7.tgz",
                   "resolved": "http://npmcc.creditcloud.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.7.tgz"
                 },
                 "lodash.restparam": {
                   "version": "3.6.1",
-                  "from": "lodash.restparam@>=3.0.0 <4.0.0",
+                  "from": "http://npmcc.creditcloud.com/lodash.restparam/download/lodash.restparam-3.6.1.tgz",
                   "resolved": "http://npmcc.creditcloud.com/lodash.restparam/download/lodash.restparam-3.6.1.tgz"
                 }
               }
             },
             "lodash.isnative": {
               "version": "3.0.2",
-              "from": "lodash.isnative@>=3.0.0 <4.0.0",
+              "from": "http://npmcc.creditcloud.com/lodash.isnative/download/lodash.isnative-3.0.2.tgz",
               "resolved": "http://npmcc.creditcloud.com/lodash.isnative/download/lodash.isnative-3.0.2.tgz"
             },
             "lodash.keys": {
               "version": "3.0.7",
-              "from": "lodash.keys@>=3.0.0 <4.0.0",
+              "from": "http://npmcc.creditcloud.com/lodash.keys/download/lodash.keys-3.0.7.tgz",
               "resolved": "http://npmcc.creditcloud.com/lodash.keys/download/lodash.keys-3.0.7.tgz",
               "dependencies": {
                 "lodash.isarguments": {
                   "version": "3.0.2",
-                  "from": "lodash.isarguments@>=3.0.0 <4.0.0",
+                  "from": "http://npmcc.creditcloud.com/lodash.isarguments/download/lodash.isarguments-3.0.2.tgz",
                   "resolved": "http://npmcc.creditcloud.com/lodash.isarguments/download/lodash.isarguments-3.0.2.tgz"
                 },
                 "lodash.isarray": {
                   "version": "3.0.2",
-                  "from": "lodash.isarray@>=3.0.0 <4.0.0",
+                  "from": "http://npmcc.creditcloud.com/lodash.isarray/download/lodash.isarray-3.0.2.tgz",
                   "resolved": "http://npmcc.creditcloud.com/lodash.isarray/download/lodash.isarray-3.0.2.tgz"
                 }
               }
@@ -4948,7 +4990,7 @@
         },
         "uuid": {
           "version": "2.0.1",
-          "from": "uuid@>=2.0.1 <3.0.0",
+          "from": "http://registry.npmjs.org/uuid/-/uuid-2.0.1.tgz",
           "resolved": "http://registry.npmjs.org/uuid/-/uuid-2.0.1.tgz"
         }
       }
@@ -4982,7 +5024,7 @@
     },
     "console-polyfill": {
       "version": "0.2.1",
-      "from": "console-polyfill@*",
+      "from": "http://npmcc.creditcloud.com/console-polyfill/-/console-polyfill-0.2.1.tgz",
       "resolved": "http://npmcc.creditcloud.com/console-polyfill/-/console-polyfill-0.2.1.tgz"
     },
     "cookie-parser": {
@@ -5049,6 +5091,18 @@
         "through": {
           "version": "2.3.7",
           "from": "http://npmcc.creditcloud.com/through/download/through-2.3.7.tgz",
+          "resolved": "http://npmcc.creditcloud.com/through/download/through-2.3.7.tgz"
+        }
+      }
+    },
+    "es3ify-safe": {
+      "version": "0.1.3",
+      "from": "es3ify-safe@*",
+      "resolved": "http://npmcc.creditcloud.com/es3ify-safe/-/es3ify-safe-0.1.3.tgz",
+      "dependencies": {
+        "through": {
+          "version": "2.3.7",
+          "from": "through@>=2.3.7 <3.0.0",
           "resolved": "http://npmcc.creditcloud.com/through/download/through-2.3.7.tgz"
         }
       }
@@ -5970,8 +6024,8 @@
                         },
                         "concat-map": {
                           "version": "0.0.1",
-                          "from": "http://npmcc.creditcloud.com/concat-map/download/concat-map-0.0.1.tgz",
-                          "resolved": "http://npmcc.creditcloud.com/concat-map/download/concat-map-0.0.1.tgz"
+                          "from": "http://npmcc.creditcloud.com/concat-map/-/concat-map-0.0.1.tgz",
+                          "resolved": "http://npmcc.creditcloud.com/concat-map/-/concat-map-0.0.1.tgz"
                         }
                       }
                     }
