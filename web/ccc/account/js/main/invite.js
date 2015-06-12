@@ -16,6 +16,7 @@ var inviteRactive = new Ractive({
     }
 })
 
+ZeroClipboard.config({swfPath: '/assets/img/ZeroClipboard.swf'});
 var client = new ZeroClipboard(document.getElementById("copy-button"));
 
 client.on("ready", function( readyEvent ) {

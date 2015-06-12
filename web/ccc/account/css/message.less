@@ -26,29 +26,31 @@
 //            font-size: 13px;
 //    }
 //}
-   .table{
+   .table {
         width: 100%;
         font-size: 13px;
         color: #000;    
-        thead{
-            tr{
+        thead {
+            tr {
                 background-color: #e1e1e1;
-                th{
-                    // override base.css 
+                th {
                     padding: 8px;
                     color:#000;
                 }
             }
         }
     }
-    span.page{
-            margin-right: 3px;
-            margin-left: 3px;
-            padding: 2px 6px;
-            border: 1px solid #e5e5e5 ;
-        &:hover {
-            background-image: none;
-            background-color: #2A375F;
-            color: #fff;
-    }
+    span {
+        &.page {
+                margin-right: 3px;
+                margin-left: 3px;
+                padding: 2px 6px;
+                border: 1px solid #e5e5e5 ;
+            &:hover {
+                background-image: none;
+                background-color: #2A375F;
+                color: #fff;
+            }
         }
+        cursor: pointer;
+    }
