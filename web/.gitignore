@@ -33,3 +33,5 @@ web/config/local.js
 
 dist/
 tmp/
+config/local.js
+ccc/global/img/fonts/*
