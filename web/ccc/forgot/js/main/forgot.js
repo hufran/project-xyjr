@@ -1,12 +1,9 @@
 'use strict';
 
-var CommonService = require('assets/js/modules/common')
-    .CommonService;
-var forgotService = require('../service/forgot')
-    .forgotService;
+var CommonService = require('ccc/global/js/modules/common').CommonService;
+var forgotService = require('../service/forgot').forgotService;
 var template = require('ccc/forgot/partials/forgot.html');
-var Ractive = require('ractive/ractive-legacy');
-var utils = require('assets/js/lib/utils');
+var utils = require('ccc/global/js/lib/utils');
 var forgotRactive = new Ractive({
     el: '.page-forgot',
     template: template,

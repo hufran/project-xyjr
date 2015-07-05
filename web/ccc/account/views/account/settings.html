@@ -1,8 +1,6 @@
-{{>layouts.default.head}}
-<link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/banks.css">
-<link rel="stylesheet" href="/css/settings.css">
-{{>layouts.default.header}}
+<link rel="stylesheet" href="/ccc/account/css/common.css">
+<link rel="stylesheet" href="/ccc/account/css/banks.css">
+<link rel="stylesheet" href="/ccc/account/css/settings.css">
 <div class="account-wraper">
     {{>topNav}}
 	
@@ -34,20 +32,19 @@
     </div>
 	<div class="space space-50"></div>
 </div>
-{{>layouts.default.footer}}
 
 {{#if tabName === "settings"}}
-<script src="/js/main/settings/index.js"></script>
+<script src="/ccc/account/js/main/settings/index.js"></script>
 {{/if}}
 {{#if tabName === "paypwd"}}
-<script src="/js/main/settings/paypwd.js"></script>
+<script src="/ccc/account/js/main/settings/paypwd.js"></script>
 {{/if}}
 {{#if tabName === "umpay"}}
-<script src="/js/main/settings/umpay.js"></script>
+<script src="/ccc/account/js/main/settings/umpay.js"></script>
 {{/if}}
 {{#if tabName === "bankcard"}}
-<script src="/js/main/settings/bankcard.js"></script>
+<script src="/ccc/account/js/main/settings/bankcard.js"></script>
 {{/if}}
 {{#if tabName === "agreement"}}
-<script src="/js/main/settings/agreement.js"></script>
+<script src="/ccc/account/js/main/settings/agreement.js"></script>
 {{/if}}

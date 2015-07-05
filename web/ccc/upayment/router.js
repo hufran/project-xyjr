@@ -1,12 +1,8 @@
 'use strict';
-var router = module.exports = require('express')
-    .Router();
+module.exports = function (router) {
 var qs = require('qs');
-var bodyParser = require('body-parser');
+var ccBody = require('cc-body');
 var log = require('bunyan-hub-logger')({app: 'web', name: 'umpay'});
-
-//require('cc-debug');
-//var debug = require('debug')('cc:ds:upayment');
 
 var upayUrl = 'https://pay.soopay.net/spay/pay/payservice.do';
 
@@ -21,47 +17,44 @@ _.each({
     '/usrAcctPay': '/usrAcctPay',
     '/unbindAgreement': '/unbindAgreement'
 }, function (api, fe) {
-    router.post('/upayment' + fe, bodyParser(),
-        function (req, res, next) {
-            log.info({
-                type: 'upayment'+fe+'/request',
-                req: req,
-                body: req.body
-            });
-            req.body.retUrl = (req.connection.encrypted ? 'https://' :
-                'http://') + req.headers.host;        
-            //debug(fe + ' request: %j', req.body);
-            var data = qs.stringify(req.body);
-            req.body = data.replace(/%5B\d+%5D/g, '');
-            next();
-        },
-        function (req, res) {            
-            req.uest.post('/api/v2/upayment' + api + '/MYSELF')
-                .type("form")
-                .send(req.body)
-                .end()
-                .then(function (r) {
-                    log.info({
-                        type: 'upayment'+fe+'/post',
-                        req: req,
-                        body: r.body
-                    });
-                    var emsg;
-                    try {
-                        emsg = r.body.error[0].message;
-                    } catch(e){}
-                    if (emsg ==='WITHDRAW_EXCEED_LIMIT') {
-                        return res.render('payment/return', {
-                            customText: '您今日申请提现次数过多，请明天再试。',
-                            data: r.body
-                        });
-                    }
-                    res.render('payment/post', {
-                        postUrl: upayUrl,
-                        data: r.body.data
-                    });
-                });
+    router.post('/upayment' + fe, ccBody, function (req, res, next) {
+        log.info({
+            type: 'upayment'+fe+'/request',
+            req: req,
+            body: req.body
         });
+        req.body.retUrl = (req.connection.encrypted ? 'https://' : 'http://') + req.headers.host;
+        //debug(fe + ' request: %j', req.body);
+        var data = qs.stringify(req.body);
+        req.body = data.replace(/%5B\d+%5D/g, '');
+        next();
+    }, function (req, res) {
+        req.uest.post('/api/v2/upayment' + api + '/MYSELF')
+            .type("form")
+            .send(req.body)
+            .end()
+            .then(function (r) {
+                log.info({
+                    type: 'upayment'+fe+'/post',
+                    req: req,
+                    body: r.body
+                });
+                var emsg;
+                try {
+                    emsg = r.body.error[0].message;
+                } catch(e){}
+                if (emsg ==='WITHDRAW_EXCEED_LIMIT') {
+                    return res.render('payment/return', {
+                        customText: '您今日申请提现次数过多，请明天再试。',
+                        data: r.body
+                    });
+                }
+                res.render('payment/post', {
+                    postUrl: upayUrl,
+                    data: r.body.data
+                });
+            });
+    });
 });
 
 // return back
@@ -97,7 +90,7 @@ _.each({
         });
 });
 
-router.post('/upayment/tender', bodyParser('json'), function (req, res) {
+router.post('/upayment/tender', ccBody, function (req, res) {
     req.uest.post("/api/v2/upayment/tender/MYSELF")
         .type("form")
         .send(req.body)
@@ -122,11 +115,11 @@ router.get('/upayment/bankcard', function (req, res) {
 
 // 无密处理
 _.each({
-	'/nopwd/tender': '/tenderNoPwd'
+    '/nopwd/tender': '/tenderNoPwd'
 }, function (api, fe) {
-    router.post('/upayment' + fe, bodyParser(),
+    router.post('/upayment' + fe, ccBody,
         function (req, res) {
-			var parms = '/loan/' + req.body.loanId + '/amount/' + req.body.amount;
+            var parms = '/loan/' + req.body.loanId + '/amount/' + req.body.amount;
             log.info({
                 type: 'upayment/tenderNoPw/request',
                 req: req,
@@ -147,8 +140,9 @@ _.each({
                     res.render('payment/return', {
                         postUrl: upayUrl,
                         data: r.body.data,
-						optype: '投标'
+                        optype: '投标'
                     });
                 });
         });
 });
+}

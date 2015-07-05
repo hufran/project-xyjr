@@ -1,14 +1,11 @@
 "use strict";
 
-var Ractive = require('ractive/ractive-legacy');
-var utils = require('assets/js/lib/utils');
-var $ = require('jquery');
-var filter = require('lodash-node/modern/collections/filter');
-var UMPBANKS = require('assets/js/modules/cccUmpBanks');
-var Confirm = require('assets/js/modules/cccConfirm');
+var utils = require('ccc/global/js/lib/utils');
+var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
+var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 // 过滤银行卡，只显示enabled=true的
-var banks = filter(UMPBANKS, function (r) {
+var banks = _.filter(UMPBANKS, function (r) {
     return r.enable === true;
 });
 

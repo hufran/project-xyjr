@@ -1,12 +1,9 @@
 "use strict";
-require('assets/js/modules/cccTab');
-var Ractive = require('ractive/ractive-legacy');
-var request = require('cc-superagent-promise');
-var utils = require('assets/js/lib/utils');
-var CccOk = require('assets/js/modules/cccOk');
+require('ccc/global/js/modules/cccTab');
+var utils = require('ccc/global/js/lib/utils');
+var CccOk = require('ccc/global/js/modules/cccOk');
 
-var CommonService = require('assets/js/modules/common.js')
-    .CommonService;
+var CommonService = require('ccc/global/js/modules/common.js').CommonService;
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/account/partials/settings/index.html'),

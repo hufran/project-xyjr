@@ -4,7 +4,7 @@
  */
 "use strict";
 var template = require('ccc/agreement/partials/quickInvest.html');
-var maskLayer = require('assets/js/lib/maskLayer');
+var maskLayer = require('ccc/global/js/lib/maskLayer');
 exports.popupInvestRactive = {
     instance: false,
     init: function () {

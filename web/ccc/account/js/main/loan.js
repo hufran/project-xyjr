@@ -1,13 +1,9 @@
 'use strict';
 
-var $ = global.jQuery = require('jquery');
-var utils = require('assets/js/lib/utils');
-var Ractive = require('ractive/ractive-legacy');
-var Tips = require('assets/js/modules/cccTips');
-require('assets/js/modules/cccTab');
-require('assets/js/modules/cccPaging');
-var moment = require('moment');
-require('moment/locale/zh-cn');
+var utils = require('ccc/global/js/lib/utils');
+var Tips = require('ccc/global/js/modules/cccTips');
+require('ccc/global/js/modules/cccTab');
+require('ccc/global/js/modules/cccPaging');
 
 var tpl = {
 	loan: require('ccc/account/partials/loan/loan.html'),

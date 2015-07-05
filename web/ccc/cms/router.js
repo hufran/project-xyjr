@@ -1,7 +1,5 @@
 'use strict';
-var router = module.exports = require('@ds/base')
-    .createSubApp(__dirname);
-var moment = require('moment');
+module.exports = function (router) {
 var pageSize = 10;
 
 router.get('/cms/:channelName', function (req, res) {
@@ -93,3 +91,4 @@ function createList(len) {
     }
     return arr;
 }
+};

@@ -2,20 +2,15 @@
 
 'use strict';
 
-var $ = global.jQuery = require('jquery');
 require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
 require('bootstrap/js/dropdown');
 require('eonasdan-bootstrap-datetimepicker');
-require('assets/js/modules/cccTab');
-require('assets/js/modules/cccPaging');
+require('ccc/global/js/modules/cccTab');
+require('ccc/global/js/modules/cccPaging');
 
 var template = require('ccc/account/partials/funds/funds.html');
-var Ractive = require('ractive/ractive-legacy');
-var utils = require('assets/js/lib/utils');
-var moment = require('moment');
-require('moment/locale/zh-cn');
-var request = require('cc-superagent-promise');
+var utils = require('ccc/global/js/lib/utils');
 
 var typeLists = [];
 var size = 10; // pageSize;

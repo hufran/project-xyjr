@@ -1,40 +1,8 @@
-{{>layouts.default.head}}
-<link rel="stylesheet" href="/assets/css/base.css" />
-<link rel="stylesheet" href="/css/style.css">
-{{>layouts.default.header}}
-
-{{#HIDE}}
-<div id="main-container">
-    <div class="s-login-view u-pos-r-center">
-        <div class="s-img-view"></div>
-        <div class="s-login-box">
-            <div class="s-login-box-header">
-                <p>没有账号？<a href="/register">立即注册</a>
-                </p>
-                <h3>登录</h3>
-            </div>
-            <form id="loginForm" action="/login" method="POST">
-                <div><i class="mdi mdi-account"></i>
-                    <input type="text" name="loginName" placeholder="用户名/手机" />
-                    <input type="hidden" name="backUrl" value="{{backUrl}}">
-                </div>
-                <div><i class="mdi mdi-lock"></i>
-                    <input type="password" name="password" placeholder="密码" />
-                </div>
-                <p>
-                    <a href="/forgot">忘记密码？</a>
-                </p>
-                <button type="submit" class="do-login">登录</button>
-                <p class="login-error"></p>
-            </form>
-        </div>
-    </div>
-</div>
-{{/HIDE}}
-
+<link rel="stylesheet" href="/ccc/global/css/base.css" />
+<link rel="stylesheet" href="/ccc/login/css/style.css">
 
 <div id="main-container">
-    <img src="/img/bg-log-2.jpg"/>
+    <img src="/ccc/login/img/bg-log-2.jpg"/>
     <div class="s-login-view">
         <div class="s-login-window">
             <form id="loginForm" action="/login" method="POST">
@@ -54,6 +22,4 @@
     </div>
 </div>
 
-
-{{>layouts.default.footer}}
-<script src="/js/main/login.js"></script>
+<script src="/ccc/login/js/main/login.js"></script>

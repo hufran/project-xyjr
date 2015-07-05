@@ -1,6 +1,5 @@
 'use strict';
-require('assets/js/modules/tooltip');
-var $ = global.jQuery = require('jquery');
+require('ccc/global/js/modules/tooltip');
 
 $('ul.info li')
     .tooltip({

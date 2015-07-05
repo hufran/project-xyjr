@@ -1,11 +1,7 @@
 'use strict';
-var $ = require('jquery');
-var Ractive = require('ractive/ractive-legacy');
-var CommonService = require('assets/js/modules/common')
-    .CommonService;
+var CommonService = require('ccc/global/js/modules/common').CommonService;
 var captChaImg = $('.captcha-img');
 var captcha = {};
-var request = require('cc-superagent-promise');
 // init captcha
 
 getCaptCha();
@@ -74,7 +70,7 @@ $('#loginForm').submit(function(e){
     
     $postBtn.addClass('disabled')//.html('登录中...');
 
-    request.post('/ajaxLogin').type('form').send($this.serialize()).end().get('body').then(function(r){
+    request.post('/login/ajax').type('form').send($this.serialize()).end().get('body').then(function(r){
         if (r.success) {
             //$postBtn.text('登录成功');
             location.href = (r.redirect) ? r.redirect:'/invest/list';

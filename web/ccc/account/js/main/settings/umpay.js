@@ -1,13 +1,9 @@
 "use strict";
 
-var $ = require('jquery');
-var utils = require('assets/js/lib/utils');
-var Ractive = require('ractive/ractive-legacy');
-var Confirm = require('assets/js/modules/cccConfirm');
-var popupInvestRactive = require('ccc/agreement/js/main/quickInvest')
-    .popupInvestRactive;
-var accountService = require('../service/account')
-    .accountService;
+var utils = require('ccc/global/js/lib/utils');
+var Confirm = require('ccc/global/js/modules/cccConfirm');
+var popupInvestRactive = require('ccc/agreement/js/main/quickInvest').popupInvestRactive;
+var accountService = require('../service/account').accountService;
 
 var ractive = new Ractive({
     el: "#ractive-container",

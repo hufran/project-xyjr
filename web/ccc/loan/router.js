@@ -1,9 +1,6 @@
 'use strict';
-var router = module.exports = require('@ds/base')
-    .createSubApp(__dirname);
-var bodyParser = require('body-parser');
-var moment = require('moment');
-require('moment/locale/zh-cn');
+module.exports = function (router) {
+var ccBody = require('cc-body');
 
 function mask (str, s, l) {
 	if (!str) {
@@ -30,10 +27,7 @@ function mask (str, s, l) {
 
 var requestId = '';
 // TODO 对id进行正则匹配
-router.get('/loan/:id', require('../../middlewares/userPayment')
-    .userPayment, require('../../middlewares/userFunds')
-    .userFunds, require('../../middlewares/userInfo')
-    .userInfo,
+router.get('/loan/:id', 
     function (req, res) {
         var user = res.locals.user;
         var buffer = new Buffer(req.path);
@@ -137,7 +131,7 @@ router.get('/loan/:requestId/proof', function (req, res) {
 });
 
 
-router.post('/loan/selectOption', bodyParser(), function (req, res) {
+router.post('/loan/selectOption', ccBody, function (req, res) {
     var amount = parseInt(req.body.amount,10);
     var months = parseInt(req.body.months,10);
     var sendObj = {
@@ -284,4 +278,5 @@ function formatBorrowDueDate(timeSettled, duration) {
         }
         return year + '-' + month + '-' + day;    
     }        
+}
 }

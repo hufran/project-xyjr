@@ -5,10 +5,9 @@
 
 "use strict";
 
-var Ractive = require('ractive/ractive-legacy');
-var maskLayer = require('assets/js/lib/maskLayer');
+var maskLayer = require('ccc/global/js/lib/maskLayer');
 var template = require('ccc/agreement/partials/depositAgreement.html');
-var maskLayer = require('assets/js/lib/maskLayer');
+var maskLayer = require('ccc/global/js/lib/maskLayer');
 
 exports.popupDepositAgreement = {
     instance: false,

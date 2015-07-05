@@ -1,19 +1,16 @@
 'use strict';
 
-var $ = require('jquery');
-var utils = require('assets/js/lib/utils');
-var Ractive = require('ractive/ractive-legacy');
-var request = require('cc-superagent-promise');
-require('assets/js/modules/tooltip');
+var utils = require('ccc/global/js/lib/utils');
+require('ccc/global/js/modules/tooltip');
 
 // calendar
-var Calendar = require('assets/js/modules/cccCalendar');
+var Calendar = require('ccc/global/js/modules/cccCalendar');
 
 // chart
 var Chart = require('chart.js/Chart');
 
 // repayments
-var Plan = require('assets/js/modules/cccRepayments');
+var Plan = require('ccc/global/js/modules/cccRepayments');
 
 // create calendar
 var calendar = new Calendar({

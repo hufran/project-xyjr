@@ -1,19 +1,12 @@
 'use strict';
 
-require('assets/js/modules/tooltip');
+require('ccc/global/js/modules/tooltip');
 // cccConfirm
-var Confirm = require('assets/js/modules/cccConfirm');
-var popupInvestRactive = require('ccc/agreement/js/main/quickInvest')
-    .popupInvestRactive;
-var popupRepayRactive = require('ccc/agreement/js/main/quickRepay')
-    .popupRepayRactive;
-var Ractive = require('ractive/ractive-legacy');
-var $ = require('jquery');
+var Confirm = require('ccc/global/js/modules/cccConfirm');
+var popupInvestRactive = require('ccc/agreement/js/main/quickInvest').popupInvestRactive;
+var popupRepayRactive = require('ccc/agreement/js/main/quickRepay').popupRepayRactive;
 
-var some = require('lodash-node/compat/collections/some');
-
-var accountService = require('ccc/account/js/main/service/account')
-    .accountService;
+var accountService = require('ccc/account/js/main/service/account').accountService;
 
 // /account/agreement 账户管理/无密协议
 new Ractive({
@@ -55,7 +48,7 @@ new Ractive({
             });
     },
     check: function (inputs) {
-        return some(inputs, function (input) {
+        return _.some(inputs, function (input) {
             return input.checked && !input.disabled;
         });
     },

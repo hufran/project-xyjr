@@ -1,17 +1,15 @@
 'use strict';
-var router = module.exports = require('@ds/base')
-    .createSubApp(__dirname);
-var bodyParser = require('body-parser');
+module.exports = function (router) {
+var ccBody = require('cc-body');
 
-var userFundsMiddleware = require('../../middlewares/userFunds')
-    .userFunds;
-var userPaymentMiddleware = require('../../middlewares/userPayment')
-    .userPayment;
-var userBankMiddleware = require('../../middlewares/userBank')
-    .userBank;
+router.get('/account', function (req, res, next) {
+    req.url = '/account/';
+    next();
+});
 
 // 未登录访问account下的页面,跳转到 /
-router.get(/^\/account/, function (req, res, next) {
+router.get(/^\/account\//, function (req, res, next) {
+        console.log(1);
     if (!req.cookies.ccat) {
         res.redirect('/');
         return;
@@ -19,14 +17,9 @@ router.get(/^\/account/, function (req, res, next) {
     next();
 });
 
-// account 通用
-router.use('/account', userFundsMiddleware, userPaymentMiddleware,
-    userBankMiddleware, function (req, res, next) {
-        next();
-    });
-
 // topNav 需要的东西
-router.get(/^\/account/, function (req, res, next) {
+router.get(/^\/account\//, function (req, res, next) {
+        console.log(2);
 
     // 定位tab
     var tabs = [{
@@ -262,7 +255,7 @@ router.get('/account/loan', function (req, res) {
 });
 
 // 修改密码
-router.post("/account/change_password", bodyParser.urlencoded(), function (req,
+router.post("/account/change_password", ccBody, function (req,
     res) {
 
     /*
@@ -312,16 +305,17 @@ router.get('/account/withdraw', function (req, res, next) {
 });
 
 // 查看借款人合同
-router.get('/loan/allContracts/:id',
+router.get('/account/allContracts/:id',
     function (req, res, next) {
         res.redirect('/api/v2/user/MYSELF/loan/' + req.params.id + '/contract');
         next();
     });
 
 // 查看投资人合同
-router.get('/invest/allContracts/:id',
+router.get('/account/allContracts/:id',
     function (req, res, next) {
         res.redirect('/api/v2/user/MYSELF/invest/' + req.params.id +
             '/contract');
         next();
     });
+}

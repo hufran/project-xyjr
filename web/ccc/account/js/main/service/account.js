@@ -5,8 +5,6 @@
 
 'use strict';
 
-var request = require('cc-superagent-promise');
-
 exports.accountService = {
     registerUmpay: function (user, next) {
         request('POST', '/api/v2/upayment/register/MYSELF')

@@ -4,7 +4,6 @@
  */
 
 'use strict';
-var request = require('cc-superagent-promise');
 
 exports.IndexService = {
     getSummaryData: function (next) {

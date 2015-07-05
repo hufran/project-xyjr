@@ -1,13 +1,11 @@
 'use strict';
-var $ = global.jQuery = require('jquery');
-var utils = require('assets/js/lib/utils');
-var Ractive = require('ractive/ractive-legacy');
-require('assets/js/modules/cccTab');
-require('assets/js/modules/cccPaging');
-require('assets/js/modules/tooltip');
+var utils = require('ccc/global/js/lib/utils');
+require('ccc/global/js/modules/cccTab');
+require('ccc/global/js/modules/cccPaging');
+require('ccc/global/js/modules/tooltip');
 
 // repayments lib
-var Plan = require('assets/js/modules/cccRepayments');
+var Plan = require('ccc/global/js/modules/cccRepayments');
 
 var Tab = {
 	// 持有中 (SETTLED/OVERDUE/BREACH)

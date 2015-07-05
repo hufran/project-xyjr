@@ -2,17 +2,15 @@
 
 "use strict";
 
-var Ractive = require('ractive/ractive-legacy');
-var $ = global.jQuery = require('jquery');
 var i18n = require('@ds/i18n')['zh-cn'];
 
 var InvestListService = require('ccc/invest/js/main/service/list')
     .InvestListService;
-var utils = require('assets/js/lib/utils');
-require('assets/js/lib/jquery.easy-pie-chart.js')
+var utils = require('ccc/global/js/lib/utils');
+require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
 // 收益计算器
-var Cal = require('assets/js/modules/cccCalculator');
+var Cal = require('ccc/global/js/modules/cccCalculator');
 $('.benefit-calculator')
     .on('click', function () {
         Cal.create();
@@ -125,7 +123,7 @@ function parseLoanList(list) {
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
-        template: require('partials/singleInvestList.html'),
+        template: require('ccc/global/partials/singleInvestList.html'),
         data: {
             list: parseLoanList(res.results),
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式

@@ -1,14 +1,12 @@
 'use strict';
 
-var $ = require('jquery');
-var Ractive = require('ractive/ractive-legacy');
-require('assets/js/modules/cccTab');
+require('ccc/global/js/modules/cccTab');
 var UMPBANKS = {
-    personal: require('assets/js/modules/cccUmpBanks'),
-    company: require('assets/js/modules/cccUmpCompanyBanks')
+    personal: require('ccc/global/js/modules/cccUmpBanks'),
+    company: require('ccc/global/js/modules/cccUmpCompanyBanks')
 };
 
-var Confirm = require('assets/js/modules/cccConfirm');
+var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;

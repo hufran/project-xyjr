@@ -1,70 +1,11 @@
-{{>layouts.default.head}}
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/assets/css/modules/cccAnimate.css">
-{{>layouts.default.header}}
+<link rel="stylesheet" href="/ccc/index/css/style.css">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccAnimate.css">
 
 <!-- 轮播组件 -->
 <div class="carousel-wrapper">
     <!-- 在carousel上的 按钮 等 -->
     <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
     <div class="current-container info-wrapper">
-        <!--{{#if !user}}
-        <div class="info">
-            <div class="formwrapper u-pos-r-center">
-                <div class="cols">
-                    <div class="col">
-                        <div style="height: 65px;" class="vertical-center">
-                            <div style="color: #ffffff; float: left; font-family: 'arial regular'">
-                                <div style="font-size: 14px; line-height: 14px; margin-bottom: 5px;">Hotline:</div>
-                                <div class="cols">
-                                    <div class="col">
-                                        <div style="font-size: 20px; line-height: 20px;">400 100 0099</div>
-                                    </div>
-                                    <div class="col">
-                                        <div style="font-size: 12px; line-height: 20px; padding-left: 5px;">(9:00 - 21:00)</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col float-right">
-                        <div style="height: 65px;" class="vertical-center">
-                            <form>
-                                <div class="row">
-                                    
-                                    <input type="text" name="loginName" id="loginName" placeholder="用户名/手机号">
-                                </div>
-                                <div class="row">
-                                    <input type="password" name="password" id="password" placeholder="密码">
-                                </div>
-                                <div class="row">
-                                    <button type="button" class="loginBtn" id="tonglandenglu">登 录</button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" class="registerBtn" id="tonglanzhuce">注 册</button>
-                                </div>
-                                <div class="row">
-                                    <span class="forgetPass"><a href="/forgot"><i>忘记密码？</i></a></span>
-                                </div>
-                                <div class="row">
-                                    <span class="wechat">
-                                        <div class="icon"></div>
-                                        <img class="dropdown" src="/assets/img/2wm.jpg" width="150" title="九信金融" alt="九信金融" />
-                                    </span>
-                                </div>
-                                <div class="row">
-                                    <a href="http://weibo.com/jiuxinfinance" target="_blank">
-                                        <div class="weiboIcon"></div>
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="error"></div>
-        </div->
-        {{/if}}-->
     </div>
     
     <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
@@ -186,47 +127,5 @@
         </div>
     </div>
 
-<!-- <div class="projects-wrapper">
-    <div class="current-container">
-        <div style="display:none;">hello</div>
-        <div class="project-header">
-            <div class="left">
-                <span class="text-hot-project">热点项目</span>
-                <span class="next-time">
-                </span>
-            </div>
-
-            <div class="right">
-                <a href="invest/list">更多&gt;&gt;</a>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <div class="invests-list-wrapper">
-            <ul class="invest-list">
-                <li class="invest-li">
-					<p class="loading" style="padding: 45px;">加载中...</p>
-                </li>
-            </ul>
-        </div>
-        <div class="space space-30"></div>
-    </div>
-    <div class="space space-30"></div>
-</div>
-<div class="space space-30"></div>
-
-<div class="partner-wrapper current-container">
-    <h1 class="partner-title">合作伙伴</h1>
-    <ul>
-        {{#partners}}
-        <li>
-           <img src="/ccc/index/img/partners/{{ . }}" alt="">
-        </li>
-        {{/}}
-    </ul>
-    <div class="clearfix"></div>
-</div> -->
-
 <div class="space space-50"></div>
-{{>layouts.default.footer}}
-<script src="/js/main/index.js"></script>
+<script src="/ccc/index/js/main/index.js"></script>

@@ -1,0 +1,51 @@
+.page-account-recharge .amount-info-wp {
+  padding: 15px;
+  border-radius: 3px;
+  background: #f5f5f5;
+}
+.page-account-recharge .amount-info-wp span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.page-account-recharge .amount-info-wp span em {
+  font-size: 2em;
+  font-style: normal;
+  vertical-align: sub;
+  padding-left: 10px;
+}
+.page-account-recharge .amount-info-wp span.split {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+ul.dec-li li {
+  padding: 3px 0;
+}
+.bankcards-wrap {
+  height: auto;
+  clear: both;
+  overflow: auto;
+}
+.bankcards-wrap .bankcard-box {
+  width: 300px;
+  height: 160px;
+  border: 1px #ddd solid;
+  border-radius: 5px;
+  float: left;
+  margin-right: 20px;
+  background-repeat: no-repeat;
+  background-position: center -6px;
+}
+.bankcards-wrap .bankcard-box .bankcard-no {
+  margin-top: 28px;
+  border-top: 1px #ddd solid;
+}
+.bankcards-wrap .bankcard-box .bankcard-no span {
+  display: inline-block;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #888;
+}
+.bankcards-wrap .bankcard-box .bank-img {
+  margin: 30px auto 0 auto;
+}
+/*# sourceMappingURL=/ccc/account/css/recharge.css.map */

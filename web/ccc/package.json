@@ -1,3 +1,0 @@
-{
-    "browserify": { "transform": [ "partialify", "es3ify-safe" ] }
-}

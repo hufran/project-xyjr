@@ -1,286 +1,131 @@
 'use strict';
 if (process.argv.indexOf('--run-by-gulp') > -1) {
-    process.env.NODE_ENV = 'development';
+    process.env.NODE_ENV = 'development'; }
+if ((process.env.HOSTNAME || '').match(/UAT$/)) {
+    process.env.NODE_APP_INSTANCE = 'uat';
 }
+GLOBAL.APP_ROOT = __dirname;
+require('@ds/nrequire').watchRequiredFilesToRestart = true;
+require('./touch_to_restart');
+require('@ds/common');
+console.log('config:', JSON.stringify(require('config'), null, '    '));
+var assert = require('assert');
 var fs = require('fs');
 var path = require('path');
-var httpProxy = require('http-proxy');
 var config = require('config');
-var cookieParser = require('cookie-parser');
+GLOBAL.CONFIG = config;
 var userAgent = require('useragent');
-var glob = require('glob');
-GLOBAL._ = require('lodash');
-GLOBAL.Promise = require('bluebird'); // 目前 bluebird 实现的 Promise 性能比 V8 原生快很多，所以全局使用 bluebird
-var port = parseInt(process.env.PORT, 10) || config.port;
-var log = require('bunyan-hub-logger')({app: 'web', name: 'app'});
+var ds = require('@ds/base');
 
-var consoleCode = fs.readFileSync(require.resolve('console-polyfill'),
-    'utf-8');
-var app = module.exports = require('@ds/base')
-    .createApp(__dirname);
+var port = Number(process.env.PORT || config.port) || 4000;
+var app = exports = module.exports = require('express')();
+ds.expose(app);
+ds.apiproxy(app, config.urlBackend);
+ds.request(app, config.urlBackend);
+ds.prodrev(app);
+app.use(require('cookie-parser')());
+require('@ds/data').augmentReqProto(app.request);
 
-// 需要全局暴露的 locals 加在 app.locals 上，config 模块都是 magic property，需要做成普通对象所以用
+app.use(require('express-favicon')(path.join(__dirname, '..', '/favicon.ico')));
 
-app.locals.PAY = _.assign({}, config.payment);
-
-app.locals.rushHeads = [
-    '<!doctype html>',
-    '<meta charset="UTF-8">',
-    '<!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->',
-    '<meta name="renderer" content="webkit">',
-    '<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">',
-    //'<meta http-equiv="X-UA-Compatible" content="IE=9"/>',
-    '<script>' + consoleCode + '</script>',
-    '<!--[if lt IE 10]>',
-    '<script src="/assets/js/jquery.min.js"></script>',
-    '<script src="/assets/js/ie8fix.js"></script>',
-    '<script src="/assets/js/PIE_IE678.js"></script>',
-    '<script src="/assets/js/jquery.placeholder.min.js"></script>',
-    '<![endif]-->',
-    '<script src="/assets/js/common/global.js" async></script>'
-];
-app.use(function (req, res, next) {
-    var ua = userAgent.parse(req.headers['user-agent']),currentChannel="",originalUrl=req.originalUrl;
-    log.debug({ua: ua, req: req});
-    if (ua.family === 'IE' && ua.major === 7 && req.headers['user-agent'].indexOf('Trident/7') > -1) {
-        ua.major = 11; // IE11 send 'MSIE 7.0' in compatible mode, so fix it by our own
-    }
-    if (ua.family === 'IE' && ua.major < 10) {
-        res.locals.isLegacy = false;
-        if (ua.major < 9) {
-            res.locals.noMediaQueries = true;
-        }
-    } else {
-        res.locals.isLegacy = true;
-    }
-    res.expose(res.locals.isLegacy, 'isLegacy');
-    if (req.path.indexOf('/app') < 0) {
-        res.locals.rushHeads = [
-            '<link rel="stylesheet" href="/assets/css/base.css" />',
-            '<!--[if IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->',
-        ];
-    }
-    //判断当前频道
-    if(originalUrl=="/"||originalUrl=="/index"){
-        currentChannel='index';
-    }else if(/touzi/.test(originalUrl)){
-        currentChannel='touzi';
-    }else if(/safe/.test(originalUrl)){
-        currentChannel='safe';
-    }else if(/help/.test(originalUrl)){
-        currentChannel='help';
-    }else if(/info/.test(originalUrl)){
-        currentChannel='info';
-    }
-    res.locals.currentChannel=currentChannel;
-    next();
-});
-app.use(require('express-promise')());
-
-var favicon = require('express-favicon');
-app.use(favicon(__dirname + '/favicon.ico'));
-
-var proxyApi = httpProxy.createProxyServer({
-    target: config.urlBackend
-});
-// 代理到 api 服务器
-app.use(function (req, res, next) {
-    if (req.url.indexOf('/api/v2') === 0) {
-        proxyApi.web(req, res, {}, next);
-    } else {
-        next();
-    }
-});
+app.disable('etag');
 if (app.get('env') !== 'development') {
     app.enable('view cache');
 }
 
-app.use(cookieParser());
-
-app.get('/comingsoon', function (req, res, next) {
-    res.redirect('/');
-    //res.end('coming soon...');
+require('@ds/watchify').augmentApp(app, {
+    appRoot: __dirname,
+    port: port
 });
+require('@ds/assets').augmentApp(app, {
+    debug: true,
+    appRoot: __dirname,
+});
+
 app.use(function (req, res, next) {
-    //if (req.url.match(/^\/u?payment\//)) {
+    res.locals.headerNavLinks = [
+        {
+            name: '首页',
+            href: '/',
+        },
+        {
+            name: '我要投资',
+            href: '/loan',
+        },
+        /* {
+            name: '债权转让',
+            href: '/assign',
+        }, */
+        {
+            name: '我的账户',
+            href: '/account',
+        },
+        {
+            name: '安全保障',
+            href: '/safety',
+        },
+        {
+            name: '新手指南',
+            href: '/guide',
+        },
+    ];
+    res.expose(Date.now(), 'serverDate');
+    res.layout = 'ccc/global/views/layouts/default.html';
+    res.locals.title = config.appName; // 设置html标题
+    var ua = userAgent.parse(req.headers['user-agent']);
+    if (ua.family === 'IE' && ua.major < 9) {
+        res.locals.noMediaQueries = true;
+    }
+
+    // global user
+    if (!req.cookies.ccat) {
+        res.expose({}, 'user');
         return next();
-    //}
-    /*var pass =  'a80ccd635609152eca5d6e8b8cd952554762dc61d557d831323c8f06e7cc86ca';
-    console.log(req.url);
-    if (req.cookies) {
-        if (req.cookies && req.cookies.pass === pass) {
-            return next();
-        }
     }
-    console.log(req.query);
-    if (req.query && req.query.pass === pass) {
-        res.cookie('pass', pass, {maxAge: 1000*60*60*24});
-        return res.redirect(req.url.replace(/([?&])pass=a80ccd635609152eca5d6e8b8cd952554762dc61d557d831323c8f06e7cc86ca/, '$1').replace(/\?$/, ''));
-    }
-    return res.redirect('/comingsoon');*/
-});
 
-// 给 req 添加 req.uest 方法
-require('express-req-uest')(app, {
-    prefix: config.urlBackend,
-    augments: {
-        cookies: false,
-        custom: function (r, req) {
-            if (req.cookies.ccat) {
-                r.set('Authorization', 'Bearer ' + req.cookies.ccat);
+    req.uest.get('/api/v2/whoamiplz').then(function (r) {
+        var user = r.body.user;
+        if (user) {
+            user.logined = true;
+            if (user.email === 'notavailable@creditcloud.com') {
+                user.email = '';
             }
-        }
-    }
-});
-
-app.use(function (req, res, next) {
-    if (req.cookies && req.cookies.ccat) { // 更新 cookie 时间，保持 30 分钟登录
-        res.cookie('ccat', req.cookies.ccat, {
-            maxAge: 2 * 60 * 60 * 1000,
-            httpOnly: true
-        });
-    }
-    next();
-});
-
-// dev login router test
-
-app.get('/logout', function (req, res) {
-    res.clearCookie('ccat');
-    if (req.xhr) {
-        res.end('');
-    } else {
-        res.redirect('/');
-    }
-});
-
-
-// 全局 user
-app.use(require('./middlewares/userInfo')
-    .userInfo);
-
-app.get('/user/info', function (req, res, next) {
-    function mergeResBody(obj) {
-        return function (r) {
-            return _.assign(obj, r.body);
-        };
-    }
-
-    req.uest.get('/api/v2/whoami')
-        .end()
-        .then(function (r) {
-            if (!r.body || !r.body.user) {
-                throw new Error('USERNONEXISTS');
-            }
-            return r.body.user;
-        })
-        .then(function (user) {
-            return req.uest.get('/api/v2/user/' + user.id + '/userfund')
-                .end()
-                .then(mergeResBody(user));
-        })
-        .then(function (userWithUserFund) {
-            return req.uest.get('/api/v2/user/' + userWithUserFund.id +
-                '/payment')
-                .end()
-                .then(mergeResBody(userWithUserFund));
-        })
-        .then(function (userWithUserFundAndPayment) {
-            res.json(userWithUserFundAndPayment);
-        }, function () {
-            res.json(null);
-        });
-});
-
-(function loadWatchify() {
-    if (app.get('env') !== 'development') {
-        return;
-    }
-    var mainJSPaths = glob.sync('assets/js/main/**/*.js', {
-        cwd: __dirname
-    })
-        .concat(glob.sync('ccc/*/js/main/**/*.js', {
-            cwd: __dirname
-        }));
-    var target = 'http://127.0.0.1:' + (port + 1000) + '/node_modules';
-    console.log('js entry files proxy target: ', target);
-    var proxy = httpProxy.createProxyServer({
-        target: target
-    });
-    app.use(function (req, res, next) {
-        if (req.path.indexOf('/assets/js/common/') > -1 ||
-            mainJSPaths.indexOf(req.path.replace(/^\//, '')) > -1) {
-            proxy.web(req, res);
+            res.locals.user = res.locals.user || {};
+            _.assign(res.locals.user, user);
+            res.expose(res.locals.user, 'user');
         } else {
-            next();
+            res.expose({}, 'user');
         }
-    });
-    if (process.argv.indexOf('--run-by-gulp') === -1) {
-        require('@ds/watchify')({
-            appRoot: __dirname,
-            port: config.port,
-            commonjs: [].concat(config.commonjs).filter(Boolean)
-        }).listen();
-    }
-}());
-
-require('@ds/assets')
-    .argmentApp(app, {
-        debug: true,
-        appRoot: __dirname,
-        assetsDirName: 'assets',
-        mqRemoveWidth: '1024px'
-    });
-
-var dsRender = require('@ds/render');
-var rewriter = require('@ds/rewriter');
-
-dsRender
-    .argmentApp(app, {
-        appendMiddleware: false,
-        appRoot: __dirname,
-        assetsDirName: 'assets',
-        viewsDirName: './',
-        rewriter: app.get('env') === 'development' ?
-            rewriter.bind(null, {}) : rewriter.bind(null, require(
-                './dist/rev.json'))
-    });
-
-var unary = require('fn-unary');
-glob.sync('./ccc/*/router.js', {
-    cwd: __dirname
-})
-    .map(unary(require.bind(null)))
-    .map(unary(app.use.bind(app)));
-app.use(dsRender.middleware());
-
-var pairs = require('lodash-node/modern/objects/pairs');
-var viewsMap = glob.sync('views/**/*.html', {
-    cwd: __dirname
-})
-    .concat(glob.sync('ccc/*/views/**/*.html', {
-        cwd: __dirname
-    }))
-    .reduce(function (r, filePath) {
-        var index = filePath.indexOf('/views/');
-        r[filePath.substring(index + '/views/'.length)] = filePath;
-        return r;
-    }, {});
-
-app.get('/__introspect',
-    function (req, res, next) {
-        var links = pairs(viewsMap);
-        var html = '模板文件：<br/>' + links.map(function (l) {
-            return '<a href="' + l[1] + '">' + l[0] +
-                '</a>';
-        })
-            .join('<br/>');
-        res.type('html');
-        res.send(html);
         next();
     });
+});
+
+_.each([
+    '/login',
+    '/register'
+], function(url){
+    app.get(url, function (req, res, next) {
+        if (res.locals.user && res.locals.user.id) {
+            res.redirect('/account');
+        }
+        next();
+    });
+});
+
+ds.loader(app);
+require('@ds/render').augmentApp(app, {
+    appRoot: __dirname,
+});
+if (app.get('env') === 'production') {
+    app.use(require('ecstatic')({root: path.join(__dirname, '/dist')}));
+    app.use('/ccc', require('ecstatic')({root: path.join(__dirname, '/ccc')}));
+}
 
 app.listen(port, '0.0.0.0', function () {
-    console.log("server listening at http://127.0.0.1:%d", this.address()
+    console.log("server listening at http://127.0.0.1:%d",
+        this.address()
         .port);
+    if (process.argv.indexOf('--start-then-close') > -1) {
+        process.exit(0);
+    }
 });

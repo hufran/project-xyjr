@@ -1,17 +1,15 @@
 "use strict";
 
-var $ = global.jQuery = require('jquery');
 require('bootstrap/js/transition');
 require('bootstrap/js/carousel');
-var Ractive = require('ractive/ractive-legacy');
 var $carousel = $("#my-carousel");
 var IndexService = require('./service')
     .IndexService;
-var utils = require('assets/js/lib/utils');
+var utils = require('ccc/global/js/lib/utils');
 var i18n = require('@ds/i18n')['zh-cn'];
 var loginElement=document.getElementsByClassName?document.getElementsByClassName('info')[0]:$('.info')[0];
 
-require('assets/js/lib/jquery.easy-pie-chart.js')
+require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
 $carousel
     .on('slid.bs.carousel', function (e) {
@@ -23,7 +21,7 @@ IndexService.getLoanSummary(function (list) {
 
     var investRactive = new Ractive({
         el: ".invests-list-wrapper",
-        template: require('partials/singleInvest.html'),
+        template: require('ccc/global/partials/singleInvest.html'),
         data: {
             list: list,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
@@ -87,7 +85,7 @@ IndexService.getLatestScheduled(function (loan) {
 });
 
 $("#btn-login-on-carousel").click(function(e){
-    global.HeaderRactive.fire('maskLogin',{
+    window.HeaderRactive.fire('maskLogin',{
         original: e
     });
 });

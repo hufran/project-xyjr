@@ -1,6 +1,5 @@
 'use strict';
-var router = module.exports = require('@ds/base')
-    .createSubApp(__dirname);
+module.exports = function (router) {
 router.get('/', function (req, res, next) {
     var user = res.locals.user;
     res.locals.title = '九信金融-国内首家PE系互联网金融平台｜P2P理财｜投资理财｜P2P网贷';
@@ -61,4 +60,5 @@ function parseCMStitle(data) {
         }
     }
     return data;
+}
 }

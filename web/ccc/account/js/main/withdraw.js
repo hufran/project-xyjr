@@ -1,12 +1,9 @@
 'use strict';
 
-var $ = require('jquery');
-var utils = require('assets/js/lib/utils');
-var _ = require('lodash-node');
-var Ractive = require('ractive/ractive-legacy');
-var CommonService = require('assets/js/modules/common').CommonService;
-var UMPBANKS = require('assets/js/modules/cccUmpBanks');
-var Confirm = require('assets/js/modules/cccConfirm');
+var utils = require('ccc/global/js/lib/utils');
+var CommonService = require('ccc/global/js/modules/common').CommonService;
+var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
+var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 new Ractive({
 	el: '.ccc-recharge-wrap',

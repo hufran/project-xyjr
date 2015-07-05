@@ -4,8 +4,6 @@
  */
 
 "use strict";
-var Ractive = require('ractive/ractive-legacy');
-var $ = require('jquery');
 
 exports.popupBigPic = {
     instance: false,

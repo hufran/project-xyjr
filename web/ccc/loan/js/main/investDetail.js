@@ -1,23 +1,17 @@
 /*jshint unused : false*/
 
 "use strict";
-var $ = require('jquery');
-var popupLogin = require('ccc/login/js/lib')
-    .popupLogin;
-var loanService = require('./service/loans.js')
-    .loanService;
-var Ractive = require('ractive/ractive-legacy');
-var utils = require('assets/js/lib/utils');
-require('assets/js/modules/tooltip');
+var loanService = require('./service/loans.js').loanService;
+var utils = require('ccc/global/js/lib/utils');
+require('ccc/global/js/modules/tooltip');
 
-global.jQuery = $; // bootstrap 插件需要
 require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
 
-var Cal = require('assets/js/modules/cccCalculator');
+var Cal = require('ccc/global/js/modules/cccCalculator');
 
 // cccConfirm
-var Confirm = require('assets/js/modules/cccConfirm');
+var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
@@ -34,10 +28,9 @@ $("[data-toggle=tooltip]")
             });
     });
 setTimeout((function () {
-    global.CC.loan.timeElapsed = utils.format.timeElapsed(global.CC.loan
-        .timeElapsed);
-    global.CC.loan.timeLeft=JSON.parse(global.CC.loan.timeLeft);
-    var leftTime=global.CC.loan.timeLeft;
+    CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
+    CC.loan.timeLeft=JSON.parse(CC.loan.timeLeft);
+    var leftTime=CC.loan.timeLeft;
     var timeLeftToal=leftTime.ss+leftTime.mm*60+leftTime.hh*60*60+leftTime.dd*60*60*24;
     setInterval(function(){
         timeLeftToal-=1;
@@ -56,10 +49,10 @@ setTimeout((function () {
     },1000)
     //获取最后还款日期
     if(CC.repayments instanceof Array&&CC.repayments.length>0){
-        global.CC.loan.lastRepaymentsDate=CC.repayments[0].dueDate;
+        CC.loan.lastRepaymentsDate=CC.repayments[0].dueDate;
         for(var i=0;i<CC.repayments.length;i++){
-            if(global.CC.loan.lastRepaymentsDate<CC.repayments[i].dueDate){
-                global.CC.loan.lastRepaymentsDate=CC.repayments[i].dueDate;
+            if(CC.loan.lastRepaymentsDate<CC.repayments[i].dueDate){
+                CC.loan.lastRepaymentsDate=CC.repayments[i].dueDate;
             }
         };
     }
@@ -109,9 +102,9 @@ setTimeout((function () {
                 '元!');
             return false;
         }
-        if (((num - global.CC.loan.rule.min) % global.CC.loan.rule.step) !==
+        if (((num - CC.loan.rule.min) % CC.loan.rule.step) !==
             0) {
-            showErrors('不符合投资规则!最少为'+global.CC.loan.rule.min+'，且为'+global.CC.loan.rule.min+'的倍数');
+            showErrors('不符合投资规则!最少为'+CC.loan.rule.min+'，且为'+CC.loan.rule.min+'的倍数');
             return false;
         }
         if (num > CC.user.availableAmount) {
@@ -149,15 +142,14 @@ setTimeout((function () {
     });
 
     // 初始化倒计时
-    if (global.CC.loan.timeOpen > 0) {
-        var serverDate = global.CC.loan.serverDate;
-        var leftTime = utils.countDown.getCountDownTime2(global.CC.loan.timeOpen,
+    if (CC.loan.timeOpen > 0) {
+        var serverDate = CC.loan.serverDate;
+        var leftTime = utils.countDown.getCountDownTime2(CC.loan.timeOpen,
             serverDate);
         if (leftTime) {
             var countDownRactive = new Ractive({
                 el: ".next-time",
-                template: require(
-                    'ccc/loan/partials/countDown.html'),
+                template: require('ccc/loan/partials/countDown.html'),
                 data: {
                     countDown: {
                         days: leftTime.day,
@@ -170,8 +162,7 @@ setTimeout((function () {
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(
-                    global.CC
-                    .loan.timeOpen, serverDate);
+                    CC.loan.timeOpen, serverDate);
                 if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
                     clearInterval(interval);
                     window.location.reload();

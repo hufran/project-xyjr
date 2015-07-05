@@ -4,7 +4,6 @@
  */
 
 'use strict';
-var request = require('cc-superagent-promise');
 
 exports.loanService = {
     getLoanProof: function(requestId,next) {

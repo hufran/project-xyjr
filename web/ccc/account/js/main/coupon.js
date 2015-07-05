@@ -1,10 +1,8 @@
 'use strict';
 
-var $ = global.jQuery = require('jquery');
-var utils = require('assets/js/lib/utils');
-var Ractive = require('ractive/ractive-legacy');
-var Tips = require('assets/js/modules/cccTips');
-require('assets/js/modules/cccTab');
+var utils = require('ccc/global/js/lib/utils');
+var Tips = require('ccc/global/js/modules/cccTips');
+require('ccc/global/js/modules/cccTab');
 
 var couponTpl = require('ccc/account/partials/coupon/coupon.html');
 
