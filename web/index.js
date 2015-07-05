@@ -93,12 +93,21 @@ app.use(function (req, res, next) {
                 user.email = '';
             }
             res.locals.user = res.locals.user || {};
-            _.assign(res.locals.user, user);
-            res.expose(res.locals.user, 'user');
+            if (!user.accountId) {
+                return expUser(user);
+            }
+            req.uest.get('/api/v2/user/MYSELF/agreement').get('body').then(function (body) {
+                user.agreement = body || {};
+                expUser(user);
+            });
         } else {
             res.expose({}, 'user');
         }
         next();
+        function expUser(user) {
+            _.assign(res.locals.user, user);
+            res.expose(res.locals.user, 'user');
+        }
     });
 });
 
