@@ -9,6 +9,8 @@ require('@ds/nrequire').watchRequiredFilesToRestart = true;
 require('./touch_to_restart');
 require('@ds/common');
 console.log('config:', JSON.stringify(require('config'), null, '    '));
+var logger = require('bunyan-hub-logger');
+logger.replaceDebug();
 var assert = require('assert');
 var fs = require('fs');
 var path = require('path');
@@ -112,7 +114,16 @@ _.each([
     });
 });
 
+app.use(require('ccc/login').setBackUrl); // 全局模板变量添加 loginHrefWithUrl 为登录后返回当前页的登录页面链接
 ds.loader(app);
+app.get('/logout', function (req, res) {
+    res.clearCookie('ccat');
+    if (req.xhr) {
+        res.send('');
+    } else {
+        res.redirect('/');
+    }
+});
 require('@ds/render').augmentApp(app, {
     appRoot: __dirname,
 });
