@@ -1,0 +1,376 @@
+/*重置*/
+
+ #nav-color a, #nav-color div, #nav-color img{
+     padding: 0;
+     margin: 0;
+ }
+
+#nav-color{
+  background-color: #f2f2f2;
+}
+#nav-color .text img {
+    margin-right: 10px;
+}
+#nav-color .s-header-info-content{
+    margin: auto;
+    width: 1100px;
+}
+#nav-color .s-header-info-content .nav-customer{
+    text-align: left;
+    width: 200px;
+    font-size: 12px;
+}
+#nav-color .s-header-info-content .nav-help{
+ float: right;
+    color: #777777;
+    font-size: 12px;
+}
+#nav-color .s-header-info-content .nav-mobile{
+ float: right;
+    color: #777777;
+    font-size: 12px;
+}
+#nav-color .s-header-info-content .nav-mobile img{
+ margin-right: 10px;
+}
+#nav-color .s-header-info-content .nav-weibo{
+    margin-right: 10px;
+}
+#nav-color .s-header-info-content .nav-customer img{
+ margin-left: 10px;
+}
+
+.s-header-info-content .nav-aboutus{
+     text-align: left;
+    width: 70px;
+    font-size: 12px;
+}
+
+#dingbuzhuce{
+    color: #777777;
+    font-size: 12px;
+}
+#dingbudenglu{
+    color: #777777;
+    font-size: 12px;
+}
+#nav-help{
+    color: #777777;
+    font-size: 12px;
+}
+#mobileCustomer{
+    color:#777777;
+}
+#nav-color .nav-fastlogin{
+    width: 54px;
+    float: right;
+/*    margin-right: 22px;*/
+}
+#nav-color .nav-fastlogin img{
+    margin:0;
+    padding: 0;
+    margin-top: 10px;
+}
+#nav-color .nav-fastregister{
+    width: 62px;
+    float: right;
+/*      margin-right: 22px;*/
+}
+#nav-color .nav-fastregister img{
+    margin:0;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.box-pic{
+    position: relative;
+    height: 103px;
+}
+.top-bg{
+    position: absolute;
+    left: 50%;
+    margin-left:-960px;
+   
+}
+#footer-color-box{
+   background:#f2f2f2;
+    
+}
+
+#footer-color-box .footerBox{
+    width: 1100px;
+    margin: auto;
+}
+
+#footer-color{
+   background:#f2f2f2;
+}
+
+.ssfooter{
+    margin-top:25px;
+  
+}
+.footer-guide dd{
+/*    margin-top: 14px;*/
+    color:#777;
+    font-size: 14px;
+    line-height: 24px;
+    margin-left: 42px;
+    
+}
+.bottom-bg{
+    float:left;
+    margin-left: 100px;
+    margin-top: 25px;
+}
+.footer-guide{
+    float: left;
+    margin-right:32px;
+    margin-top:12px;
+    margin-bottom: 90px;
+}
+.footer-guide dt{
+      font-size: 18px;
+    color:#4a4a4a;
+    line-height: 18px;
+    margin-bottom: 34px;
+    
+}
+
+.footer-guide dt img{
+  margin-right: 10px;
+}
+
+.s-footer #footer-color{
+    height:250px;
+    width: 1100px;
+    margin: 0;
+    border: none;
+    overflow: hidden;
+   
+}
+.bottom-left{
+    float:left;
+    margin-right:0px;
+    margin-right: 80px;
+}
+.bottom-right-service{
+    font-size: 18px;
+    color:#4a4a4a;
+    line-height: 14px;
+    margin-top: 5px;
+}
+
+.bottom-right-service img{
+    margin-right: 10px;
+}
+
+.bottom-right-service .telNum{
+    color: #4a4a4a;
+    font-size: 26px;
+    margin-left: 20px;
+}
+
+.bottom-right-tel{
+     font-size: 30px;
+    color:#ff6e00;
+    line-height: 30px;
+    margin-top: 30px;
+}
+.bottom-right-tel span{
+     font-size: 14px;
+    color:#666666;
+    margin-left: 14px;
+}
+.bottom-right-mail{
+/*    float: left;*/
+    color:#777;
+    font-size: 14px;
+      line-height: 14px;
+    margin-top: 40px;
+    margin-left: 46px;
+}
+
+.bottom-right-aboutus{
+    margin-left: 46px;
+    color: #777;
+}
+.bottom-right-aboutus img{
+    margin-right: 4px;
+    margin-left: 8px;
+}
+.bottom-right-online{
+/*    float: left;*/
+    color:#777;
+    font-size: 14px;
+      line-height: 14px;
+    margin-bottom: 20px;
+    margin-top: 24px;
+/*    margin-left: 90px;*/
+    margin-left: 46px;
+}
+.bottom-right-online img{
+    margin-left: 8px;
+}
+.bottom-right-icon img{
+    margin-top: 22px;
+    margin-left: 24px;
+}
+.firend-link{
+    background: #5d6163;
+}
+.firend-link div{
+    width:1000px;
+    margin: auto;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+.firend-link span{
+    font-size: 16px;
+    color:#999999;
+    line-height:16px;
+    margin-top: 22px;
+    margin-left: -180px;
+}
+.firend-link div a{
+    color:#999999;
+    font-size: 12px;
+    margin-right:14px;
+}
+.bottom-footer{
+    width:1100px;
+    margin: auto;
+}
+.bottom-footer{
+    text-align: center;
+}
+
+.bottom-footer .copyright{
+    font-size: 14px;
+    color: #777777;
+    line-height: 14px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+.bottom-footer img{
+    margin-bottom: 30px;
+}
+.bottom-footer-box{
+    background-color: #e4e4e4;
+    overflow: hidden;
+    width: 100%;
+}
+
+.bottom-footer-right img{
+    margin-right:24px;
+    margin-top: 32px;
+}
+#menu .u-nolist-ul li a:hover {
+  /*background: #ededed;*/
+  height: 84px;
+  border-bottom: 3px solid #003690;
+  color: #232d4e;
+  text-decoration: none;
+}
+#menu{
+    font-size: 18px;
+    height: 100px
+}
+#menu .s-header-menu-content .u-nolist-ul{
+    line-height: 100px;
+    float: right;
+   
+}
+#menu .s-header-menu-content{
+    width: 1100px;
+}
+
+
+#family{
+    float: right;
+    width: 150px;
+    height: 32px;
+    background: #007ec5;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 30px;
+    float: right;
+    text-align: center;
+    line-height: 32px;
+    margin-left: 24px;
+    margin-top: 32px;
+}
+#family img{
+    margin-left: 10px;
+}
+#menu s__is-selected{
+    color:#333333;
+    font-size: 18px;
+    line-height: 84px;
+}
+#nav-color .s-header-menu-content .s-icon {
+    margin-top:0;
+}
+.s-header-menu-content u-pos-r-center a{
+     margin-top:10px;
+}
+#s-header-height{
+    height:140px;
+    overflow: hidden;
+}
+
+.side-bar{
+    width: 65px;
+    float: right;
+ 
+}
+.weixin-side{
+    float: left;
+    margin-top: 180px;
+}
+.side-bar-box{
+      position: fixed;
+    right:0;
+    top:45%; 
+    width:40px;
+}
+.side-bar img{
+    margin-bottom: 2px;
+}
+.carousel-control{
+    width: 0;
+}
+.carousel-control.left{
+    background-image: none;
+}
+.carousel-control.left img{
+/*    margin-left: -70px;*/
+    position: absolute;
+}
+.carousel-control.right{
+    background-image: none;
+}
+.carousel-control.right img{
+    margin-left: -42px;
+     position: absolute;
+}
+
+#menu .navactive{
+  height: 84px;
+  border-bottom: 3px solid #003690 ! important;
+/*  color: red;*/
+  text-decoration: none;
+}
+.bottom-right{
+    float: right;
+    height:126px;
+    }
+.bottom-right .bottom-rightApp{
+    float: left;
+    margin-right: 20px;
+    color:#4a4a4a;
+    font-size: 14px;
+    line-height: 26px;
+    height:126px;
+}

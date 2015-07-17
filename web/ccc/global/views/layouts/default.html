@@ -1,9 +1,14 @@
 <!doctype html>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/ccc/global/css/base.css">
+<link rel="stylesheet" href="/ccc/global/css/base1.css">
 <!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
 <meta name="renderer" content="webkit">
 <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
-<script>' + consoleCode + '</script>
+<script>
+    ' + consoleCode + '
+
+</script>
 <!--[if lt IE 10]>
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/ie8fix.js"></script>
@@ -12,61 +17,103 @@
 <![endif]-->
 <script src="/ccc/global.js" async></script>
 <link rel="stylesheet" href="/ccc/global/css/base.css" />
+<link rel="stylesheet" href="/ccc/global/css/base1.css" />
 <!--[if IE 8]><link rel="stylesheet" href="/ccc/global/css/ie8.css" /><![endif]-->
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
 <title>{{ title }}</title>
-<script>window.CC={}; {{{ state }}}</script>
-<script>(function(match) { if (match) { document.cookie = match[1] + '; Max-Age=1800; Path=/'; } }((document.cookie||'').match(/(?:^|;\s*)(ccat=[0-9a-f]{64})/)));</script>
+<script>
+    window.CC = {}; {{{state}}}
+
+</script>
+<script>
+    (function (match) {
+        if (match) {
+            document.cookie = match[1] + '; Max-Age=1800; Path=/';
+        }
+    }((document.cookie || '')
+        .match(/(?:^|;\s*)(ccat=[0-9a-f]{64})/)));
+
+</script>
 <meta name="Keywords" content="{{keywords}}">
 <meta name="Description" content="{{description}}">
 
 <!-- 导航开始 -->
-<div class="s-header">
-    <div class="s-header-info">
+<div class="s-header" id="s-header-height">
+
+
+    <div class="s-header-info" id="nav-color">
         <div class="s-header-info-content u-pos-r-center">
-            <img src="/ccc/global/img/head_hotline.png" style="margin: 8px;display: inline-block;float: left;"/>
-            <span class="weiboIcon" ><a href="http://weibo.com/jiuxinfinance" target="_blank"></a></span>
-            <span class="weixinIcon"></span>   
-            <img class="dropdown" src="/ccc/global/img/2wm.jpg" width="150" title="九信金融" alt="九信金融" />
-            <a href="/help/account"><span class="why"></span></a>
-            {{#if !user.loginName}}
-            <a href="/register" id="dingbuzhuce" class="text" style="border-left: 1px solid #fff;">注册</a>
-            <a href="/login" id="dingbudenglu" class="text">登录</a>
+            <span class="nav-customer">客服热线：400-000-0000<img src="/ccc/global/img/navQQ.png" /></span>
+            <span class="nav-aboutus">关注我们：</span>
+            <img src="/ccc/global/img/navWeibo.png" class="nav-weibo" />
+            <img src="/ccc/global/img/navWeixin.png" /> {{#if user}}
+            <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+            <a href="/logout" class="text" style="border-left: 1px solid #fff;color:#333333;margin-right:18px;">|&nbsp;&nbsp;退出</a>
+            <a class="text" style="width: 200px; text-align: right; padding-right: 10px;color:#003690 "><img src="/ccc/global/img/navuseryellow.png" />{{user.loginName}}</a>
+
             <!--a href="/login?url=L2FjY291bnQ=" class="account" id="wodezhanghu">我的账户</a-->
             {{else}}
-            <a href="/account" class="text account" style="color:#b5a16b;">我的账户</a>
-            <a href="/logout" class="text" style="border-left: 1px solid #fff;">退出</a>
-            <a class="text" style="width: 200px; text-align: right; padding-right: 10px; ">欢迎您 {{user.loginName}}</a>
+            <!--         <a href="/login" style="color:#5a5a5a;margin-left:14px;" class="text">帮助中心|</a>-->
+            <div class="nav-mobile">
+
+                <span>|</span> <a href="/help" id="mobileCustomer" class="text">手机客户端</a>
+                <img src="/ccc/global/img/navMobile.png" />
+            </div>
+
+            <div class="nav-help">
+                <span>|</span><a href="/help" id="nav-help" class="text">帮助中心</a>
+            </div>
+
+            <div class="nav-fastregister">
+                <span>|</span><a href="/register" id="dingbuzhuce" class="text">注册</a>
+            </div>
+            <div class="nav-fastlogin">
+                <!--               <span>|</span>-->
+                <a href="/login" id="dingbudenglu" class="text">登录</a>
+            </div>
+
+
             {{/if}}
         </div>
+
     </div>
-    <div class="s-header-menu">
+    <div class="s-header-menu" id="menu">
         <div class="s-header-menu-content u-pos-r-center">
             <a href="/" style="float: left;" alt="九信金融" title="九信金融">
-                <img class="s-icon" src="/ccc/index/img/icon/logo-323-49.png">
+                <img class="s-icon" style="margin-top:26px;" src="/ccc/global/img/navLogo.png">
             </a>
+
+            <div id="family">
+                联想控股大家庭<img src="/ccc/global/img/navPlay.png" />
+            </div>
+
             <ul class="u-nolist-ul">
-                <li {{#if currentChannel === 'index'}}class="s__is-selected"{{/if}}><a href="/">首&nbsp;&nbsp;页</a></li>
-                <li {{#if currentChannel === 'touzi'}}class="s__is-selected"{{/if}}><a href="/invest/list">我要投资</a></li>
-                <li {{#if currentChannel === 'safe'}}class="s__is-selected"{{/if}}><a href="/safe">安全保障</a></li>
-                <li {{#if currentChannel === 'help'}}class="s__is-selected"{{/if}}><a href="/help">新手指引</a></li>
-                <li {{#if currentChannel === 'info'}}class="s__is-selected"{{/if}}><a href="/info/index">关于我们</a></li>
+                <li><a id="index" href="/">首&nbsp;&nbsp;页</a></li>
+                <li><a id="touzi" href="/invest/list">我要投资</a></li>
+                <li><a id="jiekuan" href="/loan">我要借款</a></li>
+                <li><a id="safety" href="/safe">我的账户</a></li>
+                <li><a id="help" href="/help">新手引导</a></li>
+                <li><a id="aboutus" href="/info/index">关于我们</a></li>
             </ul>
+
         </div>
     </div>
 </div>
 <!-- 导航结束 -->
+<!--
 <div class="side" id="sideFixed">
     <ul>
         <li>
             <span id="BizQQWPA2"><img src="/ccc/global/img/sqq.png" >QQ客服</span>
         </li>
-        <li id="sideUp" class="up"><a href="#"><img src="/ccc/global/img/stop.png"></a>
+        <li id="sideUp" class="up">
+            <a href="#"><img src="/ccc/global/img/stop.png"></a>
         </li>
     </ul>
 </div>
+-->
 
 <div id="main-container"></div>
 
@@ -84,93 +131,102 @@
 <div id="regist-agreement-wraper">
 </div>
 
-<div class="s-footer">
-    <div class="s-footer-nav">
-        <div class="s-footer-nav-content u-pos-r-center">
-            <ul class="u-nolist-ul s-footer-nav-item ssfooter">
-                <li><a href="/info/index">关于我们</a></li>
-                <li><a href="/help">新手指引</a></li>
-                <li><a href="/help/account">帮助中心</a></li>
-                <li><a href="/safe">安全保障</a></li>
-                <li class="s-footer-nav-item__right" style="margin-right:0">在线客服
-                    <div class="chatWithServer" id="BizQQWPA1"></div>
-                </li>
-            </ul>
-            <ul class="u-nolist-ul-normal">
-                <li class="s-footer-nav-item__big">400-100-0099</li>
-                <li>工作时间: 9:00-21:00</li>
-            </ul>
-            <ul class="u-nolist-ul s-footer-link ssfooter" style="height:75px;line-height:75px;">
-                <li class="at-us"><span>关注我们</span></li>
-                <li style="margin-right:15px;position:relative;bottom:15px;">
-                    <a href="http://weibo.com/jiuxinfinance" target="_blank">
-                        <div class="s__top15 bottomWb" ></div>
-                    </a>
-                </li>
-                <li style="margin-right:15px;position:relative;bottom:15px;">
-                    <div class="s__top15 bottomWs"></div>
-                    <img class="dropdown" style="display: none;" src="/ccc/global/img/2wm.jpg" width="150" title="九信金融" alt="九信金融" />
-                </li>
-            </ul>
-            
-            <ul class="u-nolist-ul friendLink ssfooter">
-                <li class="at-us"><span style="line-height: 20px;">友情链接</span></li>
-                <div class="linkWra">
-                    <dl>
-                        <dd><a href="http://www.jdcapital.com" target="_blank">九鼎投资</a></dd>
-                        <!-- <dd><a href="http://www.jtamc.com/" target="_blank">九泰基金</a></dd>
-                        <dd><a href="http://www.tyzq.com.cn/">九州证券</a></dd> -->
-                    </dl> 
-                    <dl>
-                        <dd><a href="http://www.jtamc.com/" target="_blank">九泰基金</a></dd>
-                        <!-- <dd><a href="#">财经道</a></dd>
-                        <dd><a href="#">网贷之家</a></dd> -->
-                    </dl>
-                     <dl>
-                        <dd><a href="http://www.tyzq.com.cn/"  target="_blank">九州证券</a></dd>
-                        <!-- <dd><a href="#">电商服务</a></dd>
-                        <dd><a href="#">挖财社区</a></dd> -->
-                    </dl>
-                    <dl>
-                        <dd><a href="http://www.chenxingplan.com/"  target="_blank">晨星成长计划</a></dd>
-                    </dl>
-                    <dl>
-                        <dd><a href="http://www.creditcloud.com/"  target="_blank">云信</a></dd>
-                    </dl>
-                    <!--  <dl>
-                        <dd><a href="#">好贷网</a></dd>
-                        <dd><a href="#">ShopEx</a></dd>
-                        <dd><a href="#">随手记</a></dd>
-                    </dl>
-                     <dl>
-                        <dd><a href="#">银率网</a></dd>
-                        <dd><a href="#">58投资担保</a></dd>
-                        <dd><a href="#">融360理财</a></dd>
-                    </dl>
-                     <dl>
-                        <dd><a href="#">和讯银行</a></dd>
-                    </dl> -->
+<div class="s-footer" id="footer-color-box">
+    <div class="footerBox">
+    <div class="s-footer-nav" id="footer-color">
+        <div style="width:1100px;" class="s-footer-nav-content u-pos-r-center">
+            <div class="bottom-left">
+                <div class="bottom-right-service"><img src="/ccc/global/img/tel.png"><span>客服热线</span><span class="telNum">400-000-000</span></div>
+                    <p class="bottom-right-mail">服务时间：工作日 8:30 — 21:00</p>
+                    <p class="bottom-right-online">在线客服：<img src="/ccc/global/img/bottomQQ.png" /></p>
+                    <P class="bottom-right-aboutus">关注我们：<img src="/ccc/global/img/bottomWeibo.png"/><img src="/ccc/global/img/bottomWeiXin.png"/></P>
+
+            </div>
+            <div class="bottom-right">
+                <div class="bottom-rightApp">
+                    <img src="/ccc/global/img/app.png"/>
+                    <p>奇乐融APP下载</p>
                 </div>
-            </ul>
+                <div class="bottom-rightApp">
+                    <img src="/ccc/global/img/weixin.png"/>
+                    <p>微信公众号</p>
+                </div>
+            
+            </div>
+
+            <dl class="footer-guide">
+                <dt><img src="/ccc/global/img/aboutus.png"/><a href="">关于我们</a></dt>
+                <dd><a href="">奇乐融</a></dd>
+                <dd class="footer-guide-style"><a href="">成立背景</a></dd>
+                <dd><a href="">通知公告</a></dd>
+                <dd><a href="">新闻资讯</a></dd>
+                <dd><a href="">联系我们</a></dd>
+            </dl>
+            <dl class="footer-guide">
+                <dt><img src="/ccc/global/img/help.png"/><a href="">帮助中心</a></dt>
+                <dd><a href="">注册及认证</a></dd>
+                <dd class="footer-guide-style"><a href="">投资流程</a></dd>
+                <dd><a href="">法律法规</a></dd>
+                <dd><a href="">常见问题</a></dd>
+            </dl>
+              <dl class="footer-guide">
+                <dt><img src="/ccc/global/img/map.png"/><a href="">网站地图</a></dt>
+            </dl>
+              
+        
+            
+     
+
+
+        </div>
+        </div>
+    </div>
+    <!--
+    <div class="firend-link">
+        <div><span>友情链接：</span><a href="">数金网</a>
+            <a href="">网贷中心</a>
+            <a href="">数金网</a>
+            <a href="">数金网</a>
+            <a href="">数金网</a>
+            <a href="">网贷中心</a>
+            <a href="">数金网</a>
+            <a href="">网贷中心</a>
+            <a href="">数金网</a>
+            <a href="">网贷中心</a>
+            <a href="">网贷中心</a>
+            <a href="">数金网</a>
+            <a href="">网贷中心</a>
+            <a href="">数金网</a>
+            <a href="">网贷中心</a>
+             <a href="">数金网</a>
+            <a href="">网贷中心</a>
+             <a href="">数金网</a>
+            <a href="">网贷中心</a>
+        </div>
+    </div>
+-->
+    <div class="bottom-footer-box">
+        <div class="bottom-footer">
+            <div class="copyright">
+                版权所有©2015 奇乐融&nbsp;&nbsp;皖ICP备XXXXXX号
+            </div>
+            <div>
+                <img src="/ccc/global/img/footer.png" />
+            </div>
         </div>
     </div>
 
-    <div class="s-footer-info">
-        <div class="s-footer-info-content u-pos-r-center">
-            <p>Copyright ©  2015 jiuxinfinance 九信金融版权所有</p>
 
-            <div class="s-footer-info-remarks">
-                <p>京ICP备1500821号</p>
-            </div>
-            <a href="https://trustsealinfo.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=www.jiuxinfinance.com&amp;lang=zh_cn" target="_blank" class="symantecSeal">
-                <img src="/ccc/global/img/Norton-Secured-Seal-300.png" class="normal">
-                <img src="/ccc/global/img/Norton-Secured-Seal-300-bk.png" class="bk">
-            </a>
-        </div>
+
+</div>
+<!--    旁边导航条-->
+<div class="side-bar-box">
+    <div class="side-bar">
+        <a href=""> <img src="/ccc/global/img/service.png" /></a>
+        <a href=""><img src="/ccc/global/img/calculator.png" /></a>
+        <a class="back-top" href=""><img src="/ccc/global/img/backTop.png" /></a>
     </div>
 </div>
-
-
 <!-- symantec证书的签章代码 -->
 <!-- <div id="symantecSeal" style="text-align:center;" title="单击即可验证 - 该站点选择 Symantec SSL 实现安全的电子商务和机密通信">
     <script type="text/javascript" src="https://seal.verisign.com/getseal?host_name=www.jiuxinfinance.com&amp;size=S&amp;use_flash=YES&amp;use_transparent=NO&amp;lang=zh_cn"></script>
@@ -178,12 +234,13 @@
  -->
 
 <script>
-//var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?63b2565d3a9cd44e576abfe2fd84492e";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+    //var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?63b2565d3a9cd44e576abfe2fd84492e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
 </script>
 <script src="/ccc/global/js/main/header.js" async defer></script>
