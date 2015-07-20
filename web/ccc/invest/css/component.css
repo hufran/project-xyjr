@@ -43,7 +43,7 @@ hr {
   margin: 0;
 }
 .invest-list-wrapper {
-  width: 1200px;
+  width: 1100px;
   margin: 0 auto;
 }
 .invest-pager-wrapper .invest-pager {
@@ -203,20 +203,26 @@ hr {
 }
 .loanItemWrapper .loanPartOne {
   float: left;
-  width: 300px;
+  width: 292px;
   height: 100%;
 }
 .loanItemWrapper .loanPartOne > div {
   width: 100%;
-  height: 65px;
-  line-height: 65px;
-  text-indent: 60px;
+  height: 70px;
+  line-height: 70px;
+/*  text-indent: 60px;*/
   font-size: 1em;
   color: #324075;
+    margin-left: 40px;
 }
+.loanItemWrapper .loanPartOne .loantitle{
+    width: 280px;
+}
+
 .loanItemWrapper .loanPartOne .loantitle a {
   text-decoration: none;
-  color: #324075;
+  color: #007ec5;
+    font-size: 16px;
 }
 .loanItemWrapper .loanPartOne div.loanRepayMethod {
   font-size: 12px;
@@ -225,11 +231,11 @@ hr {
 .loanItemWrapper .loanRate {
   float: left;
   height: 100%;
-  width: 200px;
-  line-height: 65px;
-  text-align: center;
-  font-size: 16px;
-  color: #b49b5d;
+  width: 148px;
+  line-height: 72px;
+  text-align: left;
+  font-size: 28px;
+  color: #ff7200;
 }
 .loanItemWrapper .loanRate i {
   font-size: 14px;
@@ -237,24 +243,33 @@ hr {
 .loanItemWrapper .duration {
   float: left;
   height: 100%;
-  width: 200px;
-  text-align: center;
-  line-height: 65px;
-  font-size: 14px;
-  color: #333333;
+  width: 154px;
+  text-align: left;
+  line-height: 72px;
+  font-size: 20px;
+  color: #4a4a4a;
 }
+.loanItemWrapper .duration span{
+    font-size: 14px;
+}
+
 .loanItemWrapper .amount {
   float: left;
   height: 100%;
-  width: 120px;
-  text-align: right;
-  line-height: 65px;
+  width: 166px;
+  text-align: left;
+/*  line-height: 65px;*/
+  font-size: 20px;
+  color: #4a4a4a;
+/*  padding-right: 40px;*/
+}
+
+.loanItemWrapper .amount span{
   font-size: 14px;
-  color: #333333;
-  padding-right: 40px;
+  color: #4a4a4a;
 }
 .loanItemWrapper .process {
-  width: 200px;
+  width: 190px;
   float: left;
   position: relative;
 }
@@ -265,18 +280,18 @@ hr {
 }
 .loanItemWrapper .investBtn {
   float: left;
-  width: 180px;
+  width: 126px;
   height: 100%;
   text-align: center;
   padding-top: 15px;
   padding-right: 60px;
 }
 .loanItemWrapper .investBtn .investbtn {
-  width: 120px;
-  height: 35px;
+  width: 80px;
+  height: 32px;
   text-align: center;
-  line-height: 35px;
-  background: #b49b5d;
+  line-height: 32px;
+  background: #007ec5;
   color: #fff;
   border-radius: 5px;
   display: inline-block;

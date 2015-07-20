@@ -1,3 +1,5 @@
+
+
 {{#list}}
 <div class="loanItemWrapper">
     <div class="loanPartOne">
@@ -11,12 +13,12 @@
         <div class="loanRepayMethod">{{ RepaymentMethod[method][0] }}</div>
 -->
     </div>
+    <div class="amount">{{ amount }}<span>{{ amountUnit }}</span></div>
     <div class="loanRate">{{ rate }}<i>%</i></div>
-    <div class="duration">{{ fduration }}{{ fdurunit }}</div>
-    <div class="amount">{{ amount }}{{ amountUnit }}</div>
+    <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span></div>
     <div class="process">
         <div class="rate-chart">	 
-          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="left:77.5px;top:9px">
+          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="top:9px">
             <span class="percentageNum">{{ investPercent }} </span>
             </div>
         </div>
@@ -24,7 +26,7 @@
     <div class="investBtn">
         {{#if status === 'OPENED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn">立即投资</div>
+                <div class="investbtn">投标中</div>
             </a>
         {{/if}}
         {{#if status === 'SCHEDULED'}}

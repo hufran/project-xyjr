@@ -2,6 +2,7 @@
 
 require('bootstrap/js/transition');
 require('bootstrap/js/carousel');
+require('bootstrap/js/tab');
 var $carousel = $("#my-carousel");
 var IndexService = require('./service')
     .IndexService;
@@ -20,7 +21,7 @@ $carousel
 IndexService.getLoanSummary(function (list) {
 
     var investRactive = new Ractive({
-        el: ".invests-list-wrapper",
+        el: ".productList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
             list: list,
@@ -32,6 +33,25 @@ IndexService.getLoanSummary(function (list) {
     ininconut();
 
 });
+
+//借款计划
+IndexService.getLoanSummary(function (list) {
+
+    var investRactive = new Ractive({
+        el: "#loan-plan",
+        template: require('ccc/global/partials/singleInvest.html'),
+        data: {
+            list: list,
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
+
+    initailEasyPieChart();
+    ininconut();
+
+});
+
+
 
 function ininconut () {
     $(".opre > .investbtn").each(function () {
@@ -68,7 +88,7 @@ IndexService.getLatestScheduled(function (loan) {
             countDown: {
                 hours: leftTime.hour,
                 minutes: leftTime.min,
-                seconds: leftTime.sec
+                seconds: leftTime.sec,
             }
         }
     });
@@ -189,3 +209,47 @@ $(document).keyup(function (e) {
         verifyAndLogin();
     }
 });
+
+$.get('/api/v2/analytics/count', function (r) {
+    console.log(r);
+    var count = new Ractive({
+        el: '.report',
+        template: '累计交易<span class="figure">{{dayNumbers}}</span>天，总成交金额<span class="rmb">¥</span><span class="figure">{{loanAll}}<span>',
+        data: {
+            users: r.user.all,
+            loanAll: r.loan.all,
+            dayNumbers: dayNumbers
+        }
+    });
+})
+
+
+request.get(encodeURI('/api/v2/cms/友情链接/友情链接'))
+    .end()
+    .then(function (res) {
+        var count = new Ractive({
+        el: '.firendLink',
+        template: '<div><span>友情链接</span>{{#each items}}{{{content}}}{{/each}}</div>',
+        data: {
+            items: res.body
+        }
+    });
+    });
+
+
+//底部鼠标滑过显示公司链接
+$('.icon-grounp .company-intro').hide();
+$(' .icon-group1').mouseenter(function(){
+    $(this).children('.company-intro').show(200);
+}).mouseleave(function(){
+    $(this).children('.company-intro').hide(200);
+})
+
+//按箭头显示宝贝计划
+$(".scroll-left").click(function(){
+    $(".invests-list-wrapper").last().animate({left:-245},2000);
+})
+//require('ccc/index/js/main/ss.js')
+//
+//$(".loanWrapper").hover(function(){$(this).css("border-color","#A0C0EB");},function(){$(this).css("border-color","#d8d8d8")});
+//jQuery(".invests-list-wrapper-box").slide({titCell:"",mainCell:".invests-list-wrapper",autoPage:true,effect:"leftLoop",autoPlay:true,vis:4});
