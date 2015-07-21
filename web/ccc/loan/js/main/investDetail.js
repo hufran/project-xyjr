@@ -351,3 +351,11 @@ $('.nav-tabs > li')
             .siblings()
             .removeClass('active');
     });
+
+function add(){
+var getNum = parseInt(document.getElementById("calculatorText").value);
+if(getNum >0){
+document.getElementById("calculatorText").value = getNum+100;
+}else{
+}
+}
