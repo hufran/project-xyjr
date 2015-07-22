@@ -18,16 +18,18 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-            var data = parseCMStitle(data.slice(0,1));
-            return data;
+        console.log('!!!!!!!!!');
+        console.log(data);
+//            var data = parseCMStitle(data.slice(0,1));
+//            return data;
         });
     res.locals.latestPublication = req.uest(
         '/api/v2/cms/category/PUBLICATION/name/' + encodeURIComponent('最新公告'))
         .end()
         .get('body')
         .then( function(data) {
-            //var data = parseCMStitle(data.slice(0,5));
-            var data = data.slice(0,5);
+//            var data = parseCMStitle(data.slice(0,5));
+//            var data = data.slice(0,5);
             return data;
         });
             
@@ -36,18 +38,20 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
-            //var data = parseCMStitle(data.slice(0,5));
-            var data = data.slice(0,5);
+//            var data = parseCMStitle(data.slice(0,5));
+//            var data = data.slice(0,5);
             return data;
         });
     // res.locals.friendsLinks = req.uest(
     //     '/api/v2/cms/category/LINK/name/' + encodeURIComponent('友情链接'))
     //     .end()
     //     .get('body');
-    // res.locals.cooperation = req.uest(
-    //     '/api/v2/cms/category/COOPERATION/name/' + encodeURIComponent('合作伙伴'))
-    //     .end()
-    //     .get('body');
+     res.locals.cooperation = req.uest(
+         '/api/v2/cms/category/COOPERATION/name/' + encodeURIComponent('合作伙伴'))
+         .end()
+         .get('body').then( function(data) {
+            return data;
+        });;
     res.render({
         rushHeads: '<!--[if lt IE 10]><link rel="stylesheet" type="text/css" href="/ccc/index/css/ie-flip.css" /><![endif]-->'
     });

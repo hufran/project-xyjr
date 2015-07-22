@@ -1,19 +1,24 @@
 <link rel="stylesheet" href="/ccc/index/css/style.css">
 <link rel="stylesheet" href="/ccc/global/css/modules/cccAnimate.css">
-
+<link rel="stylesheet" href="/ccc/index/css/style1.css">
+<link rel="stylesheet" href="/ccc/index/css/loanlist.css">
+<!--<script language="javascript" type="text/javascript" src="/ccc/index/js/main/ss.js"></script>-->
 <!-- 轮播组件 -->
+
 <div class="carousel-wrapper">
     <!-- 在carousel上的 按钮 等 -->
     <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
     <div class="current-container info-wrapper">
     </div>
-    
+
     <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             {{#carousel}}
-                <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
-                </li>
+
+            <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
+            </li>
+
             {{/}}
         </ol>
 
@@ -22,7 +27,16 @@
             {{#carousel}}
             <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
                 <a href="{{this.link}}" target="_blank">
-                    <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center; width: 100%; height: 700px;" >    
+                    <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center; width: 100%; height: 350px;">
+                    </div>
+                    <div class="banner-account－box">
+                        <div class="banner-account">
+                            <p class="banner-account1">预期年化最高可达<span class="banner-account-2">18</span><span class="banner-account4">%</span>
+                            </p>
+                            <p class="banner-account2"><span class="banner-account-3">45</span>倍活期存款 ,<span class="banner-account-3">6</span>倍定期存款收益</p>
+                            <button>免费注册</button>
+                            <h3 class="bannerLogin">已有账号? <a class="underline" href="/login">立即登录</a></h3>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -31,101 +45,134 @@
     </div>
 </div>
 
-<div class="cwrapper" style="border-bottom:1px #ccc solid">
-    <div class="u-pos-r-center wide" >
-        <!-- 公告 -->
-        <div class="announce">
-            <div class="newest">
-                <div class="bg hidden"></div>
-                <div class="small">最新公告:</div>
-                <div class="big">
-                    {{#latestOne}}
-                        <a href="/cms/p/{{this.id}}" target="_blank" style="text-decoration:none">{{this.title}}</a>
-                    {{/latestOne}}
-                </div>
-            </div>
-            <div class="more">
-                <a href="/cms/news" target="_blank" style="text-decoration:none">全部公告</a>
-            </div>
+
+<!--实力保障-->
+<div class="strengthProtectBg">
+    <div class="strengthProtectBox">
+        <div class="strengthProtect">
+            <img src="/ccc/index/img/contentBrand.png" />
+            <h1>品牌优势</h1>
+            <h2>联想控股成员旗下</h2>
+            <h2>企业、正奇金融类</h2>
+            <h2>金融超市</h2>
+        </div>
+        <div class="strengthProtect">
+            <img src="/ccc/index/img/contentBrand.png" />
+            <h1>实力雄厚的合作伙伴</h1>
+            <h2>第三方支付平台、</h2>
+            <h2>合法合规、系统领</h2>
+            <h2>先、服务贴心</h2>
+        </div>
+        <div class="strengthProtect">
+            <img src="/ccc/index/img/contentBrand.png" />
+            <h1>多层保障的高收益</h1>
+            <h2>100元起投、7层</h2>
+            <h2>保障体系、最高</h2>
+            <h2>预期年化18%收益</h2>
         </div>
     </div>
 </div>
 
-<div class="s-spotlight">
-    <div class="u-pos-r-center wide container">
-    <div class="row">
-        <div class="item col-md-3">
-            <!-- <span class="img icon-1"></span> -->
-            <img src="/ccc/index/img/icon/icon01.png" style="width: 120px; height: 100px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px;">
-            <p class="note">注册资金20亿元<br />九鼎投资独资子公司</p>
+<!--奇乐融产品-->
+<div class="productBg">
+    <div class="productBox">
+        <div class="productBoxTitle">
+            <p class="titleLeft"><img src="/ccc/index/img/indexList.png" />奇乐融产品</p>
+            <p class="titleRight"><a href="">查看全部投资项目 ></a>
+            </p>
         </div>
+        <div class="productList">
 
-        <div class="item col-md-3">
-            <!-- <span class="img icon-2"></span> -->
-            <img src="/ccc/index/img/icon/icon02.png" style="width: 120px; height: 100px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px;">
-            <p class="note">独有高资质借款人<br />近300家企业提供项目源</p>
         </div>
-
-        <div class="item col-md-3">
-            <!-- <span class="img icon-3"></span> -->
-            <img src="/ccc/index/img/icon/icon03.png" style="width: 120px; height: 100px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px;">
-            <p class="note">100%本息保障<br />多层次立体业务及风控体系</p>
-        </div>
-
-        <div class="item col-md-3">
-            <!-- <span class="img icon-4"></span> -->
-            <img src="/ccc/index/img/icon/icon04.png" style="width: 120px; height: 100px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px;">
-            <p class="note">年化收益率超8%<br />投资期限最低1个月</p>
-        </div>
-    </div>
     </div>
 </div>
 
-<div class="s-content u-pos-r-center wide">
-        <table class="s-list-table">
-            <tr>
-                <th style="width:300px;">项目</th>
-                <th style="width:200px;">年化收益率</th>
-                <th style="width:200px;">期限</th>
-                <th style="width:120px;">金额</th>
-                <th style="width:200px;">进度</th>
-                <th style="width:180px;">状态/操作</th>
-            </tr>
-        </table>
-        <div class="invests-list-wrapper">
-            <ul class="invest-list">
-                <li class="invest-li">
-                    <p class="loading" style="padding: 45px;">加载中...</p>
+
+
+<div class="s-content u-pos-r-center wide" id="newsBg">
+    <div class="s-split-view">
+           <div class="s-left-view">
+            <a href="/cms/news" target="_blank">
+                <p class="u-float-right">更多&nbsp;&gt;</p>
+            </a>
+            <h4><img src="/ccc/index/img/article.png"/>最新动态</h4>
+            <ul style="list-style-type: disc;">
+                {{#latestPublication}}
+                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{this.title}}</a>
                 </li>
+                {{/latestPublication}}
             </ul>
         </div>
-        <p class="u-float-right"><a href="/invest/list" style="text-decoration:none;color:#324075">查看更多</a></p>
-
-        <div class="s-split-view">
-            <div class="s-right-view">
-                <a href="/cms/medias" target="_blank">
-                    <p class="u-float-right">更多&nbsp;&gt;</p>
-                </a>
-                <h4>媒体报道</h4>
-                <ul style="list-style-type: disc;">
-                    {{#latestNews}}
-                        <li><a href="/cms/p/{{this.id}}" target="_blank">{{this.title}}</a></li>
-                    {{/latestNews}}
-                </ul>
-            </div>
-            <div class="s-left-view">
-                <a href="/cms/news" target="_blank">
-                    <p class="u-float-right">更多&nbsp;&gt;</p>
-                </a>
-                <h4>最新公告</h4>
-                <ul style="list-style-type: disc;">
-                    {{#latestPublication}}
-                        <li><a href="/cms/p/{{this.id}}" target="_blank">{{this.title}}</a></li>
-                    {{/latestPublication}}
-                </ul>
-            </div>
+        
+        <div class="s-right-view">
+            <a href="/cms/medias" target="_blank">
+                <p class="u-float-right">更多&nbsp;&gt;</p>
+            </a>
+            <h4><img src="/ccc/index/img/video.png"/>媒体报道</h4>
+            <ul>
+                {{#latestNews}}
+                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{this.title}}</a>
+                </li>
+                {{/latestNews}}
+            </ul>
+        </div>
+        <div class="s-left-view" style="margin-right:0;">
+            <a href="/cms/news" target="_blank">
+                <p class="u-float-right">更多&nbsp;&gt;</p>
+            </a>
+            <h4><img src="/ccc/index/img/voice.png"/>最新动态</h4>
+            <ul style="list-style-type: disc;">
+                {{#latestPublication}}
+                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{this.title}}</a>
+                </li>
+                {{/latestPublication}}
+            </ul>
         </div>
     </div>
+</div>
+
+<!--友情链接-->
+<div class="firendLinkBox">
+<div class="firendLink">
+
+</div>
+</div>
+
+
+<!--<div class="index-partner－box">-->
+<!--互联网金融-->
+<!--
+    <div class="index-partner">
+        <div class="par-title">
+            <span class="par-title1">互联网金融</span>
+            <span class="par-title2">最前沿的互联网金融新闻资讯，最及时的互联网金融投资指南，最便捷的互联网金融信息渠道</span>
+            <a href="" class="par-title3" target="_blank">更多+</a>
+        </div>
+        <div class="index-partner-content">
+            {{JSON.stringify(latestNews)}} 
+           {{#latestNews:num}} 
+            {{#if !hide}}{{#if num<=2}}
+            <div class="index-internet">
+                <div>
+                  <a href="/cms/p/{{this.id}}">  <img class="" width=264px height=150px src="{{url}}" /></a>
+
+                </div>
+                <div class="media-content">
+                    <p><a href="/cms/p/{{this.id}}" target="_blank" class="media-t">{{this.title}}</a></p>
+                    <p>{{{this.content}}}</p>
+                </div> 
+            </div>
+            {{/if}}{{/if}}
+           {{/latestNews}}
+        </div>
+
+    </div>
+-->
+
+
+
+
+
 
 <div class="space space-50"></div>
 <script src="/ccc/index/js/main/index.js"></script>

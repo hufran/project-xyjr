@@ -1,3 +1,5 @@
+
+
 {{#list}}
 <div class="loanItemWrapper">
     <div class="loanPartOne">
@@ -11,38 +13,38 @@
         <div class="loanRepayMethod">{{ RepaymentMethod[method][0] }}</div>
 -->
     </div>
+    <div class="amount">{{ amount }}<span>{{ amountUnit }}</span></div>
     <div class="loanRate">{{ rate }}<i>%</i></div>
-    <div class="duration">{{ fduration }}{{ fdurunit }}</div>
-    <div class="amount">{{ amount }}{{ amountUnit }}</div>
+    <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span></div>
     <div class="process">
         <div class="rate-chart">	 
-          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="left:77.5px;top:9px">
+          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="top:9px">
             <span class="percentageNum">{{ investPercent }} </span>
-            </div>
+          </div>
         </div>
     </div>
     <div class="investBtn">
         {{#if status === 'OPENED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn">立即投资</div>
+                <div class="investbtn">投标中</div>
             </a>
         {{/if}}
         {{#if status === 'SCHEDULED'}}
-            <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"  data-serv="{{ serverDate }}" style="background:transparent; color: #b5a16b;width: 150px;text-align: left;">即将开始</div>
+            <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"  data-serv="{{ serverDate }}" style="background:transparent; color: #fff;width: 150px;text-align: left;">即将开始</div>
         {{/if}}
         {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #b5a16b">已满标</div>
+                <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
             </a> 
         {{/if}}
         {{#if status === 'SETTLED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #b5a16b">还款中</div>
+                <div class="investbtn" style="background:lightgrey; color: #ffffff">还款中</div>
             </a> 
         {{/if}}
         {{#if status === 'CLEARED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #b5a16b">还款结束</div>
+                <div class="investbtn" style="background:lightgrey; color: #fff">还款结束</div>
             </a> 
         {{/if}}
     </div>

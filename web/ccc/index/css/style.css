@@ -208,7 +208,7 @@
   vertical-align: middle;
 }
 .announce .more {
-  float: right;
+  float: left;
   color: #b5a16b;
   line-height: 24px;
   vertical-align: middle;
@@ -400,6 +400,7 @@ a {
   color: blue;
   cursor: pointer;
 }
+/*
 .s-content .s-list-table {
   width: 100%;
   border-collapse: collapse;
@@ -407,6 +408,8 @@ a {
   font-size: 0.9em;
   color: #666666;
 }
+*/
+/*
 .s-content .s-list-table th {
   background-color: #b5a16b;
   color: #FFF;
@@ -414,6 +417,7 @@ a {
   font-size: 18px;
   line-height: 35px;
 }
+*/
 .s-content .s-list-table th:last-child {
   padding-right: 60px;
 }
@@ -421,17 +425,21 @@ a {
   color: #324075;
   font-weight: 200;
 }
+/*
 .s-content .s-list-table tr td {
   border-bottom: 1px solid #e5e5e5;
 }
+*/
+/*
 .s-content .s-list-table tr td button {
-  width: 80px;
-  height: 32px;
-  background-color: #324075;
+  width: 180px;
+  height: 34px;
+  background-color: #00b4ff;
   color: white;
   border: none;
-  border-radius: 6px;
+    font-size: 16px;
 }
+*/
 .s-content .s-list-table tr td button.s__is-uneventable {
   background-color: transparent;
   color: #B98B2F;
@@ -466,97 +474,187 @@ a {
 }
 .s-split-view {
   overflow: hidden;
-  margin-top: 100px;
+  padding-top: 20px;
   margin-bottom: 30px;
   cursor: pointer;
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .s-split-view .u-float-right {
-  line-height: 45px;
-  padding-right: 36px;
-  color: #ABABAB;
+  line-height: 48px;
+/*  padding-right: 36px;*/
+  color: #4a4a4a;
+}
+
+#newsBg{
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
 }
 .s-split-view .s-right-view {
-  width: 46%;
-  float: right;
+  width: 350px;
+  float: left;
+    margin-right: 24px;
 }
 .s-split-view .s-left-view {
-  width: 46%;
+  width: 350px;
+    float: left;
+    margin-right: 24px;
 }
 .s-split-view h4 {
-  padding: 16px 24px 12px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  background-color: #354473;
-  line-height: 1;
-  color: #FFF;
-  font-size: 18px;
+/*  padding: 16px 24px 12px;*/
+/*  border-radius: 4px;*/
+/*  background-color: #354473;*/
+/*  line-height: 1;*/
+  color: #4a4a4a;
+  font-size: 20px;
+    line-height: 25px;
+    border-bottom: 2px solid #007ec5;
+    line-height: 46px;
 }
-.s-split-view h4:before {
-  content: "";
-  border-left: 5px solid #FFF;
-  padding-right: 6px;
+
+.s-split-view h4 img{
+    margin-right: 10px;
 }
+
 .s-split-view ul {
-  margin-left: 40px;
+/*  margin-left: 40px;*/
   font-size: 14px;
   color: #666666;
-  line-height: 40px;
+  line-height: 32px;
+    width:350px;
+    height: 264px;
+    border-bottom: 1px solid #eeeeee;
+    border-left: 1px solid #eee;
+    border-right:1px solid #eee;
+}
+#newsBg .s-split-view li {
+  height: 32px;
+  
 }
 .s-split-view ul li a {
   text-decoration: none;
   display: inline-block;
-  width: 508px;
-  padding-right: 20px;
+  width: 350px;
+/*  padding-right: 20px;*/
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  line-height: 20px;
-  height: 18px;
+/*  line-height: 20px;*/
+  height: 32px;
   text-align: left;
+
+}
+
+.firendLinkBox{
+    background: #fff;
+    width:100%;
+   overflow: hidden;
+}
+.firendLink{
+    width: 1100px;
+    margin: auto;
+}
+
+.s-split-view ul li a img{
+margin-left: 14px;
+    margin-right: 12px;
 }
 /*loan*/
 .loanWrapper {
-  width: 100%;
   display: table;
-  height: 65px;
+  height: 72px;
+/*    margin-right: 14px;*/
+     padding-left: 40px;
   border-bottom: 1px #ccc solid;
+    background: #ffffff;
+    border-radius: 5px;
 }
 .loanWrapper > div {
   float: left;
-  height: 65px;
-  line-height: 65px;
-  text-align: center;
+      height: 72px;
+  line-height: 72px;
+    text-align: left;
+/*
+
+  
   color: #666666;
   vertical-align: top;
+*/
 }
 .loanWrapper .event {
-  width: 300px;
-  color: #354473;
-  text-align: left;
-  padding-left: 60px;
+  width: 260px;
+  color: #6e6e6e;
+/*  padding-left: 40px;*/
+    font-size: 16px;
 }
 .loanWrapper .event a {
-  font-size: 14px;
+  font-size: 20px;
   text-decoration: none;
+    line-height: 18px;
+}
+.loanWrapper .year{
+   font-size: 18px;
+   color: #6e6e6e; 
+     text-align: center;
+    line-height: 18px;
+    margin-top: 12px;
+/*    margin-bottom: 12px;*/
 }
 .loanWrapper .rate {
-  color: #b5a16b;
-  width: 200px;
-  font-size: 16px;
-  text-align: center;
+  color: #ff6c08;
+/*  width: 200px;*/
+  font-size: 28px;
+/*  text-align: center;*/
+/*    line-height: 38px;*/
+width:160px;
 }
 .loanWrapper .rate i {
   font-size: 14px;
 }
 .loanWrapper .duration {
-  width: 200px;
-  text-align: left;
-  text-align: center;
+  width: 146px;
+/*  text-align: center;*/
+    font-size: 20px;
 }
 .loanWrapper .amount {
-  width: 120px;
-  text-align: right;
-  padding-right: 40px;
+  width: 160px;
+
+/*  padding-right: 40px;*/
+    color:#4a4a4a;
+    font-size: 20px;
+}
+.loanWrapper .duration span{
+    font-size: 14px;
+}
+.loanWrapper .amount span{
+    font-size: 14px;
+}
+
+.loanWrapper .backMoney{
+    width:190px;
+}
+
+.loanWrapper .figure{
+    color: #ff6c08;
+    font-size: 16px;
+}
+.loanWrapper .back-money{
+    color:#ff6c08;
+    font-size: 16px;  
+     text-align: center;
+    line-height: 16px;
+}
+.loanWrapper .year-box{
+    border-top:1px solid #bababa;
+     margin-left: 24px;
+    margin-right: 24px;
+}
+
+.loanWrapper .investbtn{
+    margin-left: 24px;
+    margin-top: 20px;
 }
 .loanWrapper .process {
   width: 200px;
@@ -568,17 +666,20 @@ a {
   height: 100%;
 }
 .loanWrapper .opre {
-  width: 180px;
-  padding-right: 60px;
+  width: 140px;
+/*  padding-right: 60px;*/
 }
 .loanWrapper .opre .investbtn {
-  width: 120px;
-  height: 35px;
+  width: 80px;
+  height: 30px;
   text-align: center;
-  line-height: 35px;
+  line-height: 30px;
   background: #2A375F;
   color: #fff;
-  border-radius: 5px;
+     background-color: #00b4ff;
+  border: none;
+    font-size: 16px;
+
   display: inline-block;
 }
 .easyPieChart {
