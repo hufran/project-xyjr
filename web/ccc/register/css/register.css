@@ -1,7 +1,9 @@
+/*
 #main-container {
     background: #efefef;
     padding: 52px 0px;
 }
+*/
 
 #to-step2 {
     display: inline-block;
@@ -174,12 +176,12 @@
     display: inline-block;
 }
 
+/*
 .register-body {
     border: 1px solid #dfdfdf;
     overflow: hidden;
-    width:1100;
-    height:760px;
 }
+*/
 
 .register-wp .btn-post {
     border-radius: 3px;
@@ -285,33 +287,27 @@ h3 {
     font-size: 20px;
 }
 
+/*
 .register-body {
     background: #fff;
 }
+*/
 
+/*
 .register-process-graph {
-    width: 414px;
-    height: 72px;
+    width: 870px;
+    height: 90px;
     background-color: transparent;
-    background-image: url(/ccc/register/img/register-process.png);
+    background-image: url(/ccc/register/img/tep01.png);
     background-repeat: no-repeat;
     background-position: center top;
-    margin: 100px auto;
+    margin: 34px auto;
 }
-
-.register-process-graph-1{
-     background-position: center center;
-}
-
-.register-process-graph-2{
-     background-position: center bottom;
-}
-
+*/
 
 .register-center {
     width: 870px;
     height: 238px;
-    margin-top: 0;
     margin: 34px auto;
 }
 
@@ -319,24 +315,20 @@ h3 {
     color: #24b2e7;
 }
 
+/*
 .register-right img {
     width: 432px;
 }
-#rS1{
-    margin-left: 50px;
-    padding-left: 150px;
-    width:100%;
-    overflow: hidden;}
+*/
+
 .next-step {
     font-size: 21px;
-    background: #003690;
+    background: #24b2e7;
     color: #ffffff;
-    width: 316px !important;
-    height: 48px !important;
-    /*    margin-bottom: 30px;*/
-    
+    width: 276px;
+    height: 45px; 
     float: left;
-    
+    border-radius: 4px;
     border: none;
 }
 
@@ -355,118 +347,38 @@ h3 {
 }
 
 .register-body-center {
-    overflow: hidden;
-    margin: 34px auto;
-    width: 900px;
+    margin:auto;
+    width: 1100px;
 }
 
 .pi-placeholder {
-    border:none;
-    width: 74px;
-    color: #898989;
-    font-size: 14px;
-    text-align: right;
-    border-right:2px solid #bebebe;
-    padding-right: 10px;
-    margin-top: 8px;
-    margin-left: 20px;
-/*    margin-right: 10px;*/
-}
-
-.pi-placeholder-1 {
-    float: left;
-    border-right: 2px solid #bebebe;
+    width: 110px;
     color: #707070;
-    font-size: 14px;
+    font-size: 16px;
     text-align: right;
-    margin-top: 8px;
-    margin-left: 33px;
-    padding-right: 10px;
-/*     margin-right: 10px;*/
-    
-}
-.register-body-center .stepTwo{
-    overflow: hidden;
-    width:500px;
-    margin: 0 auto;
-
-}
-
-
-.register-success {
-    width: 420px;
-    text-align: center;
-    margin-top: 50px;
-}
-
-.register-success span {
-    font-size: 26px;
 }
 
 .rinput {
-    margin: auto;
-    width:314px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    height:40px;
-    
-    margin-bottom: 18px;
+    margin-left: 10px;
+    margin-bottom: 30px;
     position: relative;
-    /*    margin-top:10px;*/
-}
-.rinput .input01{
-    border: none;
-    width:80px;
-    height:30px;
-    
-}
-.yz{margin: auto;
-    width:325px;
-    overflow: hidden;
-}
-.rinput-1 {
-    float:left;
-    width:214px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    height:40px;
-    
-    margin-bottom: 18px;
-    position: relative;
-    /*    margin-top:10px;*/  
-}
-.yz img{
-    text-align: center;
-    float:left;
-    width:90px;
-}
-.rinput input {
-   
-    border: none;
-    /*    width: 266px;*/
-/*    width:250px;*/
-    height: 30px;
-/*    padding-left: 10px;*/
 }
 
-.rinputYz{
-    height:30px;
-    margin:4px;
-    width:90px;
-    float:left;
-    border:none;
+.rinput input {
+    width: 266px;
+    height: 34px;
+    padding-left: 10px;
 }
+
 #register-container {
-    width: 700px;
-    margin: 100px;
+/*    height: 346px;*/
     overflow: hidden;
-    background: #fff;
 }
 
 .tip {
     position: absolute;
-    left: 100px;
-    top: 40px;
+    left: 78px;
+    top: 34px;
     font-size: 12px;
     color: red;
 }
@@ -477,101 +389,32 @@ h3 {
 }
 
 .agree-register-protocol {
-/*    height: 34px;*/
+    height: 34px;
     position: relative;
 /*    top: 4px;*/
-    width: 180px;
-    font-size: 15px;
+/*    width: 214px;*/
+    font-size: 14px;
     line-height: 20px;
-    margin-left:50px;
-}
-
-.agree-register-protocol a {
-    color: #24b2e7;
+    margin-left: 106px;
+    color:#999999;
+    width: 280px;
+    text-align: center;
 }
 
 .agreement-div {
-    border: none;
-    margin-top: 40px;
-    margin-bottom: 30px;
-/*    width: 420px;*/
+/*    margin-top: 40px;*/
+    overflow: hidden;
 }
-
 .register-step-0,
 .register-step-1,
 .register-step-2 {
     display: none;
 }
-
+.agreement-div label a{color: #999999;}
 .on-step-0 .register-step-0,
 .on-step-1 .register-step-1,
 .on-step-2 .register-step-2 {
     display: block;
+  
 }
-.pi-placeholder2{
-    
-    width:75px;
-}
-.message-confirm {
-    width:200px;
-    float: left;
-    margin-left: 0px !important;
-    margin-bottom: 18px;
-    position: relative;
-    margin-top: 10px;
-    margin-left: 0;
-}
-button{
-    width:80px;
-    height:40px;
-    margin-top: 10px;}
-.conResister{
-    width:120px;
-    overflow: hidden;
-    text-align: right;
-    font-size:20px;
-    color:#ff6c08
-}
-.register-step-11{
-    overflow: hidden;
-    width: 700px;
-    margin: auto;
-    border-bottom:1px dashed gray;
-    padding-bottom: 100px;
-}
-.register-body-center img {
-    float:left;
-}
-.conResister{
-    float:left;
-    font-size:18px;
-    color:#ff6c08;
-    width:150px;
-    margin-top: 15px;
-}
-.succeed{
-    
-    width:700px;
-    overflow: hidden;
-    margin: auto;
-    margin-top:50px;
-    margin-bottom: 50px; 
-    font-size: 14px;
-}
-.succeed a{
-    color:#3579cd
-}
-
-h2{
-    width:700px;
-    margin: auto;
-    text-align: center;
-    font-size: 30px;
-    color:#6c6c6c;
-    margin-top: 120px;
-}
-
-
-
-
-
+.agreement-div .next-step{padding-left: 0;display: block;background-color: #007ec5;margin-left:120px;}

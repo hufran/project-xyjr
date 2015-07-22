@@ -213,28 +213,38 @@ p.login-error {
   margin-bottom: -5px;
 }
 #main-container .s-login-view {
-  position: absolute;
-  left: 50%;
-  width: 998px;
-  top: 0px;
-  height: 100%;
-  z-index: 1;
-  margin-left: -499px;
+/*  position: absolute;*/
+/*  left: 50%;*/
+  width: 1100px;
+/*  top: 0px;*/
+/*  height: 100%;*/
+/*  z-index: 1;*/
+/*  margin-left: -499px;*/
+    height: 450px;
+    background: #fff;
+    border: 1px solid #eeeeee;
+    margin: 0px auto;
 }
 #main-container .s-login-view .s-login-window {
-  top: 50%;
-  width: 388px;
-  left: 50%;
-  margin-left: -194px;
-  height: auto;
-  padding-top: 34px;
-  padding-left: 30px;
+/*  top: 50%;*/
+  width: 276px;
+    float:left;
+/*  left: 50%;*/
+  margin-left: 150px;
+    margin-top: 60px;
+/*  height: auto;*/
+/*  padding-top: 34px;*/
+/*  padding-left: 30px;*/
+/*
   padding-right: 30px;
   padding-bottom: 14px;
-  border-radius: 4px;
+*/
+/*  border-radius: 4px;*/
+/*
   background: rgba(255, 255, 255, 0.38);
   position: absolute;
   margin-top: -169px;
+*/
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper {
   position: relative;
@@ -243,10 +253,12 @@ p.login-error {
   border-radius: 4px;
   overflow: hidden;
   background-color: white;
-  padding: 10px;
+/*  padding: 10px;*/
+/*
   -moz-box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.58) inset;
   -webkit-box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.58) inset;
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.58) inset;
+*/
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper .mdi {
   position: absolute;
@@ -262,33 +274,40 @@ p.login-error {
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper input {
   outline: none;
-  height: 56px;
-  padding-left: 56px;
-  width: 252px;
+  height: 45px;
+/*  padding-left: 44px;*/
+  width: 230px;
   font-size: 1.2em;
-  border: none;
-  width: 100%;
+/*  border: none;*/
+/*  width: 100%;*/
+     border: 1px solid #e5e5e5;
+    border: none;
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper input[type=text] {
-  border-bottom: 1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+/*    margin-bottom: 26px;*/
+    height:45px;
+    
 }
 #main-container .s-login-view .s-login-window a {
-  line-height: 40px;
+  line-height: 46px;
   text-decoration: none;
-  color: #324075;
+  color: #007ec5;
 }
 #main-container .s-login-view .s-login-window input[type=submit],
 #main-container .s-login-view .s-login-window button {
   display: block;
-  width: 328px;
-  height: 42px;
+  width: 232px;
+  height: 40px;
   border: none;
   border-radius: 4px;
   font-size: 1.2em;
   color: white;
 }
 #main-container .s-login-view .s-login-window input[type=submit] {
-  background-color: #555f81;
+  background-color: #007ec5;
+    width:276px;
 }
 #main-container .s-login-view .s-login-window button {
   margin-top: 20px;
@@ -315,4 +334,62 @@ p.login-error {
 .s-login-window .mdi.mdi-lock-open {
   top: 84px!important;
   background-position: -107px 1px;
+}
+#main-container .navTitle{
+    color:#4a4a4a;
+    font-size: 14px;
+    width:1100px;
+    margin: 0px auto;
+    line-height: 48px;
+}
+#main-container .navTitle a{
+       color:#4a4a4a;
+    font-size: 14px;
+}
+#main-container .loginBanner{
+    float: right;
+    width:460px;
+    height:380px;
+    margin-right: 90px;
+    margin-top: 30px;
+}
+#main-container .needRegister{
+    text-align: center;
+    color:#999999;
+}
+ #main-container .s-login-view .s-login-window .needRegister a{
+    color:#007ec5;
+}
+#main-container #loginForm .rememberPassword .banner_right_bluetick .checkbox{
+    width:14px;
+    height:14px;
+    float:left;
+    margin-top: 18px;
+}
+#main-container #loginForm .rememberPassword .banner_right_bluetick .remember{
+    line-height: 46px;
+    font-size: 14px;
+    color:#999999;
+}
+
+#loginForm .banner_right_bluetick{
+float:left;
+}
+#loginForm .pull-right{
+    float: right;
+}
+#loginForm .s-input-wrapper .lineUser img{
+    float: left;
+    border-top: 1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5;
+    border-left:1px solid #e5e5e5;
+   
+}
+#loginForm .s-input-wrapper .lineUser{
+/*     border: 1px solid #e5e5e5;*/
+    margin-top: 30px;
+}
+#main-container .s-login-view .s-login-window .s-input-wrapper .lineUser input{
+     border: 1px solid #e5e5e5;
+    height:45px;
 }

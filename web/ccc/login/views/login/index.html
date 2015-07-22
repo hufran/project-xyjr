@@ -2,24 +2,42 @@
 <link rel="stylesheet" href="/ccc/login/css/style.css">
 
 <div id="main-container">
-    <img src="/ccc/login/img/bg-log-2.jpg"/>
+    <p class="navTitle"><a href="">首页</a> > 用户登录</p>
+<!--    <img src="/ccc/login/img/bg-log-2.jpg"/>-->
     <div class="s-login-view">
         <div class="s-login-window">
             <form id="loginForm" action="/login" method="POST">
                 <div class="s-input-wrapper">
-                    <i class="mdi mdi-account"></i>
-                    <i class="mdi mdi-lock-open"></i>
-                    <input type="text" name="loginName" placeholder="用户名/手机" />
-                    <input type="password" name="password" placeholder="密码" />
+                  <div class="lineUser">
+                    <img src="/ccc/login/img/user.png"/>
+                    <input type="text" name="loginName" placeholder="用户名/手机号/邮箱" class="loginName"/>
+                      </div>
+                    <div class="lineUser">
+                        <img src="/ccc/login/img/lock.png"/>
+                    <input type="password" name="password" placeholder="请输入6-16位字符" />
+                    </div>
                     <input type="hidden" name="backUrl" value="{{backUrl}}">
                 </div>
-                <a href="/forgot" class="u-float-right">忘记密码？</a>
+                <div class="rememberPassword">
+                   <div class="banner_right_bluetick pull-left">
+                            <input type="checkbox" class="checkbox">
+                            <span class="remember">记住用户名</span>
+                    </div> 
+                    <div class="pull-right">
+                        <a href="/forgot" class="u-float-right">找回密码</a>
+                    </div>
+                </div>
                 <input type="submit"  class="do-login cursor-pointer" value="登录" />
-                <button onclick="location.href='/register'">注册</button>
+<!--                <button onclick="location.href='/register'">注册</button>-->
+                <p class="needRegister">没有账号？立即<a href="">注册</a></p>
                 <p class="login-error"></p>
             </form>
         </div>
+        <img class="loginBanner" src="/ccc/login/img/loginBanner.png"/>
     </div>
+    
 </div>
 
 <script src="/ccc/login/js/main/login.js"></script>
+
+
