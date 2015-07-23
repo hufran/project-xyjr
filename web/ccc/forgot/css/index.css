@@ -39,22 +39,26 @@ table td {
 }
 .errors {
   color: #ff0000;
+/*
   height: 30px;
   margin-top: 80px;
+*/
 }
 .captcha {
   width: 163px!important;
   margin-right: 10px;
 }
 .s-title {
+/*
   margin-top: 28px;
   line-height: 50px;
   width: 998px;
+*/
 }
 .s-alert-view {
   background-color: white;
   width: 998px;
-  border: 1px solid #B2B5C1;
+/*  border: 1px solid #B2B5C1;*/
   height: 500px;
   margin-bottom: 300px;
   vertical-align: middle;
@@ -99,16 +103,19 @@ table td {
   color: #4bb54b;
 }
 .s-title {
-  margin-top: 28px;
-  line-height: 50px;
-  width: 998px;
+  padding-top: 120px;
+  line-height: 30px;
+ 
+    font-size: 30px;
+    color: #6c6c6c;
 }
 .s-alert-view {
   background-color: white;
-  width: 998px;
-  border: 1px solid #B2B5C1;
+  width: 1100px;
+
   height: 500px;
-  margin-bottom: 300px;
+  margin-bottom: 20px;
+    margin-top: 20px;
   vertical-align: middle;
   text-align: center;
 }

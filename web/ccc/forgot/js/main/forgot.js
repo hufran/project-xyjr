@@ -1,14 +1,14 @@
 'use strict';
 
-var CommonService = require('ccc/global/js/modules/common').CommonService;
-var forgotService = require('../service/forgot').forgotService;
+var CommonService =  require('ccc/global/js/modules/common.js').CommonService;
+var forgotService = require('../service/forgot')
+    .forgotService;
 var template = require('ccc/forgot/partials/forgot.html');
 var utils = require('ccc/global/js/lib/utils');
 var forgotRactive = new Ractive({
     el: '.page-forgot',
     template: template,
     data: {
-        success: false,
         captcha: {
             img: '',
             token: ''
@@ -43,17 +43,17 @@ forgotRactive.on('changeCaptcha', function () {
 forgotRactive.on('doReset', function (e) {
     e.original.preventDefault();
     var user = {
-        loginName: this.get('user.loginName'),
+//        loginName: this.get('user.loginName'),
         mobile: this.get('user.mobile'),
         captcha: this.get('captcha.text'),
         token: this.get('captcha.token')
     };
 
-    utils.formValidator.checkLoginName(user.loginName, function (err, msg) {
-        if (!err) {
-            showErrors(msg);
-            return false;
-        }
+//    utils.formValidator.checkLoginName(user.loginName, function (err, msg) {
+//        if (!err) {
+//            showErrors(msg);
+//            return false;
+//        }
         utils.formValidator.checkMobile(user.mobile, function (err, msg) {
             if (!err) {
                 showErrors(msg);
@@ -63,39 +63,24 @@ forgotRactive.on('doReset', function (e) {
                 msg) {
                 if (!err) {
                     showErrors(msg);
-                    CommonService.getCaptcha(function (res) {
-                        forgotRactive.set('captcha', {
-                            img: res.captcha,
-                            token: res.token
-                        });
-                    });
                 } else {
-                    //disableErrors();
-                    //showErrors('密码修改成功，新密码已发送到您的手机号，请重新登录', true);
-                    forgotRactive.set('success', true);
-                    /*
-                    setTimeout(function(){
-                        showErrors('正转跳至登录页面...', true);
-                        window.location.href = '/login';
-                    }, 2500);
-                    */
+                    disableErrors();
+                    window.location.href = '/';
                 }
                 return false;
             });
         });
-    });
+//    });
 
 
 });
 
 // show errors
-function showErrors(error, isSucc) {
-    isSucc = isSucc || false;
+function showErrors(error) {
     forgotRactive
         .set('errors', {
             visible: true,
-            isSucc: isSucc,
-            msg: !isSucc ? utils.errorMsg[error] : error
+            msg: utils.errorMsg[error]
         });
 }
 
