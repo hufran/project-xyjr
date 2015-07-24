@@ -16,7 +16,7 @@ var returnMap = {
 
 var rePassword = new Ractive({
     el: '#u-page-container',
-    template: require('../../partials/rePassword.html'),
+    template: require('../../partials/forgot.html'),
     init:function(){
       if (!CC.user.id) {
         // window.location.href = '/';
