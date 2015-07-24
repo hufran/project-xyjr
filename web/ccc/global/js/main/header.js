@@ -31,6 +31,10 @@ $(function(){
 });
 
 
+var Cal = require('ccc/global/js/modules/cccCalculator');
+$('#calculator-create').on('click', function () {
+    Cal.create();
+});
 $(".back-top").click(function(){
 $('body,html').animate({scrollTop:0},1000);
 return false;
