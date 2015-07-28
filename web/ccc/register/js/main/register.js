@@ -35,7 +35,7 @@ $("register-step-0").ready(function(){
 $('input[type=button]').click(function () {
     var registerSecond = new Ractive({
     el: $('.register-step-1'),
-    template: '<span class="succ"> 恭喜，<span>{{email}}</span> 已经注册成功！</span><div class="space space-50"></div><button class="btn01"><a href="/index">返回首页</a></button><button class="btn02"><a>我的河山匯</a></button>',
+    template: '<span class="succ"> 恭喜，<span>{{email}}</span> 已经注册成功！</span><div class="space space-50"></div><button class="btn01"><a href="/index">返回首页</a></button><button class="btn02"><a></a></button>',
     data: {
         email: $(".mailbox").val()
     }

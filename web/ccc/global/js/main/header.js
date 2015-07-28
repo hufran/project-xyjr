@@ -35,3 +35,43 @@ $(".back-top").click(function(){
 $('body,html').animate({scrollTop:0},1000);
 return false;
 })
+
+//导航状态
+var path = window.location.pathname;
+
+if (new RegExp("^/$")
+    .test(path)) {
+    $(".u-nolist-ul li a#index")
+        .addClass("navactive");
+
+} else if (new RegExp("^/invest/list")
+    .test(path)) {
+    $(".u-nolist-ul li a#touzi")
+        .addClass("navactive");
+
+} else if (new RegExp("^/loan")
+    .test(path)) {
+    $(".u-nolist-ul li a#jiekuan")
+        .addClass("navactive");
+
+} else if (new RegExp("^/safety/*")
+    .test(path)) {
+    $(".u-nolist-ul li a#safety")
+        .addClass("navactive");
+
+} else if (new RegExp("^/guide")
+    .test(path)) {
+    $(".u-nolist-ul li a#help")
+        .addClass("navactive");
+
+} else if (new RegExp("^/aboutus/*")
+    .test(path)) {
+    $(".u-nolist-ul li a#aboutus")
+        .addClass("navactive");
+}
+
+
+var Cal = require('ccc/global/js/modules/cccCalculator');
+$('.calculator-create').on('click', function () {
+    Cal.create();
+});

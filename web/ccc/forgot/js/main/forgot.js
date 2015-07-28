@@ -1,6 +1,7 @@
 'use strict';
 
-var CommonService =  require('ccc/global/js/modules/common.js').CommonService;
+var CommonService = require('ccc/global/js/modules/common')
+    .CommonService;
 var forgotService = require('../service/forgot')
     .forgotService;
 var template = require('ccc/forgot/partials/forgot.html');
@@ -43,17 +44,17 @@ forgotRactive.on('changeCaptcha', function () {
 forgotRactive.on('doReset', function (e) {
     e.original.preventDefault();
     var user = {
-//        loginName: this.get('user.loginName'),
+        loginName: this.get('zqjr_18118440703'),
         mobile: this.get('user.mobile'),
         captcha: this.get('captcha.text'),
         token: this.get('captcha.token')
     };
 
-//    utils.formValidator.checkLoginName(user.loginName, function (err, msg) {
-//        if (!err) {
-//            showErrors(msg);
-//            return false;
-//        }
+    utils.formValidator.checkLoginName(user.loginName, function (err, msg) {
+        if (!err) {
+            showErrors(msg);
+            return false;
+        }
         utils.formValidator.checkMobile(user.mobile, function (err, msg) {
             if (!err) {
                 showErrors(msg);
@@ -70,7 +71,7 @@ forgotRactive.on('doReset', function (e) {
                 return false;
             });
         });
-//    });
+    });
 
 
 });
