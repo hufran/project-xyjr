@@ -4,13 +4,13 @@
  */
 "use strict";
 var template = require('ccc/agreement/partials/quickRepay.html');
-var maskLayer = require('ccc/global/js/lib/maskLayer');
+//var maskLayer = require('assets/js/lib/maskLayer');
 exports.popupRepayRactive = {
     instance: false,
     init: function () {
 
         this.popupRepayRactive = new Ractive({
-            el: '#quickRepay-agreement-wraper',
+            el: '#service-agreement-wraper',
             template: template,
             data: {
                 visible: false
@@ -33,12 +33,12 @@ exports.popupRepayRactive = {
             this.init();
             this.instance = true;
         }
-        this.popupRepayRactive.set('visible', true);
         var popupRepayRactive = this.popupRepayRactive;
         maskLayer.show({
             onClick: function () {
                 popupRepayRactive.fire('close');
             }
         });
+        this.popupRepayRactive.set('visible', true);
     }
 };

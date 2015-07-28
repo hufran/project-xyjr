@@ -1,13 +1,14 @@
 /**
- * @file 九信金融平台服务规则的交互逻辑层
+ * @file 来投平台服务规则的交互逻辑层
  * @author lilulu(lilulu@hanhua.com)
  */
 
 "use strict";
 
-var maskLayer = require('ccc/global/js/lib/maskLayer');
+
+
 var template = require('ccc/agreement/partials/depositAgreement.html');
-var maskLayer = require('ccc/global/js/lib/maskLayer');
+//var maskLayer = require('assets/js/lib/maskLayer');
 
 exports.popupDepositAgreement = {
     instance: false,
@@ -29,7 +30,7 @@ exports.popupDepositAgreement = {
         popupDepositAgreementRactive.on('close', function () {
             this.set('visible', false);
             maskLayer.close();
-        });
+        });                          
     },
 
     show: function () {

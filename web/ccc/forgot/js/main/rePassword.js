@@ -5,7 +5,8 @@ var maskLayer = require('ccc/global/js/lib/maskLayer');
 var formValidator = utils.formValidator;
 var rePasswordService = require('../service/rePassword')
     .rePasswordService;
-var CommonService = require('ccc/global/js/modules/common.js').CommonService;
+var CommonService = require('ccc/global/js/modules/common')
+    .CommonService;
 var forgotService = require('../service/forgot')
     .forgotService;
 
@@ -69,7 +70,7 @@ rePassword.on('step1', function (e) {
     e.original.preventDefault();
     
     var user = {
-//        loginName: this.get('user.loginName'),
+//        loginName: this.get('zqjr_18118440703'),
         mobile: this.get('user.mobile'),
         captcha: this.get('captcha.text'),
         token: this.get('captcha.token')
@@ -125,7 +126,8 @@ rePassword.on('login', function (e) {
         mobile: this.get('user.mobile'),
         newPassword: this.get('newPass'),
         rePass: this.get('rePass'),
-        captcha: this.get('phone')
+        captcha: this.get('phone'),
+        smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
     };
     var isVer = true;
     if (!user.newPassword || !user.rePass ) {
@@ -143,14 +145,24 @@ rePassword.on('login', function (e) {
             isVer = false;
       return false;
     }
+    
+    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
+    if (!err) {
+        showErrors(msg);
+    } else {
+        disableErrors();
+    }
+    return false;
+  });
+    
     if (isVer) {
       rePasswordService.doResetPassword(user, function (err, msg){
         if (!err) {
             showErrors(msg);
         } else {
             disableErrors();
-            rePassword.set('step3',false);
-            rePassword.set('step4',true);
+            rePassword.set('step2',false);
+            rePassword.set('step3',true);
             var time = 5;
             rePassword.set('timeLeft',5);
             setInterval(function(){
@@ -176,8 +188,9 @@ rePassword.on('sendTelCode', function (e) {
         if (!mobile.length) {
             showErrors('MOBILE_NULL');
             return;
-        } else {
-            CommonService.getSmsCaptchaForResetPassword(mobile, function (r) {
+        } 
+        else {
+            CommonService.getSmsCaptcha(mobile, function (r) {
                 if (r.success) {
                     countDown();
                 }

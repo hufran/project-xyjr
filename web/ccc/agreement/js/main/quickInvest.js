@@ -4,13 +4,13 @@
  */
 "use strict";
 var template = require('ccc/agreement/partials/quickInvest.html');
-var maskLayer = require('ccc/global/js/lib/maskLayer');
+//var maskLayer = require('assets/js/lib/maskLayer');
 exports.popupInvestRactive = {
     instance: false,
     init: function () {
 
         this.popupInvestRactive = new Ractive({
-            el: '#quickInvest-agreement-wraper',
+            el: '#service-agreement-wraper',
             template: template,
             data: {
                 visible: false
@@ -33,12 +33,12 @@ exports.popupInvestRactive = {
             this.init();
             this.instance = true;
         }
-        this.popupInvestRactive.set('visible', true);
         var popupInvestRactive = this.popupInvestRactive;
         maskLayer.show({
             onClick: function () {
                 popupInvestRactive.fire('close');
             }
         });
+        this.popupInvestRactive.set('visible', true);
     }
 };

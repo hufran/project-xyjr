@@ -1,5 +1,4 @@
 'use strict';
-var request = require('cc-superagent-promise');
 
 exports.rePasswordService = {
     doReset: function (user, next) {
