@@ -20,6 +20,9 @@ $carousel
 
 IndexService.getLoanSummary(function (list) {
 
+     for(var i=0;i<list.length;i++){
+        list[i].method = i18n.enums.RepaymentMethod[list[i].method];
+    }
     var investRactive = new Ractive({
         el: ".productList",
         template: require('ccc/global/partials/singleInvest.html'),
@@ -36,6 +39,8 @@ IndexService.getLoanSummary(function (list) {
 
 //借款计划
 IndexService.getLoanSummary(function (list) {
+    
+   
 
     var investRactive = new Ractive({
         el: "#loan-plan",

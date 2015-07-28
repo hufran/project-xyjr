@@ -17,7 +17,7 @@ var returnMap = {
 
 var rePassword = new Ractive({
     el: '#u-page-container',
-    template: require('../../partials/forgot.html'),
+    template: require('../../partials/rePassword.html'),
     init:function(){
       if (!CC.user.id) {
         // window.location.href = '/';
@@ -70,16 +70,16 @@ rePassword.on('step1', function (e) {
     e.original.preventDefault();
     
     var user = {
-//        loginName: this.get('zqjr_18118440703'),
+        loginName: 'zqjr_'+this.get('user.mobile'),
         mobile: this.get('user.mobile'),
         captcha: this.get('captcha.text'),
         token: this.get('captcha.token')
     };
-//    utils.formValidator.checkLoginName(user.loginName, function (err, msg) {
-//        if (!err) {
-//            showErrors(msg);
-//            return false;
-//        }
+    utils.formValidator.checkLoginName(user.loginName, function (err, msg) {
+        if (!err) {
+            showErrors(msg);
+            return false;
+        }
         utils.formValidator.checkMobile(user.mobile, function (err, msg) {
             if (!err) {
                 showErrors(msg);
@@ -97,7 +97,7 @@ rePassword.on('step1', function (e) {
                 return false;
             });
         });
-//    });
+    });
 });
 
 rePassword.on('next',function(e){
@@ -112,8 +112,8 @@ rePassword.on('next',function(e){
         showErrors(msg);
     } else {
         disableErrors();
-        rePassword.set('step2',false);
-        rePassword.set('step3',true);
+        rePassword.set('step1',false);
+        rePassword.set('step2',true);
     }
     return false;
   });
@@ -123,12 +123,13 @@ rePassword.on('next',function(e){
 rePassword.on('login', function (e) {
     e.original.preventDefault();
     var user = {
-        mobile: this.get('user.mobile'),
         newPassword: this.get('newPass'),
         rePass: this.get('rePass'),
+        mobile: this.get('user.mobile'),
         captcha: this.get('phone'),
         smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
     };
+    console.log(user);
     var isVer = true;
     if (!user.newPassword || !user.rePass ) {
       rePassword.set('errors', {
@@ -146,14 +147,14 @@ rePassword.on('login', function (e) {
       return false;
     }
     
-    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
-    if (!err) {
-        showErrors(msg);
-    } else {
-        disableErrors();
-    }
-    return false;
-  });
+//    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
+//    if (!err) {
+//        showErrors(msg);
+//    } else {
+//        disableErrors();
+//    }
+//    return false;
+//  });
     
     if (isVer) {
       rePasswordService.doResetPassword(user, function (err, msg){
@@ -188,9 +189,8 @@ rePassword.on('sendTelCode', function (e) {
         if (!mobile.length) {
             showErrors('MOBILE_NULL');
             return;
-        } 
-        else {
-            CommonService.getSmsCaptcha(mobile, function (r) {
+        } else {
+            CommonService.getSmsCaptchaForResetPassword(mobile, function (r) {
                 if (r.success) {
                     countDown();
                 }

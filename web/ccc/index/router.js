@@ -18,13 +18,12 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-        console.log('!!!!!!!!!');
-        console.log(data);
+       
 //            var data = parseCMStitle(data.slice(0,1));
-//            return data;
+            return data;
         });
     res.locals.latestPublication = req.uest(
-        '/api/v2/cms/category/PUBLICATION/name/' + encodeURIComponent('最新公告'))
+        '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('行业新闻'))
         .end()
         .get('body')
         .then( function(data) {
