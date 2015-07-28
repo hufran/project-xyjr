@@ -1,4 +1,4 @@
-BackFile='/home/node/bak'
+BackFile='/home/node/.bak'
 id1=`git rev-parse HEAD`
 grep ${id1} ${BackFile}
 if [[ $? -eq 0 ]]; then
@@ -7,7 +7,7 @@ else
 	echo 'id write in bak'
 	git rev-parse HEAD >>${BackFile}
 fi
-id2=`tail  -n 1  ~/bak`
+id2=`tail  -n 1  ${BackFile}`
 echo $id1,$id2
 if [[ "${id1}" = "${id2}" ]];then
 	res=`git fetch`
