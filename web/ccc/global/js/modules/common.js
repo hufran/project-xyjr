@@ -5,14 +5,12 @@
 
 'use strict';
 
-var request = require('cc-superagent-promise');
 var cache = {};
 
 exports.CommonService = {
     getCaptcha: function (next) {
         var timestamp = new Date() - 0;
         request('GET', '/api/v2/register/captcha?timestamp=' + timestamp)
-            .set('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0')
             .end()
             .then(function (res) {
                 next(res.body);
@@ -34,13 +32,6 @@ exports.CommonService = {
                 next(res.body);
             });
     },
-    getVoiceCaptcha: function (mobile, next) {
-        request('GET', '/api/v2/register/voiceCaptcha?mobile=' + mobile)
-            .end()
-            .then(function (res) {
-                next(res.body);
-            });
-    },
     getUserInfo: function (next) {
         return cache.userInfo ? cache.userInfo :
             (cache.userInfo = request('GET', '/user/info')
@@ -51,5 +42,22 @@ exports.CommonService = {
                 }
                 return res.body;
             }));
+    },
+    articles: function (cate, name, next) {
+        return request('GET', '/api/v2/cms/'+cate+'/'+name)
+            .end()
+            .then(function (res) {
+                if (typeof next === 'function') {
+                    next(res.body);
+                }
+                return res.body;
+            });
+    },
+      getSmsCaptchaForResetPassword: function (mobile, next) {
+        request('GET', '/api/v2/users/smsCaptcha/changePwd?mobile=' + mobile)
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
     }
 };

@@ -1,22 +1,23 @@
 'use strict';
+
 module.exports = function (hook) {
 
-    hook.get('/aboutus/:tab', ['data', 'locals', 'params', 'redirect'], function (data, locals, params, redirect) {
+    hook.get('/aboutus/:tab', ['data', 'locals', 'params', 'redirect','res'], function (data, locals, params, redirect,res) {
         var cateMap = {
-            aboutus: '公司简介',
-            background: '公司简介',
-            responsibility: '公司简介',
-            news: '公司简介',
-            announcement:'公司简介',
-            contactus: '公司简介',
-            help:'公司简介'
+            aboutus: 'INTRODUCTION',
+            background: 'INTRODUCTION',
+            responsibility: 'INTRODUCTION',
+            news: 'NEWS',
+            announcement:'PUBLICATION',
+            contactus: 'INTRODUCTION',
+            help:'INTRODUCTION'
         };
         var nameMap = {
             aboutus: '奇乐融简介',
             background: '成立背景',
             responsibility: '社会责任',
-            news: '新闻资讯',
-            announcement:'通知公告',
+            news: '行业新闻',
+            announcement:'最新公告',
             contactus: '联系我们',
             help:'帮助中心',
             safety:'安全保障'
@@ -70,13 +71,9 @@ module.exports = function (hook) {
                     name: params.tab,
                     text: nameMap[params.tab]
                 },
-                contents: data.get('/api/v2/cms/category/PUBLICATION/name/' + encodeURIComponent('最新公告')).then(function (r) {
-                    console.log('/api/v2/cms/category/INTRODUCTION/name/'+nameMap[params.tab]);
-                    console.log(r);
-                    var contents= r.length > 0 ? r[0].content : null;
-                    console.log("-------------------------------------------------------------------------------------------------------------------");
-                    console.log(contents);
-                    console.log(r);
+                contents: data.get('/api/v2/cms/category/'+cateMap[params.tab]+'/name/' + encodeURIComponent(nameMap[params.tab])).then(function (r) {
+                   console.log(r);
+                    var contents= r.length > 0 ? r : null;
                     return contents;
                 })
             });

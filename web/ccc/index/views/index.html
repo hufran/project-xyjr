@@ -92,7 +92,7 @@
 <div class="s-content u-pos-r-center wide" id="newsBg">
     <div class="s-split-view">
            <div class="s-left-view">
-            <a href="/cms/news" target="_blank">
+            <a href="/aboutus/news" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
             <h4><img src="/ccc/index/img/article.png"/>行业新闻</h4>
@@ -117,15 +117,15 @@
             </ul>
         </div>
         <div class="s-left-view" style="margin-right:0;">
-            <a href="/cms/news" target="_blank">
+            <a href="/aboutus/announcement" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
             <h4><img src="/ccc/index/img/voice.png"/>公告</h4>
             <ul style="list-style-type: disc;">
-                {{#latestPublication}}
+                {{#latestOne}}
                 <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{this.title}}</a>
                 </li>
-                {{/latestPublication}}
+                {{/latestOne}}
             </ul>
         </div>
     </div>

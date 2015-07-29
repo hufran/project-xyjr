@@ -4,7 +4,7 @@ var CommonService = require('ccc/global/js/modules/common')
     .CommonService;
 var forgotService = require('../service/forgot')
     .forgotService;
-var template = require('ccc/forgot/partials/forgot.html');
+var template = require('ccc/forgot/partials/rePassword.html');
 var utils = require('ccc/global/js/lib/utils');
 var forgotRactive = new Ractive({
     el: '.page-forgot',
@@ -44,7 +44,7 @@ forgotRactive.on('changeCaptcha', function () {
 forgotRactive.on('doReset', function (e) {
     e.original.preventDefault();
     var user = {
-        loginName: this.get('zqjr_18118440703'),
+        loginName: this.get('user.loginName'),
         mobile: this.get('user.mobile'),
         captcha: this.get('captcha.text'),
         token: this.get('captcha.token')

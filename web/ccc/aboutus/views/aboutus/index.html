@@ -9,6 +9,7 @@
         {{>list}}
     </div>
     {{#if tab.text!='安全保障'}}
+    {{#if contents.length===1}}
     <div id="help-right" class="pull-right">
         <div class="invest-container">
             <div class="invest-wrapper">
@@ -16,11 +17,31 @@
                     <h2>{{currentTab}}</h2>
                 </div>
                 <div class="invest-wrapper">
-                    {{& contents}}
+                    {{{contents[0].content}}}
                 </div>
             </div>
         </div>
     </div>
+    {{else}}
+    
+     <div id="help-right" class="pull-right">
+        <div class="invest-container">
+            <div class="invest-wrapper">
+                <div class="help-title">
+                    <h2>{{currentTab}}</h2>
+                </div>
+                <div class="invest-wrapper">
+                    {{#each contents}}
+                    <a href="/cms/p/{{id}}"><div style="padding:10px">{{title}}</div></a>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    {{/if}}
     {{else}}
     <div id="help-right" class="pull-right">
         <div class="invest-container">
