@@ -7,33 +7,41 @@ module.exports = {
      * redis 或 sentinel 配置是必须的，选其中一个即可
      *
      * */
-    redis: "redis://127.0.0.1:6379", /* 可以设置为 false，条件是先确保 sentinel 的 session 节点已设置 */
+    redis: "redis://127.0.0.1:6379",
 
     /*
-    // 当 sentinel 相关节点设置后，会优先使用 sentinel，没有节点才 fallback 到 redis，如果已设置 session，可以把 redis 设为 false
-    // session 节点是必须的，如果没有 session 节点也没有 redis 会无法运行，其他节点用于缓存，可选
-    "sentinel": [
-      {
-        "type": "COMMON", // 缓存用户信息
-        "masterName": "master-7000",
-        "endpoints": [{"host": "127.0.0.1", "port": 26379}],
-        "opts": {}
-      },
-      {
-        "type": "LOANRELATE", // 缓存标的相关信息
-        "masterName": "master-8000",
-        "endpoints": [{"host": "127.0.0.1", "port": 26380}],
-        "opts": {}
-      },
-      {
-        "type": "SESSION", // 如果设置了此节点，会将 token, captcha, rsa 存到此节点，就不需要设置 redis 了
-        "masterName": "master-9000",
-        "endpoints": [{"host": "127.0.0.1", "port": 26381}],
-        "opts": {}
-      }
-    ],
+     * redis 如果没有 redis.clusterNodes 这个属性，会整个传给 ioredis 的 constructor，参考
+     * ioredis 的 README.md https://github.com/luin/ioredis
+     * 和 API.md https://github.com/luin/ioredis/blob/master/API.md#new_Redis
+     * README.md 的 sentinel 一节说明了如何设置 sentinel
+     *
+     * 如果要使用 redis cluster
+     * 把 redis.clusterNodes 设置为 startupNodes，
+     * 其他属性会作为 options 的属性传给 Redis.Cluster 作为第二个参数
+     */
+
+    /* sentinel 示例配置
+    redis: {
+        sentinels: [{ host: 'localhost', port: 26379 }, { host: 'localhost', port: 26380 }],
+        name: 'mymaster'
+    },
     */
 
+    /* cluster 示例配置
+    redis: {
+        clusterNodes: [
+            {
+                port: 6380,
+                host: '127.0.0.1'
+            },
+            {
+                port: 6381,
+                host: '127.0.0.1'
+            },
+        ],
+        maxRedirections: 20,
+    },
+    */
 
     investorLimit: 1000, // 在调用 tenderNoPwd 接口投标时限流，在一秒钟内超过这个数，则不会请求到后端，直接返回 TOO_CROWD 错误
     // 各项的缓存的开关
@@ -65,13 +73,8 @@ module.exports = {
         manager: "http://127.0.0.1:8080/admin"
     },
 
-    // 统一管理 client id/key 的服务器地址，对于自托管的客户，设置为 false
-    remoteConfigPrefix: 'http://node.creditcloud.com:7070',
-
     clients: [
-    /*
-    // clients 列表，自托管客户（remoteConfigPrefix 为 false）需要指定此项，
-    // 默认有 node 端和 mobile 端两个，根据需要添加
+    // clients 列表，默认有 node 端和 mobile 端两个，根据需要添加
     {
         name: "node",
         id: "client-id-for-node-dev",
@@ -82,7 +85,6 @@ module.exports = {
         id: "client-id-for-mobile-dev",
         secret: "client-secret-for-mobile-dev"
     }
-    */
     ],
     exchanges: [ // oauth 验证方式
         "client",
