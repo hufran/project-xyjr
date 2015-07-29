@@ -87,23 +87,42 @@ app.use(function (req, res, next) {
 
     req.uest.get('/api/v2/whoamiplz').then(function (r) {
         var user = r.body.user;
-        if (user) {
-            user.logined = true;
-            if (user.email === 'notavailable@creditcloud.com') {
-                user.email = '';
-            }
-            res.locals.user = res.locals.user || {};
-            if (!user.accountId) {
-                return expUser(user);
-            }
-            req.uest.get('/api/v2/user/MYSELF/agreement').get('body').then(function (body) {
-                user.agreement = body || {};
-                expUser(user);
-            });
-        } else {
-            res.expose({}, 'user');
+//        if (user) {
+//            user.logined = true;
+//            if (user.email === 'notavailable@creditcloud.com') {
+//                user.email = '';
+//            }
+//            res.locals.user = res.locals.user || {};
+//            if (!user.accountId) {
+//                return expUser(user);
+//            }
+//            req.uest.get('/api/v2/user/MYSELF/agreement').get('body').then(function (body) {
+//                user.agreement = body || {};
+//                expUser(user);
+//            });
+//        } else {
+//            res.expose({}, 'user');
+        
+         res.locals.user = res.locals.user || {};
+        if (!user) {
+            expUser({});
+            return next();
         }
-        next();
+//        next();
+        
+        user.logined = true;
+        if (user.email === 'notavailable@creditcloud.com') {
+          user.email = '';
+       }
+      if (!user.accountId) {
+          expUser(user);
+           return next();
+      }
+        req.uest.get('/api/v2/user/MYSELF/agreement').get('body').then(function (body) {
+           user.agreement = body || {};
+           expUser(user);
+          next();
+        });
         function expUser(user) {
             _.assign(res.locals.user, user);
             res.expose(res.locals.user, 'user');
