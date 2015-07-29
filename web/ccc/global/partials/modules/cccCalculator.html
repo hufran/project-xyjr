@@ -1,25 +1,30 @@
 <div class="cc-calculator-wp">
+    <div class="calculator-title">
+        <img  class="calculator-title-left" src="/ccc/global/img/calculator-title.png"/>
+        <div class="calculator-line">
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-4" style="width:33%;float:left;">
             <form name="ccCalculatorForm" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="cc-cal-f2" class="col-sm-4 control-label">投资金额</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="cc-cal-f2" name="amountValue" value="">
+                        <input type="text" class="form-control" id="cc-cal-f2" name="amountValue" value="" placeholder="您的投资金额">
                         <span>元</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="cc-cal-f3" class="col-sm-4 control-label">投资期限</label>
+                    <label for="cc-cal-f3" class="col-sm-4 control-label" placeholder="">投资期限</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="cc-cal-f3" name="dueMonth" value="" placeholder="整数月">
+                        <input type="text" class="form-control" id="cc-cal-f3" name="dueMonth" value="" placeholder="期望时间长度">
                         <span>月</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cc-cal-f4" class="col-sm-4 control-label">年化利率</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="cc-cal-f4" name="annualRate" value="">
+                        <input type="text" class="form-control" id="cc-cal-f4" name="annualRate" value="" placeholder="年化利率">
                         <span>%</span>
                     </div>
                 </div>
@@ -34,11 +39,12 @@
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
                         <button type="submit" class="btn btn-orange btn-cal">计算收益</button>
+                        <button type="reset" class="reset">重置</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-md-8" style="width:66%;float:left;">
+        <div class="col-md-8" style="width:64%;float:left;">
             <div class="cc-cal-results-box">
                 <div class="cc-res table table-bordered1 tdContent">
                     <div class="ccc-f tdCell">收款日期</div>

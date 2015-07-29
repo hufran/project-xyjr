@@ -42,8 +42,9 @@ body {
     margin-right: auto;
     margin-top: 40px;
     border: 1px solid #dddddd;
-    width: 1000px;
+    width: 1100px;
     margin-bottom: 37px;
+    height: 596px;
 }
 
 .step01,
@@ -56,7 +57,7 @@ body {
 }
 
 .main .step02 .verify-content {
-    width: 340px;
+    width: 360px;
     margin: auto;
     margin-bottom: 50px;
 }
@@ -80,18 +81,43 @@ body {
     border: none;
     /*    padding-left: 10px;*/
     
-    height: 41px;
+    height: 40px;
     line-height: 41px;
     color: #999;
     font-size: 14px;
+    
 }
 
-.main .step01 .verify-content .s-form-row,
-.main .step02 .verify-content .s-form-row {
-    width: 271px;
+
+
+.main .step01 .verify-content .s-form-row {
+    width: 276px;
     border: 1px solid #c5c5c5;
     border-radius: 3px;
     margin-bottom: 15px;
+    padding-left: 10px;
+    border-radius: 4px;
+    float:left;
+}
+
+.main .step02 .verify-content .s-form-row{
+       width: 276px;
+    border: 1px solid #c5c5c5;
+    border-radius: 3px;
+    padding-left: 10px;
+    border-radius: 4px;
+    float:left;
+}
+.main .step01 .verify-content .s-form-row-lg .border .u-form-text-lg{
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+.main .step01 .verify-content .s-form-row-lg .border{
+    float: left;
+}
+.main .step01 .verify-content .s-form-row-lg .u-form-text-lg{
+    float: left;
 }
 
 .main .step01 .verify-content .s-form-row-sm,
@@ -100,6 +126,7 @@ body {
     border-radius: 3px;
     width: 271px;
 }
+
 
 .main .step02 .verify-content .border input {
     width: 100px;
@@ -146,14 +173,16 @@ body {
 
 .main .step01 .verify-content .u-form-btn-red,
 .main .step02 .verify-content .u-form-btn-red {
-    width: 105px;
+    width: 276px;
     margin: auto;
     text-align: center;
     line-height: 37px;
-    height: 37px;
+    height: 40px;
     color: white;
-    background-color: #d8000f;
-    border-radius: 20px;
+    background-color: #007ec5;
+    border-radius: 4px;
+    margin-top: 40px;
+    float: right;
 }
 
 .main .step01 .verify-content .s-form-row-sm-s {
@@ -296,7 +325,7 @@ body {
 
 .main .next {
     overflow: hidden;
-    width: 288px;
+    width: 350px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 150px;
@@ -441,9 +470,9 @@ body {
 .main .next02 h3 a {
     text-align: center;
     line-height: 40px;
-    text-decoration: underline;
-    color: #ff6800;
-    font-size: 18px;
+    text-decoration: none;
+    color: #0d7cd5;
+    font-size: 14px;
 }
 
 .main .next02 h4 {
@@ -471,3 +500,65 @@ body {
     padding: 12px 2px;
     color: #c5c5c5;
 }
+ .step-guide{
+     margin: 50px auto 100px auto;
+ }
+.main .step01 .verify-content .u-form-panel .test-title{
+    float:left;
+    line-height: 41px;
+    font-size: 16px;
+    color:#3c3c3c;
+}
+.main .step01 .verify-content .s-form-row-lg .border .test-title{
+    float:left;
+    line-height: 41px;
+    font-size: 16px;
+    color:#3c3c3c;
+}
+.main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text a{
+    color:#007ec5;
+    font-size: 14px;
+ }   
+.main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text{
+   border: 1px solid #007ec5;
+    line-height: 40px;
+    float: right;
+    width: 120px;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+.main .step02 .u-form-panel .step-password,
+.main .step02 .u-form-panel .step-password-confirm{
+    height:43px;
+}
+.main .step02 .u-form-panel .step-password-confirm{
+    margin-top: 30px;
+}
+.main .step02 .u-form-panel .step-password .test-title{
+    float: left;
+       line-height: 41px;
+    font-size: 16px;
+    color:#3c3c3c;
+    margin-left: 30px;
+}
+.main .step02 .u-form-panel .step-password .s-form-row{
+    float: right;
+}
+.main .step02 .u-form-panel .step-password-confirm .test-title{
+    float: left;
+       line-height: 41px;
+    font-size: 16px;
+    color:#3c3c3c;
+}
+.main .step02 .u-form-panel .step-password-confirm .s-form-row{
+    float: right;
+   
+}
+/*
+.main .step03 .step04 .way04 .next next02 h3 a{
+    text-decoration: none;
+    color:#0d7cd5;
+    font-size: 14px;
+}
+*/
