@@ -41,10 +41,12 @@ router.get('/', function (req, res, next) {
 //            var data = data.slice(0,5);
             return data;
         });
-    // res.locals.friendsLinks = req.uest(
-    //     '/api/v2/cms/category/LINK/name/' + encodeURIComponent('友情链接'))
-    //     .end()
-    //     .get('body');
+//     res.locals.friendsLinks = req.uest(
+//         '/api/v2/cms/category/LINK/name/' + encodeURIComponent('友情链接'))
+//         .end()
+//         .get('body').then( function(data) {
+//            return data;
+//        });
      res.locals.cooperation = req.uest(
          '/api/v2/cms/category/COOPERATION/name/' + encodeURIComponent('合作伙伴'))
          .end()

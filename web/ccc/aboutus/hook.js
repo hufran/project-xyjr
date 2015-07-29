@@ -9,8 +9,8 @@ module.exports = function (hook) {
             responsibility: 'INTRODUCTION',
             news: 'NEWS',
             announcement:'PUBLICATION',
-            contactus: 'INTRODUCTION',
-            help:'INTRODUCTION'
+            contactus: 'CONTACT',
+            help:'HELP'
         };
         var nameMap = {
             aboutus: '奇乐融简介',
@@ -18,7 +18,7 @@ module.exports = function (hook) {
             responsibility: '社会责任',
             news: '行业新闻',
             announcement:'最新公告',
-            contactus: '联系我们',
+            contactus: '联系方式',
             help:'帮助中心',
             safety:'安全保障'
         }
