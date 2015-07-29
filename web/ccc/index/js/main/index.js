@@ -229,12 +229,12 @@ $.get('/api/v2/analytics/count', function (r) {
 })
 
 
-request.get(encodeURI('/api/v2/cms/友情链接/友情链接'))
+request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .end()
     .then(function (res) {
         var count = new Ractive({
         el: '.firendLink',
-        template: '<div><span>友情链接</span>{{#each items}}{{{content}}}{{/each}}</div>',
+        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}{{{content}}}{{/each}}</div></div>',
         data: {
             items: res.body
         }

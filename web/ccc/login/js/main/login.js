@@ -73,10 +73,10 @@ $('#loginForm').submit(function(e){
     request.post('/login/ajax').type('form').send($this.serialize()).end().get('body').then(function(r){
         if (r.success) {
 //            $postBtn.text('登录成功');
-            alert("dd");
+//            alert("dd");
             location.href = (r.redirect) ? r.redirect:'/invest/list';
         } else {
-            alert("error");
+//            alert("error");
             $error.text(errorMaps[r.error_description.result]);
             $postBtn.removeClass('disabled')//.text('登录');
         }
