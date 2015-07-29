@@ -2,7 +2,7 @@
  * cc-calculator
  */
 .cc-calculator-wp {
-  padding: 30px 20px;
+  padding: 0px 20px;
 }
 .cc-calculator-wp form .control-label {
   padding-top: 11px;
@@ -18,7 +18,7 @@
   padding: 10px 12px;
 }
 .cc-calculator-wp form select {
-  height: 42px;
+  height: 38px;
 }
 .cc-calculator-wp form button {
   outline: none;
@@ -39,7 +39,7 @@
 }
 .cc-calculator-wp form .form-group span {
   position: absolute;
-  top: 12px;
+/*  top: 12px;*/
   right: 20px;
   color: #bbb;
 }
@@ -48,7 +48,7 @@
 }
 .cc-calculator-wp .btn.btn-cal {
   width: 100%;
-  padding: 13px 0;
+  padding: 5px 0;
   font-size: 16px;
 }
 .cc-calculator-wp .cc-cal-results-box {

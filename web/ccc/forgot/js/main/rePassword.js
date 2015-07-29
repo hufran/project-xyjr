@@ -259,3 +259,18 @@ function disableErrors() {
             msg: ''
         });
 }
+
+//3秒后跳转页面
+//  var i = 4;
+//  function out(){
+//    if (i>0){
+//      i--;
+//    }else{
+//      location.href="/index";
+//    }
+//    document.getElementById('u-con').innerHTML=i;
+//  }
+//  setInterval('out()',1000);
+
+
+
