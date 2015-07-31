@@ -21,8 +21,12 @@ function MaskLayer() {
             visible: false
         }
     });
+    
 
-    this.maskLayerRactive.on('close', function () {
+
+
+
+     this.maskLayerRactive.on('close', function () {
         self.options.onClick();
     });
 }
@@ -41,3 +45,4 @@ MaskLayer.prototype.close = function () {
         this.originalOptions = null;
     }
 };
+

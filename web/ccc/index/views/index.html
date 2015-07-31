@@ -34,7 +34,11 @@
                             <p class="banner-account1">预期年化最高可达<span class="banner-account-2">18</span><span class="banner-account4">%</span>
                             </p>
                             <p class="banner-account2"><span class="banner-account-3">45</span>倍活期存款 ,<span class="banner-account-3">6</span>倍定期存款收益</p>
-                            <button>免费注册</button>
+                            {{#if user}}
+                            <a href="/register"><button>我的账户</button></a>
+                            {{else}}
+                            <a href="/register"><button>免费注册</button></a>
+                            {{/if}}
                             <h3 class="bannerLogin">已有账号? <a class="underline" href="/login">立即登录</a></h3>
                         </div>
                     </div>

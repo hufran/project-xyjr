@@ -397,11 +397,11 @@
 .cc-calculator-wp .row .col-md-8 .cc-cal-results-box{}
 .cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent{overflow: hidden;background-color: #f3f4f6;}
 .cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div{float: left;line-height: 31px;text-align: center;}
-.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(1){width: 15%;}
-.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(2){width: 22%;}
-.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(3){width: 22%;}
-.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(4){width: 22%;}
-.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(5){width: 15%;}
+.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(1){}
+.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(2){}
+.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(3){}
+.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(4){}
+.cc-calculator-wp .row .col-md-8 .cc-cal-results-box .tdContent div:nth-child(5){}
 
 .cc-calculator-wp .row .col-md-8 .cc-cal-results-box .cc-table-container{}
 .cc-calculator-wp .row .col-md-8 .cc-cal-results-box .hide{}
@@ -415,3 +415,15 @@
 .cc-calculator-wp .calculator-title{
     height:35px;margin-bottom: 10px;
 }
+
+/*导航微信二维码*/
+#nav-color .s-header-info-content u-pos-r-center{
+    position: relative;
+}
+#nav-color .erweima {
+    position: absolute;
+    left:27%;
+    top:56%;
+   /*    z-index: 10;*/
+    display: none;
+ }

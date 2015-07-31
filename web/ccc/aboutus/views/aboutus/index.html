@@ -8,42 +8,14 @@
 
         {{>list}}
     </div>
-    {{#if tab.text!='安全保障'}}
-    {{#if contents.length===1}}
-    <div id="help-right" class="pull-right">
-        <div class="invest-container">
-            <div class="invest-wrapper">
-                <div class="help-title">
-<!--                    <h2>{{currentTab}}</h2>-->
-                </div>
-                <div class="invest-wrapper">
-                    {{{contents[0].content}}}
-                </div>
-            </div>
-        </div>
-    </div>
-    {{else}}
-    
-     <div id="help-right" class="pull-right">
-        <div class="invest-container">
-            <div class="invest-wrapper">
-                <div class="help-title">
-<!--                   <h2>{{title}}</h2>-->
-                </div>
-                <div class="invest-wrapper">
-                    {{#each contents}}
-                    <a href="/cms/p/{{id}}"><div style="padding:10px">{{title}}</div></a>
-                    {{/each}}
-                </div>
-            </div>
-        </div>
-    </div>
     
     
     
-    {{/if}}
-    {{else}}
-    <div id="help-right" class="pull-right">
+    
+     
+    
+    {{#if tab.text=='安全保障'}}
+        <div id="help-right" class="pull-right">
         <div class="invest-container">
             <div class="invest-wrapper">
                 <div class="brand-box">
@@ -112,125 +84,45 @@
         </div>
     </div>
     {{/if}}
+    
+     
+   
+    
+        {{#if contents.length===1}}
+            <div id="help-right" class="pull-right">
+                <div class="invest-container">
+                    <div class="invest-wrapper">
+                        <div class="help-title">
+                        </div>
+                        <div class="invest-wrapper">
+                            {{{contents[0].content}}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+
+             <div id="help-right" class="pull-right">
+                <div class="invest-container">
+                    <div class="invest-wrapper">
+                        <div class="help-title">
+                        </div>
+                        <div class="invest-wrapper">
+                            {{#each contents}}
+                              <div style="padding:10px">{{title}}</div>
+                              <div class="article-content">{{& content}}</div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {{/if}}
+       
     <div class="clear_left"></div>
 </div>
 
-<!--
-           <a class="contact_service2" onclick="javascript:window.open('http://wpa.qq.com/msgrd?v=3&uin=1056394237&site=qq&menu=yes', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">
-            <div class="contact_service1">
-                <img  style="CURSOR: pointer"  border="0" SRC="/ccc/login/img/talk_icon.png" p=1:1056394237:1 alt="点这里">
-                <span>联系客服</span>
-            </div>
-    </a>
-
-    <a class="back_top">
-            <div class="back_top1">
-                <img src="/ccc/listnht/img/back_top.png">
-                <span>回到顶端</span>
-            </div>
-    </a>
--->
 
 
-
-
-
-<!--
-<div class="page-guide">
-    <div class="help-big">
-    <p>有色金融>关于我们</p>
-    <div class="help-do">
-    <div id="help-left" >
-       <div role="tabpanel">
-        <ul role="tablist" class="help-left-body">
-        <li class="active" role="presentation" >
-            <a class="current-red " href="#yousejinrong" aria-controls="yousejinrong" role="tab" data-toggle="tab" >
-            有色金融</a>
-        </li>
-               <li class="" role="presentation">
-                   <a class="current-red" href="#woyaolicai" aria-controls="woyaolicai" role="tab" data-toggle="tab" >
-            股东背景</a>
-        </li>
-            <li class="" role="presentation">
-                   <a class="current-red" href="#yonghubaozhang" aria-controls="yonghubaozhang" role="tab" data-toggle="tab" >
-            联系我们</a>
-        </li>
-            <li class="" role="presentation">
-                   <a class="current-red" href="#disanfanftuoguan" aria-controls="disanfanftuoguan" role="tab" data-toggle="tab" >
-            合作伙伴</a>
-        </li>
--->
-<!--
-            <li class="" role="presentation">
-                   <a class="current-red" href="#chongzhi" aria-controls="chongzhi" role="tab" data-toggle="tab" >
-            诚聘英才</a>
-        </li>
--->
-<!--
-            <li class="" role="presentation">
-                   <a class="current-red" href="#zhaiquanzhuanrang" aria-controls="zhaiquanzhuanrang" role="tab" data-toggle="tab" >
-            债权转让</a>
-        </li>
-            <li class="" role="presentation">
-                   <a class="current-red" href="#zhuce" aria-controls="zhuce" role="tab" data-toggle="tab" >
-            注册/登陆</a>
-        </li>
-            <li class="" role="presentation">
-                   <a class="current-red" href="#guanlimima" aria-controls="guanlimima" role="tab" data-toggle="tab" >
-            密码管理</a>
-        </li>
-            <li class="" role="presentation">
-                   <a class="current-red" href="#falvfagui" aria-controls="falvfagui" role="tab" data-toggle="tab" >
-            法律法规</a>
-        </li>
-             <li class="" role="presentation">
-                   <a class="current-red" href="#yijianfankui" aria-controls="yijianfankui" role="tab" data-toggle="tab" >
-            意见反馈</a>
-        </li>
--->
-<!--       </ul> -->
-<!--
-           </div>  
-        
-    </div> 
-    <div id="help-right">
-   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="yousejinrong">
-        <div>
--->
-<!--
-            <h1>有色金融</h1>
-            <p class="arrow">1.为什么选择有色金融？</p>
-            <p class="content">有色金融是国内领先的专注于有色金属矿业及能源业全产业链的金融信息服务平台，我们本着“专业，进取，创新，共赢”的原则为个人、中小微企业、金融和商业服务企业用户构建高效、安全，高附加值的共赢生态圈，用自身的专业实力积极推动小微金融与经济的发展，立志成为用户心目中最有价值的金融和商业信息服务平台。。</p>
-            <div class="separator"></div>
-            
-             <p class="arrow">2.为什么要投我要理财？</p>
-            <p class="content">我要理财是为投融资双方以及专业的金融服务企业所构建的互联网金融信息服务平台我们致力于为个人投资者拓宽投资渠道并增加投资品种，为中小微企业提供全新快捷方便的融资渠道，为金融服务企业带来新的业务增长点，打造多方共赢的小微金融生态圈。
-我要理财平台上发布的所有融资项目信息，均由专业的金融服务企业，经过线下严格审查后推荐到平台上，并对融资项目承担审查和管理责任。金融服务企业对投资者资金承担不可撤销的连带全额本息保障责任。（注：金融服务企业的上线条件详情，请阅读安全保障）。投资者则可以通</p>
--->
-<!--            <div class="separator"></div>-->
-<!--
-            
-        </div>  
-    </div>
-    <div role="tabpanel" class="tab-pane" id="woyaolicai">
-       </div>
-    <div role="tabpanel" class="tab-pane" id="yonghubaozhang">33</div>
-    <div role="tabpanel" class="tab-pane" id="disanfanftuoguan">44</div>
-    <div role="tabpanel" class="tab-pane" id="chongzhi">55</div>
--->
-<!--
-    <div role="tabpanel" class="tab-pane" id="zhaiquanzhuanrang">66</div>
-    <div role="tabpanel" class="tab-pane" id="zhuce">77</div>
-    <div role="tabpanel" class="tab-pane" id="guanlimima">88</div>
-    <div role="tabpanel" class="tab-pane" id="falvfagui">99</div>
-    <div role="tabpanel" class="tab-pane" id="yijianfankui">10</div>
--->
-<!--
-  </div>
-        
-    </div>    
-  
-    </div>
--->
 <script src="/ccc/aboutus/js/main/common.js"></script>
