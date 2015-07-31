@@ -13,6 +13,9 @@ $('.s__top15').mouseover(function() {
 });
 
 
+
+
+
 $(function(){
     utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA1'});
@@ -80,3 +83,12 @@ $('.calculator-create').on('click', function () {
     Cal.create();
 });
 
+
+//导航移动在上面出现微信
+//$('.erweima').hide();
+$('.weixin-icon').mouseenter(function () {
+        $('.erweima').show();
+    })
+$('.weixin-icon').mouseleave(function () {
+        $('.erweima').hide();
+    })

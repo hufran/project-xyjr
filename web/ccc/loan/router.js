@@ -77,7 +77,7 @@ router.get('/loan/:id',
                 .then(function (r) {
                     var result = parseLoan(r.body);
                     requestId = result.loanRequest.id;    
-                    res.locals.title = result.title + '|九信金融-国内首家PE系互联网金融平台';
+                    res.locals.title = result.title + '|奇乐融';
                     res.locals.description = result.loanRequest.description;
                     return result;
                 }),
