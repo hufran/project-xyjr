@@ -3,12 +3,10 @@
 var utils = require('ccc/global/js/lib/utils');
 var maskLayer = require('ccc/global/js/lib/maskLayer');
 var formValidator = utils.formValidator;
-var rePasswordService = require('../service/rePassword')
+var rePasswordService = require('ccc/forgot/js/service/rePassword')
     .rePasswordService;
 var CommonService = require('ccc/global/js/modules/common')
     .CommonService;
-var forgotService = require('../service/forgot')
-    .forgotService;
 
 var returnMap = {
   'INVALID_CAPTCHA' : '验证码不正确',
@@ -17,7 +15,7 @@ var returnMap = {
 
 var rePassword = new Ractive({
     el: '#u-page-container',
-    template: require('../../partials/rePassword.html'),
+    template: require('ccc/forgot/partials/rePassword.html'),
     init:function(){
       if (!CC.user.id) {
         // window.location.href = '/';
@@ -112,6 +110,7 @@ rePassword.on('next',function(e){
         showErrors(msg);
     } else {
         disableErrors();
+        $(".u-con-1").hide();
         rePassword.set('step1',false);
         rePassword.set('step2',true);
     }
@@ -129,7 +128,7 @@ rePassword.on('login', function (e) {
         captcha: this.get('phone'),
         smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
     };
-    console.log(user);
+
     var isVer = true;
     if (!user.newPassword || !user.rePass ) {
       rePassword.set('errors', {
@@ -162,10 +161,11 @@ rePassword.on('login', function (e) {
             showErrors(msg);
         } else {
             disableErrors();
+             $(".u-con-2").hide();
             rePassword.set('step2',false);
             rePassword.set('step3',true);
-            var time = 5;
-            rePassword.set('timeLeft',5);
+            var time = 3;
+            rePassword.set('timeLeft',3);
             setInterval(function(){
             rePassword.set('timeLeft',--time);
               if (time == 1) {
