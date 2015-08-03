@@ -12,9 +12,67 @@
     
     
     
-     
+<!--
+      {{#if tab.text=='奇乐融简介'}}
+        <div id="help-right" class="pull-right">
+        sdsdgsdfgdfgf
+        </div>
+    {{/if}}
+-->
     
-    {{#if tab.text=='安全保障'}}
+    {{#if tab.text!='安全保障'}}
+        {{#if contents.length===1}}
+            <div id="help-right" class="pull-right">
+                <div class="invest-container">
+                    <div class="invest-wrapper">
+                        <div class="help-title">
+                        </div>
+                        <div class="invest-wrapper">
+                            {{{contents[0].content}}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+              
+             <div id="help-right" class="pull-right">
+                <div class="invest-container">
+                    <div class="invest-wrapper">
+                        <div class="help-title">
+                        </div>
+                        {{#if tab.text!='帮助中心'}}
+                        <div class="invest-wrapper">
+                             <h2 class="ar-title">{{tab.text}}</h2>
+<!--                            {{JSON.stringify(contents)}} -->
+                            {{#each contents}}
+                            <div class="news-box">
+                              <div class="news-brame">【{{title}}】<a href="/cms/p/{{this.id}}">{{title}}</a> 
+                            </div>
+                            <div class="news-pubdate">{{pubDate}}</div>
+                                </div>
+<!--                              <div class="article-content">{{& content}}</div>-->
+                            {{/each}}
+                        </div>
+                         {{else}}
+                            <div class="invest-wrapper">
+                                <p class="new-guide">新手指引</p>
+                                <img class="new-guide-pic" src="/ccc/aboutus/img/register-help.png"/>
+                                <p class="new-guide">常见问题</p>
+                            {{#each contents}}
+                              <div class="each-question">
+                              <div class="question-title"><img style="margin-right:10px;" src="/ccc/aboutus/img/question-icon.png"/>{{title}}</div>
+                              <div class="article-content">{{& content}}</div>
+                               </div>
+                            {{/each}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+             
+
+        {{/if}}
+        {{else}}
         <div id="help-right" class="pull-right">
         <div class="invest-container">
             <div class="invest-wrapper">
@@ -84,42 +142,6 @@
         </div>
     </div>
     {{/if}}
-    
-     
-   
-    
-        {{#if contents.length===1}}
-            <div id="help-right" class="pull-right">
-                <div class="invest-container">
-                    <div class="invest-wrapper">
-                        <div class="help-title">
-                        </div>
-                        <div class="invest-wrapper">
-                            {{{contents[0].content}}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{else}}
-
-             <div id="help-right" class="pull-right">
-                <div class="invest-container">
-                    <div class="invest-wrapper">
-                        <div class="help-title">
-                        </div>
-                        <div class="invest-wrapper">
-                            {{#each contents}}
-                              <div style="padding:10px">{{title}}</div>
-                              <div class="article-content">{{& content}}</div>
-                            {{/each}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        {{/if}}
-       
     <div class="clear_left"></div>
 </div>
 

@@ -62,6 +62,7 @@ module.exports = function (hook) {
         } 
         loop();
         
+   
         if (nameMap[params.tab]) {
             _.assign(locals, {
                 tabs: tabs,
@@ -72,11 +73,14 @@ module.exports = function (hook) {
                     text: nameMap[params.tab]
                 },
                 contents: data.get('/api/v2/cms/category/'+cateMap[params.tab]+'/name/' + encodeURIComponent(nameMap[params.tab])).then(function (r) {
+                   formatNews(r);
                    console.log(r);
                     var contents= r.length > 0 ? r : null;
                     return contents;
+                     
                 })
-            });
+                
+             });
 
             return {
                 view: 'aboutus/index',
@@ -86,3 +90,15 @@ module.exports = function (hook) {
 
     });
 };
+
+
+
+
+function formatNews(news) {
+    news = news || [];
+    for (var i = 0; i < news.length; i++) {
+        news[i].pubDate = moment(news[i].pubDate)
+            .format('YYYY-MM-DD');
+    }
+    return news;
+}
