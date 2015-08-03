@@ -35,10 +35,10 @@ $('.arrow').on('click', function () {
 //});
 
 var $preArrow = null;
-$('.ar-title-wp').on('click', function () {
+$('.question-title').on('click', function () {
 
     var $this = $(this);
-    var $wp = $this.parents("div.article-wp");
+    var $wp = $this.parents("div.each-question");
     var $arrow = $wp.find('span');
     var klass = 'opened';
     var right = 'glyphicon-menu-right';
@@ -53,7 +53,7 @@ $('.ar-title-wp').on('click', function () {
         $wp.removeClass(klass);
         $arrow.removeClass(down).addClass(right);
     } else {
-        $('.article-wp').removeClass(klass);
+        $('.each-question').removeClass(klass);
         $wp.addClass(klass);
         $arrow.removeClass(right).addClass(down);
     }
@@ -63,6 +63,23 @@ var hash = location.hash;
 
 // 自动展开三方账户
 if (hash === '#paymentAccount') {
-    var $wp = $('.article-wp');
+    var $wp = $('.each-question');
     $wp.eq($wp.length - 1).addClass('opened');
 }
+
+$(".article-content p").hide()
+$(".article-content p").ready(function(){
+  $(".each-question").click(function(){
+  $(".opened .article-content p").toggle();
+  });
+});
+
+
+//$(".article-content p").hide()
+//$(".question-title").click(function(){
+//    $(".article-content p").toggle(function(){
+//         $(".article-content p").hide();
+//       },function(){
+//         $(".article-content p").show();
+//       });
+//});
