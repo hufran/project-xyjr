@@ -79,7 +79,10 @@ router.get('/loan/:id',
                     requestId = result.loanRequest.id;    
                     res.locals.title = result.title + '|奇乐融';
                     res.locals.description = result.loanRequest.description;
+                    result.timeLeft = JSON.parse(result.timeLeft);
                     return result;
+                    
+                    
                 }),
             invests: req.uest(
                 '/api/v2/loan/' + req.params.id + '/invests')

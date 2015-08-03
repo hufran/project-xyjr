@@ -356,3 +356,10 @@ function initailEasyPieChart() {
 
     });
 };
+
+// banenr动效
+$(".no-warry").mouseenter(function(){
+    $(this).addClass("active");
+}).mouseleave(function(){
+    $(this).removeClass("active");
+})

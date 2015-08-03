@@ -38,22 +38,22 @@
         
         {{#if loan.status == "FINISHED" }}
             <!-- <div class="invest-status">已满标</div> -->
-            <img src="/ccc/loan/img/FINISHED.png" class="finishBlock">
+            <img src="/ccc/loan/img/full.png" class="finishBlock">
         {{/if}}
 
         {{#if loan.status == "CLEARED" }}
             <!-- <div class="invest-status">还款结束</div> -->
-            <img src="/ccc/loan/img/还款完成.png" class="cleared">
+            <img src="/ccc/loan/img/over.png" class="cleared">
         {{/if}}
 
         {{#if loan.status == "ARCHIVED" }}
             <!-- <div class="invest-status">还款结束</div> -->
-            <img src="/ccc/loan/img/还款完成.png" class="cleared">
+            <img src="/ccc/loan/img/over.png" class="cleared">
         {{/if}}
 
         {{#if loan.status == "SETTLED" }}
             <!-- <div class="invest-status">已结算</div> -->
-            <img src="/ccc/loan/img/还款中.png" class="settled">
+            <img src="/ccc/loan/img/repay.png" class="settled">
             <div class="repayDuration">下一还款日：{{loan.lastRepaymentsDate}}</div>
         {{/if}}
 
@@ -69,8 +69,10 @@
             </div> -->
             <div class="left-time">
                 <span class="next-time"></span>
-                <!-- <div class="timeCount"><i>{{loan.timeLeft.dd}}</i>日<i>{{loan.timeLeft.hh}}</i>时<i>{{loan.timeLeft.mm}}</i>分
-                    <i>{{loan.timeLeft.ss}}</i>秒</div> -->
+<!--
+                 <div class="timeCount"><i>{{loan.timeLeft.dd}}</i>日<i>{{loan.timeLeft.hh}}</i>时<i>{{loan.timeLeft.mm}}</i>分
+                    <i>{{loan.timeLeft.ss}}</i>秒</div> 
+-->
                 <div class="text">后开始...</div>
             </div>
         {{/if}}
@@ -167,7 +169,8 @@
                     </div>
             </div>
     {{/if}}
-    <!-- <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
+<!--
+     <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
         <div class="form-group invest-input-wrapper">
             <span class="rmb-symbol">￥</span>
             <input type="hidden" name="loanId" value="{{loan.id}}">
@@ -196,5 +199,5 @@
             <input type="submit" class="btn btn-warning invest-button" value="立即投标"  style="background:#ff9000"/>
             <span class="benefit-calculator">收益计算</span>
         </div>
-    </form> -->
-		
+    </form> 
+		-->
