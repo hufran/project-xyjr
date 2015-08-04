@@ -8,4 +8,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());
     router.post('/api/v2/lianlianpay/withdraw/:userId', auth.user());
+
+    router.get('/api/v2/lianlianpay/banks', auth.user());
+
+    router.post('/api/v2/lianlianpay/authenticateUser/:userId', auth.user());
 };
