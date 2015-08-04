@@ -17,6 +17,21 @@ var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
 
 
+
+var canvas=document.getElementById('canvasRadius');
+var ctx=canvas.getContext('2d');
+//ctx.fillRect(0,0,80,80);
+var mygradient=ctx.createRadialGradient(22,22,0,22,22,22);           
+    mygradient.addColorStop("0","#fff");
+    mygradient.addColorStop(".25","#fff");
+    mygradient.addColorStop(".50","#fff");
+    mygradient.addColorStop(".75","blue");
+    mygradient.addColorStop("1.0","#fff");                
+    ctx.fillStyle=mygradient;
+ctx.fillRect(0,0,45,45);
+
+
+
 $("[data-toggle=tooltip]")
     .each(function () {
         $(this)

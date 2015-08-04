@@ -56,10 +56,11 @@
                             </li>
                             <li>
                                 <div class="itemt">
-                                    已投人数 : XXX人<span class="leftAmount">剩余可投金额：<span>{{loans.leftAmount}}</span>元</span></div>
+                                    已投人数 : {{loans.bidNumber}}人<span class="leftAmount">剩余可投金额：<span>{{loans.leftAmount}}</span>元</span></div>
                             </li>
 
                         </ul>
+<!--
                         <div class="process">
                             <div class="rate-chart">
                                 <div class="easy-pie-chart pie" data-percent="{{ loans.investPercent  }}" style="top:9px">
@@ -67,16 +68,27 @@
                                 </div>
                             </div>
                         </div>
+-->
 
 
 
-                        <!-- <div class="itemt">发布时间 : &nbsp;&nbsp;&nbsp;{{loans.loanRequest.timeSubmit}}</div>
-                            <div class="itemt">项目进度 :  
+<!--                         <div class="itemt">发布时间 : &nbsp;&nbsp;&nbsp;{{loans.loanRequest.timeSubmit}}</div>-->
+                        
+                        
+                        
+                        
+                            <div class="itemt" style="float:left">项目进度 :
+                                
+                                <div class="rate-chart"><div class="easy-pie-chart pie easyPieChart" data-percent="{{ loans.investPercent }}" style="left: 37.5px; top: 17.5px; width: 45px; height: 45px; line-height: 45px;"><span class="percentageNum">{{ loans.investPercent }}%</span><canvas width="90" height="90" style="width: 45px; height: 45px;" id="canvasRadius"></canvas></div></div>
+                                
+                                
+<!--
                                 <div class="percentWrapper">
                                     <div class="percent" style="width:{{ loans.investPercent }}%"></div>
                                     <div class="realPercent">{{ loans.investPercent }}%</div>
                                 </div>
-                            </div> -->
+-->
+                            </div> 
                     </div>
                 </div>
                 <div class="h20"></div>
