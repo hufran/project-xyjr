@@ -168,7 +168,7 @@ rePassword.on('login', function (e) {
             rePassword.set('timeLeft',3);
             setInterval(function(){
             rePassword.set('timeLeft',--time);
-              if (time == 1) {
+              if (time === 1) {
                 clearInterval();
                 window.location.href = '/';
               }

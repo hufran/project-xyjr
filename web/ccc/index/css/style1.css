@@ -391,6 +391,7 @@
 .strengthProtectBg{
 /*    overflow: hidden;*/
     color: #ffffff;
+    height: 267px;
 }
 .strengthProtect h1{
     color:#4a4a4a;
@@ -450,6 +451,9 @@
 }
 .productBg{
     background: #ffffff;
+/*    height:500px;*/
+    overflow: hidden;
+    clear: both;
 }
 /*友情链接*/
 .friend-left{
