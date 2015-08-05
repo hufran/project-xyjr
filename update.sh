@@ -1,3 +1,4 @@
+#!/bin/bash
 BackFile='/home/node/.bak'
 id1=`git rev-parse HEAD`
 grep ${id1} ${BackFile}
