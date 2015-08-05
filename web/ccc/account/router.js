@@ -49,6 +49,9 @@ router.get(/^\/account\//, function (req, res, next) {
         }, {
             text: '托管密码',
             url: '/account/paypwd'
+        }, {
+            text: '安全认证',
+            url: '/account/safety'
         }]
     }, {
         text: '还款管理',
@@ -211,6 +214,7 @@ router.get('/account/funds', function (req, res) {
     "bankcard", // 银行卡信息
     "settings", // 对应修改密码
     "paypwd",
+    "safety"
 ].forEach(function (tabName) {
     router.get('/account/' + tabName, function (req, res) {
         req.uest('/api/v2/user/MYSELF/agreement')
