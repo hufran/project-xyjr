@@ -123,11 +123,11 @@
                                         </div>
                                         <!--预计总收益：{}-->
                                         <span class="expect">预计总收益：{{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</span>
-                                        {{#if selectOption}}
+                                        {{#if loan.selectOption}}
                                         <div class="selectOption">
                                             <select name="placementId" id="couponSelection">
                                                 <option value="">使用奖券: 无</option>
-                                                {{#each selectOption}}
+                                                {{#each loan.selectOption}}
                                                     <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
                                                 {{/each}}
                                             </select>
@@ -153,11 +153,11 @@
                       
                         <div class="calculatorBox">
                            <div class="calculator" >
-                                <button class="glyphicon glyphicon-minus" style="padding:0;margin:0;" id="reduce()"></button>
-                               <input placeholder="100"  type="text" id="calculatorText">
-                                <button class="glyphicon glyphicon-plus" ></button>
+                                <button class="glyphicon glyphicon-minus" style="padding:0;margin:0;" on-click="reduce"></button>
+                               <input placeholder="{{loan.rule.min}}"  type="text" value="{{ inputNum }}">
+                                <button class="glyphicon glyphicon-plus" on-click="add"></button>
                            </div>
-                            <button class="topAmount" id="add()">最大可投金额</button>
+                            <button class="topAmount" on-click="maxNumber">最大可投金额</button>
                         </div> 
                         <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
 <!--

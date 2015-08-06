@@ -58,9 +58,22 @@
                             </li>
                             <li>
                                 <div class="itemt">
-                                    已投人数 : XXX人<span class="leftAmount">剩余可投金额：<span>{{loans.leftAmount}}</span>元</span></div>
+                                    已投人数 : {{loans.bidNumber}}人<span class="leftAmount">剩余可投金额：<span>{{loans.leftAmount}}</span>元</span></div>
                             </li>
 
+<<<<<<< HEAD
+                        </ul>                        
+                        
+                            <div class="itemt" style="float:left;margin-left:170px">
+                                <span class="processFont">项目进度</span>
+                                <div class="process">
+        <div class="rate-chart">
+            <div class="easy-pie-chart pie " data-percent="{{ loans.investPercent }}" style="top:9px">
+                <span class="percentageNum">{{ loans.investPercent }} </span>
+            </div>
+        </div>
+    </div>
+=======
                         </ul>
 <!--
                         <div class="percentage" data-percent="{{loans.investPercent}}">
@@ -87,22 +100,13 @@
                                     <div class="percent" style="width:{{ loans.investPercent }}%"></div>
                                     <div class="realPercent">{{ loans.investPercent }}%</div>
                                 </div>
+>>>>>>> 3b09ec925dca39ede45719a9bc5813dda94e50ff
                             </div> 
                     </div>
                    
                 </div>
                  <p><a class="protocol" target="_blank" href="/agreement/mobile/protocol">借款协议/合同文本</a></p>
                 <div class="h20"></div>
-                <!--
-                <div class="loanbottom">
-                    <span class="swra">
-                        <span class="yel circle"></span>{{ loans.method}} 
-                    </span>
-                    <span class="swra">
-                        <span class="red circle"></span>保障本息
-                    </span>
-                </div>
--->
 
             </div>
         </div>
