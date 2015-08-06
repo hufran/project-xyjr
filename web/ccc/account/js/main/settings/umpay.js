@@ -4,23 +4,33 @@ var utils = require('ccc/global/js/lib/utils');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var popupInvestRactive = require('ccc/agreement/js/main/quickInvest').popupInvestRactive;
 var accountService = require('../service/account').accountService;
-
+var CccOk = require('ccc/global/js/modules/cccOk');
+var format = require('@ds/format');
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/account/partials/settings/umpay.html'),
 
     data: {
-        accountStatus: CC.user.accountId ? (CC.user.agreement?
-            'openSucceed' : 'justOpenSuccess') : 'needOpen', // needOpen需要开户 justOpenSuccess刚开户成功 openSucceed已绑定
-        userName: '',
-        idCode: '',
+        authenticated: false,
         isQuickCheck: true,
-        umpAccount: {
-            accountId: CC.user.accountId,
-            mobile: CC.user.mobile,
-            accountName: CC.user.accountName
+        authenticateInfo: {
+            name: CC.user.name || '',
+            idNumber:''
         },
+        format : format,
         getPwdReturn: false
+    },
+    onrender: function (){
+        accountService.checkAuthenticate(function (res) {
+            ractive.set('authenticated', res.idauthenticated);
+        });
+
+        accountService.getUserInfo(function (res) {
+            ractive.set('authenticateInfo', {
+                name: res.user.name,
+                idNumber : res.user.idNumber
+            });
+        });
     }
 });
 
@@ -31,12 +41,12 @@ ractive.on('maskDepositAgreement', function (e) {
     popupDepositAgreement.show();
 });
 
-// 要开户
+// 要认证
 ractive.on("register-account-submit", function () {
-    var userName = this.get("userName");
-    var idCode = this.get("idCode");
+    var name = this.get("name");
+    var idNumber = this.get("idNumber");
     var licenseAgreed = this.get("licenseAgreed");
-    utils.formValidator.checkName(userName, function (bool,
+    utils.formValidator.checkName(name, function (bool,
         error) {
         if (!bool) {
             ractive.set({
@@ -44,7 +54,7 @@ ractive.on("register-account-submit", function () {
                 errorMessage: utils.errorMsg[error]
             });
         } else {
-            utils.formValidator.checkIdNumber(idCode,
+            utils.formValidator.checkIdNumber(idNumber,
                 function (bool, error) {
                     if (!bool) {
                         ractive.set({
@@ -58,36 +68,64 @@ ractive.on("register-account-submit", function () {
                     if (!licenseAgreed) {
                         ractive.set({
                             showErrorMessage: true,
-                            errorMessage: "必须同意托管协议"
+                            errorMessage: "必须同意实名认证协议"
                         });
 
                         return false;
                     }
                     var user = {
-                        userName: $.trim(userName),
-                        idCode: $.trim(idCode),
-                        mobile: $.trim(global.CC.user.mobile),
+                        name: $.trim(name),
+                        idNumber: $.trim(idNumber)
+                        //mobile: $.trim(global.CC.user.mobile),
                     };
-                    accountService.registerUmpay(user,
-                        function (res) {
-                            if (res.success) {
-                                ractive.set('accountStatus',
-                                    'justOpenSuccess');
-                                ractive.set(
-                                    'umpAccount', {
-                                        accountId: res.data.accountId,
-                                        accountName: res.data.accountName
+                    // accountService.registerUmpay(user,
+                    //     function (res) {
+                    //         if (res.success) {
+                    //             ractive.set('accountStatus',
+                    //                 'justOpenSuccess');
+                    //             ractive.set(
+                    //                 'umpAccount', {
+                    //                     accountId: res.data.accountId,
+                    //                     accountName: res.data.accountName
+                    //                 });
+                    //         } else {
+                    //             var msg = (res.data ? res.data.retMsg :
+                    //                 (res.error instanceof Array ? res.error[
+                    //                     0].message : res.message));
+                    //             ractive.set({
+                    //                 showErrorMessage: true,
+                    //                 errorMessage: msg
+                    //             });
+                    //         }
+                    //     });
+                    accountService.authenticateUser(user,
+                            function (res) {
+                                if (res.success) {
+                                    CccOk.create({
+                                        msg: '实名认证成功',
+                                        okText: '确定',
+                                        cancelText: '',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
                                     });
-                            } else {
-                                var msg = (res.data ? res.data.retMsg :
-                                    (res.error instanceof Array ? res.error[
-                                        0].message : res.message));
-                                ractive.set({
-                                    showErrorMessage: true,
-                                    errorMessage: msg
-                                });
-                            }
-                        });
+                                } else {
+                                    CccOk.create({
+                                        msg: '实名认证失败',
+                                        okText: '确定',
+                                        cancelText: '',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                }
+                            });
                 });
         }
     });

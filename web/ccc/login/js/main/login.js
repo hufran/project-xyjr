@@ -74,7 +74,7 @@ $('#loginForm').submit(function(e){
         if (r.success) {
 //            $postBtn.text('登录成功');
 //            alert("dd");
-            location.href = (r.redirect) ? r.redirect:'/invest/list';
+            location.href = (r.redirect) ? r.redirect:'/index';
         } else {
 //            alert("error");
             $error.text(errorMaps[r.error_description.result]);
