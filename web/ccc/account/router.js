@@ -46,19 +46,15 @@ router.get(/^\/account\//, function (req, res, next) {
         }, {
             text: '托管密码',
             url: '/account/paypwd'
-<<<<<<< HEAD
+        }, {
+            text: '安全认证',
+            url: '/account/safety'
         }
         // {
         //     text: '无密协议',
         //     url: '/account/agreement'
         // }, 
-        ]
-=======
-        }, {
-            text: '安全认证',
-            url: '/account/safety'
-        }]
->>>>>>> tmp/master
+       ]
     }, {
         text: '还款管理',
         url: '/account/loan'
