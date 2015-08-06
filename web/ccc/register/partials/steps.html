@@ -142,8 +142,9 @@
                     <input on-click='nextStep' class="next-step" type="button" value="立即注册" /> {{/if}}
                                         <label class="agree-register-protocol">
                         <input type="checkbox" id="{{rinputId}}" checked="{{value}}" />
-                        <span class="i-agree">我同意</span>
-                        <a href="/agreement/mobile/regist" class="ccc-agreement">《奇乐融用户注册协议》</a> {{#errMsg}}{{errMsg}}{{/errMsg}}
+                        <span class="i-agree">我同意<a href="/agreement/mobile/regist" class="ccc-agreement">《奇乐融用户注册协议》</a></span><br>
+                        
+                        <span> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </label>
                 </div>
             </RInput>

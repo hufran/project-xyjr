@@ -83,7 +83,7 @@ margin-bottom: 40px;}
 .rinput label{
     color: #3c3c3c;
     float: left;
-    line-height: 44px;
+    height: 44px;
     font-weight: normal;
 }
 .rinput label em{color: #e81727;line-height: 44px;}
