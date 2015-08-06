@@ -30,3 +30,8 @@
 
 #loanForm label.error {margin-left: 10px;width: auto;display: inline;font-size: 8px;font-style: italic;color: red;line-height: 45px;}
 #loanForm input.error{border: 1px solid red;}
+
+.col-sm-8 select{
+    width:320px;
+    margin-top:10px;
+}

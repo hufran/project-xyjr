@@ -137,16 +137,19 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         this.set(e.keypath + ".hovering", hovering);
     });
 
-    $('.sRate li').click(function(){
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var minRate = $(this)
-                .data('min-rate');
-            var maxRate = $(this)
-                .data('max-rate');
+    $('.no-warry-ul .no-warry').click(function(){
+        console.log('sdfsdf');
+        if (!$(this).hasClass("selected")) {
+            $(this).addClass("selected").siblings().removeClass("selected");
+//            var minRate = $(this)
+//                .data('min-rate');
+//            var maxRate = $(this)
+//                .data('max-rate');
+             var product = $(this).data('product');
             params.currentPage = 1;
-            params.minRate = minRate;
-            params.maxRate = maxRate;
+            params.product=product;
+//            params.minRate = minRate;
+//            params.maxRate = maxRate;
             render(params);
         }
     });

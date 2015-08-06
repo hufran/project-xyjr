@@ -79,7 +79,6 @@ router.get('/loan/:id',
                     requestId = result.loanRequest.id;    
                     res.locals.title = result.title + '|奇乐融';
                     res.locals.description = result.loanRequest.description;
-                    result.timeLeft = JSON.parse(result.timeLeft);
                     return result;
                     
                     
@@ -151,6 +150,7 @@ router.post('/loan/selectOption', ccBody, function (req, res) {
 });
 
 function parseLoan(loan) {
+   
     var methodZh = {
         'MonthlyInterest': '按月付息到期还本',
         'EqualInstallment': '按月等额本息',
@@ -206,6 +206,7 @@ function parseLoan(loan) {
         .format('YYYY-MM-DD');
     loan.method = methodZh[loan.method];
     loan.timeLeftStamp=loan.timeLeft;
+    
     loan.timeLeft = formatLeftTime(loan.timeLeft);
     loan.purpose = purposeMap[loan.purpose];
     //格式化期限
@@ -231,7 +232,8 @@ function parseLoan(loan) {
             loan.fProjectType = '';
             loan.fProjectCode = loan.providerProjectCode;
         }        
-    }    
+    }
+    
     return loan;
 }
 
@@ -251,6 +253,7 @@ function formatLeftTime(leftTime) {
         mm:mm,
         ss:ss
     });
+  
     return obj;
 }
 
