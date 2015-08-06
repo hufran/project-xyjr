@@ -147,6 +147,9 @@
     line-height: 30px;
     color: #4a4a4a;
 }
+#help-right .invest-wrapper .article-content p{
+    margin-left: 28px;
+}
 
 #help-right .new-guide{
     font-size:22px;

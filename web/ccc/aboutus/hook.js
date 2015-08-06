@@ -21,7 +21,17 @@ module.exports = function (hook) {
             contactus: '联系方式',
             help:'帮助中心',
             safety:'安全保障'
-        }
+        };
+        var indexMap={
+            aboutus: '奇乐融简介',
+            background: '成立背景',
+            responsibility: '社会责任',
+            news: '新闻资讯',
+            announcement:'通知公告',
+            contactus: '联系我们',
+            help:'帮助中心',
+            safety:'安全保障'
+        };
         
          var tabs = [{
             text: '奇乐融简介',
@@ -54,7 +64,7 @@ module.exports = function (hook) {
         var loop =function() {
             for (var index = 0, length = tabs.length; index < length; index++) { 
             var tab = tabs[index];	 
-            if (tab.text === nameMap[params.tab]) {	 
+            if (tab.text === indexMap[params.tab]) {	 
                tabIndex = index;	 
                break;	 
             } 
