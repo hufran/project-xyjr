@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
 <link rel="stylesheet" href="/ccc/loan/css/detail.css">
-
+<!--{{JSON.stringify(loans)}} -->
 <div class="">
     <div class="current-container">
         <p class="detailTitle"><a href="/index">首页</a> > <a href="/invest">投资列表 </a> > 标的详情</p>
@@ -12,7 +12,9 @@
                 <!--                <div class="h20"></div>-->
                 <div class="investTitle">
                     <!-- <div class="serial">ID:230193</div> -->
-                    <!--                    <a class="protocol" target="_blank" href="/agreement/loan/protocol">借贷协议（范本）</a>-->
+<!--                                        <a >借贷协议（范本）</a>-->
+                    
+                    
                     <div class="time"><span>剩余时间：<i>{{loans.timeLeft.dd}}</i>日<i>{{loans.timeLeft.hh}}</i>小时<i>{{loans.timeLeft.mm}}</i>分<i>{{loans.timeLeft.ss}}</i>秒</span>
                     </div>
                     <!--                    </div>-->
@@ -59,6 +61,7 @@
                                     已投人数 : {{loans.bidNumber}}人<span class="leftAmount">剩余可投金额：<span>{{loans.leftAmount}}</span>元</span></div>
                             </li>
 
+<<<<<<< HEAD
                         </ul>                        
                         
                             <div class="itemt" style="float:left;margin-left:170px">
@@ -70,9 +73,39 @@
             </div>
         </div>
     </div>
+=======
+                        </ul>
+<!--
+                        <div class="percentage" data-percent="{{loans.investPercent}}">
+                                <span class="percent">
+                                    <span class="percent-number">{{loans.investPercent}}%</span>
+                                </span>
+                            </div>
+-->
+<!--
+                        <div class="process">
+                            <div class="rate-chart">
+                                <div class="easy-pie-chart pie" data-percent="{{ loans.investPercent  }}" style="top:9px">
+                                    <span class="percentageNum">{{ loans.investPercent  }} </span>
+                                </div>
+                            </div>
+                        </div>
+-->
+
+
+
+<!--                         <div class="itemt">发布时间 : &nbsp;&nbsp;&nbsp;{{loans.loanRequest.timeSubmit}}</div>-->
+                            <div class="itemt">项目进度 :  
+                                <div class="percentWrapper">
+                                    <div class="percent" style="width:{{ loans.investPercent }}%"></div>
+                                    <div class="realPercent">{{ loans.investPercent }}%</div>
+                                </div>
+>>>>>>> 3b09ec925dca39ede45719a9bc5813dda94e50ff
                             </div> 
                     </div>
+                   
                 </div>
+                 <p><a class="protocol" target="_blank" href="/agreement/mobile/protocol">借款协议/合同文本</a></p>
                 <div class="h20"></div>
 
             </div>
@@ -186,8 +219,10 @@
     
 <!--    {{JSON.stringify(loans)}} -->
     <div class="detailBanner">
-        <img src="" />
-        <img src="" />
+<!--
+        <img src="/ccc/loan/img/detail-banner-top.png" />
+        <img src="/ccc/loan/img/detail-banner-bottom.png" />
+-->
     </div>
 </div>
 
@@ -228,3 +263,4 @@
     };
 </script>
 <script src="/ccc/loan/js/main/investDetail.js"></script>
+<script src="/ccc/loan/js/main/img.js"></script>

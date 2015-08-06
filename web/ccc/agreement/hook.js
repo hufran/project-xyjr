@@ -3,11 +3,13 @@ module.exports = function (hook) {
 
     hook.get('/agreement/mobile/:param', ['data', 'locals', 'params', 'redirect'], function (data, locals, params, redirect) {
         var cateMap = {
-            regist:'DECLARATION'
+            regist:'DECLARATION',
+            protocol:'DECLARATION'
         };
         
         var tabMap = {
-            regist: '注册协议'
+            regist: '注册协议',
+            protocol:'借款协议'
         };
     
         _.assign(locals, {
@@ -15,7 +17,7 @@ module.exports = function (hook) {
                 name: params.tab,
                 text: tabMap[params.tab]
             },
-            contents: data.get('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap.regist)).then(function (r) {
+            contents: data.get('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[params.param])).then(function (r) {
                     console.log('sdffsdfsdf');
                    console.log(r);
                     var contents= r.length > 0 ? r : null;

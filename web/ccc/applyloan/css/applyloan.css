@@ -1,5 +1,5 @@
 .loan-content{margin: 56px auto;height: 1185px;width:1100px;font-family: "Microsoft YaHei";}
-.loan-left{float: left; width:778px;border: 1px solid #eee;background: #fff;padding-bottom : 20px; }
+.loan-left{float: left; width:778px;border: 1px solid #eee;background: #fff;padding-bottom : 14px; }
 
 .loan-title{height: 52px;border-bottom: 1px solid #eee;font-size: 18px; line-height: 52px;padding-left: 20px;color: #4a4a4a;}
 .loan-title img{padding-right: 10px;}
@@ -7,6 +7,7 @@
 .loanform{padding-top:35px;padding-left:60px;font-size: 16px;}
 /*.loanform label{width: 170px;text-align: right}*/
 .loanform .form_input{width: 320px;height: 45px; border: 1px solid #ccc;border-radius: 3px;}
+.loanform  .loanmoney{text-align: right;}
 .loanform .other_input{width: 130px;padding-bottom: 10px; border: 1px solid #ccc;border-radius: 4px;}
 .loanform .size_input{font-size: 14px;}
 .loanform textarea{width: 320px;}
@@ -15,12 +16,17 @@
 .loanform .reason .reason-content{padding-top: 5px;width: 320px;}
 .loanform .form-group{padding-top: 8px;padding-bottom: 8px;}
 .loanform .verifyword{padding-top: 10px;margin-left: 5px;}
+.loanform .verifyword span{color: dodgerblue;text-decoration:underline;cursor: pointer;}
+
+
 .loan-right{float: right; width:300px;}
-
-
 .loan-up{margin-bottom: 20px;border: 1px solid #eee;background: #fff;}
 .loan-up .content{padding: 30px;font-family: "FangSong";}
 .loan-up .content ul li{padding: 5px;}
 
 .loan-down{border: 1px solid #eee;background: #fff;}
 .loan-down .content{text-align: center;padding-bottom: 30px;}
+
+
+#loanForm label.error {margin-left: 10px;width: auto;display: inline;font-size: 8px;font-style: italic;color: red;line-height: 45px;}
+#loanForm input.error{border: 1px solid red;}
