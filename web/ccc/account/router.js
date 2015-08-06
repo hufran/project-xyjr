@@ -217,14 +217,16 @@ router.get('/account/funds', function (req, res) {
     "safety"
 ].forEach(function (tabName) {
     router.get('/account/' + tabName, function (req, res) {
-        req.uest('/api/v2/user/MYSELF/agreement')
-            .end()
-            .then(function (r) {
-                if (!_.isEmpty(r.body)) {
+        Promise.join(
+            req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
+            req.uest('/api/v2/user/MYSELF/agreement').get('body'),
+            function (authenticates, agreement) {
+                if (!_.isEmpty(agreement)) {
                     _.assign(res.locals.user, {
-                        agreement: r.body
+                        agreement: agreement
                     });
                 }
+                res.locals.user.authenticates = authenticates;
                 res.render('account/settings', {
                     tabName: tabName,
                     title: '账户管理|九信金融'
