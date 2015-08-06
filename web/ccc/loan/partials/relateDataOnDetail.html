@@ -1,40 +1,63 @@
 <!--detail页面的 相关资料部分-->
 {{#if imgLen}}
+<!--
 <div class="insurance">
     <a href="#">
-        <img src="{{ imgs[currentIndex].src }}!1" 
-            alt="{{ imgs[currentIndex].text }}" 
+        <img src="{{ imgs[currentIndex].uri }}" 
+            alt="{{ imgs[currentIndex].content }}" 
             class="preview"
             on-click="begin-big-pic" />
     </a>
-    <div class="insurance-intro">{{ imgs[currentIndex].text }}</div>    
+    <div class="insurance-intro">{{ imgs[currentIndex].content }}</div>    
 </div>
+-->
 
 <div class="controler">
     {{#if imgs.lenght > 4}}
         <a href="#" class="left" on-click="left-selector"></a>
     {{/if}}
+      <div id="carousel-com" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+<!--             {{JSON.stringify(imgsList)}}-->
+            {{#each imgs:i}} 
+           
+            <div class="item {{#if i===0}} active {{/if}}">
+                <div class="row">
+                    <div class="col-xs-6 col-md-2 imgs-list">
+                        <a  on-click="begin-big-pic" class="thumbnail-border"  style="float:left">
+                            <img src="{{imgs[i].uri}}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+          </div>
+
+    
+    
+<!--
     <div class="selectors-wrapper">
         <ul class="selectors" style="{{#selectorsMarginLeft}} margin-left: {{ selectorsMarginLeft }}px; {{/}}">
             {{#each imgs}}
                 <li class="selector {{#if currentIndex === @index}}active{{/if}}">
                     <a href="#">
-                        <img src="{{ src }}!1" 
-                            alt="{{ text }}"
+                        <img src="{{uri}}" 
+                            alt="{{content}}"
                             on-click="selector-click" />
                     </a>
                 </li>
             {{/each}}
         </ul>
     </div>
+-->
     {{#if imgs.length > 4}}
         <a href="#" class="right" on-click="right-selector"></a>
     {{/if}}
 </div>
 {{ else }}
-<!--
     <div>
         暂无相关资料
     </div>
--->
 {{/if}}

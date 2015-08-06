@@ -8,7 +8,7 @@
 exports.loanService = {
     getLoanProof: function(requestId,next) {
         request
-            .get('/loan/'+ requestId + '/proof')
+            .get('/api/v2/loan/request/'+ requestId + '/proofs')
             .end()
             .then(function (res) {
                 next(res.body);
