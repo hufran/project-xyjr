@@ -29,6 +29,9 @@ var requestId = '';
 // TODO 对id进行正则匹配
 router.get('/loan/:id', 
     function (req, res) {
+        
+        
+        console.log(req.params.id);
         var user = res.locals.user;
         var buffer = new Buffer(req.path);
         var backUrl = buffer.toString('base64');
@@ -75,6 +78,7 @@ router.get('/loan/:id',
                 '/api/v2/loan/' + req.params.id)
                 .end()
                 .then(function (r) {
+                   
                     var result = parseLoan(r.body);
                     requestId = result.loanRequest.id;    
                     res.locals.title = result.title + '|奇乐融';
@@ -168,8 +172,7 @@ function parseLoan(loan) {
         'CORPORATION': '企业融资',
         'OTHER': '其它借款'
     };
-    // console.log(loan);
-    // console.log(loan.investPercent);
+   
     loan.investPercent = Math.floor(loan.investPercent * 100);
     loan.rate = loan.rate / 100;
     loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
@@ -264,7 +267,8 @@ function formatBorrowDueDate(timeSettled, duration) {
     var year = parseInt(borrowTime[0], 10);
     var month = parseInt(borrowTime[1], 10);
     var day = parseInt(borrowTime[2]);
-    var addMonth = month + duration.totalMonths;
+    var addMonth = month;
+    if(duration) {addMonth = month + duration.totalMonths;}
     if( duration.days > 0 ){
         return moment(timeSettled).add('days',duration.totalDays).format('YYYY-MM-DD');       
     } else {
