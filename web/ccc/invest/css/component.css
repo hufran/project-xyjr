@@ -203,7 +203,7 @@ hr {
 }
 .loanItemWrapper .loanPartOne {
   float: left;
-  width: 292px;
+  width: 250px;
   height: 100%;
 }
 .loanItemWrapper .loanPartOne > div {
@@ -231,7 +231,7 @@ hr {
 .loanItemWrapper .loanRate {
   float: left;
   height: 100%;
-  width: 148px;
+  width: 120px;
   line-height: 72px;
   text-align: left;
   font-size: 28px;
@@ -243,7 +243,7 @@ hr {
 .loanItemWrapper .duration {
   float: left;
   height: 100%;
-  width: 154px;
+  width: 125px;
   text-align: left;
   line-height: 72px;
   font-size: 20px;
@@ -256,7 +256,7 @@ hr {
 .loanItemWrapper .amount {
   float: left;
   height: 100%;
-  width: 166px;
+  width: 146px;
   text-align: left;
   line-height: 72px;
   font-size: 20px;
@@ -264,12 +264,23 @@ hr {
 /*  padding-right: 40px;*/
 }
 
+.loanItemWrapper .backmoney {
+  float: left;
+  height: 100%;
+  width: 178px;
+  text-align: left;
+  line-height: 72px;
+  font-size: 14px;
+  color: #4a4a4a;
+
+}
+
 .loanItemWrapper .amount span{
   font-size: 14px;
   color: #4a4a4a;
 }
 .loanItemWrapper .process {
-  width: 190px;
+  width: 138px;
   float: left;
   position: relative;
 }

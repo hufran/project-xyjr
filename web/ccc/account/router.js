@@ -46,12 +46,19 @@ router.get(/^\/account\//, function (req, res, next) {
         }, {
             text: '托管密码',
             url: '/account/paypwd'
+<<<<<<< HEAD
         }
         // {
         //     text: '无密协议',
         //     url: '/account/agreement'
         // }, 
         ]
+=======
+        }, {
+            text: '安全认证',
+            url: '/account/safety'
+        }]
+>>>>>>> tmp/master
     }, {
         text: '还款管理',
         url: '/account/loan'
@@ -213,16 +220,19 @@ router.get('/account/funds', function (req, res) {
     "bankcard", // 银行卡信息
     "settings", // 对应修改密码
     "paypwd",
+    "safety"
 ].forEach(function (tabName) {
     router.get('/account/' + tabName, function (req, res) {
-        req.uest('/api/v2/user/MYSELF/agreement')
-            .end()
-            .then(function (r) {
-                if (!_.isEmpty(r.body)) {
+        Promise.join(
+            req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
+            req.uest('/api/v2/user/MYSELF/agreement').get('body'),
+            function (authenticates, agreement) {
+                if (!_.isEmpty(agreement)) {
                     _.assign(res.locals.user, {
-                        agreement: r.body
+                        agreement: agreement
                     });
                 }
+                res.locals.user.authenticates = authenticates;
                 res.render('account/settings', {
                     tabName: tabName,
                     title: '账户管理|九信金融'

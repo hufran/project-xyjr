@@ -1,0 +1,105 @@
+<div class="safety-wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    认证内容
+                </th>
+                <th>
+                    认证说明
+                </th>
+                <th>
+                    是否认证
+                </th>
+                <th>
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--
+            <tr>
+                {{#if activatedCard}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;银行卡认证
+                </td>
+                {{else}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-remove" style="color:red"></span> &nbsp;银行卡认证
+                </td>
+                {{/if}}
+                <td>
+                    通过银联支付通道，验证银行卡信息
+                </td>
+                <td>
+                    <span style="color: #005387;">{{#if activatedCard}}是{{else}}否{{/if}}</span>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            -->
+            <tr>
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;手机认证
+                </td>
+                <td>
+                    保证交易帐号安全，是您在奇乐融的重要身份凭证之一，可以收取帐号资金变更通知。
+                </td>
+                <td>
+                    <span style="color: #005387;">{{mobile}}</span>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+               <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;登录密码
+               </td>
+                <td>
+                    您登录奇乐融网站的重要内容之一
+                </td>
+                <td>
+                    <span style="color: #005387;">是</span>
+                </td>
+                <td>
+                    <a href="/account/settings" style="color: #005387;">修改密码</a>
+                </td>
+            </tr>
+            <tr>
+                {{#if activatedEmail}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;邮箱认证
+                </td>
+                {{else}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-remove" style="color:red"></span> &nbsp;邮箱认证
+                </td>
+                {{/if}}
+                <td>
+                    保障您在奇乐融网站账号安全的重要内容之一
+                </td>
+                
+                {{#if activatedEmail}}
+                <td>
+                    <span style="color: #005387;">是</span>
+                </td>
+                <td></td>
+                {{else}}
+                <td>
+                    <span style="color: #005387;">否</span>
+                </td>
+                <td>
+                    <a href="#" style="color: #005387;" class="goRz">去认证</a>
+                </td>
+                {{/if}}
+            </tr>
+        </tbody>
+    </table>
+    <div class="rzz">
+        <input type="text" name="email" class="rZemail" placeholder="请输入邮箱">
+        <div class="rzE_button">确定</div>
+        <div class="errors"></div>
+    </div>
+</div>
