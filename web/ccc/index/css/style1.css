@@ -238,7 +238,7 @@
 .banner-account-2{
     font-size: 36px;
     color:#ff6c08;
-     line-height: 30px;  
+     line-height: 36px;  
 }
 .banner-account-3{
     font-size: 24px;
@@ -249,6 +249,7 @@
      margin-bottom: 26px;
     font-size: 20px;
     color:#fff;
+    height: 36px;
 }
 .banner-account2{
      margin-bottom: 20px;
@@ -276,7 +277,13 @@
     color:#ffffff;
     background: #ff6c08;
     border: none;
-    margin-top: 30px;
+   
+}
+
+.free-register{
+    width:250px;
+    height:42px;
+     margin-top: 30px;
     margin-left: 26px;
 }
 .banner-account{
