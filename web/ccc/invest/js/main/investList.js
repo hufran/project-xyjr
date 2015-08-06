@@ -117,6 +117,9 @@ function formatItem(item) {
 function parseLoanList(list) {
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
+        var method = list[i].method;
+        var methodFmt = i18n.enums.RepaymentMethod[method][0];
+        list[i].methodFmt = methodFmt;
     }
     return list;
 }
