@@ -1,5 +1,6 @@
 {{#list}}
-<div class="loanItemWrapper">
+
+<div class="loanItemWrapper" {{#if status === 'SCHEDULED' }} style="height:85px"{{/if}}>
     <div class="loanPartOne">
         <div class="loantitle">
             <a href="/loan/{{ id }}" class="invest-title" target="_blank">
@@ -30,8 +31,11 @@
             <div class="investbtn">投标中</div>
         </a>
         {{/if}} {{#if status === 'SCHEDULED'}}
-        <div class="investbtn"  data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
-        data-serv="{{ serverDate }}" style="color: #fff;width: 100px;text-align: center;background:orange">即将开始</div>
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn" style="color: #fff;width: 100px;background:#D57239">即将开始</div>
+        </a>
+        <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
+        data-serv="{{ serverDate }}" style="color: black;width: 135px;text-align: center;background:#fff;margin-left:-17px"></div>
         {{/if}} {{#if status === 'FINISHED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>

@@ -4,6 +4,7 @@
 var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/modules/tooltip');
+require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
 require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
@@ -17,19 +18,35 @@ var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
 
 
+ function initailEasyPieChart() {
+    ///////////////////////////////////////////////////////////
+    // 初始化饼状图
+    ///////////////////////////////////////////////////////////
+    $(function () {
+        var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
+        $(".easy-pie-chart").each(function () {
+            var percentage = $(this).data("percent");
+            // 100%进度条颜色显示为背景色
+            var color = percentage === 100 ? "#b49b5d" : '#b49b5d';
+            $(this).easyPieChart({
+                barColor: color,
+                trackColor: '#ddd',
+                scaleColor: false,
+                lineCap: 'butt',
+                lineWidth: 2,
+                animate: oldie ? false : 1000,
+                size: 100,
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                }
+            });
+            $(this).find("span.percentageNum").html(percentage+"%");
+        });
 
-var canvas=document.getElementById('canvasRadius');
-var ctx=canvas.getContext('2d');
-//ctx.fillRect(0,0,80,80);
-var mygradient=ctx.createRadialGradient(22,22,0,22,22,22);           
-    mygradient.addColorStop("0","#fff");
-    mygradient.addColorStop(".25","#fff");
-    mygradient.addColorStop(".50","#fff");
-    mygradient.addColorStop(".75","blue");
-    mygradient.addColorStop("1.0","#fff");                
-    ctx.fillStyle=mygradient;
-ctx.fillRect(0,0,45,45);
+    });
+};
 
+initailEasyPieChart();
 
 
 $("[data-toggle=tooltip]")
@@ -78,6 +95,7 @@ setTimeout((function () {
         data: {
             user: CC.user,
             loan: CC.loan,
+            inputNum:CC.loan.rule.min,
             rate: utils.format.percent(CC.loan.investPercent *
                 100, 2),
             agreement: CC.user ? (CC.user.agreement ?
@@ -94,6 +112,33 @@ setTimeout((function () {
     if($('.invest-submit').length>0){
 
     }
+    
+    
+    investRactive.on('reduce', function (e) {
+          var num = parseInt(this.get('inputNum'));
+        num=num-parseInt(CC.loan.rule.step);
+         if(num<CC.loan.rule.min){
+             return;
+         }
+       investRactive.set('inputNum',num);
+    });
+    
+    investRactive.on('add', function (e) {
+        var num = parseInt(this.get('inputNum'));
+        num=num+parseInt(CC.loan.rule.step);
+        if(num > CC.loan.rule.max){
+            return;
+        }
+       
+       investRactive.set('inputNum',num);
+    });
+    
+    investRactive.on('maxNumber', function (e) {
+       investRactive.set('inputNum',CC.loan.rule.max);
+    });
+
+    
+    
     investRactive.on("invest-submit", function (e) {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         if (isNaN(num)) {
@@ -374,3 +419,13 @@ document.getElementById("calculatorText").value = getNum+100;
 }else{
 }
 }
+
+
+
+
+
+
+
+
+
+

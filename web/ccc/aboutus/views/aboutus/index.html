@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/ccc/aboutus/css/help2.css">
-<link rel="stylesheet" href="/ccc/global/css/style.css" />
 <!--<link rel="stylesheet" href="/ccc/aboutus/css/help2.css">-->
 
 <div class="page-guide">
@@ -82,6 +81,31 @@
                               <div class="article-content">{{& content}}</div>
                                </div>
                             {{/each}}
+                                
+                                
+                                 <div class="page">
+                        <ul>
+                            {{#if current > 1}}
+                            <li class="prev"><a href="/cms/news?page={{current - 1}}">上一页</a>
+                            </li>
+                            {{/if}} {{#totalPage}}
+                            <li class="item {{#if current == parseInt(@key) + 1}} active-page {{/if}}">
+                                <a href="/aboutus/{{tab.name}}?page={{parseInt(@key) + 1}}">
+                                    <span class="current">
+                                        {{parseInt(@key) + 1}}
+                                    </span>
+                                </a>
+                            </li>
+                            {{/totalPage}} {{#if current
+                            < totalPage.length }} <li
+                            class="next"><a href="/cms/news?page={{current + 1}}">下一页</li>
+                    {{/if}}
+                </ul>
+            </div>
+                                
+                                
+                                
+                                
                         </div>
                         {{/if}}
                         
