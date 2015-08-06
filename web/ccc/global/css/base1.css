@@ -106,6 +106,9 @@
    background:#f2f2f2;
 }
 
+#footer-color a{
+    color: #777777;
+}
 .ssfooter{
     margin-top:25px;
   
@@ -290,20 +293,44 @@
 #family{
     float: right;
     width: 150px;
-    height: 32px;
-    background: #007ec5;
-    color: #ffffff;
+   
+ margin-left: 24px;
+    margin-top: 32px;
+    position: relative;
+    z-index: 1;
+}
+#family p{
+        color: #ffffff;
     font-size: 14px;
     border-radius: 30px;
-    float: right;
-    text-align: center;
     line-height: 32px;
-    margin-left: 24px;
-    margin-top: 32px;
+     width: 150px;
+    height: 32px;
+    padding-left: 12px;
 }
-#family img{
-    margin-left: 10px;
+#family li{
+      height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #eee;
+  padding-left: 34px;
+    font-size: 12px;
 }
+#family a{
+    color: #6f6f6f;
+    font-weight: normal;
+}
+#family ul{
+    width:150px;
+    position:absolute;
+    top:34px;
+    left:0;
+    background:#fff;
+    border:1px solid #eee;
+    border-bottom:none;
+    display:none;
+    z-index: 9999;
+}
+
 #menu s__is-selected{
     color:#333333;
     font-size: 18px;
@@ -317,7 +344,7 @@
 }
 #s-header-height{
     height:140px;
-    overflow: hidden;
+/*    overflow: hidden;*/
 }
 
 .side-bar{
@@ -427,3 +454,5 @@
    /*    z-index: 10;*/
     display: none;
  }
+/*导航大家庭*/
+

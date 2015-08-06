@@ -17,7 +17,7 @@ $('.benefit-calculator')
     });
 
 var params = {
-    pageSize: 9,
+    pageSize: 10,
     status: 'SCHEDULED',
     minDuration: 0,
     maxDuration: 100,
@@ -144,7 +144,6 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
                 .data('min-rate');
             var maxRate = $(this)
                 .data('max-rate');
-
             params.currentPage = 1;
             params.minRate = minRate;
             params.maxRate = maxRate;
@@ -313,7 +312,7 @@ function ininconut () {
             var serverDate = t.data("serv");  
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             var textDay = leftTime.day ? leftTime.day +'天' : '';
-            t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+            t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#D57239">'+ textDay + leftTime.hour +'</span>时<span style="color:#D57239>'+ leftTime.min +'</span>分<span style="color:#D57239>'+ leftTime.sec +'</span>秒</span>')
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
@@ -322,7 +321,7 @@ function ininconut () {
                     clearInterval(interval);
                     t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
                 }else{
-                    t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#D57239">'+ textDay + leftTime.hour +'</span>时<span style="color:#D57239">'+ leftTime.min +'</span>分<span style="color:#D57239">'+ leftTime.sec +'</span>秒</span>')
                 }
             }), 1000);
         }
@@ -356,3 +355,10 @@ function initailEasyPieChart() {
 
     });
 };
+
+// banenr动效
+$(".no-warry").mouseenter(function(){
+    $(this).addClass("active");
+}).mouseleave(function(){
+    $(this).removeClass("active");
+})

@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/ccc/aboutus/css/help2.css">
-<link rel="stylesheet" href="/ccc/global/css/style.css" />
 <!--<link rel="stylesheet" href="/ccc/aboutus/css/help2.css">-->
 
 <div class="page-guide">
@@ -8,50 +7,59 @@
 
         {{>list}}
     </div>
-    
-    
-    
-    
-<!--
-      {{#if tab.text=='奇乐融简介'}}
-        <div id="help-right" class="pull-right">
-        sdsdgsdfgdfgf
-        </div>
-    {{/if}}
--->
-    
-    {{#if tab.text!='安全保障'}}
-        {{#if contents.length===1}}
-            <div id="help-right" class="pull-right">
-                <div class="invest-container">
-                    <div class="invest-wrapper">
-                        <div class="help-title">
-                        </div>
-                        <div class="invest-wrapper">
-                            {{{contents[0].content}}}
-                        </div>
-                    </div>
+
+
+    {{#if tab.text!='安全保障'}} {{#if contents.length===1}}
+    <div id="help-right" class="pull-right">
+        <div class="invest-container">
+            <div class="invest-wrapper">
+                <div class="help-title">
+                </div>
+                <div class="invest-wrapper">
+                    {{{contents[0].content}}}
                 </div>
             </div>
-            {{else}}
-              
-             <div id="help-right" class="pull-right">
-                <div class="invest-container">
-                    <div class="invest-wrapper">
-                        <div class="help-title">
+        </div>
+    </div>
+    {{else}}
+
+    <div id="help-right" class="pull-right">
+        <div class="invest-container">
+            <div class="invest-wrapper">
+                <div class="help-title">
+                </div>
+                {{#if tab.text!='帮助中心'}}
+                <div class="invest-wrapper">
+                    <h2 class="ar-title">{{tab.text}}</h2>
+                    <!--                            {{JSON.stringify(contents)}} -->
+                    {{#each contents}}
+                    <div class="news-box">
+                        <div class="news-brame">【{{title}}】<a href="/cms/p/{{this.id}}">{{title}}</a>
                         </div>
-                        {{#if tab.text!='帮助中心'}}
-                        <div class="invest-wrapper">
-                             <h2 class="ar-title">{{tab.text}}</h2>
-<!--                            {{JSON.stringify(contents)}} -->
-                            {{#each contents}}
-                            <div class="news-box">
-                              <div class="news-brame">【{{title}}】<a href="/cms/p/{{this.id}}">{{title}}</a> 
-                            </div>
-                            <div class="news-pubdate">{{pubDate}}</div>
-                                </div>
-<!--                              <div class="article-content">{{& content}}</div>-->
-                            {{/each}}
+                        <div class="news-pubdate">{{pubDate}}</div>
+                    </div>
+                    <!--                              <div class="article-content">{{& content}}</div>-->
+                    {{/each}}
+
+                    <div class="page">
+                        <ul>
+                            {{#if current > 1}}
+                            <li class="prev"><a href="/cms/news?page={{current - 1}}">上一页</a>
+                            </li>
+                            {{/if}} {{#totalPage}}
+                            <li class="item {{#if current == parseInt(@key) + 1}} active-page {{/if}}">
+                                <a href="/aboutus/{{tab.name}}?page={{parseInt(@key) + 1}}">
+                                    <span class="current">
+                                        {{parseInt(@key) + 1}}
+                                    </span>
+                                </a>
+                            </li>
+                            {{/totalPage}} {{#if current
+                            < totalPage.length }} <li
+                            class="next"><a href="/cms/news?page={{current + 1}}">下一页</li>
+                    {{/if}}
+                </ul>
+            </div>
                         </div>
                          {{else}}
                             <div class="invest-wrapper">
@@ -64,9 +72,42 @@
                               <div class="article-content">{{& content}}</div>
                                </div>
                             {{/each}}
+                                
+                                
+                                 <div class="page">
+                        <ul>
+                            {{#if current > 1}}
+                            <li class="prev"><a href="/cms/news?page={{current - 1}}">上一页</a>
+                            </li>
+                            {{/if}} {{#totalPage}}
+                            <li class="item {{#if current == parseInt(@key) + 1}} active-page {{/if}}">
+                                <a href="/aboutus/{{tab.name}}?page={{parseInt(@key) + 1}}">
+                                    <span class="current">
+                                        {{parseInt(@key) + 1}}
+                                    </span>
+                                </a>
+                            </li>
+                            {{/totalPage}} {{#if current
+                            < totalPage.length }} <li
+                            class="next"><a href="/cms/news?page={{current + 1}}">下一页</li>
+                    {{/if}}
+                </ul>
+            </div>
+                                
+                                
+                                
+                                
                         </div>
                         {{/if}}
+                        
+                        
+                        
                     </div>
+                    
+                    
+               
+                    
+                    
                 </div>
             </div>
              

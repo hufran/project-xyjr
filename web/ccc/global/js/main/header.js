@@ -12,9 +12,7 @@ $('.s__top15').mouseover(function() {
     $(this).next().css('display', 'none');
 });
 
-
-
-
+  
 
 $(function(){
     utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){
@@ -92,3 +90,14 @@ $('.weixin-icon').mouseenter(function () {
 $('.weixin-icon').mouseleave(function () {
         $('.erweima').hide();
     })
+
+//控股下拉菜单
+    	
+		$("#family").hover(function(){
+			$(this).find("p").css("background","url(/ccc/global/img/slideOn.png) no-repeat");
+			$(this).find("ul").slideDown();
+		},function(){
+			$(this).find("ul").slideUp();
+			$(this).find("p").css("background","url(/ccc/global/img/slide.png) no-repeat");
+		});
+
