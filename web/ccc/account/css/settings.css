@@ -467,4 +467,58 @@ ul.banks-wrap span.WZCB {
   padding-top: 15px;
   color: #999;
 }
+/*安全认证*/
+.safety-wrapper .table tr th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  color: #005387;
+  text-align: center;
+}
+.safety-wrapper .table tr td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 14px;
+  text-align:center;
+}
+.safety-wrapper .table tr td .glyphicon {
+  color: #9eca45;
+}
+.safety-wrapper .table tr .align-left {
+  text-align: left;
+}
+.rzz {
+  width: 350px;
+  position: relative;
+  margin: 0 auto;
+  display: none;
+  overflow: auto;
+  zoom:1;
+  margin-top:20px;
+}
+.rZemail {
+  width: 250px;
+  height: 37px;
+  text-indent: 10px;
+  float: left;
+  font-size: 14px;
+}
+.rzE_button {
+  width: 80px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 14px;
+  background: #f0ad4e;
+  float: right;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.errors {
+  color: red;
+  font-size: 12px;
+  clear:both;
+  padding:10px;
+}
 /*# sourceMappingURL=/ccc/account/css/settings.css.map */
