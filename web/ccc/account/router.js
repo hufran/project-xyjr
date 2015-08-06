@@ -35,21 +35,23 @@ router.get(/^\/account\//, function (req, res, next) {
         text: '账户管理',
         url: '/account/umpay',
         subTabs: [{
-            text: '托管账户',
+            text: '实名认证',
             url: '/account/umpay'
         }, {
             text: '提现银行卡信息',
             url: '/account/bankcard'
-        }, {
-            text: '无密协议',
-            url: '/account/agreement'
         }, {
             text: '平台密码',
             url: '/account/settings'
         }, {
             text: '托管密码',
             url: '/account/paypwd'
-        }]
+        }
+        // {
+        //     text: '无密协议',
+        //     url: '/account/agreement'
+        // }, 
+        ]
     }, {
         text: '还款管理',
         url: '/account/loan'
@@ -284,7 +286,7 @@ router.post("/account/change_password", ccBody, function (req,
 
 // 对提现进行限制,如果是企业用户,显示企业充值
 router.get('/account/recharge', function (req, res, next) {
-    if (!res.locals.user.accountId) {
+    if (!res.locals.user.name) {
         res.redirect('/account/umpay');
     } else {        
         next();
@@ -293,7 +295,7 @@ router.get('/account/recharge', function (req, res, next) {
 
 // 对体现进行限制
 router.get('/account/withdraw', function (req, res, next) {
-    if (!res.locals.user.accountId) {
+    if (!res.locals.user.name) {
         res.redirect('/account/umpay');
     } else {
         if (!res.locals.user.account) {

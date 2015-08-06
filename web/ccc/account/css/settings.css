@@ -467,4 +467,34 @@ ul.banks-wrap span.WZCB {
   padding-top: 15px;
   color: #999;
 }
+
+.banks-container .form-group {
+  padding: 5px;
+}
+
+.banks-container .form-group .tip {
+  width: 150px;
+  font-size: 12px;
+  text-align: right;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 15px;
+}
+
+.banks-container .form-group select {
+  width: 250px;
+  position:relative;
+  top:7px;
+  font-size: 16px;
+}
+
+.banks-container .form-group input {
+  width: 250px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+}
 /*# sourceMappingURL=/ccc/account/css/settings.css.map */
