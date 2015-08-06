@@ -21,27 +21,27 @@
 
 {{#if showPersonal }}
 <div class="ccc-banks-wrap">
-    <div class="banks-wrap-offset">
+    <!-- <div class="banks-wrap-offset">
         {{#each personalBanks}}
         <div class="bank" on-click="selectBank">
             <div class="bank-img" style="background-position: 10px -{{imgPos+3}}px" data-code="{{code}}"
             data-name="{{name}}"></div>
         </div>
         {{/each}}
-    </div>
+    </div> -->
     <div class="space space-30"></div>
     <div class="recharge-form-wrap">
         <h4>充值金额</h4>
         <div class="space space-10"></div>
         <div class="row">
             <div class="col-md-5">
-                <form role="form" name="rechargeForm" action="/upayment/netSave" method="post" target="_blank">
-                    <input type="hidden" name="bank" class="bank" value="">
+                <form role="form" name="rechargeForm" action="/lianlianpay/deposit" method="post" target="_blank">
+                    <!-- <input type="hidden" name="bank" class="bank" value=""> -->
                     <div class="form-group has-error- has-feedback">
                         <span class="form-control-feedback">
                         	<i class="fa fa-rmb"></i>
                         </span>
-                        <input type="text" name="rechargeValue" class="form-control input-lg" id="rechargeValue"
+                        <input type="text" name="amount" class="form-control input-lg" id="rechargeValue"
                         on-keyup="changeValue" placeholder="单笔充值最高10000000元">
                     </div>
                     <button type="submit" class="btn btn-warning btn-lg">确认充值</button>
