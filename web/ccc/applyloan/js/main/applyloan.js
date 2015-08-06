@@ -19,7 +19,8 @@ var applyLoan = new Ractive({
         },
         loan: {
             name:''
-        }
+        },
+        numberList:[1,2,3,4,5,6,7,8,9,10,11]
     }
 });
 
@@ -163,21 +164,26 @@ $('#sendApplyloan').click(function(){
     var loan = {};
         
     loan.name = $("#companyName").val().trim();
-    loan.mobile = $("#mobilePhone").val().trim();
-    loan.amount = $("#loanMoney").val().trim();
-    loan.loanType = $("#guaranteeType").val();
-    loan.loanPurpose = $("#describe").val();
-    loan.months = $("#deadline").val();
+    loan.mobile = parseInt($("#mobilePhone").val().trim());
+    loan.amount = parseInt($("#loanMoney").val().trim());
+//    loan.loanType = $("#guaranteeType").val();
+    loan.loanType = $("#loanType").find("option:selected").val();
+    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
+//    loan.loanPurpose = $("#describe").val();
+//    loan.months = parseInt($("#deadline").val());
+     loan.months = parseInt($("#months").find("option:selected").val());
     loan.coporationName = $("#personName").val();
     loan.address = $("#contactAddress").val();
-    loan.status = "PROPOSED";
+    loan.status = 'PROPOSED';
+   
     
     applyLoanService.addNew(loan, function (body) {
     
         if (body.success) {
-                $("#companyName").val("")
+               alert("申请借款成功");
+            location.href ="/";
             } else {
-
+                 alert("申请借款失败");
             }
     });
 

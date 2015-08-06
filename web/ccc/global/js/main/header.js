@@ -54,7 +54,7 @@ if (new RegExp("^/$")
     $(".u-nolist-ul li a#touzi")
         .addClass("navactive");
 
-} else if (new RegExp("^/loan")
+} else if (new RegExp("^/applyloan")
     .test(path)) {
     $(".u-nolist-ul li a#jiekuan")
         .addClass("navactive");
