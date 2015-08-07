@@ -37,9 +37,13 @@
                             <li data-title="未绑定手机" class="phone-gray"></li>
                             
                             {{/if}} {{! 邮箱}} {{#if checkEmail()}}
-                            <li data-title="已绑定邮箱" class="mail"></li>
+                            <li data-title="已绑定邮箱" class="mail">
+                            	<a href="/account/safety"></a>
+                            </li>
                             {{/if}} {{#if !checkEmail()}}
-                            <li data-title="未绑定邮箱" class="mail-gray"></li>
+                            <li data-title="未绑定邮箱" class="mail-gray">
+                            	<a href="/account/safety"></a>
+                            </li>
                             
                             {{/if}}
                             

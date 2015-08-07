@@ -521,4 +521,25 @@ ul.banks-wrap span.WZCB {
   clear:both;
   padding:10px;
 }
+/*个人信息*/
+.userInfo {
+  width:400px;
+  margin:30px auto;
+  padding: 20px 50px;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 1px 2px 5px grey;
+}
+.userInfo .item {
+  overflow:auto;
+  zoom:1;
+  margin:10px 0;
+}
+.userInfo dl dt {
+  float:left;
+  width:100px;
+  text-align: right;
+}
+.userInfo dl dd {
+  margin-left:120px;
+}
 /*# sourceMappingURL=/ccc/account/css/settings.css.map */
