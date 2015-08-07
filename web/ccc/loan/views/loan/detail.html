@@ -141,15 +141,18 @@
             </li>
         </ul>
         <div class="clearfix"></div>
+<!--        {{JSON.stringify(loans)}} -->
         <div class="tab-panels">
+<!--            风控信息-->
             <div class="tab-panel">
+<!--
                 <table class="table repay-plan">
-                    <!--
-                    {{#replay}}
-                    {{/replay}}
--->
+                    
                 </table>
+-->
+                <P>{{loans.corporationName}}</P>
             </div>
+<!--            投资记录-->
             <div class="tab-panel">
                 <table class="table repay-plan repay-record">
                     <thead>
@@ -167,6 +170,7 @@
                     {{/invests}}
                 </table>
             </div>
+<!--            企业信息-->
             <div class="tab-panel active">
                 <div class="loanInfoWrapper">
                     <div class="loanInfo">
@@ -188,6 +192,30 @@
 -->
                     <!--                    <div class="clearfix"></div>-->
                 </div>
+            </div>
+<!--            还款计划-->
+            <div class="tab-panel">
+                               <table class="table repay-plan repay-record">
+                    {{#if user}}
+                    <thead>
+                        <th style="border-top-left-radius: 3px;">成交时间</th>
+                        <th>投资人</th>
+                        <th style="border-top-right-radius: 3px;">投资金额(元)</th>
+                    </thead>
+                    {{#invests}}
+                    <tr>
+                        <th>{{submitTime}}</th>
+                        <th>{{userLoginName}}</th>
+                        <th>{{amount}}</th>
+                    </tr>
+                    {{/invests}}
+                           {{else}}
+                    <div class="notLogin">
+                    <p>用户详情</p>
+                    <p>请 <a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
+                        </div>
+                    {{/if}}
+                </table>
             </div>
         </div>
 

@@ -31,3 +31,21 @@ $(".form-group .inputtest-pic span").click(function(){
     
     $(".form-group .inputtest-pic .pullright").css("backgroundImage", "none");
 })
+//点击验证码显示请输入正确的手机号码
+$(".need-tel-num").hide();
+$(".bring-in button").click(function(){
+    if($(".input[name='phone']").val()=="")
+    {
+     $(".need-tel-num").show();
+    }
+
+});
+
+
+//$(".need-tel-num").hide();
+//$(".bring-in button").click(function(){
+//    $(".need-tel-num").show();
+//});
+//$(".rinput input").click(function(){
+//    $(".need-tel-num").hide();
+//});
