@@ -215,7 +215,7 @@ router.get('/account/funds', function (req, res) {
     "umpay", // 托管账户
     "bankcard", // 银行卡信息
     "settings", // 对应修改密码
-    "paypwd",
+    // "paypwd",
     "safety"
 ].forEach(function (tabName) {
     router.get('/account/' + tabName, function (req, res) {
@@ -294,6 +294,8 @@ router.post("/account/change_password", ccBody, function (req,
 router.get('/account/recharge', function (req, res, next) {
     if (!res.locals.user.name) {
         res.redirect('/account/umpay');
+    } else if (!res.locals.user.bankCards.length) {
+        res.redirect('account/bankcard')
     } else {        
         next();
     }
@@ -304,7 +306,7 @@ router.get('/account/withdraw', function (req, res, next) {
     if (!res.locals.user.name) {
         res.redirect('/account/umpay');
     } else {
-        if (!res.locals.user.account) {
+        if (!res.locals.user.bankCards.length) {
             res.redirect('/account/bankcard');
         } else {
             next();

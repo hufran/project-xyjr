@@ -19,9 +19,16 @@ module.exports = {
 
     // 支付相关配置，这里主要是联动和联动两种方式的配置
     payment: {
-        // 联动具体配置
-        payment: {},
-
+        // 汇付具体配置
+        pnr: {
+            postUrl: 'http://mertest.chinapnr.com/muser/publicRequests',
+            protocol: 'http://',
+        },
+        //连连支付
+        lianlian: {
+            postUrl: '',
+            protocol: 'http://',
+        },
         // 联动具体配置
         upayment: {
             // 针对https的三方回调处理

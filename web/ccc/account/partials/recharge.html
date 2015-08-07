@@ -1,48 +1,18 @@
-{{#if loanCount > 0}}
-<div class="space space-20"></div>
-<div class="has-line">
-    <div class="row ccc-container">
-        <div class="col-md-12">
-            <div class="header-text pull-left">个人充值(只支持借记卡)</div>
-            <div class="ccc-tab pull-right" data-header-selector=".header-text">
-                <ul class="tabs">
-                    <li class="active" id="personalBtn"><a href="javascript:void(0);" on-click="showPersonal">个人充值</a>
-                    </li>
-                    <li id="companyBtn"><a href="javascript:void(0);" on-click="showCompany">企业充值</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-{{/if}}
-
-<div class="space space-30"></div>
-
-{{#if showPersonal }}
 <div class="ccc-banks-wrap">
-    <!-- <div class="banks-wrap-offset">
-        {{#each personalBanks}}
-        <div class="bank" on-click="selectBank">
-            <div class="bank-img" style="background-position: 10px -{{imgPos+3}}px" data-code="{{code}}"
-            data-name="{{name}}"></div>
-        </div>
-        {{/each}}
-    </div> -->
     <div class="space space-30"></div>
     <div class="recharge-form-wrap">
         <h4>充值金额</h4>
         <div class="space space-10"></div>
         <div class="row">
             <div class="col-md-5">
-                <form role="form" name="rechargeForm" action="/lianlianpay/deposit" method="post" target="_blank">
+                <form role="form" name="rechargeForm" action="/lianlianpay/deposit" method="POST" target="_blank" on-submit="recharge_submit">
                     <!-- <input type="hidden" name="bank" class="bank" value=""> -->
                     <div class="form-group has-error- has-feedback">
                         <span class="form-control-feedback">
                         	<i class="fa fa-rmb"></i>
                         </span>
                         <input type="text" name="amount" class="form-control input-lg" id="rechargeValue"
-                        on-keyup="changeValue" placeholder="单笔充值最高10000000元">
+                        on-blur="changeValue" placeholder="单笔充值最高10000000元" value="{{amount}}">
                     </div>
                     <button type="submit" class="btn btn-warning btn-lg">确认充值</button>
                 </form>
@@ -57,50 +27,6 @@
         </div>
     </div>
 </div>
-{{/if}}
-
-{{#if showCompany }}
-<div class="ccc-banks-wrap">
-    <div class="banks-wrap-offset">
-        {{#each companyBanks}}
-        <div class="bank" on-click="selectBank">
-            <div class="bank-box">
-                <div class="bank-img" style="background-position: 10px -{{imgPos+3}}px" data-code="{{code}}"
-            data-name="{{name}}"></div>
-                <div class="company-icon"><img src="/ccc/account/img/bank_company_icon.png" /></div>
-            </div>            
-        </div>
-        {{/each}}
-    </div>
-    <div class="space space-30"></div>
-    <div class="recharge-form-wrap">
-        <h4>充值金额</h4>
-        <div class="space space-10"></div>
-        <div class="row">
-            <div class="col-md-5">
-                <form role="form" name="rechargeForm" action="/upayment/corporationNetSave" method="post" target="_blank">
-                    <input type="hidden" name="bank" class="bank" value="">
-                    <input type="hidden" name="payType" value="corporation">
-                    <div class="form-group has-error- has-feedback">
-                        <span class="form-control-feedback">
-                        	<i class="fa fa-rmb"></i>
-                        </span>
-                        <input type="text" name="rechargeValue" class="form-control input-lg" id="rechargeValue" on-keyup="changeValue"  placeholder="单笔充值最高100000000元">
-                    </div>
-                    <button type="submit" class="btn btn-warning btn-lg">确认充值</button>
-                </form>
-            </div>
-            <div class="col-md-7">
-            	<p class="help-block text-danger">
-					{{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}}
-					{{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
-					{{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
-            	</p>
-            </div>
-        </div>
-    </div>
-</div>
-{{/if}}
 
 <div class="row ccc-container">
     <div class="col-md-12">
