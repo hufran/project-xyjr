@@ -3,6 +3,7 @@
 "use strict";
 var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
+var accountService = require('ccc/account/js/main/service/account').accountService;
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
@@ -96,6 +97,7 @@ setTimeout((function () {
         el: ".do-invest-wrapper",
         template: require('ccc/loan/partials/doInvestOnDetail.html'),
         data: {
+            name:'',
             user: CC.user,
             loan: CC.loan,
             inputNum:CC.loan.rule.min,
@@ -110,6 +112,13 @@ setTimeout((function () {
             backUrl: CC.backUrl
         }
     });
+    
+    
+     accountService.getUserInfo(function (res) {
+      investRactive.set('name', res.user.name);
+        });
+
+    
     //
     investRactive.set('user', CC.user);
     if($('.invest-submit').length>0){
@@ -343,62 +352,10 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
             imgLen: imgs.length
         };
         popupBigPic.show(options);
-//        init();
         return false;
 
     });
 
-    // 选择器切换
-//    relateDataRactive.on("left-selector right-selector", function (e) {
-//        var cur = this.get("selectorsMarginLeft");
-//        var currentIndex = this.get('currentIndex');
-//        var stageLen = this.get('stageLen');
-//        var imgLen = this.get('imgLen');
-//        if (e.name === "left-selector") {
-//            if (currentIndex === 0 || imgLen < stageLen) {
-//                return false;
-//            }
-//            cur -= 40;
-//        } else {
-//            if (currentIndex <= stageLen) {
-//                return false;
-//            }
-//            cur += 35;
-//        }
-//        this.set("selectorsMarginLeft", cur);
-//        return false;
-//    });
-
-//    // 选择器点击
-//    relateDataRactive.on('selector-click', function (e) {
-//        var index = Number(e.keypath.substr(5)); // imgs.1
-//        this.set("currentIndex", index);
-//        return false;
-//    });
-//    
-//    // 大图浏览时切换
-//    function init() {
-//    var timer;
-//    popupBigPic.popupBigPicRactive.on("prev-big next-big", function (e) {
-//        if (e.name === "prev-big") {
-//            this.set("currentIndex", this.get("currentIndex") - 1);
-//        } else {
-//            this.set("currentIndex", this.get("currentIndex") + 1);
-//        }
-//
-//        if (timer) {
-//            clearTimeout(timer);
-//        }
-//
-//        // 定时隐藏
-//        this.set("showTip", true);
-//        timer = setTimeout(function () {
-//            relateDataRactive.set("showTip", false);
-//        }, 1000);
-//
-//        return false;
-//    });
-//    }
 });
 
 
