@@ -17,4 +17,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lianlianpay/authenticateUser/:userId', auth.user());
 
     router.get('/api/v2/message/user/:userId/notifications', auth.user());
+
+    router.get('/api/v2/user/:userId/invite', auth.user());
+    router.post('/api/v2/users/mobile/encrypt', auth.pass());
 };
