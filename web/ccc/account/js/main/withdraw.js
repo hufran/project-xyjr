@@ -56,7 +56,7 @@ new Ractive({
 		this.$amount.focus();
 		
 		// set form action
-		this.set('active', '/upayment/withdraw');
+		this.set('active', '/lianlianpay/withdraw');
 		
 		this.on('changeValue', function(e){
 			var amount = $.trim($(e.node).val());
