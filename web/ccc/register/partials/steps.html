@@ -19,7 +19,7 @@
                 <div class="rinput message-confirm bring-in">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码:</label>
                     <input id="{{rinputId}}" value="{{value}}" placeholder="短信验证码">
-                    <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
+                    <button on-click='sendSmsCaptcha' id="getSms"  {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
                         {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 获取短信验证码 {{/if}}
                     </button>
                     {{#loading}}loading...{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}
