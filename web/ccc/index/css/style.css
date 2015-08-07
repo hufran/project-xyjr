@@ -590,9 +590,10 @@ margin-left: 14px;
     font-size: 16px;
 }
 .loanWrapper .event a {
-  font-size: 20px;
+  font-size: 16px;
   text-decoration: none;
     line-height: 18px;
+    color: #4a4a4a;
 }
 .loanWrapper .year{
    font-size: 18px;
@@ -676,7 +677,7 @@ width:160px;
   line-height: 30px;
   background: #2A375F;
   color: #fff;
-     background-color: #00b4ff;
+     background-color: #007ec5;
   border: none;
     font-size: 16px;
 

@@ -1,11 +1,11 @@
-{{#if !payment}}
+{{#if !authenticated}}
 <div class="row">
 	<div class="space space-30"></div>
 	<div class="col-md-12 align-center">
-		<p class="text-warning">您还没有开户，开户后才能绑定银行卡</p>
+		<p class="text-warning">您还没有实名认证为，实名后才能绑定银行卡</p>
 		<div class="space space-40"></div>
 		<p>
-			<a href="/account/umpay" style="width: 230px;" class="btn btn-orange">立即开通</a>
+			<a href="/account/umpay" style="width: 230px;" class="btn btn-orange">立即认证</a>
 		</p>
 	</div>
 </div>
@@ -23,10 +23,52 @@
         {{/if}}
     </div>
 
-    <form action="/upayment/bindCard" method="POST" on-submit="bind-card-submit" target="_blank">
+    <form action="/lianlianpay/bindCard" method="POST" on-submit="bind-card-submit" target="_blank">
         <div class="banks-container control-group">
-           <div class="space space-30"></div>
-            <div class="ccc-banks-wrap">
+            <div class="space space-30"></div>
+            
+            <div class="form-group">
+                <div class="tip">开户银行</div>
+                <select name="bankName">
+                    {{#each banks}}
+                        <option value="{{name}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="tip">银行卡号</div>
+                <input type="text" name="cardNo" value="{{cardNo}}">
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="tip">预留手机号</div>
+                <input type="text" name="cardPhone" value="{{cardPhone}}">
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="tip">开户省市</div>
+                <select name="province" on-change="selectPro" style="width:120px;margin-right:6px" value="{{myProvince}}">
+                    {{#each province}}
+                        <option value="{{key}}">{{key}}</option>
+                    {{/each}}
+                </select>
+                <select name="city" style="width:120px;">
+                    {{#each city}}
+                        <option value="{{key}}">{{key}}</option>
+                    {{/each}}
+                </select>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="row row-3">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-large btn-success" style="position:relative;left:200px;width:150px;">确认绑定</button>
+                    </div>
+                </div>
+                <div class="space space-10"></div>
+            </div>
+            <!-- <div class="ccc-banks-wrap">
                 <div class="banks-wrap-offset">
                     {{#each banks}}
                     <div class="bank" on-click="selectBank">
@@ -36,10 +78,10 @@
                     {{/each}}
                 </div>
                 <div class="space space-30"></div>
-            </div>
+            </div> -->
         </div>
 
-        <div class="do-bind-card">
+        <!-- <div class="do-bind-card">
             <div class="row row-1">
                 <div class="form-title col-md-6">银行卡号码（该银行卡仅于提现时使用）</div>
             </div>
@@ -66,11 +108,11 @@
                 </div>
             </div>
             <div class="space space-10"></div>
-            <!--<div class="row row-4">
+            <div class="row row-4">
                 <div class="col-md-12 notice">重要提示：下个页面请不要勾选“同意开通借记卡快捷支付”，以免出现绑定失败的情况！</div>
             </div>
-            <div class="space space-30"></div>-->
-        </div>
+            <div class="space space-30"></div>
+        </div> -->
     </form>
 </div>
 {{/if}}
@@ -79,14 +121,16 @@
 {{#if status === 1}}
 <div class="binded-card-wrapper">
     <!--一张银行卡-->
+    {{#each bankAccount}}
     <div class="bank-card">
-        <div class="card-img {{bankAccount.bank}}">
+        <div class="card-img {{account.bank}}">
         </div>
 
         <div class="card-num">
-            {{bankAccount.Faccount}}
+            {{account.account}}
         </div>
     </div>
+    {{/each}}
 
 <!--    <button class="btn btn-sm btn-success btn-change-card" on-click="updateBank">更换银行卡</button>-->
 </div>

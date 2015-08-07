@@ -26,13 +26,16 @@ exports.popupBigPic = {
 
         popupBigPicRactive.on('end-big-pic', function () {
             this.set('visible', false);
-            $(".mask-layer")
+//             $('body')
+//           .removeClass('over-flow-hidden');
+            $("#mask-layer-wraper")
             .hide();            
         });                
     
         // 大图浏览时切换
         var timer;
         popupBigPicRactive.on("prev-big next-big", function (e) {
+            console.log(this.get("currentIndex"));
 
             if (e.name === "prev-big") {
                 this.set("currentIndex", this.get("currentIndex") - 1);
@@ -43,18 +46,21 @@ exports.popupBigPic = {
             if (timer) {
                 clearTimeout(timer);
             }
+            
+             console.log(this.get("currentIndex"));
 
             // 定时隐藏
             this.set("showTip", true);
-            timer = setTimeout(function () {
-                relateDataRactive.set("showTip", false);
-            }, 1000);
+//            timer = setTimeout(function () {
+//                popupBigPicRactive.set("showTip", false);
+//            }, 5000);
 
             return false;
         });
     },
 
     show: function (options,postCloseHook) {
+        console.log(options);
         if (!this.instance) {
             this.init();
             this.instance = true;
@@ -69,7 +75,9 @@ exports.popupBigPic = {
         this.popupBigPicRactive.set('visible', true);
         this.popupBigPicRactive.set('currentIndex', options.index || this.popupBigPicRactive.get('currentIndex'));
         this.popupBigPicRactive.set('imgs', options.imgs || this.popupBigPicRactive.get('imgs'));
-        $(".mask-layer")
+//         $('body')
+//           .addClass('over-flow-hidden');
+        $("#mask-layer-wraper")
             .show();
     }        
 };

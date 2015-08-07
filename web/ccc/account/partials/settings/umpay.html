@@ -1,49 +1,14 @@
-{{#if accountStatus == "needOpen"}}
-<div class="open-status">
-    你需要开通托管账户才能投资
-</div>
-{{/if}} 
-
-{{#if accountStatus != 'openSucceed' }}
-<ul class="open-account-step align-center">
-    <li class="{{#if accountStatus == 'needOpen'}} active {{/if}}">
-        <span class="step-number">01</span>开通资金托管
-    </li>
-    <li>
-        <img src="/assets/img/arrow_r.png" alt="" />
-    </li>
-    <li class="{{#if accountStatus == 'justOpenSuccess' }} active {{/if}}">
-        <span class="step-number">02</span>开通无密协议
-    </li>
-    <li>
-        <img src="/assets/img/arrow_r.png" alt="" />
-    </li>
-    <li class="{{#if accountStatus == 'openSucceed'}} active {{/if}}"> <span class="step-number">03</span>开通成功</li>
-</ul>
-{{/if}}
-
 <!-- 开通托管支付 -->
-{{#if accountStatus == "needOpen"}}
+{{#if !authenticated}}
 <div class="open-account-wrapper">
 
     <!-- 尚未开户提醒 -->
     <div class="errorNotOpenedYet">
-        <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 您尚未开通资金托管账户,请先开通
+        <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 您尚未进行实名认证，未实名认证将无法进行，绑卡、充值、提现、投资等操作。
     </div>
-
-    <div class="intro-text-wrapper">
-        <p>
-            九信金融金融平台上的所有资金交易由联动优势电子商务有限公司提供第三方支付托管与结算服务;
-        </p>
-
-        <p>
-            用户资金只存在于第三方支付托管平台中的托管账户中,平台无法擅自动用。
-        </p>
-    </div>
-
 
     <p class="warn-text">
-        第三方支付托管账户关系到您的切身利益,填写本人真实信息,保护好帐号安全
+        实名认证操作关系到您的切身利益,填写本人真实信息,保护好帐号安全
     </p>
 
     <div class="account-form-wrapper">
@@ -63,14 +28,14 @@
             <div class="form-group">
                 <label for="" class="col-md-2 control-label">真实姓名</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="userName" value="{{ userName }}" />
+                    <input type="text" class="form-control" name="name" value="{{ name }}" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="" class="col-md-2 control-label">身份证号</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="idCode" value="{{ idCode }}" />
+                    <input type="text" class="form-control" name="idNumber" value="{{ idNumber }}" />
                 </div>
 
             </div>
@@ -78,18 +43,18 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <div class="text">
-                        以上信息将用于开设您在第三方的实名资金托管账户
+                        以上信息将用于您的账户的实名认证
                         <br />真实姓名需与您用于提现的银行卡账户名一致。请务必认真，如实填写。
-                        <br />资金托管账户支付密码将通过短信的方式发送到您的手机上，请注意查收！
+                        <!-- <br />资金托管账户支付密码将通过短信的方式发送到您的手机上，请注意查收！ -->
                     </div>
 
                     <div class="agreement-wrapper">
                         <input type="checkbox" checked="{{ licenseAgreed }}" />我已阅读并同意
-                        <a href="#" on-click="maskDepositAgreement">《九信金融账户托管协议》</a>
+                        <a href="#" on-click="maskDepositAgreement">《奇乐融实名认证协议》</a>
                     </div>
 
                     <div>
-                        <input type="button" value="立即开通" on-click="register-account-submit" class="btn btn-success"
+                        <input type="button" value="立即认证" on-click="register-account-submit" class="btn btn-success"
                         />
                     </div>
 
@@ -99,64 +64,24 @@
         </form>
     </div>
 </div>
-{{/if}} {{#if accountStatus == "justOpenSuccess"}}
-<!-- 开户成功 -->
-<div class="open-account-success">
-    <div class="para1">
-        <div class="header-text">开通此功能才能进行投资操作</div>
-    </div>
-
-    <form name="agreementForm" action="/upayment/bindAgreement" method="POST" on-submit="continue-open"
-    target="_blank">
-        <div class="para2">
-            <input type="checkbox" on-click="agreement-check" class="pull-left agreement-check"
-            id="agree-invest" name="agreementList" value="ZTBB0G00" checked>&nbsp;&nbsp;<span on-click="maskInvestAgreement">快速投资协议</span>
-        </div>        
-        <input type="submit" class="btn btn-success btn-continue-open" value="立即开通" />                        
-        <div class="pass-notice">下一个页面中的要求输入的密码为联动优势的支付密码，请查看手机短信！</div>    
-    </form>
-    <div class="description">
-        您签订协议后，将开通快速投资功能，无需重复输入第三方支付平台（联动优势）支付密码，便可进行投资操 作。该协议签订后，不会造成您的资金流失，您的资金一直存在联动优势资金托管账户中，不会被提出到其他人的银行卡。
-    </div>
-</div>
-{{/if}} {{#if accountStatus == "openSucceed"}}
+{{else}}
 <!-- 已绑定 -->
 <div class="account-opened-notice">
     <div class="tips">
-        <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 重要提示：设置提现银行账号流程中的支付密码为第三方资金托管机构【联动优势】的托管账户支付密码！
-    </div>
-    <div class="title">
-        您已绑定第三方托管账户,信息如下（支付密码见手机短信）
+        <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 重要提示：实名认证操作关系到您的切身利益，请保护好帐号安全
     </div>
 </div>
 <div class="account-opened-wrapper">    
-    <div class="account-info-row">
-        <label for="" class="text">资金托管账户</label>
-        <span class="value">{{umpAccount.accountId}}</span>
-    </div>
 
     <div class="account-info-row">
-        <label for="" class="text">用户名</label>
-        <span class="value">{{umpAccount.accountName}}</span>
+        <label for="" class="text">真实姓名</label>
+        <span class="value">{{format.mask(authenticateInfo.name)}}</span>
     </div>
     <div class="account-info-row">
-        <label for="" class="text">手机号码</label>
-        <span class="value">{{umpAccount.mobile}}</span>
+        <label for="" class="text">身份证号</label>
+        <span class="value">{{authenticateInfo.idNumber}}</span>
     </div>
 
-
-    <!--
-    <div class="reset-pwd-wrapper">
-        您已绑定第三方托管账户
-        <button class="btn btn-xs btn-success btn-reset" on-click="get-pwd">重新获取支付密码</button>
-        <div class="space space-30"></div>
-        {{#if getPwdReturn}}
-        <p class="text-muted">
-            <i class="fa fa-check-circle text-success"></i> 支付密码已经发送，请注意查收短信，妥善保管。
-        </p>
-        {{/if}}
-    </div>
--->
 </div>
 {{/if}}
 <div id="deposit-agreement-wraper">

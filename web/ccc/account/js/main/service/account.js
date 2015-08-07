@@ -38,6 +38,50 @@ exports.accountService = {
                     next(0);
                 }
             });
+    },
+    authenticateUser: function(user, next) {
+        request('POST', '/api/v2/lianlianpay/authenticateUser/MYSELF')
+            .type('form')
+            .send(user)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    checkAuthenticate: function (next) {
+        request('GET', '/api/v2/user/MYSELF/authenticates')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    getProvince: function (next) {
+        request('GET', '/api/v2/lianlianpay/provinceCodes')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    getCity: function (provinceName, next) {
+        request('GET', '/api/v2/lianlianpay/provinceCityCodes/' + provinceName)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    getUserInfo: function (next) {
+        request('GET', '/api/v2/user/MYSELF/userinfo')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    getAccount: function (next) {
+        request('GET', '/api/v2/user/MYSELF/fundaccounts')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     }
         
 };

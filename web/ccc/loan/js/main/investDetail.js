@@ -4,7 +4,8 @@
 var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/modules/tooltip');
-require('ccc/global/js/lib/jquery.easy-pie-chart.js')
+require('ccc/global/js/lib/jquery.easy-pie-chart.js');
+require('bootstrap/js/carousel');
 
 require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
@@ -61,7 +62,9 @@ $("[data-toggle=tooltip]")
     });
 setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
+    console.log(CC.loan.timeLeft); 
     CC.loan.timeLeft=JSON.parse(CC.loan.timeLeft);
+    
     var leftTime=CC.loan.timeLeft;
     var timeLeftToal=leftTime.ss+leftTime.mm*60+leftTime.hh*60*60+leftTime.dd*60*60*24;
     setInterval(function(){
@@ -330,71 +333,72 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
     // 开始大图浏览
     relateDataRactive.on('begin-big-pic', function (e) {
         // 开始查看大图
-
+        var index = Number(e.keypath.substr(5));
+    
         var options = {
             imgs: imgs,
-            currentIndex: 0,
+            currentIndex: index,
             selectorsMarginLeft: 0,
             stageLen: 5,
             imgLen: imgs.length
         };
         popupBigPic.show(options);
-        init();
+//        init();
         return false;
 
     });
 
     // 选择器切换
-    relateDataRactive.on("left-selector right-selector", function (e) {
-        var cur = this.get("selectorsMarginLeft");
-        var currentIndex = this.get('currentIndex');
-        var stageLen = this.get('stageLen');
-        var imgLen = this.get('imgLen');
-        if (e.name === "left-selector") {
-            if (currentIndex === 0 || imgLen < stageLen) {
-                return false;
-            }
-            cur -= 40;
-        } else {
-            if (currentIndex <= stageLen) {
-                return false;
-            }
-            cur += 35;
-        }
-        this.set("selectorsMarginLeft", cur);
-        return false;
-    });
+//    relateDataRactive.on("left-selector right-selector", function (e) {
+//        var cur = this.get("selectorsMarginLeft");
+//        var currentIndex = this.get('currentIndex');
+//        var stageLen = this.get('stageLen');
+//        var imgLen = this.get('imgLen');
+//        if (e.name === "left-selector") {
+//            if (currentIndex === 0 || imgLen < stageLen) {
+//                return false;
+//            }
+//            cur -= 40;
+//        } else {
+//            if (currentIndex <= stageLen) {
+//                return false;
+//            }
+//            cur += 35;
+//        }
+//        this.set("selectorsMarginLeft", cur);
+//        return false;
+//    });
 
-    // 选择器点击
-    relateDataRactive.on('selector-click', function (e) {
-        var index = Number(e.keypath.substr(5)); // imgs.1
-        this.set("currentIndex", index);
-        return false;
-    });
-    
-    // 大图浏览时切换
-    function init() {
-    var timer;
-    popupBigPic.popupBigPicRactive.on("prev-big next-big", function (e) {
-        if (e.name === "prev-big") {
-            this.set("currentIndex", this.get("currentIndex") - 1);
-        } else {
-            this.set("currentIndex", this.get("currentIndex") + 1);
-        }
-
-        if (timer) {
-            clearTimeout(timer);
-        }
-
-        // 定时隐藏
-        this.set("showTip", true);
-        timer = setTimeout(function () {
-            relateDataRactive.set("showTip", false);
-        }, 1000);
-
-        return false;
-    });
-    }
+//    // 选择器点击
+//    relateDataRactive.on('selector-click', function (e) {
+//        var index = Number(e.keypath.substr(5)); // imgs.1
+//        this.set("currentIndex", index);
+//        return false;
+//    });
+//    
+//    // 大图浏览时切换
+//    function init() {
+//    var timer;
+//    popupBigPic.popupBigPicRactive.on("prev-big next-big", function (e) {
+//        if (e.name === "prev-big") {
+//            this.set("currentIndex", this.get("currentIndex") - 1);
+//        } else {
+//            this.set("currentIndex", this.get("currentIndex") + 1);
+//        }
+//
+//        if (timer) {
+//            clearTimeout(timer);
+//        }
+//
+//        // 定时隐藏
+//        this.set("showTip", true);
+//        timer = setTimeout(function () {
+//            relateDataRactive.set("showTip", false);
+//        }, 1000);
+//
+//        return false;
+//    });
+//    }
 });
 
 
