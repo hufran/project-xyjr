@@ -21,8 +21,10 @@
                     <input id="{{rinputId}}" value="{{value}}" placeholder="短信验证码">
                     <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
                         {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 获取短信验证码 {{/if}}
+                        
                     </button>
                     {{#loading}}loading...{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}
+                    <span class="need-tel-num">请输入正确的手机号</span>
                 </div>
             </RInput>
             <!--            cc-->

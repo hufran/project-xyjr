@@ -187,6 +187,29 @@
                     <!--                    <div class="clearfix"></div>-->
                 </div>
             </div>
+            <div class="tab-panel">
+                               <table class="table repay-plan repay-record">
+                    {{#if user}}
+                    <thead>
+                        <th style="border-top-left-radius: 3px;">成交时间</th>
+                        <th>投资人</th>
+                        <th style="border-top-right-radius: 3px;">投资金额(元)</th>
+                    </thead>
+                    {{#invests}}
+                    <tr>
+                        <th>{{submitTime}}</th>
+                        <th>{{userLoginName}}</th>
+                        <th>{{amount}}</th>
+                    </tr>
+                    {{/invests}}
+                           {{else}}
+                    <div class="notLogin">
+                    <p>用户详情</p>
+                    <p>请 <a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
+                        </div>
+                    {{/if}}
+                </table>
+            </div>
         </div>
 
         <div class="clearfix"></div>
