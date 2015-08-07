@@ -18,7 +18,7 @@ var ractive = new Ractive({
     template: require('ccc/account/partials/settings/bankcard.html'),
 
     data: {
-        status: 0,
+        status: CC.user.bankCards.length?1:0,
         payment: CC.user.name ? true : false,
         banks: banks,
         msg: {
@@ -27,7 +27,7 @@ var ractive = new Ractive({
             CARD_INVALID: false
         },
         bank: '',
-        bankAccount: {},
+        bankAccount: CC.user.bankCards || [],
         province : '',
         city: '',
         authenticated : false
@@ -47,12 +47,12 @@ var ractive = new Ractive({
             });
         });
 
-        accountService.getAccount(function (res) {
-            if (res.length) {
-                ractive.set('status', 1);
-                ractive.set('bankAccount', res);
-            }
-        });
+        // accountService.getAccount(function (res) {
+        //     if (res.length) {
+        //         ractive.set('status', 1);
+        //         ractive.set('bankAccount', res);
+        //     }
+        // });
     }
 });
 
