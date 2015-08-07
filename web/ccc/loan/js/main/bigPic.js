@@ -26,6 +26,8 @@ exports.popupBigPic = {
 
         popupBigPicRactive.on('end-big-pic', function () {
             this.set('visible', false);
+//             $('body')
+//           .removeClass('over-flow-hidden');
             $("#mask-layer-wraper")
             .hide();            
         });                
@@ -73,6 +75,8 @@ exports.popupBigPic = {
         this.popupBigPicRactive.set('visible', true);
         this.popupBigPicRactive.set('currentIndex', options.index || this.popupBigPicRactive.get('currentIndex'));
         this.popupBigPicRactive.set('imgs', options.imgs || this.popupBigPicRactive.get('imgs'));
+//         $('body')
+//           .addClass('over-flow-hidden');
         $("#mask-layer-wraper")
             .show();
     }        
