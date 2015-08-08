@@ -29,7 +29,16 @@ exports.InvestListService = {
                 results: []
             });
         }
+    },
+    getProductKey:function(next,params){
+         request
+            .get('/api/v2/loan/getLoanProduct/productKey/'+params)
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
     }
+    
 };
 
 function parseLoanList(loans) {

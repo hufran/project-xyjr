@@ -17,83 +17,25 @@
         <div class="investBox">
             <p class="investBoxTitle">我要投资</p>
             <p class="investBoxNew">每天固定时间发布新项目，首次投资可前往“<a href="">新手专区</a>”投资新手专享项目</p>
+<!--            {{JSON.stringify(products)}}-->
              <div class="no-warry-ul">
-                 <div class="no-warry" data-product="LTB">
+                 
+                 {{#products:num}}
+                 <div class="no-warry" data-product="{{data.productKey}}">
                      <div class="no-warry-left">
-                          <img src="/ccc/invest/img/nowarry.png"/>
-                           <p>乐投保</p>
+                          {{#if num===0}}<img src="/ccc/invest/img/nowarry.png"/>{{elseif num===1}}<img src="/ccc/invest/img/stock.png"/>{{else}}<img src="/ccc/invest/img/interest.png"/>{{/if}}
+                           <p>{{data.name}}</p>
                      </div>
                      <div class="no-warry-right">
                         <p>活期理财，存取随心</p>
-                        <p>年化收益9.8%</p>
-                        <p style="color:#ffbc08;">充足的优质项目科投资
-保理、融租、典当、票据、交易
-所产品等优质资产项目可选择</p> 
+                        <p>年化收益{{data.minRate}}%~{{data.maxRate}}%</p>
+                        <p {{#if num===0}}style="color:#ffbc08;"{{elseif num===1}}style="color:#007ec5;"{{else}}
+                           style="color:#4a4a4a;"{{/if}}>{{data.description.substr(0,40)}}</p> 
                      </div>
                  </div>
-                  <div class="no-warry" data-product="LXY">
-                     <div class="no-warry-left">
-                          <img src="/ccc/invest/img/stock.png"/>
-                           <p style="color:#007ec5;">乐享盈</p>
-                     </div>
-                     <div class="no-warry-right">
-                                             <p>活期理财，存取随心</p>
-                        <p>年化收益9.8%</p>
-                        <p style="color:#007ec5;">充足的优质项目科投资
-保理、融租、典当、票据、交易
-所产品等优质资产项目可选择</p> 
-                      </div>
-                 </div>
-                  <div class="no-warry" data-product="QT">
-                     <div class="no-warry-left">
-                          <img src="/ccc/invest/img/interest.png"/>
-                           <p style="color:#4a4a4a;">其它</p>
-                     </div>
-                     <div class="no-warry-right">
-                                             <p>活期理财，存取随心</p>
-                        <p>年化收益9.8%</p>
-                        <p style="color:#4a4a4a;">充足的优质项目科投资
-保理、融租、典当、票据、交易
-所产品等优质资产项目可选择</p> 
-                      </div>
-                 </div>
+                 {{/products}}
             </div>
         </div>
-<!--        <div class="s-nav-view">-->
-<!--
-            <ul class="u-nolist-ul sRate">
-                <li class="selectTitle">年化收益：</li>
-                <li class="s__is-selected" data-min-rate="0" data-max-rate="100">不限</li>
-                <li data-min-rate="0" data-max-rate="8">8%以下</li>
-                <li data-min-rate="8" data-max-rate="10">8%-10%</li>
-                <li data-min-rate="10" data-max-rate="12">10%－12%</li>
-                <li data-min-rate="12" data-max-rate="100">12%以上</li>
-            </ul>
--->
-<!--
-            <ul class="u-nolist-ul sDuration">
-                <li class="selectTitle">借贷期限：</li>
-                <li class="s__is-selected"  data-min-duration="0" data-max-duration="100">不限</li>
-                <li data-min-duration="0" data-max-duration="1">0－1个月</li>
-                <li data-min-duration="1" data-max-duration="3">1-3个月</li>
-                <li data-min-duration="3" data-max-duration="6">3-6个月</li>
-                <li data-min-duration="6" data-max-duration="12">6-12个月</li>
-                <li data-min-duration="12" data-max-duration="100">一年以上</li>
-            </ul>
--->
-<!--
-            <ul class="u-nolist-ul sStatus">
-                <li class="selectTitle">投标状态：</li>
-                <li class="s__is-selected" data-status="SCHEDULED">不限</li>
-                <li data-status="OPENED">融资中</li>
-                <li data-status="SETTLED">还款中</li>
-                <li data-status="CLEARED">还款结束</li>
-            </ul>
--->
-<!--        </div>-->
-
-<!--        <p style="margin:20px 0;"> 最新公告: PHP吉大利好     207328  </p>-->
-
         <table>
             <tr>
                 <th style="width:280px;padding-left:38px;">名称</th>

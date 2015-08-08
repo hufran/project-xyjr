@@ -1,43 +1,6 @@
+     
 
-<!--第一部分-->
-            
-            <!-- {{#if loan.status == "SETTLED" }}
-                <div class="invest-status">已结算</div>
-            {{/if}}
-            
-            {{#if loan.status == "SCHEDULED" }}
-                 <div class="invest-status">即将开始</div>
-            {{/if}}
-            
-            {{#if loan.status == "FINISHED" }}
-                <div class="invest-status">已满标</div>
-            {{/if}}
-            
-            {{#if loan.status == "CLEARED" }}
-                <div class="invest-status">还款结束</div>
-            {{/if}}
-            
-            {{#if loan.status == "OPENED" }}
-                <div class="available-amount">可投金额:<span>￥{{loan.rule.balance}}</span></div>
-            {{/if}} -->
-           
-        
-        <!--第二部分-->
-        <!-- {{#if loan.status == "SETTLED" || loan.status == "FINISHED" || loan.status == "CLEARED" }}
-            <div class="invest-not-available">
-                <ul>
-                    <li>融资总额 : {{loan.amount / 10000}}万</li>
-                    <li>投资人数 : {{loan.bidNumber }}</li>
-                    <li>满标用时 : {{loan.timeElapsed}}</li>
-                </ul>
-            </div>
-            <div class="invest-button-wrapper">
-            <a href="/invest/list" class="btn btn-default">关注其他项目</a>
-            </div>
-        {{/if}} -->
-        
-        {{#if loan.status == "FINISHED" }}
-            <!-- <div class="invest-status">已满标</div> -->
+{{#if loan.status == "FINISHED" }}
             <img src="/ccc/loan/img/full.png" class="finishBlock">
         {{/if}}
 
@@ -58,21 +21,8 @@
         {{/if}}
 
         {{#if loan.status == "SCHEDULED" }}
-            <!-- <div class="not-login-wrapper">
-                <div class="available-amount">
-                   <span class="big">{{loan.rule.balance}}</span>可投金额(元)
-                </div>
-                <div class="left-time">距开标时间:<span class="next-time"></span></div>
-            </div>
-            <div class="invest-button-wrapper">
-            <a href="/invest/list" class="btn btn-default">关注其他项目</a>
-            </div> -->
             <div class="left-time">
                 <span class="next-time"></span>
-<!--
-                 <div class="timeCount"><i>{{loan.timeLeft.dd}}</i>日<i>{{loan.timeLeft.hh}}</i>时<i>{{loan.timeLeft.mm}}</i>分
-                    <i>{{loan.timeLeft.ss}}</i>秒</div> 
--->
                 <div class="text">后开始...</div>
             </div>
         {{/if}}
@@ -94,9 +44,9 @@
                 <div class="userBlock" id="userBlock">
                     {{#if user}}
                         {{! 已登录,但是没开第三方支付 }}
-                        {{#if !user.accountId}}
+                        {{#if !name}}
                             <div class="prompt-open-3rdpay">
-                                <p style="margin-bottom: 20px">开通第三方支付托管账户后才能参与投资</p>
+                                <p style="margin-bottom: 20px">实名认证后才能参与投资</p>
                             </div>
                             <div class="invest-button-wrapper">
                                 <a class="btn btn-warning open-button" style="float: none" href="/account/umpay">立即开通</a>
@@ -104,25 +54,26 @@
                         {{else}}
                             {{! 已登录 }}
                             {{! 未签订无密投资}}
-                            {{#if !(user.agreement && user.agreement.invest)}}
-                                <div class="space space-10"></div>
-                                <p class="no-assign">签订快速投资协议后才能参与投资</p>
-                                <p class="no-assign invest-button-wrapper">
-                                    <a href="/account/agreement" class="btn sign-button" target="_blank">立即签订</a>
-                                </p>
-                            {{else}}
                                 <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i>
                                     <a href="/account/recharge" class="recharge">立即充值</a>
                                 </div>
                                 <div class="input">
                                     <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
-                                        <div class="clearfix" style="margin-bottom: 1px">
-                                            <input type="hidden" name="loanId" value="{{loan.id}}">
-                                            <input type="text" name="amount" class="form-control invest-input" style="font-size: 13px" placeholder="最少为{{loan.rule.min}}，且为{{loan.rule.step}}的倍数" value="{{ inputNum }}" />
-                                            <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
-                                        </div>
-                                        <!--预计总收益：{}-->
-                                        <span class="expect">预计总收益：{{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</span>
+                                        
+                                        
+                                        
+                                          <div class="calculatorBox">
+                           <div class="calculator" >
+                                <button class="glyphicon glyphicon-minus" style="padding:0;margin:0;" on-click="reduce"></button>
+                                <input type="hidden" name="loanId" value="{{loan.id}}">
+                               <input placeholder="{{loan.rule.min}}"  type="text" value="{{ inputNum }}">
+                                <button class="glyphicon glyphicon-plus" on-click="add"></button>
+                           </div>
+                            <button class="topAmount" on-click="maxNumber">最大可投金额</button>
+                            <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
+                        </div> 
+                                        
+                                       
                                         {{#if loan.selectOption}}
                                         <div class="selectOption">
                                             <select name="placementId" id="couponSelection">
@@ -144,7 +95,7 @@
                                         {{/if}}
                                     </form>
                                 </div>
-                            {{/if}}
+                           
                         {{/if}}
                     {{else}}
                         <p>
