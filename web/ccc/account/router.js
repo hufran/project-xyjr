@@ -131,12 +131,12 @@ router.get(/^\/account\//, function (req, res, next) {
 
         // 检查是否绑定银行卡
         checkCard: function () {
-            return user.account ? true : false;
+            return user.bankCards.length ? true : false;
         },
 
         // 检查是否开通第三方支付
         checkUmpay: function () {
-            return !!user.accountId;
+            return !!user.name;
         }
     });
 
@@ -312,6 +312,11 @@ router.get('/account/withdraw', function (req, res, next) {
             next();
         }
     }
+});
+
+router.get('/account/invite', function (req, res, next) {
+    res.expose(req.headers.host, 'host');
+    next()
 });
 
 // 查看借款人合同
