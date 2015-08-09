@@ -21,7 +21,7 @@ $('.s__top15').mouseover(function() {
          res.user={};
          res.user.name='';}
     new Ractive({
-    el: "#ractive-container",
+    el: "#head-ractive-container",
     template:'<img src="/ccc/global/img/navuseryellow.png" />{{#if !name}}{{user.loginName}}{{else}}{{name}}{{/if}}', 
     data: {
        name:res.user.name
