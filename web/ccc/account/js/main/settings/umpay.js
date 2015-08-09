@@ -11,7 +11,7 @@ var ractive = new Ractive({
     template: require('ccc/account/partials/settings/umpay.html'),
 
     data: {
-        authenticated: false,
+        authenticated: CC.user.authenticates.idauthenticated || false,
         isQuickCheck: true,
         authenticateInfo: {
             name: CC.user.name || '',
@@ -20,10 +20,7 @@ var ractive = new Ractive({
         format : format,
         getPwdReturn: false
     },
-    onrender: function (){
-        accountService.checkAuthenticate(function (res) {
-            ractive.set('authenticated', res.idauthenticated);
-        });
+    oninit: function (){
 
         accountService.getUserInfo(function (res) {
             ractive.set('authenticateInfo', {
@@ -76,28 +73,8 @@ ractive.on("register-account-submit", function () {
                     var user = {
                         name: $.trim(name),
                         idNumber: $.trim(idNumber)
-                        //mobile: $.trim(global.CC.user.mobile),
                     };
-                    // accountService.registerUmpay(user,
-                    //     function (res) {
-                    //         if (res.success) {
-                    //             ractive.set('accountStatus',
-                    //                 'justOpenSuccess');
-                    //             ractive.set(
-                    //                 'umpAccount', {
-                    //                     accountId: res.data.accountId,
-                    //                     accountName: res.data.accountName
-                    //                 });
-                    //         } else {
-                    //             var msg = (res.data ? res.data.retMsg :
-                    //                 (res.error instanceof Array ? res.error[
-                    //                     0].message : res.message));
-                    //             ractive.set({
-                    //                 showErrorMessage: true,
-                    //                 errorMessage: msg
-                    //             });
-                    //         }
-                    //     });
+                    
                     accountService.authenticateUser(user,
                             function (res) {
                                 if (res.success) {

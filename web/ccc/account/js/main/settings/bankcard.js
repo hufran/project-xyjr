@@ -18,7 +18,7 @@ var ractive = new Ractive({
     template: require('ccc/account/partials/settings/bankcard.html'),
 
     data: {
-        status: CC.user.bankCards.length?1:0,
+        status: CC.user.bankCards.length? 1 : 0,
         payment: CC.user.name ? true : false,
         banks: banks,
         msg: {
@@ -30,47 +30,19 @@ var ractive = new Ractive({
         bankAccount: CC.user.bankCards || [],
         province : '',
         city: '',
-        authenticated : false
+        authenticated : CC.user.authenticates.idauthenticated || false
     },
-    oncomplete: function () {
-        accountService.checkAuthenticate(function (res) {
-            ractive.set('authenticated', res.idauthenticated);
-            ractive.renderArea();
-        });
-    },
-    renderArea: function(){
+    oncomplete: function(){
         accountService.getProvince(function (res) {
             ractive.set('province', changeToList(res));
-            var fProvince = ractive.get('myProvince') //|| '新疆';
+            var fProvince = ractive.get('myProvince') || '新疆';
             accountService.getCity(fProvince, function (res){
                 ractive.set('city', changeToList(res));
             });
         });
-
-        // accountService.getAccount(function (res) {
-        //     if (res.length) {
-        //         ractive.set('status', 1);
-        //         ractive.set('bankAccount', res);
-        //     }
-        // });
     }
 });
 
-ractive.on('selectBank', function (e) {
-    this.$help = $(this.el)
-        .find('.help-block');
-    $('.bank')
-        .removeClass('active');
-    $(e.node)
-        .addClass('active');
-    this.set('bank', e.context.code);
-    this.$help.empty();
-});
-
-ractive.on('updateBank', function () {
-    this.set('status', 0);
-    this.set('edit', true);
-});
 ractive.on("bind-card-submit", function () {
     // var bank = this.get('bank');
     // //var cardId = this.get('cardId');

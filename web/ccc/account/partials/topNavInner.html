@@ -60,11 +60,11 @@
                             
                             {{! 第三方支付}}
                             {{#if checkUmpay()}}
-                            <li data-title="已绑定第三方支付" class="umpay">
+                            <li data-title="已实名认证" class="umpay">
                             	<a href="/account/umpay"></a>
                             </li>
 							{{else}}
-							<li data-title="未绑定第三方支付" class="umpay-gray">
+							<li data-title="未实名认证" class="umpay-gray">
                             	<a href="/account/umpay"></a>
                             </li>
                             {{/if}}
