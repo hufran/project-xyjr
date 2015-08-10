@@ -55,7 +55,7 @@
                             {{! 已登录 }}
                             {{! 未签订无密投资}}
                                 <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i>
-                                    <a href="/account/recharge" class="recharge">立即充值</a>
+                                    <a href="/account/bankcard" class="recharge">立即充值</a>
                                 </div>
                                 <div class="input">
                                     <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
