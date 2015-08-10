@@ -342,7 +342,7 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
             imgLen: imgs.length
         };
         popupBigPic.show(options);
-        init();
+//        init();
         return false;
 
     });
