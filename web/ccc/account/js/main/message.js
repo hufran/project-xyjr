@@ -35,6 +35,7 @@ function init (type) {
         self.getMessageData(function (o){
           self.set('total',o.totalSize);
           self.setData(o.results);
+          self.bindAction();
         });
       },
       getMessageData: function(callback) {
@@ -51,6 +52,12 @@ function init (type) {
             self.pageOneData = o.results;
             callback(o);
           }
+        });
+      },
+      bindAction : function () {
+        $('.ctr').click(function (){
+          console.log(111);
+          $(this).addClass('activeContent')
         });
       },
       setData: function(o) {
@@ -89,7 +96,6 @@ function init (type) {
     
     var id = event.node.getAttribute('data-id');
     var status = event.node.getAttribute('data-status');
-    
     if (status == 'NEW') {
       $.get('/api/v2/message/markAsRead/' + id); 
     }
@@ -147,3 +153,5 @@ function init (type) {
 }
 
 init('ALL');
+
+

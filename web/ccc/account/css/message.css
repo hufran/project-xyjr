@@ -62,4 +62,19 @@ span.page:hover {
   white-space: nowrap;
   width: 525px;
 }
+
+.ctr {
+  height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 500px;
+  cursor:pointer;
+}
+.activeContent {
+  height: auto !important;
+  overflow: auto;
+  text-overflow: clip;
+  white-space: normal;
+}
 /*# sourceMappingURL=/ccc/account/css/message.css.map */
