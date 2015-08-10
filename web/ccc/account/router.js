@@ -336,4 +336,26 @@ router.get('/account/allContracts/:id',
             '/contract');
         next();
     });
+
+//邮箱验证
+router.get('/account/authenticateEmail', function(req,res,next) {
+
+    var email = req.query.email;
+    var code = req.query.code;
+    
+    var sendObj = {
+        code : code,
+        email : email
+     };
+
+     req.uest.post('/api/v2/user/authenticateEmail')
+        .type('form')
+        .send(sendObj)
+        .end()
+        .then(function(r) {
+         
+            res.redirect('/register/renzheng?message=' + r.body.ConfirmResult);
+         });
+ });
 }
+
