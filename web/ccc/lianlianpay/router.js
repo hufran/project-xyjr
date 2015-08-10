@@ -21,8 +21,6 @@ module.exports = function (router) {
 	                .send(req.body)
 	                .end()
 	                .then(function (r) {
-	                	console.log("##########");
-	                	console.log(r.body);
 	                     if (r.body.success) {
 	                         var data = {
 	                            success: r.body.success,
@@ -71,8 +69,7 @@ module.exports = function (router) {
 	                    });
 	                }
 	                res.render('lianlianpay/post', {
-	                    postUrl: config.payment.lianlian.postUrl,
-	                    data: r.body.data
+	                    data: r.body
 	                });
 	            });
 	    });

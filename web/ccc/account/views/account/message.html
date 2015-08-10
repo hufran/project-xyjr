@@ -13,8 +13,20 @@
         <div class="has-line">
             <div class="row ccc-container">
                 <div class="col-md-12">
-                    <div class="header-text pull-left">消息中心</div>
-                    
+                    <div class="hheader-text pull-left">消息中心</div>
+                    <div class="ccc-tab pull-right" data-header-selector=".header-text">
+                        <ul class="tabs" id="messageTab">
+                            <li class="active" data-type="ALL">
+                                <a href="javascript:void(0)" on-click="getData">全部</a>
+                            </li>
+                            <li data-type="NEW">
+                                <a href="javascript:void(0)" on-click="getData">未读</a>
+                            </li>
+                            <li data-type="READ">
+                                <a href="javascript:void(0)">已读</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

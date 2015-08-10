@@ -48,4 +48,33 @@ ul.dec-li li {
 .bankcards-wrap .bankcard-box .bank-img {
   margin: 30px auto 0 auto;
 }
+.inputsMs {
+  width: 160px;
+  height: 40px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+}
+.inputsMs:focus {
+  border-color: #66afe9;
+}
+.sendCode {
+  display: block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: #b5a16b;
+  float: right;
+  position: relative;
+  left: 0px;
+}
 /*# sourceMappingURL=/ccc/account/css/recharge.css.map */

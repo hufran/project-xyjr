@@ -55,7 +55,7 @@ var ractive = new Ractive({
     },
 
     match: function (v) {
-        return v.match(/^[1-9]\d*(\.\d{0,2})?$/);
+        return v.match(/^[0-9]\d*(\.\d{0,2})?$/);
     }
 
 });
