@@ -49,7 +49,7 @@
             </a>
             {{/if}} {{#if status === 'SCHEDULED'}}
             <div class="investbtn" data-id="{{id}}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}"
-            style="background:transparent; width: 150px;text-align: left;">即将开始</div>
+            style="background:#ff7200; width: 150px;text-align: left;">即将开始</div>
             {{/if}} {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
                 <div class="investbtn" style="background:lightgrey;">已满标</div>
@@ -60,7 +60,7 @@
             </a>
             {{/if}} {{#if status === 'APPROVED'}}
             <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
-            data-serv="{{ serverDate }}" style="background:transparent; color: #fff;width: 150px;text-align: left;">即将开始</div>
+            data-serv="{{ serverDate }}" style="background:#ff7200; color: #fff;width: 150px;text-align: left;">即将开始</div>
             {{/if}} {{#if status === 'CLEARED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
                 <div class="investbtn" style="background:lightgrey;">还款结束</div>
