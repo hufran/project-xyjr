@@ -14,20 +14,23 @@ $('.s__top15').mouseover(function() {
     $(this).next().css('display', 'none');
 });
 
-  
-
- accountService.getUserInfo(function (res) {
+  if(CC.user){
+      accountService.getUserInfo(function (res) {
      if(!res.user){
          res.user={};
          res.user.name='';}
     new Ractive({
     el: "#head-ractive-container",
-    template:'<img src="/ccc/global/img/navuseryellow.png" />{{#if !name}}{{user.loginName}}{{else}}{{name}}{{/if}}', 
+    template:'<img src="/ccc/global/img/navuseryellow.png" />{{#if !name}}{{loginName}}{{else}}{{name}}{{/if}}', 
     data: {
-       name:res.user.name
+       name:res.user.name,
+       loginName:CC.user.loginName
     }
 });     
         });
+  }
+
+ 
 
 $(function(){
     utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){

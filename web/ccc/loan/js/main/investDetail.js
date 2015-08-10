@@ -80,7 +80,7 @@ setTimeout((function () {
             ss:ss
         }
         var days = newTimeleftTotal.dd ? '<i>'+newTimeleftTotal.dd+'</i>日' : '';
-        $('.firstLine>.time>span').html(days + '<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
+        $('.time>span').html('剩余时间：'+days + '<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
     },1000)
     //获取最后还款日期
     if(CC.repayments instanceof Array&&CC.repayments.length>0){
@@ -112,10 +112,12 @@ setTimeout((function () {
         }
     });
     
-    
-     accountService.getUserInfo(function (res) {
+    if(CC.user){
+         accountService.getUserInfo(function (res) {
       investRactive.set('name', res.user.name);
         });
+    }
+    
 
     
     //
