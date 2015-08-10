@@ -25,6 +25,7 @@
                     </button>
                     {{else}}
                      <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
+
                         {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 获取短信验证码 {{/if}}
                     </button>
                     {{/if}}
