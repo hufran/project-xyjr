@@ -4,6 +4,8 @@
  */
 "use strict";
 
+var accountService = require('ccc/account/js/main/service/account').accountService;
+
 var utils = require('ccc/global/js/lib/utils');
 
 $('.s__top15').mouseover(function() {
@@ -13,6 +15,19 @@ $('.s__top15').mouseover(function() {
 });
 
   
+
+ accountService.getUserInfo(function (res) {
+     if(!res.user){
+         res.user={};
+         res.user.name='';}
+    new Ractive({
+    el: "#head-ractive-container",
+    template:'<img src="/ccc/global/img/navuseryellow.png" />{{#if !name}}{{user.loginName}}{{else}}{{name}}{{/if}}', 
+    data: {
+       name:res.user.name
+    }
+});     
+        });
 
 $(function(){
     utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){

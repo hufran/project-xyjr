@@ -65,7 +65,7 @@ messageRactive.on('current',function(e){
 });
 
 (function() {
-    $.get('/api/v2/message/notifications/1/MYSELF', function(data) {
+    $.get('/api/v2/message/user/MYSELF/notifications', function(data) {
         messages = data;
         pages = Math.ceil(messages.totalSize / pageSize);
         setPage();

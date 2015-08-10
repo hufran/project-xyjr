@@ -141,18 +141,11 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     });
 
     $('.no-warry-ul .no-warry').click(function(){
-        console.log('sdfsdf');
         if (!$(this).hasClass("selected")) {
             $(this).addClass("selected").siblings().removeClass("selected");
-//            var minRate = $(this)
-//                .data('min-rate');
-//            var maxRate = $(this)
-//                .data('max-rate');
              var product = $(this).data('product');
             params.currentPage = 1;
             params.product=product;
-//            params.minRate = minRate;
-//            params.maxRate = maxRate;
             render(params);
         }
     });
@@ -181,54 +174,6 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             render(params);
         }
     });
-    // $('select.condition-rate')
-    //     .on('change', function () {
-    //         var option = this.options[this.selectedIndex];
-        
-    //         var minRate = $(option)
-    //             .data('min-rate');
-    //         var maxRate = $(option)
-    //             .data('max-rate');
-        
-    //         params.currentPage = 1;
-    //         params.minRate = minRate;
-    //         params.maxRate = maxRate;
-    //         render(params);
-    //     });
-
-    // $('select.condition-status')
-    //     .on('change', function () {
-    //         var status = this.value;
-    //         params.status = status;
-    //         params.currentPage = 1;
-    //         render(params);
-    //     });
-
-    // $('select.condition-durations')
-    //     .on('change', function () {
-    //         var option = this.options[this.selectedIndex];
-    //         var minDuration = $(option)
-    //             .data('min-duration');
-    //         var maxDuration = $(option)
-    //             .data('max-duration');
-    //         params.minDuration = minDuration;
-    //         params.maxDuration = maxDuration;
-    //         params.currentPage = 1;
-    //         render(params);
-    //     });
-
-    // $('select.condition-method')
-    //     .on('change', function () {
-    //         var method = this.value;
-    //         params.currentPage = 1;
-    //         if (method) {
-    //             params.method = method;
-    //         } else {
-    //             delete params.method;
-    //         }
-    //         render(params);
-    //     });
-
 
     function render(params) {
         InvestListService.getLoanListWithCondition(jsonToParams(params),
@@ -333,6 +278,13 @@ function ininconut () {
         }
     });
 };
+
+
+
+
+
+
+
 
 function initailEasyPieChart() {
     ///////////////////////////////////////////////////////////

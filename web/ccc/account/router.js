@@ -9,7 +9,6 @@ router.get('/account', function (req, res, next) {
 
 // 未登录访问account下的页面,跳转到 /
 router.get(/^\/account\//, function (req, res, next) {
-        console.log(1);
     if (!req.cookies.ccat) {
         res.redirect('/');
         return;
@@ -19,7 +18,6 @@ router.get(/^\/account\//, function (req, res, next) {
 
 // topNav 需要的东西
 router.get(/^\/account\//, function (req, res, next) {
-        console.log(2);
 
     // 定位tab
     var tabs = [{
@@ -38,18 +36,22 @@ router.get(/^\/account\//, function (req, res, next) {
             text: '实名认证',
             url: '/account/umpay'
         }, {
+            text: '个人信息',
+            url: '/account/userInfo'
+        }, {
             text: '提现银行卡信息',
             url: '/account/bankcard'
         }, {
             text: '平台密码',
             url: '/account/settings'
         }, {
-            text: '托管密码',
-            url: '/account/paypwd'
-        }, {
             text: '安全认证',
             url: '/account/safety'
         }
+        //{
+            //text: '托管密码',
+            //url: '/account/paypwd'
+        //},
         // {
         //     text: '无密协议',
         //     url: '/account/agreement'
@@ -131,12 +133,12 @@ router.get(/^\/account\//, function (req, res, next) {
 
         // 检查是否绑定银行卡
         checkCard: function () {
-            return user.account ? true : false;
+            return user.bankCards.length ? true : false;
         },
 
         // 检查是否开通第三方支付
         checkUmpay: function () {
-            return !!user.accountId;
+            return !!user.name;
         }
     });
 
@@ -210,13 +212,14 @@ router.get('/account/funds', function (req, res) {
     });
 });
 
-// /account/settings 页面下的tab
+//account/settings 页面下的tab
 [
     "umpay", // 托管账户
     "bankcard", // 银行卡信息
     "settings", // 对应修改密码
     // "paypwd",
-    "safety"
+    "safety",
+    "userInfo"
 ].forEach(function (tabName) {
     router.get('/account/' + tabName, function (req, res) {
         Promise.join(
@@ -312,6 +315,11 @@ router.get('/account/withdraw', function (req, res, next) {
             next();
         }
     }
+});
+
+router.get('/account/invite', function (req, res, next) {
+    res.expose(req.headers.host, 'host');
+    next()
 });
 
 // 查看借款人合同
