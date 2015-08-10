@@ -65,7 +65,6 @@ setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
     console.log(CC.loan.timeLeft); 
     CC.loan.timeLeft=JSON.parse(CC.loan.timeLeft);
-    
     var leftTime=CC.loan.timeLeft;
     var timeLeftToal=leftTime.ss+leftTime.mm*60+leftTime.hh*60*60+leftTime.dd*60*60*24;
     setInterval(function(){
