@@ -72,7 +72,7 @@
 .account-funds-wrapper .payload-filters .date-from-picker .icon-calendar,
 .account-funds-wrapper .payload-filters .date-to-picker .icon-calendar {
   cursor: pointer;
-  background: url(/ccc/global/img/funds/calendar.png) #f4f5f6 center no-repeat;
+  background: url(/ccc/account/img/funds/calendar.png) #f4f5f6 center no-repeat;
 }
 .account-funds-wrapper .payload-filters .spliter {
   height: 25px;

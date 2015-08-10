@@ -82,6 +82,16 @@ exports.accountService = {
             .then(function (r) {
                 next(r.body);
             });
+    },
+    feedback:function(userId,params,next){
+          request('POST', '/api/v2/user/'+userId+'/feedback')
+            .type('form')
+            .send(params)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+        
     }
         
 };

@@ -63,12 +63,18 @@ router.get(/^\/account\//, function (req, res, next) {
     }, {
         text: '我的红包',
         url: '/account/coupon'
+    }, {
+        text: '我的积分',
+        url: '/account/integration'
     },{
         text:'我的邀请',
         url:'/account/invite'
     },{
         text:'消息中心',
         url:'/account/message'
+    },{
+        text:'用户反馈',
+        url:'/account/feedback'
     }];
 
     var path = req.path.replace(/\/$/, '');
@@ -336,4 +342,26 @@ router.get('/account/allContracts/:id',
             '/contract');
         next();
     });
+
+//邮箱验证
+router.get('/account/authenticateEmail', function(req,res,next) {
+
+    var email = req.query.email;
+    var code = req.query.code;
+    
+    var sendObj = {
+        code : code,
+        email : email
+     };
+
+     req.uest.post('/api/v2/user/authenticateEmail')
+        .type('form')
+        .send(sendObj)
+        .end()
+        .then(function(r) {
+         
+            res.redirect('/register/renzheng?message=' + r.body.ConfirmResult);
+         });
+ });
 }
+

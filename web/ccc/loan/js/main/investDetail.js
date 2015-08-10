@@ -65,7 +65,6 @@ setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
     console.log(CC.loan.timeLeft); 
     CC.loan.timeLeft=JSON.parse(CC.loan.timeLeft);
-    
     var leftTime=CC.loan.timeLeft;
     var timeLeftToal=leftTime.ss+leftTime.mm*60+leftTime.hh*60*60+leftTime.dd*60*60*24;
     setInterval(function(){
@@ -81,7 +80,7 @@ setTimeout((function () {
             ss:ss
         }
         var days = newTimeleftTotal.dd ? '<i>'+newTimeleftTotal.dd+'</i>日' : '';
-        $('.firstLine>.time>span').html(days + '<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
+        $('.time>span').html('剩余时间：'+days + '<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
     },1000)
     //获取最后还款日期
     if(CC.repayments instanceof Array&&CC.repayments.length>0){
@@ -113,10 +112,12 @@ setTimeout((function () {
         }
     });
     
-    
-     accountService.getUserInfo(function (res) {
+    if(CC.user){
+         accountService.getUserInfo(function (res) {
       investRactive.set('name', res.user.name);
         });
+    }
+    
 
     
     //

@@ -12,7 +12,7 @@
                 <div class="investTitle">
                     <!-- <div class="serial">ID:230193</div> -->
 <!--                                        <a >借贷协议（范本）</a>-->
-                    
+<!--   {{JSON.stringify(loans)}}-->
                     
                     <div class="time"><span>剩余时间：<i>{{loans.timeLeft.dd}}</i>日<i>{{loans.timeLeft.hh}}</i>小时<i>{{loans.timeLeft.mm}}</i>分<i>{{loans.timeLeft.ss}}</i>秒</span>
                     </div>
@@ -150,7 +150,7 @@
                     
                 </table>
 -->
-                <P>{{loans.corporationName}}</P>
+                <P class="danger-control">{{loans.corporationName}}</P>
             </div>
 <!--            投资记录-->
             <div class="tab-panel">
@@ -211,8 +211,8 @@
                     {{/invests}}
                            {{else}}
                     <div class="notLogin">
-                    <p>用户详情</p>
-                    <p>请 <a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
+                    <p>用户查看详情</p>
+                    <p><a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a></p>
                         </div>
                     {{/if}}
                 </table>
@@ -223,11 +223,7 @@
     </div>
     
 <!--    {{JSON.stringify(loans)}} -->
-    <div class="insurance-wrapper" style="width:370px;float:left;margin-top:72px;">
-<!--
-        <img src="/ccc/loan/img/detail-banner-top.png" />
-        <img src="/ccc/loan/img/detail-banner-bottom.png" />
--->
+    <div class="insurance-wrapper">
     </div>
 </div>
 

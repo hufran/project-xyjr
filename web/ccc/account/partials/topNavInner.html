@@ -27,7 +27,7 @@
 -->
                     <div class="authentication">
                         {{ greetingText }}:
-                        <span class="username">{{ user.loginName }}</span>
+                        <span class="username"></span>
                         <ul class="info">
                             {{! 手机}} {{#if checkMobile()}}
                             <li data-title="已绑定手机" class="phone"></li>
@@ -81,6 +81,13 @@
                 </span>
                             <span class="risk">{{ riskText }}</span>
                         </div>
+                        
+                         <div class="safety">
+                           积分：123123123 等级：初级
+                        </div>
+                        
+                        
+                        
                     </div>
                 </div>
                 <div class="account-info pull-right">

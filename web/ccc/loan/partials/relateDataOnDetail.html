@@ -24,15 +24,26 @@
            
             <div class="item {{#if i===0}} active {{/if}}">
                 <div class="row">
-                    <div class="col-xs-6 col-md-2 imgs-list">
+                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;">
                         <a  on-click="begin-big-pic" class="thumbnail-border"  style="float:left">
                             <img src="{{imgs[i].uri}}">
                         </a>
+                        
                     </div>
                 </div>
             </div>
             {{/each}}
+            
         </div>
+            <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-com" role="button" data-slide="prev" style="width:10%;">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-com" role="button" data-slide="next" style="width:10%;">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
           </div>
 
     
@@ -57,7 +68,7 @@
     {{/if}}
 </div>
 {{ else }}
-    <div>
+    <div style="text-align:center">
         暂无相关资料
     </div>
 {{/if}}
