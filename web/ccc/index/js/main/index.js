@@ -229,20 +229,6 @@ $(document).keyup(function (e) {
     }
 });
 
-$.get('/api/v2/analytics/count', function (r) {
-    console.log(r);
-    var count = new Ractive({
-        el: '.report',
-        template: '累计交易<span class="figure">{{dayNumbers}}</span>天，总成交金额<span class="rmb">¥</span><span class="figure">{{loanAll}}<span>',
-        data: {
-            users: r.user.all,
-            loanAll: r.loan.all,
-            dayNumbers: dayNumbers
-        }
-    });
-})
-
-
 request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .end()
     .then(function (res) {

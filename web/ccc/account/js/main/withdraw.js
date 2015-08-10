@@ -5,7 +5,7 @@ var CommonService = require('ccc/global/js/modules/common').CommonService;
 var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 
-new Ractive({
+var ractive = new Ractive({
 	el: '.ccc-recharge-wrap',
 	template: require('ccc/account/partials/withdraw.html'),
 	data: {
@@ -21,6 +21,7 @@ new Ractive({
 			ERROR: '请求出现错误',
 
 		},
+		isSend: false,
 		disabled: false,
 		submitText: '确认提现',
 		submitMessage: null,
@@ -201,3 +202,39 @@ new Ractive({
 		return v.toString().match(/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
 	}
 });
+
+
+ractive.on('sendCode', function (){
+
+	if (!this.get('isSend')) {
+		this.set('isSend', true);
+		var smsType = 'CONFIRM_CREDITMARKET_WITHDRAW';
+		CommonService.getMessage(smsType, function (r) {
+			console.log(r);
+			if (r.success) {
+	            countDown();
+	        }
+		});
+	}
+});
+
+function countDown() {
+    $('.sendCode')
+        .addClass('disabled');
+    var previousText = '获取验证码';
+    var msg = '$秒后重新发送';
+
+    var left = 120;
+    var interval = setInterval((function () {
+        if (left > 0) {
+            $('.sendCode')
+                .html(msg.replace('$', left--));
+        } else {
+            $('.sendCode')
+                .html(previousText);
+            $('.sendCode')
+                .removeClass('disabled');
+            clearInterval(interval);
+        }
+    }), 1000);
+}
