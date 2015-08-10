@@ -1,0 +1,63 @@
+
+<header x-gyro-header></header>
+
+<div id="homepage">
+
+    <section class="banner omit-margin">
+        <img class="img-responsive" ng-src="assets/image/homepage-banner-01.jpg">
+    </section>
+
+    <section class="loan container u-off-margin-bottom" ng-if="loan">
+
+        <p class="title">{{ loan.title }}</p>
+
+        <div class="progress-chart">
+            <span class="precent">{{ loan.invest_percent_int }}<small>%</small></span>
+
+            <div x-easypiechart class="chart"
+                  percent="loan.invest_percent_int"
+                  options="loan.chart_options"
+            ></div>
+        </div>
+
+        <div class="rate">年化收益 <em>{{ loan.rate }}%</em></div>
+
+        <ul class="info-table row list-unstyled u-off-margin-bottom">
+            <li class="item col-xs-3">
+                <span class="num">{{ loan.total_months || loan.total_days }}</span>
+                <span class="unit" ng-if="loan.total_months">月</span>
+                <span class="unit" ng-if="!loan.total_months">天</span>
+                <span class="labels">项目期限</span>
+            </li>
+
+            <li class="item col-xs-3" ng-init="num1 = self.num(loan.amount)">
+                <span class="num">{{ num1.myriad || num1.amount }}</span>
+                <span class="unit" ng-if="num1.myriad">万</span>
+                <span class="unit" ng-if="!num1.myriad">元</span>
+                <span class="labels">计划金额</span>
+            </li>
+
+            <li class="item col-xs-3" ng-init="num2 = self.num(loan.raw.loanRequest.investRule.minAmount)">
+                <span class="num">{{ num2.myriad || num2.amount }}</span>
+                <span class="unit" ng-if="num2.myriad">万</span>
+                <span class="unit" ng-if="!num2.myriad">元</span>
+                <span class="labels">起投金额</span>
+            </li>
+
+            <li class="item col-xs-3" ng-init="num3 = self.num(loan.balance)">
+                <span class="num">{{ num3.myriad || num3.amount }}</span>
+                <span class="unit" ng-if="num3.myriad">万</span>
+                <span class="unit" ng-if="!num3.myriad">元</span>
+                <span class="labels">剩余余额</span>
+            </li>
+        </ul>
+
+        <div class="solen"><i class="glyphicon glyphicon-piggy-bank"></i> 稳定安全，本息保障</div>
+
+        <p class="container">
+            <a ng-href="loan/{{ loan.id }}" class="btn btn-theme btn-block btn-lg call-action">立即投资</a>
+        </p>
+
+    </section>
+
+</div>

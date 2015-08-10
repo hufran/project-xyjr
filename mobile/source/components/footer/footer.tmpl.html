@@ -1,0 +1,38 @@
+
+<div ng-show="state">
+<footer id="page-footer" style="margin-bottom: 58px;" ng-if>
+    <div class="contact container">
+        投资热线：<a class="hotline" href="tel:4009908815">400-990-8815</a>
+    </div>
+
+    <div class="copyright container">
+        Copyright &copy; 2015 爱当宝信息咨询（北京）有限公司版权所有. 京ICP证140428号
+    </div>
+</footer>
+
+<div style="margin-bottom: 66px;"></div>
+<nav id="page-tab-nav">
+    <ul class="container list-unstyled u-off-margin-bottom">
+        <li class="col-xs-4" ng-class="{ active: state === 'list' }">
+            <a href="list">
+                <param class="glyphicon glyphicon-th-list">
+                产品列表
+            </a>
+        </li>
+
+        <li class="col-xs-4" ng-class="{ active: state === 'dashboard' }">
+            <a href="dashboard">
+                <param class="glyphicon glyphicon-user">
+                我的投资
+            </a>
+        </li>
+
+        <li class="col-xs-4" ng-class="{ active: state === 'invite' }">
+            <a href="dashboard/invite">
+                <param class="glyphicon glyphicon-share">
+                邀请好友
+            </a>
+        </li>
+    </ul>
+</nav>
+</div>

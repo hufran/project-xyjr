@@ -1,0 +1,132 @@
+
+<div class="subject">
+    <p class="title">{{ loan.title }}</p>
+</div>
+
+
+<div class="info">
+    <div class="item">
+        <div class="value rate">
+            {{ loan.rate }}<span class="unit">%</span>
+        </div>
+        <div class="name">年化收益率</div>
+    </div>
+
+    <div class="item">
+        <div class="value">
+            {{ loan.total_months || loan.total_days }}<!--
+            --><span class="unit" ng-if="loan.total_months">月</span><!--
+            --><span class="unit" ng-if="!loan.total_months">天</span>
+        </div>
+        <div class="name">锁定期限</div>
+    </div>
+
+    <div class="item">
+        <div class="value current-progress">
+            <span x-easypiechart class="chart"
+                  percent="loan.invest_percent_int"
+                  options="loan.chart_options"
+            ></span>
+            <span class="num">
+                {{ loan.invest_percent_int }}<small>%</small>
+            </span>
+        </div>
+        <div class="name">目前进度</div>
+    </div>
+</div>
+
+
+<div class="footer" ng-if="page === 'loan_list'">
+    <div class="sum">
+        <div class="item">
+            <span class="name">可投金额</span>
+            <span class="value">
+                {{ loan.balance_myriad || loan.balance }}<!--
+                --><span class="unit" ng-if="loan.balance_myriad">万</span><!--
+                --><span class="unit" ng-if="!loan.balance_myriad">元</span>
+            </span>
+        </div>
+
+        <div class="item">
+            <span class="name">全部金额</span>
+            <span class="value">
+                {{ loan.amount_myriad || loan.amount }}<!--
+                --><span class="unit" ng-if="loan.amount_myriad">万</span><!--
+                --><span class="unit" ng-if="!loan.amount_myriad">元</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="status" ng-switch="loan.status">
+        <span ng-switch-when="SCHEDULED" class="btn btn-scheduled btn-sm">
+            即将开始
+        </span>
+
+        <span ng-switch-when="OPENED" class="btn btn-theme btn-sm">
+            立即投标
+        </span>
+
+        <span ng-switch-when="FINISHED" class="btn btn-finished btn-sm">
+            已售罄
+        </span>
+
+        <span ng-switch-when="SETTLED" class="btn btn-settled btn-sm">
+            计息中
+        </span>
+
+        <span ng-switch-when="CLEARED" class="btn btn-cleared btn-sm">
+            已结息
+        </span>
+    </div>
+</div>
+
+
+<div class="footer" ng-if="page === 'loan_detail'">
+    <div class="sum">
+        <div class="item">
+            <span class="name">可投金额:</span>
+            <span class="value">
+                {{ loan.balance_myriad || loan.balance }}<!--
+                --><span class="unit" ng-if="loan.balance_myriad">万</span><!--
+                --><span class="unit" ng-if="!loan.balance_myriad">元</span>
+            </span>
+        </div>
+
+        <div class="item">
+            <span class="name">全部金额:</span>
+            <span class="value">
+                {{ loan.amount_myriad || loan.amount }}<!--
+                --><span class="unit" ng-if="loan.amount_myriad">万</span><!--
+                --><span class="unit" ng-if="!loan.amount_myriad">元</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="time" ng-switch="loan.status">
+        <span ng-switch-when="SCHEDULED">
+            <!-- 开始倒计时:
+            <timer interval="1000"
+                   end-time="loan.time_open"
+            >
+                <span class="text-info">{{ days }}</span> 天
+                <span class="text-info">{{ hhours }}</span> 小时
+                <span class="text-info">{{ mminutes }}</span> 分
+                <span class="text-info">{{ sseconds }}</span> 秒
+            </timer> -->
+        </span>
+
+        <span ng-switch-when="OPENED">
+            剩余时间:
+            <timer interval="1000"
+                   end-time="loan.time_close"
+            >
+                <span class="text-info">{{ days }}</span> 天
+                <span class="text-info">{{ hhours }}</span> 小时
+                <span class="text-info">{{ mminutes }}</span> 分
+                <span class="text-info">{{ sseconds }}</span> 秒
+            </timer>
+        </span>
+
+        <span ng-switch-default>剩余时间: 售完</span>
+    </div>
+</div>

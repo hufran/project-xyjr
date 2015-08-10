@@ -1,0 +1,53 @@
+
+<header x-gyro-header></header>
+
+<div id="list">
+    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
+
+    <div class="list-title">选择投资项目</div>
+
+    <section class="invest-list omit-margin">
+
+        <tabset class="invest-tab inline list" justified="true">
+            <tab ng-repeat="(type, data) in tabs"
+                 heading="{{ {ALL: '不限', SSGS: '上市公司', GQ: '国企', YQ: '央企', }[type] || type }}"
+            >
+                <div ng-if="!data.length" class="container">
+                    <h4 class="alert alert-info text-center">暂无纪录</h4>
+                </div>
+
+                <ul class="list list-unstyled u-off-margin-bottom">
+                    <li class="item"
+                        ng-repeat="item in data"
+                    >
+                        <a ng-href="loan/{{ item.id }}"
+                           x-loan-summary
+                           data-loan="item"
+                           data-page="'loan_list'"
+                        ></a>
+                    </li>
+                </ul>
+
+                <p class="container" ng-init="self.add_more(data)">
+                    <button class="load-more btn btn-default btn-block"
+                            ng-if="self.has_more(data)"
+                            ng-click="self.add_more(data)"
+                    >点击查看更多</button>
+                </p>
+            </tab>
+        </tabset>
+
+    </section>
+
+    <div class="links" ng-if>
+        <div class="item">
+            <a href="about">公司简介</a>
+        </div>
+        <div class="item">
+            <a href="safety">安全保障</a>
+        </div>
+        <div class="item">
+            <a href="help">常见问题</a>
+        </div>
+    </div>
+</div>
