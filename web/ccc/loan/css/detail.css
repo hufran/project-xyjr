@@ -1214,11 +1214,14 @@
 }
 
 .big-pic-wrapper .img-wrapper {
-    margin: 60px auto 0;
-    position: relative;
-    max-width: 90%;
+/*    margin: 60px auto 0;*/
+/*    position: relative;*/
+    position: fixed;
+/*    max-width: 90%;*/
     width: 600px;
-    height: 800px;
+/*    height: 800px;*/
+    left: 50%;
+    margin-left: -300px;
 }
 
 .big-pic-wrapper .img-wrapper img {
@@ -1424,5 +1427,14 @@
     overflow-y: hidden;
 }
 
-
-
+.notLogin{
+    text-align:center;
+}
+.danger-control{
+    margin-left: 20px;
+}
+.insurance-wrapper{
+    width:350px;float:left;margin-top:72px;
+    margin-left: 20px;
+    height:200px;
+}
