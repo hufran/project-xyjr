@@ -35,16 +35,17 @@
                             
                             {{#if !checkMobile()}}
                             <li data-title="未绑定手机" class="phone-gray"></li>
-                            
-                            {{/if}} {{! 邮箱}} {{#if checkEmail()}}
+                            {{/if}}
+
+                            {{! 邮箱}} 
+                            {{#if authenticates.emailAuthenticated}}
                             <li data-title="已绑定邮箱" class="mail">
                             	<a href="/account/safety"></a>
                             </li>
-                            {{/if}} {{#if !checkEmail()}}
+                            {{else}}
                             <li data-title="未绑定邮箱" class="mail-gray">
                             	<a href="/account/safety"></a>
                             </li>
-                            
                             {{/if}}
                             
                             {{! 银行卡}}
