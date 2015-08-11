@@ -3,9 +3,27 @@
 
 <div id="homepage">
 
-    <section class="banner omit-margin">
-        <img class="img-responsive" ng-src="assets/image/homepage-banner-01.jpg">
-    </section>
+    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
+
+    <nav class="nav-page container text-center">
+        <ul class="list-unstyled u-off-margin-bottom">
+            <li>
+                <a href="dashboard"> <param class="icon icon-user"> 我的账户 </a>
+            </li>
+
+            <li>
+                <a href="list"> <param class="icon icon-usd"> 投资理财 </a>
+            </li>
+
+            <li>
+                <a href=""> <param class="icon icon-gift"> 精彩活动 </a>
+            </li>
+
+            <li>
+                <a href=""> <param class="icon icon-volume-up"> 公告中心 </a>
+            </li>
+        </ul>
+    </nav>
 
     <section class="loan container u-off-margin-bottom" ng-if="loan">
 

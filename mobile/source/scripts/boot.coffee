@@ -9,9 +9,9 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                 $routeProvider
 
                     .when '/', {
-                        # controller: 'HomepageCtrl as self'
-                        # templateUrl: 'components/router/homepage/homepage.tmpl.html'
-                        redirectTo: '/list'
+                        controller: 'HomepageCtrl as self'
+                        templateUrl: 'components/router/homepage/homepage.tmpl.html'
+                        # redirectTo: '/list'
                     }
 
                     .when '/list', {
