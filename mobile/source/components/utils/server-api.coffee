@@ -181,7 +181,7 @@ do (_, angular, moment, Array) ->
             login: (loginName, password) ->
 
                 @$http
-                    .post '/ajaxLogin',
+                    .post '/login/ajax',
                         @param {loginName, password}
                         headers: WWW_FORM_HEADER
 

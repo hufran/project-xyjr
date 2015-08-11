@@ -16,6 +16,7 @@ app = express()
 try
     require('./router').call app, '
 
+        /login/ajax
         /ajaxLogin
         /logout
 
