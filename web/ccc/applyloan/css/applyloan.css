@@ -17,7 +17,7 @@
 .loanform .form-group{padding-top: 8px;padding-bottom: 8px;}
 .loanform .verifyword{padding-top: 10px;margin-left: 5px;}
 .loanform .verifyword span{color: dodgerblue;text-decoration:underline;cursor: pointer;}
-
+.loanform .form-group{margin-right:0}
 
 .loan-right{float: right; width:300px;}
 .loan-up{margin-bottom: 20px;border: 1px solid #eee;background: #fff;}
@@ -34,4 +34,7 @@
 .col-sm-8 select{
     width:320px;
     margin-top:10px;
+}
+.col-sm-8{
+    width:338px;
 }

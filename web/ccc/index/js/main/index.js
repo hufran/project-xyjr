@@ -3,7 +3,6 @@
 require('bootstrap/js/transition');
 require('bootstrap/js/carousel');
 require('bootstrap/js/tab');
-var accountService = require('ccc/account/js/main/service/account').accountService;
 var $carousel = $("#my-carousel");
 var IndexService = require('./service')
     .IndexService;
@@ -18,19 +17,6 @@ $carousel
         // slide 完成后
     });
 
-
- accountService.getUserInfo(function (res) {
-     if(!res.user){
-         res.user={};
-         res.user.name='';}
-    new Ractive({
-    el: ".my-login-name",
-    template:'{{#if !name}}{{user.loginName}}{{else}}{{name}}{{/if}}', 
-    data: {
-       name:res.user.name
-    }
-});     
-        });
 
 IndexService.getLoanSummary(function (list) {
 

@@ -19,8 +19,7 @@ var applyLoan = new Ractive({
         },
         loan: {
             name:''
-        },
-        numberList:[1,2,3,4,5,6,7,8,9,10,11]
+        }
     }
 });
 
@@ -31,6 +30,17 @@ $.validator.addMethod("mobile", function(value, element) {
     var mobile = /(^1[3|5|8][0-9]{9}$)/;
     return this.optional(element) || (length == 11 &&mobile.test(value));
     }, "手机号码格式错误");
+
+$.validator.addMethod("amount", function(value, element) {
+    var length = value.length;
+    var amount = /(^[^0][0-9]{0,}$)/;
+    return this.optional(element) || (length <10 &&amount.test(value));
+    }, "借款金额错误");
+$.validator.addMethod("deadline", function(value, element) {
+    var length = value.length;
+    var deadline = /(^[^0|5|6|7|8|9][0-9]{0,2}$)/;
+    return this.optional(element) || (value<=48&&deadline.test(value));
+    },"借款期限格式有误，必须为小于48的正整数");
 
 // 只能输入中文或英文
 $.validator.addMethod("egchinese", function(value, element) {
@@ -50,43 +60,49 @@ var v = $("#loanForm").validate({
           required: true,        
           egchinese: true          
         },
-//        organizing:{
-//            required: true,
-//            organizing: true
-//        },
-//        personName: {
-//          required: true,
-//          egchinese: true              
-//        },
-//        mobilePhone: {
-//          required: true,
-//          minlength: 11,
-//          maxlength: 11,
-//          mobile:true
-//        },
-//        companyAddress: {
-//          required: true
-//        },
-//        loanMoney: {
-//          required: true
-//        },
-//        guaranteeType: {
-//          required: true
-//        },
-//        deadline: {
-//          required: true
-//        },
-//        contactAddress: {
-//          required: true
-//        },
-//        describe : {
-//          required: true
-//        },
-//        confirmCode: {
-//          required: true,
-//          minlength: 4,
-//          maxlength: 4
-//        }
+        organizing:{
+            required: true,
+            organizing: true
+        },
+        personName: {
+          required: true,
+          egchinese: true              
+        },
+        mobilePhone: {
+          required: true,
+          minlength: 11,
+          maxlength: 11,
+          mobile:true
+        },
+        companyAddress: {
+          required: true
+        },
+        loanMoney: {
+          required: true,
+          minlength: 1,
+          maxlength: 9,
+          amount:true    
+        },
+        guaranteeType: {
+          required: true
+        },
+        deadline: {
+          required: true,
+          minlength: 1,
+          maxlength: 2,
+          deadline:true
+        },
+        contactAddress: {
+          required: true
+        },
+        describe : {
+          required: true
+        },
+        confirmCode: {
+          required: true,
+          minlength: 5,
+          maxlength: 5
+        }
       },
       messages: {
         companyName: {
@@ -107,13 +123,17 @@ var v = $("#loanForm").validate({
           required: "请输入您的公司地址"
         },
         loanMoney: {
-          required: "请输入借款金额"
+          required: "请输入借款金额",
+          minlength: "借款金额不能为0",
+          maxlength: "借款金额不能超过1亿"    
         },
         guaranteeType: {
           required: "请选择担保方式"
         },
         deadline: {
-          required: "请选择期限"
+          required: "请输入借款期限",
+          minlength: "借款期限不能为0",
+          maxlength: "借款期限不能超过48个月"
         },
         contactAddress:{
             required: "请输入您的联系地址"
@@ -133,7 +153,7 @@ var v = $("#loanForm").validate({
             var eid = element.attr('name'); //获取元素的name属性
             error.appendTo(element.parent().parent()); //将错误信息添加当前元素的父结点后面
         } else {
-        error.insertAfter(element);
+        error.insertAfter(element.parent());
         }
       }
        
@@ -171,7 +191,9 @@ $('#sendApplyloan').click(function(){
     loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
 //    loan.loanPurpose = $("#describe").val();
 //    loan.months = parseInt($("#deadline").val());
-     loan.months = parseInt($("#months").find("option:selected").val());
+    var months=parseInt($("#months").val().trim());
+     loan.months = months%12;
+    loan.year=parseInt(months/12);
     loan.coporationName = $("#personName").val();
     loan.address = $("#contactAddress").val();
     loan.status = 'PROPOSED';

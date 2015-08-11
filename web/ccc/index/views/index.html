@@ -22,6 +22,7 @@
             {{/}}
         </ol>
 
+        
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             {{#carousel}}
@@ -43,7 +44,7 @@
                             {{/if}}
                             </div> 
                              {{#if user}}
-                            <h3 class="bannerLogin">您当前的登录账户是：<span class="my-login-name"></span></h3>
+                            <h3 class="bannerLogin">您当前的登录账户是：<span >{{#if !userInfo.user.name}}{{user.loginName}}{{else}}{{userInfo.user.name}}{{/if}}</span></h3>
                             {{else}}
                             <h3 class="bannerLogin">已有账号? <a class="underline" href="/login">立即登录</a></h3>
                             {{/if}}

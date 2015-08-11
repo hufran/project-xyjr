@@ -52,7 +52,14 @@ router.get('/', function (req, res, next) {
          .end()
          .get('body').then( function(data) {
             return data;
-        });;
+        });
+    res.locals.userInfo = req.uest(
+         '/api/v2/user/MYSELF/userinfo')
+         .end()
+         .get('body').then( function(data) {
+        console.log(data);
+            return data;
+        });
     res.render({
         rushHeads: '<!--[if lt IE 10]><link rel="stylesheet" type="text/css" href="/ccc/index/css/ie-flip.css" /><![endif]-->'
     });
