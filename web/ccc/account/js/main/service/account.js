@@ -92,6 +92,12 @@ exports.accountService = {
                 next(r.body);
             });
         
+    },
+    saveAutoBidConfig: function(params, next){
+        $.post('/api/v2/user/MYSELF/save_autobid_config', params, function(r){
+            next(r);
+            return r;
+        });
     }
         
 };
