@@ -19,8 +19,7 @@ var applyLoan = new Ractive({
         },
         loan: {
             name:''
-        },
-        numberList:[1,2,3,4,5,6,7,8,9,10,11]
+        }
     }
 });
 
@@ -37,6 +36,11 @@ $.validator.addMethod("amount", function(value, element) {
     var amount = /(^[^0][0-9]{0,}$)/;
     return this.optional(element) || (length <10 &&amount.test(value));
     }, "借款金额错误");
+$.validator.addMethod("deadline", function(value, element) {
+    var length = value.length;
+    var deadline = /(^[^0|5|6|7|8|9][0-9]{0,2}$)/;
+    return this.optional(element) || (value<=48&&deadline.test(value));
+    },"借款期限格式有误，必须为小于48的正整数");
 
 // 只能输入中文或英文
 $.validator.addMethod("egchinese", function(value, element) {
@@ -83,7 +87,10 @@ var v = $("#loanForm").validate({
           required: true
         },
         deadline: {
-          required: true
+          required: true,
+          minlength: 1,
+          maxlength: 2,
+          deadline:true
         },
         contactAddress: {
           required: true
@@ -124,7 +131,9 @@ var v = $("#loanForm").validate({
           required: "请选择担保方式"
         },
         deadline: {
-          required: "请选择期限"
+          required: "请输入借款期限",
+          minlength: "借款期限不能为0",
+          maxlength: "借款期限不能超过48个月"
         },
         contactAddress:{
             required: "请输入您的联系地址"
@@ -182,7 +191,9 @@ $('#sendApplyloan').click(function(){
     loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
 //    loan.loanPurpose = $("#describe").val();
 //    loan.months = parseInt($("#deadline").val());
-     loan.months = parseInt($("#months").find("option:selected").val());
+    var months=parseInt($("#months").val().trim());
+     loan.months = months%12;
+    loan.year=parseInt(months/12);
     loan.coporationName = $("#personName").val();
     loan.address = $("#contactAddress").val();
     loan.status = 'PROPOSED';
