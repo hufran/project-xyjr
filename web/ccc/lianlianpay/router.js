@@ -6,7 +6,8 @@ module.exports = function (router) {
 	var config = require('config');
 	// post绑卡单独处理
 	_.each({
-	    '/bindCard': '/bindCard'
+	    '/bindCard': '/bindCard',
+	    '/withdraw': '/withdraw'
 	}, function (api, fe) {
 	    router.post('/lianlianpay' + fe, ccBody,
 	        function (req, res, next) {
@@ -21,20 +22,24 @@ module.exports = function (router) {
 	                .send(req.body)
 	                .end()
 	                .then(function (r) {
-	                     if (r.body.success) {
-	                         var data = {
-	                            success: r.body.success,
-	                        };
-	                         res.render('lianlianpay/return', {
-	                             data: data
-	                         });
-	                     } 
+	                	
+	                    if (r.body.success) {
+                        	var data = {
+                            	success: r.body.success,
+                        	};
+                        	res.render('lianlianpay/return', {
+                            	data: data
+                         	});
+	                    } else {
+	                    	res.render('lianlianpay/return', {
+                            	data: r.body
+                         	});
+	                    }
 	                });
 	        });
 	});
 
 	_.each({
-	    '/withdraw': '/withdraw',
 	    '/deposit': '/deposit'
 	}, function (api, fe) {
 	    router.post('/lianlianpay' + fe, ccBody, function (req, res, next) {
@@ -75,29 +80,29 @@ module.exports = function (router) {
 	    });
 	});
 
-	_.each({
-	    '/withdrawReturn': '/withdrawReturn',
-	    '/depositReturn': '/depositReturn',
-	}, function (api, fe) {
-	    router.get('/lianlianpay' + fe,
-	        function (req, res) {
-	            log.info({
-	                type: 'lianlianpay'+fe + '/request',
-	                req: req,
-	            });
-	            req.uest.get('/api/v2' + req.url)
-	                .end()
-	                .then(function (r) {
-	                    log.info({
-	                        type: 'lianlianpay'+fe+'/result',
-	                        req: req,
-	                        body: r.body
-	                    });
-	                    res.render('lianlianpay/return', {
-	                        data: r.body
-	                    });
-	                });
-	        });
-	});
+	// _.each({
+	//     '/withdrawReturn': '/withdrawReturn',
+	//     '/depositReturn': '/depositReturn',
+	// }, function (api, fe) {
+	//     router.get('/lianlianpay' + fe,
+	//         function (req, res) {
+	//             log.info({
+	//                 type: 'lianlianpay'+fe + '/request',
+	//                 req: req,
+	//             });
+	//             req.uest.get('/api/v2' + req.url)
+	//                 .end()
+	//                 .then(function (r) {
+	//                     log.info({
+	//                         type: 'lianlianpay'+fe+'/result',
+	//                         req: req,
+	//                         body: r.body
+	//                     });
+	//                     res.render('lianlianpay/return', {
+	//                         data: r.body
+	//                     });
+	//                 });
+	//         });
+	// });
 
 };
