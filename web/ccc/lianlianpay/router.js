@@ -48,7 +48,7 @@ module.exports = function (router) {
 	            req: req,
 	            body: req.body
 	        });
-	        req.body.retUrl = (req.connection.encrypted ? 'https://' : 'http://') + req.headers.host;
+	        // req.body.retUrl = (req.connection.encrypted ? 'https://' : 'http://') + req.headers.host;
 	        var data = qs.stringify(req.body);
 	        req.body = data.replace(/%5B\d+%5D/g, '');
 	        next();
