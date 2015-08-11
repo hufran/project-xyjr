@@ -10,18 +10,18 @@
         <div class="center posting-text">
             <p class="icon-wp">
 				{{#if data.success}}
-					<i class="fa fa-check-circle text-success"></i>
+					<i class="fa fa-check-circle text-success" style="padding:10px;"></i>
                     {{#if customText}}
                         {{customText}}
                     {{else}}
-                        {{optype}}成功
+                        {{optype}}<span style="padding:0 0 20px 0">成功</span>
                     {{/if}}
 				{{else}}
-					<i class="fa fa-times text-danger"></i>
+					<i class="fa fa-times text-danger" style="padding:10px;"></i>
                     {{#if customText}}
                         {{customText}}
                     {{else}}
-                        {{optype}}失败
+                        {{optype}}<span style="padding:0 0 20px 0">失败 &nbsp;&nbsp;&nbsp;&nbsp;{{data.error[0].message}}</span>
                     {{/if}}
 				{{/if}}
                 

@@ -30,7 +30,7 @@
                         <input type="text" name="amount" class="form-control input-lg" id="withdraw"
                         style="width: 300px"
                         on-keyup="changeValue" style="margin-bottom:10px;">
-                        <input type="text" name="smsCaptcha" class="inputsMs" placeholder="">
+                        <input type="text" name="smsCaptcha" class="inputsMs" placeholder="" on-blur="checkSms" value="{{smsCaptcha}}">
                         <span class="sendCode" on-click="sendCode">获取验证码</span>     
                     </div>
                     <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}">{{submitText}}</button>
