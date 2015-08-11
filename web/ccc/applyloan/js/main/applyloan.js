@@ -32,6 +32,12 @@ $.validator.addMethod("mobile", function(value, element) {
     return this.optional(element) || (length == 11 &&mobile.test(value));
     }, "手机号码格式错误");
 
+$.validator.addMethod("amount", function(value, element) {
+    var length = value.length;
+    var amount = /(^[^0][0-9]{0,}$)/;
+    return this.optional(element) || (length <10 &&amount.test(value));
+    }, "借款金额错误");
+
 // 只能输入中文或英文
 $.validator.addMethod("egchinese", function(value, element) {
         var chinese = /^[\u4e00-\u9fa5a-zA-Z]+$/;
@@ -50,43 +56,46 @@ var v = $("#loanForm").validate({
           required: true,        
           egchinese: true          
         },
-//        organizing:{
-//            required: true,
-//            organizing: true
-//        },
-//        personName: {
-//          required: true,
-//          egchinese: true              
-//        },
-//        mobilePhone: {
-//          required: true,
-//          minlength: 11,
-//          maxlength: 11,
-//          mobile:true
-//        },
-//        companyAddress: {
-//          required: true
-//        },
-//        loanMoney: {
-//          required: true
-//        },
-//        guaranteeType: {
-//          required: true
-//        },
-//        deadline: {
-//          required: true
-//        },
-//        contactAddress: {
-//          required: true
-//        },
-//        describe : {
-//          required: true
-//        },
-//        confirmCode: {
-//          required: true,
-//          minlength: 4,
-//          maxlength: 4
-//        }
+        organizing:{
+            required: true,
+            organizing: true
+        },
+        personName: {
+          required: true,
+          egchinese: true              
+        },
+        mobilePhone: {
+          required: true,
+          minlength: 11,
+          maxlength: 11,
+          mobile:true
+        },
+        companyAddress: {
+          required: true
+        },
+        loanMoney: {
+          required: true,
+          minlength: 1,
+          maxlength: 9,
+          amount:true    
+        },
+        guaranteeType: {
+          required: true
+        },
+        deadline: {
+          required: true
+        },
+        contactAddress: {
+          required: true
+        },
+        describe : {
+          required: true
+        },
+        confirmCode: {
+          required: true,
+          minlength: 5,
+          maxlength: 5
+        }
       },
       messages: {
         companyName: {
@@ -107,7 +116,9 @@ var v = $("#loanForm").validate({
           required: "请输入您的公司地址"
         },
         loanMoney: {
-          required: "请输入借款金额"
+          required: "请输入借款金额",
+          minlength: "借款金额不能为0",
+          maxlength: "借款金额不能超过1亿"    
         },
         guaranteeType: {
           required: "请选择担保方式"
@@ -133,7 +144,7 @@ var v = $("#loanForm").validate({
             var eid = element.attr('name'); //获取元素的name属性
             error.appendTo(element.parent().parent()); //将错误信息添加当前元素的父结点后面
         } else {
-        error.insertAfter(element);
+        error.insertAfter(element.parent());
         }
       }
        
