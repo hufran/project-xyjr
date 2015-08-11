@@ -434,12 +434,12 @@
     border-radius: 3px;
 }
 
-.do-invest-wrapper .status .info .firstLine {
+.firstLine {
     overflow: hidden;
     border-bottom: 1px solid #eeeeee;
 }
 
-.do-invest-wrapper .status .info .firstLine .tip {
+ .firstLine .tip {
     float: left;
     line-height: 50px;
     font-size: 14px;
@@ -447,7 +447,7 @@
     margin-left: 30px;
 }
 
-.do-invest-wrapper .status .info .firstLine .highAmount {
+.firstLine .highAmount {
     float: right;
     line-height: 50px;
     font-size: 14px;
@@ -505,7 +505,7 @@
     
     font-size: 16px;
     color: #6b6b6b;
-    padding: 30px 30px 30px 30px;
+    padding: 0px 30px 30px 30px;
     position: relative;
 }
 
@@ -519,14 +519,15 @@
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney .red {
-    color: #980a0a;
+    color: #007ec5;
     font-style: normal;
+    font-size: 14px;
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney .recharge {
     float: right;
-    color: #6b6b6b;
-    text-decoration: underline;
+    color: #007ec5;
+/*    text-decoration: underline;*/
 }
 
 .do-invest-wrapper .status .userBlock .open-button {
@@ -581,13 +582,13 @@
 
 .do-invest-wrapper .status .userBlock .input .invest-button {
     margin:20px 0;
-    height: 34px;
-    width: 140px;
+    height: 40px;
+    width: 282px;
     color: #fff;
-    background: #b5a16b;
-    font-size: 16px;
-    line-height: 34px;
-    padding: 1px;
+    background: #0d7cd5;
+    font-size: 18px;
+    line-height: 36px;
+/*    padding: 1px;*/
     border: none;
 }
 
@@ -1343,10 +1344,10 @@
     font-size: 14px;
     width: 100px;
     height: 40px;
-    border: 1px solid gray;
+    border: 1px solid #007ec5;
     border-radius: 5px;
     line-height: 40px;
-    color: gray;
+    color:#007ec5;
     background: #fff;
 }
 
@@ -1363,7 +1364,7 @@
 
 #userBlock .calculator button {
     width: 36px;
-    height: 40px;
+    height: 41px;
     border: none;
     background: #eeeeee;
     margin: 0;
@@ -1372,7 +1373,7 @@
 
 #userBlock .calculator input {
     width: 100px;
-    height: 40px;
+    height: 36px;
     border: none;
     padding: 0;
     margin: 0;
@@ -1437,4 +1438,8 @@
     width:350px;float:left;margin-top:72px;
     margin-left: 20px;
     height:200px;
+}
+.do-invest-wrapper .status .userBlock .left-time-start{
+    text-align: center;
+    color:#999999;
 }

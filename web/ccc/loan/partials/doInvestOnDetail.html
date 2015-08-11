@@ -1,32 +1,85 @@
      
 
 {{#if loan.status == "FINISHED" }}
+ <div class="firstLine">
+                            <div class="tip">{{loan.rule.min}}元起投 </div>
+                            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
+                 </div>
             <img src="/ccc/loan/img/full.png" class="finishBlock">
         {{/if}}
 
         {{#if loan.status == "CLEARED" }}
+ <div class="firstLine">
+                            <div class="tip">{{loan.rule.min}}元起投 </div>
+                            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
+                 </div>
             <!-- <div class="invest-status">还款结束</div> -->
             <img src="/ccc/loan/img/over.png" class="cleared">
         {{/if}}
 
         {{#if loan.status == "ARCHIVED" }}
+ <div class="firstLine">
+                            <div class="tip">{{loan.rule.min}}元起投 </div>
+                            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
+                 </div>
             <!-- <div class="invest-status">还款结束</div> -->
+
             <img src="/ccc/loan/img/over.png" class="cleared">
         {{/if}}
 
         {{#if loan.status == "SETTLED" }}
+ <div class="firstLine">
+                            <div class="tip">{{loan.rule.min}}元起投 </div>
+                            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
+                 </div>
             <!-- <div class="invest-status">已结算</div> -->
             <img src="/ccc/loan/img/repay.png" class="settled">
-            <div class="repayDuration">下一还款日：{{loan.lastRepaymentsDate}}</div>
+<!--            <div class="repayDuration">下一还款日：{{loan.lastRepaymentsDate}}</div>-->
         {{/if}}
-
         {{#if loan.status == "SCHEDULED" }}
+
+  <div class="status">
+                <div class="info">
+                 <div class="firstLine">
+                            <div class="tip">{{loan.rule.min}}元起投 </div>
+                            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
+                 </div>
+                       <div class="userBlock" id="userBlock">
+                    <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i>
+                                    <a href="/account/bankcard" class="recharge">充值</a>
+                           </div>
+                    <div class="input">
+                                    <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
+                                        
+                                        
+                                        
+                                          <div class="calculatorBox">
+                           <div class="calculator" >
+                                <button class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></button>
+                                <input type="hidden" name="loanId" value="{{loan.id}}">
+                               <input placeholder="{{loan.rule.min}}"  type="text" value="{{ inputNum }}">
+                                <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
+                           </div>
+                            <button class="topAmount" on-click="maxNumber">最大可投金额</button>
+
+                        </div> 
+                                                                                                              <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
+                            <input type="submit" class="btn btn-warning invest-button" value="即将开始" style="background:#ff7200;"/>
+                                    </form>
+                                </div>
+                  <p class="left-time-start">距离开标时间还有xx小时xx分xx秒</p>                
+      </div>
+</div>
+<!--
             <div class="left-time">
                 <span class="next-time"></span>
                 <div class="text">后开始...</div>
             </div>
-        {{/if}}
+-->
 
+   
+     {{/if}}
+    
         {{#if loan.status == "OPENED"}}
             <div class="status">
                 <div class="info">
@@ -55,7 +108,7 @@
                             {{! 已登录 }}
                             {{! 未签订无密投资}}
                                 <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i>
-                                    <a href="/account/bankcard" class="recharge">立即充值</a>
+                                    <a href="/account/bankcard" class="recharge">充值</a>
                                 </div>
                                 <div class="input">
                                     <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
@@ -64,10 +117,10 @@
                                         
                                           <div class="calculatorBox">
                            <div class="calculator" >
-                                <button class="glyphicon glyphicon-minus" style="padding:0;margin:0;" on-click="reduce"></button>
+                                <button class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></button>
                                 <input type="hidden" name="loanId" value="{{loan.id}}">
                                <input placeholder="{{loan.rule.min}}"  type="text" value="{{ inputNum }}">
-                                <button class="glyphicon glyphicon-plus" on-click="add"></button>
+                                <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
                            </div>
                             <button class="topAmount" on-click="maxNumber">最大可投金额</button>
                             <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
@@ -119,6 +172,7 @@
                     {{/if}}
                     </div>
             </div>
+</div>
     {{/if}}
 <!--
      <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">

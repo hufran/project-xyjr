@@ -24,7 +24,7 @@ $carousel
          res.user={};
          res.user.name='';}
     new Ractive({
-    el: "#my-login-name",
+    el: ".my-login-name",
     template:'{{#if !name}}{{user.loginName}}{{else}}{{name}}{{/if}}', 
     data: {
        name:res.user.name
