@@ -24,7 +24,7 @@ router.get(/^\/account\//, function (req, res, next) {
         text: '我的账户',
         url: '/account'
     }, {
-        text: '我的债权',
+        text: '我的投资',
         url: '/account/invest'
     }, {
         text: '交易记录',

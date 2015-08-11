@@ -35,6 +35,7 @@
 }
 #nav-color .s-header-info-content .nav-weibo{
     margin-right: 10px;
+    margin-top: -8px;
 }
 #nav-color .s-header-info-content .nav-customer img{
  margin-left: 10px;
@@ -42,7 +43,7 @@
 
 .s-header-info-content .nav-aboutus{
      text-align: left;
-    width: 70px;
+    width: 96px;
     font-size: 12px;
 }
 
