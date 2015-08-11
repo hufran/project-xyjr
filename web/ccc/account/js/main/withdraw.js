@@ -51,7 +51,7 @@ var ractive = new Ractive({
 	oncomplete: function(){
 		var self = this;
 		this.$help = $(this.el).find('.help-block');
-		this.$amount = $(this.el).find('[name=withdraw]');
+		this.$amount = $(this.el).find('[name=amount]');
 		this.$form = $(this.el).find('form[name=withdrawForm]');
 		
 		this.$amount.focus();
@@ -72,20 +72,30 @@ var ractive = new Ractive({
 			} else if (parseFloat(amount) > CC.user.availableAmount) {
 				self.set('submitMessage', self.get('msg.AMOUNT_POOR'));
 				return;
-			} else if (parseFloat(amount) < 100 && parseFloat(amount) != CC.user.availableAmount) {
-				self.set('submitMessage', self.get('msg.AMOUNT_ALL'));
+			} else {
+				self.set('submitMessage', null);
+			}
+		});
+
+		this.on('checkSms', function () {
+			var smsCaptcha = this.get('smsCaptcha');
+
+			if(smsCaptcha === '') {
+				self.set('submitMessage', '请填写短信验证码');
+				return;
+			} else if (smsCaptcha.length != 6) {
+				self.set('submitMessage', '短信验证码为6位数字');
 				return;
 			} else {
 				self.set('submitMessage', null);
 			}
 		});
-		
+
 		this.$form.submit(function(e){
 			self.$amount.blur();
 			self.set('submitMessage', null);
 			
 			var amount = $.trim(self.$amount.val());
-			
 			if (amount === '') {
 				e.preventDefault();
 				self.set('submitMessage', self.get('msg.AMOUNT_NULL'));
@@ -106,13 +116,6 @@ var ractive = new Ractive({
 				return false;
 			}
 			
-			else if (parseFloat(amount) < 100 && parseFloat(amount) != CC.user.availableAmount) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_ALL'));
-				self.$amount.focus();
-				return false;
-			}
-
 			else if (self.get('error')) {
 				e.preventDefault();
 				self.set('submitMessage', self.get('msg.ERROR'));
@@ -199,7 +202,7 @@ var ractive = new Ractive({
 	},
 	
 	match: function(v){
-		return v.toString().match(/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
+		return v.toString().match(/^([0-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
 	}
 });
 
@@ -210,7 +213,6 @@ ractive.on('sendCode', function (){
 		this.set('isSend', true);
 		var smsType = 'CONFIRM_CREDITMARKET_WITHDRAW';
 		CommonService.getMessage(smsType, function (r) {
-			console.log(r);
 			if (r.success) {
 	            countDown();
 	        }

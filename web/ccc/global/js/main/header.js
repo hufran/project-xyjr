@@ -113,9 +113,9 @@ $('.weixin-icon').mouseleave(function () {
     	
 		$("#family").hover(function(){
 			$(this).find("p").css("background","url(/ccc/global/img/slideOn.png) no-repeat");
-			$(this).find("ul").slideDown();
+			$(this).find("ul").stop().slideDown();
 		},function(){
-			$(this).find("ul").slideUp();
+			$(this).find("ul").stop().slideUp();
 			$(this).find("p").css("background","url(/ccc/global/img/slide.png) no-repeat");
 		});
 
