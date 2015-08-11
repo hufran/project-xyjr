@@ -56,6 +56,7 @@ new Ractive({
         }).error(function () {
             self.bindActions();
         });
+
     },
     oncomplete: function () {
 
@@ -108,7 +109,7 @@ new Ractive({
         });
 
         clip.addEventListener("complete", function () {
-            alert('复制成功，快发给你的好友吧~');            
+             alert('复制成功，快发给你的好友吧~');            
             Tips.create({
                 obj: $('#btn-invite-copy'),
                 width: 250,
