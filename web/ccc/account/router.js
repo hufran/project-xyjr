@@ -145,7 +145,8 @@ router.get(/^\/account\//, function (req, res, next) {
         // 检查是否开通第三方支付
         checkUmpay: function () {
             return !!user.name;
-        }
+        },
+        authenticates:req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
     });
 
     // safetyProgress
