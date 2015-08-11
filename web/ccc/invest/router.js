@@ -17,18 +17,21 @@ module.exports = function (router) {
                 productKey[0])
             .end()
             .then(function (r) {
+                console.log(r.body);
                 res.locals.products.push(r.body);
                 req.uest(
                         '/api/v2/loan/getLoanProduct/productKey/' +
                         productKey[1])
                     .end()
                     .then(function (r) {
+                        console.log(r.body);
                         res.locals.products.push(r.body);
                         req.uest(
                                 '/api/v2/loan/getLoanProduct/productKey/' +
                                 productKey[2])
                             .end()
                             .then(function (r) {
+                                console.log(r.body);
                                 res.locals.products.push(
                                     r.body);
                                 res.render(
