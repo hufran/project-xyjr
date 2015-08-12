@@ -1,0 +1,90 @@
+
+<div id="loan" class="loan">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="list">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">产品详情</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <div class="loan-summary"
+         x-loan-summary
+         data-loan="loan"
+         data-page="'loan_detail'"
+    ></div>
+
+    <div class="actions container" ng-switch="loan.status">
+        <div ng-switch-when="SCHEDULED"
+             class="btn btn-scheduled btn-block btn-lg"
+        >即将开始</div>
+
+        <div ng-switch-when="OPENED">
+            <a class="btn btn-theme btn-block btn-lg"
+               ng-href="loan/{{ loan.id }}/invest"
+            >立即投标</a>
+        </div>
+
+        <div ng-switch-when="FINISHED"
+             class="btn btn-finished btn-block btn-lg"
+        >已售罄</div>
+
+        <div ng-switch-when="SETTLED"
+             class="btn btn-settled btn-block btn-lg"
+        >计息中</div>
+
+        <div ng-switch-when="CLEARED"
+             class="btn btn-cleared btn-block btn-lg"
+        >已结息</div>
+    </div>
+
+    <ul class="info c-list-panel">
+        <li class="item">
+            <div>还款方式</div>
+            <div class="value" ng-switch="loan.method">
+                <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                <span ng-switch-when="EqualInterest">月平息</span>
+            </div>
+        </li>
+
+        <li class="item">
+            <div>项目起息日</div>
+            <div class="value" ng-if="loan.value_date">
+                {{ loan.value_date | moment: 'YYYY年MM月DD日' }}
+            </div>
+            <div class="value" ng-if="!loan.value_date">结标后第二天</div>
+        </li>
+
+        <li class="item">
+            <div>预期项目结束日</div>
+            <div class="value" ng-if="loan.finished_date">
+                {{ loan.finished_date | moment: 'YYYY年MM月DD日' }}
+            </div>
+        </li>
+    </ul>
+
+    <tabset class="tab inline" justified="true">
+        <tab heading="项目介绍">
+            <div class="loan-text-content"
+                 ng-bind-html="loan.raw.loanRequest.description | sanitize"
+            ></div>
+        </tab>
+        <tab heading="资金用途">
+            <div class="loan-text-content"
+                 ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+            ></div>
+        </tab>
+        <tab heading="还款来源">
+            <div class="loan-text-content"
+                 ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
+            ></div>
+        </tab>
+    </tabset>
+
+</div>

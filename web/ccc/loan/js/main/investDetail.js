@@ -4,6 +4,7 @@
 var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
+var CommonService = require('ccc/global/js/modules/common').CommonService;
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
@@ -108,6 +109,7 @@ setTimeout((function () {
                 visible: false,
                 msg: ''
             },
+            isSend: false,
             backUrl: CC.backUrl
         }
     });
@@ -118,9 +120,55 @@ setTimeout((function () {
         });
     }
     
+    investRactive.on('sendCode', function (){
+        if (!this.get('isSend')) {
+            this.set('isSend', true);
+            var smsType = 'CONFIRM_CREDITMARKET_TENDER';
+            CommonService.getMessage(smsType, function (r) {
+                if (r.success) {
+                    countDown();
+                }
+            });
+        }
+    });
 
-    
-    //
+    investRactive.on('checkSms', function () {
+        var captcha = this.get('smsCaptcha');
+        if (captcha.length != 6 || captcha === '') {
+            showErrors('请输入正确的短信验证码!');
+            return false;
+        }
+        CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
+            captcha, function (data) {
+                if (!data.success) {
+                    showErrors('验证码无效或已过期');
+                    return false;
+                };
+            });
+    });
+
+    function countDown() {
+        $('.sendCode')
+            .addClass('disabled');
+        var previousText = '获取验证码';
+        var msg = '$秒后重新发送';
+
+        var left = 120;
+        var interval = setInterval((function () {
+            if (left > 0) {
+                $('.sendCode')
+                    .html(msg.replace('$', left--));
+            } else {
+                investRactive.set('isSend', false);
+                $('.sendCode')
+                    .html(previousText);
+                $('.sendCode')
+                    .removeClass('disabled');
+                clearInterval(interval);
+            }
+        }), 1000);
+    }
+
     investRactive.set('user', CC.user);
     if($('.invest-submit').length>0){
 
@@ -154,6 +202,7 @@ setTimeout((function () {
     
     investRactive.on("invest-submit", function (e) {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
+        var smsCaptcha = this.get('smsCaptcha');
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
@@ -185,32 +234,47 @@ setTimeout((function () {
             return false;
         }
 
-        disableErrors();
-        Confirm.create({
-            msg: '确定投标？',
-            okText: '确定',
-            cancelText: '取消',
-            ok: function () {
-                $('form')
-                    .submit();
-                $('.dialog')
-                    .hide();
-                Confirm.create({
-                    msg: '抢标是否成功？',
-                    okText: '抢标成功',
-                    cancelText: '抢标失败',
-                    ok: function () {
-                        window.location.reload();
-                    },
-                    cancel: function () {
-                        window.location.reload();
-                    }
+        if (smsCaptcha.length != 6 || smsCaptcha === '') {
+            showErrors('请输入正确的短信验证码！');
+            return false;
+        } else {
+            console.log(111);
+            CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
+                smsCaptcha, function (data) {
+                    if (!data.success) {
+                        showErrors('验证码无效或已过期');
+                        return false;
+                    } else {
+                        disableErrors();
+                        Confirm.create({
+                            msg: '确定投标？',
+                            okText: '确定',
+                            cancelText: '取消',
+                            ok: function () {
+                                $('form')
+                                    .submit();
+                                $('.dialog')
+                                    .hide();
+                                Confirm.create({
+                                    msg: '抢标是否成功？',
+                                    okText: '抢标成功',
+                                    cancelText: '抢标失败',
+                                    ok: function () {
+                                        window.location.reload();
+                                    },
+                                    cancel: function () {
+                                        window.location.reload();
+                                    }
+                                });
+                            },
+                            cancel: function () {
+                                window.location.reload();
+                            }
+                        });
+                    };
                 });
-            },
-            cancel: function () {
-                window.location.reload();
-            }
-        });
+        }
+        
         return false;
     });
 
@@ -381,6 +445,7 @@ document.getElementById("calculatorText").value = getNum+100;
 }else{
 }
 }
+
 
 
 
