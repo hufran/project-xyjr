@@ -1,0 +1,102 @@
+
+<div id="dashboard-payment-ump-bind-card" class="">
+
+    <nav class="container page-nav margin-down">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left">取消</a>
+        <span class="col-xs-6 title">绑定快捷卡</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="container bank-card" ng-if="agreement.debit">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ account.bank }}</h3>
+            </div>
+            <div class="panel-body text-right">
+                {{ bank_account.account | string_mask }}
+            </div>
+        </div>
+
+        <form name="form" class="form-horizontal" ng-if="!agreement.instant"
+              action="/upayment/bindAgreement"
+              method="post" 
+              target="_self"
+              ng-submit="self.submit($event)"
+              novalidate
+        >
+
+            <input type="hidden" name="agreementList" value="ZCZP0800">
+
+            <p>
+                <button class="btn btn-primary btn-lg btn-block"
+                        type="submit"
+                        ng-disabled="form.$invalid || self.submit_sending"
+                >签订快捷充值协议</button>
+            </p>
+        </form>
+    </section>
+
+
+
+    <form name="form" class="form-horizontal" ng-if="!agreement.debit"
+          action="/upayment/bindCard"
+          method="post" 
+          target="_self"
+          ng-submit="self.submit($event)"
+          novalidate
+    >
+
+        <input type="hidden" name="option" value="1">
+
+        <div class="multi-line-container">
+            <div class="multi-line-container-item">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label title">银行名称</label>
+                    <div class="col-xs-8 row">
+                        <select class="form-control input-sm"
+                                name="bankCode"
+                                ng-model="bank_code"
+                                required
+                        >
+                            <option value="">-- 请选择 --</option>
+                            <option value="ICBC">中国工商银行</option>
+                            <option value="ABC">中国农业银行</option>
+                            <option value="CCB">中国建设银行</option>
+                            <option value="SDB">深圳发展银行</option>
+                            <option value="BOC">中国银行</option>
+                            <option value="CEB">光大银行</option>
+                            <option value="CIB">兴业银行</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="multi-line-container-item">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label title">银行卡号</label>
+                    <div class="col-xs-8 row">
+                        <input class="form-control input-sm"
+                               type="tel"
+                               name="cardId"
+                               ng-model="card_id"
+                               minlength="16"
+                               maxlength="20"
+                               pattern="^\d+$"
+                               required
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="container">
+            <button class="btn btn-primary btn-lg btn-block"
+                    type="submit"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >绑定</button>
+        </p>
+    </form>
+
+</div>

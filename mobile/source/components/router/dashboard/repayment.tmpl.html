@@ -1,0 +1,47 @@
+
+<div id="dashboard-repayment" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard/invest"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">回款计划</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="repayment-list">
+        <ul class="list list-group list-group-flat u-off-margin-bottom">
+            <li class="container" ng-if="!data.length"><p>暂时没有回款计划</p></li>
+
+            <li class="item list-group-item"
+                ng-repeat="item in data"
+            >
+                <div class="clearfix" ng-class="{ gary: item.status != 'REPAYED' }">
+                    <span class="pull-left">
+                        <span class="repayment-type"
+                              ng-switch="item.type"
+                              ng-class="{
+                                  red: item.type == 'both',
+                                  orange: item.type == 'principal',
+                                  green: item.type == 'interest'
+                              }"
+                        >
+                            <span ng-switch-when="both">本息</span>
+                            <span ng-switch-when="interest">付息</span>
+                            <span ng-switch-when="principal">还本</span>
+                        </span>
+                        <span class="date">{{ item.date | moment:"YYYY-MM-DD" }}</span>
+                    </span>
+
+                    <span class="pull-right amount green">
+                        +{{ item.amount | number }}
+                    </span>
+                </div>
+                <div class="text-right description" ng-if="item.description">
+                    <em>备注：</em>{{ item.description }}
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</div>

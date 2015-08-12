@@ -1,0 +1,83 @@
+
+<div id="dashboard-recharge" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.next_path || 'dashboard' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">充值</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <param ng-model="msg.success" ng-init="msg.success = '充值成功'">
+
+    <section class="container balance">
+        <div class="labels">账户余额</div>
+        <div class="amount">{{ available_amount | number }} 元</div>
+    </section>
+
+    <form class="form-horizontal"
+          name="form"
+          action="/payment/netSave"
+          data-express-action="/payment/netSaveExpress"
+          method="post"
+          target="_self"
+          ng-submit="self.submit(amount)"
+          novalidate
+    >
+        <div class="container recharge-form">
+            <div class="multi-line-container-item" x-gyro-comment>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label title">充值卡号</label>
+                    <div class="col-xs-8 row">
+                        <input class="form-control input-sm"
+                               type="text"
+                               value="{{ bank_account.account | string_mask }}"
+                               ng-disabled="true"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rechargeValue">金额 (元)</label>
+                <div class="input-wrap">
+                    <input class="form-control input-amount"
+                           type="number"
+                           id="rechargeValue"
+                           name="rechargeValue"
+                           data-express-name="amount"
+                           ng-model="amount"
+                           min="0.01"
+                           max="1000000"
+                           minlength="1"
+                           pattern="^[0-9\.]+"
+                           placeholder="请输入充值金额"
+                           required
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- filled with express bank card info -->
+        <input type="hidden" name="bank" value="">
+        <input type="hidden" name="cardId" value="">
+        <input type="hidden" name="express" value="false">
+
+        <p class="container">
+            <button class="btn btn-theme btn-lg btn-block"
+                    type="submit"
+                    ng-if="self.user.has_payment_account"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >确定充值</button>
+
+            <a href="/payment/account/open"
+               class="btn btn-primary btn-lg btn-block"
+               target="_self"
+               ng-click="self.open_payment_account($event)"
+               ng-if="!self.user.has_payment_account"
+            >开通托管账户</a>
+        </p>
+    </form>
+
+</div>
