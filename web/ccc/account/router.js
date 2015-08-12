@@ -320,7 +320,7 @@ module.exports = function (router) {
         if (!res.locals.user.name) {
             res.redirect('/account/umpay');
         } else if (!res.locals.user.bankCards.length) {
-            res.redirect('account/bankcard')
+            res.redirect('/account/bankcard')
         } else {
             next();
         }
