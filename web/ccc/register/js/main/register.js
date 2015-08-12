@@ -7,7 +7,7 @@ var registerRactive = new RegisterRactive({
 });
 baconflux.store('register', 'success').onValue(function (data) {
     // 注册后自动登录
-    request.post('/ajaxLogin', {
+    request.post('/login/ajax', {
         body: {
             loginName: data.postedData.loginName,
             password: data.postedData.password,
@@ -16,9 +16,7 @@ baconflux.store('register', 'success').onValue(function (data) {
 })
 
 $("#getSms").on('click',function(){
-    
     console.log('sdfsdf');
-    
 });
 
 
