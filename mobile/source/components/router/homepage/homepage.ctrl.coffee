@@ -3,24 +3,39 @@ do (_, angular, moment) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, map_loan_summary', class
-            constructor: (@api, @$scope, @$rootScope, @$window, map_loan_summary) ->
+        _.ai '            @api, @$scope, @$window, map_loan_summary', class
+            constructor: (@api, @$scope, @$window, map_loan_summary) ->
 
                 @$window.scrollTo 0, 0
 
-                @api.get_loan_list().success (data) =>
+                (@api.get_loan_list().success (data) =>
 
                     {open, scheduled, finished, settled} = data
-                    list = [open, scheduled, finished, settled]
 
-                    loan = map_loan_summary _(list).flatten().compact().first()
+                    scheduled.forEach (item) ->
+                        item.time_open = moment(item.timeOpen).fromNow()
+                        item.type = 'scheduled'
 
-                    @$scope.loan = _.extend loan, chart_options: {
-                        size: 100
-                        scaleColor: false
-                        barColor: '#68C9D5'
-                        trackColor: '#EDEDED'
-                    }
+                    all_loan =
+                        _([open, scheduled, finished, settled])
+                            .flatten()
+                            .compact()
+                            .map map_loan_summary
+                            .value()
+
+                    group_loan =
+                        _(all_loan)
+                            .filter (item) ->
+                                item.product_type isnt 'UNKNOW'
+                            .groupBy 'product_type'
+                            .pick _.split 'LTB LXY'
+                            .each (item) ->
+                                _.remove item, (value, index) ->
+                                    index > 1
+                            .value()
+
+                    @$scope.list = group_loan
+                )
 
 
             num: (amount) ->

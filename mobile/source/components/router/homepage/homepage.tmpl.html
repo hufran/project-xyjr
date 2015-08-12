@@ -6,26 +6,96 @@
     <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
 
     <nav class="nav-page container text-center">
-        <ul class="list-unstyled u-off-margin-bottom">
-            <li>
-                <a href="dashboard"> <param class="icon icon-user"> 我的账户 </a>
-            </li>
-
-            <li>
-                <a href="list"> <param class="icon icon-usd"> 投资理财 </a>
-            </li>
-
-            <li>
-                <a href=""> <param class="icon icon-gift"> 精彩活动 </a>
-            </li>
-
-            <li>
-                <a href=""> <param class="icon icon-volume-up"> 公告中心 </a>
-            </li>
+        <ul class="list-unstyled u-off-margin-bottom nav-page-list">
+            <li><a href="dashboard"><param class="icon icon-user">我的账户</a></li>
+            <li><a href="list"><param class="icon icon-usd">投资理财</a></li>
+            <li><a href=""><param class="icon icon-gift">精彩活动</a></li>
+            <li><a href=""><param class="icon icon-volume-up">公告中心</a></li>
         </ul>
     </nav>
 
-    <section class="loan container u-off-margin-bottom" ng-if="loan">
+    <section class="c-list-panel loan"
+             ng-repeat="(type, data) in list"
+             ng-class="'loan-type-' + type | lowercase">
+        <div class="item subject">
+            <div class="media">
+                <div class="media-left">
+                    <img class="media-object" width="29"
+                         ng-src="assets/image/{{ type | lowercase }}-icon.png"
+                    >
+                </div>
+
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        {{ {LTB: '无忧宝', LXY: '定存宝'}[type] || type }}
+                    </h4>
+                    活期理财，存取随心，年化收益9.8%
+                </div>
+
+                <div class="media-right media-middle">
+                    <param class="glyphicon glyphicon-menu-right">
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <ul class="list-unstyled u-off-margin-bottom loan-list">
+                <li ng-repeat="loan in data">
+                    <a ng-href="loan/{{ loan.id }}">
+                        <h4 class="title">{{ loan.title }}</h4>
+
+                        <div class="rate-term">
+                            <div class="rate">
+                                <span class="num">{{ loan.rate }}</span>
+                                <span class="unit">%</span>
+                            </div>
+                            <div class="term">
+                                <span class="num">{{ loan.total_months || loan.total_days }}</span><!--
+                                --><span class="unit" ng-if="loan.total_months">个月</span><!--
+                                --><span class="unit" ng-if="!loan.total_months">天</span>
+                            </div>
+                        </div>
+
+                        <div class="balance">
+                            剩余 <span class="num">{{ loan.balance_myriad || loan.balance }}</span>
+                            <span class="unit" ng-if="loan.balance_myriad">万</span>
+                            <span class="unit" ng-if="!loan.balance_myriad">元</span>
+                        </div>
+
+                        <div class="status" ng-switch="loan.status">
+                            <span ng-switch-when="SCHEDULED"
+                                  class="btn btn-block btn-scheduled btn-sm"
+                            >即将开始</span>
+
+                            <span ng-switch-when="OPENED"
+                                  class="btn btn-block btn-theme btn-sm"
+                            >投标中</span>
+
+                            <span ng-switch-when="FINISHED"
+                                  class="btn btn-block btn-finished btn-sm"
+                            >已满标</span>
+
+                            <span ng-switch-when="SETTLED"
+                                  class="btn btn-block btn-settled btn-sm"
+                            >还款中</span>
+
+                            <span ng-switch-when="CLEARED"
+                                  class="btn btn-block btn-cleared btn-sm"
+                            >还款结束</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section x-gyro-comment class="loan container u-off-margin-bottom" ng-if="loan">
 
         <p class="title">{{ loan.title }}</p>
 
