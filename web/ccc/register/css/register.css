@@ -382,6 +382,17 @@ h3 {
     font-size: 12px;
     color: red;
 }
+#password-pic{
+    line-height: 20px;
+    padding-left: 30px;
+    margin-left: 100px;
+        color: #9fa0a0;
+    font-size: 15px;
+    background-image: url(/ccc/register/img/gou-bg.png);
+        background-repeat: no-repeat;
+    background-position: left center;
+    
+}
 
 .rinput input[type=checkbox] {
     width: 14px;

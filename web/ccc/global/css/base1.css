@@ -456,3 +456,10 @@
     display: none;
  }
 /*导航大家庭*/
+.s-header-info-content span {
+  display: inline-block;
+  margin: 3px 5px;
+  line-height: 23px;
+  width: 24px;
+  text-align: center;
+}
