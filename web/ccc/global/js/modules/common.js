@@ -69,4 +69,13 @@ exports.CommonService = {
                 next(res.body);
             });
     },
+    checkMessage: function (smsType, smsCaptcha, next) {
+        request('POST', '/api/v2/checkSMSCaptcha/MYSELF')
+            .type('form')
+            .send({smsCaptcha: smsCaptcha, smsType: smsType})
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
+    },
 };

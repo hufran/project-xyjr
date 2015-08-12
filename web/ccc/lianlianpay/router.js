@@ -38,7 +38,40 @@ module.exports = function (router) {
 	                });
 	        });
 	});
+	
 
+	_.each({
+	    '/tender': '/tender'
+	}, function (api, fe) {
+	    router.post('/lianlianpay' + fe, ccBody,
+	        function (req, res, next) {
+	            req.body.userId = res.locals.user.id;
+	            var data = qs.stringify(req.body);
+	            req.body = data.replace(/%5B\d+%5D/g, '');
+	            next();
+	        },
+	        function (req, res) {
+	            req.uest.post('/api/v2/invest' + api + '/MYSELF')
+	                .type('form')
+	                .send(req.body)
+	                .end()
+	                .then(function (r) {
+	                	
+	                    if (r.body.success) {
+                        	var data = {
+                            	success: r.body.success,
+                        	};
+                        	res.render('lianlianpay/return', {
+                            	data: data
+                         	});
+	                    } else {
+	                    	res.render('lianlianpay/return', {
+                            	data: r.body
+                         	});
+	                    }
+	                });
+	        });
+	});
 	_.each({
 	    '/deposit': '/deposit'
 	}, function (api, fe) {

@@ -60,8 +60,6 @@
                                <input placeholder="{{loan.rule.min}}"  type="text" value="{{ inputNum }}">
                                 <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
                            </div>
-                            <button class="topAmount" on-click="maxNumber">最大可投金额</button>
-
                         </div> 
                                                                                                               <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
                             <input type="submit" class="btn btn-warning invest-button" value="即将开始" style="background:#ff7200;"/>
@@ -111,7 +109,7 @@
                                     <a href="/account/bankcard" class="recharge">充值</a>
                                 </div>
                                 <div class="input">
-                                    <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
+                                    <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
                                         
                                         
                                         
@@ -119,10 +117,16 @@
                            <div class="calculator" >
                                 <button class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></button>
                                 <input type="hidden" name="loanId" value="{{loan.id}}">
-                               <input placeholder="{{loan.rule.min}}"  type="text" value="{{ inputNum }}">
+                               <input placeholder="{{loan.rule.min}}"  type="text" name="amount" value="{{ inputNum }}">
                                 <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
                            </div>
                             <button class="topAmount" on-click="maxNumber">最大可投金额</button>
+                            <div class="clearfix"></div>
+                            <div class="captchaWra">
+                                <span class="tip">验证码</span>
+                                <input type="text" class="smsCaptcha" name="smsCaptcha" value="{{smsCaptcha}}" on-blur="checkSms">
+                                <span class="send sendCode" on-click="sendCode">发送验证码</span>
+                            </div>
                             <input type="submit" class="btn btn-warning invest-button" value="我要投资"/>
                         </div> 
                                         
