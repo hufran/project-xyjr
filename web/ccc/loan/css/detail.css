@@ -564,7 +564,7 @@
 }
 
 .do-invest-wrapper .status .userBlock .input .selectOption select {
-    background: #eba6a6;
+    background: #0d7cd5;
     height: 20px;
     color: #fff;
     font-size: 13px;
@@ -573,6 +573,7 @@
     line-height: 20px;
     margin-top: 2px;
     text-indent: 8px;
+    margin-left:5px;
 }
 
 .do-invest-wrapper .status .userBlock .input .invest-input {

@@ -84,7 +84,7 @@ ractive.loadData = function (obj) {
             }
 
             if (res.error) {
-                alert(res.error + '\n' + res.error_description);
+//                alert(res.error + '\n' + res.error_description);
                 return;
             }
 
