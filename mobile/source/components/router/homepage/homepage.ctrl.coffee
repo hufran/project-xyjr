@@ -29,9 +29,6 @@ do (_, angular, moment) ->
                                 item.product_type isnt 'UNKNOW'
                             .groupBy 'product_type'
                             .pick _.split 'LTB LXY'
-                            .each (item) ->
-                                _.remove item, (value, index) ->
-                                    index > 1
                             .value()
 
                     @$scope.list = group_loan
