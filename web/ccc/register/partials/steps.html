@@ -3,7 +3,7 @@
 <!--    </p>-->
     <!--{{{passwordStrength}}}-->
     <Step>
-        <div class="register-step-1">
+        <div class="register-step-0">
           <div class="register-frame"> 
           <RInput field="mobile">
                 <div class="rinput">
@@ -15,6 +15,20 @@
     </span>
                 </div>
             </RInput> 
+               <RInput field="imgCaptcha">
+                <div class="rinput picnum">
+                    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码:</label>
+                    <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
+                    <span on-click='changeImgCaptcha'>
+                            <img src="{{imgCaptchaBase64}}" alt="">
+                        </span>
+                    <span id="cannot-see">看不清?</span>
+                    <span id="refresh-captcha">换一张</span>
+                </div>
+                <div class="tip01" id="password-pic" style="margin-top: -30px;margin-bottom: 10px;float:left">
+                    {{#loading}}{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}
+                </div>
+            </RInput>
             <RInput field="smsCaptcha">
                 <div class="rinput message-confirm bring-in">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码:</label>
@@ -29,26 +43,10 @@
                         {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 获取短信验证码 {{/if}}
                     </button>
                     {{/if}}
-                   
                     <span class="tip">{{#loading}}loading...{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
-
                 </div>
             </RInput>
-            <!--            cc-->
-
-            
-<!--
-            <RInput field="email">
-                <div class="rinput">
-                    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>邮箱</label>
-                    <input class="mailbox" id="{{rinputId}}" value="{{value}}" placeholder="输入信箱">
-                    <span class="tip">
-        {{#loading}}loading...{{/loading}}
-        {{#errMsg}}{{errMsg}}{{/errMsg}}
-    </span>
-                </div>
-            </RInput>
--->
+               
             <RInput field="password" valueStableDuration=200>
                 <div class="rinput">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>密码:</label>
@@ -60,7 +58,7 @@
                 </div>
             </RInput>
             <RInput field="repassword" valueStableDuration=200>
-                <div class="rinput">
+                <div class="rinput " style="margin-bottom:0">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>确认密码:</label>
                     <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" placeholder="再次输入密码">
                     <span class="tip">
@@ -69,82 +67,9 @@
     </span>
                 </div>
             </RInput>
-                        <RInput field="imgCaptcha">
-                <div class="rinput picnum">
-                    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码:</label>
-                    <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
-                    <span on-click='changeImgCaptcha'>
-                            <img src="{{imgCaptchaBase64}}" alt="">
-                        </span>
-                    <span id="cannot-see">看不清?</span>
-                    <span id="refresh-captcha">换一张</span>
-                </div>
-                <div class="tip01" id="password-pic">
-                    {{#loading}}{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}
-                </div>
-            </RInput>
-           
-            
-            <!--            cc-->
-
-<!--
-            <form role="form" class="form">
-                <div class="errors">
-                    {{#if errors.visible }}
-                    <div class="content">
-                        {{errors.msg}}
-                    </div>
-                    {{/if}}
-                </div>
-                {{#if isLegacy}}
-                <div class="form-group">
-                    <div class="clearfix"></div>
-                    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码</label>
-                    <input type="text" id="forgot-test" class="form-control captcha pull-left" value="{{captcha.text}}" placeholder="验证码">
-                    <div class="inputtest-pic">
-                        <img src="{{captcha.img}}" on-click="changeCaptcha" alt="captcha" class="pullright">
-                        <span id="refresh-captcha"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                {{ else }}
-                <div class="form-group">
-                    <div class="clearfix"></div>
-                    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码</label>
-                    <input type="text" id="forgot-test" class="form-control captcha pull-left" value="{{captcha.text}}" placeholder="验证码">
-                    <div class="inputtest-pic">
-
-                        <img src="{{captcha.img}}" on-click="changeCaptcha" class="pullright">
-
-                        <span id="refresh-captcha"></span>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-
-                {{/if}}
-
-            </form>
--->
-
-            <!--
+                      
             <RInput field="agreement" valueStableDuration=100>
                 <div class="rinput agreement-div">
-                    {{#if loading}}
-                    <input class="next-step" type="submit" value="请稍等" disabled /> {{else}}
-            
-                    <label class="agree-register-protocol">
-                        <input class="triangle" type="checkbox" id="{{rinputId}}" />
-                        <p>我已阅读并同意
-                            <a href="#" class="ccc-agreement" target="_blank">《河山匯网站声明》</a>和<a href="#" class="ccc-agreement" target="_blank">《何山匯服务协议》</a>2015年6月11日更新</p>
-                    </label><br>
-                    <input class="register" type="submit" value="立即注册" /> {{/if}}
-                </div>
-            </RInput>
--->
-            <RInput field="agreement" valueStableDuration=100>
-                <div class="rinput agreement-div">
-
                     <br>
                     <br> {{#if stepLoading}}
                     <input class="next-step" type="button" value="请稍等" disabled /> {{else}}
@@ -171,7 +96,7 @@
     </Step>
     
     <Step>
-        <div class="register-step-0">
+        <div class="register-step-1">
             <p class="success">已经注册成功！<a href="/account">去我的账户</a></p>
         </div>
     </Step>
