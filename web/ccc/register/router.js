@@ -35,6 +35,7 @@ var captchaRequired = conext(function *(req, res, next) {
     }
     next();
 });
+
 module.exports = function (router) {
     var result = {
         'SUCCESSFUL' : '邮箱认证成功！',
@@ -85,25 +86,3 @@ module.exports = function (router) {
     }));
 }
 
-//页面三秒跳转
-//if (isVer) {
-//      rePasswordService.doResetPassword(user, function (err, msg){
-//        if (!err) {
-//            showErrors(msg);
-//        } else {
-//            disableErrors();
-//             $(".register-step-0").hide();
-//            rePassword.set('step2',false);
-//            rePassword.set('step3',true);
-//            var time = 3;
-//            rePassword.set('timeLeft',3);
-//            setInterval(function(){
-//            rePassword.set('timeLeft',--time);
-//              if (time === 1) {
-//                clearInterval();
-//                window.location.href = '/account';
-//              }
-//            },1000);
-//          }
-//      });
-//    }

@@ -2,63 +2,58 @@
 module.exports = function (router) {
     var pageSize = 10;
 
-    router.get('/aboutus/:tab', function (req, res) {
+    router.get('/help/:tab', function (req, res) {
         var cateMap = {
-            aboutus: 'INTRODUCTION',
-            background: 'INTRODUCTION',
-            responsibility: 'INTRODUCTION',
-            news: 'NEWS',
-            announcement: 'PUBLICATION',
-            contactus: 'CONTACT',
-//            help: 'HELP'
+            aboutus: 'HELP',
+            product: ' HELP',
+            safety: ' HELP',
+            login: ' HELP',
+            money: ' HELP',
+            explain: ' HELP',
+            law:'HELP'
+
         };
         var nameMap = {
-            aboutus: '奇乐融简介',
-            background: '成立背景',
-            responsibility: '社会责任',
-            news: '行业新闻',
-            announcement: '最新公告',
-            contactus: '联系方式',
-//            help: '帮助中心',
-            safety: '安全保障'
+            aboutus: '关于奇乐融',
+            product: '产品介绍',
+            safety: '风控安全',
+            login: '注册/登陆',
+            money: '投资理财',
+            explain: '名词解释',
+            law: '法律安全'
         };
         
             var indexMap={
-            aboutus: '奇乐融简介',
-            background: '成立背景',
-            responsibility: '社会责任',
-            news: '行业新闻',
-            announcement:'最新公告',
-            contactus: '联系我们',
-//            help:'帮助中心',
-            safety:'安全保障'
+            aboutus: '关于奇乐融',
+            product: '产品介绍',
+            safety: '风控安全',
+            login: '注册/登陆',
+            money:'投资理财',
+            explain: '名词解释',
+            law:'法律安全'
         };
 
         var tabs = [{
-            text: '奇乐融简介',
-            url: '/aboutus/aboutus'
+            text: '关于奇乐融',
+            url: '/help/aboutus'
         }, {
-            text: '成立背景',
-            url: '/aboutus/background'
+            text: '产品介绍',
+            url: '/help/product'
         }, {
-            text: '社会责任',
-            url: '/aboutus/responsibility'
+            text: '风控安全',
+            url: '/help/safety'
         }, {
-            text: '行业新闻',
-            url: '/aboutus/news',
+            text: '注册/登陆',
+            url: '/help/login',
         }, {
-            text: '最新公告',
-            url: '/aboutus/announcement',
+            text: '投资理财',
+            url: '/help/money',
         }, {
-            text: '联系我们',
-            url: '/aboutus/contactus',
+            text: '名词解释',
+            url: '/help/explain',
         }, {
-
-//            text: '帮助中心',
-//            url: '/aboutus/help',
-//        }, {
-            text: '安全保障',
-            url: '/aboutus/safety'
+            text: '法律安全',
+            url: '/help/law'
         }];
         var tabIndex;
 
@@ -85,14 +80,14 @@ module.exports = function (router) {
                         1 : req.query.page;
                     req.uest('/api/v2/cms/channel/' + r.body[0]
                             .channelId + '?page=' + current +
-                            '&pageSize=10')
+                            '&pagesize=10')
                         .end()
                         .then(function (r) {
                             formatNews(r.body.results);
                             var contents = r.body.results.length >
                                 0 ? r.body.results : null;
 
-                            res.render('aboutus/index', {
+                            res.render('help/index', {
                                 totalPage: createList(
                                     Math
                                     .ceil(r.body
@@ -123,7 +118,7 @@ module.exports = function (router) {
                     formatNews(r);
                     var contents = r.body.length >
                         0 ? r.body : null;
-                    res.render('aboutus/index', {
+                    res.render('help/index', {
                         tabs: tabs,
                         currentTab: nameMap[
                             req.params.tab
