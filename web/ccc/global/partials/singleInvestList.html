@@ -4,7 +4,7 @@
 <div class="loanItemWrapper" {{#if status === 'SCHEDULED' }} style="height:85px"{{/if}}>
     <div class="loanPartOne">
         <div class="loantitle">
-            <a href="/loan/{{ id }}" class="invest-title" target="_blank">
+            <a href="/loan/{{ id }}" class="invest-title" target="_blank" {{#if loanRequest.productKey==="LTB"}}style="color:#ffbc08"{{elseif loanRequest.productKey==="LXY"}}style="color:#007ec5"{{else}}style="color:#4a4a4a"{{/if}}>
                 {{title}}
             </a>
         </div>
