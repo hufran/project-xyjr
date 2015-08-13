@@ -3,42 +3,46 @@ do (_, angular, moment) ->
 
     angular.module('controller').controller 'ListCtrl',
 
-        _.ai '            @api, @user, @$scope, @$rootScope, @$window, map_loan_summary', class
-            constructor: (@api, @user, @$scope, @$rootScope, @$window, map_loan_summary) ->
+        _.ai '            @api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$routeParams', class
+            constructor: (@api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
-                (@api.get_loan_list().success (data) =>
+                filter_type = @$routeParams.type
 
-                    {open, scheduled, finished, settled} = data
+                @$scope.filter_type = filter_type
+                @$scope.loading = true
 
-                    scheduled.forEach (item) ->
-                        item.time_open = moment(item.timeOpen).fromNow()
-                        item.type = 'scheduled'
+                (@api.get_loan_list()
+                    .success (data) =>
 
-                    all_loan =
-                        _([open, scheduled, finished, settled])
-                            .flatten()
-                            .compact()
-                            .map map_loan_summary
-                            .value()
+                        {open, scheduled, finished, settled} = data
 
-                    group_loan =
-                        _(all_loan)
-                            .filter (item) ->
-                                item.product_type isnt 'UNKNOW'
-                            .groupBy 'product_type'
-                            .pick _.split 'SSGS GQ YQ'
-                            .value()
+                        scheduled.forEach (item) ->
+                            item.time_open = moment(item.timeOpen).fromNow()
+                            item.type = 'scheduled'
 
-                    all_group_loan = _.merge { ALL: all_loan }, group_loan
+                        filter_loan =
+                            _([open, scheduled, finished, settled])
+                                .flatten()
+                                .compact()
+                                .map map_loan_summary
+                                .filter (item) ->
+                                    if filter_type
+                                        return item.product_type is filter_type
+                                    else
+                                        return item.product_type in _.split 'LTB LXY'
+                                .value()
 
-                    @$scope.tabs =
-                        _(all_group_loan)
-                            .each (list) ->
-                                list.remain = _.clone list
-                                list.length = 0
-                            .value()
+                        filter_loan.remain = _.clone filter_loan
+                        filter_loan.length = 0
+
+                        @add_more(filter_loan)
+
+                        @$scope.data = filter_loan
+
+                    .finally =>
+                        @$scope.loading = false
                 )
 
 
