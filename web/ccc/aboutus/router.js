@@ -85,7 +85,7 @@ module.exports = function (router) {
                         1 : req.query.page;
                     req.uest('/api/v2/cms/channel/' + r.body[0]
                             .channelId + '?page=' + current +
-                            '&pagesize=10')
+                            '&pageSize=10')
                         .end()
                         .then(function (r) {
                             formatNews(r.body.results);

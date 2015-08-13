@@ -240,16 +240,10 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
 
 function createList(len, current) {
     var arr = [];
-    var j = 0;
-    for (var i = 4; i > 0; i--) {
-        if (current - i > 0) {
-            arr[j++] = current - i;
-        }
-
-    }
-    arr[j++] = current;
-    for (var i = 0; i < len; i++) {
-        arr[j++] = current + i + 1;
+    var i=parseInt(len/params.pageSize);
+    if(len%params.pageSize>0){i++;}
+    for(var m=0;m<i;m++){
+         arr[m] =  m + 1;
     }
     return arr;
 };
