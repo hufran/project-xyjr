@@ -141,14 +141,15 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
     });
 
     $('.no-warry-ul .no-warry').click(function(){
-        if (!$(this).hasClass("selected")) {
-            $(this).addClass("selected").siblings().removeClass("selected");
+        if (!$(this).hasClass("selected active")) {
+            $(this).addClass("selected active").siblings().removeClass("selected active");
              var product = $(this).data('product');
             params.currentPage = 1;
             params.product=product;
             render(params);
         }
-    });
+    });    
+    
 
     $('.sDuration li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
@@ -315,8 +316,8 @@ function initailEasyPieChart() {
 };
 
 // banenr动效
-$(".no-warry").mouseenter(function(){
-    $(this).addClass("active");
-}).mouseleave(function(){
-    $(this).removeClass("active");
-})
+//$(".no-warry").mouseenter(function(){
+//    $(this).addClass("active");
+//}).mouseleave(function(){
+//    $(this).removeClass("active");
+//})

@@ -11,7 +11,7 @@ baconflux.store('register', 'success').onValue(function (data) {
         body: {
             loginName: data.postedData.loginName,
             password: data.postedData.password,
-        },
+        },   
     }).end();
 })
 
@@ -35,3 +35,15 @@ $(".form-group .inputtest-pic span").click(function(){
     
     $(".form-group .inputtest-pic .pullright").css("backgroundImage", "none");
 })
+//3秒跳转倒计时
+
+
+//var left = 3;
+// var interval = setInterval((function () {
+//         --left;
+//        if (left ==0) {
+//            console.log(left)
+//            clearInterval(interval);
+//            window.location.href = "/login"; 
+//        }
+//    }), 1000);

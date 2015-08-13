@@ -31,7 +31,13 @@
                     <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center; width: 100%; height: 350px;">
                     </div>
                 </a>    
-                    <div class="banner-account－box">
+
+                
+            </div>
+            {{/carousel}}
+        </div>
+        
+                            <div class="banner-account－box">
                         <div class="banner-account">
                             <p class="banner-account1">预期年化最高可达<span class="banner-account-2">18</span><span class="banner-account4">%</span>
                             </p>
@@ -50,10 +56,6 @@
                             {{/if}}
                         </div>
                     </div>
-                
-            </div>
-            {{/carousel}}
-        </div>
     </div>
 </div>
 
@@ -110,7 +112,11 @@
             <h4><img src="/ccc/index/img/article.png"/>行业新闻</h4>
             <ul>
                 {{#latestPublication}}
-                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{this.title}}</a>
+                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 18}}
+                                {{title.substr(0,18)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}</a>
                 </li>
                 {{/latestPublication}}
             </ul>
@@ -123,7 +129,11 @@
             <h4><img src="/ccc/index/img/video.png"/>媒体报道</h4>
             <ul>
                 {{#latestNews}}
-                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{this.title}}</a>
+                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 18}}
+                                {{title.substr(0,18)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}</a>
                 </li>
                 {{/latestNews}}
             </ul>
@@ -135,7 +145,11 @@
             <h4><img src="/ccc/index/img/voice.png"/>公告</h4>
             <ul>
                 {{#latestOne}}
-                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{this.title}}</a>
+                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 18}}
+                                {{title.substr(0,18)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}</a>
                 </li>
                 {{/latestOne}}
             </ul>
