@@ -19,6 +19,32 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
+var statusMap={
+    SCHEDULED:'开标时间:{{timeOpen}}',
+    SETTLED:'结标时间:{{timeFinished}}',
+    OPENED:'',
+    FINISHED:'',
+    CLEARED:''
+};
+
+  
+     
+
+var template=statusMap[CC.loan.status];
+
+ new Ractive({
+        el: ".openTime",
+        template:template,
+        data: {
+          timeOpen:moment(CC.loan.timeOpen).format('YY.MM.DD HH:mm'),
+          timeFinished:moment(CC.loan.timeFinished).format('YY.MM.DD HH:mm') 
+        }
+    });
+
+ 
+    
+
+
 
 
  function initailEasyPieChart() {
@@ -64,7 +90,7 @@ $("[data-toggle=tooltip]")
     });
 setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
-    console.log(CC.loan.timeLeft); 
+    console.log(CC.loan.timeElapsed); 
     CC.loan.timeLeft=JSON.parse(CC.loan.timeLeft);
     var leftTime=CC.loan.timeLeft;
     var timeLeftToal=leftTime.ss+leftTime.mm*60+leftTime.hh*60*60+leftTime.dd*60*60*24;
@@ -109,10 +135,27 @@ setTimeout((function () {
                 visible: false,
                 msg: ''
             },
+            serverDate:CC.serverDate,
             isSend: false,
             backUrl: CC.backUrl
         }
     });
+     var serverDate=CC.serverDate;
+     var openTime=CC.loan.timeOpen;
+     serverDate += 1000;
+    if(CC.loan.status==='SCHEDULED'){
+         var interval = setInterval((function () {
+                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+                var textDay = leftTime.day ? leftTime.day +'天' : '';
+                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                    clearInterval(interval);
+                }else{
+$('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开标时间还有<span style="color:#007ec5">'+ textDay + leftTime.hour +'</span>时<span style="color:#007ec5">'+ leftTime.min +'</span>分<span style="color:#007ec5">'+ leftTime.sec +'</span>秒</span>')
+                }
+            }), 1000);
+    }
+   
+    
     
     if(CC.user){
          accountService.getUserInfo(function (res) {

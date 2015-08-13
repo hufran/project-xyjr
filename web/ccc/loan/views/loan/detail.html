@@ -14,8 +14,24 @@
 <!--                                        <a >借贷协议（范本）</a>-->
 <!--   {{JSON.stringify(loans)}}-->
                     
+                     {{#if loans.status == "OPENED" }}
                     <div class="time"><span>剩余时间：<i>{{loans.timeLeft.dd}}</i>日<i>{{loans.timeLeft.hh}}</i>小时<i>{{loans.timeLeft.mm}}</i>分<i>{{loans.timeLeft.ss}}</i>秒</span>
                     </div>
+                    {{/if}}
+                      {{#if loans.status == "SCHEDULED" || loans.status == "SETTLED" }}
+                    <div class="time openTime">
+                        开标时间:{{loans.timeOpen}}
+                    </div>
+                    {{/if}}
+<!--
+                     {{#if loans.status == "SETTLED" }}
+                    <div class="time">
+                        结标时间:
+                    </div>
+                    {{/if}}
+                    
+-->
+                 
                     <!--                    </div>-->
 
                     <div class="title" style="height:52px;line-height:52px;"><img src="/ccc/loan/img/money.png" />{{loans.title}}</div>
@@ -38,15 +54,6 @@
                             <div class="value">{{loans.rate}}<span>%</span>
                             </div>
                         </div>
-
-
-
-                        <!--
-                        <div class="item" style="border-right:none">
-                            <div class="name">剩余可投金额</div>
-                            <div class="value">{{loans.leftAmount}}<span style="font-size:16px;">{{loans.amountUnit}}</span></div>
-                        </div>
--->
                     </div>
                     <div class="innerBottom">
 

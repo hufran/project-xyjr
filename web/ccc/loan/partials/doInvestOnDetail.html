@@ -1,5 +1,5 @@
      
-
+{{timeOpen}}
 {{#if loan.status == "FINISHED" }}
  <div class="firstLine">
                             <div class="tip">{{loan.rule.min}}元起投 </div>
@@ -45,14 +45,11 @@
                             <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
                  </div>
                        <div class="userBlock" id="userBlock">
-                    <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{user.availableAmount}}</i>
-                                    <a href="/account/bankcard" class="recharge">充值</a>
+                    <div class="leftMoney">账户余额（元）： <i class="red">&yen;{{#if user.availableAmount}}{{user.availableAmount}}{{else}}0{{/if}}</i>
+                                    <a href="#" class="recharge">充值</a>
                            </div>
                     <div class="input">
-                                    <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
-                                        
-                                        
-                                        
+                                  
                                           <div class="calculatorBox">
                            <div class="calculator" >
                                 <button class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></button>
@@ -61,21 +58,17 @@
                                 <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
                            </div>
                         </div> 
-                                                                                                              <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
+                  <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
                             <input type="submit" class="btn btn-warning invest-button" value="即将开始" style="background:#ff7200;"/>
-                                    </form>
+                                   
                                 </div>
+                            <div class="investbtn" data-id="{{ loan.id }}" data-status="{{ loan.status }}" data-open="{{ loan.timeOpen }}"
+        data-serv="{{serverDate}}" style="color: black;width: 155px;text-align: center;background:#fff;margin-left:-25px"></div>
+                           
                   <p class="left-time-start">距离开标时间还有xx小时xx分xx秒</p>                
       </div>
 </div>
-<!--
-            <div class="left-time">
-                <span class="next-time"></span>
-                <div class="text">后开始...</div>
-            </div>
--->
 
-   
      {{/if}}
     
         {{#if loan.status == "OPENED"}}
@@ -168,11 +161,10 @@
                             <button class="topAmount" on-click="maxNumber">最大可投金额</button>
                         </div> 
                         <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
-<!--
+                    
                         <a href="/login?url={{backUrl}}" class="loginBtn">
                             立即登录
                         </a>
--->
                     {{/if}}
                     </div>
             </div>

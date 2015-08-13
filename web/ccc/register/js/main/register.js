@@ -11,9 +11,18 @@ baconflux.store('register', 'success').onValue(function (data) {
         body: {
             loginName: data.postedData.loginName,
             password: data.postedData.password,
-        },   
-    }).end();
-})
+        }
+    }).end()
+    var left = 3;
+ var interval = setInterval((function () {
+         --left;
+        if (left ==0) {
+            console.log(left)
+            clearInterval(interval);
+            window.location.href = "/account/index"; 
+        }
+    }), 1000);
+});
 
 $("#getSms").on('click',function(){
     console.log('sdfsdf');
