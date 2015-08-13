@@ -1052,7 +1052,7 @@
 }
 
 .invest-detail-wrapper .tab-panels .tab-panel .repay-record thead th {
-    width: 33%;
+    width: 16%;
     color: #777777;
     height: 40px;
 }
@@ -1443,4 +1443,36 @@
 .do-invest-wrapper .status .userBlock .left-time-start{
     text-align: center;
     color:#999999;
+}
+.captchaWra {
+    margin-top: 10px;
+}
+.captchaWra .smsCaptcha {
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px #eeeeee solid;
+    text-indent: 20px;
+    font-size: 12px;
+    line-height: 35px;
+    /*padding:20px;*/
+}
+.captchaWra .send {
+    display: block;
+    float: right;
+    font-size: 12px;
+    width: 100px;
+    height: 35px;
+    border: 1px solid #007ec5;
+    border-radius: 5px;
+    line-height: 35px;
+    color: #007ec5;
+    background: #fff;
+    cursor: pointer;
+}
+.captchaWra .tip {
+    float: left;
+    display: block;
+    font-size: 14px;
+    line-height: 35px;
 }

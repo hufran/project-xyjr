@@ -125,7 +125,7 @@
   border-radius: 4px;
 }
 .topnav-wraper .account-panel .user-info .authentication .safety .progress .progress-bar {
-  background: #b5a16b;
+  background: #007ec5;
 }
 .topnav-wraper .account-panel .account-info {
   width: 45%;
@@ -158,7 +158,7 @@
   padding: 3px 20px;
 }
 .topnav-wraper .account-panel .account-info .button .btn-warning {
-  background-color: #b5a16b;
+  background-color: #007ec5;
   border-color: transparent;
   color: #fff;
 }
@@ -196,8 +196,11 @@ table tbody tr:last-child td {
   background: #eee;
 }
 .has-padding th {
-  padding-left: 5px!important;
-  padding-right: 5px!important;
+  padding-left: 8px!important;
+  padding-right: 8px!important;
+  padding-top: 8px;
+    padding-bottom: 8px;
+    color:#000;
 }
 table.table.repayments-table {
   background-color: #FBFBFB;

@@ -160,8 +160,10 @@ body {
 }
 
 .main .step02 .verify-content .errors .u-content{
+/*
     color: red;
     margin-left: 82px;
+*/
 }
 .main .step01 .verify-content img,
 .main .step02 .verify-content img {
@@ -568,3 +570,14 @@ body {
     font-size: 14px;
 }
 */
+.errors{
+    width: 305px;
+    /* height: 20px; */
+    padding-left: 30px;
+    float: right;
+        color: #9fa0a0;
+    font-size: 15px;
+    background-image: url(/ccc/forgot/img/gou-bg.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+}

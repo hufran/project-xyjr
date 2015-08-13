@@ -198,21 +198,27 @@
                                <table class="table repay-plan repay-record">
                     {{#if user}}
                     <thead>
-                        <th style="border-top-left-radius: 3px;">成交时间</th>
-                        <th>投资人</th>
-                        <th style="border-top-right-radius: 3px;">投资金额(元)</th>
+                        <th style="border-top-left-radius: 3px;">期次</th>
+                        <th>预期还款时间</th>
+                        <th>应收本息(元)</th>
+                        <th>应收本金(元)</th>
+                        <th>应收利息(元)</th>
+                        <th style="border-top-right-radius: 3px;">剩余本金(元)</th>
                     </thead>
-                    {{#invests}}
+                    {{#replay}}
                     <tr>
-                        <th>{{submitTime}}</th>
-                        <th>{{userLoginName}}</th>
-                        <th>{{amount}}</th>
+                        <th>{{@index + 1}}</th>
+                        <th>{{dueDate}}</th>
+                        <th class="col-current-period">{{amount}}</th>
+                        <th>{{amountPrincipal}}</th>
+                        <th>{{amountInterest}}</th>
+                        <th>{{amountOutstanding}}</th>
                     </tr>
-                    {{/invests}}
-                           {{else}}
+                    {{/replay}}
+                    {{else}}
                     <div class="notLogin">
-                    <p>用户查看详情</p>
-                    <p><a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a></p>
+                    <p>用户详情</p>
+                    <p>请 <a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
                         </div>
                     {{/if}}
                 </table>

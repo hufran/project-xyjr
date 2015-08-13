@@ -472,5 +472,11 @@
     float: left;
     font-size: 14px;
     color: #999999;
+/*    margin-left: 16px;*/
+}
+.friend-right p{
+    float: left;
+    font-size: 14px;
+    color: #999999;
     margin-left: 16px;
 }

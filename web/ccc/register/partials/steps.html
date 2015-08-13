@@ -3,7 +3,7 @@
 <!--    </p>-->
     <!--{{{passwordStrength}}}-->
     <Step>
-        <div class="register-step-0">
+        <div class="register-step-1">
           <div class="register-frame"> 
           <RInput field="mobile">
                 <div class="rinput">
@@ -30,8 +30,8 @@
                     </button>
                     {{/if}}
                    
-                    {{#loading}}loading...{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}
-<!--                        <span class="need-tel-num">请输入正确的手机号</span>-->
+                    <span class="tip">{{#loading}}loading...{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+
                 </div>
             </RInput>
             <!--            cc-->
@@ -79,7 +79,7 @@
                     <span id="cannot-see">看不清?</span>
                     <span id="refresh-captcha">换一张</span>
                 </div>
-                <div class="tip tip01">
+                <div class="tip01" id="password-pic">
                     {{#loading}}{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}
                 </div>
             </RInput>
@@ -171,8 +171,8 @@
     </Step>
     
     <Step>
-        <a href="/index" class="register-step-1">
+        <div class="register-step-0">
             <p class="success">已经注册成功！<a href="/account">去我的账户</a></p>
-        </a>
+        </div>
     </Step>
 </div>
