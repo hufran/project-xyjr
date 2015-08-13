@@ -124,7 +124,7 @@ function initailEasyPieChart() {
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
             // 100%进度条颜色显示为背景色
-            var color = percentage === 100 ? "#b49b5d" : '#b49b5d';
+            var color = percentage === 100 ? "#007ec5" : '#007ec5';
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
@@ -236,10 +236,6 @@ $(' .icon-group1').mouseenter(function(){
     $(this).children('.company-intro').hide(200);
 })
 
-//按箭头显示宝贝计划
-$(".scroll-left").click(function(){
-    $(".invests-list-wrapper").last().animate({left:-245},2000);
-})
 //require('ccc/index/js/main/ss.js')
 //
 //$(".loanWrapper").hover(function(){$(this).css("border-color","#A0C0EB");},function(){$(this).css("border-color","#d8d8d8")});

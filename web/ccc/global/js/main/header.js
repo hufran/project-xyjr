@@ -55,7 +55,7 @@ $(function(){
 //    Cal.create();
 //});
 $(".back-top").click(function(){
-$('body,html').animate({scrollTop:0},1000);
+$('body,html').animate({scrollTop:0},200);
 return false;
 })
 
