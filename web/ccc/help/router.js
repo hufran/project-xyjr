@@ -5,11 +5,11 @@ module.exports = function (router) {
     router.get('/help/:tab', function (req, res) {
         var cateMap = {
             aboutus: 'HELP',
-            product: ' HELP',
-            safety: ' HELP',
-            login: ' HELP',
-            money: ' HELP',
-            explain: ' HELP',
+            product: 'HELP',
+            safety: 'HELP',
+            login: 'HELP',
+            money: 'HELP',
+            explain: 'HELP',
             law:'HELP'
 
         };
@@ -114,7 +114,7 @@ module.exports = function (router) {
 
 
                 } else {
-
+                   
                     formatNews(r);
                     var contents = r.body.length >
                         0 ? r.body : null;
