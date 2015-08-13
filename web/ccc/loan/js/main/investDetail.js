@@ -344,6 +344,10 @@ setTimeout((function () {
         return o;
     };
     
+    
+   
+
+    
     function showErrors(error) {
         investRactive
             .set('errors', {
@@ -366,6 +370,7 @@ setTimeout((function () {
     });
 
     function showSelect(amount){
+        
         var months = CC.loan.duration;
         investRactive.set('inum', parseFloat(amount));
         disableErrors()
@@ -373,6 +378,7 @@ setTimeout((function () {
             amount:amount,
             months:months
         }, function (o) {
+             console.log(o);
             if (o.success) {
                 investRactive.set('selectOption',parsedata(o.data));
             }
@@ -380,6 +386,7 @@ setTimeout((function () {
     }
     //初始化选项
     showSelect(0);
+   
 
     $('.invest-input')
     .on('keyup',function(){
@@ -445,6 +452,9 @@ document.getElementById("calculatorText").value = getNum+100;
 }else{
 }
 }
+
+
+ 
 
 
 

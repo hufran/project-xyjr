@@ -393,3 +393,10 @@ float:left;
      border: 1px solid #e5e5e5;
     height:45px;
 }
+
+#main-container .s-login-view .s-login-window button{
+    background: #007ec5;
+    width:100%;
+}
+
+
