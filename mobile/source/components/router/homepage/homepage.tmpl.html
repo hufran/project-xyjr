@@ -14,40 +14,46 @@
         </ul>
     </nav>
 
-    <section class="c-list-panel loan"
-             ng-repeat="(type, data) in list"
-             ng-class="'loan-type-' + type | lowercase">
+    <section class="c-list-panel loan" ng-repeat="(type, data) in list">
         <div class="item subject">
-            <div class="media">
-                <div class="media-left">
-                    <img class="media-object" width="29"
-                         ng-src="assets/image/{{ type | lowercase }}-icon.png"
-                    >
-                </div>
+            <a ng-href="list/{{type}}">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" width="29"
+                             ng-src="assets/image/{{ type | lowercase }}-icon.png"
+                        >
+                    </div>
 
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        {{ {LTB: '无忧宝', LXY: '定存宝'}[type] || type }}
-                    </h4>
-                    活期理财，存取随心，年化收益9.8%
-                </div>
+                    <div class="media-body" ng-switch="type">
+                        <div ng-switch-when="LTB">
+                            <h4 class="media-heading color-ltb-text">乐投保</h4>
+                            最高11%收益率，省心理财，稳健收益
+                        </div>
+                        <div ng-switch-when="LXY">
+                            <h4 class="media-heading color-lxy-text">乐享盈</h4>
+                            8%~11%收益率，项目多元，期限灵活
+                        </div>
+                    </div>
 
-                <div class="media-right media-middle">
-                    <param class="glyphicon glyphicon-menu-right">
+                    <div class="media-right media-middle">
+                        <param class="glyphicon glyphicon-menu-right">
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="item">
             <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="loan in data">
+                <li ng-repeat="loan in data | limitTo: 2">
                     <a ng-href="loan/{{ loan.id }}">
-                        <h4 class="title">{{ loan.title }}</h4>
+                        <h4 class="title"
+                            ng-class="'color-' + (type | lowercase) + '-text'"
+                        >{{ loan.title }}</h4>
 
                         <div class="rate-term">
                             <div class="rate">
-                                <span class="num">{{ loan.rate }}</span>
-                                <span class="unit">%</span>
+                                <span class="num">{{ loan.rate }}</span><!--
+                                --><span class="unit">%</span>
                             </div>
                             <div class="term">
                                 <span class="num">{{ loan.total_months || loan.total_days }}</span><!--
