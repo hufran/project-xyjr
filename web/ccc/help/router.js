@@ -1,7 +1,6 @@
 'use strict';
 module.exports = function (router) {
     var pageSize = 10;
-
     router.get('/help/:tab', function (req, res) {
         var cateMap = {
             aboutus: 'HELP',
@@ -37,51 +36,38 @@ module.exports = function (router) {
             text: '关于奇乐融',
             url: '/help/aboutus'
         }, {
-            text: '产品介绍',
-            url: '/help/product'
+                text: '产品介绍',
+                url: '/help/product'
         }, {
-            text: '风控安全',
-            url: '/help/safety'
+                text: '风控安全',
+                url: '/help/safety'
         }, {
-            text: '注册/登陆',
-            url: '/help/login',
+                text: '注册/登陆',
+                url: '/help/login',
         }, {
-            text: '投资理财',
-            url: '/help/money',
+                text: '投资理财',
+                url: '/help/money',
         }, {
-            text: '名词解释',
-            url: '/help/explain',
+                text: '名词解释',
+                url: '/help/explain',
         }, {
-            text: '法律安全',
-            url: '/help/law'
+                text: '法律安全',
+                url: '/help/law'
         }];
-        var tabIndex;
 
-        var loop = function () {
-            for (var index = 0, length = tabs.length; index <
-                length; index++) {
+            var tabIndex;
+            for (var index = 0, length = tabs.length; index < length; index++) {
                 var tab = tabs[index];
                 if (tab.text === indexMap[req.params.tab]) {
                     tabIndex = index;
                     break;
                 }
             }
-        };
-        loop();
 
-        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] +
-                '/name/' + encodeURIComponent(nameMap[req.params.tab])
-            )
-            .end()
-            .then(function (r) {
-               
+            req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
                 if (r.body.length > 1) {
-                    var current = (req.query.page === undefined) ?
-                        1 : req.query.page;
-                    req.uest('/api/v2/cms/channel/' + r.body[0]
-                            .channelId + '?page=' + current +
-                            '&pagesize=10')
-                        .end()
+                    var current = (req.query.page === undefined) ? 1 : req.query.page;
+                    req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pagesize=10').end()
                         .then(function (r) {
                             formatNews(r.body.results);
                             var contents = r.body.results.length >
@@ -99,7 +85,7 @@ module.exports = function (router) {
                                 tabs: tabs,
                                 currentTab: nameMap[
                                     req.params.tab
-                                ],
+                                    ],
                                 tabIndex: tabIndex,
                                 tab: {
                                     name: req.params
@@ -122,7 +108,7 @@ module.exports = function (router) {
                         tabs: tabs,
                         currentTab: nameMap[
                             req.params.tab
-                        ],
+                            ],
                         tabIndex: tabIndex,
                         tab: {
                             name: req.params
@@ -139,24 +125,24 @@ module.exports = function (router) {
 
     });
 
-    function formatNews(news) {
-        news = news || [];
-        for (var i = 0; i < news.length; i++) {
-            news[i].pubDate = moment(news[i].pubDate)
-                .format('YYYY-MM-DD');
-        }
-        //                        console.log(news);
-        return news;
+function formatNews(news) {
+    news = news || [];
+    for (var i = 0; i < news.length; i++) {
+        news[i].pubDate = moment(news[i].pubDate)
+            .format('YYYY-MM-DD');
     }
+    //                        console.log(news);
+    return news;
+}
 
 
-    function createList(len) {
-        var arr = [];
-        for (var i = 0; i < len; i++) {
-            arr[i] = i;
-        }
-        return arr;
+function createList(len) {
+    var arr = [];
+    for (var i = 0; i < len; i++) {
+        arr[i] = i;
     }
+    return arr;
+}
 
 
 };

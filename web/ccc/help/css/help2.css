@@ -287,19 +287,22 @@
        margin-left:60px;
      margin-right:60px;
      margin-bottom: 120px;
+     margin-top: 30px;
      border: none;
      font-size:15px;
      color:#666666;
  }
- .help-title h2{
+ .invest-wrapper h2{
+/*
      margin-left:60px;
      margin-right:60px;
+*/
      color:#24b2e7;
      font-size:23px;
      line-height:23px;
      margin-top:34px;
      padding-bottom:20px;
-     border-bottom: 1px dashed #cbcbcb;
+/*     border-bottom: 1px dashed #cbcbcb;*/
  }
 /*安全保障*/
  .brand-box{
