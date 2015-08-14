@@ -126,6 +126,17 @@
     float: left;
     margin-left: 16px;
 }
+.rinput .tip-loading {
+    color: #9fa0a0;
+    font-size: 15px;
+    line-height: 44px;
+    padding-left: 30px;
+    float: left;
+    margin-left: 16px;
+        position: absolute;
+    left: 78px;
+    top: 34px;
+}
 
 .bring-in input {
     width: 146px;

@@ -9,8 +9,8 @@
                 <div class="rinput">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>手机号码:</label>
                     <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号码">
+                    <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
                     <span class="tip">
-        {{#loading}}loading...{{/loading}}
         {{#errMsg}}{{errMsg}}{{/errMsg}}
     </span>
                 </div>
@@ -43,7 +43,8 @@
                         {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 获取短信验证码 {{/if}}
                     </button>
                     {{/if}}
-                    <span class="tip">{{#loading}}loading...{{/loading}} {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
+                    <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                 </div>
             </RInput>
                
@@ -51,8 +52,8 @@
                 <div class="rinput">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>密码:</label>
                     <input class="password" id="{{rinputId}}" type="password" value="{{value}}" placeholder="输入密码">
+                    <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
                     <span class="tip">
-        {{#loading}}loading...{{/loading}}
         {{#errMsg}}{{errMsg}}{{/errMsg}}
     </span>
                 </div>
@@ -61,8 +62,8 @@
                 <div class="rinput " style="margin-bottom:0">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>确认密码:</label>
                     <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" placeholder="再次输入密码">
+                    <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
                     <span class="tip">
-        {{#loading}}loading...{{/loading}}
         {{#errMsg}}{{errMsg}}{{/errMsg}}
     </span>
                 </div>
