@@ -40,16 +40,16 @@ $('.question-title').on('click', function () {
 var hash = location.hash;
 
 // 自动展开三方账户
-if (hash === '#paymentAccount') {
-    var $wp = $('.each-question');
-    $wp.eq($wp.length - 1).addClass('opened');
-}
-
-$(".article-content p").hide()
-$(".article-content p").ready(function(){
-  $(".each-question").click(function(){
-  $(".opened .article-content p").toggle();
-  });
-});
+//if (hash === '#paymentAccount') {
+//    var $wp = $('.invest-wrapper h2');
+//    $wp.eq($wp.length - 1).addClass('opened');
+//}
+//
+//$(".invest-wrapper p").hide()
+//$(".invest-wrapper p").ready(function(){
+//  $(".invest-wrapper h2").click(function(){
+//  $(".opened .invest-wrapper p").toggle();
+//  });
+//});
 
 
