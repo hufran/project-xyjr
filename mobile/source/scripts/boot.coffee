@@ -195,23 +195,28 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         resolve:
                             loan: _.ai 'api, $location, $route',
                                 (       api, $location, $route) ->
-                                    api.get_loan_detail($route.current.params.id).catch ->
-                                        $location.path '/'
-
-                            investors: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
-                                    api.get_loan_investors($route.current.params.id).$promise.catch ->
+                                    api.get_loan_detail($route.current.params.id, true).catch ->
                                         $location.path '/'
                     }
 
                     .when '/loan/:id/investors', {
                         controller: 'LoanInvestorsCtrl as self'
                         templateUrl: 'components/router/loan/loan-investors.tmpl.html'
+                        resolve:
+                            investors: _.ai 'api, $location, $route',
+                                (       api, $location, $route) ->
+                                    api.get_loan_investors($route.current.params.id).$promise.catch ->
+                                        $location.path '/'
                     }
 
                     .when '/loan/:id/info', {
                         controller: 'LoanInfoCtrl as self'
                         templateUrl: 'components/router/loan/loan-info.tmpl.html'
+                        resolve:
+                            loan: _.ai 'api, $location, $route',
+                                (       api, $location, $route) ->
+                                    api.get_loan_detail($route.current.params.id, true).catch ->
+                                        $location.path '/'
                     }
 
                     .when '/loan/:id/invest', {
