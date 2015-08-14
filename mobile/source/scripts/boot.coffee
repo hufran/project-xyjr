@@ -204,6 +204,11 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                         $location.path '/'
                     }
 
+                    .when '/loan/:id/investors', {
+                        controller: 'LoanInvestorsCtrl as self'
+                        templateUrl: 'components/router/loan/loan-investors.tmpl.html'
+                    }
+
                     .when '/loan/:id/invest', {
                         controller: 'LoanInvestCtrl as self'
                         templateUrl: 'components/router/loan/loan-invest.tmpl.html'
