@@ -67,6 +67,7 @@ module.exports = function (router) {
         };
         loop();
 
+
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
 
             if (r.body.length > 1) {
@@ -91,7 +92,7 @@ module.exports = function (router) {
                             tabs: tabs,
                             currentTab: nameMap[
                                 req.params.tab
-                                ],
+                            ],
                             tabIndex: tabIndex,
                             tab: {
                                 name: req.params

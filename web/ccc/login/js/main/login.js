@@ -73,6 +73,11 @@ $('#loginForm').submit(function(e){
     request.post('/login/ajax').type('form').send($this.serialize()).end().get('body').then(function(r){
         if (r.success) {
             $postBtn.text('登录成功');
+             var url = /(loan)/;
+           if(url.test(document.referrer)){
+               location.href = document.referrer;
+               return;
+           }
             location.href = (r.redirect) ? r.redirect:'/';
         } else {
             $error.text(errorMaps[r.error_description.result]);

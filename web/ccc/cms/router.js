@@ -3,6 +3,7 @@ module.exports = function (router) {
 var pageSize = 10;
 
 router.get('/cms/:channelName', function (req, res) {
+   
     var user = res.locals.user;
     if (user && user.idNumber) {
         delete user.idNumber;
@@ -18,7 +19,7 @@ router.get('/cms/:channelName', function (req, res) {
             var current = (req.query.page === undefined) ? 1 : req.query
                 .page;
             for (var i = 0; i < channels.length; i++) {
-                if (getChannelIdByName(channelName) === channels[i].name) {
+                if (getChannelIdByName(channelName) === channels[i].name&&channels[i].category==='COVERAGE') {
                     channelId = channels[i].id;
                     break;
                 }
@@ -28,6 +29,7 @@ router.get('/cms/:channelName', function (req, res) {
                 '&pagesize=' + pageSize)
                 .end()
                 .then(function (r) {
+                   
                     res.render(channelName + '/list', {
                         title: getChannelIdByName(channelName),
                         news: formatNews(r.body.results),
@@ -51,7 +53,6 @@ router.get('/cms/p/:id', function (req, res) {
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-            console.log(r.body);
             res.locals.title = r.body.title + '|奇乐融';
             res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);// '九信金融由国内知名投资机构九鼎投资倾力打造，是国内首家私募系互联网金融平台。平台由九信投资管理有限公司（www.jiuxinfinance.com）运营，注册资金20亿元人民币。九鼎投资是第一家登陆国内资本市场的私募股权机构，为“中国PE第一股”，净资产超100亿元。';
             res.render('news/detail', {

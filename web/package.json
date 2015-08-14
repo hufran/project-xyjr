@@ -4,7 +4,7 @@
   "dependencies": {
     "@ccc/login": "^2.1.2",
     "@ccc/payment": "^1.1.11",
-    "@ccc/register": "^2.4.0",
+    "@ccc/register": "^2.5.6",
     "@ccc/validation": "^1.0.0",
     "@ds/assets": "^2.0.5",
     "@ds/base": "^2.0.1",
