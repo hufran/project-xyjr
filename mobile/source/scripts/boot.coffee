@@ -193,9 +193,14 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'LoanCtrl as self'
                         templateUrl: 'components/router/loan/loan.tmpl.html'
                         resolve:
-                            data: _.ai 'api, $location, $route',
+                            loan: _.ai 'api, $location, $route',
                                 (       api, $location, $route) ->
                                     api.get_loan_detail($route.current.params.id).catch ->
+                                        $location.path '/'
+
+                            investors: _.ai 'api, $location, $route',
+                                (       api, $location, $route) ->
+                                    api.get_loan_investors($route.current.params.id).$promise.catch ->
                                         $location.path '/'
                     }
 
