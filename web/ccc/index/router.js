@@ -3,8 +3,8 @@ module.exports = function (router) {
 router.get('/', function (req, res, next) {
     var user = res.locals.user;
     res.locals.title = '奇乐融';
-    res.locals.keywords = '互联网金融，P2P理财，P2P网贷，网络融资，投资理财，九信金融，九信金融官网';
-    res.locals.description = '九信金融是九鼎投资（净资产超110亿元上市公司）旗下互联网金融平台，为您提供P2P理财、投资理财、P2P网贷等专业、安全、稳健产品。上市公司担保，本息全额保障，8年PE风控经验，第三方资金托管，是投资者首选的的P2P投资理财平台！';
+    res.locals.keywords = '互联网金融，P2P理财，P2P网贷，网络融资，投资理财，正奇金融，正奇金融官网';
+    res.locals.description = '正奇金融！';
     if (user && user.idNumber) {
         delete user.idNumber;
     }
