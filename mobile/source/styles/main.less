@@ -249,7 +249,7 @@ a {
         }
         &.title {
             text-align: center;
-            color: #777;
+            color: @color-theme-main;
         }
         &.actions {
             text-align: right;
@@ -707,7 +707,12 @@ a {
 ----*/
 
 #login {
-     .page-content {
+
+    .page-nav {
+        margin-bottom: 10px;
+    }
+
+    .page-content {
 
         .form {
             input.form-control {
@@ -762,18 +767,22 @@ a {
             label {
                 padding: 16px 12px 0;
                 font-size: 15px;
-                text-align: right;
+                text-align: center;
                 font-weight: normal;
                 margin: 0;
                 line-height: 1;
-                color: #333;
+                color: @color-gray;
+                min-width: 54px;
             }
         }
 
         .inputs {
             overflow: hidden;
-            border-radius: 6px;
+            border-radius: 0px;
             margin-bottom: 15px;
+
+            border-top: 1px solid #D9D9D9;
+            border-bottom: 1px solid #D9D9D9;
         }
     }
 
@@ -794,11 +803,14 @@ a {
     }
 
     .links {
+        .flex-display(center; space-between);
+
         color: @color-theme-main;
         font-size: 15px;
 
         a {
-            color: inherit;
+            color: @color-gray;
+            display: block;
         }
     }
 }
