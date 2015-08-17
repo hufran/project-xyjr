@@ -8,7 +8,8 @@ do (angular) ->
         transclude: true
         templateUrl: 'components/header/header.tmpl.html'
 
-        scope: {}
+        scope:
+            user: '='
 
         controller: _.ai '@$element, @$location, @$rootScope', class
             constructor: (@$element, @$location, @$rootScope) ->

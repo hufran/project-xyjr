@@ -7,9 +7,27 @@
             <param class="glyphicon glyphicon-menu-left">
         </a>
         <span class="col-xs-6 title">
-            {{ {LTB: '乐投保', LXY: '乐享盈'}[filter_type] || '投资理财' }}
+            {{ {LTB: '乐投保', LXY: '乐享盈', QT: '其他'}[filter_type] || '投资理财' }}
         </span>
-        <span class="col-xs-3">&nbsp;</span>
+        <span class="col-xs-3 text-right">
+            <span class="dropdown dropdown-filter" x-dropdown>
+                <img x-dropdown-toggle width="20" src="assets/image/filter-icon.png">
+
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="list/LTB"><img width="24" src="assets/image/ltb-icon-o.png">乐投保</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/LXY"><img width="24" src="assets/image/lxy-icon-o.png">乐享盈</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/QT"><img width="24" src="assets/image/qt-icon-o.png">其他</a>
+                    </li>
+                </ul>
+            </span>
+        </span>
     </div>
     </nav>
 
@@ -19,8 +37,8 @@
     >
         <div class="media">
             <div class="media-left">
-                <img class="media-object" width="29"
-                     ng-src="assets/image/{{ filter_type | lowercase }}-icon.png"
+                <img class="media-object" width="24"
+                     ng-src="assets/image/{{ filter_type | lowercase }}-icon-o.png"
                 >
             </div>
 
@@ -32,6 +50,9 @@
                 <div ng-switch-when="LXY">
                     <h4 class="media-heading color-lxy-text">乐享盈</h4>
                     8%~11%收益率，项目多元，期限灵活
+                </div>
+                <div ng-switch-when="QT">
+                    <h4 class="media-heading color-qt-text">其他</h4>
                 </div>
             </div>
         </div>
