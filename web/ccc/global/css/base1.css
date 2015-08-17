@@ -465,3 +465,18 @@
   width: 24px;
   text-align: center;
 }
+/*nav*/
+li a {
+/*
+    color: #666;
+    text-decoration: none;
+*/
+     width: auto; 
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+}
+.s-header-menu-content .u-nolist-ul li {
+    margin-left: 38px;
+    cursor: pointer;
+}

@@ -8,7 +8,7 @@
 
 .loanform{padding-top:35px;padding-left:60px;font-size: 16px;}
 /*.loanform label{width: 170px;text-align: right}*/
-.loanform .form_input{width: 320px;height: 45px; border: 1px solid #ccc;border-radius: 3px;}
+.loanform .form_input{width: 310px;height: 45px; border: 1px solid #ccc;border-radius: 3px;}
 .loanform  .loanmoney{text-align: right;}
 .loanform .other_input{width: 130px;padding-bottom: 10px; border: 1px solid #ccc;border-radius: 4px;}
 .loanform .size_input{font-size: 14px;}
@@ -30,16 +30,16 @@
 .loan-down .content{text-align: center;padding-bottom: 30px;}
 
 
-#loanForm label.error {margin-left: 10px;width: auto;display: inline;font-size: 8px;font-style: italic;color: red;line-height: 45px;}
+#loanForm label.error {margin-left: 10px;width: auto;display: inline;font-size: 8px;font-style: italic;color: red;line-height: 12px;}
 #loanForm input.error{border: 1px solid red;}
 
 .col-sm-8 select{
-    width:320px;
+    width:310px;
     height:45px;
     border:1px solid #ccc;
     color: #555555;
     background:#fff;
 }
 .col-sm-8{
-    width:338px;
+    width:324px;
 }

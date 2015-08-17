@@ -143,8 +143,8 @@ var v = $("#loanForm").validate({
         },
         confirmCode: {
           required: "请输入验证码",
-          minlength: "验证码为4位",
-          maxlength: "验证码为4位"
+          minlength: "验证码为5位",
+          maxlength: "验证码为5位"
         }
       },
       errorClass: "error",
