@@ -31,7 +31,7 @@ do (_, angular, moment) ->
                                     if filter_type
                                         return item.product_type is filter_type
                                     else
-                                        return item.product_type in _.split 'LTB LXY'
+                                        return item.product_type in _.split 'LTB LXY QT'
                                 .value()
 
                         filter_loan.remain = _.clone filter_loan

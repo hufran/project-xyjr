@@ -116,6 +116,30 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
 
 
+            get_announcement: ->
+
+                encode_name_value = '%E6%9C%80%E6%96%B0%E5%85%AC%E5%91%8A'
+
+                (@$http
+                    .get "/api/v2/cms/category/PUBLICATION/name/#{ encode_name_value }", cache: true
+
+                        .then (response) =>
+
+                            channel_id = _.get response, 'data[0].channelId'
+
+                            return $q.reject() unless channel_id
+
+                            @$http
+                                .get "/api/v2/cms/channel/#{ channel_id }",
+                                    params: {page: 1, pagesize: 20}
+                                    cache: true
+
+                        .then (response) =>
+
+                            return response.data?.results
+                )
+
+
             get_loan_list: ->
 
                 @$http.get('/api/v2/loans/summary', cache: false)
