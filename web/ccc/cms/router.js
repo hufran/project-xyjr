@@ -54,7 +54,7 @@ router.get('/cms/p/:id', function (req, res) {
         .end()
         .then(function (r) {
             res.locals.title = r.body.title + '|奇乐融';
-            res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);// '九信金融由国内知名投资机构九鼎投资倾力打造，是国内首家私募系互联网金融平台。平台由九信投资管理有限公司（www.jiuxinfinance.com）运营，注册资金20亿元人民币。九鼎投资是第一家登陆国内资本市场的私募股权机构，为“中国PE第一股”，净资产超100亿元。';
+            res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
             res.render('news/detail', {
                 detail: formatDetail(r.body)
             });

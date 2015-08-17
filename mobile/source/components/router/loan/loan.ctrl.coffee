@@ -3,12 +3,16 @@ do (_ ,angular, moment, Math, Date) ->
 
     angular.module('controller').controller 'LoanCtrl',
 
-        _.ai '            @user, @data, @api, @$scope, @$window, @$timeout, map_loan_summary', class
-            constructor: (@user, @data, @api, @$scope, @$window, @$timeout, map_loan_summary) ->
+        _.ai '            @user, @loan, @api, @$scope, @$window, map_loan_summary', class
+            constructor: (@user, @loan, @api, @$scope, @$window, map_loan_summary) ->
 
                 @$window.scrollTo 0, 0
 
-                @$scope.loan = map_loan_summary @data
+                angular.extend @$scope, {
+                    loan: map_loan_summary @loan
+                    investors: @api.get_loan_investors @loan.id
+                }
+
 
 
 
