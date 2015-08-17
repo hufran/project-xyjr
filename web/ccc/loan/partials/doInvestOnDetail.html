@@ -1,4 +1,4 @@
-     
+<!--  {{JSON.stringify(loan)}}     -->
 {{timeOpen}}
 {{#if loan.status == "FINISHED" }}
  <div class="firstLine">
@@ -59,7 +59,7 @@
                            </div>
                         </div> 
                   <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
-                            <input type="submit" class="btn btn-warning invest-button" value="即将开始" style="background:#ff7200;"/>
+                            <a href="/login"><input type="submit" class="btn btn-warning invest-button" value="立即登陆" style="background:#ff7200;"/></a>
                                    
                                 </div>
                             <div class="investbtn" data-id="{{ loan.id }}" data-status="{{ loan.status }}" data-open="{{ loan.timeOpen }}"
@@ -154,11 +154,11 @@
                       
                         <div class="calculatorBox">
                            <div class="calculator" >
-                                <button class="glyphicon glyphicon-minus" style="padding:0;margin:0;" on-click="reduce"></button>
+                                <button class="glyphicon glyphicon-minus" style="padding:0;margin:0;top:0;" on-click="reduce"></button>
                                <input placeholder="{{loan.rule.min}}"  type="text" value="{{ inputNum }}">
-                                <button class="glyphicon glyphicon-plus" on-click="add"></button>
+                                <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
                            </div>
-                            <button class="topAmount" on-click="maxNumber">最大可投金额</button>
+                            <button class="topAmount" on-click="">最大可投金额</button>
                         </div> 
                         <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
                     

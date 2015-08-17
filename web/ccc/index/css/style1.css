@@ -294,7 +294,8 @@
 .banner-account－box{
     position: absolute;
     top:0px;
-    left:68%;
+    left:50%;
+    margin-left:250px;
 }
 .index-partner－box{
     background: #ffffff;
@@ -479,4 +480,10 @@
     font-size: 14px;
     color: #999999;
     margin-left: 16px;
+}
+/*轮播图*/
+.middle-box{
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
 }
