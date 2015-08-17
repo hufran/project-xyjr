@@ -117,27 +117,27 @@ do (_, angular, moment, Array) ->
 
             get_announcement: ->
 
-                deferred = do @$q.defer
-
                 encode_name_value = encodeURIComponent '最新公告'
 
                 (@$http
                     .get "/api/v2/cms/category/PUBLICATION/name/#{ encode_name_value }", cache: true
 
-                    .then (response) =>
-                        channel_id = response.data[0].channelId
+                        .then (response) =>
 
-                        @$http.get "/api/v2/cms/channel/#{ channel_id }?page=1&pagesize=20", cache: true
+                            channel_id = response.data?[0]?.channelId
 
-                    .then (response) =>
+                            return $q.reject() unless channel_id
 
-                        deferred.resolve response.data?.results
+                            @$http.get "/api/v2/cms/channel/#{ channel_id }",
+                                params:
+                                    page: 1
+                                    pagesize: 20
+                                cache: true
 
-                    .catch =>
-                        do deferred.reject
+                        .then (response) =>
+
+                            return response.data?.results
                 )
-
-                return deferred.promise
 
 
             get_loan_list: ->
