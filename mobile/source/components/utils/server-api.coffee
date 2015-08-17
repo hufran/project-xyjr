@@ -115,6 +115,30 @@ do (_, angular, moment, Array) ->
 
                     .then TAKE_RESPONSE_DATA
 
+            get_announcement: ->
+
+                deferred = do @$q.defer
+
+                encode_name_value = encodeURIComponent '最新公告'
+
+                (@$http
+                    .get "/api/v2/cms/category/PUBLICATION/name/#{ encode_name_value }", cache: true
+
+                    .then (response) =>
+                        channel_id = response.data[0].channelId
+
+                        @$http.get "/api/v2/cms/channel/#{ channel_id }?page=1&pagesize=20", cache: true
+
+                    .then (response) =>
+
+                        deferred.resolve response.data?.results
+
+                    .catch =>
+                        do deferred.reject
+                )
+
+                return deferred.promise
+
 
             get_loan_list: ->
 
