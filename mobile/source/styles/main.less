@@ -115,6 +115,16 @@ a {
             border-color: @color-theme-main;
         }
     }
+
+    &-qt {
+        &-text {
+            color: #4A4A4A;
+        }
+
+        &-border {
+            border-color: #4A4A4A;
+        }
+    }
 }
 
 // utils
@@ -471,6 +481,23 @@ a {
     section:not(.omit-margin) {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+
+    .dropdown-filter {
+        .dropdown-menu {
+            > li > a {
+                font-size: 16px;
+
+                img {
+                    margin-top: -3px;
+                    margin-right: 15px;
+                }
+            }
+
+            .divider {
+                margin: 5px 0;
+            }
+        }
     }
 
     > .subject {
