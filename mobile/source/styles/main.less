@@ -1185,180 +1185,86 @@ a {
 ----*/
 
 #dashboard {
-    .page-nav {
-        *[class*="col-"] {
-            &.title {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            &.actions {
-                color: #808080;
-            }
-        }
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    .invite {
-        padding: 18px/2 28px/2 18px/2 32px/2;
-        background-color: #FFFDE3;
+    .c-list-panel {
+        > .item {
+            img {
+                margin-right: 7px;
 
-        .link {
-            .flex-display(center; space-between);
-
-            .desc {
-                .flex(1);
-
-                font-size: 30px/2;
-                color: #2B2B2B;
-
-                small {
-                    font-size: 85%;
-                    color: #848484;
+                &.user-icon {
+                    margin-left: 2px;
+                    margin-right: 8px;
                 }
 
-                img {
-                    vertical-align: -2px;
+                &.coupon-icon {
+                    margin-left: 2px;
                 }
             }
-
-            > .glyphicon {
-                .flex(none);
-
-                color: #9B9B9B;
-            }
-        }
-    }
-
-    .masthead {
-        .flex-display(flex-end; space-between);
-
-        padding: 20px/2;
-        padding-left: 50px/2;
-        background-color: #EB0432;
-        color: #FFF;
-
-        .earnings {
-            .flex(1);
-
-            .item {
-                font-size: 26px/2 + 2;
-
-                &.yesterday {
-                    margin-bottom: 36px/2;
-
-                    .name {
-                        display: block;
-                    }
-
-                    .value {
-                        display: block;
-                        font-size: 60px/2 + 2;
-                    }
-                }
-            }
-        }
-
-        .invest-history-link {
-            .flex(none);
-
-            margin-left: 10px;
-
-            a {
-                font-size: 22px/2 + 2;
-                color: #FFF;
-            }
-        }
-    }
-
-    .fund {
-        margin-bottom: 20px/2;
-        padding: 30px/2 0;
-        background-color: #FFF;
-
-        .flex-display(stretch; space-between);
-
-        .item {
-            border-left: 1px solid #D8D8D8;
-            padding-left: 50px/2;
-
-            .flex(1);
 
             .name {
-                margin-bottom: 14px/2;
-                font-size: 26px/2 + 2;
-                color: #333;
+                display: inline-block;
+                vertical-align: -2px;
+                margin-right: 10px;
+                min-width: 5em;
+                font-size: 28px/2 + 2;
+                color: #777;
             }
 
             .value {
-                font-size: 38px/2 + 2;
-                color: #EB0432;
+                font-size: 24px/2 + 2;
+                color: #999;
+
+                .num {
+                    color: #FF7200;
+                }
             }
 
-            &:first-child {
-                border-left: 0;
+            .glyphicon {
+                color: #999;
             }
+
+            .btn {
+                margin-top: -4px;
+                padding-left: 20px;
+                padding-right: 20px;
+                border-radius: 999px;
+                font-size: 24px/2 + 2;
+                line-height: 1;
+            }
+        }
+
+        > a {
+            display: block;
+            color: #777;
         }
     }
 
-    .account {
-        margin-bottom: 10px;
-        padding-bottom: 30px/2;
-        background-color: #FFF;
+    .info-list {
+    }
 
-        .balance {
-            padding: 20px/2 28px/2 20px/2 50px/2;
-            font-size: 14px;
-            color: #333;
+    .links {
+    }
 
-            .flex-display(center; space-between);
+    section.action {
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
 
-            .item {
-                .flex(1);
-
-                .name {
-                }
-
-                .value {
-                    font-size: 38px/2 + 2;
-                }
-            }
-
-            > .glyphicon {
-                margin-left: 10px;
-                font-size: 18px;
-                color: #9B9B9B;
-
-                .flex(none);
-            }
+    .btn {
+        &-withdraw {
+            .button-variant(#FF7200; #FFF; #FF7200);
         }
 
-        .action {
-            padding: 0 28px/2 0 32px/2;
+        &-recharge {
+            .button-variant(@color-theme-main; #FFF; @color-theme-main);
+        }
 
-            .flex-display(center; space-between);
-
-            .item {
-                margin-left: 24px/2;
-
-                .flex(1);
-
-                .btn {
-                    font-size: 30px/2 + 2;
-
-                    &-primary {
-                        .button-variant(#FFF; #EB0432; #EB0432);
-                    }
-
-                    &-default {
-                        .button-variant(#333; #EEE; #E5E5E5);
-                    }
-                }
-
-                &:first-child {
-                    margin-left: 0;
-                }
-            }
+        &-logout {
+            .button-variant(#FFF; #FF7200; #FF7200);
         }
     }
 }

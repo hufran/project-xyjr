@@ -1,22 +1,25 @@
 
-do (angular) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'DashboardCtrl',
 
-        _.ai '            @api, @user, @$scope, @$rootScope, @$window, @$location', class
-            constructor: (@api, @user, @$scope, @$rootScope, @$window, @$location) ->
+        _.ai '            @api, @user, @$scope, @$window, @$location', class
+            constructor: (@api, @user, @$scope, @$window, @$location) ->
 
                 @$window.scrollTo 0, 0
 
+                invest_interest = @user.fund.investInterestAmount
+
+                due = @user.fund.dueInAmount
+                frozen = @user.fund.frozenAmount
+                available = @user.fund.availableAmount
+
+                total = due + frozen + available
+
                 @$scope.fund = {
-                    invest_interest: @user.fund.investInterestAmount
-                    current_yield: @user.fund.currentYield
-
-                    due: @user.fund.investingInterestAmount
-                    frozen: @user.fund.frozenAmount
-                    available: @user.fund.availableAmount
-
-                    total: @user.fund.investingPrincipalAmount
+                    invest_interest
+                    available
+                    total
                 }
 
                 # prefetch following API calls for getting out from cache directly later on
