@@ -1270,6 +1270,71 @@ a {
 }
 
 /*=============================================================================
+                                              [Router] [Dashboard] Total Assets
+----*/
+
+#dashboard-total-assets {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    > section.detail {
+        margin-bottom: 100px;
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        padding: 0 15px;
+        background-color: #FFF;
+
+        .info {
+            .flex-display(center; space-between);
+
+            padding: 8px 35px;
+            font-size: 30px/2 + 1;
+            line-height: 1.4;
+
+            .name {
+                .flex(none);
+
+                margin-right: 10px;
+                color: #777;
+            }
+
+            .value {
+                .flex(1);
+
+                text-align: right;
+                color: #FF7200;
+            }
+
+            &.total {
+                padding-top: 14px;
+                padding-bottom: 20px;
+            }
+
+            &-list {
+                border-bottom: 1px solid #E6E6E6;
+                padding: 13px 0 3px;
+
+                > :last-child {
+                    position: relative;
+
+                    &:before {
+                        content: "+";
+                        position: absolute;
+                        left: 0;
+                        top: 2px;
+                        font-size: 28px;
+                        line-height: 1;
+                        color: #D9D9D9;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
                                                     [Router] [Dashboard] Invest
 ----*/
 

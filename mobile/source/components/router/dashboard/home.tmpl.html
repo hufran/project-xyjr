@@ -34,11 +34,12 @@
             <a class="btn btn-sm btn-recharge pull-right" href="dashboard/recharge">充值</a>
         </div>
 
-        <div class="item">
+        <a ng-href="dashboard/total-assets" class="item">
             <img width="17" src="assets/image/dashboard-total-icon.png">
             <span class="name">总资产</span>
             <span class="value">&yen; {{ fund.total | number }}</span>
-        </div>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
 
         <a ng-href="" class="item">
             <img width="17" src="assets/image/dashboard-card-icon.png">
