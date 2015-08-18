@@ -63,6 +63,7 @@ do (_, angular, moment, Array) ->
                             investingPrincipalAmount
                             investingInterestAmount
                             currentYield
+                            investFrozenAmount
                         '
 
                         deferred.resolve @user.ready true

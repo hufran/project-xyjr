@@ -74,6 +74,20 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
+                    .when '/dashboard/total-assets', {
+                        controller: 'TotalAssetsCtrl as self'
+                        templateUrl: 'components/router/dashboard/total-assets.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/total-assets'
+                                        do $q.reject
+                    }
+
                     .when '/dashboard/payment/register', {
                         controller: 'PaymentUmpRegisterCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/ump/payment-ump-register.tmpl.html'
