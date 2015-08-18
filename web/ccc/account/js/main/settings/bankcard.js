@@ -13,12 +13,16 @@ if (CC.user.account) {
     CC.user.account.Faccount = utils.bankAccount(CC.user.account.account);
 }
 
+var banksabled = _.filter(CC.user.bankCards, function (r) {
+    return r.deleted === false;
+});
+
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/account/partials/settings/bankcard.html'),
 
     data: {
-        status: CC.user.bankCards.length? 1 : 0,
+        status: banksabled.length? 1 : 0,
         payment: CC.user.name ? true : false,
         banks: banks,
         msg: {

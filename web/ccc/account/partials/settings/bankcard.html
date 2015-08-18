@@ -84,14 +84,16 @@
 <div class="binded-card-wrapper">
     <!--一张银行卡-->
     {{#each bankAccount}}
-    <div class="bank-card">
-        <div class="card-img {{account.bank}}">
-        </div>
+        {{#if !deleted}}
+            <div class="bank-card">
+                <div class="card-img {{account.bank}}">
+                </div>
 
-        <div class="card-num">
-            {{account.account}}
-        </div>
-    </div>
+                <div class="card-num">
+                    {{account.account}}
+                </div>
+            </div>
+        {{/if}}
     {{/each}}
     <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit">
         <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
