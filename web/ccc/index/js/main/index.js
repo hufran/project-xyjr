@@ -21,7 +21,7 @@ $carousel
 IndexService.getLoanSummary(function (list) {
 
      for(var i=0;i<list.length;i++){
-        list[i].method = i18n.enums.RepaymentMethod[list[i].method];
+        list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
     }
     var investRactive = new Ractive({
         el: ".productList",
@@ -55,7 +55,6 @@ IndexService.getLoanSummary(function (list) {
     ininconut();
 
 });
-
 
 
 function ininconut () {

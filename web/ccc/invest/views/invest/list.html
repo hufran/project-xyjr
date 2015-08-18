@@ -15,12 +15,13 @@
     <div class="s-content u-pos-r-center">
         <p class="title"><a href="/index">首页</a>>投资列表</p>
         <div class="investBox">
+<!--
             <p class="investBoxTitle">我要投资</p>
             <p class="investBoxNew">每天固定时间发布新项目，首次投资可前往“<a href="">新手专区</a>”投资新手专享项目</p>
+-->
 <!--            {{JSON.stringify(products)}}-->
              <div class="no-warry-ul">
                  {{#products:num}}
-                 
                  <div class="no-warry" data-product="{{data.productKey}}">
                      <div class="no-warry-left">
                           {{#if num===0}}<img src="/ccc/invest/img/nowarry.png"/>{{elseif num===1}}<img src="/ccc/invest/img/stock.png"/>{{else}}<img src="/ccc/invest/img/interest.png"/>{{/if}}
