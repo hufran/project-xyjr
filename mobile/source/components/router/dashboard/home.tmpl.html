@@ -3,78 +3,70 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" href="list">
+        <a class="col-xs-3 back" href="./">
             <param class="glyphicon glyphicon-menu-left">
         </a>
-        <span class="col-xs-6 title">
-            你好，{{ self.user.info.name || self.user.info.mobile }}
-        </span>
-        <span class="col-xs-3 actions" ng-click="self.logout()"><small>退出</small></span>
+        <span class="col-xs-6 title">我的账户</span>
+        <span class="col-xs-3">&nbsp;</span>
     </div>
     </nav>
 
-    <section class="invite">
-        <a href="dashboard/invite" class="link">
-            <div class="desc">
-                <img height="16" src="assets/image/cash-gift-icon.png">
-                邀请好友 <small>邀请成功，双方各得500元理财金</small>
-            </div>
-            <param class="glyphicon glyphicon-menu-right">
-        </a>
-    </section>
+    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
 
-    <section class="masthead">
-        <div class="earnings">
-            <div class="item yesterday">
-                <span class="name">昨日收益(元)</span>
-                <span class="value">{{ fund.current_yield | number }}</span>
-            </div>
-
-            <div class="item">
-                <span class="name">累计收益(元): </span>
-                <span class="value">{{ fund.invest_interest | number }}</span>
-            </div>
-        </div>
-
-        <div class="invest-history-link">
-            <a href="dashboard/invest">
-                查看交易记录<param class="glyphicon glyphicon-menu-right">
-            </a>
-        </div>
-    </section>
-
-    <section class="fund">
+    <section class="c-list-panel info-list">
         <div class="item">
-            <div class="name">在投资产(元)</div>
-            <div class="value">{{ fund.total | number }}</div>
+            <img class="user-icon" width="14" src="assets/image/dashboard-user-icon.png">
+            <span class="name">账户</span>
+            <span class="value">{{ self.user.info.name || self.user.info.loginName || self.user.info.mobile }}</span>
         </div>
 
         <div class="item">
-            <div class="name">预期总收益(元)</div>
-            <div class="value">{{ fund.due | number }}</div>
+            <img width="17" src="assets/image/dashboard-profit-icon.png">
+            <span class="name">累计收益</span>
+            <span class="value">&yen; {{ fund.invest_interest | number }}</span>
+            <a class="btn btn-sm btn-withdraw pull-right" href="dashboard/withdraw">提现</a>
         </div>
+
+        <div class="item">
+            <img width="17" src="assets/image/dashboard-available-icon.png">
+            <span class="name">可用余额</span>
+            <span class="value">&yen; {{ fund.available | number }}</span>
+            <a class="btn btn-sm btn-recharge pull-right" href="dashboard/recharge">充值</a>
+        </div>
+
+        <div class="item">
+            <img width="17" src="assets/image/dashboard-total-icon.png">
+            <span class="name">总资产</span>
+            <span class="value">&yen; {{ fund.total | number }}</span>
+        </div>
+
+        <a ng-href="" class="item">
+            <img width="17" src="assets/image/dashboard-card-icon.png">
+            <span class="name">我的银行卡</span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
     </section>
 
-    <section class="account">
-        <a href="dashboard/funds">
-            <div class="balance">
-                <div class="item">
-                    <div class="name">账户余额(元)</div>
-                    <div class="value">{{ fund.available | number }}</div>
-                </div>
-
-                <param class="glyphicon glyphicon-menu-right">
-            </div>
+    <section class="c-list-panel links">
+        <a ng-href="" class="item">
+            <img width="17" src="assets/image/dashboard-integration-icon.png">
+            <span class="name">我的积分</span>
+            <span class="value" ng-if="">积分</span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
         </a>
 
-        <div class="action">
-            <div class="item">
-                <a class="btn btn-block btn-primary" href="dashboard/recharge">充值</a>
-            </div>
-            <div class="item">
-                <a class="btn btn-block btn-default" href="dashboard/withdraw">提现</a>
-            </div>
-        </div>
+        <a ng-href="" class="item">
+            <img class="coupon-icon" width="15" src="assets/image/dashboard-coupon-icon.png">
+            <span class="name">我的红包</span>
+            <span class="value" ng-if=""><span class="num"></span>个可用红包</span>
+            <param class="glyphicon glyphicon-menu-right pull-right">
+        </a>
+    </section>
+
+    <section class="container action">
+        <button class="btn btn-block btn-lg btn-logout"
+                ng-click="self.logout()"
+        >退出登录</button>
     </section>
 
 </div>

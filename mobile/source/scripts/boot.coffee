@@ -49,6 +49,17 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/help/help.tmpl.html'
                     }
 
+                    .when '/announcement', {
+                        controller: 'AnnouncementCtrl as self'
+                        templateUrl: 'components/router/announcement/announcement.tmpl.html'
+                        resolve:
+                            data: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.get_announcement().catch ->
+                                        $location.path '/'
+                                        do $q.reject
+                    }
+
                     .when '/dashboard', {
                         controller: 'DashboardCtrl as self'
                         templateUrl: 'components/router/dashboard/home.tmpl.html'

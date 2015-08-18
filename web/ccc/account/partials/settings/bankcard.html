@@ -74,51 +74,7 @@
                 <p>3、请如实填写您银行卡的开户省市、开户支行信息，如果您不确定开户支行名称，建议您拨打银行“客户服务热线”进行电话咨询。 </p>
                 <p>4、奇乐融目前只支持绑定一张银行卡，认证支付充值提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。 </p>
             </div>
-            <!-- <div class="ccc-banks-wrap">
-                <div class="banks-wrap-offset">
-                    {{#each banks}}
-                    <div class="bank" on-click="selectBank">
-                        <div class="bank-img" style="background-position: 10px -{{imgPos+3}}px" data-code="{{code}}"
-                        data-name="{{name}}"></div>
-                    </div>
-                    {{/each}}
-                </div>
-                <div class="space space-30"></div>
-            </div> -->
         </div>
-
-        <!-- <div class="do-bind-card">
-            <div class="row row-1">
-                <div class="form-title col-md-6">银行卡号码（该银行卡仅于提现时使用）</div>
-            </div>
-
-
-            <div class="row row-2">
-                <div class="col-md-6">
-                    <input class="form-control" type="text" name="cardId" value="{{cardId}}" placeholder="请在此输入您的借记卡（储蓄卡）银行卡号" />
-                    <input type="hidden" name="bank" value="{{bank}}" />
-                    <input type="hidden" name="option" value="0" />
-                </div>
-                <div class="col-md-4">
-                    <p class="help-block text-danger">
-                        {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}}
-                        {{#msg.CARD_NULL}}请输入银行卡号{{/msg.CARD_NULL}}
-                        {{#msg.CARD_INVALID}}银行卡号有误{{/msg.CARD_INVALID}}
-            	    </p>
-                </div>
-            </div>
-
-            <div class="row row-3">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-large btn-success">确认绑定</button>
-                </div>
-            </div>
-            <div class="space space-10"></div>
-            <div class="row row-4">
-                <div class="col-md-12 notice">重要提示：下个页面请不要勾选“同意开通借记卡快捷支付”，以免出现绑定失败的情况！</div>
-            </div>
-            <div class="space space-30"></div>
-        </div> -->
     </form>
 </div>
 {{/if}}
@@ -128,17 +84,21 @@
 <div class="binded-card-wrapper">
     <!--一张银行卡-->
     {{#each bankAccount}}
-    <div class="bank-card">
-        <div class="card-img {{account.bank}}">
-        </div>
+        {{#if !deleted}}
+            <div class="bank-card">
+                <div class="card-img {{account.bank}}">
+                </div>
 
-        <div class="card-num">
-            {{account.account}}
-        </div>
-    </div>
+                <div class="card-num">
+                    {{account.account}}
+                </div>
+            </div>
+        {{/if}}
     {{/each}}
-
-<!--    <button class="btn btn-sm btn-success btn-change-card" on-click="updateBank">更换银行卡</button>-->
+    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit">
+        <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
+        <button type="submit" class="btn btn-sm btn-success btn-change-card">删除银行卡</button>
+    </form>
 </div>
 {{/if}}
 {{/if}}

@@ -7,7 +7,8 @@ module.exports = function (router) {
 	// post绑卡单独处理
 	_.each({
 	    '/bindCard': '/bindCard',
-	    '/withdraw': '/withdraw'
+	    '/withdraw': '/withdraw',
+	    '/deleteCard': '/deleteCard'
 	}, function (api, fe) {
 	    router.post('/lianlianpay' + fe, ccBody,
 	        function (req, res, next) {
@@ -22,7 +23,8 @@ module.exports = function (router) {
 	                .send(req.body)
 	                .end()
 	                .then(function (r) {
-	                	
+	                	console.log(r.body);
+	                	console.log("#############");
 	                    if (r.body.success) {
                         	var data = {
                             	success: r.body.success,
