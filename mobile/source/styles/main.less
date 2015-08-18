@@ -1456,29 +1456,19 @@ a {
 #dashboard-recharge {
 
     .balance {
-        .flex-display(center; space-between);
+        #gradient .vertical(#3C9ED5; #78CEFF);
 
-        margin-bottom: 20px/2;
-        padding-top: 9px;
-        padding-bottom: 9px;
-        background-color: #FFF;
-        color: #333;
+        padding-top: 15px;
+        padding-bottom: 7px;
+        text-align: center;
+        color: #FFF;
 
         .labels {
-            .flex(none);
-
-            margin-right: 10px;
-            font-size: 30px/2 + 2;
-
-            &:after {
-                content: ":";
-            }
+            font-size: 24px/2 + 2;
         }
 
         .amount {
-            .flex(1);
-
-            font-size: 36px/2 + 2;
+            font-size: 60px/2 + 2;
         }
     }
 
@@ -1510,6 +1500,25 @@ a {
                     font-size: 26px/2 + 2;
                 }
             }
+        }
+    }
+
+    .explain {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: #999;
+
+        h5 {
+            margin: 0 0 5px;
+            font-size: 24px/2 + 1;
+
+            &:after {
+                content: ":";
+            }
+        }
+
+        p {
+            font-size: 24px/2 + 2;
         }
     }
 }
