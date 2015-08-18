@@ -10,7 +10,7 @@
     </nav>
 
     <section class="container balance">
-        <div class="labels">账户余额 (元)</div>
+        <div class="labels">账户可用余额 (元)</div>
         <div class="amount">{{ available_amount | number }}</div>
     </section>
 
@@ -74,7 +74,7 @@
                     ng-if="self.user.has_payment_account && self.user.has_bank_card"
                     ng-disabled="form.$invalid || amount <= 0 || amount > available_amount"
             >
-                <span ng-if="!(amount > available_amount)">前去提现</span>
+                <span ng-if="!(amount > available_amount)">确定提现</span>
                 <span ng-if="amount > available_amount">余额不足</span>
             </button>
 
@@ -94,6 +94,10 @@
         </p>
     </form>
 
+    <section class="container explain">
+        <h5>提现说明</h5>
+        <p>该卡在银行的预留手机号为在银行登记的手机号码，或使用其他银行卡进行充值。该卡在银行的预留手机号为在银行登记的手机号码，银行的预留手机号，使用其他银行卡进行充值。</p>
+    </section>
 </div>
 
 
