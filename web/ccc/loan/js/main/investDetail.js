@@ -237,10 +237,18 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
        investRactive.set('inputNum',num);
     });
     
-    investRactive.on('maxNumber', function (e) {
-       investRactive.set('inputNum',CC.loan.rule.max);
+ 
+   investRactive.on('maxNumber', function (e) {
+	if(CC.user.availableAmount < CC.loan.rule.min){
+          investRactive.set('inputNum',CC.loan.rule.min); 
+       }
+     if(CC.user.availableAmount>CC.loan.rule.max) {
+          investRactive.set('inputNum',CC.loan.rule.max); 
+     }  
+else{
+       investRactive.set('inputNum',Math.floor(CC.user.availableAmount));
+}
     });
-
     
     
     investRactive.on("invest-submit", function (e) {

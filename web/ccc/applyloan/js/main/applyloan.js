@@ -179,6 +179,7 @@ applyLoan.on('changeCaptcha', function () {
 
 $('#sendApplyloan').click(function(){
     if(!v.form()) {
+        $('.loan-limit').addClass('error');
         return;
       } 
     var loan = {};
