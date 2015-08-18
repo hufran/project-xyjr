@@ -44,34 +44,24 @@ var ractive = new Ractive({
 });
 
 ractive.on("bind-card-submit", function () {
-    // var bank = this.get('bank');
-    // //var cardId = this.get('cardId');
-    // var cardId = $.trim($(this.el)
-    //     .find('[name=cardId]')
-    //     .val());
-
-    // if (!bank) {
-    //     this.set('msg', {
-    //         BANK_NULL: true,
-    //         CARD_NULL: false,
-    //         CARD_INVALID: false
-    //     });
-    //     return false;
-    // }
-
-    // if (!cardId) {
-    //     this.set('msg', {
-    //         CARD_NULL: true,
-    //         BANK_NULL: false,
-    //         CARD_INVALID: false
-    //     });
-    //     return false;
-    // }
-
     Confirm.create({
         msg: '绑卡是否成功？',
         okText: '绑卡成功',
         cancelText: '绑卡失败',
+        ok: function () {
+            window.location.reload();
+        },
+        cancel: function () {
+            window.location.reload();
+        }
+    });
+});
+
+ractive.on("delete-card-submit", function () {
+    Confirm.create({
+        msg: '删卡是否成功？',
+        okText: '删卡成功',
+        cancelText: '删卡失败',
         ok: function () {
             window.location.reload();
         },
