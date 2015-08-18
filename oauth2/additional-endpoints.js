@@ -14,6 +14,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/lianlianpay/provinceCityCodes/:provinceName', auth.user());
     router.post('/api/v2/lianlianpay/authenticateUser/:userId', auth.user());
     router.post('/api/v2/lianlianpay/withdrawReturn', auth.pass());
+    router.post('/api/v2/lianlianpay/deleteCard/:userId', auth.user());
+
     router.post('/api/v2/loanIntent/addNew', auth.pass());
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user()); 
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
