@@ -281,10 +281,12 @@
   text-align: center;
 }
 .binded-card-wrapper .btn-change-card {
-  background-color: #7ec123;
+  background-color: #007ec5;
   color: #fff;
   display: block;
   margin: 25px auto 0;
+    border: none;
+    margin-bottom: 30px;
 }
 .nosecret-agreement-wrapper .form-helper {
   padding-left: 20px;
