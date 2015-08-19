@@ -88,9 +88,7 @@ ractive.loadData = function (obj) {
             }
 
             var list = res.results;
-            if (obj.preset) {
-                list.forEach(obj.preset);
-            }
+           list=formatData(list);
             // set first one data
             pageOneData = list;
             ractive.set('list', list);
@@ -115,8 +113,10 @@ ractive.loadData = function (obj) {
 loadInitData(0);
 
 ractive.on('do-filter', function () { // 开始筛选数据
+    var dateFrom=moment($('.date-from-picker').find("input").val()).unix() * 1000;
+    var dateTo=moment($('.date-to-picker').find("input").val()).unix() * 1000+ 24*60*60*1000;
     ractive.loadData({
-         api:'/api/v2/points/user/'+CC.user.id+'/listByPeroid/'+moment(this.get('dateFrom')).unix() * 1000+'/'+moment(this.get('dateTo')).unix() * 1000 + 1000*60*60*24,
+         api:'/api/v2/points/user/'+CC.user.id+'/listByPeroid/'+moment(dateFrom).format('YYYY-MM-DD HH:mm')+'/'+moment(dateTo).format('YYYY-MM-DD HH:mm'),
             params:{
            
             }   
@@ -203,14 +203,19 @@ function jsonToParams(params) {
     return str;
 }
 
-function formatData(index, data) {
-    console.log(data);
+function formatData(list) {
+   var statusMap={
+       VALID:'有效',
+       INVALID:'无效'
+   }
 
-    for (var i = 0, l = data.results.length; i < l; i++) {
-       
+    for (var i = 0; i < list.length; i++) {
+         var statue=list[i].status;
+        list[i].timeRecord=moment(list[i].timeRecord).format('YYYY-MM-DD HH:mm:ss');
+         list[i].status=statusMap[statue];
     }
 
-    return data;
+    return list;
 }
 
 function isNumber (t) {
