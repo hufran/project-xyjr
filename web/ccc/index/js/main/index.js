@@ -235,6 +235,10 @@ $(' .icon-group1').mouseenter(function(){
     $(this).children('.company-intro').hide(200);
 })
 
+$('.btn-index').click(function(){
+	 $('.btn-index').css({backgroundColor:'#df6502'});
+})
+
 //require('ccc/index/js/main/ss.js')
 //
 //$(".loanWrapper").hover(function(){$(this).css("border-color","#A0C0EB");},function(){$(this).css("border-color","#d8d8d8")});
