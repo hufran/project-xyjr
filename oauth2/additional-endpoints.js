@@ -32,6 +32,6 @@ module.exports = function (router, auth) {
     router.get('/api/v2/points/user/:userId/getTotalPoints', auth.user());
     router.get('/api/v2/points/user/:userId/listByPeroid/:from/:to', auth.user());
     router.get('/api/v2/points/user/:userId/listAll', auth.user());
-    router.get('/api/v2/points/user/:userId/listAdds ', auth.user());
+    router.get('/api/v2/points/user/:userId/listAdds', auth.user());
     router.get('/api/v2/points/user/:userId/listReduced', auth.user());
 };
