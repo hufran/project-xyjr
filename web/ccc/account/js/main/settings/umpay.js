@@ -21,7 +21,6 @@ var ractive = new Ractive({
         getPwdReturn: false
     },
     oninit: function (){
-
         accountService.getUserInfo(function (res) {
             ractive.set('authenticateInfo', {
                 name: res.user.name,
