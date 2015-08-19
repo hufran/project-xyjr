@@ -360,8 +360,6 @@ module.exports = function (router) {
                 res.expose(user, 'user');
                 next()
             });
-
-
     });
 
 
