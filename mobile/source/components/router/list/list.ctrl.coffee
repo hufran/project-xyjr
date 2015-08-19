@@ -3,10 +3,12 @@ do (_, angular, moment) ->
 
     angular.module('controller').controller 'ListCtrl',
 
-        _.ai '            @api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$routeParams', class
-            constructor: (@api, @user, @$scope, @$rootScope, @$window, map_loan_summary, @$routeParams) ->
+        _.ai '            @api, @user, @$scope, @$rootScope, @$location, @$window, map_loan_summary, @$routeParams', class
+            constructor: (@api, @user, @$scope, @$rootScope, @$location, @$window, map_loan_summary, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
+
+                @$scope.page_path = @$location.path()[1..]
 
                 filter_type = @$routeParams.type
 

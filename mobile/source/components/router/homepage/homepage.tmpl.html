@@ -45,7 +45,7 @@
         <div class="item">
             <ul class="list-unstyled u-off-margin-bottom loan-list">
                 <li ng-repeat="loan in data | limitTo: 2">
-                    <a ng-href="loan/{{ loan.id }}">
+                    <a ng-href="loan/{{ loan.id }}?go_back={{ page_path }}">
                         <h4 class="title"
                             ng-class="'color-' + (type | lowercase) + '-text'"
                         >{{ loan.title }}</h4>
