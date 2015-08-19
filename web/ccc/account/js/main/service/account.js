@@ -98,5 +98,12 @@ exports.accountService = {
             next(r);
             return r;
         });
+    },
+    getTotalInters:function(next){
+         request('GET', '/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     }
 };

@@ -21,7 +21,6 @@ var pageOneData = {};
 var ractive = new Ractive({
     el: $('.integration-ractive-container'),
     template: template,
-
     data: {
         tabIndex: 0,
         selectedIndex: 0, // 类别的selectedIndex
@@ -100,11 +99,29 @@ ractive.loadData = function (obj) {
 };
 
 
+//ractive.getTotalintegrations = function () {
+//   
+//    request.get('/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
+//        .end()
+//        .then(function (r) {
+//            ractive.set('totalInters', r.body);
+//       
+//        });
+//};
+//ractive.getTotalintegrations();
+
+
 // 先加载一遍数据
 loadInitData(0);
 
-// tab1,对ajax数据 set到ractive之前的操作
-
+ractive.on('do-filter', function () { // 开始筛选数据
+    ractive.loadData({
+         api:'/api/v2/points/user/'+CC.user.id+'/listByPeroid/'+moment(this.get('dateFrom')).unix() * 1000+'/'+moment(this.get('dateTo')).unix() * 1000 + 1000*60*60*24,
+            params:{
+           
+            }   
+    });
+});
 
 
 function loadInitData(index) {
@@ -113,10 +130,7 @@ function loadInitData(index) {
         ractive.loadData({
             api:'/api/v2/points/user/'+CC.user.id+'/listAll',
             params:{
-                 startDate: moment(ractive.get('dateFrom'))
-                .unix() * 1000,
-            endDate: moment(ractive.get('dateTo'))
-                .unix() * 1000 + 1000*60*60*24 // 筛选时间加一天
+               
            
             }
         });

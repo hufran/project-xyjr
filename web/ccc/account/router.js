@@ -317,9 +317,12 @@ module.exports = function (router) {
 
     // 对提现进行限制,如果是企业用户,显示企业充值
     router.get('/account/recharge', function (req, res, next) {
+        var banks = _.filter(res.locals.user.bankCards, function (r) {
+            return r.deleted === false;
+        });
         if (!res.locals.user.name) {
             res.redirect('/account/umpay');
-        } else if (!res.locals.user.bankCards.length) {
+        } else if (!banks.length) {
             res.redirect('/account/bankcard')
         } else {
             next();
@@ -331,7 +334,10 @@ module.exports = function (router) {
         if (!res.locals.user.name) {
             res.redirect('/account/umpay');
         } else {
-            if (!res.locals.user.bankCards.length) {
+            var banks = _.filter(res.locals.user.bankCards, function (r) {
+                return r.deleted === false;
+            });
+            if (!banks.length) {
                 res.redirect('/account/bankcard');
             } else {
                 next();
@@ -354,8 +360,6 @@ module.exports = function (router) {
                 res.expose(user, 'user');
                 next()
             });
-
-
     });
 
 
