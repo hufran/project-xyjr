@@ -84,18 +84,31 @@ ractive.on("bind-card-submit", function () {
     });
 });
 
-ractive.on("delete-card-submit", function () {
+ractive.on("delete-card-submit", function (e) {
+    e.original.preventDefault();
     Confirm.create({
-        msg: '删卡是否成功？',
-        okText: '删卡成功',
-        cancelText: '删卡失败',
+        msg: '请先确认当前的投资待还本金全部结清，再进行解绑银行卡！',
+        okText: '确定解绑',
+        cancelText: '取消解绑',
         ok: function () {
-            window.location.reload();
+            $('.btn-confirm-cancel').trigger('click');
+            Confirm.create({
+                msg: '删卡是否成功？',
+                okText: '删卡成功',
+                cancelText: '删卡失败',
+                ok: function () {
+                    window.location.reload();
+                },
+                cancel: function () {
+                    window.location.reload();
+                }
+            });
+            $('form').submit();
         },
         cancel: function () {
-            window.location.reload();
         }
     });
+    
 });
 
 ractive.on('selectPro', function () {

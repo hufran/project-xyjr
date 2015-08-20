@@ -1,6 +1,7 @@
 #announce-container {
     width: 1060px;
 }
+
 #main-container{
     background: #fff;
 }
@@ -237,7 +238,7 @@
 }
 .banner-account-2{
     font-size: 36px;
-    color:#ff6c08;
+    color:#ff7200;
      line-height: 36px;  
 }
 .banner-account-3{
@@ -253,8 +254,9 @@
 }
 .banner-account2{
      margin-bottom: 20px;
-    font-size: 16px;
+    font-size: 20px;
     color:#fff;
+	font-weight: normal;
 }
 .bannerLogin{
     color:#fff;
@@ -274,7 +276,7 @@
 }
 .banner-account button{
     width:250px;
-    height:42px;
+    height:44px;
     font-size: 18px;
     color:#ffffff;
     background: #ff6c08;
@@ -416,8 +418,9 @@
     font-size: 14px;
     line-height: 14px;
     text-align: center;
-    width: 230px;
+    width: 120px;
     line-height: 20px;
+	margin: auto;
 }
 .strengthProtect img{
     margin-left: 56px;
@@ -452,6 +455,16 @@
     color: #4a4a4a;
     line-height: 20px;
 }
+
+.productBoxTitle .titleRight a{
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.s-split-view ul li a{
+	font-size: 14px;
+}
+
 /*表格样式*/
 .s-list-table{
     background: #f5f4f9;

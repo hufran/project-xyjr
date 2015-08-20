@@ -11,18 +11,28 @@ $('ul.info li').tooltip({
 });
 
 accountService.getUserInfo(function (res) {
-    
+
     if (!res.user) {
         res.user = {};
         res.user.name = '';
     }
-    
+
     new Ractive({
         el: ".username",
         template: '{{#if !name}}{{user.loginName}}{{else}}{{name}}{{/if}}',
         data: {
             name: res.user.name
         }
+    });
+
+    accountService.getTotalInters(function (res) {
+        new Ractive({
+            el: ".integration",
+            template: '{{#if !interTotal}}0{{else}}{{interTotal}}{{/if}}',
+            data: {
+                interTotal: res
+            }
+        });
     });
 
     if (!res.user.name) {

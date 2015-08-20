@@ -90,21 +90,30 @@
 <div class="binded-card-wrapper">
     <!--一张银行卡-->
     {{#each bankAccount}}
-        {{#if !deleted}}
-            <div class="bank-card">
-                <div class="card-img {{account.bank}}">
-                </div>
-
-                <div class="card-num">
-                    {{account.account.substr(0,4)}}-xxxx-xxxx-xxxx-{{account.account.substr(-4,4)}}
-                </div>
+        <div class="bank-card">
+            <div class="card-img {{account.bank}}">
             </div>
-        {{/if}}
+
+            <div class="card-num">
+                {{account.account.substr(0,4)}}-xxxx-xxxx-xxxx-{{account.account.substr(-4,4)}}
+            </div>
+        </div>
     {{/each}}
     <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit">
         <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
         <button type="submit" class="btn btn-sm btn-success btn-change-card">删除银行卡</button>
     </form>
+    <p style="color:red;">解绑服务说明 </p>
+<p>奇乐融只支持绑定一张银行卡，为保障您的资金安全，解绑时请先确定账户情况。如遇问题请联系客服，电话：400-872-7676。</p>
+</div>
+<div class="form-group">
+    <p>1、为保障您的资金安全，绑卡前请先进行实名认证。 </p>
+    <p>2、您所绑定的银行卡须是您本人自己的借记卡，奇乐融严禁利用信用卡套现行为。 </p>
+    <p>3、请如实填写您银行卡的开户省市、开户支行信息，如果您不确定开户支行名称，建议您拨打银行“客户服务热线”进行电话咨询。 </p>
+    <p>4、奇乐融目前只支持绑定一张银行卡，认证支付充值提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。 </p>
+    <br/>
+    解绑服务说明：
+    <p>奇乐融只支持用户绑定一张借记卡，为保障您的资金安全，解绑时请先确定账户在投交易情况。若仍有未结清的业务，不能完成解绑银行卡。如遇问题请联系客服，电话：400-872-7676。
 </div>
 {{/if}}
 {{/if}}
