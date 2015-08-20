@@ -318,8 +318,8 @@ p.login-error {
 p.login-error {
   text-align: left!important;
   width: 100%;
-  padding-top: 15px;
   color: red;
+    float: left;
 }
 .s-login-window .mdi {
   width: 20px!important;

@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/ccc/global/css/base.css" />
 <link rel="stylesheet" href="/ccc/login/css/style.css">
+<link rel="stylesheet" href="/ccc/global/css/base1.css">
 
 <div id="main-container">
     <p class="navTitle"><a href="/">首页</a> > 用户登录</p>
@@ -7,12 +8,14 @@
     <div class="s-login-view">
         <div class="s-login-window">
             <form id="loginForm" action="/login" method="POST">
-                <p class="login-error"></p>
+                
                 <div class="s-input-wrapper">
+                    <p class="login-error"></p>
                   <div class="lineUser">
+                      
                     <img src="/ccc/login/img/user.png"/>
                     <input type="text" name="loginName" placeholder="用户名/手机号/邮箱" class="loginName"/>
-                      </div>
+                  </div>
                     <div class="lineUser">
                         <img src="/ccc/login/img/lock.png"/>
                     <input type="password" name="password" placeholder="请输入6-16位字符" />

@@ -5,6 +5,7 @@ var registerRactive = new RegisterRactive({
     el: '#register-container',
     template: require('ccc/register/partials/steps.html')
 });
+
 baconflux.store('register', 'success').onValue(function (data) {
     // 注册后自动登录
     request.post('/login/ajax', {
@@ -28,15 +29,10 @@ $("#getSms").on('click',function(){
     console.log('sdfsdf');
 });
 
-
-
 //验证码的图片切换
 $("#refresh-captcha").click(function (event) {
-    console.log("success");
-    var timestamp = new Date() - 0;
-    $.get("/api/v2/register/captcha?timestamp=" + timestamp, function (res) {
-        $("#refresh-captcha").parent().find("img").attr("src", res.captcha);
-    });
+    $(".register-test").val("");
+     
 });
 
 //验证码的北京图片隐藏
