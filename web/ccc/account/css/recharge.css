@@ -77,4 +77,88 @@ ul.dec-li li {
   position: relative;
   left: 0px;
 }
+.rechargeMthod {
+  display: inline-block;
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 2px #ccc solid;
+  text-align: center;
+  font-size: 14px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.current {
+  font-size: 16px;
+  color: #f0ad4e;
+  border-color: #f0ad4e;
+}
+.bankwrap .bankItem {
+  width: 160px;
+  height: 50px;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 40px;
+  text-align: center;
+  margin: 10px 10px 0 0;
+}
+.currentBank {
+  border-width: 2px;
+  border-style: solid;;
+  border-color: #f0ad4e;
+}
+.ABC {
+  background: url(/ccc/global/img/banks/ABCs.png) no-repeat center #fff;
+}
+.BCCB {
+  background: url(/ccc/global/img/banks/BCCB.png) no-repeat center #fff;
+}
+.CCB {
+  background: url(/ccc/global/img/banks/CCBs.png) no-repeat center #fff;
+}
+.CIB {
+  background: url(/ccc/global/img/banks/CIBs.png) no-repeat center #fff;
+}
+.PAB {
+  background: url(/ccc/global/img/banks/PAB.png) no-repeat center #fff;
+}
+.CITIC {
+  background: url(/ccc/global/img/banks/CITIC.png) no-repeat center #fff;
+}
+.CMBC {
+  background: url(/ccc/global/img/banks/CMBCs.png) no-repeat center #fff;
+}
+.CMB {
+  background: url(/ccc/global/img/banks/CMBs.png) no-repeat center #fff;
+}
+.SPDB {
+  background: url(/ccc/global/img/banks/SPDBs.png) no-repeat center #fff;
+}
+.ICBC {
+  background: url(/ccc/global/img/banks/ICBCs.png) no-repeat center #fff;
+}
+.BOCOM {
+  background: url(/ccc/global/img/banks/BOCOMs.png) no-repeat center #fff;
+}
+.CEB {
+  background: url(/ccc/global/img/banks/CEBs.png) no-repeat center #fff;
+}
+.BOC {
+  background: url(/ccc/global/img/banks/BOCs.png) no-repeat center #fff;
+}
+.SRCB {
+  background: url(/ccc/global/img/banks/SRCBs.png) no-repeat center #fff;
+}
+.HXB {
+  background: url(/ccc/global/img/banks/HXBs.png) no-repeat center #fff;
+}
+.HKBEA {
+  background: url(/ccc/global/img/banks/HKBEAs.png) no-repeat center #fff;
+}
+.WZCB {
+  background: url(/ccc/global/img/banks/WZCBs.png) no-repeat center #fff;
+}
+.PSBC {
+  background: url(/ccc/global/img/banks/PSBCs.png) no-repeat center #fff;
+}
 /*# sourceMappingURL=/ccc/account/css/recharge.css.map */

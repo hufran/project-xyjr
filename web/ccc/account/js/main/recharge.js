@@ -1,11 +1,14 @@
 'use strict';
-
+var LLPBANKS = require('ccc/global/js/modules/cccllpBanks');
 require('ccc/global/js/modules/cccTab');
 
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;
+var banks = _.filter(LLPBANKS, function (r) {
+    return r.enable === true;
+});
 
 var ractive = new Ractive({
     el: '.ccc-tab-panels',
@@ -18,7 +21,11 @@ var ractive = new Ractive({
             AMOUNT_NULL: false,
             AMOUNT_INVALID: false
         },
-        amountValue: 10000000
+        isNormal: false,
+        banks: banks,
+        isEnterpriseUser: CC.user.enterprise,
+        amountValue: 10000000,
+        action: '/lianlianpay/onlineBankDeposit'
     },
     oncomplete: function () {
         var self = this;        
@@ -51,7 +58,16 @@ var ractive = new Ractive({
 
             self.set('msg.AMOUNT_INVALID', !self.match($(e.node)
                 .val()));
+
         });
+
+        $(".bankwrap .bankItem").click(function () {
+            $(this)
+                .addClass('currentBank')
+                .siblings('.bankItem')
+                .removeClass('currentBank');
+        });
+
     },
 
     match: function (v) {
@@ -65,10 +81,12 @@ ractive.on('recharge_submit', function (e){
     this.set('msg', {
         BANK_NULL: false,
         AMOUNT_NULL: false,
-        AMOUNT_INVALID: false
+        AMOUNT_INVALID: false,
+        BANKCODE_NULL: false
     });
 
     if (amount === '') {
+        console.log(amount=== '');
         e.original.preventDefault();
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
@@ -78,6 +96,15 @@ ractive.on('recharge_submit', function (e){
         this.set('msg.AMOUNT_INVALID', true);
         this.$amount.focus();
         return false;
+    }
+    if (!this.get('isNormal')) {
+        var code = this.get('bankCode');
+        if (!code) {
+            e.original.preventDefault();
+            this.set('msg.BANKCODE_NULL', true);
+            return false;
+        }
+
     }
 
     Confirm.create({
@@ -91,4 +118,20 @@ ractive.on('recharge_submit', function (e){
             window.location.reload();
         }
     });
+});
+
+ractive.on('changeMethod', function (event) {
+    var type = event.node.getAttribute('data-type');
+    if (type !== 'net') {
+        ractive.set('isNormal', true);
+        ractive.set('action', '/lianlianpay/deposit');
+    } else {
+        ractive.set('isNormal', false);
+        ractive.set('action', '/lianlianpay/onlineBankDeposit');
+    }
+});
+
+ractive.on('selectBank', function (event) {
+    var code = event.node.getAttribute('data-code');
+    this.set('bankCode', code);
 });

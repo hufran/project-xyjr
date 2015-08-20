@@ -75,7 +75,8 @@ module.exports = function (router) {
 	        });
 	});
 	_.each({
-	    '/deposit': '/deposit'
+	    '/deposit': '/deposit',
+	    '/onlineBankDeposit' : '/onlineBankDeposit'
 	}, function (api, fe) {
 	    router.post('/lianlianpay' + fe, ccBody, function (req, res, next) {
 	        log.info({
