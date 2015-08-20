@@ -1126,56 +1126,160 @@ a {
 }
 
 #loan-invest {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-    .c-list-panel {
-        > .item {
-            .flex-display(center; space-between);
+    section.invest-confirm {
+        margin-bottom: 15px;
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        padding: 10px 15px;
+        background-color: #FFF;
 
-            margin-left: 10px;
-            padding: 15px 15px 15px 5px;
-            font-size: 30px/2 + 1;
-            color: #333;
+        .title {
+            margin: 0 0 10px;
+            font-size: 32px/2 + 2;
+        }
 
-            .name,
-            label {
-                .flex(none);
+        .info {
 
-                margin-right: 10px;
-            }
-
-            .value,
-            .input-wrap {
-                .flex(1);
+            .name {
             }
 
             .value {
-                text-align: right;
+                .num {
+                    color: #FF7200;
+                }
             }
 
-            &.title {
-                font-size: 32px/2 + 1;
+            + .info {
+                margin-left: 15px;
             }
 
-            &:before {
-                border-color: #D8D8D8;
+            &.earning {
+                #gradient .vertical(#3C9ED5; #78CEFF);
+
+                margin: 7px -15px;
+                padding: 15px 0 7px;
+                min-height: 87px;
+                text-align: center;
+                color: #FFF;
+
+                .name {
+                    display: block;
+                    font-size: 24px/2 + 2;
+                }
+
+                .value {
+                    display: block;
+                    font-size: 60px/2 + 2;
+                }
+            }
+
+            &.balance {
+                margin: 15px 0;
+                font-size: 28px/2 + 2;
+            }
+
+            &-list {
+                font-size: 24px/2 + 2;
+                color: #4A4A4A;
+            }
+        }
+
+        .invest-input-wrap {
+            position: relative;
+            margin-bottom: 10px;
+
+            .invest-input {
+                border: 1px solid @color-theme-main;
+                border-radius: 999px;
+                text-align: center;
+            }
+
+            .glyphicon {
+                position: absolute;
+                top: 0;
+                padding: 0 20px;
+                font-size: 22px;
+                line-height: 42px;
+                color: @color-theme-main;
+
+                &-minus {
+                    left: 0;
+                }
+
+                &-plus {
+                    right: 0;
+                }
+            }
+        }
+
+        .coupon-wrap {
+            .coupon-tip {
+                line-height: 30px;
+            }
+        }
+
+        .agreement {
+            margin-top: 10px;
+            border-top: 1px solid #E6E6E6;
+            padding-top: 10px;
+
+            label {
+                font-weight: normal;
+                color: #999;
+
+                .pull-left {
+                    margin-right: 5px;
+                }
+
+                .desc {
+                    display: block;
+                    overflow: hidden;
+                }
+            }
+        }
+
+        .btn {
+            &-total {
+                .button-variant(#FFF; #FF7200; #FF7200);
+
+                margin-top: -4px;
+                padding-left: 15px;
+                padding-right: 15px;
+                border-radius: 999px;
+                font-size: 28px/2 + 1;
+                line-height: 1;
             }
         }
     }
 
-    .invest {
-        margin-top: 10px;
-        margin-bottom: 10px;
+    .invest-btn-wrap {
+        margin-bottom: 30px;
+    }
 
-        label {
-            margin-bottom: 0;
-            font-weight: normal;
+    .icon-money {
+        display: inline-block;
+        vertical-align: -2px;
+        background: url("@{path-image}/money-icons.png") no-repeat;
+        background-size: cover;
+        width: 26px/2;
+        height: 32px/2;
+        overflow: hidden;
+
+        &-ltb {
+            background-position: 0 0;
         }
 
-        .input-wrap {
+        &-lxy {
+            background-position: 0 -32px/2;
         }
 
-        .text-primary {
-            color: #EB0432;
+        &-qt {
+            background-position: 0 -64px/2;
         }
     }
 }
