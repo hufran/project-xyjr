@@ -25,6 +25,16 @@ $('ul.info li')
     }
 });
      
+ accountService.getTotalInters(function (res) {
+    new Ractive({
+    el: ".integration",
+    template:'{{#if !interTotal}}0{{else}}{{interTotal}}{{/if}}', 
+    data: {
+       interTotal:res
+    }
+});
+ });
+     
      
      
      
