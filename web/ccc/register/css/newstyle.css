@@ -141,7 +141,7 @@
 .bring-in input {
     width: 146px;
     height: 44px;
-    border: 2px solid #d4d4d5;
+    border: 1px solid #c5c5c5;
     padding-left: 10px;
     float: left;
 }
