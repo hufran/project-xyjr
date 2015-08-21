@@ -15,6 +15,9 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lianlianpay/authenticateUser/:userId', auth.user());
     router.post('/api/v2/lianlianpay/withdrawReturn', auth.pass());
     router.post('/api/v2/lianlianpay/deleteCard/:userId', auth.user());
+    router.post('/api/v2//user/:userId/setPaymentPassword', auth.user());
+    router.post('/api/v2/user/:userId/updatePaymentPassword', auth.user());
+    router.post('/api/v2/user/:userId/resetPaymentPassword', auth.user());
 
     router.post('/api/v2/loanIntent/addNew', auth.pass());
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user()); 
