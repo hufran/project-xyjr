@@ -1363,9 +1363,9 @@
     background: #fff;
 }
 
-#userBlock .calculator button {
+#userBlock .calculator span {
     width: 36px;
-    height: 41px;
+    line-height: 43px;
     border: none;
     background: #eeeeee;
     margin: 0;

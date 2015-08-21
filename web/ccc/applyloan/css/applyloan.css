@@ -170,7 +170,60 @@
 #sendApplyloan {
     background: #007ec5;
 }
+#sendApplyloan{
+    background:#007ec5;
+}
 
-.dialog>div.Dcontent {
-    padding: 13px;
+/*弹框样式*/
+.success-box{
+       display:none;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1111;
+    background-color: white;
+    position: absolute;
+    width: 480px;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    left: 50%;
+    top: 10%;
+    margin-left: -325px;
+}
+.success-title{
+    padding: 0 30px 0 30px;
+    border-bottom: 1px solid #ccc;
+    height: 50px;
+}
+.success-title span{
+    float: left;
+    font-size: 18px;
+    line-height: 50px;
+    color:#4a4a4a;
+}
+.success-title img{
+    float: right;
+    margin-top: 20px;
+}
+.success-soon{
+    text-align: center;
+    font-size: 20px;
+    color:#999;
+    line-height: 60px;
+     border-bottom: 1px solid #ccc;
+}
+.success-btn{
+    width:200px;
+    height:40px;
+    background: #007ec5;
+    color: #fff;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 140px;
+    border: none;
+}
+.success-ok{
+    margin-top: 20px;
+    margin-left: 205px;
 }
