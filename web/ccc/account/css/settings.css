@@ -582,6 +582,7 @@ ul.banks-wrap span.WZCB {
 .userInfo dl dd {
   margin-left:120px;
 }
+<<<<<<< HEAD
 .tabwra .tab {
   float: right;
 }
@@ -626,5 +627,8 @@ ul.banks-wrap span.WZCB {
   width: 249px;
   color: red;
   text-align: center;
+}
+.error {
+    color:#f00;
 }
 /*# sourceMappingURL=/ccc/account/css/settings.css.map */

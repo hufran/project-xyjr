@@ -60,6 +60,7 @@ module.exports = function (router) {
                 //     url: '/account/agreement'
                 // }, 
             ]
+
         }, {
             text: '还款管理',
             url: '/account/loan'
