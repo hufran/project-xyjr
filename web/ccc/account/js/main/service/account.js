@@ -105,5 +105,37 @@ exports.accountService = {
             .then(function (r) {
                 next(r.body);
             });
+    },
+    initialPassword: function (password, next) {
+        request('POST', '/api/v2/user/MYSELF/setPaymentPassword')
+            .type('form')
+            .send({password : password})
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    updatePassword: function (oldPassword, newPassword, next) {
+        request('POST', '/api/v2/user/MYSELF/updatePaymentPassword')
+            .type('form')
+            .send({
+                oldPassword : oldPassword,
+                newPassword : newPassword
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    resetPassword: function (password, next) {
+        request('POST', '/api/v2/user/MYSELF/resetPaymentPassword')
+            .type('form')
+            .send({
+                password : password
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     }
 };
