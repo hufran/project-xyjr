@@ -132,7 +132,8 @@
                                             <select name="placementId" id="couponSelection">
                                                 <option value="">使用奖券: 无</option>
                                                 {{#each selectOption}}
-                                                    <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
+<!--                                                    <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>-->
+												 <option value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
                                                 {{/each}}
                                             </select>
                                         </div>
@@ -173,35 +174,3 @@
             </div>
 </div>
     {{/if}}
-<!--
-     <form action="/upayment/nopwd/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
-        <div class="form-group invest-input-wrapper">
-            <span class="rmb-symbol">￥</span>
-            <input type="hidden" name="loanId" value="{{loan.id}}">
-            <input type="text" name="amount" class="form-control invest-input" placeholder="输入投资金额" value="{{ inputNum }}" />
-
-            
-            
-        </div>
-        <div class="para3">
-            <div class="rest-money">余额:￥{{user.availableAmount}}</div>
-            <div class="charge"><a href="/account/recharge">充值</a>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <div class="invest-progress-wrapper">
-            <div class="invest-progress">
-                <div class="invest-progress-bar" style="width: {{loan.investPercent*100}}%;">
-                </div>
-            </div>
-            <div class="invest-progress-percent">{{rate}}%</div>
-            <div class="time-left">剩余时间:{{loan.timeLeft}}</div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="invest-button-wrapper">
-            <input type="submit" class="btn btn-warning invest-button" value="立即投标"  style="background:#ff9000"/>
-            <span class="benefit-calculator">收益计算</span>
-        </div>
-    </form> 
-		-->

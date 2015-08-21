@@ -415,8 +415,7 @@ else{
             });
     }
 
-    $('.benefit-calculator')
-    .on('click', function () {
+    $('.benefit-calculator').on('click', function () {
         Cal.create();
     });
 
