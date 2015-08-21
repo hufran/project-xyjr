@@ -17,14 +17,6 @@ accountService.getUserInfo(function (res) {
         res.user.name = '';
     }
 
-    new Ractive({
-        el: ".username",
-        template: '{{#if !name}}{{user.loginName}}{{else}}{{name}}{{/if}}',
-        data: {
-            name: res.user.name
-        }
-    });
-
     accountService.getTotalInters(function (res) {
         new Ractive({
             el: ".integration",
@@ -35,30 +27,13 @@ accountService.getUserInfo(function (res) {
         });
     });
 
-    if (!res.user.name) {
-        var isEnterprise = CC.user.enterprise;
-        var url = isEnterprise ? '/payment/corp_account/open' : '/payment/account/open';
+    if (!res.user.name && location.pathname != "/account/umpay") {
         var tpl = require('ccc/account/partials/paymentNotice.html');
         new Box({
-            title: '开户提示',
+            title: '提示',
             value: tpl.replace('$name', CC.user.name || CC.user.loginName),
             cla: 'corp-account-wrap',
-            showed: function (ele, box) {
-                $(ele).find('.btn-sm').click(function () {
-                    box.hide();
-                    Confirm.create({
-                        msg: '三方账户是否开通成功？',
-                        okText: '开通成功',
-                        cancelText: '开通失败',
-                        ok: function () {
-                            window.location.href = "/";
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
-                });
-            }
+            showed: function (ele, box) {}
         });
     }
 

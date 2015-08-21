@@ -33,21 +33,25 @@
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn">投标中</div>
         </a>
-        {{/if}} {{#if status === 'SCHEDULED'}}
+        {{/if}} 
+        {{#if status === 'SCHEDULED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="color: #fff;width: 80px;background:#ff7200">即将开始</div>
         </a>
         <div class="investbtn" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
         data-serv="{{ serverDate }}" style="color: black;width: 180px;text-align: center;background:#fff;margin-left:-40px"></div>
-        {{/if}} {{#if status === 'FINISHED'}}
+        {{/if}} 
+        {{#if status === 'FINISHED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
         </a>
-        {{/if}} {{#if status === 'SETTLED'}}
+        {{/if}} 
+        {{#if status === 'SETTLED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #ffffff">还款中</div>
         </a>
-        {{/if}} {{#if status === 'CLEARED'}}
+        {{/if}} 
+        {{#if status === 'CLEARED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #fff">还款结束</div>
         </a>

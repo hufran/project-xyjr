@@ -2,7 +2,6 @@
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var captChaImg = $('.captcha-img');
 var captcha = {};
-// init captcha
 
 getCaptCha();
 
@@ -18,20 +17,6 @@ function getCaptCha() {
     });
 }
 
-//function checkCaptcha(captcha) {
-//    CommonService.checkCaptcha(captcha,function(data) {
-//        if (!data.success) {
-//            console.log(data.error[0]);
-//        }
-//    });
-//}
-
-//$('.do-login').on('click', function(e) {
-//    e.preventDefault();
-//    captcha.captcha = $('.captcha').val();
-//    checkCaptcha(captcha);
-//});
-
 var errorRac = new Ractive({
     el: $('.error-wrap'),
     template: require('ccc/login/partials/error.html'),
@@ -40,16 +25,16 @@ var errorRac = new Ractive({
     }
 });
 
-$('#loginForm').submit(function(e){
+$('#loginForm').submit(function (e) {
     var $this = $(this);
     e.preventDefault();
     var $loginName = $('input[name=loginName]');
     var $password = $('input[name=password]');
     var $postBtn = $('#login_button');
     var $error = $('.login-error');
-    
+
     $error.empty();
-    
+
     if ($loginName.val() === '') {
         $error.text('手机号不能为空');
         return;
@@ -58,53 +43,46 @@ $('#loginForm').submit(function(e){
         $error.text('密码不能为空');
         return;
     }
-    
+
     var errorMaps = {
         USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-888-7758解锁。',
         FAILED: '手机号或密码错误'
     };
-    
+
     if ($postBtn.hasClass('disabled')) {
         return;
     }
-    
+
     $postBtn.addClass('disabled').html('登录中...');
 
-    request.post('/login/ajax').type('form').send($this.serialize()).end().get('body').then(function(r){
+    request.post('/login/ajax').type('form').send($this.serialize()).end().get('body').then(function (r) {
         if (r.success) {
             $postBtn.text('登录成功');
-             var url = /(loan)/;
-           if(url.test(document.referrer)){
-               location.href = document.referrer;
-               return;
-           }
-            location.href = (r.redirect) ? r.redirect:'/';
+            var url = /(loan)/;
+            if (url.test(document.referrer)) {
+                location.href = document.referrer;
+                return;
+            }
+            if (CC.user.enterprise) {
+                location.pathname＝ "/account";
+            } else {
+                location.href = (r.redirect) ? r.redirect : '/';
+            }
         } else {
             $error.text(errorMaps[r.error_description.result]);
             $postBtn.removeClass('disabled').text('登录');
         }
     });
-    
-   /* $.post('/ajaxLogin', $this.serialize(), function(r){
-        if (r.success) {
-            $postBtn.text('登录成功');
-            location.href = (r.redirect) ? r.redirect:'/invest/list';
-        } else {
-            $error.text(errorMaps[r.error_description.result]);
-            $postBtn.removeClass('disabled').text('登录');
-        }
-    });*/
-    
+
     return false;
 });
-request.get(encodeURI('/api/v2/cms/category/IMAGE/name/登陆'))
-    .end()
-    .then(function (res) {
-        var count = new Ractive({
+
+request.get(encodeURI('/api/v2/cms/category/IMAGE/name/登陆')).end().then(function (res) {
+    var count = new Ractive({
         el: '.loginBanner',
         template: '{{#each items}}<img src="{{content}}"/>{{/each}}',
         data: {
             items: res.body
         }
     });
-    });
+});
