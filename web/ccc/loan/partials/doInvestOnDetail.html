@@ -59,8 +59,11 @@
                            </div>
                         </div> 
                   <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
+                         {{#if user}}
+                                <a href="/login"><input type="submit" class="btn btn-warning invest-button" value="即将开始" style="background:#ff7200;"/></a>
+                        {{else}}
                             <a href="/login"><input type="submit" class="btn btn-warning invest-button" value="立即登陆" style="background:#ff7200;"/></a>
-                                   
+                           {{/if}}
                                 </div>
                             <div class="investbtn" data-id="{{ loan.id }}" data-status="{{ loan.status }}" data-open="{{ loan.timeOpen }}"
         data-serv="{{serverDate}}" style="color: black;width: 155px;text-align: center;background:#fff;margin-left:-25px"></div>

@@ -1,9 +1,11 @@
 /*重置*/
 
+
+
  #nav-color a, #nav-color div, #nav-color img{
      padding: 0;
      margin: 0;
-	 color: #999;
+	 color: #777;
  }
 
 #nav-color{
@@ -20,7 +22,7 @@
     text-align: left;
     width: 200px;
     font-size: 12px;
-	color: #999;
+	color: #666;
 }
 #nav-color .s-header-info-content .nav-help{
  float: right;
@@ -47,7 +49,7 @@
      text-align: left;
     width: 96px;
     font-size: 12px;
-	color: #999;
+	color: #666;
 }
 
 #dingbuzhuce{
@@ -108,7 +110,6 @@
 
 #footer-color{
    background:#f2f2f2;
-    position: relative;
 }
 
 #footer-color a{
@@ -207,17 +208,15 @@
 }
 .bottom-right-aboutus img{
     margin-right: 4px;
-/*    margin-left: 8px;*/
+
 }
+
 .bottom-right-online{
-/*    float: left;*/
+
     color:#777;
     font-size: 14px;
-      line-height: 14px;
-    margin-bottom: 20px;
-    margin-top: 24px;
-/*    margin-left: 90px;*/
     margin-left: 46px;
+	margin-top: 17px;
 }
 .bottom-right-online img{
 /*    margin-left: 8px;*/
@@ -299,7 +298,7 @@
 
 #family{
     float: right;
-    width: 150px;
+    width: 180px;
    
  margin-left: 24px;
     margin-top: 32px;
@@ -311,23 +310,25 @@
     font-size: 14px;
     border-radius: 30px;
     line-height: 32px;
-     width: 150px;
+     width: 180px;
     height: 32px;
-    padding-left: 12px;
+    padding-left: 24px;
 }
 #family li{
       height: 30px;
   line-height: 30px;
   border-bottom: 1px solid #eee;
-  padding-left: 34px;
+/*  padding-left: 34px;*/
     font-size: 12px;
+    text-align: center;
 }
 #family a{
     color: #6f6f6f;
     font-weight: normal;
+    font-size: 12px;
 }
 #family ul{
-    width:150px;
+    width:180px;
     position:absolute;
     top:34px;
     left:0;
@@ -445,12 +446,7 @@
 .cc-calculator-wp .calculator-line{
     width:650px;height:1px;background: #e0e0e2;float: left;margin-left: 10px;margin-top: 18px;
 }
-.cc-calculator-wp .calculator-title .calculator-title-left{
-    float: left;
-    color: #007ec5;
-    line-height: 40px;
-    font-size: 20px;
-}
+.cc-calculator-wp .calculator-title .calculator-title-left{float: left;}
 .cc-calculator-wp .calculator-title{
     height:35px;margin-bottom: 10px;
 }
@@ -493,15 +489,29 @@ li a {
     cursor: pointer;
 }
 
-#footer-color .erweima {
-    position: absolute;
-    left: 16%;
-    top: 165px;
-    display: none;
-}
-
-
 
 .text-p{
-	text-align: center;
+	text-align: center;	
+}
+
+.s-footer-nav *{
+	font-family:"微软雅黑";
+}
+
+.bottom-right-aboutus-box{
+	overflow: hidden;
+	height: 124px;
+}
+
+.bottom-right-aboutus-box p{
+	float: left;
+	margin-top: 15px;
+}
+
+.bottom-right-aboutus-box .erweima{
+	float: right;
+	margin-right: 40px;
+	display: none;
+	width: 80px;
+	height: 80px;
 }
