@@ -88,6 +88,20 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
+                    .when '/dashboard/coupon', {
+                        controller: 'CouponCtrl as self'
+                        templateUrl: 'components/router/dashboard/coupon.tmpl.html'
+                        resolve:
+                            data: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_user_coupons().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/coupon'
+                                        do $q.reject
+                    }
+
                     .when '/dashboard/payment/register', {
                         controller: 'PaymentUmpRegisterCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/ump/payment-ump-register.tmpl.html'
