@@ -64,9 +64,9 @@ var ractive = new Ractive({
 
         dateFrom: moment()
             .subtract(1, 'M') // 前1月
-        .format('YYYY-MM-DD'),
+            .format('YYYY-MM-DD'),
         dateTo: moment()
-        .format('YYYY-MM-DD')
+            .format('YYYY-MM-DD')
     }
 });
 
@@ -83,24 +83,17 @@ $('.ccc-tab')
 
 
 // datetime picker
-$('.date-from-picker,.date-to-picker')
-    .datetimepicker({
-        language: 'zh-cn',
-        pickTime: false
-    })
-    .find('input')
-    .click(function () {
-        $(this)
-            .prev()
-            .trigger('click');
-        return false;
-    });
+$('.date-from-picker,.date-to-picker').datetimepicker({
+    language: 'zh-cn',
+    pickTime: false
+}).find('input').click(function () {
+    $(this).prev().trigger('click');
+    return false;
+});
 
-// .dropdown.type-checker
-//   .type-text
-//   ul.dropdown-menu
-//     li
-//       a
+$('.date-to-picker>input').change(function () {
+    console.log("success");
+});
 
 ractive.on('select-type', function (e) { // dropdown 选择类型的时候
     var selectedIndex = +(e.keypath.substring(e.keypath.lastIndexOf('.') +
@@ -168,10 +161,8 @@ ractive.loadData = function (obj) {
             type: obj.type || 'ALL',
             allStatus: obj.status || false,
             allOperation: true,
-            startDate: moment(this.get('dateFrom'))
-                .unix() * 1000,
-            endDate: moment(this.get('dateTo'))
-                .unix() * 1000 + 1000*60*60*24, // 筛选时间加一天
+            startDate: moment(this.get('dateFrom')).unix() * 1000,
+            endDate: moment(this.get('dateTo')).unix() * 1000 + 1000 * 60 * 60 * 24,
             page: obj.page || 1,
             pageSize: size
         })
@@ -206,14 +197,14 @@ loadInitData(0);
 
 // tab1,对ajax数据 set到ractive之前的操作
 function tab1Preset(item) {
-	// 如果备注是数字，转换成第x期
-	if (item.description !== null && isNumber(item.description)) {
-		item.description = '第' + item.description + '期';
-	}
-	
-	// 操作
-	item.operationName = utils.i18n.FundRecordOperation[item.operation];
-	
+    // 如果备注是数字，转换成第x期
+    if (item.description !== null && isNumber(item.description)) {
+        item.description = '第' + item.description + '期';
+    }
+
+    // 操作
+    item.operationName = utils.i18n.FundRecordOperation[item.operation];
+
     // 时间
     item.dateTime = moment(item.timeRecorded)
         .format("YYYY-MM-DD HH:mm:ss");
@@ -269,7 +260,7 @@ function tab2Preset(item) {
         item.feeAmout = item.amount;
         item.amount = '';
     }
-	item.operationName = utils.i18n.FundRecordOperation[item.operation];
+    item.operationName = utils.i18n.FundRecordOperation[item.operation];
     item.status = statusMap[item.status];
     return item;
 }
@@ -277,7 +268,7 @@ function tab2Preset(item) {
 function tab3Preset(item) {
     item.dateTime = moment(item.timeRecorded)
         .format('YYYY-MM-DD HH:mm:ss');
-	item.operationName = utils.i18n.FundRecordOperation[item.operation];
+    item.operationName = utils.i18n.FundRecordOperation[item.operation];
     item.status = statusMap[item.status];
     return item;
 }
@@ -380,7 +371,7 @@ function formatData(index, data) {
     return data;
 }
 
-function isNumber (t) {
-	var e = new RegExp('^[0-9]*$');
-	return e.test(t)?!0:!1;
+function isNumber(t) {
+    var e = new RegExp('^[0-9]*$');
+    return e.test(t) ? !0 : !1;
 }

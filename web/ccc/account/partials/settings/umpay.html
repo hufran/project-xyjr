@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="" class="col-md-2 control-label">身份证号</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="idNumber" value="{{ idNumber }}" />
+                    <input type="text" class="form-control" name="idNumber" value="{{idNumber.substr(0,5)}}**********{{idNumber.substr(-3)}}" />
                 </div>
 
             </div>
@@ -85,7 +85,7 @@
     </div>
     <div class="account-info-row">
         <label for="" class="text">身份证号</label>
-        <span class="value">{{authenticateInfo.idNumber}}</span>
+        <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
     </div>
 </div>
      <p class="tips" style="color:red">温馨提示：</p>

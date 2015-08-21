@@ -51,16 +51,7 @@ module.exports = function (router) {
                 }, {
                     text: '安全认证',
                     url: '/account/safety'
-                }
-                //{
-                //text: '托管密码',
-                //url: '/account/paypwd'
-                //},
-                // {
-                //     text: '无密协议',
-                //     url: '/account/agreement'
-                // }, 
-            ]
+                }]
         }, {
             text: '还款管理',
             url: '/account/loan'
