@@ -51,16 +51,15 @@
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
             <img class="erweima" style="width:80px;height:80px;" src="/ccc/global/img/erweima.png"/>
             {{#if user}}
-            <a href="/account" class="text account" style="color:#ff7200;">我的账户</a>
-            <a href="/logout" class="text" style="color:#999;margin-right:18px;">|&nbsp;&nbsp;退出</a>
-            <a id='head-ractive-container'  class="text" style="width: 200px; text-align: right; padding-right: 10px;color:#007fc5 "></a>
-              
-            
-    
-              
-            <!--a href="/login?url=L2FjY291bnQ=" class="account" id="wodezhanghu">我的账户</a-->
+            {{#if user.name}}
+            <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
             {{else}}
-            <!--         <a href="/login" style="color:#5a5a5a;margin-left:14px;" class="text">帮助中心|</a>-->
+            <a href="/account/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
+            {{/if}}
+            
+            <a href="/logout" class="text" style="color:#333333;margin-right:18px;">|&nbsp;&nbsp;退出</a>
+            <a id='head-ractive-container'  class="text" style="width: 200px; text-align: right; padding-right: 10px;color:#003690 "></a>
+            {{else}}
             <div class="nav-mobile">
 
                 <span>|</span> <a href="/help" id="mobileCustomer" class="text">手机客户端</a>
@@ -117,9 +116,11 @@
             </div>
 
             <ul class="u-nolist-ul">
-                <li><a id="index" href="/">首&nbsp;&nbsp;页</a></li>
-                <li><a id="touzi" href="/invest/list">我要投资</a></li>
-                <li><a id="jiekuan" href="/applyloan">我要借款</a></li>
+                {{#if !user.enterprise}}
+                    <li><a id="index" href="/">首页</a></li>
+                    <li><a id="touzi" href="/invest/list">我要投资</a></li>
+                    <li><a id="jiekuan" href="/applyloan">我要借款</a></li>
+                {{/if}}
                 <li>{{#if user}}<a id="safety" href="/account">我的账户</a>{{else}}<a id="safety" href="/login">我的账户</a>{{/if}}</li>
 
                 <li><a id="help" href="/guide">新手引导</a></li>
@@ -167,10 +168,13 @@
                 <div class="bottom-right-service"><img src="/ccc/global/img/tel.png"><span>客服热线</span><span class="telNum">400-872-7676</span></div>
                     <p class="bottom-right-mail">服务时间：工作日 8:30 — 21:00</p>
                     <p class="bottom-right-online">在线客服：<img src="/ccc/global/img/navQQ.png" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></p>
+				<div class="bottom-right-aboutus-box">
                     <P class="bottom-right-aboutus">关注我们：<a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"><img src="/ccc/global/img/navWeibo.png" onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'" /></a>
                         <img style="margin-left:8px;" class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'"/>
-                                    <img class="erweima" style="width:80px;height:80px;" src="/ccc/global/img/erweima.png"/>
+                                    
                 </P>
+				<img class="erweima" src="/ccc/global/img/erweima.png"/>
+				</div>
 
 
             </div>

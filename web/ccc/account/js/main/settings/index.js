@@ -87,7 +87,7 @@ ractive.on("submit-modify-password", function () {
                             okText: '确定',
                             cancelText: '重新登录',
                             ok: function () {
-                                window.location.reload();
+                                window.location.pathname = "/login";
                             },
                             cancel: function () {
                                 window.location.reload();

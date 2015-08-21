@@ -12,7 +12,7 @@
 {{else}}
 <!--要绑定银行卡-->
 {{#if status === 0}}
-<div class="bind-card-wrapper">
+<div class="bind-card-wrapper"> 
     <!-- 尚未绑卡提醒 -->
     <div class="errorNoBindedYet">
         <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 
@@ -38,12 +38,18 @@
             </div>
             <div class="form-group">
                 <div class="tip">银行卡号</div>
-                <input type="text" name="cardNo" value="{{cardNo}}">
+                <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}">
+                {{#if cardNoError}}
+                <span class="error">* 银行卡号只能由数字组成</span>
+                {{/if}}
                 <div class="clearfix"></div>
             </div>
             <div class="form-group">
                 <div class="tip">预留手机号</div>
-                <input type="text" name="cardPhone" value="{{cardPhone}}">
+                <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{phoneNo}}">
+                {{#if phoneNoError}}
+                <span class="error">* 手机号码只能由数字组成</span>
+                {{/if}}
                 <div class="clearfix"></div>
             </div>
             <div class="form-group">
@@ -89,7 +95,7 @@
             </div>
 
             <div class="card-num">
-                {{account.account}}
+                {{account.account.substr(0,4)}}-xxxx-xxxx-xxxx-{{account.account.substr(-4,4)}}
             </div>
         </div>
     {{/each}}
@@ -98,7 +104,7 @@
         <button type="submit" class="btn btn-sm btn-success btn-change-card">删除银行卡</button>
     </form>
     <p style="color:red;">解绑服务说明 </p>
-<p>奇乐融只支持绑定一张银行卡，为保障您的资金安全，解绑时请先确定账户情况。如遇问题请联系客服，电话：400-872-7676。</p>
+<p style="font-family:'微软雅黑';">奇乐融只支持绑定一张银行卡，为保障您的资金安全，解绑时请先确定账户情况。如遇问题请联系客服，电话：400-872-7676。</p>
 </div>
 <div class="form-group">
     <p>1、为保障您的资金安全，绑卡前请先进行实名认证。 </p>

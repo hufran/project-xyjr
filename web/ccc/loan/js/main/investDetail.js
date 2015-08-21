@@ -287,6 +287,8 @@ setTimeout((function () {
             showErrors('账户余额不足，请先充值 !');
             return false;
         }
+        
+        
         if (smsCaptcha.length != 6 || smsCaptcha === '') {
             showErrors('请输入正确的短信验证码！');
             return false;

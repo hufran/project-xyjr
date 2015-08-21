@@ -29,8 +29,6 @@ var requestId = '';
 // TODO 对id进行正则匹配
 router.get('/loan/:id', 
     function (req, res) {
-        
-        
         console.log(req.params.id);
         var user = res.locals.user;
         var buffer = new Buffer(req.path);
@@ -80,9 +78,10 @@ router.get('/loan/:id',
                 .then(function (r) {
                    
                     var result = parseLoan(r.body);
+                    result.userId = result.loanRequest.userId;
                     requestId = result.loanRequest.id;    
                     res.locals.title = result.title + '|奇乐融';
-                    res.locals.description = result.loanRequest.description;
+                    res.locals.description = result.loanRequest.description; 
                     return result;
                     
                     

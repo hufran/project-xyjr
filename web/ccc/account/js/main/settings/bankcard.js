@@ -22,7 +22,7 @@ var ractive = new Ractive({
     template: require('ccc/account/partials/settings/bankcard.html'),
 
     data: {
-        status: banksabled.length? 1 : 0,
+        status: banksabled.length ? 1 : 0,
         payment: CC.user.name ? true : false,
         banks: banks,
         msg: {
@@ -31,23 +31,46 @@ var ractive = new Ractive({
             CARD_INVALID: false
         },
         bank: '',
-        bankAccount: banksabled || [],
-        province : '',
+        bankAccount: CC.user.bankCards || [],
+        province: '',
         city: '',
-        authenticated : CC.user.authenticates.idauthenticated || false
+        authenticated: CC.user.authenticates.idauthenticated || false
     },
-    oncomplete: function(){
+    oncomplete: function () {
         accountService.getProvince(function (res) {
             ractive.set('province', changeToList(res));
             var fProvince = ractive.get('myProvince') || '新疆';
-            accountService.getCity(fProvince, function (res){
+            accountService.getCity(fProvince, function (res) {
                 ractive.set('city', changeToList(res));
             });
         });
     }
 });
 
+ractive.on("validateCardNo", function () {
+    var no = this.get("cardNo");
+    if (!/^\d*$/.test(no)) {
+        this.set("cardNoError", true);
+    } else {
+        this.set("cardNoError", false);
+    }
+});
+
+ractive.on("validatePhoneNo", function () {
+    var no = this.get("phoneNo");
+    if (!/^\d*$/.test(no)) {
+        this.set("phoneNoError", true);
+    } else {
+        this.set("phoneNoError", false);
+    }
+});
+
 ractive.on("bind-card-submit", function () {
+    var cardNoError = this.get("cardNoError");
+    var phoneNoError = this.get("phoneNoError");
+    if (cardNoError || phoneNoError) {
+        return false;
+    }
     Confirm.create({
         msg: '绑卡是否成功？',
         okText: '绑卡成功',
@@ -88,9 +111,9 @@ ractive.on("delete-card-submit", function (e) {
     
 });
 
-ractive.on('selectPro',function (){
+ractive.on('selectPro', function () {
     var province = this.get('myProvince');
-    accountService.getCity(province, function (res){
+    accountService.getCity(province, function (res) {
         ractive.set('city', changeToList(res));
     });
 });
@@ -101,7 +124,7 @@ function changeToList(map) {
         var tmp = {};
         tmp.key = key;
         tmp.val = map[key];
-        _arr.push(tmp);   
+        _arr.push(tmp);
     }
 
     return _arr;

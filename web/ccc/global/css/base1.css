@@ -1,5 +1,7 @@
 /*重置*/
 
+
+
  #nav-color a, #nav-color div, #nav-color img{
      padding: 0;
      margin: 0;
@@ -109,7 +111,6 @@
 
 #footer-color{
    background:#f2f2f2;
-    position: relative;
 }
 
 #footer-color a{
@@ -208,17 +209,15 @@
 }
 .bottom-right-aboutus img{
     margin-right: 4px;
-/*    margin-left: 8px;*/
+
 }
+
 .bottom-right-online{
-/*    float: left;*/
+
     color:#777;
     font-size: 14px;
-      line-height: 14px;
-    margin-bottom: 20px;
-    margin-top: 24px;
-/*    margin-left: 90px;*/
     margin-left: 46px;
+	margin-top: 17px;
 }
 .bottom-right-online img{
 /*    margin-left: 8px;*/
@@ -448,12 +447,7 @@
 .cc-calculator-wp .calculator-line{
     width:650px;height:1px;background: #e0e0e2;float: left;margin-left: 10px;margin-top: 18px;
 }
-.cc-calculator-wp .calculator-title .calculator-title-left{
-    float: left;
-    color: #007ec5;
-    line-height: 40px;
-    font-size: 20px;
-}
+.cc-calculator-wp .calculator-title .calculator-title-left{float: left;}
 .cc-calculator-wp .calculator-title{
     height:35px;margin-bottom: 10px;
 }
@@ -496,15 +490,29 @@ li a {
     cursor: pointer;
 }
 
-#footer-color .erweima {
-    position: absolute;
-    left: 16%;
-    top: 165px;
-    display: none;
-}
-
-
 
 .text-p{
-	text-align: center;
+	text-align: center;	
+}
+
+.s-footer-nav *{
+	font-family:"微软雅黑";
+}
+
+.bottom-right-aboutus-box{
+	overflow: hidden;
+	height: 124px;
+}
+
+.bottom-right-aboutus-box p{
+	float: left;
+	margin-top: 15px;
+}
+
+.bottom-right-aboutus-box .erweima{
+	float: right;
+	margin-right: 40px;
+	display: none;
+	width: 80px;
+	height: 80px;
 }
