@@ -190,21 +190,16 @@ $('#sendApplyloan').click(function () {
 
     applyLoanService.addNew(loan, function (body) {
         if (body.success) {
-            new Box({
-                title: '提示',
-                value: "借款申请成功，即将跳转到首页..",
-                cla: 'corp-account-wrap',
-                showed: function (ele, box) {}
-            });
-            location.href = "/";
+            $(".success-box").css('display', 'inline');
+            $(".loan-content").css('opacity', '0.5');
         } else {
-            new Box({
-                title: '提示',
-                value: "借款申请异常，请稍后再试..",
-                cla: 'corp-account-wrap',
-                showed: function (ele, box) {}
-            });
+            alert("申请借款失败");
         }
     });
 
-})
+});
+
+    $(".success-colse").click(function () {
+        $(".success-box").css('display', 'none');
+        $(".loan-content").css('opacity', '1');
+    });
