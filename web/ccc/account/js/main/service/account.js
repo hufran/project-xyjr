@@ -137,5 +137,12 @@ exports.accountService = {
             .then(function (r) {
                 next(r.body);
             });
+    },
+    checkPassword: function (password, next) {
+        request('GET', '/api/v2/user/MYSELF/validatePaymentPassword?password=' + password)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     }
 };
