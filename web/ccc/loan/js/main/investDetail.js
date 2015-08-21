@@ -1,5 +1,3 @@
-/*jshint unused : false*/
-
 "use strict";
 var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');

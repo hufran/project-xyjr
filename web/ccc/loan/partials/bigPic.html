@@ -12,8 +12,8 @@
         <a class="prev-big control" href="#" on-click="prev-big" title="前一张">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        {{/if}} {{#if currentIndex
-        < imgs.length-1 }} <a class="next-big control" href="#" on-click="next-big" title="后一张">
+        {{/if}} 
+		{{#if imgs.length-1>currentIndex}} <a class="next-big control" href="#" on-click="next-big" title="后一张">
             <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
             {{/if}} {{#if showTip}}
