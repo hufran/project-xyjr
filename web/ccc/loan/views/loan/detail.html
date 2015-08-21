@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
 <link rel="stylesheet" href="/ccc/loan/css/detail.css">
+
 <div class="">
     <div class="current-container">
         <p class="detailTitle"><a href="/index">首页</a> > <a href="/invest">投资列表 </a> > 标的详情</p>
@@ -12,7 +13,7 @@
                 <div class="investTitle">
                     <!-- <div class="serial">ID:230193</div> -->
 <!--                                        <a >借贷协议（范本）</a>-->
-<!--   {{JSON.stringify(loans)}}-->
+
                     
                      {{#if loans.status == "OPENED" }}
                     <div class="time"><span>剩余时间：<i>{{loans.timeLeft.dd}}</i>日<i>{{loans.timeLeft.hh}}</i>小时<i>{{loans.timeLeft.mm}}</i>分<i>{{loans.timeLeft.ss}}</i>秒</span>
@@ -235,7 +236,7 @@
         <div class="clearfix"></div>
     </div>
     
-<!--    {{JSON.stringify(loans)}} -->
+
     <div class="insurance-wrapper">
     </div>
 </div>
@@ -246,7 +247,7 @@
 
 </div>
 
-<div style="width:600px;word-break:break-all;">{{JSON.stringify(loans)}} </div>
+<div style="width:600px;word-break:break-all;"> </div>
 
 <script>
     {{{state}}}

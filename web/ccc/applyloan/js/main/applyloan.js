@@ -181,6 +181,7 @@ $('#sendApplyloan').click(function(){
     if(!v.form()) {
         $('.loan-limit').addClass('error');
         return;
+        
       } 
     var loan = {};
         
@@ -203,14 +204,19 @@ $('#sendApplyloan').click(function(){
     applyLoanService.addNew(loan, function (body) {
     
         if (body.success) {
-               alert("申请借款成功");
-            location.href ="/";
-            } else {
+//               alert("申请借款成功");
+//            location.href ="/";
+     $(".success-box").css('display','inline');
+     $(".loan-content").css('opacity','0.5');
+         } else {
                  alert("申请借款失败");
             }
     });
 
 })
-
+ $(".success-colse").click(function(){
+    $(".success-box").css('display','none');
+     $(".loan-content").css('opacity','1');
+})
 
 
