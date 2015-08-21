@@ -70,7 +70,6 @@ function formatItem(item) {
         "OTHER" : "其它借款"
     };
         
-
     item.rate = item.rate / 100;
     item.purpose = purposeMap[item.purpose];
     item.investPercent = parseInt(item.investPercent * 100, 10);
@@ -92,6 +91,7 @@ function formatItem(item) {
     } else {
         item.amountUnit = '元';
     }
+    
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
         item.open = true;
@@ -129,7 +129,8 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         template: require('ccc/global/partials/singleInvestList.html'),
         data: {
             list: parseLoanList(res.results),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+            RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
+            user:CC.user
         }
     });
     initailEasyPieChart();
