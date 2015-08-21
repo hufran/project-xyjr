@@ -19,15 +19,9 @@
         <div class="col-md-12">
             <div class="account-panel">
                 <div class="user-info pull-left">
-<!--
-                    <div class="gravator pull-left">
-                        <img src="https://en.gravatar.com/userimage/43948365/087625e21205aedbbb1d039489c4cff8.jpeg"
-                        width="50" height="50" alt="">
-                    </div>
--->
                     <div class="authentication">
                         {{ greetingText }}:
-                        <span class="username"></span>
+                        <span class="username">{{user.name || user.loginName}}</span>
                         <ul class="info">
                             {{! 手机}} {{#if checkMobile()}}
                             <li data-title="已绑定手机" class="phone"></li>
@@ -84,7 +78,7 @@
                         </div>
                         
                          <div class="safety ">
-                           积分：<span class="integration">123123123</span> 等级：初级
+                           积分：<span class="integration"></span> 等级：初级
                         </div>
                         
                         

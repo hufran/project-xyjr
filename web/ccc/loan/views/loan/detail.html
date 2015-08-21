@@ -8,12 +8,7 @@
         <p class="detailTitle"><a href="/index">首页</a> > <a href="/invest">投资列表 </a> > 标的详情</p>
         <div class="invest-data-wrapper">
             <div class="investContainer">
-                <!--                <div class="h20"></div>-->
                 <div class="investTitle">
-                    <!-- <div class="serial">ID:230193</div> -->
-<!--                                        <a >借贷协议（范本）</a>-->
-<!--   {{JSON.stringify(loans)}}-->
-                    
                      {{#if loans.status == "OPENED" }}
                     <div class="time"><span>剩余时间：<i>{{loans.timeLeft.dd}}</i>日<i>{{loans.timeLeft.hh}}</i>小时<i>{{loans.timeLeft.mm}}</i>分<i>{{loans.timeLeft.ss}}</i>秒</span>
                     </div>
@@ -23,17 +18,6 @@
                         开标时间:{{loans.timeOpen}}
                     </div>
                     {{/if}}
-<!--
-                     {{#if loans.status == "SETTLED" }}
-                    <div class="time">
-                        结标时间:
-                    </div>
-                    {{/if}}
-                    
--->
-                 
-                    <!--                    </div>-->
-
                     <div class="title" style="height:52px;line-height:52px;"><img src="/ccc/loan/img/money.png" />{{loans.title}}</div>
 
                 </div>
@@ -114,16 +98,9 @@
         <div class="clearfix"></div>
 
         <div class="tab-panels">
-<!--            风控信息-->
             <div class="tab-panel">
-<!--
-                <table class="table repay-plan">
-                    
-                </table>
--->
                 <P class="danger-control">{{loans.corporationName}}</P>
             </div>
-<!--            投资记录-->
             <div class="tab-panel">
                 <table class="table repay-plan repay-record">
                     <thead>
@@ -141,30 +118,17 @@
                     {{/invests}}
                 </table>
             </div>
-<!--            企业信息-->
             <div class="tab-panel active">
                 <div class="loanInfoWrapper">
                     <div class="loanInfo">
                         <div class="eventItem">项目基本信息</div>
                         <div class="eventCont">{{loans.loanRequest.description}}</div>
-                        <!--<div class="eventItem">担保情况说明</div> 
                         <div class="eventCont">{{loans.loanRequest.guaranteeInfo}}</div>-->
                         <div class="eventItem">安全保障措施</div>
                         <div class="eventCont">{{loans.loanRequest.riskInfo}}</div>
                     </div>
-<!--
-                    <div class="loanInfoImg">
-                        <div class="insurance-info">
-                                                        <div class="text-related-data">相关资料</div>
-                            <div class="insurance-wrapper">
-                            </div>
-                        </div>
-                    </div>
--->
-                    <!--                    <div class="clearfix"></div>-->
                 </div>
             </div>
-<!--            还款计划-->
             <div class="tab-panel">
                                <table class="table repay-plan repay-record">
                     {{#if user}}
@@ -223,7 +187,7 @@
             balance: {{loans.balance}},
             dw: '{{loans.amountUnit}}',
             leftAmount: {{loans.leftAmount}}
-    },
+        },
         title: '{{loans.title}}',
         investPercent: {{loans.investPercent}},
         originalAmount: {{loans.originalAmount}},
@@ -239,7 +203,8 @@
         bidNumber: {{loans.bidNumber}},
         timeOpen: {{loans.timeOpen}},
         totalInterest: {{totalInterest || 0}},
-        serverDate: {{loans.serverDate}}
+        serverDate: {{loans.serverDate}},
+        userId: '{{loans.userId}}'
     };
 </script>
 <script src="/ccc/loan/js/main/investDetail.js"></script>

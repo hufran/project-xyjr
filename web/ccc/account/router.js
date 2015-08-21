@@ -51,7 +51,16 @@ module.exports = function (router) {
                 }, {
                     text: '安全认证',
                     url: '/account/safety'
-                }]
+                }, {
+                    text: '交易密码',
+                    url: '/account/paypwd'
+                }
+                // {
+                //     text: '无密协议',
+                //     url: '/account/agreement'
+                // }, 
+            ]
+
         }, {
             text: '还款管理',
             url: '/account/loan'
@@ -224,11 +233,16 @@ module.exports = function (router) {
         "umpay", // 托管账户
         "bankcard", // 银行卡信息
         "settings", // 对应修改密码
-        // "paypwd",
+        "paypwd",
         "safety",
         "userInfo"
     ].forEach(function (tabName) {
         router.get('/account/' + tabName, function (req, res) {
+            if (tabName === 'paypwd') {
+                 if (!res.locals.user.name) {
+                    res.redirect('/account/umpay');
+                } 
+            };
             Promise.join(
                 req.uest(
                     '/api/v2/user/MYSELF/authenticates'
@@ -237,7 +251,10 @@ module.exports = function (router) {
                 req.uest(
                     '/api/v2/user/MYSELF/agreement')
                 .get('body'),
-                function (authenticates, agreement) {
+                req.uest(
+                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .get('body'),
+                function (authenticates, agreement, paymentPasswordHasSet) {
                     if (!_.isEmpty(agreement)) {
                         _.assign(res.locals.user, {
                             agreement: agreement
@@ -245,6 +262,8 @@ module.exports = function (router) {
                     }
                     res.locals.user.authenticates =
                         authenticates;
+                    res.locals.user.paymentPasswordHasSet =
+                        paymentPasswordHasSet;
                     res.render('account/settings', {
                         tabName: tabName,
                         title: '账户管理|正奇金融'

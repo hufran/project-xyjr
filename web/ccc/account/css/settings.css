@@ -583,6 +583,51 @@ ul.banks-wrap span.WZCB {
   margin-left:120px;
 }
 
+.tabwra .tab {
+  float: right;
+}
+.tabwra .tab li {
+  width: 80px;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+}
+.tabwra .tab li.active {
+  border-bottom: 1px solid #000;
+}
+.payInp {
+  width: 250px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+}
+.formwra {
+  width: 350px;
+  margin: 0 auto;
+}
+.formwra .row {
+  margin-bottom: 5px;
+}
+.row .tipss {
+  display: block;
+  height: 35px;
+  line-height: 35px;
+}
+.row .confir {
+  width: 249px;
+  color: #fff;
+  background: #007ec5;
+}
+.row .error {
+  width: 249px;
+  color: red;
+  text-align: center;
+}
 .error {
     color:#f00;
 }

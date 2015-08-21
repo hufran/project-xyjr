@@ -254,6 +254,12 @@ else{
     investRactive.on("invest-submit", function (e) {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
+        
+        if(CC.loan.userId == CC.user.id){
+            showErrors('不能投资自己建立的标的！');
+            return false;
+        }
+        
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
@@ -284,12 +290,12 @@ else{
             showErrors('账户余额不足，请先充值 !');
             return false;
         }
-
+        
+        
         if (smsCaptcha.length != 6 || smsCaptcha === '') {
             showErrors('请输入正确的短信验证码！');
             return false;
         } else {
-            console.log(111);
             CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
                 smsCaptcha, function (data) {
                     if (!data.success) {
