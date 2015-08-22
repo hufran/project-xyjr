@@ -219,7 +219,7 @@ request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .then(function (res) {
         var count = new Ractive({
         el: '.firendLink',
-        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}{{{content}}}{{/each}}</div></div>',
+        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}<a href="/cms/p/{{this.id}}" target="_blank">{{{title}}}</a>{{/each}}</div></div>',
         data: {
             items: res.body
         }
