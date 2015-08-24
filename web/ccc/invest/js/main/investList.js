@@ -259,7 +259,6 @@ function ininconut () {
             var serverDate = t.data("serv");  
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             var textDay = leftTime.day ? leftTime.day +'天' : '';
-            t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200>'+ leftTime.min +'</span>分<span style="color:#ff7200>'+ leftTime.sec +'</span>秒</span>')
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);

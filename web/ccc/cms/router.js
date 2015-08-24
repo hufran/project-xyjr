@@ -53,7 +53,7 @@ router.get('/cms/p/:id', function (req, res) {
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-            res.locals.title = r.body.title + '|奇乐融';
+            res.locals.title = '奇乐融';
             res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
             res.render('news/detail', {
                 detail: formatDetail(r.body)
