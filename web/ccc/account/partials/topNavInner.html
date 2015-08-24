@@ -19,15 +19,9 @@
         <div class="col-md-12">
             <div class="account-panel">
                 <div class="user-info pull-left">
-<!--
-                    <div class="gravator pull-left">
-                        <img src="https://en.gravatar.com/userimage/43948365/087625e21205aedbbb1d039489c4cff8.jpeg"
-                        width="50" height="50" alt="">
-                    </div>
--->
                     <div class="authentication">
                         {{ greetingText }}:
-                        <span class="username"></span>
+                        <span class="username">{{user.name || user.loginName}}</span>
                         <ul class="info">
                             {{! 手机}} {{#if checkMobile()}}
                             <li data-title="已绑定手机" class="phone"></li>
@@ -76,15 +70,14 @@
                         <div class="safety">
                             账户安全级别:
                             <span class="progress">
-                    <div class="progress-bar" role="progressbar"
-                    aria-valuemax="100" style="width: {{ safetyProgress }}%;">
+                    <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: {{ safetyProgress }}%;">
                     </div>
                 </span>
                             <span class="risk">{{ riskText }}</span>
                         </div>
                         
-                         <div class="safety">
-                           积分：123123123 等级：初级
+                         <div class="safety ">
+                           积分：<span class="integration"></span> 等级：初级
                         </div>
                         
                         
@@ -100,8 +93,13 @@
                             <small class="currency">{{ user.availableAmount }}</small>
                         </p>
                         <p class="button">
+                            {{#if authenticates.idauthenticated}}
                             <a href="/account/recharge" class="btn btn-warning">充值</a>
                             <a href="/account/withdraw" class="btn btn-default">提现</a>
+                            {{else}}
+                            <a href="/account/umpay" class="btn btn-warning">充值</a>
+                            <a href="/account/umpay" class="btn btn-default">提现</a>
+                            {{/if}}
                         </p>
                         <!--
                         <p>

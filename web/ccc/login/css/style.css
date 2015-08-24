@@ -284,7 +284,9 @@ p.login-error {
     border: none;
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper input[type=text] {
-    border: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5;
     background: #fff;
 /*    margin-bottom: 26px;*/
     height:45px;
@@ -316,8 +318,8 @@ p.login-error {
 p.login-error {
   text-align: left!important;
   width: 100%;
-  padding-top: 15px;
   color: red;
+    float: left;
 }
 .s-login-window .mdi {
   width: 20px!important;
@@ -361,10 +363,10 @@ p.login-error {
     color:#007ec5;
 }
 #main-container #loginForm .rememberPassword .banner_right_bluetick .checkbox{
-    width:14px;
-    height:14px;
+    width:16px;
+    height:16px;
     float:left;
-    margin-top: 18px;
+    margin-top: 16px;
 }
 #main-container #loginForm .rememberPassword .banner_right_bluetick .remember{
     line-height: 46px;
@@ -390,8 +392,13 @@ float:left;
     margin-top: 30px;
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper .lineUser input{
-     border: 1px solid #e5e5e5;
+     border-right: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5;
     height:45px;
+    font-size: 14px;
+    color:#3c3c3c;
+    padding-left: 10px;
 }
 
 #main-container .s-login-view .s-login-window button{

@@ -1,8 +1,11 @@
 /*重置*/
 
+
+
  #nav-color a, #nav-color div, #nav-color img{
      padding: 0;
      margin: 0;
+	 color: #777;
  }
 
 #nav-color{
@@ -19,6 +22,7 @@
     text-align: left;
     width: 200px;
     font-size: 12px;
+	color: #666;
 }
 #nav-color .s-header-info-content .nav-help{
  float: right;
@@ -45,6 +49,7 @@
      text-align: left;
     width: 96px;
     font-size: 12px;
+	color: #666;
 }
 
 #dingbuzhuce{
@@ -76,6 +81,7 @@
     width: 62px;
     float: right;
 /*      margin-right: 22px;*/
+    font-size:12px;
 }
 #nav-color .nav-fastregister img{
     margin:0;
@@ -203,17 +209,15 @@
 }
 .bottom-right-aboutus img{
     margin-right: 4px;
-/*    margin-left: 8px;*/
+
 }
+
 .bottom-right-online{
-/*    float: left;*/
+
     color:#777;
     font-size: 14px;
-      line-height: 14px;
-    margin-bottom: 20px;
-    margin-top: 24px;
-/*    margin-left: 90px;*/
     margin-left: 46px;
+	margin-top: 17px;
 }
 .bottom-right-online img{
 /*    margin-left: 8px;*/
@@ -272,11 +276,11 @@
     margin-right:24px;
     margin-top: 32px;
 }
-#menu .u-nolist-ul li a:hover {
+#menu .u-nolist-ul li:hover a {
   /*background: #ededed;*/
   height: 74px;
   border-bottom: 4px solid #007ec5;
-  color: #232d4e;
+  color: #007ec5;
   text-decoration: none;
 }
 #menu{
@@ -295,7 +299,7 @@
 
 #family{
     float: right;
-    width: 150px;
+    width: 180px;
    
  margin-left: 24px;
     margin-top: 32px;
@@ -307,23 +311,25 @@
     font-size: 14px;
     border-radius: 30px;
     line-height: 32px;
-     width: 150px;
+     width: 180px;
     height: 32px;
-    padding-left: 12px;
+    padding-left: 24px;
 }
 #family li{
       height: 30px;
   line-height: 30px;
   border-bottom: 1px solid #eee;
-  padding-left: 34px;
+/*  padding-left: 34px;*/
     font-size: 12px;
+    text-align: center;
 }
 #family a{
     color: #6f6f6f;
     font-weight: normal;
+    font-size: 12px;
 }
 #family ul{
-    width:150px;
+    width:180px;
     position:absolute;
     top:34px;
     left:0;
@@ -464,4 +470,50 @@
   line-height: 23px;
   width: 24px;
   text-align: center;
+}
+/*nav*/
+li a {
+/*
+    color: #666;
+    text-decoration: none;
+*/
+     width: auto; 
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+	font-size: 18px;
+	font-weight: normal;
+	color: #4a4a4a;
+    height:100%;
+}
+.s-header-menu-content .u-nolist-ul li {
+    margin-left: 38px;
+    cursor: pointer;
+}
+
+
+.text-p{
+	text-align: center;	
+}
+
+.s-footer-nav *{
+	font-family:"微软雅黑";
+}
+
+.bottom-right-aboutus-box{
+	overflow: hidden;
+	height: 124px;
+}
+
+.bottom-right-aboutus-box p{
+	float: left;
+	margin-top: 15px;
+}
+
+.bottom-right-aboutus-box .erweima{
+	float: right;
+	margin-right: 40px;
+	display: none;
+	width: 80px;
+	height: 80px;
 }

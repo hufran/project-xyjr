@@ -14,6 +14,13 @@ module.exports = function (router, auth) {
     router.get('/api/v2/lianlianpay/provinceCityCodes/:provinceName', auth.user());
     router.post('/api/v2/lianlianpay/authenticateUser/:userId', auth.user());
     router.post('/api/v2/lianlianpay/withdrawReturn', auth.pass());
+    router.post('/api/v2/lianlianpay/deleteCard/:userId', auth.user());
+    router.post('/api/v2//user/:userId/setPaymentPassword', auth.user());
+    router.post('/api/v2/user/:userId/updatePaymentPassword', auth.user());
+    router.post('/api/v2/user/:userId/resetPaymentPassword', auth.user());
+    router.get('/api/v2/user/:userId/paymentPasswordHasSet', auth.user());
+    router.get('/api/v2/user/:userId/validatePaymentPassword', auth.user());
+    
     router.post('/api/v2/loanIntent/addNew', auth.pass());
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user()); 
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
@@ -25,4 +32,11 @@ module.exports = function (router, auth) {
     router.post('/api/v2/user/authenticateEmail', auth.user());
     router.get('/api/v2/user/:userId/invite', auth.user());
     router.post('/api/v2/users/mobile/encrypt', auth.pass());
+
+    //积分
+    router.get('/api/v2/points/user/:userId/getTotalPoints', auth.user());
+    router.get('/api/v2/points/user/:userId/listByPeroid/:from/:to', auth.user());
+    router.get('/api/v2/points/user/:userId/listAll', auth.user());
+    router.get('/api/v2/points/user/:userId/listAdds', auth.user());
+    router.get('/api/v2/points/user/:userId/listReduced', auth.user());
 };

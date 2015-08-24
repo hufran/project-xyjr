@@ -70,7 +70,6 @@ function formatItem(item) {
         "OTHER" : "其它借款"
     };
         
-
     item.rate = item.rate / 100;
     item.purpose = purposeMap[item.purpose];
     item.investPercent = parseInt(item.investPercent * 100, 10);
@@ -92,6 +91,7 @@ function formatItem(item) {
     } else {
         item.amountUnit = '元';
     }
+    
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
         item.open = true;
@@ -129,7 +129,8 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         template: require('ccc/global/partials/singleInvestList.html'),
         data: {
             list: parseLoanList(res.results),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+            RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
+            user:CC.user
         }
     });
     initailEasyPieChart();
@@ -258,7 +259,6 @@ function ininconut () {
             var serverDate = t.data("serv");  
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             var textDay = leftTime.day ? leftTime.day +'天' : '';
-            t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200>'+ leftTime.min +'</span>分<span style="color:#ff7200>'+ leftTime.sec +'</span>秒</span>')
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);

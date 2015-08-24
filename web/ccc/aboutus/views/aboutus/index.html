@@ -2,14 +2,14 @@
 <!--<link rel="stylesheet" href="/ccc/aboutus/css/help2.css">-->
 
 <div class="page-guide">
-    <p id="aboutus-title"><a href="/index">首页</a> >关于我们</p>
+    <p id="aboutus-title"><a href="/">首页</a> >关于我们</p>
     <div id="help-left" class="pull-left">
 
         {{>list}}
     </div>
 
-
-    {{#if tab.text!='安全保障'}} {{#if contents.length===1}}
+    {{#if tab.text!='安全保障'}}
+	{{#if contents.length===1}}
     <div id="help-right" class="pull-right">
         <div class="invest-container">
             <div class="invest-wrapper">
@@ -34,7 +34,11 @@
                     <!--                            {{JSON.stringify(contents)}} -->
                     {{#each contents}}
                     <div class="news-box">
-                        <div class="news-brame">【{{title}}】<a href="/cms/p/{{this.id}}">{{title}}</a>
+                        <div class="news-brame">【{{title}}】<a href="/cms/p/{{this.id}}">{{#if title.length > 12}}
+                                {{title.substr(0,12)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}</a>
                         </div>
                         <div class="news-pubdate">{{pubDate}}</div>
                     </div>
@@ -185,7 +189,6 @@
     {{/if}}
     <div class="clear_left"></div>
 </div>
-
 
 
 <script src="/ccc/aboutus/js/main/common.js"></script>

@@ -569,7 +569,7 @@ margin-left: 14px;
      padding-left: 40px;
   border-bottom: 1px #ccc solid;
     background: #ffffff;
-    border-radius: 5px;
+/*    border-radius: 5px;*/
 }
 .loanWrapper > div {
   float: left;
@@ -584,7 +584,7 @@ margin-left: 14px;
 */
 }
 .loanWrapper .event {
-  width: 260px;
+  width: 223px;
   color: #6e6e6e;
 /*  padding-left: 40px;*/
     font-size: 16px;
@@ -609,18 +609,18 @@ margin-left: 14px;
   font-size: 28px;
 /*  text-align: center;*/
 /*    line-height: 38px;*/
-width:160px;
+width:112px;
 }
 .loanWrapper .rate i {
   font-size: 14px;
 }
 .loanWrapper .duration {
-  width: 146px;
+  width: 100px;
 /*  text-align: center;*/
     font-size: 20px;
 }
 .loanWrapper .amount {
-  width: 160px;
+  width: 137px;
 
 /*  padding-right: 40px;*/
     color:#4a4a4a;
@@ -634,7 +634,7 @@ width:160px;
 }
 
 .loanWrapper .backMoney{
-    width:190px;
+    width:143px;
 }
 
 .loanWrapper .figure{
@@ -658,7 +658,7 @@ width:160px;
     margin-top: 20px;
 }
 .loanWrapper .process {
-  width: 200px;
+  width: 186px;
   text-align: center;
 }
 .loanWrapper .process .investPercent {

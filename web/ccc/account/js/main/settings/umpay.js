@@ -21,7 +21,6 @@ var ractive = new Ractive({
         getPwdReturn: false
     },
     oninit: function (){
-
         accountService.getUserInfo(function (res) {
             ractive.set('authenticateInfo', {
                 name: res.user.name,
@@ -79,11 +78,11 @@ ractive.on("register-account-submit", function () {
                             function (res) {
                                 if (res.success) {
                                     CccOk.create({
-                                        msg: '实名认证成功',
-                                        okText: '确定',
-                                        cancelText: '',
+                                        msg: '实名认证成功，开通交易密码是您进行交易前必须步骤!',
+                                        okText: '现在开通',
+                                        cancelText: '稍后再说',
                                         ok: function () {
-                                            window.location.reload();
+                                            window.location.href = '/account/paypwd';
                                         },
                                         cancel: function () {
                                             window.location.reload();

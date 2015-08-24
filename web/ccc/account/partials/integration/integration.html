@@ -26,37 +26,30 @@
 
 <div class="tables">
     {{#if !loading}}
-        <!-- 第一个tab -->
-<!--        {{#if tabIndex === 0}}-->
         <div class="payload-detail-wrapper">
-            <!--数据表-->
             <table class="table table-striped">
                 <col width="210px" />
                 <col width="210px" />
                 <col width="80px" align="right" class="col-amount" />
                 <col width="210px" />
-<!--                <col width="*" />-->
-
                 <thead>
                     <tr>
                         <th>日期</th>
                         <th>来源/用途</th>
                         <th class="col-amount">积分变化</th>
-                        <th>备注</th>
+                        <th>状态</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {{#each list}}
                     <tr>
-                        <td>{{ dateTime }}</td>
-                        <td>{{ transactionType }}
-                            <br />{{ orderId }}</td>
-
+                        <td>{{ timeRecord }}</td>
+                        <td>{{ remark }}</td>
                         <td class="col-amount {{ amountClass }}">
-                            {{ amount }}
+                            {{ pointsChanged }}
                         </td>
-                        <td>{{ description }}</td>
+                        <td>{{ status }}</td>
                     </tr>
                     {{/each}}
                 </tbody>

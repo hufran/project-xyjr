@@ -4,7 +4,8 @@ var utils = require('ccc/global/js/lib/utils');
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
-
+var accountService = require('ccc/account/js/main/service/account')
+    .accountService;
 var ractive = new Ractive({
 	el: '.ccc-recharge-wrap',
 	template: require('ccc/account/partials/withdraw.html'),
@@ -25,7 +26,8 @@ var ractive = new Ractive({
 		disabled: false,
 		submitText: '确认提现',
 		submitMessage: null,
-		error: false
+		error: false,
+        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
 	},
 	oninit: function(){
 		var self = this;
@@ -53,7 +55,7 @@ var ractive = new Ractive({
 		this.$help = $(this.el).find('.help-block');
 		this.$amount = $(this.el).find('[name=amount]');
 		this.$form = $(this.el).find('form[name=withdrawForm]');
-		
+		this.$pass = $(this.el).find('[name=paymentPassword]');
 		this.$amount.focus();
 		
 		// set form action
@@ -77,67 +79,22 @@ var ractive = new Ractive({
 			}
 		});
 
-		this.on('checkSms', function () {
-			var smsCaptcha = this.get('smsCaptcha');
+		this.on('checkPassword', function () {
+			var password = this.get('paymentPassword');
 
-			if(smsCaptcha === '') {
-				self.set('submitMessage', '请填写短信验证码');
-				return;
-			} else if (smsCaptcha.length != 6) {
-				self.set('submitMessage', '短信验证码为6位数字');
+			if (password === '') {
+				self.set('submitMessage', '请输入交易密码');
 				return;
 			} else {
-				self.set('submitMessage', null);
+				accountService.checkPassword(password, function (r) {
+					if (!r) {
+						self.set('submitMessage', '交易密码错误');
+						return;
+					} else {
+						self.set('submitMessage', null);
+					}
+				});
 			}
-		});
-
-		this.$form.submit(function(e){
-			self.$amount.blur();
-			self.set('submitMessage', null);
-			
-			var amount = $.trim(self.$amount.val());
-			if (amount === '') {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_NULL'));
-				return false;
-			}
-			
-			else if (!self.match(amount)) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_INVALID'));
-				self.$amount.focus();
-				return false;
-			}
-			
-			else if (parseFloat(amount) > CC.user.availableAmount) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_POOR'));
-				self.$amount.focus();
-				return false;
-			}
-			
-			else if (self.get('error')) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.ERROR'));
-				return false;
-			}
-			
-			else if (!self.confirm(amount)) {
-				e.preventDefault();
-				return false;
-			}
-			
-			Confirm.create({
-				msg: '提现是否成功？',
-				okText: '提现成功',
-				cancelText: '提现失败',
-				ok: function() {
-					window.location.href = '/account/funds';
-				},
-				cancel: function() {
-					window.location.reload();
-				}
-			});
 		});
 	},
 	
@@ -216,6 +173,64 @@ ractive.on('sendCode', function (){
 			if (r.success) {
 	            countDown();
 	        }
+		});
+	}
+});
+
+ractive.on('withdrawForm', function (e) {
+	e.original.preventDefault();
+	this.set('submitMessage', null);
+	var isAcess = false;
+	var amount = this.get('amount');
+	var pass = this.get('paymentPassword');
+
+	if (amount === '') {
+		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));
+	}
+	
+	else if (!this.match(amount)) {
+		this.set('submitMessage', this.get('msg.AMOUNT_INVALID'));
+		this.$amount.focus();
+	}
+	
+	else if (parseFloat(amount) > CC.user.availableAmount) {
+		this.set('submitMessage', this.get('msg.AMOUNT_POOR'));
+		this.$amount.focus();
+	}
+	
+	else if (this.get('error')) {
+		this.set('submitMessage', this.get('msg.ERROR'));
+	}
+	
+	else if (pass === '') {
+		this.set('submitMessage', '请输入交易密码');
+	} 
+
+	else if (pass !== '') {
+		accountService.checkPassword(pass, function (r) {
+			if (!r) {
+				ractive.set('submitMessage', '交易密码错误');
+			} else {
+				ractive.set('submitMessage', null);
+				if (ractive.confirm(amount)) {
+					isAcess = true;
+				}
+				
+				if (isAcess) {
+					$('form').submit();
+					Confirm.create({
+						msg: '提现是否成功？',
+						okText: '提现成功',
+						cancelText: '提现失败',
+						ok: function() {
+							window.location.href = '/account/funds';
+						},
+						cancel: function() {
+							window.location.reload();
+						}
+					});
+				}
+			}
 		});
 	}
 });

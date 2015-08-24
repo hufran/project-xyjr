@@ -1,30 +1,57 @@
 <div class="ccc-banks-wrap">
     <div class="space space-30"></div>
     <div class="recharge-form-wrap">
-        <h4>充值金额</h4>
-        <div class="space space-10"></div>
-        <div class="row">
-            <div class="col-md-5">
-                <form role="form" name="rechargeForm" action="/lianlianpay/deposit" method="POST" target="_blank" on-submit="recharge_submit">
+        <form role="form" name="rechargeForm" action="{{action}}" method="POST" target="_blank" on-submit="recharge_submit">
+            <h4>充值金额</h4>
+            <div class="space space-10"></div>
+            <div class="row">
+                <div class="col-md-5">
                     <!-- <input type="hidden" name="bank" class="bank" value=""> -->
                     <div class="form-group has-error- has-feedback">
                         <span class="form-control-feedback">
                         	<i class="fa fa-rmb"></i>
                         </span>
                         <input type="text" name="amount" class="form-control input-lg" id="rechargeValue"
-                        on-blur="changeValue" placeholder="单笔充值最高10000000元" value="{{amount}}">
+                        on-blur="changeValue" placeholder="" value="{{amount}}">
                     </div>
-                    <button type="submit" class="btn btn-warning btn-lg">确认充值</button>
-                </form>
+                </div>
+                <div class="col-md-7">
+                    <p class="help-block text-danger">
+                        {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}} 
+                        {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
+                        {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
+                        {{#msg.BANKCODE_NULL}}请选择网上银行{{/msg.BANKCODE_NULL}}
+                    </p>
+                </div>
             </div>
-            <div class="col-md-7">
-                <p class="help-block text-danger">
-                    {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}} 
-                    {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
-                    {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
-                </p>
+            <div class="space space-10"></div>
+            <h4>充值方式</h4>
+            <div class="space space-10"></div>
+            <div class="row">
+                <div class="methodwr">
+                    {{#if !isNormal}}
+                    <span class="rechargeMthod current" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
+                    <span class="rechargeMthod" data-type="normal" on-click="changeMethod">第三方支付</span>
+                    {{else}}
+                    <span class="rechargeMthod" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
+                    <span class="rechargeMthod current" data-type="normal" on-click="changeMethod">第三方支付</span>
+                    {{/if}}
+                </div>
+                <div class="space space-30"></div>
+                {{#if !isNormal}}
+                <div class="bankwrap col-md-9">
+                    {{#each banks}}
+                    <span class="bankItem {{code}}" data-code="{{bankCode}}" on-click="selectBank">
+                    </span>
+                    {{/each}}
+                </div>
+                <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
+                <input type="hidden" name="bankCode" value="{{bankCode}}"> 
+                {{/if}}
             </div>
-        </div>
+            <div class="space space-30"></div>
+            <button type="submit" class="btn btn-warning btn-lg">确认充值</button>
+        </form>
     </div>
 </div>
 

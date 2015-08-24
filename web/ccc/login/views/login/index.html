@@ -1,17 +1,21 @@
 <link rel="stylesheet" href="/ccc/global/css/base.css" />
 <link rel="stylesheet" href="/ccc/login/css/style.css">
+<link rel="stylesheet" href="/ccc/global/css/base1.css">
 
 <div id="main-container">
-    <p class="navTitle"><a href="">首页</a> > 用户登录</p>
+    <p class="navTitle"><a href="/">首页</a> > 用户登录</p>
 <!--    <img src="/ccc/login/img/bg-log-2.jpg"/>-->
     <div class="s-login-view">
         <div class="s-login-window">
             <form id="loginForm" action="/login" method="POST">
+                
                 <div class="s-input-wrapper">
+                    <p class="login-error"></p>
                   <div class="lineUser">
+                      
                     <img src="/ccc/login/img/user.png"/>
                     <input type="text" name="loginName" placeholder="用户名/手机号/邮箱" class="loginName"/>
-                      </div>
+                  </div>
                     <div class="lineUser">
                         <img src="/ccc/login/img/lock.png"/>
                     <input type="password" name="password" placeholder="请输入6-16位字符" />
@@ -27,13 +31,13 @@
                         <a href="/forgot" class="u-float-right">找回密码</a>
                     </div>
                 </div>
-                <button type="submit"  class="do-login cursor-pointer"  id="login_button">登录</button>
+                <button type="submit"  class="do-login cursor-pointer"  id="login_button">立即登录</button>
 <!--                <button onclick="location.href='/register'">注册</button>-->
-                <p class="needRegister">没有账号？立即<a href="/register">注册</a></p>
-                <p class="login-error"></p>
+                <p class="needRegister"><img style="margin-right:6px;" src="/ccc/login/img/login-line.png"/>没有账号？立即<a href="/register">注册</a><img style="margin-left:6px;" src="/ccc/login/img/login-line.png"/></p>
+                
             </form>
         </div>
-        <img class="loginBanner" src="/ccc/login/img/loginBanner.png"/>
+        <div class="loginBanner"></div>
     </div>
     
 </div>

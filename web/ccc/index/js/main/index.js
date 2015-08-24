@@ -21,7 +21,7 @@ $carousel
 IndexService.getLoanSummary(function (list) {
 
      for(var i=0;i<list.length;i++){
-        list[i].method = i18n.enums.RepaymentMethod[list[i].method];
+        list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
     }
     var investRactive = new Ractive({
         el: ".productList",
@@ -55,7 +55,6 @@ IndexService.getLoanSummary(function (list) {
     ininconut();
 
 });
-
 
 
 function ininconut () {
@@ -220,7 +219,7 @@ request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .then(function (res) {
         var count = new Ractive({
         el: '.firendLink',
-        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}{{{content}}}{{/each}}</div></div>',
+        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}<a href="/cms/p/{{this.id}}" target="_blank">{{{title}}}</a>{{/each}}</div></div>',
         data: {
             items: res.body
         }
@@ -234,6 +233,10 @@ $(' .icon-group1').mouseenter(function(){
     $(this).children('.company-intro').show(200);
 }).mouseleave(function(){
     $(this).children('.company-intro').hide(200);
+})
+
+$('.btn-index').click(function(){
+	 $('.btn-index').css({backgroundColor:'#df6502'});
 })
 
 //require('ccc/index/js/main/ss.js')

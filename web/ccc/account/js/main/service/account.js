@@ -98,6 +98,51 @@ exports.accountService = {
             next(r);
             return r;
         });
+    },
+    getTotalInters:function(next){
+         request('GET', '/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    initialPassword: function (password, next) {
+        request('POST', '/api/v2/user/MYSELF/setPaymentPassword')
+            .type('form')
+            .send({password : password})
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    updatePassword: function (oldPassword, newPassword, next) {
+        request('POST', '/api/v2/user/MYSELF/updatePaymentPassword')
+            .type('form')
+            .send({
+                oldPassword : oldPassword,
+                newPassword : newPassword
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    resetPassword: function (password, next) {
+        request('POST', '/api/v2/user/MYSELF/resetPaymentPassword')
+            .type('form')
+            .send({
+                password : password
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    checkPassword: function (password, next) {
+        request('GET', '/api/v2/user/MYSELF/validatePaymentPassword?password=' + password)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     }
-        
 };

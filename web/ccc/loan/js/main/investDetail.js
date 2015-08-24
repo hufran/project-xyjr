@@ -1,5 +1,3 @@
-/*jshint unused : false*/
-
 "use strict";
 var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
@@ -19,35 +17,35 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
-var statusMap={
-    SCHEDULED:'开标时间:{{timeOpen}}',
-    SETTLED:'结标时间:{{timeFinished}}',
-    OPENED:'',
-    FINISHED:'',
-    CLEARED:''
+var statusMap = {
+    SCHEDULED: '开标时间:{{timeOpen}}',
+    SETTLED: '结标时间:{{timeFinished}}',
+    OPENED: '',
+    FINISHED: '',
+    CLEARED: ''
 };
 
-  
-     
 
-var template=statusMap[CC.loan.status];
 
- new Ractive({
-        el: ".openTime",
-        template:template,
-        data: {
-          timeOpen:moment(CC.loan.timeOpen).format('YY.MM.DD HH:mm'),
-          timeFinished:moment(CC.loan.timeFinished).format('YY.MM.DD HH:mm') 
-        }
-    });
 
- 
-    
+var template = statusMap[CC.loan.status];
+
+new Ractive({
+    el: ".openTime",
+    template: template,
+    data: {
+        timeOpen: moment(CC.loan.timeOpen).format('YY.MM.DD HH:mm'),
+        timeFinished: moment(CC.loan.timeFinished).format('YY.MM.DD HH:mm')
+    }
+});
 
 
 
 
- function initailEasyPieChart() {
+
+
+
+function initailEasyPieChart() {
     ///////////////////////////////////////////////////////////
     // 初始化饼状图
     ///////////////////////////////////////////////////////////
@@ -69,7 +67,7 @@ var template=statusMap[CC.loan.status];
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
             });
-            $(this).find("span.percentageNum").html(percentage+"%");
+            $(this).find("span.percentageNum").html(percentage + "%");
         });
 
     });
@@ -90,43 +88,43 @@ $("[data-toggle=tooltip]")
     });
 setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
-    console.log(CC.loan.timeElapsed); 
-    CC.loan.timeLeft=JSON.parse(CC.loan.timeLeft);
-    var leftTime=CC.loan.timeLeft;
-    var timeLeftToal=leftTime.ss+leftTime.mm*60+leftTime.hh*60*60+leftTime.dd*60*60*24;
-    setInterval(function(){
-        timeLeftToal-=1;
-        var dd=parseInt(timeLeftToal/(60*60*24),10),
-        hh=parseInt((timeLeftToal-dd*60*60*24)/(60*60),10),
-        mm=parseInt((timeLeftToal-dd*60*60*24-hh*60*60)/60,10),
-        ss=parseInt(timeLeftToal-dd*60*60*24-hh*60*60-mm*60,10);
-        var newTimeleftTotal={
-            dd:dd,
-            hh:hh,
-            mm:mm,
-            ss:ss
-        }
-        var days = newTimeleftTotal.dd ? '<i>'+newTimeleftTotal.dd+'</i>日' : '';
-        $('.time>span').html('剩余时间：'+days + '<i>'+newTimeleftTotal.hh+'</i>时<i>'+newTimeleftTotal.mm+'</i>分<i>'+newTimeleftTotal.ss+'</i>秒');
-    },1000)
-    //获取最后还款日期
-    if(CC.repayments instanceof Array&&CC.repayments.length>0){
-        CC.loan.lastRepaymentsDate=CC.repayments[0].dueDate;
-        for(var i=0;i<CC.repayments.length;i++){
-            if(CC.loan.lastRepaymentsDate<CC.repayments[i].dueDate){
-                CC.loan.lastRepaymentsDate=CC.repayments[i].dueDate;
+    console.log(CC.loan.timeElapsed);
+    CC.loan.timeLeft = JSON.parse(CC.loan.timeLeft);
+    var leftTime = CC.loan.timeLeft;
+    var timeLeftToal = leftTime.ss + leftTime.mm * 60 + leftTime.hh * 60 * 60 + leftTime.dd * 60 * 60 * 24;
+    setInterval(function () {
+            timeLeftToal -= 1;
+            var dd = parseInt(timeLeftToal / (60 * 60 * 24), 10),
+                hh = parseInt((timeLeftToal - dd * 60 * 60 * 24) / (60 * 60), 10),
+                mm = parseInt((timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60) / 60, 10),
+                ss = parseInt(timeLeftToal - dd * 60 * 60 * 24 - hh * 60 * 60 - mm * 60, 10);
+            var newTimeleftTotal = {
+                dd: dd,
+                hh: hh,
+                mm: mm,
+                ss: ss
+            }
+            var days = newTimeleftTotal.dd ? '<i>' + newTimeleftTotal.dd + '</i>日' : '';
+            $('.time>span').html('剩余时间：' + days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
+        }, 1000)
+        //获取最后还款日期
+    if (CC.repayments instanceof Array && CC.repayments.length > 0) {
+        CC.loan.lastRepaymentsDate = CC.repayments[0].dueDate;
+        for (var i = 0; i < CC.repayments.length; i++) {
+            if (CC.loan.lastRepaymentsDate < CC.repayments[i].dueDate) {
+                CC.loan.lastRepaymentsDate = CC.repayments[i].dueDate;
             }
         };
     }
-    
+
     var investRactive = new Ractive({
         el: ".do-invest-wrapper",
         template: require('ccc/loan/partials/doInvestOnDetail.html'),
         data: {
-            name:'',
+            name: '',
             user: CC.user,
             loan: CC.loan,
-            inputNum:CC.loan.rule.min,
+            inputNum: CC.loan.rule.min,
             rate: utils.format.percent(CC.loan.investPercent *
                 100, 2),
             agreement: CC.user ? (CC.user.agreement ?
@@ -135,35 +133,35 @@ setTimeout((function () {
                 visible: false,
                 msg: ''
             },
-            serverDate:CC.serverDate,
+            serverDate: CC.serverDate,
             isSend: false,
             backUrl: CC.backUrl
         }
     });
-     var serverDate=CC.serverDate;
-     var openTime=CC.loan.timeOpen;
-     serverDate += 1000;
-    if(CC.loan.status==='SCHEDULED'){
-         var interval = setInterval((function () {
-                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-                var textDay = leftTime.day ? leftTime.day +'天' : '';
-                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
-                    clearInterval(interval);
-                }else{
-$('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开标时间还有<span style="color:#007ec5">'+ textDay + leftTime.hour +'</span>时<span style="color:#007ec5">'+ leftTime.min +'</span>分<span style="color:#007ec5">'+ leftTime.sec +'</span>秒</span>')
-                }
-            }), 1000);
+    var serverDate = CC.serverDate;
+    var openTime = CC.loan.timeOpen;
+    serverDate += 1000;
+    if (CC.loan.status === 'SCHEDULED') {
+        var interval = setInterval((function () {
+            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+            var textDay = leftTime.day ? leftTime.day + '天' : '';
+            if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+                clearInterval(interval);
+            } else {
+                $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开标时间还有<span style="color:#007ec5">' + textDay + leftTime.hour + '</span>时<span style="color:#007ec5">' + leftTime.min + '</span>分<span style="color:#007ec5">' + leftTime.sec + '</span>秒</span>')
+            }
+        }), 1000);
     }
-   
-    
-    
-    if(CC.user){
-         accountService.getUserInfo(function (res) {
-      investRactive.set('name', res.user.name);
+
+
+
+    if (CC.user) {
+        accountService.getUserInfo(function (res) {
+            investRactive.set('name', res.user.name);
         });
     }
-    
-    investRactive.on('sendCode', function (){
+
+    investRactive.on('sendCode', function () {
         if (!this.get('isSend')) {
             this.set('isSend', true);
             var smsType = 'CONFIRM_CREDITMARKET_TENDER';
@@ -182,7 +180,8 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
             return false;
         }
         CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
-            captcha, function (data) {
+            captcha,
+            function (data) {
                 if (!data.success) {
                     showErrors('验证码无效或已过期');
                     return false;
@@ -196,7 +195,7 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
         var previousText = '获取验证码';
         var msg = '$秒后重新发送';
 
-        var left = 120;
+        var left = 60;
         var interval = setInterval((function () {
             if (left > 0) {
                 $('.sendCode')
@@ -213,36 +212,46 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
     }
 
     investRactive.set('user', CC.user);
-    if($('.invest-submit').length>0){
+    if ($('.invest-submit').length > 0) {
 
     }
-    
-    
+
+
     investRactive.on('reduce', function (e) {
-          var num = parseInt(this.get('inputNum'));
-        num=num-parseInt(CC.loan.rule.step);
-         if(num<CC.loan.rule.min){
-             return;
-         }
-       investRactive.set('inputNum',num);
-    });
-    
-    investRactive.on('add', function (e) {
         var num = parseInt(this.get('inputNum'));
-        num=num+parseInt(CC.loan.rule.step);
-        if(num > CC.loan.rule.max){
+        num = num - parseInt(CC.loan.rule.step);
+        if (num < CC.loan.rule.min) {
             return;
         }
-       
-       investRactive.set('inputNum',num);
-    });
-    
-    investRactive.on('maxNumber', function (e) {
-       investRactive.set('inputNum',CC.loan.rule.max);
+        investRactive.set('inputNum', num);
     });
 
-    
-    
+    investRactive.on('add', function (e) {
+        var num = parseInt(this.get('inputNum'));
+        if (num < CC.loan.rule.min) {
+            num = CC.loan.rule.min;
+        } else {
+            num = num + parseInt(CC.loan.rule.step);
+        }
+        if (num > CC.loan.rule.max) {
+            return;
+        }
+        investRactive.set('inputNum', num);
+    });
+
+
+    investRactive.on('maxNumber', function (e) {
+        if (CC.user.availableAmount < CC.loan.rule.min) {
+            investRactive.set('inputNum', CC.loan.rule.min);
+        }
+        if (CC.user.availableAmount > CC.loan.rule.max) {
+            investRactive.set('inputNum', CC.loan.rule.max);
+        } else {
+            investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
+        }
+    });
+
+
     investRactive.on("invest-submit", function (e) {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
@@ -269,7 +278,7 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
         }
         if (((num - CC.loan.rule.min) % CC.loan.rule.step) !==
             0) {
-            showErrors('不符合投资规则!最少为'+CC.loan.rule.min+'，且为'+CC.loan.rule.min+'的倍数');
+            showErrors('不符合投资规则!最少为' + CC.loan.rule.min + '，且为' + CC.loan.rule.min + '的倍数');
             return false;
         }
         if (num > CC.user.availableAmount) {
@@ -277,20 +286,22 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
             return false;
         }
 
+
         if (smsCaptcha.length != 6 || smsCaptcha === '') {
             showErrors('请输入正确的短信验证码！');
             return false;
         } else {
-            console.log(111);
             CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
-                smsCaptcha, function (data) {
+                smsCaptcha,
+                function (data) {
                     if (!data.success) {
                         showErrors('验证码无效或已过期');
                         return false;
                     } else {
                         disableErrors();
+                        var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
                         Confirm.create({
-                            msg: '确定投标？',
+                            msg: '您本次投资的金额为' + num + '元，将使用' + coupon + '奖券，是否确认投资？',
                             okText: '确定',
                             cancelText: '取消',
                             ok: function () {
@@ -317,7 +328,7 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
                     };
                 });
         }
-        
+
         return false;
     });
 
@@ -343,10 +354,10 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(
                     CC.loan.timeOpen, serverDate);
-                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                     clearInterval(interval);
                     window.location.reload();
-                }else{
+                } else {
                     countDownRactive.set('countDown', {
                         days: leftTime.day,
                         hours: leftTime.hour,
@@ -359,8 +370,8 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
     }
 
 
-     function parsedata(o) {
-        var type =  {
+    function parsedata(o) {
+        var type = {
             'CASH': '现金券',
             'INTEREST': '加息券',
             'PRINCIPAL': '增值券',
@@ -370,8 +381,8 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
             var canuse = o[i].disabled;
             o[i] = o[i].placement;
             if (o[i].couponPackage.type === 'INTEREST') {
-                o[i].interest  = true;
-                o[i].displayValue = (parseFloat(o[i].couponPackage.parValue)/100).toFixed(1) + '%';
+                o[i].interest = true;
+                o[i].displayValue = (parseFloat(o[i].couponPackage.parValue) / 100).toFixed(1) + '%';
             } else if (o[i].couponPackage.type === 'CASH') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             } else if (o[i].couponPackage.type === 'PRINCIPAL') {
@@ -379,6 +390,7 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             };
+            o[i].value = parseInt(o[i].couponPackage.parValue);
             o[i].id = o[i].id;
             o[i].typeKey = type[o[i].couponPackage.type];
             o[i].minimumInvest = o[i].couponPackage.minimumInvest + "元";
@@ -386,11 +398,11 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
         }
         return o;
     };
-    
-    
-   
 
-    
+
+
+
+
     function showErrors(error) {
         investRactive
             .set('errors', {
@@ -408,33 +420,33 @@ $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开�
     }
 
     $('.benefit-calculator')
-    .on('click', function () {
-        Cal.create();
-    });
-
-    function showSelect(amount){
-        
-        var months = CC.loan.duration;
-        investRactive.set('inum', parseFloat(amount));
-        disableErrors()
-        $.post('/loan/selectOption',{
-            amount:amount,
-            months:months
-        }, function (o) {
-             console.log(o);
-            if (o.success) {
-                investRactive.set('selectOption',parsedata(o.data));
-            }
+        .on('click', function () {
+            Cal.create();
         });
-    }
-    //初始化选项
+
+    function showSelect(amount) {
+
+            var months = CC.loan.duration;
+            investRactive.set('inum', parseFloat(amount));
+            disableErrors()
+            $.post('/loan/selectOption', {
+                amount: amount,
+                months: months
+            }, function (o) {
+                console.log(o);
+                if (o.success) {
+                    investRactive.set('selectOption', parsedata(o.data));
+                }
+            });
+        }
+        //初始化选项
     showSelect(0);
-   
+
 
     $('.invest-input')
-    .on('keyup',function(){
-        showSelect($(this).val());
-    });
+        .on('keyup', function () {
+            showSelect($(this).val());
+        });
 
 }), 100);
 
@@ -458,7 +470,7 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
     relateDataRactive.on('begin-big-pic', function (e) {
         // 开始查看大图
         var index = Number(e.keypath.substr(5));
-    
+
         var options = {
             imgs: imgs,
             currentIndex: index,
@@ -488,24 +500,9 @@ $('.nav-tabs > li')
             .removeClass('active');
     });
 
-function add(){
-var getNum = parseInt(document.getElementById("calculatorText").value);
-if(getNum >0){
-document.getElementById("calculatorText").value = getNum+100;
-}else{
+function add() {
+    var getNum = parseInt(document.getElementById("calculatorText").value);
+    if (getNum > 0) {
+        document.getElementById("calculatorText").value = getNum + 100;
+    } else {}
 }
-}
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
