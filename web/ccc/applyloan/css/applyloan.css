@@ -1,3 +1,6 @@
+#applyloan-page .form-horizontal .control-label{
+    font-weight: normal;
+}
 .loan-content {
     margin: 56px auto;
     height: 1246px;
@@ -10,7 +13,7 @@
     width: 778px;
     border: 1px solid #eee;
     background: #fff;
-    padding-bottom: 160px;
+    padding-bottom: 214px;
 }
 
 .loan-title {
@@ -128,7 +131,7 @@
     width: auto;
     display: inline;
     font-size: 8px;
-    font-style: italic;
+    font-style: normal;
     color: red;
     line-height: 12px;
 }
