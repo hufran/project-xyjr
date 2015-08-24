@@ -55,9 +55,11 @@
     height: 166px;
     margin-left: 10px;
     float: left;
+        cursor: pointer;
 }
 .active{
     border: 2px solid #007ec5;
+        cursor: pointer;
 }
 .leave{
     border: 2px solid #eeeeee;
