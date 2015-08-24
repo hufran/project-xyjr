@@ -26,7 +26,8 @@ var ractive = new Ractive({
 		disabled: false,
 		submitText: '确认提现',
 		submitMessage: null,
-		error: false
+		error: false,
+        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
 	},
 	oninit: function(){
 		var self = this;
