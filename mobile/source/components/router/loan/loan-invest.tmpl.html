@@ -170,6 +170,7 @@
                     <input name="amount"
                            id="invest-amount"
                            ng-model="store.amount"
+                           ng-init="store.amount = 0"
                            ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
                            type="number"
                            class="form-control input-sm"
@@ -190,7 +191,12 @@
                     <select name="placementId" class="form-control input-sm"
                             id="coupon"
                             ng-model="store.coupon"
-                            ng-options="coupon.display for coupon in coupon_list track by coupon.id"
+                            ng-options="
+                                coupon.display
+                                disable when store.amount < coupon.minimum
+                                for coupon in coupon_list
+                                track by coupon.id
+                            "
                     >
                         <option value="">请选择可用的红包</option>
                     </select>
