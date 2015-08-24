@@ -37,7 +37,11 @@
             <div class="form-group">
                 <label for="" class="col-md-2 control-label">身份证号</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="idNumber" value="{{idNumber.substr(0,5)}}**********{{idNumber.substr(-3)}}" />
+                    {{#if idNumber}}
+                        <input type="text" class="form-control" name="idNumber" value="{{idNumber.substr(0,5)}}**********{{idNumber.substr(-3)}}" />
+                    {{else}}
+                        <input type="text" class="form-control" name="idNumber" />
+                    {{/if}}
                 </div>
 
             </div>
