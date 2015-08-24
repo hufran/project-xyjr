@@ -9,7 +9,7 @@ module.exports = function (router) {
     });
 
     // 未登录访问account下的页面,跳转到 /
-    router.get(/^\/account\//, function (req, res, next) {
+    router.get('/account/*', function (req, res, next) {
         if (!req.cookies.ccat) {
             res.redirect('/');
             return;
@@ -18,7 +18,7 @@ module.exports = function (router) {
     });
 
     // topNav 需要的东西
-    router.get(/^\/account\//, function (req, res, next) {
+    router.get('/account/*', function (req, res, next) {
 
         // 定位tab
         var tabs = [{
@@ -331,10 +331,16 @@ module.exports = function (router) {
 
     // 对体现进行限制
     router.get('/account/withdraw', function (req, res, next) {
+        Promise.join(req.uest(
+                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .get('body'), function (paymentPasswordHasSet) {
+            res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet
+        });
         
         var banks = _.filter(res.locals.user.bankCards, function (r) {
             return r.deleted === false;
         });
+
         if (!banks.length) {
             res.redirect('/account/bankcard');
         } else {
