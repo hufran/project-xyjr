@@ -9,7 +9,7 @@ module.exports = function (router) {
     });
 
     // 未登录访问account下的页面,跳转到 /
-    router.get(/^\/account\//, function (req, res, next) {
+    router.get('/account/*', function (req, res, next) {
         if (!req.cookies.ccat) {
             res.redirect('/');
             return;
@@ -18,7 +18,7 @@ module.exports = function (router) {
     });
 
     // topNav 需要的东西
-    router.get(/^\/account\//, function (req, res, next) {
+    router.get('/account/*', function (req, res, next) {
 
         // 定位tab
         var tabs = [{
