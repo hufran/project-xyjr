@@ -109,8 +109,7 @@
                         <select name="placementId" id="couponSelection">
                             <option value="">使用奖券: 无</option>
                             {{#each selectOption}}
-<!--                            <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>-->
-							<option value="{{ id }}" >{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
+							<option data={{value}} value="{{ id }}" >{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
                             {{/each}}
                         </select>
                     </div>
@@ -128,7 +127,7 @@
 
             {{/if}} {{else}}
             <p>
-                您尚未登录，账户余额 <a href="/login" style="color:#007ec5;">登录</a> 后可见
+                您尚未登录，<a href="/login" style="color:#007ec5;">登录</a> 后可见
             </p>
 
             <div class="calculatorBox">

@@ -80,7 +80,7 @@ router.get('/loan/:id',
                     var result = parseLoan(r.body);
                     result.userId = result.loanRequest.userId;
                     requestId = result.loanRequest.id;    
-                    res.locals.title = result.title + '|奇乐融';
+                    res.locals.title = '奇乐融';
                     res.locals.description = result.loanRequest.description; 
                     return result;
                     
