@@ -100,7 +100,7 @@
   color: #000;
 }
 .account-integration-wrapper .payload-detail-wrapper .table .col-amount {
-  text-align: right;
+  text-align: left;
 }
 .account-integration-wrapper .payload-detail-wrapper .table .in {
   color: #83bd12;

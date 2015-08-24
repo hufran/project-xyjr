@@ -109,7 +109,9 @@
                         <select name="placementId" id="couponSelection">
                             <option value="">使用奖券: 无</option>
                             {{#each selectOption}}
-							<option data={{value}} value="{{ id }}" >{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
+<!--                            <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>-->
+							<option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
+
                             {{/each}}
                         </select>
                     </div>
