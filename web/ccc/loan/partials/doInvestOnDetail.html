@@ -32,10 +32,10 @@
             <div class="input">
                 <div class="calculatorBox">
                     <div class="calculator">
-                        <button class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></button>
+                        <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                         <input type="hidden" name="loanId" value="{{loan.id}}">
                         <input placeholder="{{loan.rule.min}}" type="text" value="{{ inputNum }}">
-                        <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
+                        <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                     </div>
                 </div>
                 <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
@@ -78,12 +78,12 @@
                 <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
                     <div class="calculatorBox">
                         <div class="calculator">
-                            <button class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></button>
+                            <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                             <input type="hidden" name="loanId" value="{{loan.id}}">
                             <input placeholder="{{loan.rule.min}}" type="text" name="amount" value="{{ inputNum }}">
-                            <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
+                            <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                         </div>
-                        <button class="topAmount" on-click="maxNumber">最大可投金额</button>
+                        <span class="topAmount" on-click="maxNumber">最大可投金额</span>
                         <div class="clearfix"></div>
                         <div class="captchaWra">
                             <span class="tip">验证码</span>
@@ -97,7 +97,8 @@
                         <select name="placementId" id="couponSelection">
                             <option value="">使用奖券: 无</option>
                             {{#each selectOption}}
-                            <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
+<!--                            <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>-->
+							<option value="{{ id }}" >{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
                             {{/each}}
                         </select>
                     </div>
@@ -120,11 +121,11 @@
 
             <div class="calculatorBox">
                 <div class="calculator">
-                    <button class="glyphicon glyphicon-minus" style="padding:0;margin:0;top:0;" on-click="reduce"></button>
+                    <span class="glyphicon glyphicon-minus" style="padding:0;margin:0;top:0;" on-click="reduce"></span>
                     <input placeholder="{{loan.rule.min}}" type="text" value="{{ inputNum }}">
-                    <button class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></button>
+                    <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                 </div>
-                <button class="topAmount" on-click="">最大可投金额</button>
+                <span class="topAmount" on-click="">最大可投金额</span>
             </div>
             <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>
 

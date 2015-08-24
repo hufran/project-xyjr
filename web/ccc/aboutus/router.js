@@ -69,8 +69,9 @@ module.exports = function (router) {
 
 
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
-
+console.log(r.body);
             if (r.body.length > 1) {
+				
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                 req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current +
                         '&pagesize=10')
@@ -131,6 +132,119 @@ module.exports = function (router) {
 
 
     });
+	
+//	router.get('/aboutus/:tab', function (req, res) {
+//        var newsCateMap = {
+//            companyNews: '',
+//           	mediaNews:'',
+//			PlatformNews:'',
+//			runNews:'',
+//        };
+//        var newsNameMap = {
+//            companyNews: '公司动态',
+//           	mediaNews:'媒体报道',
+//			PlatformNews:'平台公告',
+//			runNews:'经营报告',
+//        };
+//
+//        var newsIndexMap = {
+//            companyNews: '公司动态',
+//           	mediaNews:'媒体报道',
+//			PlatformNews:'平台公告',
+//			runNews:'经营报告',
+//        };
+//
+//        var newsTabs = [{
+//            text: '公司动态',
+//            url: '/aboutus/companyNews'
+//        }, {
+//            text: '媒体报道',
+//            url: '/aboutus/mediaNews'
+//        }, {
+//            text: '平台公告',
+//            url: '/aboutus/PlatformNews'
+//        }, {
+//            text: '经营报告',
+//            url: '/aboutus/runNews',
+//        }];
+//        var tabIndex;
+//
+//        // 计算当前页面的index
+//        var loop = function () {
+//            for (var index = 0, length = newTabs.length; index < length; index++) {
+//                var tab = newTabs[index];
+//                if (newTabs.text === newsIndexMap[req.params.tab]) {
+//                    tabIndex = index;
+//                    break;
+//                }
+//            }
+//        };
+//        loop();
+//
+//
+//        req.uest('/api/v2/cms/category/' + newsCateMap[req.params.tab] + '/name/' + encodeURIComponent(newsNameMap[req.params.tab])).end().then(function (r) {
+//            if (r.body.length > 1) {
+//				
+//                var current = (req.query.page === undefined) ? 1 : req.query.page;
+//                req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current +
+//                        '&pagesize=10')
+//                    .end()
+//                    .then(function (r) {
+//                        formatNews(r.body.results);
+//                        var contents = r.body.results.length >
+//                            0 ? r.body.results : null;
+//
+//                        res.render('aboutus/index', {
+//                            totalPage: createList(
+//                                Math
+//                                .ceil(r.body
+//                                    .totalSize /
+//                                    10)),
+//                            current: parseInt(
+//                                current,
+//                                10),
+//                            tabs: tabs,
+//                            currentTab: newsNameMap[
+//                                req.params.tab
+//                            ],
+//                            tabIndex: tabIndex,
+//                            tab: {
+//                                name: req.params
+//                                    .tab,
+//                                text: nameMap[
+//                                    req.params
+//                                    .tab]
+//                            },
+//                            contents: contents
+//                        });
+//                    });
+//
+//
+//            } else {
+//
+//                formatNews(r);
+//                var contents = r.body.length >
+//                    0 ? r.body : null;
+//                res.render('aboutus/index', {
+//                    tabs: tabs,
+//                    currentTab: newsNameMap[
+//                        req.params.tab
+//                        ],
+//                    tabIndex: tabIndex,
+//                    tab: {
+//                        name: req.params
+//                            .tab,
+//                        text: nameMap[
+//                            req.params
+//                            .tab]
+//                    },
+//                    contents: contents
+//                });
+//            }
+//        });
+//
+//
+//    });
 
     function formatNews(news) {
         news = news || [];

@@ -238,11 +238,6 @@ module.exports = function (router) {
         "userInfo"
     ].forEach(function (tabName) {
         router.get('/account/' + tabName, function (req, res) {
-            if (tabName === 'paypwd') {
-                 if (!res.locals.user.name) {
-                    res.redirect('/account/umpay');
-                } 
-            };
             Promise.join(
                 req.uest(
                     '/api/v2/user/MYSELF/authenticates'
@@ -330,9 +325,7 @@ module.exports = function (router) {
         var banks = _.filter(res.locals.user.bankCards, function (r) {
             return r.deleted === false;
         });
-        if (!res.locals.user.name) {
-            res.redirect('/account/umpay');
-        } else if (!banks.length) {
+        if (!banks.length) {
             res.redirect('/account/bankcard')
         } else {
             next();
@@ -341,17 +334,14 @@ module.exports = function (router) {
 
     // 对体现进行限制
     router.get('/account/withdraw', function (req, res, next) {
-        if (!res.locals.user.name) {
-            res.redirect('/account/umpay');
+        
+        var banks = _.filter(res.locals.user.bankCards, function (r) {
+            return r.deleted === false;
+        });
+        if (!banks.length) {
+            res.redirect('/account/bankcard');
         } else {
-            var banks = _.filter(res.locals.user.bankCards, function (r) {
-                return r.deleted === false;
-            });
-            if (!banks.length) {
-                res.redirect('/account/bankcard');
-            } else {
-                next();
-            }
+            next();
         }
     });
 
