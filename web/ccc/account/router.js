@@ -334,10 +334,16 @@ module.exports = function (router) {
 
     // 对体现进行限制
     router.get('/account/withdraw', function (req, res, next) {
+        Promise.join(req.uest(
+                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .get('body'), function (paymentPasswordHasSet) {
+            res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet
+        });
         
         var banks = _.filter(res.locals.user.bankCards, function (r) {
             return r.deleted === false;
         });
+
         if (!banks.length) {
             res.redirect('/account/bankcard');
         } else {
