@@ -317,12 +317,12 @@ setTimeout((function () {
                                         window.location.reload();
                                     },
                                     cancel: function () {
-                                        window.location.reload();
+                              $('.dialog').hide();
                                     }
                                 });
                             },
                             cancel: function () {
-                                window.location.reload();
+                              $('.dialog').hide();
                             }
                         });
                     };
