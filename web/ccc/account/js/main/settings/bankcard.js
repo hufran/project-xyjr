@@ -34,6 +34,7 @@ var ractive = new Ractive({
         bankAccount: CC.user.bankCards || [],
         province: '',
         city: '',
+        ifDel: false,
         authenticated: CC.user.authenticates.idauthenticated || false
     },
     oncomplete: function () {
@@ -65,6 +66,9 @@ ractive.on("validatePhoneNo", function () {
     }
 });
 
+ractive.on('doDel', function () {
+    this.set('ifDel',true);
+});
 ractive.on("bind-card-submit", function () {
     var cardNoError = this.get("cardNoError");
     var phoneNoError = this.get("phoneNoError");
