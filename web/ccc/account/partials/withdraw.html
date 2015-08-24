@@ -17,6 +17,7 @@
 		{{loadMessage}}
     </div>
     <div class="space space-30"></div>
+    {{#if paymentPasswordHasSet}}
     <div class="recharge-form-wrap">
         <h4>提现金额</h4>
         <div class="space space-10"></div>
@@ -43,4 +44,9 @@
             </div>
         </div>
     </div>
+    {{else}}
+    <div class="has-line">
+        提现需要先开通交易密码，否则无法进行提现 <a href="/account/paypwd"><span class="btn" style="background-color:#007ec5;margin-left:10px;color:#fff">现在去开通</span></a>
+    </div>
+    {{/if}}
 </div>

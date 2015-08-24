@@ -9,7 +9,7 @@ module.exports = function (router) {
     });
 
     // 未登录访问account下的页面,跳转到 /
-    router.get(/^\/account\//, function (req, res, next) {
+    router.get('/account/*', function (req, res, next) {
         if (!req.cookies.ccat) {
             res.redirect('/');
             return;
@@ -18,7 +18,7 @@ module.exports = function (router) {
     });
 
     // topNav 需要的东西
-    router.get(/^\/account\//, function (req, res, next) {
+    router.get('/account/*', function (req, res, next) {
 
         // 定位tab
         var tabs = [{
@@ -159,10 +159,7 @@ module.exports = function (router) {
 
 
         // safetyProgress
-        var items = ['checkMobile',
-            'checkCard',
-            'checkUmpay'
-        ];
+        var items = ['checkMobile','checkEmail','checkCard','checkUmpay'];
         var avail = items.reduce(function (
             ret, item) {
             if (res.locals[item]()) {
@@ -170,8 +167,8 @@ module.exports = function (router) {
             }
             return ret;
         }, 0);
-        res.locals.safetyProgress = avail /
-            items.length * 100;
+        
+        res.locals.safetyProgress = avail / items.length * 100;
 
         // riskText
         var riskText;
@@ -211,20 +208,20 @@ module.exports = function (router) {
             .then(function (r) {
                 _.assign(res.locals.user, r.body);
                 res.render('account/index', {
-                    title: '我的账户|正奇金融'
+                    title: '奇乐融'
                 });
             });
     });
 
     router.get('/account/invest', function (req, res) {
         res.render('account/invest', {
-            title: '我的债权|正奇金融'
+            title: '奇乐融'
         });
     });
 
     router.get('/account/funds', function (req, res) {
         res.render('account/funds', {
-            title: '交易记录|正奇金融'
+            title: '奇乐融'
         });
     });
 
@@ -261,7 +258,7 @@ module.exports = function (router) {
                         paymentPasswordHasSet;
                     res.render('account/settings', {
                         tabName: tabName,
-                        title: '账户管理|正奇金融'
+                        title: '奇乐融'
                     });
                 });
         });
@@ -279,7 +276,7 @@ module.exports = function (router) {
                 }
                 res.render('account/settings', {
                     tabName: 'agreement',
-                    title: '账户管理|正奇金融'
+                    title: '奇乐融'
                 });
             });
     });
@@ -288,7 +285,7 @@ module.exports = function (router) {
         //    res.render('account/loan',{});
         res.render('account/loan', {
             //tabName: tabName,
-            title: '还款管理|正奇金融'
+            title: '奇乐融'
         });
     });
 
@@ -334,10 +331,16 @@ module.exports = function (router) {
 
     // 对体现进行限制
     router.get('/account/withdraw', function (req, res, next) {
+        Promise.join(req.uest(
+                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .get('body'), function (paymentPasswordHasSet) {
+            res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet
+        });
         
         var banks = _.filter(res.locals.user.bankCards, function (r) {
             return r.deleted === false;
         });
+
         if (!banks.length) {
             res.redirect('/account/bankcard');
         } else {

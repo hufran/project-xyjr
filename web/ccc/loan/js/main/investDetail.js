@@ -195,7 +195,7 @@ setTimeout((function () {
         var previousText = '获取验证码';
         var msg = '$秒后重新发送';
 
-        var left = 120;
+        var left = 60;
         var interval = setInterval((function () {
             if (left > 0) {
                 $('.sendCode')
@@ -230,13 +230,13 @@ setTimeout((function () {
         var num = parseInt(this.get('inputNum'));
         if (num < CC.loan.rule.min) {
             num = CC.loan.rule.min;
-        }else{
-        num = num + parseInt(CC.loan.rule.step);
+        } else {
+            num = num + parseInt(CC.loan.rule.step);
         }
         if (num > CC.loan.rule.max) {
             return;
         }
-  investRactive.set('inputNum', num);
+        investRactive.set('inputNum', num);
     });
 
 
@@ -285,13 +285,12 @@ setTimeout((function () {
             showErrors('账户余额不足，请先充值 !');
             return false;
         }
-        
-        
+
+
         if (smsCaptcha.length != 6 || smsCaptcha === '') {
             showErrors('请输入正确的短信验证码！');
             return false;
         } else {
-            console.log(111);
             CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
                 smsCaptcha,
                 function (data) {
@@ -300,8 +299,9 @@ setTimeout((function () {
                         return false;
                     } else {
                         disableErrors();
+                        var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
                         Confirm.create({
-                            msg: '确定投标？',
+                            msg: '您本次投资的金额为' + num + '元，将使用' + coupon + '奖券，是否确认投资？',
                             okText: '确定',
                             cancelText: '取消',
                             ok: function () {
@@ -317,12 +317,12 @@ setTimeout((function () {
                                         window.location.reload();
                                     },
                                     cancel: function () {
-                                        window.location.reload();
+                              $('.dialog').hide();
                                     }
                                 });
                             },
                             cancel: function () {
-                                window.location.reload();
+                              $('.dialog').hide();
                             }
                         });
                     };
@@ -390,6 +390,7 @@ setTimeout((function () {
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             };
+            o[i].value = parseInt(o[i].couponPackage.parValue);
             o[i].id = o[i].id;
             o[i].typeKey = type[o[i].couponPackage.type];
             o[i].minimumInvest = o[i].couponPackage.minimumInvest + "元";

@@ -7,7 +7,7 @@ module.exports = function (router) {
         }
 
         res.expose(user, 'user');
-        res.locals.title = '个人投资理财|投资理财公司|理财产品排行-正奇金融';
+        res.locals.title = '奇乐融';
         res.locals.keywords = '个人投资理财，投资理财公司，理财产品排行';
         res.locals.description =
             '正奇金融！';
