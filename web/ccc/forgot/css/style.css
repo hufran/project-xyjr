@@ -522,6 +522,7 @@ body {
     line-height: 41px;
     font-size: 16px;
     color:#3c3c3c;
+    margin-left: -32px;
 }
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text a{
     color:#007ec5;
