@@ -637,6 +637,7 @@ ul.banks-wrap span.WZCB {
   width: 249px;
   color: red;
   text-align: center;
+    float: left;
 }
 .error {
     color:#f00;
