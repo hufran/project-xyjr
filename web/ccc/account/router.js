@@ -11,7 +11,7 @@ module.exports = function (router) {
     // 未登录访问account下的页面,跳转到 /
     router.get('/account/*', function (req, res, next) {
         if (!req.cookies.ccat) {
-            res.redirect('/');
+            res.redirect('/login');
             return;
         }
         next();
@@ -448,13 +448,11 @@ module.exports = function (router) {
             code: code,
             email: email
         };
-
         req.uest.post('/api/v2/user/authenticateEmail')
             .type('form')
             .send(sendObj)
             .end()
             .then(function (r) {
-
                 res.redirect('/register/renzheng?message=' + r.body
                     .ConfirmResult);
             });
