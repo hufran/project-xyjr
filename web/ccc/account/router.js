@@ -21,65 +21,121 @@ module.exports = function (router) {
     router.get('/account/*', function (req, res, next) {
 
         // 定位tab
-        var tabs = [{
-            text: '我的账户',
-            url: '/account'
-        }, {
-            text: '我的投资',
-            url: '/account/invest'
-        }, {
-            text: '自动投资',
-            url: '/account/autobid'
-        }, {
-            text: '交易记录',
-            url: '/account/funds'
-        }, {
-            text: '账户管理',
-            url: '/account/umpay',
-            subTabs: [{
-                    text: '实名认证',
-                    url: '/account/umpay'
-                }, {
-                    text: '个人信息',
-                    url: '/account/userInfo'
-                }, {
-                    text: '提现银行卡信息',
-                    url: '/account/bankcard'
-                }, {
-                    text: '平台密码',
-                    url: '/account/settings'
-                }, {
-                    text: '安全认证',
-                    url: '/account/safety'
-                }, {
-                    text: '交易密码',
-                    url: '/account/paypwd'
-                }
-                // {
-                //     text: '无密协议',
-                //     url: '/account/agreement'
-                // }, 
-            ]
+        var enterprise = res.locals.user.enterprise;
+        var tabs; 
+        if (!enterprise) {
+            tabs = [{
+                text: '我的账户',
+                url: '/account'
+            }, {
+                text: '我的投资',
+                url: '/account/invest'
+            }, {
+                text: '自动投资',
+                url: '/account/autobid'
+            }, {
+                text: '交易记录',
+                url: '/account/funds'
+            }, {
+                text: '账户管理',
+                url: '/account/umpay',
+                subTabs: [{
+                        text: '实名认证',
+                        url: '/account/umpay'
+                    }, {
+                        text: '个人信息',
+                        url: '/account/userInfo'
+                    }, {
+                        text: '提现银行卡信息',
+                        url: '/account/bankcard'
+                    }, {
+                        text: '平台密码',
+                        url: '/account/settings'
+                    }, {
+                        text: '安全认证',
+                        url: '/account/safety'
+                    }, {
+                        text: '交易密码',
+                        url: '/account/paypwd'
+                    }
+                ]
+            }, {
+                text: '还款管理',
+                url: '/account/loan'
+            }, {
+                text: '我的红包',
+                url: '/account/coupon'
+            }, 
+            // {
+            //     text: '我的积分',
+            //     url: '/account/integration'
+            // }, 
+            {
+                text: '我的邀请',
+                url: '/account/invite'
+            }, {
+                text: '消息中心',
+                url: '/account/message'
+            }, {
+                text: '用户反馈',
+                url: '/account/feedback'
+            }];
+        } else {
+            tabs = [{
+                text: '我的账户',
+                url: '/account'
+            }, {
+                text: '我的投资',
+                url: '/account/invest'
+            }, {
+                text: '自动投资',
+                url: '/account/autobid'
+            }, {
+                text: '交易记录',
+                url: '/account/funds'
+            }, {
+                text: '账户管理',
+                url: '/account/umpay',
+                subTabs: [{
+                        text: '实名认证',
+                        url: '/account/umpay'
+                    }, {
+                        text: '个人信息',
+                        url: '/account/userInfo'
+                    }, {
+                        text: '平台密码',
+                        url: '/account/settings'
+                    }, {
+                        text: '安全认证',
+                        url: '/account/safety'
+                    }, {
+                        text: '交易密码',
+                        url: '/account/paypwd'
+                    }
+                ]
 
-        }, {
-            text: '还款管理',
-            url: '/account/loan'
-        }, {
-            text: '我的红包',
-            url: '/account/coupon'
-        }, {
-            text: '我的积分',
-            url: '/account/integration'
-        }, {
-            text: '我的邀请',
-            url: '/account/invite'
-        }, {
-            text: '消息中心',
-            url: '/account/message'
-        }, {
-            text: '用户反馈',
-            url: '/account/feedback'
-        }];
+            }, {
+                text: '还款管理',
+                url: '/account/loan'
+            }, {
+                text: '我的红包',
+                url: '/account/coupon'
+            }, 
+            // {
+            //     text: '我的积分',
+            //     url: '/account/integration'
+            // }, 
+            {
+                text: '我的邀请',
+                url: '/account/invite'
+            }, {
+                text: '消息中心',
+                url: '/account/message'
+            }, {
+                text: '用户反馈',
+                url: '/account/feedback'
+            }];
+        };
 
         var path = req.path.replace(/\/$/, '');
         var tabIndex, subTabIndex;
