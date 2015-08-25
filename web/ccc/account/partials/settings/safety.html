@@ -46,6 +46,36 @@
                 </td>
             </tr>
             <tr>
+                {{#if paymentPasswordHasSet}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码
+                </td>
+                {{else}}
+                <td class="align-left">
+                    <span class="glyphicon glyphicon-remove" style="color:red"></span> &nbsp;交易密码
+                </td>
+                {{/if}}
+                <td>
+                    保障您在奇乐融网站账号安全的重要内容之一
+                </td>
+                
+                {{#if paymentPasswordHasSet}}
+                <td>
+                    <span style="color: #005387;">是</span>
+                </td>
+                <td>
+                    <a href="/account/paypwd" style="color: #005387;" class="goRz">修改密码</a>
+                </td>
+                {{else}}
+                <td>
+                    <span style="color: #005387;">否</span>
+                </td>
+                <td>
+                    <a href="/account/paypwd" style="color: #005387;" class="goRz">去开通</a>
+                </td>
+                {{/if}}
+            </tr>
+            <tr>
                 {{#if activatedEmail}}
                 <td class="align-left">
                     <span class="glyphicon glyphicon-ok"></span> &nbsp;邮箱认证
