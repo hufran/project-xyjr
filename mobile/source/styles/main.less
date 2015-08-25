@@ -801,6 +801,10 @@ a {
                 line-height: 1;
                 color: @color-gray;
                 min-width: 54px;
+
+                &:empty {
+                    min-width: auto;
+                }
             }
         }
 
@@ -1654,6 +1658,33 @@ a {
             }
         }
     }
+}
+
+/*=============================================================================
+                                          [Router] [Dashboard] Payment Register
+----*/
+
+#dashboard-payment-register {
+
+    .form-flatten {
+        #login > .form-flatten;
+    }
+
+    .alert {
+        border-radius: 0;
+    }
+
+    .flash-message {
+        .opacity(0);
+        .transition();
+
+        padding: 6px 10px;
+
+        &.on {
+            .opacity(1);
+        }
+    }
+
 }
 
 /*=============================================================================

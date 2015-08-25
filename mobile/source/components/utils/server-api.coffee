@@ -44,6 +44,7 @@ do (_, angular, moment, Array) ->
                             userfund
                             payment
                             fundaccounts
+                            authenticates
                         '
 
                         @$q.all api_list.map (path) =>
@@ -55,6 +56,7 @@ do (_, angular, moment, Array) ->
                             @user.fund
                             @user.payment
                             @user.fund_accounts
+                            @user.authenticates
 
                         ] = _.pluck response, 'data'
 
@@ -62,7 +64,6 @@ do (_, angular, moment, Array) ->
                             investInterestAmount
                             investingPrincipalAmount
                             investingInterestAmount
-                            currentYield
                             investFrozenAmount
                         '
 
@@ -259,6 +260,17 @@ do (_, angular, moment, Array) ->
                 @$http.post '/logout', {}, {
                     headers: 'X-Requested-With': 'XMLHttpRequest'
                 }
+
+
+            payment_pool_register: (name, idNumber) ->
+
+                @$http
+                    .post '/api/v2/lianlianpay/authenticateUser/MYSELF',
+                        @param {name, idNumber}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
 
 
             payment_ump_register: (userName, idCode) ->

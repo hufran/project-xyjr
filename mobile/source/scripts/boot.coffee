@@ -103,9 +103,9 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                     }
 
                     .when '/dashboard/payment/register', {
-                        controller: 'PaymentUmpRegisterCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/ump/payment-ump-register.tmpl.html'
-                        resolve:
+                        controller: 'PaymentPoolRegisterCtrl as self'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-register.tmpl.html'
+                        _resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
                                     api.fetch_current_user().catch ->
@@ -193,6 +193,21 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/recharge'
                                         do $q.reject
+
+                            _payment_account: _.ai 'api, $location, $route, $q',
+                                (                   api, $location, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then (user) ->
+                                            return $q.reject(true) unless user.has_payment_account
+                                            return user
+                                        .catch (has_logged_in = false) ->
+                                            return unless has_logged_in
+                                            $location
+                                                .replace()
+                                                .path 'dashboard/payment/register'
+                                                .search
+                                                    back: 'dashboard'
+                                                    next: 'dashboard/recharge'
                     }
 
                     .when '/dashboard/withdraw', {
@@ -207,6 +222,21 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/withdraw'
                                         do $q.reject
+
+                            _payment_account: _.ai 'api, $location, $route, $q',
+                                (                   api, $location, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then (user) ->
+                                            return $q.reject(true) unless user.has_payment_account
+                                            return user
+                                        .catch (has_logged_in = false) ->
+                                            return unless has_logged_in
+                                            $location
+                                                .replace()
+                                                .path 'dashboard/payment/register'
+                                                .search
+                                                    back: 'dashboard'
+                                                    next: 'dashboard/withdraw'
                     }
 
                     .when '/dashboard/invite', {
@@ -283,6 +313,21 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             months = _.get data, 'duration.totalMonths'
 
                                             return api.fetch_coupon_list amount, months
+
+                            _payment_account: _.ai 'api, $location, $route, $q',
+                                (                   api, $location, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then (user) ->
+                                            return $q.reject(true) unless user.has_payment_account
+                                            return user
+                                        .catch (has_logged_in = false) ->
+                                            return unless has_logged_in
+                                            $location
+                                                .replace()
+                                                .path 'dashboard/payment/register'
+                                                .search
+                                                    back: "loan/#{ $route.current.params.id }"
+                                                    next: "loan/#{ $route.current.params.id }/invest"
                     }
 
                     .when '/loan/:id/invest/return', {
