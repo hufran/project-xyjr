@@ -45,6 +45,11 @@ $.validator.addMethod("organizing", function (value, element) {
     return this.optional(element) || (organizing.test(value));
 }, "组织机构代码格式错误");
 
+$.validator.addMethod("checkEmail", function (value, element) {
+    var email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return this.optional(element) || (email.test(value));
+}, "邮箱地址代码格式错误");
+
 var v = $("#loanForm").validate({
     rules: {
         companyName: {
@@ -67,6 +72,10 @@ var v = $("#loanForm").validate({
         },
         companyAddress: {
             required: true
+        },        
+        emailAddress: {
+            required: true,
+            checkEmail:true
         },
         loanMoney: {
             required: true,
@@ -112,6 +121,9 @@ var v = $("#loanForm").validate({
         },
         companyAddress: {
             required: "请输入您的公司地址"
+        },        
+        emailAddress: {
+            required: "请输入您的邮箱地址"
         },
         loanMoney: {
             required: "请输入借款金额",

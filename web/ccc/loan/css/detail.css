@@ -442,7 +442,7 @@
  .firstLine .tip {
     float: left;
     line-height: 50px;
-    font-size: 14px;
+    font-size: 18px;
     color: #4a4a4a;
     margin-left: 30px;
 }
@@ -1475,4 +1475,23 @@
     display: block;
     font-size: 14px;
     line-height: 35px;
+}
+.investTitle .time i{
+    font-style: normal;
+} 
+.finished-btn{
+    width:300px;
+    height:38px;
+    background: #ccc;
+    color: white;
+    border: none;
+    font-size:16px;
+}
+.finished-money{
+    text-align: left;
+    margin-left: 30px;
+    font-size: 16px;
+    line-height: 38px;
+    width: 350px;
+    float:left;
 }

@@ -563,13 +563,14 @@ margin-left: 14px;
 }
 /*loan*/
 .loanWrapper {
+    width:1100px;
   display: table;
   height: 72px;
 /*    margin-right: 14px;*/
      padding-left: 40px;
   border-bottom: 1px #ccc solid;
     background: #ffffff;
-    border-radius: 5px;
+/*    border-radius: 5px;*/
 }
 .loanWrapper > div {
   float: left;

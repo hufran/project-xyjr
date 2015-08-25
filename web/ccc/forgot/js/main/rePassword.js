@@ -1,4 +1,3 @@
-
 "use strict";
 var utils = require('ccc/global/js/lib/utils');
 var maskLayer = require('ccc/global/js/lib/maskLayer');
@@ -9,23 +8,23 @@ var CommonService = require('ccc/global/js/modules/common')
     .CommonService;
 
 var returnMap = {
-  'INVALID_CAPTCHA' : '验证码不正确',
-  'MOBILE_NAME_NOT_MATCH' : '用户名和手机号码不匹配'
+    'INVALID_CAPTCHA': '验证码不正确',
+    'MOBILE_NAME_NOT_MATCH': '用户名和手机号码不匹配'
 };
 
 var rePassword = new Ractive({
     el: '#u-page-container',
     template: require('ccc/forgot/partials/rePassword.html'),
-    init:function(){
-      if (!CC.user.id) {
-        // window.location.href = '/';
-      }
+    init: function () {
+        if (!CC.user.id) {
+            // window.location.href = '/';
+        }
     },
     data: {
         // 这里存放有关于注册用户的所有信息
-        telcode:false,
-        phone:null,
-        time:120,
+        telcode: false,
+        phone: null,
+        time: 120,
         visible: false,
         step1: true,
         step2: false,
@@ -49,7 +48,7 @@ var rePassword = new Ractive({
 
 // 获取验证码
 CommonService.getCaptcha(function (res) {
-  rePassword.set('captcha', {
+    rePassword.set('captcha', {
         img: res.captcha,
         token: res.token
     });
@@ -57,7 +56,7 @@ CommonService.getCaptcha(function (res) {
 
 rePassword.on('changeCaptcha', function () {
     CommonService.getCaptcha(function (res) {
-      rePassword.set('captcha', {
+        rePassword.set('captcha', {
             img: res.captcha,
             token: res.token
         });
@@ -66,9 +65,9 @@ rePassword.on('changeCaptcha', function () {
 
 rePassword.on('step1', function (e) {
     e.original.preventDefault();
-    
+
     var user = {
-        loginName: 'zqjr_'+this.get('user.mobile'),
+        loginName: 'zqjr_' + this.get('user.mobile'),
         mobile: this.get('user.mobile'),
         captcha: this.get('captcha.text'),
         token: this.get('captcha.token')
@@ -83,39 +82,50 @@ rePassword.on('step1', function (e) {
                 showErrors(msg);
                 return false;
             }
-            rePasswordService.verifyLoginNameAndMobile(user, function (err,
-                msg) {
+            rePasswordService.verifyLoginNameAndMobile(user, function (err, msg) {
                 if (!err) {
                     showErrors(msg);
-                } else {
-                    disableErrors();
-                    rePassword.set('step1',false);
-                    rePassword.set('step2',true);
+                    return false;
                 }
-                return false;
+                utils.formValidator.checkSmsCaptcha(this.get("phone").trim(), function (err, msg) {
+                    if (!err) {
+                        showErrors(msg);
+                        return false;
+                    }
+                    disableErrors();
+                    rePassword.set('step1', false);
+                    rePassword.set('step2', true);
+                });
+
             });
         });
     });
 });
 
-rePassword.on('next',function(e){
-  e.original.preventDefault();
-  var user = {
-      mobile: this.get('user.mobile'),
-      captcha: this.get('phone'),
-      smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
-  };
-  rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
-    if (!err) {
-        showErrors(msg);
-    } else {
-        disableErrors();
-        $(".u-con-1").hide();
-        rePassword.set('step1',false);
-        rePassword.set('step2',true);
+rePassword.on('next', function (e) {
+    e.original.preventDefault();
+    var user = {
+        mobile: this.get('user.mobile'),
+        captcha: this.get('phone'),
+        smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
+    };
+
+    if (user.captcha == null || user.captcha.toString().trim() === "") {
+        showErrors("MOBILE_CAPTCHA_NULL");
+        return false;
     }
-    return false;
-  });
+
+    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
+        if (!err) {
+            showErrors(msg);
+        } else {
+            disableErrors();
+            $(".u-con-1").hide();
+            rePassword.set('step1', false);
+            rePassword.set('step2', true);
+        }
+        return false;
+    });
 });
 
 
@@ -130,73 +140,76 @@ rePassword.on('login', function (e) {
     };
 
     var isVer = true;
-    if (!user.newPassword || !user.rePass ) {
-      rePassword.set('errors', {
-                visible: true,
-                msg: '新密码不能为空'
-            });
-            isVer = false;
-      return false;
-    }else if (user.newPassword != user.rePass) {
-      rePassword.set('errors', {
-                visible: true,
-                msg: '两次密码不一致，请检查'
-            });
-            isVer = false;
-      return false;
+    if (!user.newPassword || !user.rePass) {
+        rePassword.set('errors', {
+            visible: true,
+            msg: '新密码不能为空'
+        });
+        isVer = false;
+        return false;
+    } else if (user.newPassword != user.rePass) {
+        rePassword.set('errors', {
+            visible: true,
+            msg: '两次密码不一致，请检查'
+        });
+        isVer = false;
+        return false;
     }
-    
-//    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
-//    if (!err) {
-//        showErrors(msg);
-//    } else {
-//        disableErrors();
-//    }
-//    return false;
-//  });
-    
+
+    //    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
+    //    if (!err) {
+    //        showErrors(msg);
+    //    } else {
+    //        disableErrors();
+    //    }
+    //    return false;
+    //  });
+
     if (isVer) {
-      rePasswordService.doResetPassword(user, function (err, msg){
-        if (!err) {
-            showErrors(msg);
-        } else {
-            disableErrors();
-             $(".u-con-2").hide();
-            rePassword.set('step2',false);
-            rePassword.set('step3',true);
-            var time = 3;
-            rePassword.set('timeLeft',3);
-            setInterval(function(){
-            rePassword.set('timeLeft',--time);
-              if (time === 1) {
-                clearInterval();
-                window.location.href = '/';
-              }
-            },1000);
-          }
-      });
+        rePasswordService.doResetPassword(user, function (err, msg) {
+            if (!err) {
+                showErrors(msg);
+            } else {
+                disableErrors();
+                $(".u-con-2").hide();
+                rePassword.set('step2', false);
+                rePassword.set('step3', true);
+                var time = 3;
+                rePassword.set('timeLeft', 3);
+                setInterval(function () {
+                    rePassword.set('timeLeft', --time);
+                    if (time === 1) {
+                        clearInterval();
+                        window.location.href = '/';
+                    }
+                }, 1000);
+            }
+        });
     }
 });
 
 
 rePassword.on('sendTelCode', function (e) {
-        var $captchaBtn = $(".getcaptcha");
-        var mobile = this.get('user.mobile');
-        if ($captchaBtn
-            .hasClass('disabled')) {
-            return;
-        }
-        if (!mobile.length) {
-            showErrors('MOBILE_NULL');
-            return;
-        } else {
+    var $captchaBtn = $(".getcaptcha");
+    var mobile = this.get('user.mobile');
+    if ($captchaBtn.hasClass('disabled')) {
+        return;
+    }
+
+    utils.formValidator.checkMobile(mobile, function (ok, msg) {
+        if (ok) {
             CommonService.getSmsCaptchaForResetPassword(mobile, function (r) {
                 if (r.success) {
                     countDown();
                 }
             });
-          }
+        } else {
+            showErrors(msg);
+        }
     });
+
+
+});
 
 function countDown() {
     $('.getcaptcha')
@@ -204,7 +217,7 @@ function countDown() {
     var previousText = '获取验证码';
     var msg = '$秒后重新发送';
 
-    var left = 120;
+    var left = 60;
     var interval = setInterval((function () {
         if (left > 0) {
             $('.getcaptcha')
@@ -219,48 +232,29 @@ function countDown() {
     }), 1000);
 }
 
-//  发送手机验证码
-// rePassword.on('sendTelCode',function(){
-//   clearInterval(rePassword.get('timeid'));
-//   rePasswordService.sendTelCode('123123',function(data){
-//     console.log(data);
-//     if (data.success) {
-//       rePassword.set('telcode',true);
-//       rePassword.set('time',120);
-//       var time = 120;
-//       var timeout = setInterval(function(){
-//         if (time!=0) {
-//           rePassword.set('time',time--);
-//         } else {
-//           rePassword.set('telcode',false);
-//         }
-
-//       },1000);
-//       rePassword.set('timeid',timeout);
-//     }
-//   });
-// });
-
-// show errors
 function showErrors(error) {
-  rePassword
-        .set('errors', {
-            visible: true,
-            msg: utils.errorMsg[error]
-        });
+    rePassword.set('errors', {
+        visible: true,
+        msg: utils.errorMsg[error]
+    });
 }
 
 
 // disable errors
 function disableErrors() {
-  rePassword
-        .set('errors', {
-            visible: false,
-            msg: ''
-        });
+    rePassword.set('errors', {
+        visible: false,
+        msg: ''
+    });
 }
 
-
-
-
-
+$("#phone").keyup(function(){
+    var mobile = $(this).val().trim();
+    utils.formValidator.checkMobile(mobile, function (ok, msg) {
+        if (ok) {
+            disableErrors();
+        } else {
+            showErrors(msg);
+        }
+    });
+});

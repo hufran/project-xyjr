@@ -276,7 +276,7 @@
     margin-right:24px;
     margin-top: 32px;
 }
-#menu .u-nolist-ul li a:hover {
+#menu .u-nolist-ul li:hover a {
   /*background: #ededed;*/
   height: 74px;
   border-bottom: 4px solid #007ec5;
@@ -484,6 +484,7 @@ li a {
 	font-size: 18px;
 	font-weight: normal;
 	color: #4a4a4a;
+    height:100%;
 }
 .s-header-menu-content .u-nolist-ul li {
     margin-left: 38px;

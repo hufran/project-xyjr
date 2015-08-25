@@ -99,9 +99,17 @@
             </div>
         </div>
     {{/each}}
-    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit">
+    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;">
         <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
-        <button type="submit" class="btn btn-sm btn-success btn-change-card">删除银行卡</button>
+        {{#if ifDel}}
+        <div class="inwr">
+            <div class="tips" style="font-size:12px;float:none;margin-bottom:5px;">请输入交易密码</div>
+            <input type="text" name="paymentPassword" style="width:200px;height:30px;line-height:30px;text-indent:10px;border-radius:5px;">
+            <button type="submit" class="btn btn-sm btn-success btn-change-card" style="padding:5px 20px;float:right;margin:0;width:100px;">确定</button>
+        </div>
+        {{else}}
+            <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">删除银行卡</button>
+        {{/if}}
     </form>
     <p style="color:red;">解绑服务说明 </p>
 <p style="font-family:'微软雅黑';">奇乐融只支持绑定一张银行卡，为保障您的资金安全，解绑时请先确定账户情况。如遇问题请联系客服，电话：400-872-7676。</p>
