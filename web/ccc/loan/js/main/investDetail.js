@@ -300,8 +300,13 @@ setTimeout((function () {
                     } else {
                         disableErrors();
                         var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
+                        var msg = '您本次投资的金额为' + num + '元,';
+                        if (coupon > 0) {
+                            msg += '将使用' + coupon + '奖券,'
+                        }
+                        msg += '是否确认投资?';
                         Confirm.create({
-                            msg: '您本次投资的金额为' + num + '元，将使用' + coupon + '奖券，是否确认投资？',
+                            msg: msg,
                             okText: '确定',
                             cancelText: '取消',
                             ok: function () {
@@ -317,12 +322,12 @@ setTimeout((function () {
                                         window.location.reload();
                                     },
                                     cancel: function () {
-                              $('.dialog').hide();
+                                        $('.dialog').hide();
                                     }
                                 });
                             },
                             cancel: function () {
-                              $('.dialog').hide();
+                                $('.dialog').hide();
                             }
                         });
                     };

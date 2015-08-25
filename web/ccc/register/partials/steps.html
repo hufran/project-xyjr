@@ -59,13 +59,20 @@
                 </div>
             </RInput>
             <RInput field="repassword" valueStableDuration=200>
-                <div class="rinput " style="margin-bottom:0">
+                <div class="rinput">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>确认密码:</label>
                     <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" placeholder="再次输入密码">
                     <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
-                    <span class="tip">
-        {{#errMsg}}{{errMsg}}{{/errMsg}}
-    </span>
+                    <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                </div>
+            </RInput>
+              
+            <RInput field="refm">
+                <div class="rinput">
+                    <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐人:</label>
+                    <input id="{{rinputId}}" name="recommend-mobile" value="{{value}}" placeholder="请输入推荐人的手机号码，可不填"> 
+                    <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
+                    <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                 </div>
             </RInput>
                       

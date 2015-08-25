@@ -1,17 +1,9 @@
-<!-- 开通托管支付 -->
 {{#if !authenticated}}
 <div class="open-account-wrapper">
 
-    <!-- 尚未开户提醒 -->
     <div class="errorNotOpenedYet">
         <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 您尚未进行实名认证，未实名认证将无法进行，绑卡、充值、提现、投资等操作。
     </div>
-
-<!--
-    <p class="warn-text">
-        实名认证操作关系到您的切身利益,填写本人真实信息,保护好帐号安全
-    </p>
--->
 
     <div class="account-form-wrapper">
         <form action="#" class="form-horizontal">
@@ -37,23 +29,15 @@
             <div class="form-group">
                 <label for="" class="col-md-2 control-label">身份证号</label>
                 <div class="col-md-4">
-                    {{#if idNumber}}
+                    <!--{{#if idNumber}}
                         <input type="text" class="form-control" name="idNumber" value="{{idNumber.substr(0,5)}}**********{{idNumber.substr(-3)}}" />
-                    {{else}}
-                        <input type="text" class="form-control" name="idNumber" />
-                    {{/if}}
+                    {{else}}-->
+                        <input type="text" class="form-control" name="idNumber" value="{{idNumber}}"/>
                 </div>
-
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-<!--
-                    <div class="text">
-                        以上信息将用于您的账户的实名认证
-                        <br />真实姓名需与您用于提现的银行卡账户名一致。请务必认真，如实填写。
-                    </div>
--->
 
                     <div class="agreement-wrapper">
                         <input type="checkbox" checked="{{ licenseAgreed }}" />我已阅读并同意

@@ -80,6 +80,11 @@ module.exports = function (router) {
             text: '用户反馈',
             url: '/account/feedback'
         }];
+        
+        if(res.locals.user.enterprise){
+            tabs.splice(1,2);
+            tabs.splice(4,3);
+        }
 
         var path = req.path.replace(/\/$/, '');
         var tabIndex, subTabIndex;
