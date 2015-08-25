@@ -437,6 +437,7 @@
 .firstLine {
     overflow: hidden;
     border-bottom: 1px solid #eeeeee;
+    padding: 0px 30px;
 }
 
  .firstLine .tip {
@@ -444,7 +445,7 @@
     line-height: 50px;
     font-size: 18px;
     color: #4a4a4a;
-    margin-left: 30px;
+/*    margin-left: 30px;*/
 }
 
 .firstLine .highAmount {
@@ -452,7 +453,7 @@
     line-height: 50px;
     font-size: 14px;
     color: #4a4a4a;
-    margin-right: 30px;
+/*    margin-right: 30px;*/
 }
 
 .do-invest-wrapper .status .info .valiableInvest {
@@ -514,16 +515,32 @@
     color: #6b6b6b;
     text-align: left;
     margin-bottom: 5px;
-    text-indent: 15px;
+/*    text-indent: 15px;*/
     padding-top: 10px;
+/*    border-bottom: 1px solid #ccc;*/
+    padding-bottom: 10px;
+}
+.do-invest-wrapper .status .userBlock .leftMoney-open {
+    font-size: 13px;
+    color: #6b6b6b;
+    text-align: left;
+    margin-bottom: 5px;
+/*    text-indent: 15px;*/
+    padding-top: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney .red {
-    color: #007ec5;
+    color: #ff7200;
     font-style: normal;
-    font-size: 14px;
+    font-size: 20px;
 }
-
+.do-invest-wrapper .status .userBlock .leftMoney-open .red {
+    color: #ff7200;
+    font-style: normal;
+    font-size: 20px;
+}
 .do-invest-wrapper .status .userBlock .leftMoney .recharge {
     float: right;
     color: #007ec5;
@@ -564,16 +581,17 @@
 }
 
 .do-invest-wrapper .status .userBlock .input .selectOption select {
-    background: #0d7cd5;
-    height: 20px;
-    color: #fff;
-    font-size: 13px;
-    width: 220px;
+    background: #fff;
+    height: 40px;
+    color: #6b6b6b;
+    font-size: 14px;
+    width: 290px;
     border: none;
     line-height: 20px;
     margin-top: 2px;
     text-indent: 8px;
-    margin-left:5px;
+/*    margin-left:5px;*/
+    border: 1px solid #ccc;
 }
 
 .do-invest-wrapper .status .userBlock .input .invest-input {
@@ -584,7 +602,7 @@
 .do-invest-wrapper .status .userBlock .input .invest-button {
     margin:20px 0;
     height: 40px;
-    width: 282px;
+    width: 200px;
     color: #fff;
     background: #0d7cd5;
     font-size: 18px;
@@ -778,7 +796,7 @@
 }
 
 .do-invest-wrapper .selectOption {
-    height: 30px;
+    height: 40px;
 }
 
 .do-invest-wrapper .selectOption .sif {
@@ -1389,7 +1407,7 @@
 
 #userBlock .calculatorBox {
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 14px;
 }
 
 #userBlock .totalInterest {
@@ -1494,4 +1512,24 @@
     line-height: 38px;
     width: 350px;
     float:left;
+}
+.calculatorBox .trade-password{
+    height:40px;
+    width: 290px;
+    padding-left: 10px;
+    font-size: 14px;
+    color:#6b6b6b;
+    margin-top: 6px;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+#userBlock .leftMoney-open .recharge button{
+    background: #ff7200;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    width:56px;
+    height: 22px;
+    float: right;
 }

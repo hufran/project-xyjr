@@ -13,6 +13,7 @@ var ractive = new Ractive({
         accountId: CC.user.agreement ? CC.user.agreement : false,
         mobile: formatNumber(CC.user.mobile),
         activatedEmail: CC.user.authenticates.emailAuthenticated,
+        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
     }
 });
 function formatNumber(number, left, right) {

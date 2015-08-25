@@ -6,13 +6,18 @@ var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;
+
+var banksabled = _.filter(CC.user.bankCards, function (r) {
+    return r.deleted === false;
+});
+
 var ractive = new Ractive({
 	el: '.ccc-recharge-wrap',
 	template: require('ccc/account/partials/withdraw.html'),
 	data: {
 		banks: UMPBANKS,
 		loadMessage: null,
-		bankcards: [],
+		bankcards: banksabled || [],
 		availableAmount: 0,
 		msg: {
 			AMOUNT_NULL: '请输入提现金额',
@@ -27,6 +32,7 @@ var ractive = new Ractive({
 		submitText: '确认提现',
 		submitMessage: null,
 		error: false,
+		isEnterpriseUser: CC.user.enterprise,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
 	},
 	oninit: function(){
@@ -35,19 +41,6 @@ var ractive = new Ractive({
 		var userInfo = CommonService.getUserInfo();
 		userInfo.then(function(){
 			self.set('availableAmount', CC.user.availableAmount);
-		});
-		
-		// get banks
-		this.set('loadMessage', '正在载入银行卡...');
-		var url = '/api/v2/user/MYSELF/fundaccounts';
-		$.get(url, function(o){
-			if (o.length === 0) {
-				self.set('loadMessage', '暂无数据');
-			}
-			self.set('bankcards', self.parseData(o));
-			self.set('loadMessage', null);
-		}).error(function(){
-			self.set('loadMessage', '请求出错了');
 		});
 	},
 	oncomplete: function(){

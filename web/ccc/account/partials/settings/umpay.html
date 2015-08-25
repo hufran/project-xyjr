@@ -30,31 +30,20 @@
             <div class="form-group">
                 <label for="" class="col-md-2 control-label">真实姓名</label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="name" value="{{ name }}" />
+                    <input type="text" class="form-control" name="name" value="{{ name }}"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="" class="col-md-2 control-label">身份证号</label>
                 <div class="col-md-4">
-                    {{#if idNumber}}
-                        <input type="text" class="form-control" name="idNumber" value="{{idNumber.substr(0,5)}}**********{{idNumber.substr(-3)}}" />
-                    {{else}}
-                        <input type="text" class="form-control" name="idNumber" />
-                    {{/if}}
+                    <input type="text" class="form-control" name="idNumber" value="{{idNumber}}"/>
                 </div>
 
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-<!--
-                    <div class="text">
-                        以上信息将用于您的账户的实名认证
-                        <br />真实姓名需与您用于提现的银行卡账户名一致。请务必认真，如实填写。
-                    </div>
--->
-
                     <div class="agreement-wrapper">
                         <input type="checkbox" checked="{{ licenseAgreed }}" />我已阅读并同意
                         <a href="#" on-click="maskDepositAgreement">《奇乐融实名认证协议》</a>
@@ -68,9 +57,9 @@
                 </div>
 
             </div>
-                 <p class="tips" style="color:red">温馨提示：</p>
-    <p class="tips">1、	账户实名认证仅面向年满18岁的具有完全民事行为能力的自然人</p>
-    <p class="tips">2、	填写的姓名、身份证信息需与您用于提现的银行卡账户名一致。为了保证后续交易提现，请认真如实填写相关信息。</p> 
+                <p class="tips" style="color:red">温馨提示：</p>
+                <p class="tips">1、	账户实名认证仅面向年满18岁的具有完全民事行为能力的自然人</p>
+                <p class="tips">2、	填写的姓名、身份证信息需与您用于提现的银行卡账户名一致。为了保证后续交易提现，请认真如实填写相关信息。</p> 
         </form>
     </div>
 </div>

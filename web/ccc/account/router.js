@@ -11,7 +11,7 @@ module.exports = function (router) {
     // 未登录访问account下的页面,跳转到 /
     router.get('/account/*', function (req, res, next) {
         if (!req.cookies.ccat) {
-            res.redirect('/');
+            res.redirect('/login');
             return;
         }
         next();
@@ -21,65 +21,124 @@ module.exports = function (router) {
     router.get('/account/*', function (req, res, next) {
 
         // 定位tab
-        var tabs = [{
-            text: '我的账户',
-            url: '/account'
-        }, {
-            text: '我的投资',
-            url: '/account/invest'
-        }, {
-            text: '自动投资',
-            url: '/account/autobid'
-        }, {
-            text: '交易记录',
-            url: '/account/funds'
-        }, {
-            text: '账户管理',
-            url: '/account/umpay',
-            subTabs: [{
-                    text: '实名认证',
-                    url: '/account/umpay'
-                }, {
-                    text: '个人信息',
-                    url: '/account/userInfo'
-                }, {
-                    text: '提现银行卡信息',
-                    url: '/account/bankcard'
-                }, {
-                    text: '平台密码',
-                    url: '/account/settings'
-                }, {
-                    text: '安全认证',
-                    url: '/account/safety'
-                }, {
-                    text: '交易密码',
-                    url: '/account/paypwd'
-                }
-                // {
-                //     text: '无密协议',
-                //     url: '/account/agreement'
-                // }, 
-            ]
+        var enterprise = res.locals.user.enterprise;
+        var tabs; 
+        if (!enterprise) {
+            tabs = [{
+                text: '我的账户',
+                url: '/account'
+            }, {
+                text: '我的投资',
+                url: '/account/invest'
+            }, {
+                text: '自动投资',
+                url: '/account/autobid'
+            }, {
+                text: '交易记录',
+                url: '/account/funds'
+            }, {
+                text: '账户管理',
+                url: '/account/umpay',
+                subTabs: [{
+                        text: '实名认证',
+                        url: '/account/umpay'
+                    }, {
+                        text: '个人信息',
+                        url: '/account/userInfo'
+                    }, {
+                        text: '提现银行卡信息',
+                        url: '/account/bankcard'
+                    }, {
+                        text: '平台密码',
+                        url: '/account/settings'
+                    }, {
+                        text: '安全认证',
+                        url: '/account/safety'
+                    }, {
+                        text: '交易密码',
+                        url: '/account/paypwd'
+                    }
+                ]
+            }, {
+                text: '还款管理',
+                url: '/account/loan'
+            }, {
+                text: '我的红包',
+                url: '/account/coupon'
+            }, 
+            // {
+            //     text: '我的积分',
+            //     url: '/account/integration'
+            // }, 
+            {
+                text: '我的邀请',
+                url: '/account/invite'
+            }, {
+                text: '消息中心',
+                url: '/account/message'
+            }, {
+                text: '用户反馈',
+                url: '/account/feedback'
+            }];
+        } else {
+            tabs = [{
+                text: '我的账户',
+                url: '/account'
+            }, 
+            // {
+            //     text: '我的投资',
+            //     url: '/account/invest'
+            // }, {
+            //     text: '自动投资',
+            //     url: '/account/autobid'
+            // }, 
+            {
+                text: '交易记录',
+                url: '/account/funds'
+            }, {
+                text: '账户管理',
+                url: '/account/userInfo',
+                subTabs: [
+                    {
+                        text: '个人信息',
+                        url: '/account/userInfo'
+                    }, 
+                    {
+                        text: '平台密码',
+                        url: '/account/settings'
+                    }, {
+                        text: '安全认证',
+                        url: '/account/safety'
+                    }, {
+                        text: '交易密码',
+                        url: '/account/paypwd'
+                    }
+                ]
 
-        }, {
-            text: '还款管理',
-            url: '/account/loan'
-        }, {
-            text: '我的红包',
-            url: '/account/coupon'
-        }, {
-            text: '我的积分',
-            url: '/account/integration'
-        }, {
-            text: '我的邀请',
-            url: '/account/invite'
-        }, {
-            text: '消息中心',
-            url: '/account/message'
-        }, {
-            text: '用户反馈',
-            url: '/account/feedback'
-        }];
+            }, {
+                text: '还款管理',
+                url: '/account/loan'
+            }, 
+            // {
+            //     text: '我的红包',
+            //     url: '/account/coupon'
+            // }, 
+            // {
+            //     text: '我的积分',
+            //     url: '/account/integration'
+            // }, 
+            // {
+            //     text: '我的邀请',
+            //     url: '/account/invite'
+            // }, 
+            {
+                text: '消息中心',
+                url: '/account/message'
+            }, {
+                text: '用户反馈',
+                url: '/account/feedback'
+            }];
+        };
 
         var path = req.path.replace(/\/$/, '');
         var tabIndex, subTabIndex;
@@ -154,7 +213,8 @@ module.exports = function (router) {
                 return !!user.name;
               
             },
-            authenticates:req.uest('/api/v2/user/MYSELF/authenticates').get('body')
+            authenticates:req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
+            isEnterprise : enterprise
         });
 
 
@@ -319,10 +379,12 @@ module.exports = function (router) {
 
     // 对提现进行限制,如果是企业用户,显示企业充值
     router.get('/account/recharge', function (req, res, next) {
+
+        var enterprise = res.locals.user.enterprise;
         var banks = _.filter(res.locals.user.bankCards, function (r) {
             return r.deleted === false;
         });
-        if (!banks.length) {
+        if (!banks.length && !enterprise) {
             res.redirect('/account/bankcard')
         } else {
             next();
@@ -331,6 +393,8 @@ module.exports = function (router) {
 
     // 对体现进行限制
     router.get('/account/withdraw', function (req, res, next) {
+        
+        var enterprise = res.locals.user.enterprise;
         Promise.join(req.uest(
                     '/api/v2/user/MYSELF/paymentPasswordHasSet')
                 .get('body'), function (paymentPasswordHasSet) {
@@ -341,7 +405,7 @@ module.exports = function (router) {
             return r.deleted === false;
         });
 
-        if (!banks.length) {
+        if (!banks.length && !enterprise ) {
             res.redirect('/account/bankcard');
         } else {
             next();
@@ -392,13 +456,11 @@ module.exports = function (router) {
             code: code,
             email: email
         };
-
         req.uest.post('/api/v2/user/authenticateEmail')
             .type('form')
             .send(sendObj)
             .end()
             .then(function (r) {
-
                 res.redirect('/register/renzheng?message=' + r.body
                     .ConfirmResult);
             });
