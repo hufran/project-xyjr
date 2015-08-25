@@ -12,12 +12,12 @@ do (_, angular) ->
                 frozen = @user.fund.frozenAmount
                 available = @user.fund.availableAmount
 
-                total = due + frozen + available
+                total = _.fixed_in_2 _.sum [due, frozen, available]
 
                 outstanding_principal = @user.fund.outstandingPrincipal
                 outstanding_interest = @user.fund.outstandingInterest
                 invest_frozen = @user.fund.investFrozenAmount
-                withdraw_frozen = _.round frozen - invest_frozen, 2
+                withdraw_frozen = _.fixed_in_2 frozen - invest_frozen
 
                 @$scope.fund = {
                     available
