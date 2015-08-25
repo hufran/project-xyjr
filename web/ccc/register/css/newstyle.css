@@ -3,7 +3,9 @@
     margin: auto;
     margin-bottom: 40px;
 }
-
+.container *{
+	font-family: '微软雅黑';
+}
 .register-process-graph {
     width: 1000px;
     margin: auto;
@@ -116,7 +118,7 @@
 }
 
 .rinput .tip {
-    color: #9fa0a0;
+    color: #d2252c;
     font-size: 15px;
     background-image: url(/ccc/register/img/gou-bg.png);
     background-repeat: no-repeat;

@@ -1,6 +1,7 @@
 #main-container .title{
   font-size: 14px;
     color: #4a4a4a;
+	background-color: #fff;
 }
 #main-container .title a{
   font-size: 14px;
@@ -41,10 +42,11 @@
 }
 #main-container .s-content table th{
     background: #f8f8f8;
-    color:#777;
+    color:#4a4a4a;
     font-size: 14px;
     text-align: left;
     height:42px;
+	font-weight: bold;
 
 }
 
@@ -84,7 +86,7 @@ float: right;
 .s-content .no-warry-right p{
     line-height: 24px;
     font-size: 14px;
-    color: #999999;
+    color: #4a4a4a;
 }
 .s-content .no-warry-left p{
       font-size: 28px;

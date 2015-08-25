@@ -2,6 +2,12 @@
   width: 960px;
   margin: 0 auto;
 }
+
+#main-container{
+	margin-top: 7px;
+}
+
+
 .account-funds-wrapper .fund-header {
   margin-top: 20px;
 }

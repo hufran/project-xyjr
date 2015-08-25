@@ -6,6 +6,11 @@
   padding: 20px 0;
   /*line-height: 15px;*/
 }
+#main-container{
+	margin-top: 7px;
+}
+
+
 .account-wraper .ccc-chart-wrap h3 > span {
   color: #555;
 }

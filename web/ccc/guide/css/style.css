@@ -17,6 +17,10 @@
     width:1000px;
     margin: 0px auto;
 }
+.guide-model *{
+	font-family: '微软雅黑';
+}
+
 .model-title{
     text-align: center;
     color: #4a4a4a;
