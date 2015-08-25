@@ -1,6 +1,12 @@
 .invest-container .header {
   border-bottom: 1px solid #e8e8e8;
 }
+
+#main-container{
+	margin-top: 7px;
+}
+
+
 .invest-container .header .header-text {
   float: left;
   font-size: 20px;

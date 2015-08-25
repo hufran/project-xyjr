@@ -225,6 +225,11 @@ p.login-error {
     border: 1px solid #eeeeee;
     margin: 0px auto;
 }
+
+#main-container .s-login-view *{
+	font-family: '微软雅黑';
+}
+
 #main-container .s-login-view .s-login-window {
 /*  top: 50%;*/
   width: 276px;
@@ -318,7 +323,7 @@ p.login-error {
 p.login-error {
   text-align: left!important;
   width: 100%;
-  color: red;
+  color: #d2252c;
     float: left;
 }
 .s-login-window .mdi {

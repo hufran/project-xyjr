@@ -103,11 +103,16 @@ $('.calculator-create').on('click', function () {
 //导航移动在上面出现微信
 //$('.erweima').hide();
 $('.weixin-icon').mouseenter(function () {
-        $('.erweima').show();
-    })
-$('.weixin-icon').mouseleave(function () {
-        $('.erweima').hide();
-    })
+        $('.erweima-act2').show();
+    }).mouseleave(function () {
+        $('.erweima-act2').hide();
+    });
+
+$('.weixin-icon').mouseenter(function () {
+        $('.erweima-act').show();
+    }).mouseleave(function () {
+        $('.erweima-act').hide();
+    });
 
 //控股下拉菜单
     	

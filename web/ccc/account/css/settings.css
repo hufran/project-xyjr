@@ -2,6 +2,12 @@
 	font-family: "微软雅黑";
 }
 
+
+#main-container{
+	margin-top: 7px;
+}
+
+
 .current-container {
   width: 960px;
   margin: 0 auto;
@@ -119,8 +125,12 @@
   border-radius: 5px;
   padding: 5px;
   background-color: #fcf8e3;
-  color: #c49f60;
+  color: #d2252c;
   font-size: 12px;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 22px;
 }
 .open-account-wrapper .account-form-wrapper .error-message .exclamation {
   color: #f00;

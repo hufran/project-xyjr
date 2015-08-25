@@ -4,6 +4,12 @@
     background-color: #fff;
 }
 
+
+#main-container{
+	margin-top: 7px;
+}
+
+
 .current-container .title {
     height: 30px;
     line-height: 30px;
