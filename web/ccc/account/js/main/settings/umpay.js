@@ -42,6 +42,7 @@ ractive.on("register-account-submit", function () {
     var name = this.get("name");
     var idNumber = this.get("idNumber");
     var licenseAgreed = this.get("licenseAgreed");
+    console.log(idNumber);
     utils.formValidator.checkName(name, function (bool,
         error) {
         if (!bool) {
@@ -90,7 +91,7 @@ ractive.on("register-account-submit", function () {
                                     });
                                 } else {
                                     CccOk.create({
-                                        msg: '实名认证失败',
+                                        msg: '实名认证失败，' + res.error[0].message,
                                         okText: '确定',
                                         cancelText: '',
                                         ok: function () {
