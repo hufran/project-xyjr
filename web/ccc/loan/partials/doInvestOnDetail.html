@@ -84,12 +84,7 @@
                 <a class="btn btn-warning open-button" style="float: none" href="/account/umpay">立即认证</a>
             </div>
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
-<!--
-              <div class="firstLine">
-            <div class="tip">{{loan.rule.min}}元起投 </div>
-            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
-        </div>
--->
+
             <div class="leftMoney-open">账户余额（元）： &yen;<i class="red">{{user.availableAmount}}</i>
                 <a href="/account/recharge" class="recharge"><button>充值</button></a>
             </div>
@@ -99,7 +94,7 @@
                         <div class="calculator">
                             <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                             <input type="hidden" name="loanId" value="{{loan.id}}">
-                            <input placeholder="{{loan.rule.min}}" type="text" name="amount" value="{{ inputNum }}">
+                            <input placeholder="{{loan.rule.min}}" type="text" name="amount" value="{{ inputNum }}" on-blur="getCoupon">
                             <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                         </div>
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
@@ -110,21 +105,13 @@
                         <select name="placementId" id="couponSelection">
                             <option value="">使用奖券: 无</option>
                             {{#each selectOption}}
-<!--                            <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>-->
 							<option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}</option>
 
                             {{/each}}
                         </select>
                     </div>
                     {{/if}} 
-                    <input class="trade-password" placeholder="请输入交易密码"/>    
-<!--
-                        <div class="captchaWra">
-                            <span class="tip">验证码</span>
-                            <input type="text" class="smsCaptcha" name="smsCaptcha" value="{{smsCaptcha}}" on-blur="checkSms">
-                            <span class="send sendCode" on-click="sendCode">发送验证码</span>
-                        </div>
--->
+                    <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" on-blur="checkPaymentPassword"/>    
                         <input type="submit" class="btn btn-warning invest-button" value="我要投资" />
                     </div>
   

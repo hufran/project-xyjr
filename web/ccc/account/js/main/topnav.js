@@ -12,6 +12,7 @@ $('ul.info li').tooltip({
 
 accountService.getUserInfo(function (res) {
 
+    var enterprise = res.user.enterprise;
     if (!res.user) {
         res.user = {};
         res.user.name = '';
@@ -26,15 +27,15 @@ accountService.getUserInfo(function (res) {
             }
         });
     });
-
-    if (!res.user.name && location.pathname != "/account/umpay") {
-        var tpl = require('ccc/account/partials/paymentNotice.html');
-        new Box({
-            title: '提示',
-            value: tpl.replace('$name', CC.user.name || CC.user.loginName),
-            cla: 'corp-account-wrap',
-            showed: function (ele, box) {}
-        });
-    }
-
+    if (!enterprise) {
+        if (!res.user.name && location.pathname != "/account/umpay") {
+            var tpl = require('ccc/account/partials/paymentNotice.html');
+            new Box({
+                title: '提示',
+                value: tpl.replace('$name', CC.user.name || CC.user.loginName),
+                cla: 'corp-account-wrap',
+                showed: function (ele, box) {}
+            });
+        }
+    };
 });
