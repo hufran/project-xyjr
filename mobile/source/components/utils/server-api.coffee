@@ -44,6 +44,7 @@ do (_, angular, moment, Array) ->
                             userfund
                             payment
                             fundaccounts
+                            authenticates
                         '
 
                         @$q.all api_list.map (path) =>
@@ -55,6 +56,7 @@ do (_, angular, moment, Array) ->
                             @user.fund
                             @user.payment
                             @user.fund_accounts
+                            @user.authenticates
 
                         ] = _.pluck response, 'data'
 
@@ -62,7 +64,7 @@ do (_, angular, moment, Array) ->
                             investInterestAmount
                             investingPrincipalAmount
                             investingInterestAmount
-                            currentYield
+                            investFrozenAmount
                         '
 
                         deferred.resolve @user.ready true
@@ -166,6 +168,49 @@ do (_, angular, moment, Array) ->
                 return deferred.promise
 
 
+            fetch_user_coupons: (type = 'ALL', cache = true) ->
+
+                @coupon_cache ?= {}
+
+                deferred = do @$q.defer
+
+                ALL_TYPE = _.split 'CASH INTEREST PRINCIPAL REBATE'
+
+                api_type_list = if type in ALL_TYPE then [type] else ALL_TYPE
+
+                if cache and _.has @coupon_cache, type
+                    deferred.resolve _.get @coupon_cache, type
+                    return deferred.promise
+
+                (@$q
+                    .all api_type_list.map (type) =>
+
+                        @$http
+                            .post '/api/v2/coupon/MYSELF/coupons',
+                                @param {type, page: 1, size: 40}
+                                headers: WWW_FORM_HEADER
+
+                    .then (response) =>
+
+                        coupon_group_array_by_type = _.pluck response, 'data.data.results'
+
+                        coupon_list =
+                            _(coupon_group_array_by_type)
+                                .flatten()
+                                .compact()
+                                .value()
+
+                        _.set @coupon_cache, type, coupon_list if cache
+
+                        deferred.resolve coupon_list
+
+                    .catch ->
+                        do deferred.reject
+                )
+
+                return deferred.promise
+
+
             fetch_coupon_list: (amount, months) ->
 
                 @$http
@@ -215,6 +260,17 @@ do (_, angular, moment, Array) ->
                 @$http.post '/logout', {}, {
                     headers: 'X-Requested-With': 'XMLHttpRequest'
                 }
+
+
+            payment_pool_register: (name, idNumber) ->
+
+                @$http
+                    .post '/api/v2/lianlianpay/authenticateUser/MYSELF',
+                        @param {name, idNumber}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
 
 
             payment_ump_register: (userName, idCode) ->

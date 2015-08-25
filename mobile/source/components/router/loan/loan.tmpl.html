@@ -3,9 +3,9 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <span class="col-xs-3 back" x-go-back>
-            <param class="glyphicon glyphicon-menu-left">
-        </span>
+        <a class="col-xs-3 back" ng-href="{{ go_back_path || 'list' }}">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
         <span class="col-xs-6 title">标的详情</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>

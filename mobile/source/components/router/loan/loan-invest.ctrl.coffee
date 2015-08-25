@@ -84,7 +84,8 @@ do (angular, _) ->
 
                 (if user_available <= 0 or amount > user_available
                     good_to_go = false
-                    do @prompt_short_of_balance
+                    # do @prompt_short_of_balance
+                    @alert '余额不足，前去充值吗？'
 
                 else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
                     good_to_go = false
@@ -187,4 +188,29 @@ do (angular, _) ->
                             content: content
                         }
                 }
+
+
+            agreement: ->
+
+                api_path = '' # To do: add api_path url
+
+                @$modal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'center'
+                    animation: true
+                    templateUrl: 'ngt-invest-agreement.tmpl'
+
+                    resolve: {
+                        content: _.ai '$http', ($http) ->
+                            $http
+                                .get encodeURI(api_path), {cache: true}
+                                .then (response) -> _.get response.data, '[0].content'
+                    }
+
+                    controller: _.ai '$scope, content',
+                        (             $scope, content) ->
+                            angular.extend $scope, {content}
+                }
+
 

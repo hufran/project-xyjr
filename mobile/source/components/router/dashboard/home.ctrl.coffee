@@ -22,6 +22,23 @@ do (_, angular) ->
                     total
                 }
 
+                (@api
+                    .fetch_user_coupons()
+
+                    .then (data) =>
+
+                        all_coupon_list = _.clone data
+
+                        available_coupon_list =
+                            _(all_coupon_list)
+                                .filter (item) ->
+                                    item.status in _.split 'INITIATED PLACED'
+                                .value()
+
+                        @$scope.available_coupon_length = available_coupon_list.length
+                )
+
+
                 # prefetch following API calls for getting out from cache directly later on
 
                 @api.get_user_funds()
