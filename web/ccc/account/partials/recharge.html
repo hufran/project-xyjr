@@ -29,6 +29,7 @@
             <div class="space space-10"></div>
             <div class="row">
                 <div class="methodwr">
+                {{#if !isEnterpriseUser}}
                     {{#if !isNormal}}
                     <span class="rechargeMthod current" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
                     <span class="rechargeMthod" data-type="normal" on-click="changeMethod">第三方支付</span>
@@ -36,6 +37,9 @@
                     <span class="rechargeMthod" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
                     <span class="rechargeMthod current" data-type="normal" on-click="changeMethod">第三方支付</span>
                     {{/if}}
+                {{else}}
+                    <span class="rechargeMthod current" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
+                {{/if}}
                 </div>
                 <div class="space space-30"></div>
                 {{#if !isNormal}}

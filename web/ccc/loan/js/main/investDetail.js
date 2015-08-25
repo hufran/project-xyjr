@@ -161,6 +161,15 @@ setTimeout((function () {
         });
     }
 
+    investRactive.on('checkPaymentPassword', function () {
+        var paymentPassword = this.get('paymentPassword');
+        accountService.checkPassword(paymentPassword, function (r) {
+            if (!r) {
+                showErrors('请输入正确的交易密码!');
+            }
+        });
+    });
+
     investRactive.on('sendCode', function () {
         if (!this.get('isSend')) {
             this.set('isSend', true);
@@ -224,6 +233,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
+        showSelect(num);
     });
 
     investRactive.on('add', function (e) {
@@ -237,6 +247,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
+        showSelect(num);
     });
 
 
@@ -255,6 +266,8 @@ setTimeout((function () {
     investRactive.on("invest-submit", function (e) {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
+        var paymentPassword = this.get('paymentPassword');
+
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
@@ -287,8 +300,8 @@ setTimeout((function () {
         }
 
 
-        if (smsCaptcha.length != 6 || smsCaptcha === '') {
-            showErrors('请输入正确的短信验证码！');
+        if (paymentPassword === '') {
+            showErrors('请输入交易密码!');
             return false;
         } else {
             CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
@@ -332,6 +345,14 @@ setTimeout((function () {
                         });
                     };
                 });
+            accountService.checkPassword(paymentPassword, function (r) {
+                if (!r) {
+                    showErrors('请输入正确的交易密码!');
+                } else {
+                    disableErrors();
+                    var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
+                }
+            });
         }
 
         return false;
@@ -431,6 +452,7 @@ setTimeout((function () {
 
     function showSelect(amount) {
 
+            $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
             disableErrors()
@@ -438,23 +460,32 @@ setTimeout((function () {
                 amount: amount,
                 months: months
             }, function (o) {
-                console.log(o);
                 if (o.success) {
                     investRactive.set('selectOption', parsedata(o.data));
                 }
             });
         }
         //初始化选项
-    showSelect(0);
+    showSelect(CC.loan.rule.min);
 
-
-    $('.invest-input')
-        .on('keyup', function () {
-            showSelect($(this).val());
-        });
-
+    investRactive.on('getCoupon', function () {
+        var inputNum = this.get('inputNum');
+        var inum = this.get('inum');
+        if (parseFloat(inputNum) !== parseFloat(inum)) {
+            showSelect(inputNum);
+        }
+    });
 }), 100);
 
+
+
+
+
+
+$('.investInput')
+    .on('keyup', function () {
+        showSelect($(this).val());
+    });
 
 loanService.getLoanProof(CC.loan.requestId, function (imgs) {
     var relateDataRactive = new Ractive({

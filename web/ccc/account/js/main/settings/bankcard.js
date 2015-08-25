@@ -31,7 +31,7 @@ var ractive = new Ractive({
             CARD_INVALID: false
         },
         bank: '',
-        bankAccount: CC.user.bankCards || [],
+        bankAccount: banksabled || [],
         province: '',
         city: '',
         ifDel: false,

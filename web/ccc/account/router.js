@@ -11,7 +11,7 @@ module.exports = function (router) {
     // 未登录访问account下的页面,跳转到 /
     router.get('/account/*', function (req, res, next) {
         if (!req.cookies.ccat) {
-            res.redirect('/');
+            res.redirect('/login');
             return;
         }
         next();
@@ -55,10 +55,6 @@ module.exports = function (router) {
                     text: '交易密码',
                     url: '/account/paypwd'
                 }
-                // {
-                //     text: '无密协议',
-                //     url: '/account/agreement'
-                // }, 
             ]
 
         }, {
@@ -80,10 +76,10 @@ module.exports = function (router) {
             text: '用户反馈',
             url: '/account/feedback'
         }];
-        
-        if(res.locals.user.enterprise){
-            tabs.splice(1,2);
-            tabs.splice(4,3);
+
+        if (res.locals.user.enterprise) {
+            tabs.splice(1, 2);
+            tabs.splice(4, 3);
         }
 
         var path = req.path.replace(/\/$/, '');
@@ -157,14 +153,15 @@ module.exports = function (router) {
             // 检查是否开通第三方支付
             checkUmpay: function () {
                 return !!user.name;
-              
+
             },
-            authenticates:req.uest('/api/v2/user/MYSELF/authenticates').get('body')
+            authenticates: req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
+            isEnterprise: enterprise
         });
 
 
         // safetyProgress
-        var items = ['checkMobile','checkEmail','checkCard','checkUmpay'];
+        var items = ['checkMobile', 'checkEmail', 'checkCard', 'checkUmpay'];
         var avail = items.reduce(function (
             ret, item) {
             if (res.locals[item]()) {
@@ -172,7 +169,7 @@ module.exports = function (router) {
             }
             return ret;
         }, 0);
-        
+
         res.locals.safetyProgress = avail / items.length * 100;
 
         // riskText
@@ -324,10 +321,12 @@ module.exports = function (router) {
 
     // 对提现进行限制,如果是企业用户,显示企业充值
     router.get('/account/recharge', function (req, res, next) {
+
+        var enterprise = res.locals.user.enterprise;
         var banks = _.filter(res.locals.user.bankCards, function (r) {
             return r.deleted === false;
         });
-        if (!banks.length) {
+        if (!banks.length && !enterprise) {
             res.redirect('/account/bankcard')
         } else {
             next();
@@ -336,17 +335,20 @@ module.exports = function (router) {
 
     // 对体现进行限制
     router.get('/account/withdraw', function (req, res, next) {
+
+        var enterprise = res.locals.user.enterprise;
         Promise.join(req.uest(
-                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
-                .get('body'), function (paymentPasswordHasSet) {
-            res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet
-        });
-        
+                '/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .get('body'),
+            function (paymentPasswordHasSet) {
+                res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet
+            });
+
         var banks = _.filter(res.locals.user.bankCards, function (r) {
             return r.deleted === false;
         });
 
-        if (!banks.length) {
+        if (!banks.length && !enterprise) {
             res.redirect('/account/bankcard');
         } else {
             next();
@@ -397,13 +399,11 @@ module.exports = function (router) {
             code: code,
             email: email
         };
-
         req.uest.post('/api/v2/user/authenticateEmail')
             .type('form')
             .send(sendObj)
             .end()
             .then(function (r) {
-
                 res.redirect('/register/renzheng?message=' + r.body
                     .ConfirmResult);
             });
