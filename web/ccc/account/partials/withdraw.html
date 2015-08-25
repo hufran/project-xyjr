@@ -3,13 +3,14 @@
 </div>
 <div class="space space-30"></div>
 <div class="ccc-banks-wrap">
+    {{#if !isEnterpriseUser}}
     <div class="bankcards-wrap">
 		{{#each bankcards}}
 		<div class="bankcard-box {{account.bank}}">
 			<div class="bank-img"
 			style="visibility:hidden;background-position: 10px -{{account.imgPos+3}}px"></div>
 			<div class="bankcard-no center">
-				<span>{{Faccount}}</span>
+				<span>{{account.account.substr(0,4)}}-xxxx-xxxx-xxxx-{{account.account.substr(-4,4)}}</span>
 			</div>
 		</div>
 		{{/each}}
@@ -17,6 +18,7 @@
 		{{loadMessage}}
     </div>
     <div class="space space-30"></div>
+    {{/if}}
     {{#if paymentPasswordHasSet}}
     <div class="recharge-form-wrap">
         <h4>提现金额</h4>
@@ -34,6 +36,7 @@
                         <span class="sendCode">请输入交易密码</span>     
                         <input type="password" name="paymentPassword" class="inputsMs" placeholder="" on-blur="checkPassword" value="{{paymentPassword}}">
                     </div>
+                    <div class="space space-30"></div>
                     <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}">{{submitText}}</button>
                 </form>
             </div>
