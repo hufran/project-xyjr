@@ -51,7 +51,7 @@
             <RInput field="password" valueStableDuration=200>
                 <div class="rinput">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>密码:</label>
-                    <input class="password" id="{{rinputId}}" type="password" value="{{value}}" placeholder="输入密码">
+                    <input class="password" id="{{rinputId}}" type="password" value="{{value}}" placeholder="输入密码，6-16位字符" maxlength="16">
                     <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
                     <span class="tip">
         {{#errMsg}}{{errMsg}}{{/errMsg}}

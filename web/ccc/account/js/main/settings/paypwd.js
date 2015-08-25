@@ -92,7 +92,12 @@ ractive.on('resetPassword', function () {
         if (r) {
             isAcess = true;
         }
-    } else {
+    } 
+    
+     if (pwd.indexOf(" ") >=0) {
+        return showError("密码不能为空格");
+    }
+    else {
         isAcess = true;
     }
 
