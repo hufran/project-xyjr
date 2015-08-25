@@ -93,12 +93,17 @@
                             <small class="currency">{{ user.availableAmount }}</small>
                         </p>
                         <p class="button">
-                            {{#if authenticates.idauthenticated}}
-                            <a href="/account/recharge" class="btn btn-warning">充值</a>
-                            <a href="/account/withdraw" class="btn btn-default">提现</a>
+                            {{#if !isEnterprise}}
+                                {{#if authenticates.idauthenticated}}
+                                <a href="/account/recharge" class="btn btn-warning">充值</a>
+                                <a href="/account/withdraw" class="btn btn-default">提现</a>
+                                {{else}}
+                                <a href="/account/umpay" class="btn btn-warning">充值</a>
+                                <a href="/account/umpay" class="btn btn-default">提现</a>
+                                {{/if}}
                             {{else}}
-                            <a href="/account/umpay" class="btn btn-warning">充值</a>
-                            <a href="/account/umpay" class="btn btn-default">提现</a>
+                                <a href="/account/recharge" class="btn btn-warning">充值</a>
+                                <a href="/account/withdraw" class="btn btn-default">提现</a>
                             {{/if}}
                         </p>
                         <!--
