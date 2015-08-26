@@ -156,7 +156,23 @@ module.exports = function (router) {
 
             },
             authenticates: req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
-            isEnterprise: enterprise
+            isEnterprise: res.locals.user.enterprise,
+            groupMedal: req.uest('/api/v2/users/MYSELF/groupMedal')
+                .end()
+                .then(function (r) {
+                    var results = r.body.results;
+                    if (results) {
+                        for(var i = 0; i < results.length; i ++) {
+                            
+                            results[i] = results[i] + "!3";
+                        } 
+
+                        return results;
+                    } else {
+                        return [];
+                    }
+            })
+
         });
 
 

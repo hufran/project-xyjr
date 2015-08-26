@@ -87,8 +87,11 @@ ractive.on("register-account-submit", function () {
                                 }
                             });
                         } else {
+                            if (res.error[0].message == '认证失败') {
+                                res.error[0].message = "";
+                            }
                             CccOk.create({
-                                msg: '实名认证失败',
+                                msg: '实名认证失败，' + res.error[0].message,
                                 okText: '确定',
                                 cancelText: '',
                                 ok: function () {
