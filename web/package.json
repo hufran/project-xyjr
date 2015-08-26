@@ -4,7 +4,7 @@
   "dependencies": {
     "@ccc/login": "^2.1.2",
     "@ccc/payment": "^1.1.11",
-    "@ccc/register": "^2.5.6",
+    "@ccc/register": "^2.6.4",
     "@ccc/validation": "^1.0.0",
     "@ds/assets": "^2.0.5",
     "@ds/base": "^2.0.1",
@@ -68,14 +68,14 @@
     "winston": "^0.8.3"
   },
   "scripts": {
+    "browserify": "browserify",
+    "build": "gulp build",
+    "dev": "gulp dev",
+    "gulp": "gulp",
     "postinstall": "mkdir -p ccc/global/img/fonts && cp node_modules/bootstrap/fonts/* ccc/global/img/fonts/ && cp node_modules/font-awesome/fonts/* ccc/global/img/fonts/",
+    "reload": "pm2 reload ds",
     "start": "NODE_ENV=production PORT=5000 pm2 start index.js -i 0 --name ds",
     "start-uat": "NODE_APP_INSTANCE=uat NODE_ENV=production PORT=8000 pm2 -i 1 --name ds start index.js",
-    "stop": "pm2 stop ds",
-    "reload": "pm2 reload ds",
-    "browserify": "browserify",
-    "gulp": "gulp",
-    "dev": "gulp dev",
-    "build": "gulp build"
+    "stop": "pm2 stop ds"
   }
 }
