@@ -1,4 +1,3 @@
-
 'use strict';
 var RegisterRactive = require('@ccc/register').RegisterRactive;
 var registerRactive = new RegisterRactive({
@@ -15,17 +14,17 @@ baconflux.store('register', 'success').onValue(function (data) {
         }
     }).end()
     var left = 3;
- var interval = setInterval((function () {
-         --left;
-        if (left ==0) {
+    var interval = setInterval((function () {
+        --left;
+        if (left == 0) {
             console.log(left)
             clearInterval(interval);
-            window.location.href = "/account/index"; 
+            window.location.href = "/account/index";
         }
     }), 1000);
 });
 
-$("#getSms").on('click',function(){
+$("#getSms").on('click', function () {
     console.log('sdfsdf');
 });
 
@@ -38,8 +37,8 @@ $("#refresh-captcha").click(function (event) {
 
 
 //验证码的北京图片隐藏
-$(".form-group .inputtest-pic span").click(function(){
-    
+$(".form-group .inputtest-pic span").click(function () {
+
     $(".form-group .inputtest-pic .pullright").css("backgroundImage", "none");
 })
 
@@ -54,3 +53,28 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/注册')).end().then(func
         }
     });
 });
+
+var referral = getUrlVal("referral");
+if (referral != null) {
+    $("input[name=recommend-mobile]").val(referral);
+}
+
+function getUrlVal(key) {
+    var search = location.search;
+    if (search == null) return null;
+    var i = search.indexOf(key);
+    if (i == -1) {
+        return null;
+    } else {
+        i += key.length;
+        i++;
+        var j = search.indexOf('=', i);
+        if (j == -1) {
+            return search.substring(i);
+        } else {
+            return search.substring(i, j);
+        }
+    }
+}
+
+$("")

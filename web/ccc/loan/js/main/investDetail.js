@@ -267,7 +267,7 @@ setTimeout((function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
-        
+
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
@@ -304,37 +304,53 @@ setTimeout((function () {
             showErrors('请输入交易密码!');
             return false;
         } else {
+            CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
+                smsCaptcha,
+                function (data) {
+                    if (!data.success) {
+                        showErrors('验证码无效或已过期');
+                        return false;
+                    } else {
+                        disableErrors();
+                        var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
+                        var msg = '您本次投资的金额为' + num + '元,';
+                        if (coupon > 0) {
+                            msg += '将使用' + coupon + '奖券,'
+                        }
+                        msg += '是否确认投资?';
+                        Confirm.create({
+                            msg: msg,
+                            okText: '确定',
+                            cancelText: '取消',
+                            ok: function () {
+                                $('form')
+                                    .submit();
+                                $('.dialog')
+                                    .hide();
+                                Confirm.create({
+                                    msg: '抢标是否成功？',
+                                    okText: '抢标成功',
+                                    cancelText: '抢标失败',
+                                    ok: function () {
+                                        window.location.reload();
+                                    },
+                                    cancel: function () {
+                                        $('.dialog').hide();
+                                    }
+                                });
+                            },
+                            cancel: function () {
+                                $('.dialog').hide();
+                            }
+                        });
+                    };
+                });
             accountService.checkPassword(paymentPassword, function (r) {
                 if (!r) {
                     showErrors('请输入正确的交易密码!');
                 } else {
                     disableErrors();
                     var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
-                    Confirm.create({
-                        msg: '您本次投资的金额为' + num + '元，将使用' + coupon + '奖券，是否确认投资？',
-                        okText: '确定',
-                        cancelText: '取消',
-                        ok: function () {
-                            $('form')
-                                .submit();
-                            $('.dialog')
-                                .hide();
-                            Confirm.create({
-                                msg: '抢标是否成功？',
-                                okText: '抢标成功',
-                                cancelText: '抢标失败',
-                                ok: function () {
-                                    window.location.reload();
-                                },
-                                cancel: function () {
-                          $('.dialog').hide();
-                                }
-                            });
-                        },
-                        cancel: function () {
-                          $('.dialog').hide();
-                        }
-                    });
                 }
             });
         }
@@ -436,20 +452,20 @@ setTimeout((function () {
 
     function showSelect(amount) {
 
-        $('#couponSelection').val('');
-        var months = CC.loan.duration;
-        investRactive.set('inum', parseFloat(amount));
-        disableErrors()
-        $.post('/loan/selectOption', {
-            amount: amount,
-            months: months
-        }, function (o) {
-            if (o.success) {
-                investRactive.set('selectOption', parsedata(o.data));
-            }
-        });
-    }
-    //初始化选项
+            $('#couponSelection').val('');
+            var months = CC.loan.duration;
+            investRactive.set('inum', parseFloat(amount));
+            disableErrors()
+            $.post('/loan/selectOption', {
+                amount: amount,
+                months: months
+            }, function (o) {
+                if (o.success) {
+                    investRactive.set('selectOption', parsedata(o.data));
+                }
+            });
+        }
+        //初始化选项
     showSelect(CC.loan.rule.min);
 
     investRactive.on('getCoupon', function () {
@@ -465,11 +481,11 @@ setTimeout((function () {
 
 
 
-    
-    $('.investInput')
-        .on('keyup', function () {
-            showSelect($(this).val());
-        });
+
+$('.investInput')
+    .on('keyup', function () {
+        showSelect($(this).val());
+    });
 
 loanService.getLoanProof(CC.loan.requestId, function (imgs) {
     var relateDataRactive = new Ractive({
