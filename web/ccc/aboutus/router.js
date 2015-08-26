@@ -6,79 +6,94 @@ module.exports = function (router) {
         var cateMap = {
             aboutus: 'INTRODUCTION',
             background: 'INTRODUCTION',
-            responsibility: 'INTRODUCTION',
-            news: 'NEWS',
-            announcement: 'PUBLICATION',
+            team: 'INTRODUCTION',
+            partner: 'NEWS',
+            things: 'PUBLICATION',
             contactus: 'CONTACT',
-            contactus: 'CONTACT',
+            recruitment: 'CONTACT',
         };
         var nameMap = {
-            aboutus: '奇乐融简介',
-            background: '成立背景',
-            responsibility: '社会责任',
-            news: '行业新闻',
-            announcement: '最新公告',
-            contactus: '联系方式',
+            aboutus: '平台简介',
+            background: '股东背景',
+            team: '团队介绍',
+            partner: '合作机构',
+            things: '大事记',
             safety: '安全保障',
-            safety: '安全保障'
-			
+            contactus: '联系我们',
+            recruitment: '招贤纳士',
+            action: '公司动态',
+            media: '媒体报道',
+            notice: '平台公告',
+            manage: '经营报告'
         };
 
         var indexMap = {
-            aboutus: '奇乐融简介',
-            background: '成立背景',
-            responsibility: '社会责任',
-            news: '行业新闻',
-            announcement: '最新公告',
-            contactus: '联系我们',
+            aboutus: '平台简介',
+            background: '股东背景',
+            team: '团队介绍',
+            partner: '合作机构',
+            things: '大事记',
             safety: '安全保障',
-            safety: '安全保障'
+            contactus: '联系我们',
+            recruitment: '招贤纳士',
+            action: '公司动态',
+            media: '媒体报道',
+            notice: '平台公告',
+            manage: '经营报告'
         };
 
         var tabs = [{
-            text: '奇乐融简介',
+            text: '平台简介',
             url: '/aboutus/aboutus'
         }, {
-            text: '成立背景',
+            text: '股东背景',
             url: '/aboutus/background'
         }, {
-            text: '社会责任',
-            url: '/aboutus/responsibility'
+            text: '团队介绍',
+            url: '/aboutus/team'
         }, {
-            text: '行业新闻',
-            url: '/aboutus/news',
+            text: '合作机构',
+            url: '/aboutus/partner',
         }, {
-            text: '最新公告',
-            url: '/aboutus/announcement',
-        }, {
-            text: '联系我们',
-            url: '/aboutus/contactus',
+            text: '大事记',
+            url: '/aboutus/things',
         }, {
             text: '安全保障',
             url: '/aboutus/safety',
         }, {
-            text: '安全保障',
-            url: '/aboutus/safety'
+            text: '联系我们',
+            url: '/aboutus/contactus',
+        }, {
+            text: '招贤纳士',
+            url: '/aboutus/recruitment'
+        }, {
+            text: '公司动态',
+            url: '/aboutus/action'
+        }, {
+            text: '媒体报道',
+            url: '/aboutus/media'
+        }, {
+            text: '平台公告',
+            url: '/aboutus/notice'
+        }, {
+            text: '经营报告',
+            url: '/aboutus/manage'
         }];
         var tabIndex;
 
-        // 计算当前页面的index
-        var loop = function () {
-            for (var index = 0, length = tabs.length; index < length; index++) {
-                var tab = tabs[index];
-                if (tab.text === indexMap[req.params.tab]) {
-                    tabIndex = index;
-                    break;
-                }
+        for (var index = 0, length = tabs.length; index < length; index++) {
+            var tab = tabs[index];
+            if (tab.text === indexMap[req.params.tab]) {
+                tabIndex = index;
+                break;
             }
-        };
-        loop();
+        }
 
 
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
-console.log(r.body);
+            console.log(r.body);
             if (r.body.length > 1) {
-				
+
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                 req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current +
                         '&pagesize=10')
@@ -100,7 +115,7 @@ console.log(r.body);
                             tabs: tabs,
                             currentTab: nameMap[
                                 req.params.tab
-                            ],
+                                ],
                             tabIndex: tabIndex,
                             tab: {
                                 name: req.params
@@ -139,7 +154,7 @@ console.log(r.body);
 
 
     });
-	
+
 
     function formatNews(news) {
         news = news || [];
