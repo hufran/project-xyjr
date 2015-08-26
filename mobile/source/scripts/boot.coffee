@@ -34,21 +34,6 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/password/password.tmpl.html'
                     }
 
-                    .when '/about', {
-                        controller: 'AboutCtrl as self'
-                        templateUrl: 'components/router/about/about.tmpl.html'
-                    }
-
-                    .when '/safety', {
-                        controller: 'SafetyCtrl as self'
-                        templateUrl: 'components/router/safety/safety.tmpl.html'
-                    }
-
-                    .when '/help', {
-                        controller: 'HelpCtrl as self'
-                        templateUrl: 'components/router/help/help.tmpl.html'
-                    }
-
                     .when '/announcement', {
                         controller: 'AnnouncementCtrl as self'
                         templateUrl: 'components/router/announcement/announcement.tmpl.html'
@@ -307,7 +292,6 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                 (         api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then -> api.get_loan_detail($route.current.params.id, true)
-                                        .then (data) -> data.loan
                                         .then (data) ->
                                             amount = 999999999
                                             months = _.get data, 'duration.totalMonths'
