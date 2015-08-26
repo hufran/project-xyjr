@@ -44,8 +44,11 @@ $(function (){
         var email = $('.rZemail').val();
         if (email == '') {
             $('.errors').text('请输入邮箱!');
+            $('.errors').css('backgroundImage','url(/ccc/register/img/gou-bg.png)');
         } else if (!email.match(/[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+/)) {
             $('.errors').text('请输入正确的邮箱!');
+			$('.errors').css('backgroundImage','url(/ccc/register/img/gou-bg.png)');
+
         } else {
             $('.errors').text('');
             $.post('/api/v2/users/creditEmail/MYSELF', {

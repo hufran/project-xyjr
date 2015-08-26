@@ -684,12 +684,17 @@ width:112px;
   text-align: center;
   line-height: 30px;
   color: #fff;
-     background-color: #f68121;
+     background-color: #f58220;
   border: none;
     font-size: 16px;
 
   display: inline-block;
 }
+
+.loanWrapper .opre .investbtn:hover{
+	background-color: #df6502;
+}
+
 .easyPieChart {
   position: relative;
   text-align: center;

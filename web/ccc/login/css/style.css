@@ -313,13 +313,17 @@ p.login-error {
   color: white;
 }
 #main-container .s-login-view .s-login-window input[type=submit] {
-  background-color: #007ec5;
+  background-color: #009ada;
     width:276px;
 }
 #main-container .s-login-view .s-login-window button {
   margin-top: 20px;
-  background-color: #b5a16b;
 }
+
+#main-container .s-login-view .s-login-window button:hover{
+	background-color: #015989;
+}
+
 p.login-error {
   text-align: left!important;
   width: 100%;

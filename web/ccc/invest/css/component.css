@@ -310,11 +310,17 @@ hr {
   height: 32px;
   text-align: center;
   line-height: 32px;
-  background: #007ec5;
+  background-color: #f58220;
   color: #fff;
   border-radius: 5px;
   display: inline-block;
 }
+
+.loanItemWrapper .investBtn .investbtn:focus,
+.loanItemWrapper .investBtn .investbtn:hover{
+	background-color: #df6502;
+}
+
 .easyPieChart {
   position: relative;
   text-align: center;
