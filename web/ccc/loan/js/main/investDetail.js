@@ -170,56 +170,6 @@ setTimeout((function () {
         });
     });
 
-    investRactive.on('sendCode', function () {
-        if (!this.get('isSend')) {
-            this.set('isSend', true);
-            var smsType = 'CONFIRM_CREDITMARKET_TENDER';
-            CommonService.getMessage(smsType, function (r) {
-                if (r.success) {
-                    countDown();
-                }
-            });
-        }
-    });
-
-    investRactive.on('checkSms', function () {
-        var captcha = this.get('smsCaptcha');
-        if (captcha.length != 6 || captcha === '') {
-            showErrors('请输入正确的短信验证码!');
-            return false;
-        }
-        CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
-            captcha,
-            function (data) {
-                if (!data.success) {
-                    showErrors('验证码无效或已过期');
-                    return false;
-                };
-            });
-    });
-
-    function countDown() {
-        $('.sendCode')
-            .addClass('disabled');
-        var previousText = '获取验证码';
-        var msg = '$秒后重新发送';
-
-        var left = 60;
-        var interval = setInterval((function () {
-            if (left > 0) {
-                $('.sendCode')
-                    .html(msg.replace('$', left--));
-            } else {
-                investRactive.set('isSend', false);
-                $('.sendCode')
-                    .html(previousText);
-                $('.sendCode')
-                    .removeClass('disabled');
-                clearInterval(interval);
-            }
-        }), 1000);
-    }
-
     investRactive.set('user', CC.user);
     if ($('.invest-submit').length > 0) {
 
@@ -304,47 +254,6 @@ setTimeout((function () {
             showErrors('请输入交易密码!');
             return false;
         } else {
-            CommonService.checkMessage('CONFIRM_CREDITMARKET_TENDER',
-                smsCaptcha,
-                function (data) {
-                    if (!data.success) {
-                        showErrors('验证码无效或已过期');
-                        return false;
-                    } else {
-                        disableErrors();
-                        var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
-                        var msg = '您本次投资的金额为' + num + '元,';
-                        if (coupon > 0) {
-                            msg += '将使用' + coupon + '奖券,'
-                        }
-                        msg += '是否确认投资?';
-                        Confirm.create({
-                            msg: msg,
-                            okText: '确定',
-                            cancelText: '取消',
-                            ok: function () {
-                                $('form')
-                                    .submit();
-                                $('.dialog')
-                                    .hide();
-                                Confirm.create({
-                                    msg: '抢标是否成功？',
-                                    okText: '抢标成功',
-                                    cancelText: '抢标失败',
-                                    ok: function () {
-                                        window.location.reload();
-                                    },
-                                    cancel: function () {
-                                        $('.dialog').hide();
-                                    }
-                                });
-                            },
-                            cancel: function () {
-                                $('.dialog').hide();
-                            }
-                        });
-                    };
-                });
             accountService.checkPassword(paymentPassword, function (r) {
                 if (!r) {
                     showErrors('请输入正确的交易密码!');
