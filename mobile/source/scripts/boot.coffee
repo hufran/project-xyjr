@@ -292,7 +292,6 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                 (         api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then -> api.get_loan_detail($route.current.params.id, true)
-                                        .then (data) -> data.loan
                                         .then (data) ->
                                             amount = 999999999
                                             months = _.get data, 'duration.totalMonths'
