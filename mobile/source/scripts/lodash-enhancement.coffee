@@ -10,3 +10,6 @@ _.mixin
 
     fixed: (digits, num) ->
         parseFloat (+num or 0).toFixed digits
+
+    fixed_in_2: (num) ->
+        _.fixed 2, num

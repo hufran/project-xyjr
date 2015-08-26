@@ -11,6 +11,7 @@ do (_, angular) ->
                 @payment = null
                 @agreement = null
                 @fund_accounts = null
+                @authenticates = null
 
                 @has_logged_in = false
                 @has_bank_card = false
@@ -27,12 +28,12 @@ do (_, angular) ->
 
                 return unless status is true
 
-                _.split('info fund payment agreement fund_accounts').forEach (property) =>
+                _.split('info fund payment agreement fund_accounts authenticates').forEach (property) =>
                     @[property] ?= {}
 
                 @has_logged_in = true
 
-                @has_payment_account = !!@payment?.accountId
+                @has_payment_account = !!@authenticates?.idauthenticated
                 @has_instant_invest = !!@agreement?.invest
 
                 @has_nonpwd_netsave = do ({instant, debit} = @agreement) ->
