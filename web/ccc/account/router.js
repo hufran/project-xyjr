@@ -156,7 +156,7 @@ module.exports = function (router) {
 
             },
             authenticates: req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
-            isEnterprise: enterprise
+            isEnterprise: res.locals.user.enterprise
         });
 
 
