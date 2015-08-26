@@ -29,18 +29,15 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @user.authenticates.idauthenticated = true
+                        @user.has_payment_account = true
                         @$location.path @next_path
 
                     .catch (data) =>
                         @submit_sending = false
-
                         @$timeout.cancel @error.timer
 
-                        @error.message  = _.get data, 'error[0].message'
-                        @error.message ?= 'something happened...'
-
                         @error.on = true
+                        @error.message = _.get data, 'error[0].message', 'something happened...'
 
                         @error.timer = @$timeout =>
                             @error.on = false
