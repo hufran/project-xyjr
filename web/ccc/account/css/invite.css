@@ -104,5 +104,16 @@
   vertical-align: super;
   padding-left: 15px;
 }
+.ccc-invite-wrap .record{
+    float: left;
+    margin-right:20px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.ccc-invite-wrap .reward{
+    float: left;
+    padding: 5px;
+    margin-bottom: 10px;
+}
 
 /*# sourceMappingURL=/ccc/account/css/invite.css.map */
