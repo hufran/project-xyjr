@@ -161,12 +161,16 @@ module.exports = function (router) {
                 .end()
                 .then(function (r) {
                     var results = r.body.results;
-                    for(var i = 0; i < results.length; i ++) {
-                        
-                        results[i] = results[i] + "!3";
-                    } 
+                    if (results) {
+                        for(var i = 0; i < results.length; i ++) {
+                            
+                            results[i] = results[i] + "!3";
+                        } 
 
-                    return results;
+                        return results;
+                    } else {
+                        return [];
+                    }
             })
 
         });
