@@ -29,7 +29,7 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @user.authenticates.idauthenticated = true
+                        @user.has_payment_account = true
                         @$location.path @next_path
 
                     .catch (data) =>
