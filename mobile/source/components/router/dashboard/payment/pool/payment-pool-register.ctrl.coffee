@@ -34,13 +34,10 @@ do (_, angular) ->
 
                     .catch (data) =>
                         @submit_sending = false
-
                         @$timeout.cancel @error.timer
 
-                        @error.message  = _.get data, 'error[0].message'
-                        @error.message ?= 'something happened...'
-
                         @error.on = true
+                        @error.message = _.get data, 'error[0].message', 'something happened...'
 
                         @error.timer = @$timeout =>
                             @error.on = false
