@@ -524,3 +524,7 @@ li a {
 	width: 80px;
 	height: 80px;
 }
+
+input[type=button]{
+    cursor:pointer !important;
+}

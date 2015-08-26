@@ -90,11 +90,6 @@
     width: 320px;
 }
 
-.loanform .form-group {
-    padding-top: 8px;
-    padding-bottom: 8px;
-}
-
 .loanform .verifyword {
     padding-top: 10px;
     margin-left: 5px;
@@ -141,13 +136,15 @@
 }
 
 #loanForm label.error {
-    margin-left: 10px;
+    margin-left: 258px;
     width: auto;
-    display: inline;
+    display: block !important;
     font-size: 8px;
     font-style: normal;
     color: #d2252c;
     line-height: 12px;
+    padding-top:5px;
+    clear:both;
 }
 
 #loanForm input.error {

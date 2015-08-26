@@ -12,8 +12,7 @@ var loginElement=document.getElementsByClassName?document.getElementsByClassName
 
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
-$carousel
-    .on('slid.bs.carousel', function (e) {
+$carousel.on('slid.bs.carousel', function (e) {
         // slide 完成后
     });
 

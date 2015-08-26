@@ -15,23 +15,22 @@ var ractive = new Ractive({
         isQuickCheck: true,
         authenticateInfo: {
             name: CC.user.name || '',
-            idNumber:''
+            idNumber: ''
         },
-        format : format,
+        format: format,
         getPwdReturn: false
     },
-    oninit: function (){
+    oninit: function () {
         accountService.getUserInfo(function (res) {
             ractive.set('authenticateInfo', {
                 name: res.user.name,
-                idNumber : res.user.idNumber
+                idNumber: res.user.idNumber
             });
         });
     }
 });
 
-var popupDepositAgreement = require('ccc/agreement/js/main/depositAgreement')
-    .popupDepositAgreement;
+var popupDepositAgreement = require('ccc/agreement/js/main/depositAgreement').popupDepositAgreement;
 ractive.on('maskDepositAgreement', function (e) {
     e.original.preventDefault();
     popupDepositAgreement.show();
@@ -42,68 +41,66 @@ ractive.on("register-account-submit", function () {
     var name = this.get("name");
     var idNumber = this.get("idNumber");
     var licenseAgreed = this.get("licenseAgreed");
-    console.log(idNumber);
-    utils.formValidator.checkName(name, function (bool,
-        error) {
+    utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
                 showErrorMessage: true,
                 errorMessage: utils.errorMsg[error]
             });
         } else {
-            utils.formValidator.checkIdNumber(idNumber,
-                function (bool, error) {
-                    if (!bool) {
-                        ractive.set({
-                            showErrorMessage: true,
-                            errorMessage: utils.errorMsg[
-                                error]
-                        });
-                        return;
-                    }
+            utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
+                if (!bool) {
+                    ractive.set({
+                        showErrorMessage: true,
+                        errorMessage: utils.errorMsg[error]
+                    });
 
-                    if (!licenseAgreed) {
-                        ractive.set({
-                            showErrorMessage: true,
-                            errorMessage: "必须同意实名认证协议"
-                        });
+                    return false;
+                }
 
-                        return false;
-                    }
-                    var user = {
-                        name: $.trim(name),
-                        idNumber: $.trim(idNumber)
-                    };
-                    
-                    accountService.authenticateUser(user,
-                            function (res) {
-                                if (res.success) {
-                                    CccOk.create({
-                                        msg: '实名认证成功，开通交易密码是您进行交易前必须步骤!',
-                                        okText: '现在开通',
-                                        cancelText: '稍后再说',
-                                        ok: function () {
-                                            window.location.href = '/account/paypwd';
-                                        },
-                                        cancel: function () {
-                                            window.location.reload();
-                                        }
-                                    });
-                                } else {
-                                    CccOk.create({
-                                        msg: '实名认证失败，' + res.error[0].message,
-                                        okText: '确定',
-                                        cancelText: '',
-                                        ok: function () {
-                                            window.location.reload();
-                                        },
-                                        cancel: function () {
-                                            window.location.reload();
-                                        }
-                                    });
+                if (!licenseAgreed) {
+                    ractive.set({
+                        showErrorMessage: true,
+                        errorMessage: "必须同意实名认证协议"
+                    });
+
+                    return false;
+                }
+
+                var user = {
+                    name: $.trim(name),
+                    idNumber: $.trim(idNumber)
+                };
+
+                accountService.authenticateUser(user,
+                    function (res) {
+                        if (res.success) {
+                            CccOk.create({
+                                msg: '实名认证成功，开通交易密码是您进行交易前必须步骤!',
+                                okText: '现在开通',
+                                cancelText: '稍后再说',
+                                ok: function () {
+                                    window.location.href = '/account/paypwd';
+                                },
+                                cancel: function () {
+                                    window.location.reload();
                                 }
                             });
-                });
+                        } else {
+                            CccOk.create({
+                                msg: '实名认证失败',
+                                okText: '确定',
+                                cancelText: '',
+                                ok: function () {
+                                    window.location.reload();
+                                },
+                                cancel: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    });
+            });
         }
     });
 });
@@ -148,19 +145,18 @@ ractive.on('get-pwd', function (e) {
         return;
     }
 
-    $this.text('操作中...')
-        .addClass('disabled');
+    $this.text('操作中...').addClass('disabled');
 
     var api = '/api/v2/upayment/sendPassword/MYSELF';
     $.get(api, function (o) {
-        if (o.success) {
-            self.set('getPwdReturn', true);
-        } else {
-            alert('操作出错~');
-        }
-        $this.text(text)
-            .removeClass('disabled');
-    })
+            if (o.success) {
+                self.set('getPwdReturn', true);
+            } else {
+                alert('操作出错~');
+            }
+            $this.text(text)
+                .removeClass('disabled');
+        })
         .error(function (o) {
             console.info('请求出现错误，' + o.statusText);
             $this.text(text)
