@@ -235,7 +235,7 @@ $(' .icon-group1').mouseenter(function(){
 })
 
 $('.btn-index').click(function(){
-	 $('.btn-index').css({backgroundColor:'#df6502'});
+	 $('.btn-index').css({backgroundImage:"url(/ccc/index/img/register_on.png)"});
 })
 
 //require('ccc/index/js/main/ss.js')

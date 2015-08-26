@@ -1,6 +1,10 @@
 /**
  * index 首页样式
  */
+
+#main-container *{
+	font-family: '微软雅黑';
+}
 .carousel-wrapper {
   width: 100%;
   overflow: hidden;
@@ -425,6 +429,8 @@ a {
   color: #324075;
   font-weight: 200;
 }
+
+
 /*
 .s-content .s-list-table tr td {
   border-bottom: 1px solid #e5e5e5;
@@ -595,6 +601,7 @@ margin-left: 14px;
   text-decoration: none;
     line-height: 18px;
     color: #4a4a4a;
+	font-family: '微软雅黑';
 }
 .loanWrapper .year{
    font-size: 18px;
@@ -676,9 +683,8 @@ width:112px;
   height: 30px;
   text-align: center;
   line-height: 30px;
-  background: #2A375F;
   color: #fff;
-     background-color: #007ec5;
+     background-color: #f68121;
   border: none;
     font-size: 16px;
 

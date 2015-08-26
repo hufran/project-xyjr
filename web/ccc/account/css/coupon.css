@@ -9,6 +9,11 @@
   background: #f3f3f3;
   border: 3px #eaeaea solid;
 }
+
+#main-container{
+	margin-top: 7px;
+}
+
 .couponTitle {
   /*height: 20px;*/
   line-height: 20px;
