@@ -411,6 +411,7 @@ a {
                 .rate-term {
                     .flex-display(flex-end; space-between);
 
+                    -webkit-box-align: end;
                     margin-bottom: 8px;
 
                     .rate {
@@ -800,6 +801,10 @@ a {
                 line-height: 1;
                 color: @color-gray;
                 min-width: 54px;
+
+                &:empty {
+                    min-width: auto;
+                }
             }
         }
 
@@ -1126,56 +1131,160 @@ a {
 }
 
 #loan-invest {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-    .c-list-panel {
-        > .item {
-            .flex-display(center; space-between);
+    section.invest-confirm {
+        margin-bottom: 15px;
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        padding: 10px 15px;
+        background-color: #FFF;
 
-            margin-left: 10px;
-            padding: 15px 15px 15px 5px;
-            font-size: 30px/2 + 1;
-            color: #333;
+        .title {
+            margin: 0 0 10px;
+            font-size: 32px/2 + 2;
+        }
 
-            .name,
-            label {
-                .flex(none);
+        .info {
 
-                margin-right: 10px;
-            }
-
-            .value,
-            .input-wrap {
-                .flex(1);
+            .name {
             }
 
             .value {
-                text-align: right;
+                .num {
+                    color: #FF7200;
+                }
             }
 
-            &.title {
-                font-size: 32px/2 + 1;
+            + .info {
+                margin-left: 15px;
             }
 
-            &:before {
-                border-color: #D8D8D8;
+            &.earning {
+                #gradient .vertical(#3C9ED5; #78CEFF);
+
+                margin: 7px -15px;
+                padding: 15px 0 7px;
+                min-height: 87px;
+                text-align: center;
+                color: #FFF;
+
+                .name {
+                    display: block;
+                    font-size: 24px/2 + 2;
+                }
+
+                .value {
+                    display: block;
+                    font-size: 60px/2 + 2;
+                }
+            }
+
+            &.balance {
+                margin: 15px 0;
+                font-size: 28px/2 + 2;
+            }
+
+            &-list {
+                font-size: 24px/2 + 2;
+                color: #4A4A4A;
+            }
+        }
+
+        .invest-input-wrap {
+            position: relative;
+            margin-bottom: 10px;
+
+            .invest-input {
+                border: 1px solid @color-theme-main;
+                border-radius: 999px;
+                text-align: center;
+            }
+
+            .glyphicon {
+                position: absolute;
+                top: 0;
+                padding: 0 20px;
+                font-size: 22px;
+                line-height: 42px;
+                color: @color-theme-main;
+
+                &-minus {
+                    left: 0;
+                }
+
+                &-plus {
+                    right: 0;
+                }
+            }
+        }
+
+        .coupon-wrap {
+            .coupon-tip {
+                line-height: 30px;
+            }
+        }
+
+        .agreement {
+            margin-top: 10px;
+            border-top: 1px solid #E6E6E6;
+            padding-top: 10px;
+
+            label {
+                font-weight: normal;
+                color: #999;
+
+                .pull-left {
+                    margin-right: 5px;
+                }
+
+                .desc {
+                    display: block;
+                    overflow: hidden;
+                }
+            }
+        }
+
+        .btn {
+            &-total {
+                .button-variant(#FFF; #FF7200; #FF7200);
+
+                margin-top: -4px;
+                padding-left: 15px;
+                padding-right: 15px;
+                border-radius: 999px;
+                font-size: 28px/2 + 1;
+                line-height: 1;
             }
         }
     }
 
-    .invest {
-        margin-top: 10px;
-        margin-bottom: 10px;
+    .invest-btn-wrap {
+        margin-bottom: 30px;
+    }
 
-        label {
-            margin-bottom: 0;
-            font-weight: normal;
+    .icon-money {
+        display: inline-block;
+        vertical-align: -2px;
+        background: url("@{path-image}/money-icons.png") no-repeat;
+        background-size: cover;
+        width: 26px/2;
+        height: 32px/2;
+        overflow: hidden;
+
+        &-ltb {
+            background-position: 0 0;
         }
 
-        .input-wrap {
+        &-lxy {
+            background-position: 0 -32px/2;
         }
 
-        .text-primary {
-            color: #EB0432;
+        &-qt {
+            background-position: 0 -64px/2;
         }
     }
 }
@@ -1215,6 +1324,7 @@ a {
             }
 
             .value {
+                vertical-align: middle;
                 font-size: 24px/2 + 2;
                 color: #999;
 
@@ -1265,6 +1375,172 @@ a {
 
         &-logout {
             .button-variant(#FFF; #FF7200; #FF7200);
+        }
+    }
+}
+
+/*=============================================================================
+                                              [Router] [Dashboard] Total Assets
+----*/
+
+#dashboard-total-assets {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    > section.detail {
+        margin-bottom: 100px;
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        padding: 0 15px;
+        background-color: #FFF;
+
+        .info {
+            .flex-display(center; space-between);
+
+            padding: 8px 35px;
+            font-size: 30px/2 + 1;
+            line-height: 1.4;
+
+            .name {
+                .flex(none);
+
+                margin-right: 10px;
+                color: #777;
+            }
+
+            .value {
+                .flex(1);
+
+                text-align: right;
+                color: #FF7200;
+            }
+
+            &.total {
+                padding-top: 14px;
+                padding-bottom: 20px;
+            }
+
+            &-list {
+                border-bottom: 1px solid #E6E6E6;
+                padding: 13px 0 3px;
+
+                > :last-child {
+                    position: relative;
+
+                    &:before {
+                        content: "+";
+                        position: absolute;
+                        left: 0;
+                        top: 2px;
+                        font-size: 28px;
+                        line-height: 1;
+                        color: #D9D9D9;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*=============================================================================
+                                                    [Router] [Dashboard] Coupon
+----*/
+
+#dashboard-coupon {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .coupon-list {
+        > .item {
+            margin-bottom: 10px;
+            border-top: 1px solid #D9D9D9;
+            border-bottom: 1px solid #D9D9D9;
+            padding: 15px 12px;
+            background-color: #FFF;
+            font-size: 24px/2 + 1;
+            color: #4A4A4A;
+
+            .media {
+                &-left {
+                    padding-right: 23px;
+                }
+
+                &-body {
+                    padding-top: 5px;
+                }
+
+                &-object {
+                    display: inline-block;
+                    vertical-align: middle;
+                    background: url("@{path-image}/coupon-icons.png") no-repeat;
+                    background-size: cover;
+                    background-position: 0 0;
+                    width: 124px/2;
+                    height: 156px/2;
+                    overflow: hidden;
+                }
+            }
+
+            .status {
+                height: 22px;
+                line-height: 22px;
+                color: #FF4D4D;
+            }
+
+            .value {
+                height: 55px;
+                line-height: 55px;
+                color: #FFF;
+
+                .num {
+                    font-size: 34px/2 + 1;
+                }
+            }
+
+            .type {
+                display: inline-block;
+                vertical-align: middle;
+                margin-bottom: 6px;
+                border: 1px solid #FF4D4D;
+                padding-left: 4px;
+                padding-right: 4px;
+                color: #FF4D4D;
+            }
+
+            .expire {
+                margin-bottom: 10px;
+            }
+
+            .desc {
+                color: #999;
+            }
+
+            &-status-redeemed,
+            &-status-expired,
+            &-status-cancelled {
+                background-color: #E5E5E5;
+
+                .media-object {
+                    background-position: 0 -156px/2;
+                }
+
+                .status {
+                    color: #999;
+                }
+
+                .type {
+                    border: 1px solid #999;
+                    color: #999;
+                }
+
+                .expire {
+                    color: #999;
+                }
+            }
         }
     }
 }
@@ -1385,35 +1661,52 @@ a {
 }
 
 /*=============================================================================
+                                          [Router] [Dashboard] Payment Register
+----*/
+
+#dashboard-payment-register {
+
+    .form-flatten {
+        #login > .form-flatten;
+    }
+
+    .alert {
+        border-radius: 0;
+    }
+
+    .flash-message {
+        .opacity(0);
+        .transition();
+
+        padding: 6px 10px;
+
+        &.on {
+            .opacity(1);
+        }
+    }
+
+}
+
+/*=============================================================================
                                                   [Router] [Dashboard] Recharge
 ----*/
 
 #dashboard-recharge {
 
     .balance {
-        .flex-display(center; space-between);
+        #gradient .vertical(#3C9ED5; #78CEFF);
 
-        margin-bottom: 20px/2;
-        padding-top: 9px;
-        padding-bottom: 9px;
-        background-color: #FFF;
-        color: #333;
+        padding-top: 15px;
+        padding-bottom: 7px;
+        text-align: center;
+        color: #FFF;
 
         .labels {
-            .flex(none);
-
-            margin-right: 10px;
-            font-size: 30px/2 + 2;
-
-            &:after {
-                content: ":";
-            }
+            font-size: 24px/2 + 2;
         }
 
         .amount {
-            .flex(1);
-
-            font-size: 36px/2 + 2;
+            font-size: 60px/2 + 2;
         }
     }
 
@@ -1447,6 +1740,25 @@ a {
             }
         }
     }
+
+    .explain {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: #999;
+
+        h5 {
+            margin: 0 0 5px;
+            font-size: 24px/2 + 2;
+
+            &:after {
+                content: ":";
+            }
+        }
+
+        p {
+            font-size: 24px/2 + 2;
+        }
+    }
 }
 
 /*=============================================================================
@@ -1461,6 +1773,10 @@ a {
 
     .withdraw-form {
         #dashboard-recharge > .recharge-form;
+    }
+
+    .explain {
+        #dashboard-recharge > .explain;
     }
 }
 
@@ -1631,319 +1947,6 @@ a {
             padding: 1px 3px;
         }
     }
-}
-
-/*=============================================================================
-                                                                 [Router] About
-----*/
-
-#about {
-    color: #4A4A4A;
-
-    .summary {
-        padding-top: 10px;
-        padding-bottom: 20px;
-        background-color: #FFF;
-        font-size: 24px/2 + 1;
-        line-height: 46px/2 + 1;
-        text-align: justify;
-    }
-
-    .qualification {
-        .title {
-            margin: 0;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            font-size: 30px/2 + 1;
-            line-height: 46px/2 + 1;
-            text-align: center;
-
-            &:before {
-                content: "【";
-            }
-
-            &:after {
-                content: "】";
-            }
-        }
-
-        .content {
-            padding-top: 15px;
-            padding-bottom: 40px;
-            background-color: #FFF;
-
-            img {
-                display: block;
-                margin: 0 auto 10px;
-            }
-        }
-    }
-}
-
-/*=============================================================================
-                                                                [Router] Safety
-----*/
-
-#safety {
-
-    > section {
-        background-color: #FFF;
-
-        > .title {
-            margin: 0;
-            padding-left: 18px;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            font-size: 30px/2 + 1;
-            font-weight: bold;
-            color: #EB5A02;
-
-            .icon {
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 6px;
-                background: url(../assets/image/safety/icons.png) no-repeat;
-                background-size: cover;
-                width: 60px/2;
-                height: 60px/2;
-                overflow: hidden;
-
-                &-safeguard {
-                    background-position: 0 0;
-                }
-
-                &-control {
-                    background-position: 0 -60px/2;
-                }
-
-                &-deposit {
-                    background-position: 0 -120px/2;
-                }
-
-                &-transparent {
-                    background-position: 0 -180px/2;
-                }
-
-                &-cooperation {
-                    background-position: 0 -240px/2;
-                }
-
-                &-security {
-                    background-position: 0 -300px/2;
-                }
-            }
-        }
-
-        > .content {
-            margin-left: 5px;
-            margin-right: 5px;
-            padding: 5px;
-            background-color: #F6F6F6;
-            font-size: 24px/2 + 2;
-            line-height: 32px/2 + 2;
-            color: #333;
-            text-align: justify;
-        }
-
-        &.safeguard {
-            > .content {
-                padding: 0 0 20px;
-                background-color: #FFF;
-
-                .safeguard-icon {
-                    display: inline-block;
-                    vertical-align: middle;
-                    background: url(../assets/image/safety/safeguard.png) no-repeat;
-                    background-size: cover;
-                    width: 68px/2;
-                    height: 68px/2;
-                    overflow: hidden;
-
-                    &-1 {
-                        background-position: 0 0;
-                    }
-
-                    &-2 {
-                        background-position: 0 -68px/2;
-                    }
-
-                    &-3 {
-                        background-position: 0 -136px/2;
-                    }
-                }
-
-                .media {
-                    margin-top: 10px;
-                    border-top: 1px solid #CACACA;
-                    padding-left: 8px;
-                    padding-top: 10px;
-
-                    .media-left {
-                        padding-right: 24px/2;
-                    }
-
-                    .media-heading {
-                        margin-bottom: 2px;
-                        font-size: 28px/2 + 1;
-                        font-weight: bold;
-                        line-height: 40px/2 + 1;
-                    }
-
-                    .desc {
-                        margin: 0;
-                        font-size: 22px/2 + 1;
-                        line-height: 28px/2 + 1;
-                    }
-
-                    &:first-child {
-                        margin-top: 0;
-                        border-top: 0;
-                        padding-top: 0;
-                    }
-                }
-            }
-        }
-
-        &.control {
-            background-color: #F6F6F6;
-
-            .img-wrap {
-                padding: 10px 0 15px;
-            }
-        }
-
-        &.deposit {
-        }
-
-        &.transparent {
-            padding-top: 10px;
-        }
-
-        &.cooperation {
-            padding-top: 10px;
-            padding-bottom: 20px;
-
-            .content {
-                padding-top: 0;
-                background-color: #FFF;
-                font-size: 26px/2 + 2;
-                font-weight: bold;
-                line-height: 32px/2 + 2;
-                text-align: center;
-
-                img {
-                    display: block;
-                    margin: 0 auto 10px;
-
-                    &.pnr {
-                        margin-top: -3px;
-                        margin-bottom: 5px;
-                    }
-                }
-            }
-        }
-
-        &.security {
-            padding-bottom: 15px;
-            background-color: #F6F6F6;
-
-            .dl-horizontal {
-                margin-bottom: 10px;
-                color: #4A4A4A;
-
-                dt {
-                    float: left;
-                    padding-right: 10px;
-                    min-width: 6em;
-                    width: auto;
-                    text-align: left;
-                    font-size: 24px/2 + 2;
-                    font-weight: bold;
-                    line-height: 1.2;
-                }
-
-                dd {
-                    overflow: hidden;
-                    margin-left: 0;
-                    margin-bottom: 10px;
-                    font-size: 22px/2 + 2;
-                    line-height: 28px/2 + 2;
-                }
-            }
-        }
-    }
-
-}
-
-/*=============================================================================
-                                                                  [Router] Help
-----*/
-
-#help {
-
-    .help-accordion {
-        background-color: #FFF;
-
-        .panel {
-            &-group {
-                margin-bottom: 0;
-                margin-left: 10px;
-            }
-
-            &-default {
-                margin: 0;
-                border: 0;
-                border-top: 1px solid #D8D8D8;
-                padding-left: 5px;
-                padding-right: 10px;
-                -webkit-box-shadow: none;
-                box-shadow: none;
-
-                &:first-child {
-                    border-top: 0;
-                }
-            }
-
-            &-heading {
-                padding: 15px 0;
-                background-color: #FFF;
-            }
-
-            &-title {
-                font-size: 15px;
-
-                a {
-                    display: block;
-
-                    &:hover,
-                    &:focus {
-                        outline: 0;
-                        text-decoration: none;
-                        color: #333;
-                    }
-                }
-
-                .glyphicon {
-                    &-menu-down {
-                        color: @color-theme-main;
-                    }
-                }
-            }
-
-            &-body {
-                border: 0;
-                padding: 0;
-                padding-bottom: 10px;
-                text-align: justify;
-
-                .content {
-                    font-size: 14px;
-                    color: #5E5E5E;
-                }
-            }
-        }
-    }
-
 }
 
 /*=============================================================================

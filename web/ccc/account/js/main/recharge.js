@@ -1,12 +1,12 @@
 'use strict';
-var LLPBANKS = require('ccc/global/js/modules/cccllpBanks');
+var NETBANKS = require('ccc/global/js/modules/netBank');
 require('ccc/global/js/modules/cccTab');
 
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;
-var banks = _.filter(LLPBANKS, function (r) {
+var banks = _.filter(NETBANKS, function (r) {
     return r.enable === true;
 });
 

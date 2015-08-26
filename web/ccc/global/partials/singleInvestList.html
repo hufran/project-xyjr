@@ -45,6 +45,11 @@
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
         </a>
+        {{/if}}
+        {{#if status === 'FAILED'}}
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn" style="background:lightgrey; color: #fff">流标</div>
+        </a>
         {{/if}} 
         {{#if status === 'SETTLED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">

@@ -14,7 +14,7 @@ do (_, angular) ->
                         return {} if _.isEmpty repayments
 
                         filter = _.partial _.filter, repayments
-                        sum = (item, key = 'amount') -> +(_.sum item, (item) -> item.repayment[key]).toPrecision 3
+                        sum = (item, key = 'amount') -> _.fixed_in_2(_.sum item, (item) -> item.repayment[key])
                         status = (item) -> item.status is 'REPAYED'
 
                         return {
@@ -26,7 +26,7 @@ do (_, angular) ->
                     return {
                         id: item.id
                         loan: map_loan_summary item.loan
-                        rate: +(item.rate / 100).toPrecision(3)
+                        rate: _.fixed_in_2 item.rate / 100
                         title: item.loanTitle
                         status: item.status
                         percent: (item.investPercent * 100) | 0

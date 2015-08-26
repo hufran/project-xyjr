@@ -21,10 +21,13 @@ new Ractive({
         moment: moment,
         totalSize: 0,
         list: [],
+        rewardlist:[],
         loading: true,
         addText: '继续推荐',
         add: false,
-        msg: null
+        msg: null,
+        record:true,
+        reward:false
     },
     oninit: function () {
         this.getFmobile();
@@ -32,6 +35,7 @@ new Ractive({
     onrender: function () {
         var self = this;
         this.api = '/api/v2/user/MYSELF/invite';
+        var rewardApi='/api/v2/reward/getReferralUsers/'+CC.user.id;
         $.get(this.api, function (o) {
             o = o.success ? o.data : {
                 results: [],
@@ -40,6 +44,9 @@ new Ractive({
             self.set('totalSize', o.totalSize);
             self.set('list', self.parseData(o));
             self.set('loading', false);
+        });
+         $.get(rewardApi, function (o) {
+         self.set('rewardlist', self.parseRewardListData(o));
         });
     },
     getFmobile: function () {
@@ -61,14 +68,7 @@ new Ractive({
     oncomplete: function () {
 
     },
-    // buildImgUrl: function () {
-    //     var self = this;
-    //     var logo = 'http://' + CC.host + $('#er-img-url').attr('src');
-    //     var text = 'http://' + CC.host + '/register?rel=' + self.get('Fmobile');;
-    //     return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&logo=' + logo + '&text=' + text;
-    // },
     parseData: function (r) {
-        console.log(r);
         for (var i = 0; i < r.results.length; i++) {
             var o = r.results[i];
             r.results[i].user.registerDate = new Date(r.results[i].user.registerDate);
@@ -78,6 +78,15 @@ new Ractive({
         }
         return r.results;
     },
+     parseRewardListData: function (r) {
+         var statueMap={false:'未奖励',true:'已奖励'}
+        for (var i = 0; i < r.length; i++) {
+            var o = r[i];
+            o.rewarded=statueMap[o.rewarded];
+            o.user.loginName=o.user.loginName.substr(0, 1)+'******'+o.user.loginName.substr(o.user.loginName.length-1, 1);
+        }
+        return r;
+    },
     status: {
         ACTIVATED: '已注册',
         UNACTIVATED: '未注册',
@@ -85,19 +94,24 @@ new Ractive({
     },
     bindActions: function () {
         var self = this;
-
-        // 初始化二维码
-        // console.log(this.buildImgUrl());
-        // $('#er-img').replaceWith('<img style="width:200px;height:200px;" src="' + this.buildImgUrl() + '">');
-
+        
         $(this.el).find("#btn-invite-copy").mouseover(function () {
             $("#invite-link").select();
         });
         $(this.el).find("#invite-link").mouseover(function () {
             $(this).select();
         });
+        
+        $('.record').click(function(){
+             self.set('record', true);
+             self.set('reward', false);
+        });
+        
+         $('.reward').click(function(){
+             self.set('record', false);
+             self.set('reward', true);
+        });
 
-        // click to copy
         var clip = new ZeroClipboard.Client();
         clip.setHandCursor(true);
         clip.setText($(this.el).find("#invite-link").val());

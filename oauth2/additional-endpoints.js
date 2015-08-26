@@ -9,7 +9,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());
     router.post('/api/v2/lianlianpay/withdraw/:userId', auth.user());
     router.post('/api/v2/lianlianpay/depositReturn', auth.pass());
-    router.get('/api/v2/lianlianpay/banks', auth.user());
+    router.get('/api/v2/lianlianpay/banks', auth.pass());
+    router.get('/api/v2/lianlianpay/bankCodes', auth.pass());
     router.get('/api/v2/lianlianpay/provinceCodes', auth.user());
     router.get('/api/v2/lianlianpay/provinceCityCodes/:provinceName', auth.user());
     router.post('/api/v2/lianlianpay/authenticateUser/:userId', auth.user());
@@ -39,4 +40,6 @@ module.exports = function (router, auth) {
     router.get('/api/v2/points/user/:userId/listAll', auth.user());
     router.get('/api/v2/points/user/:userId/listAdds', auth.user());
     router.get('/api/v2/points/user/:userId/listReduced', auth.user());
+    router.get('/api/v2/users/:userId/groupMedal', auth.user());
+    router.get('/api/v2/reward/getReferralUsers/:uid', auth.user());
 };

@@ -55,7 +55,10 @@ ractive.on("submit-modify-password", function () {
     if (newPassword.length < 6) {
         return showError("密码长度必须大于6位");
     }
-
+    if (newPassword.indexOf(" ") >=0) {
+        return showError("密码不能为空格");
+    }
+    
     if (!passwordConfirm) {
         // 没重复新密码
         return showError("请重复新密码");

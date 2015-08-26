@@ -8,6 +8,8 @@ do (_, angular, moment) ->
 
                 @$window.scrollTo 0, 0
 
+                @$scope.page_path = './'
+
                 (@api.get_loan_list().success (data) =>
 
                     {open, scheduled, finished, settled} = data

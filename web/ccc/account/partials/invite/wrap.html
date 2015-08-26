@@ -4,13 +4,13 @@
             <h4 class="title" style="border:0">我的邀请链接</h4>
         </div>
         <form class="form-inline">
-            <p class="SHARE_URL hide">http://{{host}}/register?referral={{mobile}}</p>
-            <p class="SHARE_TEXT hide">邀请注册即有奖励，赶快行动吧~ http://{{host}}/register?referral={{mobile}}</p>
+            <p class="SHARE_URL hide">http://{{host}}/register?refm={{mobile}}</p>
+            <p class="SHARE_TEXT hide">邀请注册即有奖励，赶快行动吧~ http://{{host}}/register?refm={{mobile}}</p>
             <div class="form-group">
-                <input type="text" class="form-control" id="invite-link" value="http://{{host}}/register?referral={{mobile}}" style="min-width:350px;margin-left:20px">
+                <input type="text" class="form-control" id="invite-link" value="http://{{host}}/register?refm={{mobile}}" style="min-width:350px;margin-left:20px">
             </div>
             <button type="button" class="btn btn-default" id="btn-invite-copy" 
-                data-clipboard-text="http://{{host}}/register?referral={{mobile}}">
+                data-clipboard-text="http://{{host}}/register?refm={{mobile}}">
               复制链接
             </button>
         </form>
@@ -18,7 +18,8 @@
     </div>
 </div>
 
-<h4>我的邀请记录</h4>
+<h4 class="record" {{#if record}}style="background:#007ec5;color:#fff;"{{/if}}>我的邀请记录</h4><h4 class="reward" {{#if reward}}style="background:#007ec5;color:#fff;"{{/if}}>邀请奖励</h4>
+{{#record}}
  <table class="table table-hover has-padding">
     <tr style="background:#e1e1e1;">
         <th>用户名</th>
@@ -35,3 +36,21 @@
     </tr>
  {{/list}}
 </table>
+{{/record}}
+
+{{#reward}}
+ <table class="table table-hover has-padding">
+    <tr style="background:#e1e1e1;">
+        <th>用户名</th>
+        <th>奖励金额</th>
+        <th>状态</th>
+    </tr>
+{{#rewardlist}}
+    <tr>
+        <td>{{user.loginName}}</td>
+        <td>{{rewardAmount}}</td>
+        <td>{{rewarded}}</td>
+    </tr>
+ {{/rewardlist}}
+</table>
+{{/reward}}

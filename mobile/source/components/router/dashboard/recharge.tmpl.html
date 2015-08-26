@@ -12,8 +12,8 @@
     <param ng-model="msg.success" ng-init="msg.success = '充值成功'">
 
     <section class="container balance">
-        <div class="labels">账户余额</div>
-        <div class="amount">{{ available_amount | number }} 元</div>
+        <div class="labels">账户可用余额 (元)</div>
+        <div class="amount">{{ available_amount | number }}</div>
     </section>
 
     <form class="form-horizontal"
@@ -80,4 +80,8 @@
         </p>
     </form>
 
+    <section class="container explain">
+        <h5>充值说明</h5>
+        <p>该卡在银行的预留手机号为在银行登记的手机号码，或使用其他银行卡进行充值。该卡在银行的预留手机号为在银行登记的手机号码，银行的预留手机号，使用其他银行卡进行充值。</p>
+    </section>
 </div>

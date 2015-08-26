@@ -16,7 +16,7 @@ module.exports = function (router) {
             aboutus: '关于奇乐融',
             product: '产品介绍',
             safety: '风控安全',
-            login: '注册/登陆',
+            login: '注册/登录',
             money: '投资理财',
             explain: '名词解释',
             law: '法律安全'
@@ -26,7 +26,7 @@ module.exports = function (router) {
             aboutus: '关于奇乐融',
             product: '产品介绍',
             safety: '风控安全',
-            login: '注册/登陆',
+            login: '注册/登录',
             money:'投资理财',
             explain: '名词解释',
             law:'法律安全'
@@ -42,7 +42,7 @@ module.exports = function (router) {
                 text: '风控安全',
                 url: '/help/safety'
         }, {
-                text: '注册/登陆',
+                text: '注册/登录',
                 url: '/help/login',
         }, {
                 text: '投资理财',

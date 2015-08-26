@@ -43,9 +43,9 @@
                 </div>
                 <div class="space space-30"></div>
                 {{#if !isNormal}}
-                <div class="bankwrap col-md-9">
+                <div class="bankwrap col-md-12">
                     {{#each banks}}
-                    <span class="bankItem {{code}}" data-code="{{bankCode}}" on-click="selectBank">
+                    <span class="bankItem" data-code="{{bankCode}}" on-click="selectBank">{{name}}
                     </span>
                     {{/each}}
                 </div>
