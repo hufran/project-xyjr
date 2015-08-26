@@ -9,6 +9,15 @@
             <a href="{{ url }}">{{ text }}</a>
         </li>
     {{/tabs}}
-    
-    
+</ul>
+<img class="title-bg-notice" src="/ccc/aboutus/img/title-bg.png"/>
+<ul>
+       <li class="aboutus-title">
+         资讯公告
+       </li> 
+      {{#tabs}}
+        <li class="{{#if tabIndex === @index }}active{{/if}}">
+            <a href="{{ url }}">{{ text }}</a>
+        </li>
+      {{/tabs}}
 </ul>

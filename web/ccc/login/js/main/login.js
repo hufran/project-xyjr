@@ -77,7 +77,7 @@ $('#loginForm').submit(function (e) {
     return false;
 });
 
-request.get(encodeURI('/api/v2/cms/category/IMAGE/name/登陆')).end().then(function (res) {
+request.get(encodeURI('/api/v2/cms/category/IMAGE/name/登录')).end().then(function (res) {
     var count = new Ractive({
         el: '.loginBanner',
         template: '{{#each items}}<img src="{{content}}"/>{{/each}}',

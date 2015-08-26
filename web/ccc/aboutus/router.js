@@ -10,6 +10,7 @@ module.exports = function (router) {
             news: 'NEWS',
             announcement: 'PUBLICATION',
             contactus: 'CONTACT',
+            contactus: 'CONTACT',
         };
         var nameMap = {
             aboutus: '奇乐融简介',
@@ -18,6 +19,7 @@ module.exports = function (router) {
             news: '行业新闻',
             announcement: '最新公告',
             contactus: '联系方式',
+            safety: '安全保障',
             safety: '安全保障'
 			
         };
@@ -29,6 +31,7 @@ module.exports = function (router) {
             news: '行业新闻',
             announcement: '最新公告',
             contactus: '联系我们',
+            safety: '安全保障',
             safety: '安全保障'
         };
 
@@ -50,6 +53,9 @@ module.exports = function (router) {
         }, {
             text: '联系我们',
             url: '/aboutus/contactus',
+        }, {
+            text: '安全保障',
+            url: '/aboutus/safety',
         }, {
             text: '安全保障',
             url: '/aboutus/safety'
