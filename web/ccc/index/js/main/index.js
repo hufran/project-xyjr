@@ -32,7 +32,7 @@ IndexService.getLoanSummary(function (list) {
     });
 
     initailEasyPieChart();
-    ininconut();
+//    ininconut();
 
 });
 
@@ -51,34 +51,34 @@ IndexService.getLoanSummary(function (list) {
     });
 
     initailEasyPieChart();
-    ininconut();
+//    ininconut();
 
 });
 
 
-function ininconut () {
-    $(".opre > .investbtn").each(function () {
-        var t = $(this);
-        var id = t.data("id");  
-        var openTime = t.data("open");  
-        var serverDate = t.data("serv");  
-        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-        var textDay = leftTime.day ? leftTime.day +'天' : '';
-        t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
-        var interval = setInterval((function () {
-            serverDate += 1000;
-            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day +'天' : '';
-            if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
-                clearInterval(interval);
-                t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-            }else{
-
-                t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
-            }
-        }), 1000);
-    });
-};
+//function ininconut () {
+//    $(".opre > .investbtn").each(function () {
+//        var t = $(this);
+//        var id = t.data("id");  
+//        var openTime = t.data("open");  
+//        var serverDate = t.data("serv");  
+//        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+//        var textDay = leftTime.day ? leftTime.day +'天' : '';
+//        t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+//        var interval = setInterval((function () {
+//            serverDate += 1000;
+//            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+//            var textDay = leftTime.day ? leftTime.day +'天' : '';
+//            if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+//                clearInterval(interval);
+//                t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+//            }else{
+//
+//                t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+//            }
+//        }), 1000);
+//    });
+//};
 
 IndexService.getLatestScheduled(function (loan) {
     var serverDate = loan.serverDate;
@@ -218,7 +218,7 @@ request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .then(function (res) {
         var count = new Ractive({
         el: '.firendLink',
-        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}<a href="/cms/p/{{this.id}}" target="_blank">{{{title}}}</a>{{/each}}</div></div>',
+        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</div></div>',
         data: {
             items: res.body
         }
@@ -234,9 +234,7 @@ $(' .icon-group1').mouseenter(function(){
     $(this).children('.company-intro').hide(200);
 })
 
-$('.btn-index').click(function(){
-	 $('.btn-index').css({backgroundImage:"url(/ccc/index/img/register_on.png)"});
-})
+
 
 //require('ccc/index/js/main/ss.js')
 //

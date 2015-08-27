@@ -13,8 +13,15 @@
 {{#list}}
 <div class="loanWrapper">
     <div class="event">
+		{{#if title.length>11}}
+			<p>{{title}}</p>
+		{{/if}}
         <a href="loan/{{ id }}" class="invest-title">
-            {{title}}
+            {{#if title.length>11}}
+                {{title.substr(0,11)}}...
+				{{else}}
+				{{title}}
+				{{/if}}
         </a>
     </div>
     <div class="amount">{{ amount }}<span>{{ amountUnit }}</span></div>
@@ -54,4 +61,13 @@
         {{/if}}
     </div>
 </div>
+<script type="text/javascript">
+	$('.event a').mouseenter(function(){
+		$(this).siblings().fadeIn(200);
+	}).mouseleave(function(){
+		$(this).siblings().fadeOut(100);
+	})
+	
+</script>
+
 {{/list}}

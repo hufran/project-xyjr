@@ -140,7 +140,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         var hovering = e.name === "mouseover";
         this.set(e.keypath + ".hovering", hovering);
     });
-
+	
     $('.no-warry-ul .no-warry').click(function(){
         if (!$(this).hasClass("selected active")) {
             $(this).addClass("selected active").siblings().removeClass("selected active");
@@ -316,3 +316,4 @@ function initailEasyPieChart() {
 //}).mouseleave(function(){
 //    $(this).removeClass("active");
 //})
+
