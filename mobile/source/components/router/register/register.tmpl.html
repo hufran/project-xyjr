@@ -27,7 +27,7 @@
             <div class="form-group merge"
                  ng-class="{'has-error': form.loginName.$invalid && form.loginName.$dirty}"
             >
-                <input class="form-control input-target input-lg" type="text"
+                <input class="form-control input-target input-lg" type="text" x-gyro-comment
                        autocapitalize="none"
                        autocomplete="off"
                        autocorrect="off"
@@ -143,7 +143,6 @@
             >
                 <input class="form-control input-target input-lg" type="password"
                        name="password"
-                       ng-change="password_start_typing = store.password.length"
                        ng-model="store.password"
                        minlength="6"
                        placeholder="请输入不少于6位登录密码"
@@ -156,7 +155,7 @@
                 </div>
             </div>
 
-            <div class="form-group merge" ng-show="password_start_typing"
+            <div class="form-group merge"
                  ng-class="{'has-error': form.password_confirm.$invalid && form.password_confirm.$dirty}"
             >
                 <input class="form-control input-target input-lg" type="password"
@@ -177,7 +176,7 @@
             <div class="form-group agreement">
                 <label>
                     <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                    我阅读并同意 <a href="#" ng-click="self.agreement($event)">《众利网注册服务协议》</a>
+                    我阅读并同意 <a href="#" ng-click="self.agreement($event)">《奇乐融注册服务协议》</a>
                 </label>
             </div>
         </div>
