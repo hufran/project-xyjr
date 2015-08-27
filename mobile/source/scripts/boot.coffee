@@ -116,17 +116,10 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                     }
 
                     .when '/dashboard/payment/bind-card', {
-                        controller: 'PaymentUmpBindCardCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/ump/payment-ump-bind-card.tmpl.html'
+                        controller: 'PaymentPoolBindCardCtrl as self'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-bind-card.tmpl.html'
                         resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/payment/bind-card'
-                                        do $q.reject
+                            banks: _.ai 'api', (api) -> api.get_available_bank_list()
                     }
 
                     .when '/dashboard/invest', {
@@ -179,20 +172,31 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .search next: 'dashboard/recharge'
                                         do $q.reject
 
-                            _payment_account: _.ai 'api, $location, $route, $q',
-                                (                   api, $location, $route, $q) ->
+                            _payment_bank_account: _.ai 'api, $location, $route, $q',
+                                (                        api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then (user) ->
-                                            return $q.reject(true) unless user.has_payment_account
-                                            return user
-                                        .catch (has_logged_in = false) ->
-                                            return unless has_logged_in
-                                            $location
-                                                .replace()
-                                                .path 'dashboard/payment/register'
-                                                .search
-                                                    back: 'dashboard'
-                                                    next: 'dashboard/recharge'
+                                            return user if user.has_payment_account and user.has_bank_card
+                                            return $q.reject(user)
+                                        .catch (user) ->
+                                            return unless user
+
+                                            switch
+                                                when user.has_payment_account isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/recharge'
+
+                                                when user.has_bank_card isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/bind-card'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/recharge'
                     }
 
                     .when '/dashboard/withdraw', {

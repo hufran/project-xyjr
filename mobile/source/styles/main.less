@@ -1688,6 +1688,42 @@ a {
 }
 
 /*=============================================================================
+                                         [Router] [Dashboard] Payment Bind Card
+----*/
+
+#dashboard-payment-bind-card {
+
+    .form-flatten {
+        #login > .form-flatten;
+
+        select.form-control {
+            .flex(1);
+
+            margin: 10px;
+            padding-left: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+    }
+
+    .alert {
+        border-radius: 0;
+    }
+
+    .flash-message {
+        .opacity(0);
+        .transition();
+
+        padding: 6px 10px;
+
+        &.on {
+            .opacity(1);
+        }
+    }
+
+}
+
+/*=============================================================================
                                                   [Router] [Dashboard] Recharge
 ----*/
 

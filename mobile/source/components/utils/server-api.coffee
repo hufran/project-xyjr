@@ -273,6 +273,41 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
+            payment_pool_bind_card: (bankName, cardNo, cardPhone, city, province) ->
+
+                @$http
+                    .post '/api/v2/lianlianpay/bindCard/MYSELF',
+                        @param {bankName, cardNo, cardPhone, city, province}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            get_available_bank_list: ->
+
+                @$http.get '/api/v2/lianlianpay/banks', cache: true
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            get_province_list: ->
+
+                @$http.get '/api/v2/lianlianpay/provinceCodes', cache: true
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            get_city_list_by_province: (province) ->
+
+                @$http.get '/api/v2/lianlianpay/provinceCityCodes/' + province, cache: true
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
             payment_ump_register: (userName, idCode) ->
 
                 @$http

@@ -256,17 +256,18 @@ function ininconut () {
         if(t.data("status") === 'SCHEDULED'){
             var id = t.data("id");  
             var openTime = t.data("open");  
-            var serverDate = t.data("serv");  
+            var serverDate = t.data("serv");
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             var textDay = leftTime.day ? leftTime.day +'天' : '';
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
                 var textDay = leftTime.day ? leftTime.day +'天' : '';
-                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                     clearInterval(interval);
-                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-                }else{
+					t.prev().hide();
+                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">投标中</div></a>');
+                }else {
                     t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
                 }
             }), 1000);
