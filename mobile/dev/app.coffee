@@ -34,6 +34,8 @@ try
         /upayment/withdraw
         /upayment/bindCard
         /upayment/bindAgreement
+
+        /lianlianpay/deposit
     '
 catch
     app.use require('cookie-parser')()
