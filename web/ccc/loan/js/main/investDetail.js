@@ -262,9 +262,7 @@ setTimeout((function () {
                     var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
                 }
             });
-        }
-
-        return false;
+        };
     });
 
     // 初始化倒计时
