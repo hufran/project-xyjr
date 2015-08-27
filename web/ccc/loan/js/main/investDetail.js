@@ -214,10 +214,11 @@ setTimeout((function () {
 
 
     investRactive.on("invest-submit", function (e) {
+        e.original.preventDefault();
+
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
-
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
@@ -258,8 +259,41 @@ setTimeout((function () {
                 if (!r) {
                     showErrors('请输入正确的交易密码!');
                 } else {
+                    var num = investRactive.get('inputNum');
                     disableErrors();
-                    var coupon = $("#couponSelection").find("option:selected").attr("data") || 0;
+                    var couponText = '';
+                    if ($("#couponSelection")) {
+                        var value = $("#couponSelection").find("option:selected").val();
+                        if ( value == '' ) {
+                            couponText = '未使用任何奖券';
+                        } else {
+                            couponText = '将使用' + $("#couponSelection").find("option:selected").text();
+                        }
+                    }
+                    Confirm.create({
+                        msg: '您本次投资的金额为' + num + '元，'+ couponText +'，是否确认投资？',
+                        okText: '确定',
+                        cancelText: '取消',
+  
+                        ok: function () {
+                            $('form').submit();
+                            $('.dialog').hide();
+                            Confirm.create({
+                                msg: '抢标是否成功？',
+                                okText: '抢标成功',
+                                cancelText: '抢标失败',
+                                ok: function () {
+                                    window.location.reload();
+                                },  
+                                cancel: function () {
+                                    $('.dialog').hide();
+                                }
+                            });
+                        },
+                        cancel: function () {
+                           $('.dialog').hide();  
+                        }
+                    });
                 }
             });
         };
