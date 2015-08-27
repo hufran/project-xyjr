@@ -78,8 +78,10 @@ module.exports = function (router) {
         }];
 
         if (res.locals.user.enterprise) {
+            tabs[4].subTabs.splice(0,1);
+            tabs[4].subTabs.splice(1,1);
             tabs.splice(1, 2);
-            tabs.splice(4, 3);
+            tabs.splice(4, 3); 
         }
 
         var path = req.path.replace(/\/$/, '');
