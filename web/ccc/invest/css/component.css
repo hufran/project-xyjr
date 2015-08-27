@@ -208,6 +208,7 @@ hr {
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #ccc;
+	position: relative;
 }
 .loanItemWrapper .loanPartOne {
   float: left;
@@ -234,15 +235,17 @@ hr {
 }
 
 
+/*
 .loanItemWrapper .loanPartOne .loantitle{
 	position: relative;
 }
+*/
 
 
 .loanItemWrapper .loanPartOne .loantitle p{
 	position: absolute;
-	left: 3px;
-	top: 8px;
+	left: 38px;
+	top: 0px;
 	margin: 0;
 	color: white;
 	background-color: black;
@@ -251,6 +254,7 @@ hr {
 	line-height: 27px;
 	border-radius: 5px;
 	display: none;
+	font-size: 18px;
 }
 
 .loanItemWrapper .loanPartOne div.loanRepayMethod {
