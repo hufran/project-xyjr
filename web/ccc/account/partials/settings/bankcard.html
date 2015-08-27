@@ -40,7 +40,7 @@
                 <div class="tip">银行卡号</div>
                 <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}">
                 {{#if cardNoError}}
-                <span class="error">* 银行卡号只能由数字组成</span>
+                <span class="errornew">* 银行卡号只能由数字组成</span>
                 {{/if}}
                 <div class="clearfix"></div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="tip">预留手机号</div>
                 <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{phoneNo}}">
                 {{#if phoneNoError}}
-                <span class="error">* 手机号码只能由数字组成</span>
+                <span class="errornew">* 手机号码只能由数字组成</span>
                 {{/if}}
                 <div class="clearfix"></div>
             </div>
@@ -68,7 +68,7 @@
             </div>
             <div class="form-group">
                 <div class="row row-3">
-                    <div class="col-md-12">
+                    <div class="col-md-12">                      
                         <button type="submit" class="btn btn-large btn-success" style="position:relative;left:200px;width:150px;">确认绑定</button>
                     </div>
                 </div>
