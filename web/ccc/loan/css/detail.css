@@ -605,7 +605,7 @@
 	height: 40px;
 	color: #6b6b6b;
 	font-size: 14px;
-	width: 290px;
+	width: 286px;
 	border: none;
 	line-height: 20px;
 	margin-top: 2px;
@@ -1117,6 +1117,7 @@
 	float: left;
 	width: 670px;
 	min-height: 500px;
+    margin-left: 30px;
 }
 
 .invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfo .eventCont {
