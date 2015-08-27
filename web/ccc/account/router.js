@@ -357,18 +357,17 @@ module.exports = function (router) {
                 '/api/v2/user/MYSELF/paymentPasswordHasSet')
             .get('body'),
             function (paymentPasswordHasSet) {
-                res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet
-            });
+                res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+                var banks = _.filter(res.locals.user.bankCards, function (r) {
+                    return r.deleted === false;
+                });
 
-        var banks = _.filter(res.locals.user.bankCards, function (r) {
-            return r.deleted === false;
-        });
-
-        if (!banks.length && !enterprise) {
-            res.redirect('/account/bankcard');
-        } else {
-            next();
-        }
+                if (!banks.length && !enterprise) {
+                    res.redirect('/account/bankcard');
+                } else {
+                    next();
+                }
+            });        
     });
 
     router.get('/account/invite', function (req, res, next) {
