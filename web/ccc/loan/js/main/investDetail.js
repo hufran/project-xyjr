@@ -352,6 +352,7 @@ setTimeout((function () {
                 o[i].displayValue = (parseFloat(o[i].couponPackage.parValue) / 100).toFixed(1) + '%';
             } else if (o[i].couponPackage.type === 'CASH') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
+                o[i].hide = true;
             } else if (o[i].couponPackage.type === 'PRINCIPAL') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             } else if (o[i].couponPackage.type === 'REBATE') {
