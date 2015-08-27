@@ -51,12 +51,15 @@
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
             <img class="erweima erweima-act2" style="width:80px;height:80px;" src="/ccc/global/img/erweima.png"/>
             {{#if user}}
-            {{#if user.name}}
-            <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+            {{#if !user.enterprise}}
+                {{#if user.name}}
+                <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+                {{else}}
+                <a href="/account/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
+                {{/if}}
             {{else}}
-            <a href="/account/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
+                <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
             {{/if}}
-            
             <a href="/logout" class="text" style="color:#333333;margin-right:18px;">|&nbsp;&nbsp;退出</a>
             <a id='head-ractive-container'  class="text" style="width: 200px; text-align: right; padding-right: 10px;color:#009ada "></a>
             {{else}}
