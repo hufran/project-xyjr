@@ -74,6 +74,9 @@ ractive.on("submit-modify-password", function () {
 
     CommonService.checkCaptcha(ractive.get('captcha'), function (res) {
         if (res.success) {
+            if(currentPassword===newPassword){
+                            return showError('新密码不能与原始密码相同');
+                    }
             request.post("/account/change_password")
                 .type("form")
                 .send({
@@ -85,6 +88,7 @@ ractive.on("submit-modify-password", function () {
                     res = JSON.parse(res.text);
 
                     if (res.success) {
+                        
                         CccOk.create({
                             msg: '恭喜您修改密码成功！',
                             okText: '确定',
@@ -96,6 +100,7 @@ ractive.on("submit-modify-password", function () {
                                 window.location.reload();
                             }
                         });
+                        
                         return;
                     }
 
