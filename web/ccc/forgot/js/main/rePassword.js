@@ -6,7 +6,7 @@ var rePasswordService = require('ccc/forgot/js/service/rePassword')
     .rePasswordService;
 var CommonService = require('ccc/global/js/modules/common')
     .CommonService;
-
+var registerService=require('ccc/register/js/lib/service').RegisterService
 var returnMap = {
     'INVALID_CAPTCHA': '验证码不正确',
     'MOBILE_NAME_NOT_MATCH': '用户名和手机号码不匹配'
@@ -64,6 +64,7 @@ rePassword.on('changeCaptcha', function () {
 });
 
 rePassword.on('step1', function (e) {
+   // alert(1);
     e.original.preventDefault();
 	
     var user = {
@@ -83,6 +84,11 @@ rePassword.on('step1', function (e) {
                 showErrors(msg);
                 return false;
             }
+          
+          
+            
+            
+            
             rePasswordService.verifyLoginNameAndMobile(user, function (err, msg) {
                 if (!err) {
                     showErrors(msg);
@@ -99,6 +105,7 @@ rePassword.on('step1', function (e) {
                 });
 
             });
+       
         });
     });
 });
@@ -185,7 +192,12 @@ rePassword.on('login', function (e) {
                 var time = 3;
                 rePassword.set('timeLeft', 3);
                 setInterval(function () {
+                    if(time>0){
                     rePassword.set('timeLeft', --time);
+                    }else{
+                        rePassword.set('timeLeft', 0);
+                        time=1;
+                    }
                     if (time === 1) {
                         clearInterval();
                         window.location.href = '/';
@@ -261,6 +273,14 @@ $("#phone").keyup(function(){
     utils.formValidator.checkMobile(mobile, function (ok, msg) {
         if (ok) {
             disableErrors();
+              registerService.checkMobile(mobile,function(err,msg){
+               
+                if(err){
+                   rePassword.set('errors', {
+                       visible: true,
+                        msg: '未注册的手机号码'
+                    }); 
+                }});
         } else {
             showErrors(msg);
         }

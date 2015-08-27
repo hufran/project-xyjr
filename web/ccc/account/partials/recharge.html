@@ -44,10 +44,17 @@
                 <div class="space space-30"></div>
                 {{#if !isNormal}}
                 <div class="bankwrap col-md-12">
-                    {{#each banks}}
-                    <span class="bankItem" data-code="{{bankCode}}" on-click="selectBank">{{name}}
-                    </span>
-                    {{/each}}
+                    {{#if !isEnterpriseUser}}
+                        {{#each banks}}
+                        <span class="bankItem {{code}}" data-code="{{bankCode}}" on-click="selectBank">
+                        </span>
+                        {{/each}}
+                    {{else}}
+                        {{#each banks}}
+                        <span class="bankItem c{{code}}" data-code="{{bankCode}}" on-click="selectBank">
+                        </span>
+                        {{/each}}
+                    {{/if}}
                 </div>
                 <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
                 <input type="hidden" name="bankCode" value="{{bankCode}}"> 

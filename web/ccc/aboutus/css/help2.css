@@ -25,6 +25,11 @@
     left: 0;
     top:59px;
 }
+#help-left .title-bg-notice{
+    position: absolute;
+    left: 0;
+    top:535px;
+}
 
 .page-guide div{
 /*    margin-left:10px;*/

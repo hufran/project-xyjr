@@ -78,8 +78,10 @@ module.exports = function (router) {
         }];
 
         if (res.locals.user.enterprise) {
+            tabs[4].subTabs.splice(0,1);
+            tabs[4].subTabs.splice(1,1);
             tabs.splice(1, 2);
-            tabs.splice(4, 3);
+            tabs.splice(4, 3); 
         }
 
         var path = req.path.replace(/\/$/, '');
@@ -357,18 +359,17 @@ module.exports = function (router) {
                 '/api/v2/user/MYSELF/paymentPasswordHasSet')
             .get('body'),
             function (paymentPasswordHasSet) {
-                res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet
-            });
+                res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+                var banks = _.filter(res.locals.user.bankCards, function (r) {
+                    return r.deleted === false;
+                });
 
-        var banks = _.filter(res.locals.user.bankCards, function (r) {
-            return r.deleted === false;
-        });
-
-        if (!banks.length && !enterprise) {
-            res.redirect('/account/bankcard');
-        } else {
-            next();
-        }
+                if (!banks.length && !enterprise) {
+                    res.redirect('/account/bankcard');
+                } else {
+                    next();
+                }
+            });        
     });
 
     router.get('/account/invite', function (req, res, next) {
