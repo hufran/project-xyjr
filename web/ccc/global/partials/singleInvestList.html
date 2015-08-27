@@ -4,8 +4,15 @@
 <div class="loanItemWrapper" {{#if status === 'SCHEDULED' }} style="height:85px"{{/if}}>
     <div class="loanPartOne">
         <div class="loantitle">
+			{{#if title.length>11}}
+			<p>{{title}}</p>
+			{{/if}}
             <a href="/loan/{{ id }}" class="invest-title" target="_blank" {{#if loanRequest.productKey==="LTB"}}style="color:#4a4a4a"{{elseif loanRequest.productKey==="LXY"}}style="color:#007ec5"{{else}}style="color:#4a4a4a"{{/if}}>
-                {{title}}
+				{{#if title.length>11}}
+                {{title.substr(0,10)}}...
+				{{else}}
+				{{title}}
+				{{/if}}
             </a>
         </div>
         <!--
@@ -63,4 +70,12 @@
         {{/if}}
     </div>
 </div>
+<script type="text/javascript">
+	$('.loantitle a').mouseenter(function(){
+		$(this).siblings().fadeIn(200);
+	}).mouseleave(function(){
+		$(this).siblings().fadeOut(100);
+	})
+	
+</script>
 {{/list}}

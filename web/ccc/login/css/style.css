@@ -226,6 +226,11 @@ p.login-error {
     margin: 0px auto;
 }
 
+#main-container{
+	margin-top: 7px;
+}
+
+
 #main-container .s-login-view *{
 	font-family: '微软雅黑';
 }

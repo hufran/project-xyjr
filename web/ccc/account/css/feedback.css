@@ -67,8 +67,13 @@
 }
 
 .current-container .submit input {
-    background: #007ec5;
+    background: #009ada;
     color: #fff;
     width: 150px;
 }
+
+.current-container .submit input:hover{
+	background-color: #015989;
+}
+
 /*# sourceMappingURL=/ccc/account/css/funds.css.map */

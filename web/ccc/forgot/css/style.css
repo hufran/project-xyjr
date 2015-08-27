@@ -16,6 +16,11 @@
 	font-size: 12px;
 }
 
+
+#main-container{
+	margin-top: 7px;
+}
+
 .main a {
 	text-decoration: none;
 }
@@ -181,9 +186,17 @@ body {
 	line-height: 37px;
 	height: 40px;
 	color: white;
-	background-color: #007ec5;
+	background-color: #009ada;
 	border-radius: 4px;
 	float: right;
+}
+
+.main .step02 .verify-content .u-form-btn-red:hover{
+	background-color: #015989;
+}
+
+.main .step01 .verify-content .u-form-btn-red:hover{
+	background-color: #015989;
 }
 
 .main .step01 .verify-content .s-form-row-sm-s {
@@ -524,6 +537,8 @@ body {
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text a {
 	color: #007ec5;
 	font-size: 14px;
+	text-align: center;
+	display: block;
 }
 
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text {
@@ -532,7 +547,6 @@ body {
 	float: right;
 	width: 130px;
 	border-radius: 4px;
-	padding-left: 10px;
 }
 
 .main .step02 .u-form-panel .step-password,

@@ -74,8 +74,13 @@
   width: 100%;
   margin: 30px auto 0;
   color: #fff;
-  background-color: #b5a16b;
+  background-color: #f58220;
 }
+
+.modify-password-wrapper .modify-password .modify-button:hover{
+	background-color: #df6502;
+}
+
 .open-account-wrapper {
   margin: 30px 75px 0;
 }
@@ -303,13 +308,18 @@
   text-align: center;
 }
 .binded-card-wrapper .btn-change-card {
-  background-color: #007ec5;
+  background-color: #009ada;
   color: #fff;
   display: block;
   margin: 25px auto 0;
     border: none;
     margin-bottom: 30px;
 }
+
+.binded-card-wrapper .btn-change-card:hover{
+	background-color: #015989;
+}
+
 .nosecret-agreement-wrapper .form-helper {
   padding-left: 20px;
   color: #888;
@@ -571,11 +581,16 @@ ul.banks-wrap span.WZCB {
   line-height: 35px;
   color: #fff;
   font-size: 14px;
-  background: #f0ad4e;
+  background: #f58220;
   float: right;
   cursor: pointer;
   border-radius: 2px;
 }
+
+.rzE_button:hover{
+	background-color: #df6502;
+}
+
 .errors {
   color: #d2252c;
   font-size: 12px;
@@ -646,8 +661,13 @@ ul.banks-wrap span.WZCB {
 .row .confir {
   width: 249px;
   color: #fff;
-  background: #007ec5;
+  background: #009ada;
 }
+
+.row .confir:hover{
+	background-color: #015989;
+}
+
 .row .error {
   width: 249px;
   color: #d2252c;
