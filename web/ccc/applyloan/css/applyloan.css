@@ -182,10 +182,12 @@
 }
 
 #sendApplyloan {
-    background: #007ec5;
+    background-color: #009ada;
 }
-#sendApplyloan{
-    background:#007ec5;
+
+
+#sendApplyloan:hover{
+	background-color: #015989;
 }
 
 /*弹框样式*/

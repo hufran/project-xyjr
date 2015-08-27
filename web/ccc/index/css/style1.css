@@ -280,9 +280,12 @@
     font-size: 18px;
     color:#ffffff;
    background-image: url(/ccc/index/img/register.png);
-	
     border: none;
    
+}
+
+.banner-account button:hover{
+	background-image: url(/ccc/index/img/register_on.png);
 }
 
 .free-register{

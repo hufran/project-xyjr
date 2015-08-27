@@ -65,7 +65,7 @@ rePassword.on('changeCaptcha', function () {
 
 rePassword.on('step1', function (e) {
     e.original.preventDefault();
-
+	
     var user = {
         loginName: 'zqjr_' + this.get('user.mobile'),
         mobile: this.get('user.mobile'),
@@ -77,6 +77,7 @@ rePassword.on('step1', function (e) {
             showErrors(msg);
             return false;
         }
+		
         utils.formValidator.checkMobile(user.mobile, function (err, msg) {
             if (!err) {
                 showErrors(msg);
@@ -105,11 +106,18 @@ rePassword.on('step1', function (e) {
 rePassword.on('next', function (e) {
     e.original.preventDefault();
     var user = {
+		
         mobile: this.get('user.mobile'),
         captcha: this.get('phone'),
         smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
     };
 
+	if(user.mobile == ''){
+		showErrors("MOBILE_NULL");
+		return false;
+	}
+	
+	
     if (user.captcha == null || user.captcha.toString().trim() === "") {
         showErrors("MOBILE_CAPTCHA_NULL");
         return false;
