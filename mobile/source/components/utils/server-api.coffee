@@ -284,6 +284,17 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
+            payment_pool_unbind_card: (cardNo, paymentPassword) ->
+
+                @$http
+                    .post '/api/v2/lianlianpay/deleteCard/MYSELF',
+                        @param {cardNo, paymentPassword}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
             get_available_bank_list: ->
 
                 @$http.get '/api/v2/lianlianpay/banks', cache: true
