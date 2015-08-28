@@ -8,7 +8,6 @@
 <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
 <script>
     ' + consoleCode + '
-
 </script>
 <!--[if lt IE 10]>
 <script src="/assets/js/jquery.min.js"></script>
@@ -49,7 +48,7 @@
             <span class="nav-aboutus">关注我们：            <a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"  class="nav-weibo"><img src="/ccc/global/img/navWeibo.png"  onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'"/></a></span>
 
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
-            <img class="erweima erweima-act2" style="width:80px;height:80px;" src="/ccc/global/img/erweima.png"/>
+            <img class="erweima erweima-act2" src="/ccc/global/img/erweima.png"/>
             {{#if user}}
             {{#if !user.enterprise}}
                 {{#if user.name}}
@@ -61,7 +60,7 @@
                 <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
             {{/if}}
             <a href="/logout" class="text" style="color:#333333;margin-right:18px;">|&nbsp;&nbsp;退出</a>
-            <a id='head-ractive-container'  class="text" style="width: 200px; text-align: right; padding-right: 10px;color:#009ada "></a>
+            <a id='head-ractive-container'  class="text"></a>
             {{else}}
             <div class="nav-mobile">
 

@@ -33,11 +33,11 @@
 			{{#if !paymentPasswordHasSet}}
 			<div class="row">
 				<span class="tipss">请输入密码</span>
-				<input type="password" name="password" value="{{password}}" class="payInp">
+				<input type="password" name="password" value="{{password}}" maxlength="16" class="payInp">
 			</div>
 			<div class="row">
 				<span class="tipss">请确认密码</span>
-				<input type="password" name="repassword" value="{{repassword}}" class="payInp">
+				<input type="password" name="repassword" value="{{repassword}}" maxlength="16" class="payInp">
 			</div>
     		<div class="space space-10"></div>
 			<div class="row">
@@ -48,15 +48,15 @@
 				<div class="updateWra">
 					<div class="row">
 						<span class="tipss">请输入原密码</span>
-						<input type="password" name="oldPassword" value="{{oldPassword}}" class="payInp">
+						<input type="password" name="oldPassword" value="{{oldPassword}}" maxlength="16" class="payInp">
 					</div>
 					<div class="row">
 						<span class="tipss">请输入新密码</span>
-						<input type="password" name="newPassword" value="{{newPassword}}" class="payInp">
+						<input type="password" name="newPassword" value="{{newPassword}}" maxlength="16" class="payInp">
 					</div>
 					<div class="row">
 						<span class="tipss">请确认新密码</span>
-						<input type="password" name="reNewPassword" value="{{reNewPassword}}" class="payInp">
+						<input type="password" name="reNewPassword" value="{{reNewPassword}}" maxlength="16" class="payInp">
 					</div>
 		    		<div class="space space-10"></div>
 					<div class="row">
@@ -68,7 +68,7 @@
 					<div class="resetWra">
 						<div class="row">
 							<span class="tipss">请输入重置密码</span>
-							<input type="password" name="password" value="{{password}}" class="payInp">
+							<input type="password" name="password" value="{{password}}" maxlength="16" class="payInp">
 						</div>
 			    		<div class="space space-10"></div>
 						<div class="row">

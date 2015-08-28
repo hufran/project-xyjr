@@ -11,7 +11,7 @@
                     <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号码">
                     <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
                     <span class="tip">
-        {{#errMsg}}{{errMsg}}{{/errMsg}}
+        {{#if value.length === 11 && errMsg}}{{errMsg}}{{/if}}
     </span>
                 </div>
             </RInput> 
@@ -61,7 +61,7 @@
             <RInput field="repassword" valueStableDuration=200>
                 <div class="rinput">
                     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>确认密码:</label>
-                    <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" placeholder="再次输入密码">
+                    <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" maxlength="16" placeholder="再次输入密码">
                     <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
                     <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                 </div>

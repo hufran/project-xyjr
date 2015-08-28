@@ -242,7 +242,7 @@ setTimeout((function () {
         }
         if (((num - CC.loan.rule.min) % CC.loan.rule.step) !==
             0) {
-            showErrors('不符合投资规则!最少为' + CC.loan.rule.min + '，且为' + CC.loan.rule.min + '的倍数');
+            showErrors('不符合投资规则!最少为' + CC.loan.rule.min + '元，且投资增量为' + CC.loan.rule.step + "元");
             return false;
         }
         if (num > CC.user.availableAmount) {

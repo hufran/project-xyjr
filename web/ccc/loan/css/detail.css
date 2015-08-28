@@ -1130,6 +1130,7 @@
 	float: left;
 	width: 670px;
 	min-height: 500px;
+    margin-left: 30px;
 }
 
 .invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfo .eventCont {
