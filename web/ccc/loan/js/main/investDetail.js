@@ -270,6 +270,12 @@ setTimeout((function () {
                             couponText = '将使用' + $("#couponSelection").find("option:selected").text();
                         }
                     }
+//					var makeSure = window.confirm('是否确认投资？');
+//					if (makeSure) {
+//						$('form').submit();
+//					}else{
+//						return;
+//					}
                     Confirm.create({
                         msg: '您本次投资的金额为' + num + '元，'+ couponText +'，是否确认投资？',
                         okText: '确定',
@@ -277,11 +283,32 @@ setTimeout((function () {
   
                         ok: function () {
                             $('form').submit();
+//							var data ={
+//								loadId:CC.user.id,
+//								amount:$('input[name="amount"]').val(),
+//								placementId:$("#couponSelection").find("option:selected").val(),
+//								paymentPassword:$('input[name="paymentPassword"]').val()
+//							}
+//							request.post('/api/v2/invest/' + CC.user.id + '/MYSELF')
+//								.type('JSON')
+//								.send(data)
+//								.end()
+//								.then(function(r){
+//								console.log(r.body);
+//								if(r.body.success){
+//									alert('抢标成功');
+//									window.location.reload();
+//								}else{
+//									alert('抢标失败');
+//										window.location.reload();
+//								}
+//							})
+							
                             $('.dialog').hide();
                             Confirm.create({
-                                msg: '抢标是否成功？',
-                                okText: '抢标成功',
-                                cancelText: '抢标失败',
+                               msg: '抢标是否成功？',                                
+								okText: '抢标成功',                                
+								cancelText: '抢标失败',
                                 ok: function () {
                                     window.location.reload();
                                 },  
@@ -291,8 +318,8 @@ setTimeout((function () {
                             });
                         },
                         cancel: function () {
-                           $('.dialog').hide();  
-                        }
+                           $('.dialog').hide();                    
+						}
                     });
                 }
             });

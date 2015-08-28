@@ -446,7 +446,6 @@
 
 .firstLine {
 	overflow: hidden;
-	border-bottom: 1px solid #eeeeee;
 	padding: 0px 30px;
 }
 
@@ -638,6 +637,16 @@
 }
 
 
+.do-invest-wrapper .status .userBlock .left-money {
+	color: #6b6b6b;
+	text-align: left;
+	font-size: 20px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+	margin-top: 13px;
+	/*  margin-top: 15px;*/
+}
+
 .do-invest-wrapper .status .userBlock p {
 	color: #6b6b6b;
 	text-align: left;
@@ -645,24 +654,28 @@
 	/*  margin-top: 15px;*/
 }
 
+
 .do-invest-wrapper .status .userBlock .loginBtn {
-	height: 40px;
+	height: 38px;
 	color: #fff;
-	background: #007ec5;
+	background-color: #f58220;
 	font-size: 18px;
 	line-height: 34px;
 	padding: 0;
 	border: none;
 	display: block;
-	width: 288px;
-	border-radius: 3px;
+	width: 245px;
+	border-radius: 6px;
 	margin: 0 auto;
 	margin-top: 10px;
-}
-
-.do-invest-wrapper .status .userBlock .loginBtn:hover {
 	text-decoration: none;
 }
+
+.do-invest-wrapper .status .userBlock .loginBtn:hover{
+	background-color: #df6502;
+}
+
+
 
 .do-invest-wrapper .finishBlock {
 	vertical-align: middle;
