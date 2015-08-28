@@ -11,7 +11,7 @@
                     <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号码">
                     <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
                     <span class="tip">
-        {{#errMsg}}{{errMsg}}{{/errMsg}}
+        {{#if value.length === 11 && errMsg}}{{errMsg}}{{/if}}
     </span>
                 </div>
             </RInput> 

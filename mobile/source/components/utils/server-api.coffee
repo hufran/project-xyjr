@@ -352,11 +352,11 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            register: (loginName, password, mobile, mobile_captcha) ->
+            register: (password, mobile, mobile_captcha) ->
 
                 @$http
                     .post '/api/v2/register',
-                        @param {loginName, password, mobile, mobile_captcha}
+                        @param {password, mobile, mobile_captcha}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA

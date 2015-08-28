@@ -137,9 +137,7 @@ module.exports = function (router) {
                     return false;
                 }
 
-                if (email ===
-                    'notavailable@creditcloud.com'
-                ) {
+                if (email === 'notavailable@qilerong.com') {
                     return false;
                 }
 

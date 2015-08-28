@@ -44,9 +44,9 @@ do (_, angular) ->
                     .then (data) =>
                         @$window.alert _.get data, 'data', 'wow...'
                         @$location.path @next_path
-                        once = @$scope.$on '$locationChangeSuccess', =>
-                            do once
-                            @$window.location.reload()
+                        @$scope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location = new_path
 
                     .catch (data) =>
                         @submit_sending = false

@@ -60,7 +60,7 @@ do (_, angular) ->
 
                 @submit_sending = true
 
-                (@api.register(loginName, password, mobile, mobile_captcha, referral)
+                (@api.register(password, mobile, mobile_captcha)
 
                     .then (data) =>
                         unless data.success is true
