@@ -3,8 +3,8 @@ do (angular) ->
 
     angular.module('controller').controller 'RechargeCtrl',
 
-        _.ai '            @user, @api, @cookie2root, @$location, @$scope, @$window, @$routeParams', class
-            constructor: (@user, @api, @cookie2root, @$location, @$scope, @$window, @$routeParams) ->
+        _.ai '            @user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams', class
+            constructor: (@user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
@@ -16,19 +16,14 @@ do (angular) ->
                     available_amount: @user.fund.availableAmount
                     total_amount: @user.fund.availableAmount + @user.fund.frozenAmount
                     bank_account: @user.bank_account
+                    return_url: @baseURI + 'dashboard/funds'
                 }
 
-
-            open_payment_account: ($event) ->
-
-                @cookie2root 'return_url', 'dashboard/recharge'
-
-
             submit: (amount) ->
+                return
 
                 @cookie2root 'return_url', 'dashboard/funds'
 
-                return
 
                 (@api.payment_ump_non_password_recharge(amount)
 
