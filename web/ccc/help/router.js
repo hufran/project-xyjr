@@ -9,7 +9,8 @@ module.exports = function (router) {
             login: 'HELP',
             money: 'HELP',
             explain: 'HELP',
-            law:'HELP'
+            law:'HELP',
+            cash:'HELP'
 
         };
         var nameMap = {
@@ -19,7 +20,8 @@ module.exports = function (router) {
             login: '注册/登录',
             money: '投资理财',
             explain: '名词解释',
-            law: '法律安全'
+            law: '法律安全',
+            cash:'充值/提现'
         };
         
             var indexMap={
@@ -29,7 +31,8 @@ module.exports = function (router) {
             login: '注册/登录',
             money:'投资理财',
             explain: '名词解释',
-            law:'法律安全'
+            law:'法律安全',
+                cash:'充值/提现'
         };
 
         var tabs = [{
@@ -44,6 +47,9 @@ module.exports = function (router) {
         }, {
                 text: '注册/登录',
                 url: '/help/login',
+        }, {
+                text: '充值/提现',
+                url: '/help/cash',
         }, {
                 text: '投资理财',
                 url: '/help/money',
