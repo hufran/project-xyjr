@@ -53,12 +53,16 @@ module.exports = function (router) {
 	            next();
 	        },
 	        function (req, res) {
+			
+				console.log("*******************************");
+				console.log(api);
+				console.log("*******************************");
+				
 	            req.uest.post('/api/v2/invest' + api + '/MYSELF')
 	                .type('form')
 	                .send(req.body)
 	                .end()
 	                .then(function (r) {
-	                	
 	                    if (r.body.success) {
                         	var data = {
                             	success: r.body.success,
@@ -74,6 +78,7 @@ module.exports = function (router) {
 	                });
 	        });
 	});
+	
 	_.each({
 	    '/deposit': '/deposit',
 	    '/onlineBankDeposit' : '/onlineBankDeposit'
