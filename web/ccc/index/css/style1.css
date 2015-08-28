@@ -280,9 +280,12 @@
     font-size: 18px;
     color:#ffffff;
    background-image: url(/ccc/index/img/register.png);
-	
     border: none;
    
+}
+
+.banner-account button:hover{
+	background-image: url(/ccc/index/img/register_on.png);
 }
 
 .free-register{
@@ -437,7 +440,7 @@
 
 .productBoxTitle{
     overflow: hidden;
-     border-bottom: 2px solid #007ec5;
+     border-bottom: 2px solid #009ada;
 }
 .productBoxTitle .titleLeft{
      float: left;

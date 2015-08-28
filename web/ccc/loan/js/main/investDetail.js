@@ -161,14 +161,14 @@ setTimeout((function () {
         });
     }
 
-    investRactive.on('checkPaymentPassword', function () {
-        var paymentPassword = this.get('paymentPassword');
-        accountService.checkPassword(paymentPassword, function (r) {
-            if (!r) {
-                showErrors('请输入正确的交易密码!');
-            }
-        });
-    });
+//    investRactive.on('checkPaymentPassword', function () {
+//        var paymentPassword = this.get('paymentPassword');
+//        accountService.checkPassword(paymentPassword, function (r) {
+//            if (!r) {
+//                showErrors('请输入正确的交易密码!');
+//            }
+//        });
+//    });
 
     investRactive.set('user', CC.user);
     if ($('.invest-submit').length > 0) {
