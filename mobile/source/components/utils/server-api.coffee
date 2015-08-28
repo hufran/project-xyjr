@@ -170,6 +170,13 @@ do (_, angular, moment, Array) ->
                 return deferred.promise
 
 
+            fetch_user_points: ->
+
+                @$http
+                    .get '/api/v2/points/user/MYSELF/getTotalPoints', cache: true
+                    .then TAKE_RESPONSE_DATA
+
+
             fetch_user_coupons: (type = 'ALL', cache = true) ->
 
                 @coupon_cache ?= {}
@@ -246,7 +253,6 @@ do (_, angular, moment, Array) ->
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
-
 
 
             login: (loginName, password) ->
