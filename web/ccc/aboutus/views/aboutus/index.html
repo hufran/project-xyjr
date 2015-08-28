@@ -31,10 +31,13 @@
                 {{#if tab.text!='帮助中心'}}
                 <div class="invest-wrapper">
                     <h2 class="ar-title">{{tab.text}}</h2>
-                    <!--                            {{JSON.stringify(contents)}} -->
                     {{#each contents}}
                     <div class="news-box">
-                        <div class="news-brame">【{{title}}】<a href="/cms/p/{{this.id}}">{{#if title.length > 12}}
+                        <div class="news-brame">【{{#if title.length > 30}}
+                                {{title.substr(0,30)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}】<a href="/cms/p/{{this.id}}">{{#if title.length > 12}}
                                 {{title.substr(0,12)}}...
                             {{else}}
                                 {{title}}
@@ -47,10 +50,13 @@
 
                     <div class="page">
                         <ul>
+<!--
                             {{#if current > 1}}
                             <li class="prev"><a href="/cms/news?page={{current - 1}}">上一页</a>
                             </li>
-                            {{/if}} {{#totalPage}}
+                            {{/if}} 
+-->
+                            {{#totalPage}}
                             <li class="item {{#if current == parseInt(@key) + 1}} active-page {{/if}}">
                                 <a href="/aboutus/{{tab.name}}?page={{parseInt(@key) + 1}}">
                                     <span class="current">
@@ -58,10 +64,11 @@
                                     </span>
                                 </a>
                             </li>
-                            {{/totalPage}} {{#if current
-                            < totalPage.length }} <li
-                            class="next"><a href="/cms/news?page={{current + 1}}">下一页</li>
-                    {{/if}}
+                            {{/totalPage}} 
+<!--
+                            {{#if current< totalPage.length }} <li class="next"><a href="/cms/news?page={{current + 1}}">下一页</li>
+                            {{/if}}
+-->
                 </ul>
             </div>
                         </div>
@@ -80,10 +87,13 @@
                                 
                                  <div class="page">
                         <ul>
+<!--
                             {{#if current > 1}}
                             <li class="prev"><a href="/cms/news?page={{current - 1}}">上一页</a>
                             </li>
-                            {{/if}} {{#totalPage}}
+                            {{/if}} 
+-->
+                            {{#totalPage}}
                             <li class="item {{#if current == parseInt(@key) + 1}} active-page {{/if}}">
                                 <a href="/aboutus/{{tab.name}}?page={{parseInt(@key) + 1}}">
                                     <span class="current">
@@ -91,10 +101,13 @@
                                     </span>
                                 </a>
                             </li>
-                            {{/totalPage}} {{#if current
+                            {{/totalPage}} 
+<!--
+                            {{#if current
                             < totalPage.length }} <li
                             class="next"><a href="/cms/news?page={{current + 1}}">下一页</li>
                     {{/if}}
+-->
                 </ul>
             </div>
                                 

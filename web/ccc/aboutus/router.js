@@ -7,13 +7,17 @@ module.exports = function (router) {
             aboutus: 'INTRODUCTION',
             background: 'INTRODUCTION',
             team: 'INTRODUCTION',
-            partner: 'NEWS',
-            things: 'PUBLICATION',
-            contactus: 'CONTACT',
-            recruitment: 'CONTACT',
+            partner: 'INTRODUCTION',
+            things: 'INTRODUCTION',
+            contactus: 'INTRODUCTION',
+            recruitment: 'INTRODUCTION',
+            manage:'PUBLICATION',
+            media:'COVERAGE',
+            action:'NEWS',
+            notice:'PUBLICATION'
         };
         var nameMap = {
-            aboutus: '平台简介',
+            aboutus: '奇乐融简介',
             background: '股东背景',
             team: '团队介绍',
             partner: '合作机构',
@@ -21,9 +25,9 @@ module.exports = function (router) {
             safety: '安全保障',
             contactus: '联系我们',
             recruitment: '招贤纳士',
-            action: '公司动态',
+            action: '行业新闻',
             media: '媒体报道',
-            notice: '平台公告',
+            notice: '最新公告',
             manage: '经营报告'
         };
 
@@ -80,7 +84,6 @@ module.exports = function (router) {
             url: '/aboutus/manage'
         }];
         var tabIndex;
-
         for (var index = 0, length = tabs.length; index < length; index++) {
             var tab = tabs[index];
             if (tab.text === indexMap[req.params.tab]) {
@@ -89,19 +92,15 @@ module.exports = function (router) {
             }
         }
 
-
+        console.log("success");
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
-            console.log(r.body);
             if (r.body.length > 1) {
-
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
-                req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current +
-                        '&pagesize=10')
+                req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pageSize=10')
                     .end()
                     .then(function (r) {
                         formatNews(r.body.results);
-                        var contents = r.body.results.length >
-                            0 ? r.body.results : null;
+                        var contents = r.body.results.length > 0 ? r.body.results : null;
 
                         res.render('aboutus/index', {
                             totalPage: createList(
