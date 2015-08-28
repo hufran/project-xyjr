@@ -8,8 +8,8 @@ module.exports = function (hook) {
         };
         
         var tabMap = {
-            regist: '注册协议',
-            protocol:'借款协议'
+            regist: '奇乐融用户注册协议',
+            protocol:'用户投资服务协议'
         };
     
         _.assign(locals, {

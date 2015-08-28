@@ -591,16 +591,15 @@ a {
 }
 
 .s-split-view h4 {
-	/*  padding: 16px 24px 12px;*/
-	/*  border-radius: 4px;*/
-	/*  background-color: #354473;*/
-	/*  line-height: 1;*/
-	
-	color: #4a4a4a;
-	font-size: 20px;
-	line-height: 25px;
-	border-bottom: 2px solid #007ec5;
-	line-height: 46px;
+/*  padding: 16px 24px 12px;*/
+/*  border-radius: 4px;*/
+/*  background-color: #354473;*/
+/*  line-height: 1;*/
+  color: #4a4a4a;
+  font-size: 20px;
+    line-height: 25px;
+    border-bottom: 2px solid #009ada;
+    line-height: 46px;
 }
 
 .s-split-view h4 img {

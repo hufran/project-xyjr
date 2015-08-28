@@ -86,7 +86,9 @@
 <div class="invest-detail-wrapper">
     <div class="current-container scontent">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active" data-step='2'><a href="###">企业信息</a>
+             <li role="presentation" class="active" data-step='4'><a href="###">项目信息</a>
+            </li>
+            <li role="presentation"  data-step='2'><a href="###">企业信息</a>
             </li>
             <li role="presentation" data-step='0'><a href="###">风控信息</a>
             </li>
@@ -98,9 +100,15 @@
         <div class="clearfix"></div>
 
         <div class="tab-panels">
-            <div class="tab-panel">
-                <P class="danger-control">{{loans.corporationName}}</P>
+              <div class="tab-panel">
+                     <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                     {{loans.loanRequest.riskInfo}}
+                    </div>
+                </div>
+                  
             </div>
+          
             <div class="tab-panel">
                 <table class="table repay-plan repay-record">
                     <thead>
@@ -118,14 +126,13 @@
                     {{/invests}}
                 </table>
             </div>
-            <div class="tab-panel active">
+            <div class="tab-panel">
                 <div class="loanInfoWrapper">
                     <div class="loanInfo">
-                        <div class="eventItem">项目基本信息</div>
-                        <div class="eventCont">{{loans.loanRequest.description}}</div>
-                        <div class="eventCont">{{loans.loanRequest.guaranteeInfo}}</div>
-                        <div class="eventItem">安全保障措施</div>
-                        <div class="eventCont">{{loans.loanRequest.riskInfo}}</div>
+                       
+                        
+                       {{loans.loanRequest.guaranteeInfo}}
+                    
                     </div>
                 </div>
             </div>
@@ -157,6 +164,13 @@
                         </div>
                     {{/if}}
                 </table>
+            </div>
+             <div class="tab-panel  active">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                        {{loans.loanRequest.description}}
+                    </div>
+                </div>
             </div>
         </div>
 
