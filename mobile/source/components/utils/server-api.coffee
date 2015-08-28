@@ -45,6 +45,7 @@ do (_, angular, moment, Array) ->
                             payment
                             fundaccounts
                             authenticates
+                            paymentPasswordHasSet
                         '
 
                         @$q.all api_list.map (path) =>
@@ -57,6 +58,7 @@ do (_, angular, moment, Array) ->
                             @user.payment
                             @user.fund_accounts
                             @user.authenticates
+                            @user.has_payment_password
 
                         ] = _.pluck response, 'data'
 
