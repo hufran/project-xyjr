@@ -119,5 +119,42 @@ module.exports = {
     oauth2client: {
          id:  "client-id-for-node-dev",
          secret: "client-secret-for-node-dev",
-    }
+    },
+
+    weixinmp: { // 微信公共帐号绑定的相关配置
+        appid: 'appid',
+        secret: 'secret',
+        token: 'token for message signature',
+        useUnionId: false, // 默认只使用 openId，打开此配置可获取 unionId
+        defaultBackUrl: '/account',
+
+        menu: { // 每次启动 web 时会 post 给微信服务器设置自定义菜单
+            button: [
+            {  
+                "type":"click",
+                "name":"我的账户",
+                "key":"my_account"
+            },
+            {
+                "name":"菜单",
+                "sub_button":[
+                {    
+                    "type":"view",
+                    "name":"搜索",
+                    "url":"http://www.soso.com/"
+                },
+                {
+                    "type":"view",
+                    "name":"视频",
+                    "url":"http://v.qq.com/"
+                },
+                {
+                    "type":"click",
+                    "name":"赞一下我们",
+                    "key":"V1001_GOOD"
+                }]
+            }]
+        }
+    },
+
 };
