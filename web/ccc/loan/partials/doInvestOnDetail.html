@@ -89,12 +89,12 @@
                 <a href="/account/recharge" class="recharge"><button>充值</button></a>
             </div>
             <div class="input">
-                <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
+                <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit" autocomplete="off">
                     <div class="calculatorBox">
                         <div class="calculator">
                             <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                             <input type="hidden" name="loanId" value="{{loan.id}}">
-                            <input placeholder="{{loan.rule.min}}"  type="text" name="amount" value="{{ inputNum }}" on-blur="getCoupon">
+                            <input placeholder="{{loan.rule.min}}"  name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon" />
                             <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                         </div>
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
@@ -113,6 +113,7 @@
                     </div>
                     {{/if}} 
                     <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" />    
+                    <input style="display:none" type="password" placeholder="请输入交易密码" />    
                         <input type="submit" class="btn btn-warning invest-button" value="我要投资" />
                     </div>
   
