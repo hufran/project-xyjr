@@ -228,6 +228,7 @@ p.login-error {
 
 #main-container{
 	margin-top: 7px;
+	padding-bottom: 30px;
 }
 
 
@@ -237,7 +238,7 @@ p.login-error {
 
 #main-container .s-login-view .s-login-window {
 /*  top: 50%;*/
-  width: 276px;
+  width: 300px;
     float:left;
 /*  left: 50%;*/
   margin-left: 150px;
@@ -286,7 +287,7 @@ p.login-error {
   outline: none;
   height: 45px;
 /*  padding-left: 44px;*/
-  width: 230px;
+  width: 235px;
   font-size: 1.2em;
 /*  border: none;*/
 /*  width: 100%;*/
@@ -393,6 +394,7 @@ float:left;
 }
 #loginForm .pull-right{
     float: right;
+	margin-right: 22px;
 }
 #loginForm .s-input-wrapper .lineUser img{
     float: left;
@@ -416,8 +418,9 @@ float:left;
 }
 
 #main-container .s-login-view .s-login-window button{
-    background: #007ec5;
-    width:100%;
+    background: #009ada;
+    width:280px;
+	height: 44px;
 }
 
 

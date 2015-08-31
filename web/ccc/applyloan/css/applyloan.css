@@ -183,8 +183,14 @@
 
 #sendApplyloan {
     background-color: #009ada;
+	height: 44px;
+	font-size: 16px;
+	letter-spacing: 5px;
 }
 
+.loanform .form-group .col-sm-offset-4{
+	width: 280px;
+}
 
 #sendApplyloan:hover{
 	background-color: #015989;
