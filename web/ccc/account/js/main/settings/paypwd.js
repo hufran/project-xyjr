@@ -62,7 +62,9 @@ ractive.on('updatePassword', function () {
         showError('新密码原密码不能相同！');
     } else if (newPwd !== reNewPwd) {
         showError('两次密码输入不一致');
-    } else {
+    }else if(newPwd.indexOf(' ')>-1){
+        showError('含有非法字符:空格');
+    }else {
         isAcess = true;
     }
 
@@ -136,3 +138,14 @@ function showError(msg) {
 
     return false;
 }
+$("#newPassword").keyup(function(){
+    var newPassword=$("#newPassword").val(); 
+    if(newPassword.indexOf(' ')>-1){
+        showError("含有非法字符:空格");
+    }else{
+        ractive.set({
+           showErrorMessage: false 
+        });
+    }
+    
+});
