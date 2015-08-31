@@ -268,7 +268,7 @@ function disableErrors() {
     });
 }
 
-$("#phone").keyup(function(){
+$("#phone").on('blur', function(){
     var mobile = $(this).val().trim();
     utils.formValidator.checkMobile(mobile, function (ok, msg) {
         if (ok) {

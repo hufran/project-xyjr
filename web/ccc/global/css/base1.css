@@ -6,7 +6,7 @@
      padding: 0;
      margin: 0;
 	 color: #bcbcbc;
-	 margin-bottom: 8px;
+/*	 margin-bottom: 8px;*/
  }
 
 #nav-color a:hover{
@@ -465,6 +465,7 @@
     top:56%;
    /*    z-index: 10;*/
     display: none;
+    width:80px;height:80px;
  }
 /*导航大家庭*/
 .s-header-info-content span {
@@ -476,6 +477,9 @@
 	color: #bcbcbc;
 }
 /*nav*/
+#nav-color #head-ractive-container{
+    width: 200px; text-align: right; padding-right: 10px;color:#009ada;
+}
 li a {
 /*
     color: #666;

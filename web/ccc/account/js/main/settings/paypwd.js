@@ -58,6 +58,8 @@ ractive.on('updatePassword', function () {
         showError('原密码不能为空');
     } else if (newPwd === '' || reNewPwd === '') {
         showError('交易密码不能为空');
+    } else if (oldpwd == newPwd) {
+        showError('新密码原密码不能相同！');
     } else if (newPwd !== reNewPwd) {
         showError('两次密码输入不一致');
     } else {

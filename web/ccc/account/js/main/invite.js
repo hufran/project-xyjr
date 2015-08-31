@@ -139,7 +139,7 @@ new Ractive({
 
         // share
         $('.invite-share').share({
-            showIndex: [1, 2, 9, 3, 4, 8, 10, 14],
+            showIndex: [1, 2, 6, 9, 8, 10],
             liMargin: 15,
             bigImg: true,
             showFont: true,

@@ -45,6 +45,7 @@ do (_, angular, moment, Array) ->
                             payment
                             fundaccounts
                             authenticates
+                            paymentPasswordHasSet
                         '
 
                         @$q.all api_list.map (path) =>
@@ -57,6 +58,7 @@ do (_, angular, moment, Array) ->
                             @user.payment
                             @user.fund_accounts
                             @user.authenticates
+                            @user.has_payment_password
 
                         ] = _.pluck response, 'data'
 
@@ -168,6 +170,13 @@ do (_, angular, moment, Array) ->
                 return deferred.promise
 
 
+            fetch_user_points: ->
+
+                @$http
+                    .get '/api/v2/points/user/MYSELF/getTotalPoints', cache: true
+                    .then TAKE_RESPONSE_DATA
+
+
             fetch_user_coupons: (type = 'ALL', cache = true) ->
 
                 @coupon_cache ?= {}
@@ -246,7 +255,6 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-
             login: (loginName, password) ->
 
                 @$http
@@ -278,6 +286,17 @@ do (_, angular, moment, Array) ->
                 @$http
                     .post '/api/v2/lianlianpay/bindCard/MYSELF',
                         @param {bankName, cardNo, cardPhone, city, province}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_unbind_card: (cardNo, paymentPassword) ->
+
+                @$http
+                    .post '/api/v2/lianlianpay/deleteCard/MYSELF',
+                        @param {cardNo, paymentPassword}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA

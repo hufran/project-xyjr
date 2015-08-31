@@ -13,15 +13,15 @@
             method="post"
             on-submit="submit-modify-password" >
             <div class="text">原密码</div>
-            <input type="password" class="form-control" name="currentPassword" value="{{ currentPassword }}" />
+            <input type="password" class="form-control" name="currentPassword" maxlength="16" value="{{ currentPassword }}" />
             <div class="space space-10"></div>
 
             <div class="text">新密码</div>
-            <input type="password" class="form-control" name="newPassword" value="{{ newPassword }}" />
+            <input type="password" class="form-control" name="newPassword" maxlength="16" value="{{ newPassword }}" />
             <div class="space space-10"></div>
 
             <div class="text">确认新密码</div>
-            <input type="password" class="form-control" name="passwordConfirm" value="{{ passwordConfirm }}" />
+            <input type="password" class="form-control" name="passwordConfirm" maxlength="16" value="{{ passwordConfirm }}" />
             <div class="space space-10"></div>
             
             <div class="text">图片验证码</div>
