@@ -1,6 +1,8 @@
 
 require 'coffee-script/register'
 
+{argv} = require 'optimist'
+
 path = require 'path'
 express = require 'express'
 bodyParser = require 'body-parser'
@@ -49,5 +51,5 @@ app.get '/*', (req, res) ->
     res.sendFile 'index.html', root: static_path
 
 
-server = app.listen 4000, ->
-    console.log "Listening on port #{ server.address().port }"
+app.listen (argv.p or argv.port or 4000), ->
+    console.log "Listening on port #{ this.address().port }"
