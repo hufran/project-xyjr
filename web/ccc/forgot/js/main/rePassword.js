@@ -1,4 +1,4 @@
-"use strict";
+	"use strict";
 var utils = require('ccc/global/js/lib/utils');
 var maskLayer = require('ccc/global/js/lib/maskLayer');
 var formValidator = utils.formValidator;
@@ -139,6 +139,7 @@ rePassword.on('next', function (e) {
 
 
 rePassword.on('login', function (e) {
+	var re = /\s/g;
     e.original.preventDefault();
     var user = {
         newPassword: this.get('newPass'),
@@ -172,8 +173,29 @@ rePassword.on('login', function (e) {
         });
         isVer = false;
         return false;
-    }
- 
+
+    }else if(user.newPassword.length<6){
+		rePassword.set('errors',{
+			visible:true,
+			msg:'密码长度不能小于6'
+		});
+		isVer = false;
+		return false;
+	}else if(user.newPassword.length>16){
+		rePassword.set('errors',{
+			visible:true,
+			msg:'密码长度不能大于16'
+		});
+		isVer = false;
+		return false;
+	}else if(re.test(user.newPassword)){
+		rePassword.set('errors',{
+			visible:true,
+			msg:'密码不能带有空格'
+		});
+		isVer = false;
+		return false;
+	}
 
 
     //    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {

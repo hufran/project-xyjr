@@ -1,4 +1,4 @@
-{{timeOpen}} {{#if loan.status == "FINISHED" }}
+{{timeOpen}} {{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"}}
 <div class="firstLine">
     <div class="tip">投资金额 </div>
 <!--    <div class="tip">{{loan.rule.min}}元起投 </div>-->
@@ -12,25 +12,19 @@
                     <input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status == "FINISHED"||loan.status == "SETTLED"}} disabled{{/if}} placeholder="请输入投资金额"  style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left;height:38px;"/><span>元&nbsp;&nbsp;</span>
                 </div>
 <p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span style="font-size:14px;">元</span></p>
-<button class="finished-btn">还款中</button>
+{{#if loan.status == "FINISHED"}}
+<button class="finished-btn">已满标</button>{{/if}}{{#if loan.status == "SETTLED"}}
+<button class="finished-btn">还款中</button>{{/if}}{{#if loan.status == "CLEARED"}}
+<button class="finished-btn">还款结束</button>{{/if}}
+<!--<button class="finished-btn">还款结束</button>-->
 <!--<img src="/ccc/loan/img/full.png" class="finishBlock"> -->
 {{/if}} 
-{{#if loan.status == "CLEARED" }}
+ {{#if loan.status == "ARCHIVED" }}
 <div class="firstLine">
     <div class="tip">{{loan.rule.min}}元起投 </div>
     <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
 </div>
-<img src="/ccc/loan/img/over.png" class="cleared"> {{/if}} {{#if loan.status == "ARCHIVED" }}
-<div class="firstLine">
-    <div class="tip">{{loan.rule.min}}元起投 </div>
-    <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
-</div>
-<img src="/ccc/loan/img/over.png" class="cleared"> {{/if}} {{#if loan.status == "SETTLED" }}
-<div class="firstLine">
-    <div class="tip">{{loan.rule.min}}元起投 </div>
-    <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
-</div>
-<img src="/ccc/loan/img/repay.png" class="settled"> {{/if}} {{#if loan.status == "SCHEDULED" }}
+<img src="/ccc/loan/img/over.png" class="cleared"> {{/if}}  {{#if loan.status == "SCHEDULED" }}
 <div class="status">
     <div class="info">
         <div class="firstLine">
@@ -89,12 +83,12 @@
                 <a href="/account/recharge" class="recharge"><button>充值</button></a>
             </div>
             <div class="input">
-                <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
+                <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit" autocomplete="off">
                     <div class="calculatorBox">
                         <div class="calculator">
                             <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                             <input type="hidden" name="loanId" value="{{loan.id}}">
-                            <input placeholder="{{loan.rule.min}}"  type="text" name="amount" value="{{ inputNum }}" on-blur="getCoupon">
+                            <input placeholder="{{loan.rule.min}}"  name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon" />
                             <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                         </div>
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
@@ -113,6 +107,7 @@
                     </div>
                     {{/if}} 
                     <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" />    
+                    <input style="display:none" type="password" placeholder="请输入交易密码" />    
                         <input type="submit" class="btn btn-warning invest-button" value="我要投资" />
                     </div>
   

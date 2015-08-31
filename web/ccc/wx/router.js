@@ -25,6 +25,9 @@ function sha1(str) {
 }
 var urlPrefix = (config.useHttps?'https://':'http://') + config.domain;
 module.exports = function (router) {
+    if ((process.env.NODE_ENV || 'development') === 'development') {
+        return; // 这个模块只在 生产环境、测试环境加载
+    }
     router.get('/wx/auth', function (req, res) {
         res.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid='+config.weixinmp.appid+'&redirect_uri='+encodeURIComponent(urlPrefix+'/wx/auth/return')+'&response_type=code&scope=snsapi_base#wechat_redirect');
     });
