@@ -62,12 +62,21 @@ ractive.on('updatePassword', function () {
         showError('新密码原密码不能相同！');
     } else if (newPwd !== reNewPwd) {
         showError('两次密码输入不一致');
-    } else {
-        isAcess = true;
+    }else if(newPwd.indexOf(' ')>-1){
+        showError('含有非法字符:空格');
+    }else {
+        isAcess=true;
     }
-
+    
+   
     if(isAcess) {
-        accountService.updatePassword(oldpwd, newPwd, function (r) {
+         accountService.checkPassword(oldpwd,function(r){
+        if(!r){
+            showError("原始密码错误！");
+           
+        }else{
+           
+         accountService.updatePassword(oldpwd, newPwd, function (r) {
             if (r.success) {
                 CccOk.create({
                     msg: '交易密码修改成功！',
@@ -83,6 +92,10 @@ ractive.on('updatePassword', function () {
                 return;
             }
         });
+        }
+        
+    });
+        
     } 
 });
 
@@ -136,3 +149,30 @@ function showError(msg) {
 
     return false;
 }
+$("#newPassword").keyup(function(){
+    var newPassword=$("#newPassword").val(); 
+    if(newPassword.indexOf(' ')>-1){
+        showError("含有非法字符:空格");
+    }else{
+        ractive.set({
+           showErrorMessage: false 
+        });
+    }
+    
+});
+$("#oldPassword").blur(function(){
+    var oldPassword=$("#oldPassword").val().trim();
+    
+    accountService.checkPassword(oldPassword,function(r){
+        if(!r){
+            showError("原始密码错误！");
+        }else{
+            ractive.set({
+           showErrorMessage: false 
+        });
+        }
+        
+    });
+    
+});
+
