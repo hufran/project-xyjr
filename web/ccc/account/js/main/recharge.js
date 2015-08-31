@@ -10,6 +10,10 @@ var banks = _.filter(NETBANKS, function (r) {
     return r.enable === true;
 });
 
+var corBanks = _.filter(NETBANKS, function (r) {
+    return r.isSupportted === true;
+});
+
 var ractive = new Ractive({
     el: '.ccc-tab-panels',
     template: require('ccc/account/partials/recharge.html'),
@@ -23,6 +27,7 @@ var ractive = new Ractive({
         },
         isNormal: false,
         banks: banks,
+        corBanks: corBanks,
         isEnterpriseUser: CC.user.enterprise,
         amountValue: 10000000,
         action: '/lianlianpay/onlineBankDeposit'
