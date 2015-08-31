@@ -281,6 +281,17 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
+            payment_pool_set_password: (password) ->
+
+                @$http
+                    .post '/api/v2/user/MYSELF/resetPaymentPassword',
+                        @param {password}
+                        headers: WWW_FORM_HEADER
+
+                    .then (response) -> success: response.data is true
+                    .catch TAKE_RESPONSE_DATA
+
+
             payment_pool_bind_card: (bankName, cardNo, cardPhone, city, province) ->
 
                 @$http
