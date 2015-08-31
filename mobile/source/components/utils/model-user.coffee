@@ -19,6 +19,7 @@ do (_, angular) ->
                 @has_payment_account = false
                 @has_instant_invest = false
                 @has_nonpwd_netsave = false
+                @has_payment_password = false
 
                 @bank_account = {}
                 @bank_account_list = []

@@ -38,6 +38,9 @@ do (_, angular) ->
                         @$scope.available_coupon_length = available_coupon_list.length
                 )
 
+                @api.fetch_user_points().then (data) =>
+                    @$scope.points = data
+
 
                 # prefetch following API calls for getting out from cache directly later on
 

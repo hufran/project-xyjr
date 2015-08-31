@@ -72,7 +72,7 @@ function CccConfirm(options) {
 					box.hide();
 				});
 				
-				config.complete(ele, box);
+				config.complete(ele,box);
 			}
 		});
 	};

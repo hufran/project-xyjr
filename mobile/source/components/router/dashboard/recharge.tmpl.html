@@ -45,7 +45,6 @@
                            type="number"
                            id="amount"
                            name="amount"
-                           data-express-name="amount"
                            ng-model="amount"
                            min="0.01"
                            max="1000000"
@@ -59,6 +58,7 @@
         </div>
 
         <input type="hidden" name="isWAP" value="true">
+        <input type="hidden" name="retUrl" value="{{ return_url }}">
 
         <p class="container">
             <button class="btn btn-theme btn-lg btn-block"
@@ -66,13 +66,6 @@
                     ng-if="self.user.has_payment_account"
                     ng-disabled="form.$invalid || self.submit_sending"
             >确定充值</button>
-
-            <a href="/payment/account/open"
-               class="btn btn-primary btn-lg btn-block"
-               target="_self"
-               ng-click="self.open_payment_account($event)"
-               ng-if="!self.user.has_payment_account"
-            >开通托管账户</a>
         </p>
     </form>
 

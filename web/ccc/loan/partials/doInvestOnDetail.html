@@ -9,7 +9,7 @@
 <p class="finished-money">剩余时间&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">已完成</span></p>
 <p class="finished-money">可用余额&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">{{#if user.availableAmount}}{{user.availableAmount}}{{else}}0{{/if}}元</span></p>
                <div class="col-sm-8" style="width:300px;padding:0;margin-left:24px;line-height:38px;text-align:right;border:1px solid #ccc;border-radius:3px;">
-                    <input type="text" class="form-control col-sm-8 form_input loanmoney" placeholder="请输入投资金额"  style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left"/><span>元&nbsp;&nbsp;</span>
+                    <input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status == "FINISHED"||loan.status == "SETTLED"}} disabled{{/if}} placeholder="请输入投资金额"  style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left;height:38px;"/><span>元&nbsp;&nbsp;</span>
                 </div>
 <p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span style="font-size:14px;">元</span></p>
 <button class="finished-btn">还款中</button>
@@ -94,7 +94,7 @@
                         <div class="calculator">
                             <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                             <input type="hidden" name="loanId" value="{{loan.id}}">
-                            <input placeholder="{{loan.rule.min}}" type="text" name="amount" value="{{ inputNum }}" on-blur="getCoupon">
+                            <input placeholder="{{loan.rule.min}}"  type="text" name="amount" value="{{ inputNum }}" on-blur="getCoupon">
                             <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                         </div>
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
@@ -129,13 +129,17 @@
             </div>
 
             {{/if}} {{else}}
-              <div class="firstLine" style="padding:0px;">
-            <div class="tip">{{loan.rule.min}}元起投 </div>
-            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
-        </div>
-            <p>
-                您尚未登录，<a href="/login" style="color:#007ec5;">登录</a> 后可见
+			
+			<p class="left-money">
+                账户余额：<a href="/login" style="color:#007ec5;">登录</a> 后可见
             </p>
+            <div class="firstLine" style="padding:0px;">
+<!--
+				<div class="tip">{{loan.rule.min}}元起投 </div>
+				<div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
+-->
+        	</div>
+            
 
             <div class="calculatorBox">
                 <div class="calculator">
