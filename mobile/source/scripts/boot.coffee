@@ -115,6 +115,20 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
+                    .when '/dashboard/payment/password', {
+                        controller: 'PaymentPoolPasswordCtrl as self'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password.tmpl.html'
+                        _resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/payment/password'
+                                        do $q.reject
+                    }
+
                     .when '/dashboard/payment/agreement', {
                         controller: 'PaymentUmpAgreementCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/ump/payment-ump-agreement.tmpl.html'
@@ -318,18 +332,32 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->
-                                    api.fetch_current_user()
+                                    (api.fetch_current_user()
+
                                         .then (user) ->
-                                            return $q.reject(true) unless user.has_payment_account
-                                            return user
-                                        .catch (has_logged_in = false) ->
-                                            return unless has_logged_in
-                                            $location
-                                                .replace()
-                                                .path 'dashboard/payment/register'
-                                                .search
-                                                    back: "loan/#{ $route.current.params.id }"
-                                                    next: "loan/#{ $route.current.params.id }/invest"
+                                            return user if user.has_payment_account and user.has_payment_password
+                                            return $q.reject(user)
+
+                                        .catch (user) ->
+                                            return unless user
+
+                                            switch
+                                                when user.has_payment_account isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: "loan/#{ $route.current.params.id }"
+                                                            next: "loan/#{ $route.current.params.id }/invest"
+
+                                                when user.has_payment_password isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/password'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: "loan/#{ $route.current.params.id }/invest"
+                                    )
                     }
 
                     .when '/loan/:id/invest/return', {

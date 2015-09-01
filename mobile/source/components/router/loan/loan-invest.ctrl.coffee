@@ -100,27 +100,20 @@ do (angular, _) ->
                     @alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
                 )
 
-                unless good_to_go
-                    return event.preventDefault()  # submitting via AJAX
+                return unless good_to_go
 
-                @cookie2root 'return_url', 'dashboard/invest'
-
-
-                return # skip out code down from here
-
-
-                (@api.send_to_non_pasword_tender(@loan.id, amount)
+                (@api.payment_pool_tender(@loan.id, @$scope.password, amount, @$scope.store.coupon?.id)
 
                     .then (data) =>
-                        unless data.success is true
-                            @$q.reject data.error
+                        return @$q.reject(data) unless data.success is true
+                        return data
 
                     .then (data) =>
                         @$window.alert '投标成功'
 
-                    .catch (error) =>
-                        console.info error
-                        @$window.alert '投标失败'
+                    .catch (data) =>
+                        message = _.get data, 'error[0].message', 'something happened...'
+                        @$window.alert message
 
                     .finally =>
                         @$location.path "/loan/#{ @loan.id }"
