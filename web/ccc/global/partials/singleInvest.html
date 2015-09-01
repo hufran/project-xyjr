@@ -5,8 +5,9 @@
                 <th style="width:160px;">借款总额</th>
                 <th style="width:140px;">年化收益</th>
                 <th style="width:154px;">投资期限</th>
-                <th style="width:190px;">进度</th>
                 <th style="width:190px;">还款方式</th>
+                <th style="width:190px;">进度</th>
+                
                 <th style="width:126px;">状态</th>
             </tr>
         </table>
@@ -27,14 +28,15 @@
     <div class="amount">{{ amount }}<span>{{ amountUnit }}</span></div>
     <div class="rate">{{ rate }}<i>%</i></div>
     <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span></div>
-    <div class="process">
+
+    <div class="backMoney">{{ method }}</div>
+        <div class="process">
         <div class="rate-chart">	 
           <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="left:33px;top:9px">
             <span class="percentageNum">{{ investPercent }} </span>
           </div>
         </div>
     </div>
-    <div class="backMoney">{{ method }}</div>
     <div class="opre">
         {{#if status === 'OPENED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">

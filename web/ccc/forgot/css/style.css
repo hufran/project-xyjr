@@ -216,10 +216,12 @@ body {
 
 .main .step02 .verify-content .u-form-btn-red:hover{
 	background-color: #015989;
+    cursor: pointer;
 }
 
 .main .step01 .verify-content .u-form-btn-red:hover{
 	background-color: #015989;
+     cursor: pointer;
 }
 
 .main .step01 .verify-content .s-form-row-sm-s {
