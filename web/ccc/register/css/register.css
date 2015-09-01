@@ -1,15 +1,14 @@
-/*
+
 #main-container {
-    background: #efefef;
-    padding: 52px 0px;
+    margin-top: 7px;
+	padding-bottom: 1px;
 }
-*/
+
 
 #to-step2 {
 	display: inline-block;
 }
 
-.zmcf_logreg_box {}
 
 .zmcf_logreg_box .left {
 	float: left;
