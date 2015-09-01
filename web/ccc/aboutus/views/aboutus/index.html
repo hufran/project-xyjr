@@ -33,12 +33,8 @@
                     <h2 class="ar-title">{{tab.text}}</h2>
                     {{#each contents}}
                     <div class="news-box">
-                        <div class="news-brame">【{{#if title.length > 30}}
-                                {{title.substr(0,30)}}...
-                            {{else}}
-                                {{title}}
-                            {{/if}}】<a href="/cms/p/{{this.id}}">{{#if title.length > 12}}
-                                {{title.substr(0,12)}}...
+                        <div class="news-brame"><a href="/cms/p/{{this.id}}">{{#if title.length > 40}}
+                                {{title.substr(0,40)}}...
                             {{else}}
                                 {{title}}
                             {{/if}}</a>

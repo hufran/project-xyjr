@@ -1505,7 +1505,7 @@
 .insurance-wrapper {
 	width: 350px;
 	float: left;
-	margin-top: 72px;
+	margin-top: 14px;
 	margin-left: 20px;
 	height: 200px;
 }
@@ -1597,4 +1597,7 @@
 
 #userBlock .leftMoney-open .recharge button:hover{
 	background-color: #df6502;
+}
+.controler-title{
+    font-size: 28px;
 }
