@@ -1,6 +1,7 @@
 <div id="register-wrapper" class="on-step-{{onStep}}">
     <Step>
         <div class="register-step-0">
+<<<<<<< HEAD
             <div class="register-frame">
                 <RInput field="mobile">
                     <div class="rinput">
@@ -15,6 +16,24 @@
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码:</label>
                         <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
                         <span on-click='changeImgCaptcha'>
+=======
+          <div class="register-frame"> 
+          <RInput field="mobile">
+                <div class="rinput">
+                    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>手机号码:</label>
+                    <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号码">
+                    <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
+                    <span class="tip">
+        {{#errMsg}}{{errMsg}}{{/if}}
+    </span>
+                </div>
+            </RInput> 
+               <RInput field="imgCaptcha">
+                <div class="rinput picnum">
+                    <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码:</label>
+                    <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
+                    <span on-click='changeImgCaptcha'>
+>>>>>>> e780b6baf106737af2f7fa7a473b7d7a695fecad
                             <img src="{{imgCaptchaBase64}}" alt="">
                         </span>
                         <span id="cannot-see">看不清?</span>

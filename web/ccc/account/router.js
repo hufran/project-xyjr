@@ -389,7 +389,7 @@ module.exports = function (router) {
 
 
     // 查看借款人合同
-    router.get('/account/allContracts/:id',
+    router.get('/account/loan/allContracts/:id',
         function (req, res, next) {
             res.redirect('/api/v2/user/MYSELF/loan/' + req.params.id +
                 '/contract');
@@ -397,7 +397,7 @@ module.exports = function (router) {
         });
 
     // 查看投资人合同
-    router.get('/account/allContracts/:id',
+    router.get('/account/invest/allContracts/:id',
         function (req, res, next) {
             res.redirect('/api/v2/user/MYSELF/invest/' + req.params.id +
                 '/contract');
@@ -423,4 +423,5 @@ module.exports = function (router) {
                     .ConfirmResult);
             });
     });
+      
 }
