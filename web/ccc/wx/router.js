@@ -1,4 +1,5 @@
 'use strict';
+var url = require('url');
 var crypto = require('crypto');
 var config = require('config');
 var conext = require('conext');
@@ -29,7 +30,15 @@ module.exports = function (router) {
         return; // 这个模块只在 生产环境、测试环境加载
     }
     router.get('/wx/auth', function (req, res) {
-        res.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid='+config.weixinmp.appid+'&redirect_uri='+encodeURIComponent(urlPrefix+'/wx/auth/return')+'&response_type=code&scope=snsapi_base#wechat_redirect');
+        var options = url.parse('https://open.weixin.qq.com/connect/oauth2/authorize#wechat_redirect');
+            options.query = {
+                appid: config.weixinmp.appid,
+                redirect_uri: encodeURIComponent(urlPrefix + '/wx/auth/return'),
+                response_type: 'code',
+                scope: 'snsapi_base',
+            };
+
+        res.redirect(url.format(options));
     });
     router.get('/wx/auth/return', conext(function *(req, res) {
         var r = yield request('https://api.weixin.qq.com/sns/oauth2/access_token', {
