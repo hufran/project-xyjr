@@ -281,6 +281,17 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
+            payment_pool_set_password: (password) ->
+
+                @$http
+                    .post '/api/v2/user/MYSELF/resetPaymentPassword',
+                        @param {password}
+                        headers: WWW_FORM_HEADER
+
+                    .then (response) -> success: response.data is true
+                    .catch TAKE_RESPONSE_DATA
+
+
             payment_pool_bind_card: (bankName, cardNo, cardPhone, city, province) ->
 
                 @$http
@@ -297,6 +308,17 @@ do (_, angular, moment, Array) ->
                 @$http
                     .post '/api/v2/lianlianpay/deleteCard/MYSELF',
                         @param {cardNo, paymentPassword}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '') ->
+
+                @$http
+                    .post '/api/v2/invest/tender/MYSELF',
+                        @param {loanId, paymentPassword, amount, placementId}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA

@@ -17,9 +17,6 @@
 
     <form class="form-horizontal"
           name="form"
-          action="/payment/tender"
-          method="post"
-          target="_self"
           ng-submit="self.submit($event)"
     >
         <section class="invest-confirm">
@@ -92,6 +89,15 @@
                        ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
                        type="number"
                        class="form-control invest-input input-lg"
+                       required
+                >
+
+                <input name="password" type="password"
+                       id="password"
+                       class="form-control invest-input input-lg"
+                       ng-model="password"
+                       placeholder="请输入交易密码"
+                       required
                 >
             </div>
 
@@ -124,7 +130,7 @@
         <p class="container invest-btn-wrap">
             <button type="submit"
                     class="btn btn-theme btn-lg btn-block"
-                    ng-disabled="!agreement"
+                    ng-disabled="form.$invalid || !agreement"
             >确认投资</button>
         </p>
 
