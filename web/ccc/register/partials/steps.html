@@ -7,7 +7,7 @@
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>手机号码:</label>
                         <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号码">
                         <span class="tip-loading">{{#loading}}loading...{{/loading}}</span>
-                        <span class="tip">{{#if value.length === 11 && errMsg}}{{errMsg}}{{/if}}</span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
                     </div>
                 </RInput>
                 <RInput field="imgCaptcha">
