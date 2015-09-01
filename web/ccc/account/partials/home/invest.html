@@ -33,7 +33,7 @@
 					<button class="btn btn-smaller btn-blue-light" on-click="getPlan"
 					data-id="{{id}}"
 					data-loanid="{{loanId}}">还款计划</button>
-					<a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank">查看合同</a>
+					<a href="/account/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank">查看合同</a>
 				{{else}}
 					{{#if status === 'CANCELED'}}
 					<i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i>
