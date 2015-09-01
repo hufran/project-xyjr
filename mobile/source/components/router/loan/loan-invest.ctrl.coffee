@@ -85,7 +85,7 @@ do (angular, _) ->
                 (if user_available <= 0 or amount > user_available
                     good_to_go = false
                     # do @prompt_short_of_balance
-                    @alert '余额不足，前去充值吗？'
+                    @alert '余额不足，请前去充值'
 
                 else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
                     good_to_go = false
