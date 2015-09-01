@@ -62,16 +62,32 @@ body {
 }
 
 .main .step02 .verify-content {
-	width: 360px;
+	width: 520px;
 	margin: auto;
 	margin-bottom: 50px;
 }
 
+.main .step02 .verify-content .box-phone{
+	overflow: hidden;
+}
+
+
 .main .step01 .verify-content {
-	width: 340px;
+	width: 520px;
 	margin: auto;
 	margin-bottom: 50px;
 }
+
+.main .step01 .verify-content .u-form-panel{
+	overflow: hidden;
+	margin-left: 32px;
+	float: left;
+}
+
+.main .step01 .verify-content .u-form-panel-lg .s-form-row-lg{
+	overflow: hidden;
+}
+
 
 .main .step01 .verify-content label {
 	margin: 0;
@@ -94,10 +110,9 @@ body {
 }
 
 .main .step01 .verify-content .s-form-row {
-	width: 276px;
+	width: 280px;
 	border: 1px solid #c5c5c5;
 	border-radius: 3px;
-	margin-bottom: 15px;
 	padding-left: 10px;
 	border-radius: 4px;
 	float: left;
@@ -118,15 +133,14 @@ body {
 	padding-left: 10px;
 	width: 140px;
 	line-height: 40px;
+	float: right;
 }
 
 .main .step01 .verify-content .s-form-row-lg .border {
+	overflow: hidden;
 	float: left;
 }
 
-.main .step01 .verify-content .s-form-row-lg .u-form-text-lg {
-	float: left;
-}
 
 .main .step01 .verify-content .s-form-row-sm,
 .main .step02 .verify-content .border {
@@ -180,7 +194,7 @@ body {
 
 .main .step01 .verify-content .u-form-btn-red,
 .main .step02 .verify-content .u-form-btn-red {
-	width: 276px;
+	width: 280px;
 	margin: auto;
 	text-align: center;
 	line-height: 37px;
@@ -188,15 +202,26 @@ body {
 	color: white;
 	background-color: #009ada;
 	border-radius: 4px;
-	float: right;
+	display: block;
+	margin-left: 96px;
+	margin-top: 15px;
 }
+
+
+.main .step02 .verify-content .u-form-btn-red{
+	width: 276px;
+	margin-left: 80px;
+}
+
 
 .main .step02 .verify-content .u-form-btn-red:hover{
 	background-color: #015989;
+    cursor: pointer;
 }
 
 .main .step01 .verify-content .u-form-btn-red:hover{
 	background-color: #015989;
+     cursor: pointer;
 }
 
 .main .step01 .verify-content .s-form-row-sm-s {
@@ -531,7 +556,7 @@ body {
 	line-height: 41px;
 	font-size: 16px;
 	color: #3c3c3c;
-    margin-left: -32px;
+   
 }
 
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text a {
@@ -544,18 +569,19 @@ body {
 .main .step01 .verify-content .u-form-panel-lg .s-form-row-lg #get-text {
 	border: 1px solid #007ec5;
 	line-height: 38px;
-	float: right;
+	float: left;
+	margin-left: 10px;
 	width: 130px;
 	border-radius: 4px;
 }
 
 .main .step02 .u-form-panel .step-password,
 .main .step02 .u-form-panel .step-password-confirm {
-	height: 43px;
+	overflow: hidden;
 }
 
-.main .step02 .u-form-panel .step-password-confirm {
-	margin-top: 30px;
+.main .step02 .u-form-panel .step-password{
+	float: left;
 }
 
 .main .step02 .u-form-panel .step-password .test-title {
@@ -563,7 +589,7 @@ body {
 	line-height: 41px;
 	font-size: 16px;
 	color: #3c3c3c;
-	margin-left: 30px;
+	margin-left: 32px;
 }
 
 .main .step02 .u-form-panel .step-password .s-form-row {
@@ -578,21 +604,20 @@ body {
 }
 
 .main .step02 .u-form-panel .step-password-confirm .s-form-row {
-	float: right;
+	float: left;
 }
-/*
-.main .step03 .step04 .way04 .next next02 h3 a{
-    text-decoration: none;
-    color:#0d7cd5;
-    font-size: 14px;
+
+
+
+.main .step01 .verify-content .box-phone{
+	overflow: hidden;
+	margin-bottom: 15px;
+	width: 665px;
 }
-*/
 
 .errors {
-	width: 305px;
-	/* height: 20px; */
-	
-	float: right;
+	float: left;
+	margin-left: 10px;
 	height: 40px;
 	font-size: 15px;
 }
@@ -608,3 +633,11 @@ body {
 	line-height: 40px;
 	color: #d2252c;
 }
+
+
+.main .step02 .u-form-panel .box-password{
+	overflow: hidden;
+	width: 560px;
+	margin-bottom: 15px;
+}
+

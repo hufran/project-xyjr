@@ -1,4 +1,4 @@
-"use strict";
+	"use strict";
 var utils = require('ccc/global/js/lib/utils');
 var maskLayer = require('ccc/global/js/lib/maskLayer');
 var formValidator = utils.formValidator;
@@ -66,8 +66,7 @@ rePassword.on('changeCaptcha', function () {
 rePassword.on('step1', function (e) {
    // alert(1);
     e.original.preventDefault();
-	
-    var user = {
+	var user = {
         loginName: 'zqjr_' + this.get('user.mobile'),
         mobile: this.get('user.mobile'),
         captcha: this.get('captcha.text'),
@@ -78,17 +77,12 @@ rePassword.on('step1', function (e) {
             showErrors(msg);
             return false;
         }
-		
-        utils.formValidator.checkMobile(user.mobile, function (err, msg) {
+		utils.formValidator.checkMobile(user.mobile, function (err, msg) {
             if (!err) {
                 showErrors(msg);
                 return false;
             }
-          
-          
-            
-            
-            
+              
             rePasswordService.verifyLoginNameAndMobile(user, function (err, msg) {
                 if (!err) {
                     showErrors(msg);
@@ -113,18 +107,18 @@ rePassword.on('step1', function (e) {
 rePassword.on('next', function (e) {
     e.original.preventDefault();
     var user = {
-		
-        mobile: this.get('user.mobile'),
+		mobile: this.get('user.mobile'),
         captcha: this.get('phone'),
         smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
     };
-
+    var errLength = this.get("errors.msg").length
+    if(errLength > 0){
+        return false;
+    }
 	if(user.mobile == ''){
 		showErrors("MOBILE_NULL");
 		return false;
 	}
-	
-	
     if (user.captcha == null || user.captcha.toString().trim() === "") {
         showErrors("MOBILE_CAPTCHA_NULL");
         return false;
@@ -145,6 +139,7 @@ rePassword.on('next', function (e) {
 
 
 rePassword.on('login', function (e) {
+	var re = /\s/g;
     e.original.preventDefault();
     var user = {
         newPassword: this.get('newPass'),
@@ -162,14 +157,46 @@ rePassword.on('login', function (e) {
         });
         isVer = false;
         return false;
-    } else if (user.newPassword != user.rePass) {
+    } 
+       if (user.newPassword.length < 6) {
+            rePassword.set('errors', {
+            visible: true,
+            msg: '请填写至少 6 位密码'
+        });
+        isVer = false;
+        return false;
+    }
+    else if (user.newPassword != user.rePass) {
         rePassword.set('errors', {
             visible: true,
             msg: '两次密码不一致，请检查'
         });
         isVer = false;
         return false;
-    }
+
+    }else if(user.newPassword.length<6){
+		rePassword.set('errors',{
+			visible:true,
+			msg:'密码长度不能小于6'
+		});
+		isVer = false;
+		return false;
+	}else if(user.newPassword.length>16){
+		rePassword.set('errors',{
+			visible:true,
+			msg:'密码长度不能大于16'
+		});
+		isVer = false;
+		return false;
+	}else if(re.test(user.newPassword)){
+		rePassword.set('errors',{
+			visible:true,
+			msg:'密码不能带有空格'
+		});
+		isVer = false;
+		return false;
+	}
+
 
     //    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
     //    if (!err) {
@@ -206,6 +233,7 @@ rePassword.on('login', function (e) {
             }
         });
     }
+
 });
 
 
@@ -227,8 +255,6 @@ rePassword.on('sendTelCode', function (e) {
             showErrors(msg);
         }
     });
-
-
 });
 
 function countDown() {
