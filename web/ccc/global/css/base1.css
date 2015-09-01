@@ -413,6 +413,10 @@
     line-height: 26px;
     height:126px;
 }
+.bottom-right .bottom-rightApp img{
+     width:100px;
+    height:100px;
+}
 
 
 /*计算器*/
