@@ -21,7 +21,7 @@
         UNKNOWN: '未知错误',
     }">
 
-    <div class="page-content container">
+    <div class="page-content">
     <form class="form form-flatten form-horizontal" name="form" novalidate>
         <div class="inputs container">
             <div class="form-group merge"
@@ -173,7 +173,7 @@
                 </div>
             </div>
 
-            <div class="form-group agreement">
+            <div class="form-group agreement" x-gyro-comment>
                 <label>
                     <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
                     我阅读并同意 <a href="#" ng-click="self.agreement($event)">《奇乐融注册服务协议》</a>
@@ -181,14 +181,12 @@
             </div>
         </div>
 
-        <div class="container">
-            <p class="form-group">
-                <button type="button" class="btn btn-red btn-block btn-lg"
-                        ng-click="self.signup(store)"
-                        ng-disabled="!agreement || form.$invalid || self.submit_sending"
-                >注册</button>
-            </p>
-        </div>
+        <p class="container">
+            <button type="button" class="btn btn-red btn-block btn-lg"
+                    ng-click="self.signup(store)"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >注册</button>
+        </p>
     </form>
     </div>
 </div>

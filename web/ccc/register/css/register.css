@@ -1,15 +1,14 @@
-/*
+
 #main-container {
-    background: #efefef;
-    padding: 52px 0px;
+    margin-top: 7px;
+	padding-bottom: 1px;
 }
-*/
+
 
 #to-step2 {
 	display: inline-block;
 }
 
-.zmcf_logreg_box {}
 
 .zmcf_logreg_box .left {
 	float: left;
@@ -384,7 +383,7 @@ h3 {
 	line-height: 20px;
 	padding-left: 30px;
 	margin-left: 104px;
-	color: #9fa0a0;
+	color: #d2252c;
 	font-size: 15px;
 	background-image: url(/ccc/register/img/gou-bg.png);
 	background-repeat: no-repeat;

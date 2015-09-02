@@ -7,6 +7,7 @@ module.exports = {
     project_name: pathFn.basename(pathFn.join(__dirname, "..")),
     // port 用于开发调试，每个新项目 +1
     port: 4001,
+    domain: 'zqjr.uats.cc',
 
     commonjs: [ // 最常被引用的库写到这里，开发环境加速
         'bluebird',
@@ -130,15 +131,20 @@ module.exports = {
 
         menu: { // 每次启动 web 时会 post 给微信服务器设置自定义菜单
             button: [
-            {  
-                "type":"click",
+            {
+                "type":"view",
                 "name":"我的账户",
+                "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx996e9ad463045dc3&redirect_uri=http%3A%2F%2Fzqjr.uats.cc%2Fwx%2Fauth%2Fredirect&state=%2Fh5%2Faccount&response_type=code&scope=snsapi_base#wechat_redirect"
+            },
+            {
+                "type":"click",
+                "name":"账户余额",
                 "key":"my_account"
             },
             {
                 "name":"菜单",
                 "sub_button":[
-                {    
+                {
                     "type":"view",
                     "name":"搜索",
                     "url":"http://www.soso.com/"
