@@ -1,5 +1,6 @@
 <!--detail页面的 相关资料部分-->
 {{#if imgLen}}
+{{imgLen}}------------
 <!--
 <div class="insurance">
     <a href="#">
@@ -11,14 +12,17 @@
     <div class="insurance-intro">{{ imgs[currentIndex].content }}</div>    
 </div>
 -->
+
+<p class="controler-title">企业认证图片</p>
+
 <div class="controler">
-    {{#if imgs.lenght > 4}}
+    {{#if imgs.length > 4}}
         <a href="#" class="left" on-click="left-selector"></a>
     {{/if}}
       <div id="carousel-com" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-<!--             {{JSON.stringify(imgsList)}}-->
+<!--             {{JSON.stringify(imgs)}}-->
             {{#each imgs:i}} 
             <div class="item {{#if i===0}} active {{/if}}">
                 <div class="row">
