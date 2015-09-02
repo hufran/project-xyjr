@@ -276,7 +276,7 @@ do (_, angular, moment, Array) ->
             bind_social: (socialType, socialId) ->
 
                 @$http
-                    .post '/user/MYSELF/bind_social',
+                    .post '/api/v2/user/MYSELF/bind_social',
                         @param {socialType, socialId}
                         headers: WWW_FORM_HEADER
 
