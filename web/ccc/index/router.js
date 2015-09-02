@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
     if (user && user.idNumber) {
         delete user.idNumber;
     }
+    
     res.expose(user, 'user');
     res.locals.carousel = req.uest(
         '/api/v2/cms/carousel_detail')
@@ -63,6 +64,17 @@ router.get('/', function (req, res, next) {
     res.render({
         rushHeads: '<!--[if lt IE 10]><link rel="stylesheet" type="text/css" href="/ccc/index/css/ie-flip.css" /><![endif]-->'
     });
+    var nowtime=new Date();
+    var nowname='';
+    if(nowtime.getHours()>=12&&nowtime.getHours()>18){
+        nowname='下午';
+    }else if(nowtime.getHours()>=5&&nowtime.getHours()<12){
+        nowname='上午';
+    }else{
+       nowname='晚上'; 
+    }
+    
+  res.locals.shangwuxiawu=nowname;
 });
 
 function parseCMStitle(data) {
@@ -73,4 +85,5 @@ function parseCMStitle(data) {
     }
     return data;
 }
+   
 }
