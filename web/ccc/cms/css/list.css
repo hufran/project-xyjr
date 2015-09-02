@@ -85,6 +85,7 @@
   height: 60px;
   overflow: hidden;
   line-height: 40px;
+    text-align: center;
 }
 .article-title {
   font-size: 28px;
@@ -127,4 +128,7 @@ b {
 }
 .toggleBtn {
   cursor: pointer;
+}
+.article-detail{
+    margin-right: 100px;
 }
