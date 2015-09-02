@@ -18,6 +18,7 @@ $('.s__top15').mouseover(function() {
 
   if(CC.user && CC.user.name){
 
+
       accountService.getUserInfo(function (res) {
      if(!res.user){
          res.user={};
@@ -32,7 +33,7 @@ $('.s__top15').mouseover(function() {
     }
 });     
         });
-  
+   };
 
  
 
