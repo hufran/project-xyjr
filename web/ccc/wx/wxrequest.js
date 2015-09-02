@@ -13,7 +13,7 @@ module.exports = co.wrap(function *() {
         mp = JSON.parse((yield db.get('weixin/mp'))||'{}');
     } catch (e) {};
     if (!mp.expires_at || Date.now() > mp.expires_at) {
-        var body = yield request('https://api.weixin.qq.com/cgi-bin/token', {
+        var body = yield proagent('https://api.weixin.qq.com/cgi-bin/token', {
             query: {
                 appid: config.weixinmp.appid,
                 secret: config.weixinmp.secret,
@@ -31,5 +31,5 @@ module.exports = co.wrap(function *() {
             access_token: mp.access_token,
         },
     });
-    return request.apply(null, args);
+    return proagent.apply(null, args);
 });

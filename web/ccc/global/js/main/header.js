@@ -14,7 +14,9 @@ $('.s__top15').mouseover(function() {
     $(this).next().css('display', 'none');
 });
 
-  if(CC.user && CC.user.loginName){
+
+  if(CC.user && CC.user.name){
+
       accountService.getUserInfo(function (res) {
      if(!res.user){
          res.user={};
