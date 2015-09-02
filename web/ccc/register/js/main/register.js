@@ -54,7 +54,7 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/注册')).end().then(func
     });
 });
 
-var referral = getUrlVal("referral");
+var referral = getUrlVal("refm");
 if (referral != null) {
     $("input[name=recommend-mobile]").val(referral);
 }
@@ -76,5 +76,3 @@ function getUrlVal(key) {
         }
     }
 }
-
-$("")

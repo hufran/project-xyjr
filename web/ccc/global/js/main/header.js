@@ -14,7 +14,7 @@ $('.s__top15').mouseover(function() {
     $(this).next().css('display', 'none');
 });
 
- 
+
       accountService.getUserInfo(function (res) {
      if(!res.user){
          res.user={};
