@@ -38,6 +38,12 @@ do (angular) ->
                         return @$q.reject(data) unless data?.success is true
                         return data
 
+                    .then (data, {bind_social_weixin} = @$routeParams) =>
+                        if bind_social_weixin
+                            @api.bind_social 'WEIXIN', bind_social_weixin
+
+                        return data
+
                     .then (data) =>
                         @api.fetch_current_user().then =>
                             return unless @page_path is @$location.path()
