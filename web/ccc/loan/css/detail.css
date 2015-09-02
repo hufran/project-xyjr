@@ -1456,7 +1456,8 @@
 
 #userBlock .calculatorBox {
 	overflow: hidden;
-	margin-top: 14px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 #userBlock .totalInterest {

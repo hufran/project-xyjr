@@ -119,7 +119,7 @@
 
 .rinput .tip {
     color: #d2252c;
-    font-size: 15px;
+    font-size: 14px;
     background-image: url(/ccc/register/img/gou-bg.png);
     background-repeat: no-repeat;
     background-position: left center;
@@ -130,7 +130,7 @@
 }
 .rinput .tip-loading {
     color: #9fa0a0;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 44px;
     padding-left: 30px;
     float: left;
