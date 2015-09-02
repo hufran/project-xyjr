@@ -15,6 +15,7 @@ $('.s__top15').mouseover(function() {
 });
 
 
+
   if(CC.user && CC.user.name){
 
       accountService.getUserInfo(function (res) {
@@ -23,14 +24,15 @@ $('.s__top15').mouseover(function() {
          res.user.name='';}
     new Ractive({
     el: "#head-ractive-container",
-    template:'<img src="/ccc/global/img/navuseryellow.png" />{{#if !name}}{{loginName}}{{else}}{{name}}{{/if}}', 
+    template:'<img src="/ccc/global/img/navuseryellow.png" />{{#if !name}}{{mobile}}{{else}}{{name}}{{/if}}', 
     data: {
        name:res.user.name,
-       loginName:CC.user.loginName
+       loginName:CC.user.loginName,
+        mobile:res.user.mobile
     }
 });     
         });
-  }
+  
 
  
 
