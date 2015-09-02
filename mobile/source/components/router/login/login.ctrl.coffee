@@ -32,17 +32,24 @@ do (angular) ->
                 @flashing_error_message = false
 
 
-                @api.login(username, password).success (data) =>
-                    unless data?.success is true
+                (@api.login(username, password)
+
+                    .then (data) =>
+                        return @$q.reject(data) unless data?.success is true
+                        return data
+
+                    .then (data) =>
+                        @api.fetch_current_user().then =>
+                            return unless @page_path is @$location.path()
+
+                            unless @next_path
+                                @$location.path '/dashboard'
+                            else
+                                @$location
+                                    .path @next_path
+                                    .search 'next', null
+
+                    .catch (data) =>
                         do @error_message_flash
                         @submit_sending = false
-                        return
-
-                    @api.fetch_current_user().then =>
-                        return unless @page_path is @$location.path()
-
-                        unless @next_path
-                            @$location.path '/dashboard'
-                        else
-                            @$location.path @next_path
-                                .search 'next', null
+                )

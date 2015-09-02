@@ -262,6 +262,9 @@ do (_, angular, moment, Array) ->
                         @param {loginName, password}
                         headers: WWW_FORM_HEADER
 
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
 
             logout: ->
 
