@@ -54,7 +54,7 @@ function initailEasyPieChart() {
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
             // 100%进度条颜色显示为背景色
-            var color = percentage === 100 ? "#b49b5d" : '#b49b5d';
+            var color = percentage === 100 ? "#f58220" : '#009ada';
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
