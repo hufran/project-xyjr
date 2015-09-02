@@ -262,12 +262,26 @@ do (_, angular, moment, Array) ->
                         @param {loginName, password}
                         headers: WWW_FORM_HEADER
 
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
 
             logout: ->
 
                 @$http.post '/logout', {}, {
                     headers: 'X-Requested-With': 'XMLHttpRequest'
                 }
+
+
+            bind_social: (socialType, socialId) ->
+
+                @$http
+                    .post '/user/MYSELF/bind_social',
+                        @param {socialType, socialId}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
 
 
             payment_pool_register: (name, idNumber) ->
