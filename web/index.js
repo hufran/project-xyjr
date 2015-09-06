@@ -148,6 +148,7 @@ _.each([
     {path: '/login'},
     {path: '/register'},
     {path: '/invest', new_path: '/list'},
+    {path: '/account', new_path: '/dashboard'},
 
 ], function (item) {
     var prefix = '/h5',
