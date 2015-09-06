@@ -205,6 +205,7 @@ body {
 	display: block;
 	margin-left: 96px;
 	margin-top: 15px;
+/*    float: left;*/
 }
 
 
@@ -632,6 +633,7 @@ body {
 	color: #9fa0a0;
 	line-height: 40px;
 	color: #d2252c;
+/*    margin-left: 54px;*/
 }
 
 

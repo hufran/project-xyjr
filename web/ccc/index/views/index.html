@@ -44,7 +44,11 @@
                             <p class="banner-account2"><span class="banner-account-3">30</span>倍活期存款 ,<span class="banner-account-3">6</span>倍定期存款收益</p>
                             <div class="free-register">
                             {{#if user}}
-                            <a href="/register"><button class="btn-index">我的账户</button></a>
+								{{#if user.name}}
+                            	<a href="/register"><button class="btn-index">我的账户</button></a>
+								{{else}}
+								<a href="/account/umpay"><button class="btn-index">我的账户</button></a>
+								{{/if}}
                             {{else}}
                             <a href="/register"><button class="btn-index">免费注册</button></a>
                             {{/if}}
@@ -104,7 +108,7 @@
             <a href="/aboutus/news" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
             </a>
-            <h4><img src="/ccc/index/img/article.png"/>行业新闻</h4>
+            <h4><img src="/ccc/index/img/article.png"/>公司报道</h4>
             <ul>
                 {{#each latestPublication:num}}
                 {{#if num+1<6 }}
@@ -141,7 +145,7 @@
             <a href="/aboutus/announcement" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
             </a>
-            <h4><img src="/ccc/index/img/voice.png"/>公告</h4>
+            <h4><img src="/ccc/index/img/voice.png"/>平台公告</h4>
             <ul>
                 {{#each latestOne:num}}
                 {{#if num+1<6 }}
