@@ -2142,7 +2142,7 @@ th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
+  /* border-top: 1px solid #dddddd; */
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -10614,7 +10614,7 @@ a.navbar-brand {
   margin-bottom: 0;
 }
 .table > thead > tr > th {
-  border-bottom-width: 1px;
+  /* border-bottom-width: 1px; */
   padding: 8px 0;
   color: #999;
 }
