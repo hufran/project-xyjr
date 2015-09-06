@@ -110,14 +110,16 @@
             </a>
             <h4><img src="/ccc/index/img/article.png"/>公司报道</h4>
             <ul>
-                {{#latestPublication}}
+                {{#each latestPublication:num}}
+                {{#if num+1<6 }}
                 <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 18}}
                                 {{title.substr(0,18)}}...
                             {{else}}
                                 {{title}}
                             {{/if}}</a>
                 </li>
-                {{/latestPublication}}
+               {{/if}}
+                {{/each}}
             </ul>
         </div>
         
@@ -127,14 +129,16 @@
             </a>
             <h4><img src="/ccc/index/img/video.png"/>媒体报道</h4>
             <ul>
-                {{#latestNews}}
+                {{#each latestNews:num}}
+                {{#if num+1<6 }}
                 <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 18}}
                                 {{title.substr(0,18)}}...
                             {{else}}
                                 {{title}}
                             {{/if}}</a>
                 </li>
-                {{/latestNews}}
+                {{/if}}
+                {{/each}}
             </ul>
         </div>
         <div class="s-left-view" style="margin-right:0;">
@@ -143,14 +147,16 @@
             </a>
             <h4><img src="/ccc/index/img/voice.png"/>平台公告</h4>
             <ul>
-                {{#latestOne}}
+                {{#each latestOne:num}}
+                {{#if num+1<6 }}
                 <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 18}}
                                 {{title.substr(0,18)}}...
                             {{else}}
                                 {{title}}
                             {{/if}}</a>
                 </li>
-                {{/latestOne}}
+            {{/if}}
+                {{/each}}
             </ul>
         </div>
     </div>
