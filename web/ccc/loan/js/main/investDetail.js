@@ -27,7 +27,6 @@ var statusMap = {
 
 
 
-
 var template = statusMap[CC.loan.status];
 
 new Ractive({
