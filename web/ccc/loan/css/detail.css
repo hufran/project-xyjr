@@ -1,5 +1,6 @@
-#main-container{
+#main-container {
 	margin-top: 7px;
+	background-color: #f4fcff;
 }
 
 .current-container {
@@ -89,6 +90,7 @@
 .invest-data-wrapper .investContainer .investTitle .title {
 	font-size: 20px;
 	/*  font-weight: bold;*/
+	
 	float: left;
 	width: 500px;
 	word-break: break-all;
@@ -449,6 +451,11 @@
 	padding: 0px 30px;
 }
 
+.renzheng{
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
 .firstLine .tip {
 	float: left;
 	line-height: 50px;
@@ -508,28 +515,26 @@
 
 .do-invest-wrapper .status .userBlock {
 	height: 260px;
-	/*  margin-top: 5px;*/
-	
 	background-color: #fff;
-	/*  border-radius: 3px;*/
-	
 	font-size: 16px;
 	color: #6b6b6b;
-	padding: 0px 30px 30px 30px;
 	position: relative;
+	overflow: hidden;
 }
 
-.do-invest-wrapper .status .userBlock .leftMoney {
+.do-invest-wrapper .status .leftMoney {
 	font-size: 13px;
-	color: #6b6b6b;
-	text-align: left;
 	margin-bottom: 5px;
-	/*    text-indent: 15px;*/
-	
-	padding-top: 10px;
-	/*    border-bottom: 1px solid #ccc;*/
-	
-	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+	text-align: left;
+	padding-left: 10px;
+	overflow: hidden;
+}
+
+.do-invest-wrapper .status .leftMoney h1 {
+	display: inline;
+	color: #4a4a4a;
+	line-height: 40px;
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney-open {
@@ -542,6 +547,8 @@
 	padding-top: 10px;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 10px;
+	margin-left: 30px;
+	margin-right: 30px;
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney .red {
@@ -556,10 +563,23 @@
 	font-size: 20px;
 }
 
-.do-invest-wrapper .status .userBlock .leftMoney .recharge {
+.do-invest-wrapper .status .leftMoney .recharge {
 	float: right;
-	color: #007ec5;
-	/*    text-decoration: underline;*/
+	color: white;
+	text-decoration: none;
+	width: 56px;
+	background-color: #009ada;
+	border-radius: 3px;
+	text-align: center;
+	line-height: 22px;
+	font-size: 12px;
+	margin-top: 9px;
+	margin-right: 10px;
+	font-family: '微软雅黑';
+}
+
+.do-invest-wrapper .status .leftMoney .recharge:hover {
+	background-color: #015989;
 }
 
 .do-invest-wrapper .status .userBlock .open-button {
@@ -572,7 +592,7 @@
 	line-height: 30px;
 }
 
-.do-invest-wrapper .status .userBlock .open-button:hover{
+.do-invest-wrapper .status .userBlock .open-button:hover {
 	background-color: #015989;
 }
 
@@ -632,10 +652,13 @@
 	border: none;
 }
 
-.do-invest-wrapper .status .userBlock .input .invest-button:hover{
-	background-color: #df6502;
+.do-invest-wrapper .status .userBlock .input  .btn-warning1{
+	width: 323px;
 }
 
+.do-invest-wrapper .status .userBlock .input .invest-button:hover {
+	background-color: #df6502;
+}
 
 .do-invest-wrapper .status .userBlock .left-money {
 	color: #6b6b6b;
@@ -644,16 +667,21 @@
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 10px;
 	margin-top: 13px;
-	/*  margin-top: 15px;*/
 }
 
 .do-invest-wrapper .status .userBlock p {
 	color: #6b6b6b;
 	text-align: left;
 	font-size: 14px;
-	/*  margin-top: 15px;*/
 }
 
+.do-invest-wrapper .status .userBlock .shiming{
+	text-align: center;
+}
+
+.do-invest-wrapper .status .userBlock .rule-max{
+	margin-left: 10px;
+}
 
 .do-invest-wrapper .status .userBlock .loginBtn {
 	height: 44px;
@@ -671,11 +699,9 @@
 	text-decoration: none;
 }
 
-.do-invest-wrapper .status .userBlock .loginBtn:hover{
+.do-invest-wrapper .status .userBlock .loginBtn:hover {
 	background-color: #df6502;
 }
-
-
 
 .do-invest-wrapper .finishBlock {
 	vertical-align: middle;
@@ -1075,7 +1101,7 @@
 	display: block;
 	border-radius: 0;
 	margin-right: 0;
-	color: #4a4a4a;
+	color: #999;
 	width: 132px;
 	height: 52px;
 	line-height: 40px;
@@ -1088,14 +1114,13 @@
 }
 
 .invest-detail-wrapper .nav-tabs .active a,
-.invest-detail-wrapper .nav-tabs .active a:hover,
 .invest-detail-wrapper .nav-tabs .active a:focus {
 	font-size: 16px;
 	border: none;
 	text-align: center;
 	color: #4a4a4a;
 	background: #fff;
-	border-top: 2px solid #0d7cd5;
+	border-top: 2px solid #009ada;
 }
 
 .invest-detail-wrapper .tab-panels {
@@ -1130,7 +1155,7 @@
 	float: left;
 	width: 670px;
 	min-height: 500px;
-    margin-left: 30px;
+	margin-left: 30px;
 }
 
 .invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfo .eventCont {
@@ -1458,6 +1483,18 @@
 	overflow: hidden;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	
+}
+
+#userBlock .calculatorBox1{
+	margin-bottom: 5px;
+	overflow: hidden;
+	margin-top: 20px;
+	margin-left: 10px;
+	padding-right: 40px;
+	padding-left: 0px;
 }
 
 #userBlock .totalInterest {
@@ -1576,7 +1613,7 @@
 
 .calculatorBox .trade-password {
 	height: 40px;
-	width: 285px;
+	width: 280px;
 	padding-left: 10px;
 	font-size: 14px;
 	color: #6b6b6b;
@@ -1596,9 +1633,10 @@
 	float: right;
 }
 
-#userBlock .leftMoney-open .recharge button:hover{
+#userBlock .leftMoney-open .recharge button:hover {
 	background-color: #df6502;
 }
-.controler-title{
-    font-size: 28px;
+
+.controler-title {
+	font-size: 28px;
 }
