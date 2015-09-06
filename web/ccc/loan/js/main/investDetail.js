@@ -456,6 +456,7 @@ $('.investInput')
     });
 
 loanService.getLoanProof(CC.loan.requestId, function (imgs) {
+    console.log(imgs);
     var relateDataRactive = new Ractive({
         // insurance 担保
         el: ".insurance-wrapper",

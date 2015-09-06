@@ -14,7 +14,7 @@
 </div>
 -->
 
-<p class="controler-title">企业认证图片</p>
+<p class="controler-title">风控认证图片</p>
 
 <div class="controler">
     {{#if imgs.length > 4}}
@@ -36,19 +36,7 @@
                 </div>
             </div>
             {{/each}}
-            
-			{{#each imgs:i}} 
-            <div class="item {{#if i===0}} active {{/if}}">
-                <div class="row">
-                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;width:350px;">
-                        <a  on-click="begin-big-pic" class="thumbnail-border"  style="float:left">
-                            <img src="{{imgs[i].uri}}" style="width:350px;">
-                        </a>
-                        
-                    </div>
-                </div>
-            </div>
-            {{/each}}
+         
         </div>
 		  
             <!-- Controls -->
