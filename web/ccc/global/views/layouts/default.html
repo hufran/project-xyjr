@@ -40,6 +40,7 @@
 <meta name="Description" content="{{description}}">
 
 <!-- 导航开始 -->
+
 <div class="s-header" id="s-header-height">
 
     <div class="s-header-info" id="nav-color">
@@ -50,17 +51,21 @@
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
             <img class="erweima erweima-act2" src="/ccc/global/img/erweima.png"/>
             {{#if user}}
-            {{#if !user.enterprise}}
-                {{#if user.name}}
-                <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
-                {{else}}
-                <a href="/account/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
-                {{/if}}
-            {{else}}
-                <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
-            {{/if}}
+            	{{#if !user.enterprise}}
+					{{#if user.name}}
+					<a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+					{{else}}
+					<a href="/account/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
+					{{/if}}
+            	{{else}}
+                	<a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+            	{{/if}}
             <a href="/logout" class="text" style="color:#333333;margin-right:18px;">|&nbsp;&nbsp;退出</a>
-            <a id='head-ractive-container'  class="text"></a>
+			{{#if user.name}}
+            	<a id='head-ractive-container' style="color:#f58220" class="text">{{user.Name}}</a>
+			{{else}}
+            	<a id='head-ractive-container' style="color:#f58220" class="text">{{user.loginName}}</a>
+			{{/if}}
             {{else}}
             <div class="nav-mobile">
 
@@ -123,7 +128,17 @@
                     <li><a id="touzi" href="/invest/list">我要投资</a></li>
                     <li><a id="jiekuan" href="/applyloan">我要借款</a></li>
                 {{/if}}
-                <li>{{#if user}}<a id="safety" href="/account">我的账户</a>{{else}}<a id="safety" href="/login">我的账户</a>{{/if}}</li>
+                <li>
+					{{#if user}}
+						{{#if user.name}}
+						<a id="safety" href="/account">我的账户</a>
+						{{else}}
+						<a id="safety" href="/account/umpay">我的账户</a>
+						{{/if}}
+					{{else}}
+						<a id="safety" href="/login">我的账户</a>
+					{{/if}}
+				</li>
 
                 <li><a id="help" href="/guide">新手引导</a></li>
                 <li style="margin-left:38px;"><a id="aboutus" href="/aboutus/aboutus" >关于我们</a></li>
