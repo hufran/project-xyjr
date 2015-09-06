@@ -12,6 +12,8 @@ var Chart = require('chart.js/Chart');
 // repayments
 var Plan = require('ccc/global/js/modules/cccRepayments');
 
+var accountService = require('ccc/account/js/main/service/account').accountService;
+
 // create calendar
 var calendar = new Calendar({
     container: '.account-calendar-wrap',
@@ -24,6 +26,14 @@ var setCurrentMonth = function () {
     $currentMonth.text(calendar.getDate('YYYY年M月份'));
 };
 setCurrentMonth();
+
+accountService.getUserInfo(
+    
+    function(o){
+        console.log(o);
+        $(".username").text(o.name);
+    }
+);
 
 // calendar arrow switch
 $('.btn.arrow').on('click', function () {
