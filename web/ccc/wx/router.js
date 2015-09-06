@@ -82,7 +82,7 @@ module.exports = function (router) {
             options.query = {
                 appid: config.weixinmp.appid,
                 redirect_uri: urlPrefix + '/wx/auth/redirect',
-                state: req.query.url || '/h5/account',
+                state: req.query.url || '/account',
                 response_type: 'code',
                 scope: 'snsapi_base',
             };
@@ -147,7 +147,7 @@ module.exports = function (router) {
         res.cookie('ccat', ccat, {
             maxAge: config.loginCookieMaxAge || 30 * 60 * 1000,
         });
-        res.redirect(req.query.url || req.query.state || '/h5/account');
+        res.redirect(req.query.url || req.query.state || '/account');
     }));
 
     wxrequest('POST', '/cgi-bin/menu/create', {
