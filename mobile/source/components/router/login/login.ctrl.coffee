@@ -1,10 +1,10 @@
 
-do (angular) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'LoginCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$timeout, @$location, @$routeParams', class
-            constructor: (@api, @$scope, @$rootScope, @$timeout, @$location, @$routeParams) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q) ->
 
                 @next_path = @$routeParams.next
                 @page_path = @$location.path()
@@ -56,6 +56,12 @@ do (angular) ->
                                     .search 'next', null
 
                     .catch (data) =>
-                        do @error_message_flash
+                        result = _.get data, 'error_description.result'
+
+                        if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
+                            @$window.alert @$scope.msg.DISABLED
+                        else
+                            do @error_message_flash
+
                         @submit_sending = false
                 )
