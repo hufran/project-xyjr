@@ -93,7 +93,7 @@ module.exports = function (router) {
         }
 
         console.log("success");
-        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
+        req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab]) + '?sort' + 'PUBDATE').end().then(function (r) {
             if (r.body.length > 1) {
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                 req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pageSize=10')

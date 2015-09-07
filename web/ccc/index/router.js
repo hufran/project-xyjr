@@ -66,7 +66,7 @@ router.get('/', function (req, res, next) {
     });
     var nowtime=new Date();
     var nowname='';
-    if(nowtime.getHours()>=12&&nowtime.getHours()>18){
+    if(nowtime.getHours()>=12&&nowtime.getHours()<18){
         nowname='下午';
     }else if(nowtime.getHours()>=5&&nowtime.getHours()<12){
         nowname='上午';
