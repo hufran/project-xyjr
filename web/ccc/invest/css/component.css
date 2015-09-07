@@ -276,7 +276,7 @@ hr {
 
 .loanItemWrapper .loanPartOne .loantitle a {
 	text-decoration: none;
-	color: #007ec5;
+	color: #4a4a4a;
 	font-size: 16px;
 }
 /*
@@ -287,7 +287,7 @@ hr {
 
 .loanItemWrapper .loanPartOne .loantitle p {
 	position: absolute;
-	left: 38px;
+	left: 0px;
 	top: 0px;
 	margin: 0;
 	color: white;
