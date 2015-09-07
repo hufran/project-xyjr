@@ -148,6 +148,24 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-bind-card.tmpl.html'
                         resolve:
                             banks: _.ai 'api', (api) -> api.get_available_bank_list()
+
+                            _payment_bank_account: _.ai 'api, $location, $route, $q',
+                                (                        api, $location, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then (user) ->
+                                            return user if user.has_payment_account
+                                            return $q.reject(user)
+                                        .catch (user) ->
+                                            return unless user
+
+                                            switch
+                                                when user.has_payment_account isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/payment/bind-card'
                     }
 
                     .when '/dashboard/invest', {
