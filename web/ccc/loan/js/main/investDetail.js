@@ -269,19 +269,18 @@ setTimeout((function () {
                             couponText = '将使用' + $("#couponSelection").find("option:selected").text();
                         }
                     }
-//					var makeSure = window.confirm('是否确认投资？');
-//					if (makeSure) {
-//						$('form').submit();
-//					}else{
-//						return;
-//					}
-                    Confirm.create({
+					
+					
+					if (document.getElementById('agree').checked == true){
+						$('.agree-error').css('visibility','hidden');
+                    	Confirm.create({
                         msg: '您本次投资的金额为' + num + '元，'+ couponText +'，是否确认投资？',
                         okText: '确定',
                         cancelText: '取消',
   
                         ok: function () {
                             $('form').submit();
+							
 //							var data ={
 //								loadId:CC.user.id,
 //								amount:$('input[name="amount"]').val(),
@@ -320,6 +319,10 @@ setTimeout((function () {
                            $('.dialog').hide();                    
 						}
                     });
+					}else{
+						$('.agree-error').css('visibility','visible');
+						$('.agree-error').html('请先同意奇乐融投资协议');
+					}
                 }
             });
         };
