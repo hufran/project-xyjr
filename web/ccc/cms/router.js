@@ -80,10 +80,12 @@ function formatNews(news) {
 }
 
 function formatDetail(item) {
-    item.pubDate = moment(item.pubDate)
-        .format('YYYY/MM/DD');
+//    item.pubDate = moment(item.pubDate)
+//        .format('YYYY/MM/DD');
+    item.timeRecorded = moment(item.timeRecorded).format('YYYY/MM/DD HH:mm:ss');
     return item;
 }
+
 
 function createList(len) {
     var arr = [];
@@ -93,3 +95,5 @@ function createList(len) {
     return arr;
 }
 };
+
+
