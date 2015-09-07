@@ -455,23 +455,22 @@ $('.investInput')
         showSelect($(this).val());
     });
 
-loanService.getLoanProof(CC.loan.requestId, function (imgs) {
-    console.log(imgs);
+loanService.getLoanProof(CC.loan.LuserId, function (o) {
     var relateDataRactive = new Ractive({
         // insurance 担保
         el: ".insurance-wrapper",
         template: require('ccc/loan/partials/relateDataOnDetail.html'),
 
         data: {
-            imgs: imgs,
+            loanPurpose: o.proofs.LOANPURPOSE,
+            career: o.proofs.CAREER,
             currentIndex: 0,
             selectorsMarginLeft: 0,
-            stageLen: 5,
-            imgLen: imgs.length
+            stageLen: 5
         }
     });
 
-    // 开始大图浏览
+   /* // 开始大图浏览
     relateDataRactive.on('begin-big-pic', function (e) {
         // 开始查看大图
         var index = Number(e.keypath.substr(5));
@@ -486,10 +485,9 @@ loanService.getLoanProof(CC.loan.requestId, function (imgs) {
         popupBigPic.show(options);
         return false;
 
-    });
+    });*/
 
 });
-
 
 $('.nav-tabs > li')
     .click(function () {
