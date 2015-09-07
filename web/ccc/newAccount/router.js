@@ -134,4 +134,37 @@ module.exports = function (router) {
             });
     });
 
+    router.get('/newAccount/invest/*', function (req, res) {
+    	res.render('newAccount/invest', {
+    		title: '奇乐融'
+    	});
+    });
+
+    [
+        "bankCards",
+        "authentication",
+        "password",
+        "userInfo"
+    ].forEach(function (tabName) {
+        router.get('/newAccount/settings/' + tabName, function (req, res) {
+            Promise.join(
+                req.uest(
+                    '/api/v2/user/MYSELF/authenticates'
+                )
+                .get('body'),
+                req.uest(
+                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .get('body'),
+                function (authenticates, paymentPasswordHasSet) {
+                    res.locals.user.authenticates =
+                        authenticates;
+                    res.locals.user.paymentPasswordHasSet =
+                        paymentPasswordHasSet;
+                    res.render('newAccount/settings', {
+                        tabName: tabName,
+                        title: '奇乐融'
+                    });
+                });
+        });
+    });
 }

@@ -1,0 +1,45 @@
+.ftips {
+	text-align: center;
+	color: #4a4a4a;
+	font-size: 14px;
+}
+.account-opened-wrapper {
+	width: 400px;
+	margin: 0 auto;
+}
+.account-info-row {
+	height: 70px;
+}
+label {
+	height: 70px;
+	line-height: 70px;
+	
+}
+.value {
+	width: 310px;
+	height: 45px;
+	line-height: 45px;
+	text-indent: 20px;
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px #cccccc solid;
+}
+p.tips {
+	color: #999999;
+	padding: 3px 65px;
+}
+.error-message {
+	text-align: center;
+	color: red;
+	padding: 10px 0;
+}
+.form-control {
+	height: 45px;
+	line-height: 45px;
+	text-indent: 20px;
+	position: relative;
+	top: 20px;
+}
+.isAu {
+	margin-left: 180px;
+}
