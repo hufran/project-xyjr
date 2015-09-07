@@ -49,6 +49,8 @@ function initailEasyPieChart() {
     // 初始化饼状图
     ///////////////////////////////////////////////////////////
     $(function () {
+        console.log(CC.user);
+        console.log(CC.loan);
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
@@ -218,6 +220,12 @@ setTimeout((function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
+        
+        if(CC.loan.userId===CC.user.userId){
+            showErrors('该标为您本人借款，无法投标 ');
+            return false;
+        }
+        
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
