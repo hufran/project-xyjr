@@ -141,6 +141,7 @@ module.exports = {
                 "name":"账户余额",
                 "key":"my_account"
             },
+/*
             {
                 "name":"菜单",
                 "sub_button":[
@@ -159,7 +160,9 @@ module.exports = {
                     "name":"赞一下我们",
                     "key":"V1001_GOOD"
                 }]
-            }]
+            }
+*/
+            ]
         }
     },
 
