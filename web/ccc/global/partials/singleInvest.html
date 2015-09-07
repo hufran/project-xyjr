@@ -14,12 +14,12 @@
 {{#list}}
 <div class="loanWrapper">
     <div class="event">
-		{{#if title.length>11}}
+		{{#if title.length>18}}
 			<p>{{title}}</p>
 		{{/if}}
         <a href="loan/{{ id }}" class="invest-title">
-            {{#if title.length>11}}
-                {{title.substr(0,11)}}...
+            {{#if title.length>18}}
+                {{title.substr(0,18)}}...
 				{{else}}
 				{{title}}
 				{{/if}}

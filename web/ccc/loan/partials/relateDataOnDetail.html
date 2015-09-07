@@ -1,90 +1,73 @@
-<!--detail页面的 相关资料部分-->
-<!--  {{JSON.stringify(imgs)}}-->
-{{#if imgLen}}
-
-<!--
-<div class="insurance">
-    <a href="#">
-        <img src="{{ imgs[currentIndex].uri }}" 
-            alt="{{ imgs[currentIndex].content }}" 
-            class="preview"
-            on-click="begin-big-pic" />
-    </a>
-    <div class="insurance-intro">{{ imgs[currentIndex].content }}</div>    
-</div>
--->
-
+{{#if career.length}}
 <p class="controler-title">企业认证图片</p>
 
 <div class="controler">
-    {{#if imgs.length > 4}}
-        <a href="#" class="left" on-click="left-selector"></a>
-    {{/if}}
-      <div id="carousel-com" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
-        <!-- Wrapper for slides -->
+    <div id="carousel-com-career" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner" role="listbox">
+            {{#career}}
+            <div class="item {{#if @index===0}} active {{/if}}">
+                <div class="row">
+                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;width:350px;">
+                        <a on-click="begin-big-pic" class="thumbnail-border" style="float:left">
+                            <img src="{{uri}}" style="width:350px;">
+                        </a>
 
-            {{#each imgs:i}} 
-            <div class="item {{#if i===0}} active {{/if}}">
-                <div class="row">
-                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;width:350px;">
-                        <a  on-click="begin-big-pic" class="thumbnail-border"  style="float:left">
-                            <img src="{{imgs[i].uri}}" style="width:350px;">
-                        </a>
-                        
                     </div>
                 </div>
             </div>
-            {{/each}}
-            
-			{{#each imgs:i}} 
-            <div class="item {{#if i===0}} active {{/if}}">
-                <div class="row">
-                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;width:350px;">
-                        <a  on-click="begin-big-pic" class="thumbnail-border"  style="float:left">
-                            <img src="{{imgs[i].uri}}" style="width:350px;">
-                        </a>
-                        
-                    </div>
-                </div>
-            </div>
-            {{/each}}
+            {{/career}} 
         </div>
-		  
-            <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-com" role="button" data-slide="prev" style="width:10%;">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-com" role="button" data-slide="next" style="width:10%;">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-          </div>
 
-    
-    
-<!--
-    <div class="selectors-wrapper">
-        <ul class="selectors" style="{{#selectorsMarginLeft}} margin-left: {{ selectorsMarginLeft }}px; {{/}}">
-            {{#each imgs}}
-                <li class="selector {{#if currentIndex === @index}}active{{/if}}">
-                    <a href="#">
-                        <img src="{{uri}}" 
-                            alt="{{content}}"
-                            on-click="selector-click" />
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
+        <a class="left carousel-control" href="#carousel-com-career" role="button" data-slide="prev" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-com-career" role="button" data-slide="next" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
--->
-    {{#if imgs.length > 4}}
-        <a href="#" class="right" on-click="right-selector"></a>
-    {{/if}}
 </div>
+
 {{ else }}
-    <div style="text-align:center">
-        暂无相关资料
+<div style="text-align:center">
+    暂无相关资料
+</div>
+{{/if}}
+
+{{#if loanPurpose.length}}
+<p class="controler-title">风控认证图片</p>
+
+<div class="controler">
+    <div id="carousel-com-loan" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
+        <div class="carousel-inner" role="listbox">
+            {{#loanPurpose}}
+            <div class="item {{#if @index===0}} active {{/if}}">
+                <div class="row">
+                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;width:350px;">
+                        <a on-click="begin-big-pic" class="thumbnail-border" style="float:left">
+                            <img src="{{uri}}" style="width:350px;">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            {{/loanPurpose}} 
+        </div>
+
+        <a class="left carousel-control" href="#carousel-com-loan" role="button" data-slide="prev" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-com-loan" role="button" data-slide="next" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
+</div>
+
+{{ else }}
+<div style="text-align:center">
+    暂无相关资料
+</div>
 {{/if}}

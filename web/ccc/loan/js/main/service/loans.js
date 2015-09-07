@@ -6,9 +6,9 @@
 'use strict';
 
 exports.loanService = {
-    getLoanProof: function(requestId,next) {
+    getLoanProof: function(userId,next) {
         request
-            .get('/api/v2/loan/request/'+ requestId + '/proofs')
+            .get('/api/v2/user/'+ userId + '/certificates/proofs')
             .end()
             .then(function (res) {
                 next(res.body);
