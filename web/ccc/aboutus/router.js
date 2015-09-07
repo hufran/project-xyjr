@@ -17,7 +17,7 @@ module.exports = function (router) {
             notice:'PUBLICATION'
         };
         var nameMap = {
-            aboutus: '奇乐融简介',
+            aboutus: '平台简介',
             background: '股东背景',
             team: '团队介绍',
             partner: '合作机构',
@@ -32,7 +32,7 @@ module.exports = function (router) {
         };
 
         var indexMap = {
-            aboutus: '平台简介',
+            aboutus: '奇乐融简介',
             background: '股东背景',
             team: '团队介绍',
             partner: '合作机构',
@@ -47,7 +47,7 @@ module.exports = function (router) {
         };
 
         var tabs = [{
-            text: '平台简介',
+            text: '奇乐融简介',
             url: '/aboutus/aboutus'
         }, {
             text: '股东背景',
