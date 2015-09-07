@@ -8,6 +8,13 @@
 			<p>{{title}}</p>
 			{{/if}}
 
+<!--
+			<a href="/loan/{{ id }}" class="invest-title" style="color:#4a4a4a;">
+				{{#if title.length>11}}
+				{{title.substr(0,10)}}...
+			</a>
+-->
+
             <a href="/loan/{{ id }}" class="invest-title" {{#if loanRequest.productKey==="LTB"}}style="color:#4a4a4a"{{elseif loanRequest.productKey==="LXY"}}style="color:#4a4a4a"{{else}}style="color:#4a4a4a"{{/if}}>
 				{{#if title.length>14}}
                 {{title.substr(0,14)}}...
