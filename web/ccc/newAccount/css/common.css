@@ -160,6 +160,9 @@
 	text-align: left;
 	margin-left: 60px;
 }
+.nav-li .nav-toggle-menu .active {
+	border-left: 4px #009ada solid;
+}
 .space-40 {
 	height: 40px;
 }
@@ -171,4 +174,52 @@
 }
 .space-10 {
 	height: 10px;
+}
+table thead tr {
+	height: 40px;
+	background: #eeeeee;
+}
+table thead tr th {
+	border: 0!important;
+	font-size: 14px!important;
+	color: #4a4a4a!important;
+	font-family: '冬青黑体简体中文'!important;
+}
+table tbody tr td {
+	padding: 0;
+	height: 69px;
+	border-bottom: 1px #eeeeee solid;
+	font-size:14px!important;
+	color: #4a4a4a;
+	font-family: '冬青黑体简体中文';
+}
+.ccc-paging {
+	text-align: center;
+}
+.ccc-paging a {
+	padding: 8px 11px;
+	border: 1px #eeeeee solid;
+	text-decoration: none;
+	background-color: #fefefe;
+	font-size: 14px;
+	color: #4a4a4a;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.ccc-paging span {
+	display: inline-block;
+	width: 31px;
+	height: 31px;
+	line-height: 31px;
+	text-align: center;
+	font-size: 14px;
+	color: #4a4a4a;
+	border: 1px #eeeeee solid;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.ccc-paging .current {
+	background-color: #0096de;
+	color: #fff;
+	border: 1px #0096de solid;
 }
