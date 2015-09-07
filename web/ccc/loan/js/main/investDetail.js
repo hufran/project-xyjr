@@ -463,38 +463,50 @@ $('.investInput')
         showSelect($(this).val());
     });
 
-loanService.getLoanProof(CC.loan.LuserId, function (o) {
-    var relateDataRactive = new Ractive({
-        // insurance 担保
-        el: ".insurance-wrapper",
-        template: require('ccc/loan/partials/relateDataOnDetail.html'),
+loanService.getLoanProof(CC.loan.requestId, function (r1) {
+    loanService.getCareerProof(CC.loan.LuserId, function (r2) {
+        var relateDataRactive = new Ractive({
+            // insurance 担保
+            el: ".insurance-wrapper",
+            template: require('ccc/loan/partials/relateDataOnDetail.html'),
 
-        data: {
-            loanPurpose: o.proofs.LOANPURPOSE,
-            career: o.proofs.CAREER,
-            currentIndex: 0,
-            selectorsMarginLeft: 0,
-            stageLen: 5
-        }
+            data: {
+                loanPurpose: r1,
+                career: r2.proofs.CAREER,
+                currentIndex: 0,
+                selectorsMarginLeft: 0,
+                stageLen: 5
+            }
+        });
+
+        relateDataRactive.on('begin-big-pic-career', function (e) {
+            var index = Number(e.keypath.substr(5));
+            var options = {
+                imgs: r2.proofs.CAREER,
+                currentIndex: index,
+                selectorsMarginLeft: 0,
+                stageLen: 5,
+                imgLen: r2.proofs.CAREER.length
+            };
+            popupBigPic.show(options);
+            return false;
+
+        });
+        
+        relateDataRactive.on('begin-big-pic-loan', function (e) {
+            var index = Number(e.keypath.substr(5));
+            var options = {
+                imgs: r1,
+                currentIndex: index,
+                selectorsMarginLeft: 0,
+                stageLen: 5,
+                imgLen: r1.length
+            };
+            popupBigPic.show(options);
+            return false;
+
+        });
     });
-
-   /* // 开始大图浏览
-    relateDataRactive.on('begin-big-pic', function (e) {
-        // 开始查看大图
-        var index = Number(e.keypath.substr(5));
-
-        var options = {
-            imgs: imgs,
-            currentIndex: index,
-            selectorsMarginLeft: 0,
-            stageLen: 5,
-            imgLen: imgs.length
-        };
-        popupBigPic.show(options);
-        return false;
-
-    });*/
-
 });
 
 $('.nav-tabs > li')

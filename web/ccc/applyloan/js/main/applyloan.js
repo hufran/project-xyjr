@@ -106,16 +106,16 @@ var v = $("#loanForm").validate({
     },
     messages: {
         companyName: {
-            required: "请输入您的公司名称"
+            required: "输入企业名称"
         },
         organizing: {
             required: "请输入组织机构代码"
         },
         personName: {
-            required: "请输入您的名字"
+            required: "输入联系人姓名"
         },
         mobilePhone: {
-            required: "请输入您的手机号",
+            required: "输入联络手机号",
             minlength: "手机号码为11位",
             maxlength: "手机号码为11位"
         },
