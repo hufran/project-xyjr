@@ -100,7 +100,7 @@ function init (type) {
 	                o[i].displayName = o[i].couponPackage.displayName;
 	                o[i].parValue = o[i].couponPackage.parValue;
 	                o[i].type = o[i].couponPackage.type;
-	                o[i].typeKey = this.type[o[i].couponPackage.type];
+	                o[i].typeKey = o[i].couponPackage.displayName;
 	                o[i].canuse = false;
 	                if (o[i].type === 'CASH') {
 	                    if (o[i].status === 'INITIATED' || o[i].status === 'PLACED') {

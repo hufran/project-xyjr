@@ -1,0 +1,174 @@
+* {
+	font-family: '冬青黑体简体中文';
+}
+.account-wrapper {
+	width: 100%;
+	height: 100%;
+	background-color: #f4fcff;
+	border-top: 1px #d5dcdf solid;
+}
+.account-container {
+	width: 1100px;
+	min-height: 748px;
+	margin: 0 auto;
+	margin-bottom: 220px;
+	background-color: #fff;
+	border: 1px #eaf2f5 solid;
+}
+.account-nav {
+	width: 170px;
+	min-height: 748px;
+	float: left;
+	border-right: 1px #cccccc solid;
+}
+.account-content-wrapper {
+	width: 928px;
+	height: 100%;
+	float: left;
+}
+.account-content {
+	width: 870px;
+	margin: 0 auto;
+}
+.nav-wrapper .nav-li {
+	width: 100%;
+	min-height: 50px;
+	line-height: 50px;
+	text-align:  center;
+}
+.nav-wrapper .nav-li a {
+	text-decoration: none;
+	font-family: '冬青黑体简体中文';
+	font-size: 14px;
+	color: #999999;
+}
+.nav-recharge {
+	height: 80px;
+}
+.nav-recharge .nav-recharge-btn {
+	margin: 0 auto;
+	width: 100px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: #f58220;
+	color: #fff;
+	line-height: 40px;
+	text-align: center;
+	font-size: 20px;
+	font-family: '冬青黑体简体中文';
+}
+.nav-li span {
+	display: block;
+	float: left;
+	height: 50px;
+}
+.nav-li .icon-home {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-home.png) no-repeat center right;
+}
+.nav-li .icon-invest {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-invest.png) no-repeat center right;
+}
+.nav-li .icon-fund {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-fund.png) no-repeat center right;
+}
+.nav-li .icon-account {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-account.png) no-repeat center right;
+}
+.nav-li .icon-coupon {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-coupon.png) no-repeat center right;
+}
+.nav-li .icon-friend {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-friend.png) no-repeat center right;
+}
+.nav-li .icon-message {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-message.png) no-repeat center right;
+}
+.nav-li .nav-text {
+	width: 75px;
+	text-align: left;;
+}
+.nav-li .nav-toggle-btn {
+	cursor: pointer;
+	width: 16px;
+	background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
+}
+.nav-li .icon-home-active {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-home-active.png) no-repeat center right;
+}
+.nav-li .icon-invest-active {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-invest-active.png) no-repeat center right;
+}
+.nav-li .icon-fund-active {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-fund-active.png) no-repeat center right;
+}
+.nav-li .icon-account-active {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-account-acitve.png) no-repeat center right;
+}
+.nav-li .icon-coupon-active {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-coupon-active.png) no-repeat center right;
+}
+.nav-li .icon-friend-active {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-friend-active.png) no-repeat center right;
+}
+.nav-li .icon-message-active {
+	width: 52px;
+	margin-right: 8px;
+	background: url(/ccc/newAccount/img/icon-message-active.png) no-repeat center right;
+}
+.nav-li .nav-text {
+	width: 75px;
+	text-align: left;;
+}
+.nav-li .nav-text-active a {
+	color: #009ada;
+	font-weight: 300;
+}
+.nav-li .nav-toggle-btn {
+	cursor: pointer;
+	width: 16px;
+	background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
+}
+.nav-li .nav-toggle-menu li a {
+	display: block;
+	width: 75px;
+	text-align: left;
+	margin-left: 60px;
+}
+.space-40 {
+	height: 40px;
+}
+.space-30 {
+	height: 30px;
+}
+.space-20 {
+	height: 20px;
+}
+.space-10 {
+	height: 10px;
+}

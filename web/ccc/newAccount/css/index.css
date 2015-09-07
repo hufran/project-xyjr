@@ -1,0 +1,110 @@
+* {
+	font-family: '冬青黑体简体中文';
+}
+.home-topnav {
+	height: 147px;
+	border-bottom: 1px #cccccc solid;
+}
+.home-top-container {
+	height: 80px;
+}
+.home-interest {
+	height: 100%;
+	width: 239px;
+	float: left;
+	color: #f58220;
+	border-right: 1px #ccc solid;
+}
+.home-total {
+	height: 100%;
+	width: 390px;
+	float: left;
+}
+.home-avaliable {
+	height: 100%;
+	width: 239px;
+	float: left;
+	border-left: 1px #ccc solid;
+}
+.home-top-container .home-tab-amount {
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	font-family: '冬青黑体简体中文';
+	font-size: 36px;
+}
+.home-top-container .home-tab-info {
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	font-family: '冬青黑体简体中文';
+	font-size: 14px;
+	color: #4a4a4a;
+}
+.home-recharge-btn {
+	float: right;
+	width: 80px;
+	height: 30px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	font-size: 16px;
+	background-color: #f58220;
+	border: 1px #f58220 solid;
+}
+.home-withdraw-btn {
+	float: right;
+	margin-right: 30px;
+	margin-left: 20px;
+	width: 80px;
+	height: 30px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 30px;
+	color: #f58220;
+	font-size: 16px;
+	border: 1px #f58220 solid;
+	background-color: #fff;
+}
+.home-invest-top-wrapper {
+	height: 36px;
+}
+.home-invest-top {
+	width: 130px;
+	height: 36px;
+	text-align: center;
+	line-height: 36px;
+	color: #4a4a4a;
+	font-size: 20px;
+	border-bottom: 4px #009ada solid;
+}
+.repay-plan-wp {
+	display: none;
+}
+.home-invest-container table thead tr{
+	height: 40px;
+	background-color: #eeeeee;
+}
+.home-invest-container table thead tr th {
+	color: #4a4a4a;
+	border: none!important;
+	font-size: 14px;
+}
+.home-invest-container table tbody tr {
+	height: 69px;
+	border-top: none;
+}
+.home-invest-container table tbody tr td {
+	border-top: none;
+	font-size: 14px;
+	color: #4a4a4a;
+	border-bottom: 1px #eeeeee solid;
+}
+.loan-tit {
+	display: block;
+	color: #4a4a4a;
+	margin-right:5px;
+}
