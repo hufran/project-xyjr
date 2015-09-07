@@ -4,12 +4,20 @@
 <div class="loanItemWrapper" {{#if status === 'SCHEDULED' }} style="height:85px"{{/if}}>
     <div class="loanPartOne">
         <div class="loantitle">
-			{{#if title.length>11}}
+			{{#if title.length>14}}
 			<p>{{title}}</p>
 			{{/if}}
-            <a href="/loan/{{ id }}" class="invest-title" style="color:#4a4a4a;">
+
+<!--
+			<a href="/loan/{{ id }}" class="invest-title" style="color:#4a4a4a;">
 				{{#if title.length>11}}
-                {{title.substr(0,10)}}...
+				{{title.substr(0,10)}}...
+			</a>
+-->
+
+            <a href="/loan/{{ id }}" class="invest-title" {{#if loanRequest.productKey==="LTB"}}style="color:#4a4a4a"{{elseif loanRequest.productKey==="LXY"}}style="color:#4a4a4a"{{else}}style="color:#4a4a4a"{{/if}}>
+				{{#if title.length>14}}
+                {{title.substr(0,14)}}...
 				{{else}}
 				{{title}}
 				{{/if}}
@@ -50,7 +58,7 @@
         {{/if}} 
         {{#if status === 'FINISHED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
-            <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
+            <div class="investbtn" style="background:lightgrey; color: #fff">已取消</div>
         </a>
         {{/if}}
         {{#if status === 'FAILED'}}

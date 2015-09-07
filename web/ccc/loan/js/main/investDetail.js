@@ -49,6 +49,8 @@ function initailEasyPieChart() {
     // 初始化饼状图
     ///////////////////////////////////////////////////////////
     $(function () {
+        console.log(CC.user);
+        console.log(CC.loan);
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
@@ -218,6 +220,12 @@ setTimeout((function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
+        
+        if(CC.loan.userId===CC.user.userId){
+            showErrors('该标为您本人借款，无法投标 ');
+            return false;
+        }
+        
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
@@ -458,40 +466,51 @@ $('.investInput')
         showSelect($(this).val());
     });
 
-loanService.getLoanProof(CC.loan.requestId, function (imgs) {
-    var relateDataRactive = new Ractive({
-        // insurance 担保
-        el: ".insurance-wrapper",
-        template: require('ccc/loan/partials/relateDataOnDetail.html'),
+loanService.getLoanProof(CC.loan.requestId, function (r1) {
+    loanService.getCareerProof(CC.loan.LuserId, function (r2) {
+        var relateDataRactive = new Ractive({
+            // insurance 担保
+            el: ".insurance-wrapper",
+            template: require('ccc/loan/partials/relateDataOnDetail.html'),
 
-        data: {
-            imgs: imgs,
-            currentIndex: 0,
-            selectorsMarginLeft: 0,
-            stageLen: 5,
-            imgLen: imgs.length
-        }
+            data: {
+                loanPurpose: r1,
+                career: r2.proofs.CAREER,
+                currentIndex: 0,
+                selectorsMarginLeft: 0,
+                stageLen: 5
+            }
+        });
+
+        relateDataRactive.on('begin-big-pic-career', function (e) {
+            var index = Number(e.keypath.substr(5));
+            var options = {
+                imgs: r2.proofs.CAREER,
+                currentIndex: index,
+                selectorsMarginLeft: 0,
+                stageLen: 5,
+                imgLen: r2.proofs.CAREER.length
+            };
+            popupBigPic.show(options);
+            return false;
+
+        });
+        
+        relateDataRactive.on('begin-big-pic-loan', function (e) {
+            var index = Number(e.keypath.substr(5));
+            var options = {
+                imgs: r1,
+                currentIndex: index,
+                selectorsMarginLeft: 0,
+                stageLen: 5,
+                imgLen: r1.length
+            };
+            popupBigPic.show(options);
+            return false;
+
+        });
     });
-
-    // 开始大图浏览
-    relateDataRactive.on('begin-big-pic', function (e) {
-        // 开始查看大图
-        var index = Number(e.keypath.substr(5));
-
-        var options = {
-            imgs: imgs,
-            currentIndex: index,
-            selectorsMarginLeft: 0,
-            stageLen: 5,
-            imgLen: imgs.length
-        };
-        popupBigPic.show(options);
-        return false;
-
-    });
-
 });
-
 
 $('.nav-tabs > li')
     .click(function () {
