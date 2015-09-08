@@ -3,14 +3,16 @@ do (_, angular) ->
 
     angular.module('controller').controller 'LoginCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @$http', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @$http) ->
 
                 @next_path = @$routeParams.next
                 @page_path = @$location.path()
 
                 @submit_sending = false
                 @flashing_error_message = false
+
+                do @get_banner
 
 
             error_message_flash: ->
@@ -20,6 +22,13 @@ do (_, angular) ->
                 @timer = @$timeout (=>
                     @flashing_error_message = false
                 ), 2000
+
+
+            get_banner: ->
+
+                @$http.get '/api/v2/cms/category/IMAGE/name/%E6%B3%A8%E5%86%8C', cache: true
+                    .then (response) =>
+                        @$scope.banner = src: _.get response, 'data[0].content'
 
 
             login: (store = {}) ->
