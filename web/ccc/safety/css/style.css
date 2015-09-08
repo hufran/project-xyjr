@@ -1,0 +1,102 @@
+
+#main-container{
+    background: #f4fcff;
+    padding-bottom: 66px;
+    overflow: hidden;
+}
+.heart-control-box img{
+    float: left;
+}
+.heart-control-box{
+    margin:0px 100px 90px 40px;
+    overflow: hidden;
+}
+.heart-pay-box{
+    margin-left: 86px;
+    margin-right: 74px;
+}
+.heart-pay-box img{
+    float:right;
+}
+
+.heart-control{
+    float: right;
+    width: 510px;
+}
+.heart-pay{
+    float: left;
+}
+.heart-pay .heart-pay-title{
+    margin-top: 44px;
+}
+.heart-control h2{
+    font-size: 24px;
+    color:#4a4a4a;
+    line-height: 24px;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+.heart-control p{
+    font-size: 18px;
+    color:#999;
+    line-height: 38px;
+}
+.heart-banner img{
+    position: absolute;
+    left: 50%;
+    margin-left: -750px;
+}
+.heart-banner{
+    height: 160px;
+}
+.heart-content-box{
+    width: 1100px;
+    margin: 0px auto;
+    height: 1880px;
+     background: #fff;
+     padding-top: 30px;
+}
+.regist-rightnow{
+    width:360px;
+    height:64px;
+    color:white;
+    background: #f58220;
+    border: none;
+    border-radius: 5px;
+    font-size: 30px;
+    margin: 0 auto;
+}
+.regist-rightnow-btn{
+    margin-left: 370px;
+}
+.transparent-box{
+    height:1540px;
+}
+.transparent-house img{
+    float: left;
+}
+.transparent-paper img{
+    float: right;
+}
+.transparent-house{
+    margin-left: 66px;
+    margin-right: 40px;
+    height: 300px;
+    margin-bottom: 30px;
+}
+.transparent-house-content{
+    float: right;
+    width: 522px;
+}
+.transparent-paper-content{
+    float: left;
+}
+.transparent-house-content p{
+    font-size: 18px;
+    color:#999;
+    line-height: 38px;
+    margin-top: 120px;
+}
+.transparent-paper-content p{
+    margin-top: 70px;
+}

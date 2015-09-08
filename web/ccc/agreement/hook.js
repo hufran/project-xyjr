@@ -4,11 +4,15 @@ module.exports = function (hook) {
     hook.get('/agreement/mobile/:param', ['data', 'locals', 'params', 'redirect'], function (data, locals, params, redirect) {
         var cateMap = {
             regist:'DECLARATION',
-            protocol:'DECLARATION'
+            protocolltb:'DECLARATION',
+            protocollxy:'DECLARATION',
+            protocol:'DECLARATION',
         };
         
         var tabMap = {
             regist: '奇乐融用户注册协议',
+            protocolltb: '乐投保用户投资服务协议',
+            protocollxy: '乐享盈用户投资服务协议',
             protocol:'用户投资服务协议'
         };
     

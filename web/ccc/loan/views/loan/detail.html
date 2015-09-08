@@ -53,7 +53,11 @@
                                     已投人数 : {{loans.bidNumber}}人<span class="leftAmount">剩余可投金额：<span>{{loans.leftAmount}}</span>{{loans.amountUnit}}</span></div>
                             </li>
                             <li>
-                                <p><a class="protocol" target="_blank" href="/agreement/mobile/protocol">借款协议/合同文本</a></p>
+                                <p>
+                                   
+                                    <a class="protocol" target="_blank" href="/agreement/mobile/protocol">《借款合同文本》</a>
+                                 
+                                </p>
                             </li>
 
                         </ul>                        
@@ -224,7 +228,8 @@
         totalInterest: {{totalInterest || 0}},
         serverDate: {{loans.serverDate}},
         userId: '{{loans.userId}}',
-        LuserId:'{{loans.loanRequest.userId}}'
+        LuserId:'{{loans.loanRequest.userId}}',
+        productKey:'{{loans.loanRequest.productKey}}'   
     };
 </script>
 <script src="/ccc/loan/js/main/investDetail.js"></script>

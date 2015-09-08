@@ -341,58 +341,7 @@
     margin-top: 46px;
     margin-bottom: 24px;
 }
-/*
-.invests-list-wrapper{
-    width: 100%;
-    overflow: hidden;
-    width:1100px;
-    float: left;
-    overflow: hidden;
-    height: 304px;
-    margin-bottom: 54px;
-}
-.invest-list{
-    width: 230px;
-    height:306px;
-}
-.invests-list-wrapper-box{
-    width:1100px;
-}
-.invests-list-wrapper img{
-   
-    margin-top: 142px;
-}
-.baby-date{
-    color:#6e6e6e;
-    font-size: 16px;
-    line-height: 16px;
-    text-align: center;
-    margin-top: 12px;
-    margin-bottom: 12px;
-}
-.carousel-control left{
-    background: #f3f3f3;
-}
-.media-t{
-    color:#333333;
-    font-size: 15px;
-    line-height: 20px;
-}
-.media-content p{
-    margin-left: 12px;
-    margin-right: 12px;
-     padding-top: 10px;
-}
-.media-content{
-    width: 264px;
-    height: 178px;
-    background: #f8f8f8;
-}
-.media-c{
-    color:#999999;
-    font-size: 12px;
-}
-*/
+
 .strengthProtectBox{
     width: 1100px;
     margin: auto;
@@ -400,36 +349,31 @@
 }
 .strengthProtect{
     float: left;
-     margin-left:65px;
-    margin-right: 65px;
-    margin-bottom: 30px;
+    margin-right: 27px;
+    margin-top: 30px;
 }
 .strengthProtectBg{
 /*    overflow: hidden;*/
     color: #ffffff;
-    height: 267px;
+    height: 180px;
 }
-.strengthProtect h1{
-    color:#4a4a4a;
-    font-size: 24px;
-    line-height: 24px;
-    text-align: center;
-    width: 230px;
-    margin-bottom: 8px;
-}
+
 .strengthProtect h2{
-    color:#999999;
+   color:#4a4a4a;
+    font-size: 24px;
+    line-height: 42px;
+}
+.strengthProtect p{
+   color:#999;
     font-size: 14px;
-    line-height: 14px;
-    text-align: center;
-    width: 120px;
-    line-height: 20px;
-	margin: auto;
 }
 .strengthProtect img{
-    margin-left: 56px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+   float: left;
+}
+.strengthProtect-content{
+   float: left;
+    width: 154px;
+    margin-left: 20px;
 }
 .productBox{
     width: 1100px;
@@ -515,4 +459,5 @@
     margin: 0 auto;
     position: relative;
 }
+
 
