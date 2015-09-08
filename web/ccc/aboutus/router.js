@@ -47,7 +47,7 @@ module.exports = function (router) {
         };
 
         var tabs = [{
-            text: '奇乐融简介',
+            text: '平台简介',
             url: '/aboutus/aboutus'
         }, {
             text: '股东背景',
@@ -59,7 +59,7 @@ module.exports = function (router) {
             text: '合作机构',
             url: '/aboutus/partner',
         }, {
-            text: '大事记',
+            text: '大 事 记',
             url: '/aboutus/things',
         }, {
             text: '安全保障',

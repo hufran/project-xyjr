@@ -11,6 +11,12 @@
     </div>
     </nav>
 
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服 400-872-7676 解锁。',
+        }">
+    </div>
+
     <div class="page-content">
 
         <div class="icon-doll" x-gyro-comment><img src="assets/image/login-doll.png"></div>
@@ -53,16 +59,18 @@
                     <a href="register">免费注册</a>
                 </p>
 
-                <div class="form-group container">
-                    <p class="flash-message alert alert-warning text-center"
-                       ng-class="{ on: self.flashing_error_message }"
-                    >
-                        <param class="glyphicon glyphicon-exclamation-sign">
-                        <strong>用户名</strong> 或 <strong>密码</strong> 不匹配
-                    </p>
+                <div class="flash-message alert alert-warning text-center"
+                   ng-class="{ on: self.flashing_error_message }"
+                >
+                    <param class="glyphicon glyphicon-exclamation-sign">
+                    <strong>用户名</strong> 或 <strong>密码</strong> 不匹配
                 </div>
-            </div>
+        </div>
         </form>
+
+        <p class="container">
+            <img class="img-responsive" ng-src="{{ banner.src }}">
+        </p>
 
     </div>
 

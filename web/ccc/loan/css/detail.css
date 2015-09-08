@@ -90,6 +90,7 @@
 .invest-data-wrapper .investContainer .investTitle .title {
 	font-size: 20px;
 	/*  font-weight: bold;*/
+	color: #009ada;
 	
 	float: left;
 	width: 500px;
@@ -180,6 +181,7 @@
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond .value {
 	margin-left: 66px;
+	color: #4a4a4a;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemThird {
@@ -206,7 +208,7 @@
 	height: 30px;
 	line-height: 30px;
 	margin-left: 34px;
-	color: #232B50;
+	color: #4a4a4a;
 	font-size: 30px;
 	font-weight: bold;
 	font-family: sans-serif, Hiragino Sans GB;
@@ -216,6 +218,7 @@
 	position: relative;
 	font-size: 18px;
 	top: -1px;
+	color: #4a4a4a;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom {
@@ -236,6 +239,7 @@
 	height: 25px;
 	line-height: 25px;
 	font-size: 14px;
+	color: #999;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .protocol {
@@ -250,7 +254,7 @@
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .itemt .leftAmount span {
-	color: #007ec5;
+	color: #009ada;
 	font-size: 18px;
 }
 
@@ -1459,10 +1463,10 @@
 	font-size: 14px;
 	width: 100px;
 	height: 40px;
-	border: 1px solid #007ec5;
+	border: 1px solid #009ada;
 	border-radius: 5px;
 	line-height: 40px;
-	color: #007ec5;
+	color: #009ada;
 	background: #fff;
 }
 
@@ -1470,10 +1474,10 @@
 	font-size: 14px;
 	width: 100px;
 	height: 40px;
-	border: 1px solid #007ec5;
+	border: 1px solid #009ada;
 	border-radius: 5px;
 	line-height: 40px;
-	color: #007ec5;
+	color: #009ada;
 	background: #fff;
 }
 
@@ -1527,7 +1531,7 @@
 }
 
 .percentageNum {
-	color: #007ec5;
+	color: #009ada;
 	position: absolute;
 	margin: 10px 0 0 40px;
 }
@@ -1595,10 +1599,10 @@
 	font-size: 12px;
 	width: 100px;
 	height: 35px;
-	border: 1px solid #007ec5;
+	border: 1px solid #009ada;
 	border-radius: 5px;
 	line-height: 35px;
-	color: #007ec5;
+	color: #009ada;
 	background: #fff;
 	cursor: pointer;
 }

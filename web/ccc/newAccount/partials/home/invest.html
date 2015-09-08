@@ -12,15 +12,15 @@
     <tbody>
         {{#each list}}
         <tr>
-            <td>
+            <td style="text-indent:20px;">
                 <a class="loan-tit" href="/loan/{{loanId}}"
-                target="_blank">{{loanTitle}}</a>
-                <span>利率：{{rate/100}}% &nbsp; 期限：{{Fduration}}</span>
+                target="_blank" style="color:#4a4a4a;text-decoration:none">{{loanTitle}}</a>
+                <span style="position:relative;left:20px;">利率：{{rate/100}}% &nbsp; 期限：{{Fduration}}</span>
             </td>
-            <td>{{Famount}}</td>
-            <td>{{Frepayed}}</td>
-            <td>{{Funrepay}}</td>
-            <td>{{Fstatus}}</td>
+            <td style="color:#f58220">{{Famount}}</td>
+            <td style="color:#f58220">{{Frepayed}}</td>
+            <td style="color:#f58220">{{Funrepay}}</td>
+            <td style="color:#999999">{{Fstatus}}</td>
             <td class="align-center">
 		   		<!--
                 <button class="btn btn-smaller btn-blue-light" on-click="getPlan" data-loaded="false"

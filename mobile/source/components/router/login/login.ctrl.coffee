@@ -1,16 +1,18 @@
 
-do (angular) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'LoginCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$timeout, @$location, @$routeParams', class
-            constructor: (@api, @$scope, @$rootScope, @$timeout, @$location, @$routeParams) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @$http', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @$http) ->
 
                 @next_path = @$routeParams.next
                 @page_path = @$location.path()
 
                 @submit_sending = false
                 @flashing_error_message = false
+
+                do @get_banner
 
 
             error_message_flash: ->
@@ -20,6 +22,13 @@ do (angular) ->
                 @timer = @$timeout (=>
                     @flashing_error_message = false
                 ), 2000
+
+
+            get_banner: ->
+
+                @$http.get '/api/v2/cms/category/IMAGE/name/%E6%B3%A8%E5%86%8C', cache: true
+                    .then (response) =>
+                        @$scope.banner = src: _.get response, 'data[0].content'
 
 
             login: (store = {}) ->
@@ -49,13 +58,19 @@ do (angular) ->
                             return unless @page_path is @$location.path()
 
                             unless @next_path
-                                @$location.path '/dashboard'
+                                @$location.path '/'
                             else
                                 @$location
                                     .path @next_path
                                     .search 'next', null
 
                     .catch (data) =>
-                        do @error_message_flash
+                        result = _.get data, 'error_description.result'
+
+                        if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
+                            @$window.alert @$scope.msg.DISABLED
+                        else
+                            do @error_message_flash
+
                         @submit_sending = false
                 )

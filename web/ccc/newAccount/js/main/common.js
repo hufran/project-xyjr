@@ -9,8 +9,21 @@ var navRactive = new Ractive({
 	},
 	oninit: function () {
 		var location = window.location.pathname.split('/');
-		var tab = location[location.length-1];
-		this.set(tab, true);
+		if (location.length <= 3) {
+			var tab = location[location.length-1];
+			this.set(tab, true);
+		} else {
+			var tab = location[location.length -2];
+			var menu = location[location.length -1];
+			this.set(tab, true);
+			this.set(menu, true);
+			if (tab === 'invest') {
+				this.set('showInvestToggleMenu', true);
+			} else {
+				this.set('showAccountToggleMenu', true);
+			}
+		}
+		
 	}	
 });
 	
