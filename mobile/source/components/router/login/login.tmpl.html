@@ -31,7 +31,7 @@
                            autocomplete="off"
                            autocorrect="off"
                            ng-model="store.username"
-                           placeholder="请输入手机号码"
+                           placeholder="用户名/手机号/邮箱"
                            required
                     >
                 </div>
@@ -59,16 +59,18 @@
                     <a href="register">免费注册</a>
                 </p>
 
-                <div class="form-group container">
-                    <p class="flash-message alert alert-warning text-center"
-                       ng-class="{ on: self.flashing_error_message }"
-                    >
-                        <param class="glyphicon glyphicon-exclamation-sign">
-                        <strong>用户名</strong> 或 <strong>密码</strong> 不匹配
-                    </p>
+                <div class="flash-message alert alert-warning text-center"
+                   ng-class="{ on: self.flashing_error_message }"
+                >
+                    <param class="glyphicon glyphicon-exclamation-sign">
+                    <strong>用户名</strong> 或 <strong>密码</strong> 不匹配
                 </div>
-            </div>
+        </div>
         </form>
+
+        <p class="container">
+            <img class="img-responsive" ng-src="{{ banner.src }}">
+        </p>
 
     </div>
 

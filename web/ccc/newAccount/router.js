@@ -1,6 +1,8 @@
 'use strict';
 module.exports = function (router) {
 
+    var ccBody = require('cc-body');
+	
 	router.get('/newAccount', function (req, res, next) {
         req.url = '/newAccount/';
         next();
@@ -166,5 +168,33 @@ module.exports = function (router) {
                     });
                 });
         });
+    });
+
+    // 修改密码
+    router.post("/newAccount/change_password", ccBody, function (req,
+        res) {
+
+        /*
+        currentPassword:
+        newPassword:
+        passwordConfirm:
+        mobileCaptcha:nhmrx
+        token:16243052-0c4f-4228-b1ad-7b823d637146
+         */
+        console.log(req.body);
+        req.uest.post("/api/v2/user/MYSELF/change_password")
+            .type("form")
+            .send(req.body)
+            .end()
+            .then(function (r) {
+                var result = JSON.parse(r.text);
+                if (result.success) {
+                    res.clearCookie('ccat');
+                    res.json(result);
+                } else {
+                    res.json(result.error[0]);
+                }
+
+            });
     });
 }

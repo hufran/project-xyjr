@@ -22,11 +22,31 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/login', {
                         controller: 'LoginCtrl as self'
                         templateUrl: 'components/router/login/login.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user()
+
+                                        .then ->
+                                            $location.path '/'
+                                            do $q.reject
+
+                                        .catch $q.resolve
                     }
 
                     .when '/register', {
                         controller: 'RegisterCtrl as self'
                         templateUrl: 'components/router/register/register.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user()
+
+                                        .then ->
+                                            $location.path '/'
+                                            do $q.reject
+
+                                        .catch $q.resolve
                     }
 
                     .when '/password', {

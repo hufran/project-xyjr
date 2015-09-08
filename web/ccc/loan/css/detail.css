@@ -624,7 +624,7 @@
 
 .do-invest-wrapper .status .userBlock .input .selectOption select {
 	background: #fff;
-	height: 40px;
+	height: 40px; 
 	color: #6b6b6b;
 	font-size: 14px;
 	width: 280px;
@@ -1664,4 +1664,7 @@
 
 .controler-title {
 	font-size: 28px;
+}
+.protocol{
+    color:#007ec5;
 }

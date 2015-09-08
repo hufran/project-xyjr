@@ -1,3 +1,4 @@
+<!--{{JSON.stringify(loan)}}-->
 {{timeOpen}} {{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"}}
 <div class="firstLine">
     <div class="tip">投资金额 </div>
@@ -77,6 +78,7 @@
     </div>
 </div>
 {{/if}} 
+
 {{#if loan.status == "OPENED"}}
 <div class="status">
     <div class="info">
@@ -127,7 +129,15 @@
                         <input type="submit" class="btn btn-warning invest-button" value="我要投资" />
 						<p class="agree-box">
 							<input type="checkbox" class="agree" checked id="agree"/>
-							<span>我同意<a href="/agreement/mobile/regist" target="_blank">《奇乐融投资协议》</a></span>
+							<span>我同意
+                                    {{#if loan.productKey==="LTB"}}
+                                <a href="/agreement/mobile/protocolltb" target="_blank">《奇乐融投资协议》</a>
+                                   {{elseif loan.productKey==="LXY"}}
+                                 <a href="/agreement/mobile/protocollxy" target="_blank">《奇乐融投资协议》</a>
+                                 {{else}}
+                                 <a href="/agreement/mobile/protocol" target="_blank">《奇乐融投资协议》</a>
+                                 {{/if}}
+                            </span>
 						</p>
 						<p class="agree-error"></p>
                     </div>

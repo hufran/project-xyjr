@@ -2,9 +2,10 @@
 
 var utils = require('ccc/global/js/lib/utils');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
-var accountService = require('ccc/account/js/main/service/account').accountService;
+var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var format = require('@ds/format');
+
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/authentication.html'),

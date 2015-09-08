@@ -6,9 +6,7 @@
 		<div class="account-nav"></div>
 		<div class="account-content-wrapper">
 			<div class="space-30"></div>
-			<div class="space-30"></div>
-			<div class="space-20"></div>
-			<div class="account-content account-account-settings-wrapper-wrapper" id="ractive-container">
+			<div class="account-content account-settings-wrapper" id="ractive-container">
 				加载中...
 			</div>
 		</div>
@@ -19,4 +17,10 @@
 <script src="/ccc/newAccount/js/main/common.js"></script>
 {{#if tabName === 'authentication'}}
 <script src="/ccc/newAccount/js/main/settings/authentication.js"></script>
+{{/if}}
+{{#if tabName === 'password'}}
+<script src="/ccc/newAccount/js/main/settings/password.js"></script>
+{{/if}}
+{{#if tabName === 'bankCards'}}
+<script src="/ccc/newAccount/js/main/settings/bankCards.js"></script>
 {{/if}}

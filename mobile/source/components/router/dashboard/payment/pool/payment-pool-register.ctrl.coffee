@@ -29,7 +29,9 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
+                        @user.info.name = user_name
                         @user.has_payment_account = true
+
                         @$location.path @next_path
 
                     .catch (data) =>
