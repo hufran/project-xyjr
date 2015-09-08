@@ -14,6 +14,7 @@ var applyLoan = new Ractive({
             name: ''
         }
     }
+
 });
 
 $.validator.addMethod("mobile", function (value, element) {
@@ -53,16 +54,16 @@ $.validator.addMethod("checkEmail", function (value, element) {
 var v = $("#loanForm").validate({
     rules: {
         companyName: {
-            required: true,
-            egchinese: true
+          required: true,        
+          egchinese: true          
         },
         organizing: {
             required: true,
             organizing: true
         },
         personName: {
-            required: true,
-            egchinese: true
+          required: true,
+          egchinese: true              
         },
         mobilePhone: {
             required: true,
@@ -206,7 +207,7 @@ $('#sendApplyloan').click(function () {
             $(".loan-content").css('opacity', '0.5');
         } else {
             alert("申请借款失败");
-        }
+        }s
     });
 
 });

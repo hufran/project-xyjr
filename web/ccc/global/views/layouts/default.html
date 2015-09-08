@@ -53,12 +53,12 @@
             {{#if user}}
             	{{#if !user.enterprise}}
 					{{#if user.name}}
-					<a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+					<a href="/newAccount/home" class="text account" style="color:#ff6c08;">我的账户</a>
 					{{else}}
-					<a href="/account/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
+					<a href="/newAccount/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
 					{{/if}}
             	{{else}}
-                	<a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+                	<a href="/newAccount" class="text account" style="color:#ff6c08;">我的账户</a>
             	{{/if}}
             <a href="/logout" class="text" style="color:#6c6c6c;margin-right:18px;">|&nbsp;&nbsp;退出</a>
 			{{#if user.name}}
@@ -131,9 +131,9 @@
                 <li>
 					{{#if user}}
 						{{#if user.name}}
-						<a id="safety" href="/account">我的账户</a>
+						<a id="safety" href="/newAccount/home">我的账户</a>
 						{{else}}
-						<a id="safety" href="/account/umpay">我的账户</a>
+						<a id="safety" href="/newAccount/umpay">我的账户</a>
 						{{/if}}
 					{{else}}
 						<a id="safety" href="/login">我的账户</a>

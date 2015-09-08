@@ -1,0 +1,43 @@
+
+.coupon-content {
+    height: auto;
+    width: 1100px;
+    margin-top: 28px;
+    margin-bottom: 33px;
+	margin-left: 50px;
+}
+
+.coupon-content .coupon-nav-view {
+    position: relative;
+    height: auto;
+    width: 1100px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.coupon-content .coupon-nav-view ul {
+    padding: 10px 0;
+    overflow: hidden;
+}
+.coupon-content .coupon-nav-view ul .selectTitle{
+	width: 100px;
+	color: #000;
+	float: left;
+}
+.coupon-content .coupon-nav-view ul li {
+    width: 50px;
+    text-align: center;
+    color: #6d6c6c;
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin-right: 35px;
+}
+
+.coupon-content .coupon-nav-view ul li:hover,
+.coupon-content .coupon-nav-view ul .selected {
+    background-color: #009ada;
+    color: white;
+	border-radius: 2px;
+}
+
