@@ -31,8 +31,12 @@ do (_, angular) ->
                         @$scope.banner = src: _.get response, 'data[0].content'
 
 
-            login: (store = {}) ->
-                {username, password} = store
+            goto: (new_path) ->
+
+                @$location.path new_path
+
+
+            login: ({username, password}) ->
 
                 unless username and password
                     return do @error_message_flash

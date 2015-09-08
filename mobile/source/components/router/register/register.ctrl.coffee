@@ -70,7 +70,15 @@ do (_, angular) ->
 
                 @submit_sending = true
 
-                (@api.register(password, mobile, mobile_captcha)
+                optional = {referral}
+
+                do (optional, {bind_social_weixin} = @$routeParams) =>
+                    if bind_social_weixin then _.merge optional, {
+                        socialType: 'WEIXIN'
+                        socialId: bind_social_weixin
+                    }
+
+                (@api.register(password, mobile, mobile_captcha, optional)
 
                     .then (data) =>
                         unless data.success is true
