@@ -20,7 +20,17 @@ do (_, angular) ->
 
                 @mobile_verification_code_has_sent = true
 
-                (@api.send_verification_code(mobile, captcha, @captcha.token)
+                (@api.check_mobile(mobile)
+
+                    .then (data) =>
+                        return @$q.reject(data) unless data.success is true
+                        return data
+
+                    .catch (data) =>
+                        @$q.reject error: [message: 'MOBILE_EXISTS']
+
+
+                    .then => @api.send_verification_code(mobile, captcha, @captcha.token)
 
                     .then (data) =>
                         return @$q.reject(data) unless data.success is true
@@ -44,7 +54,7 @@ do (_, angular) ->
                         key = _.get data, 'error[0].message'
                         @$window.alert @$scope.msg[key] or @$scope.msg.UNKNOWN
 
-                        do @fetch_new_captcha
+                        do @fetch_new_captcha if key is 'INVALID_CAPTCHA'
                         @mobile_verification_code_has_sent = false
                 )
 
