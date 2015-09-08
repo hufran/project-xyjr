@@ -49,7 +49,7 @@ do (_, angular) ->
                             return unless @page_path is @$location.path()
 
                             unless @next_path
-                                @$location.path '/dashboard'
+                                @$location.path '/'
                             else
                                 @$location
                                     .path @next_path
