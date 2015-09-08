@@ -79,7 +79,7 @@ router.get('/loan/:id',
                    
                     var result = parseLoan(r.body);
                     result.userId = result.loanRequest.userId;
-                    requestId = result.loanRequest.id;    
+                    result.requestId = result.loanRequest.id;    
                     res.locals.title = '奇乐融';
                     res.locals.description = result.loanRequest.description; 
                     return result;
@@ -116,6 +116,9 @@ router.get('/loan/:id',
         })
     });
 
+router.get('/loan/loanRequest/:requestId/contract/template',function(req,res,next){
+    res.redirect('/api/v2/loan/loanRequest/'+req.params.requestId+'/contract/template');next();
+});
 router.get('/loan/:requestId/proof', function (req, res) {
     res.json(
         req.uest(
