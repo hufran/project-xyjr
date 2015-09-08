@@ -116,7 +116,7 @@
 #main-container .s-login-view .s-login-window a {
   line-height: 46px;
   text-decoration: none;
-  color: #007ec5;
+  color: #009ada;
 }
 #main-container .s-login-view .s-login-window input[type=submit],
 #main-container .s-login-view .s-login-window button {
@@ -185,7 +185,7 @@ p.login-error {
     color:#999999;
 }
  #main-container .s-login-view .s-login-window .needRegister a{
-    color:#007ec5;
+    color:#009ada;
 }
 
 #main-container #loginForm .rememberPassword{
@@ -226,7 +226,7 @@ float:left;
     border-bottom:1px solid #e5e5e5;
     height:45px;
     font-size: 14px;
-    color:#3c3c3c;
+    color:#4a4a4a;
     padding-left: 10px;
 }
 

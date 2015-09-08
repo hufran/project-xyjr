@@ -210,7 +210,8 @@
 }
 .banner-account{
     width:300px;
-    height:350px;
+    height:270px;
+	padding-top: 32px;
     background-image: url(/ccc/index/img/bannerBg.png);
 }
 .qr-code img{
@@ -294,12 +295,11 @@
      margin-top: 30px;
     margin:0 auto;
 }
-.banner-account{
-    padding-top: 80px;
-}
+
 .banner-account－box{
     position: absolute;
-    top:0px;
+    top:50%;
+	margin-top: -135px;
     left:50%;
     margin-left:251px;
 }
@@ -463,6 +463,11 @@
 .productBoxTitle .titleRight a{
 	font-size: 14px;
 	text-decoration: none;
+	color: #999;
+}
+
+.productBoxTitle .titleRight a:hover{
+	color: #4a4a4a;
 }
 
 .s-split-view ul li a{
