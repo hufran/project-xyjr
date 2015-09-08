@@ -13,3 +13,12 @@ _.mixin
 
     fixed_in_2: (num) ->
         _.fixed 2, num
+
+    $compact: _.compact
+    compact: (collection) ->
+        return _.$compact collection unless _.isPlainObject collection
+
+        collection = _.omit collection, _.isUndefined
+        collection = _.omit collection, _.isNull
+        collection = _.omit collection, _.isNaN
+        collection = _.omit collection, (_.partial _.isEqual, '')
