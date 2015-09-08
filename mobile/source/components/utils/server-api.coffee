@@ -273,6 +273,17 @@ do (_, angular, moment, Array) ->
                 }
 
 
+            check_mobile: (mobile) ->
+
+                @$http
+                    .post '/api/v2/users/check/mobile',
+                        @param {mobile}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
             bind_social: (socialType, socialId) ->
 
                 @$http
