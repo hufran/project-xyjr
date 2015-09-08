@@ -13,7 +13,7 @@
 
 .loan-content {
     margin: 56px auto;
-    height: 1246px;
+    height: 1040px;
     width: 1100px;
     font-family: "Microsoft YaHei";
 }
@@ -27,7 +27,7 @@
     width: 778px;
     border: 1px solid #eee;
     background: #fff;
-    padding-bottom: 407px;
+    padding-bottom: 40px;
 }
 
 .loan-title {
@@ -132,7 +132,7 @@
 
 .loan-down .content {
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 187px;
 }
 
 #loanForm label.error {
