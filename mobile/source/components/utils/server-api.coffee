@@ -259,7 +259,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/login/ajax',
-                        @param {loginName, password}
+                        @param {loginName, password, source: 'mobile'}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA
@@ -418,11 +418,13 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            register: (password, mobile, mobile_captcha) ->
+            register: (password, mobile, mobile_captcha, optional = {}) ->
+
+                optional = _.compact optional
 
                 @$http
                     .post '/api/v2/register',
-                        @param {password, mobile, mobile_captcha}
+                        @param _.merge optional, {password, mobile, mobile_captcha}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA
