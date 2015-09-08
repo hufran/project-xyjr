@@ -11,16 +11,16 @@ var applyLoan = new Ractive({
 //        // window.location.href = '/';
 //      }
 //    },
-    data: {
-        // 这里存放有关于注册用户的所有信息
-        captcha: {
-            img: '',
-            token: ''
-        },
-        loan: {
-            name:''
-        }
-    }
+//    data: {
+//        // 这里存放有关于注册用户的所有信息
+//        captcha: {
+//            img: '',
+//            token: ''
+//        },
+//        loan: {
+//            name:''
+//        }
+//    }
 });
 
 // 自定义表单验证
@@ -49,43 +49,43 @@ var v = $("#loanForm").validate({
           required: true,        
           egchinese: true          
         },
-//        organizing:{
-//            required: true,
-//            organizing: true
-//        },
-//        personName: {
-//          required: true,
-//          egchinese: true              
-//        },
-//        mobilePhone: {
-//          required: true,
-//          minlength: 11,
-//          maxlength: 11,
-//          mobile:true
-//        },
-//        companyAddress: {
-//          required: true
-//        },
-//        loanMoney: {
-//          required: true
-//        },
-//        guaranteeType: {
-//          required: true
-//        },
-//        deadline: {
-//          required: true
-//        },
-//        contactAddress: {
-//          required: true
-//        },
-//        describe : {
-//          required: true
-//        },
-//        confirmCode: {
-//          required: true,
-//          minlength: 4,
-//          maxlength: 4
-//        }
+        organizing:{
+            required: true,
+            organizing: true
+        },
+        personName: {
+          required: true,
+          egchinese: true              
+        },
+        mobilePhone: {
+          required: true,
+          minlength: 11,
+          maxlength: 11,
+          mobile:true
+        },
+        companyAddress: {
+          required: true
+        },
+        loanMoney: {
+          required: true
+        },
+        guaranteeType: {
+          required: true
+        },
+        deadline: {
+          required: true
+        },
+        contactAddress: {
+          required: true
+        },
+        describe : {
+          required: true
+        },
+        confirmCode: {
+          required: true,
+//          minlength: 5,
+//          maxlength: 5
+        }
       },
       messages: {
         companyName: {
@@ -122,8 +122,8 @@ var v = $("#loanForm").validate({
         },
         confirmCode: {
           required: "请输入验证码",
-          minlength: "验证码为4位",
-          maxlength: "验证码为4位"
+//          minlength: "验证码为5位",
+//          maxlength: "验证码为5位"
         }
       },
       errorClass: "error",
@@ -175,8 +175,6 @@ $('#sendApplyloan').click(function(){
     applyLoanService.addNew(loan, function (body) {
     
         if (body.success) {
-                $("#companyName").val("")
-            } else {
 
             }
     });
