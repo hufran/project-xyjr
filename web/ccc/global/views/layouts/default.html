@@ -8,7 +8,6 @@
 <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
 <script>
     ' + consoleCode + '
-
 </script>
 <!--[if lt IE 10]>
 <script src="/assets/js/jquery.min.js"></script>
@@ -23,7 +22,7 @@
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
-<title>{{ title }}</title>
+<title>奇乐融</title>
 <script>
     window.CC = {}; {{{state}}}
 
@@ -41,27 +40,33 @@
 <meta name="Description" content="{{description}}">
 
 <!-- 导航开始 -->
-<div class="s-header" id="s-header-height">
 
+<div class="s-header" id="s-header-height">
 
     <div class="s-header-info" id="nav-color">
         <div class="s-header-info-content u-pos-r-center">
-            <span class="nav-customer">客服热线：400-000-0000<img src="/ccc/global/img/navQQ.png" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></span>
-            <span class="nav-aboutus">关注我们：</span>
-            <img src="/ccc/global/img/navWeibo.png" class="nav-weibo" onmouseover="this.src='/ccc/global/img/yellow-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'" />
+            <span class="nav-customer">客服热线：400-872-7676<img src="/ccc/global/img/navQQ.png" style="margin-bottom:3px;" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></span>
+            <span class="nav-aboutus">关注我们：            <a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"  class="nav-weibo" style="margin-top:-5px;"><img src="/ccc/global/img/navWeibo.png"  onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'"/></a></span>
+
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
-            <img class="erweima" style="width:80px;height:80px;" src="/ccc/global/img/erweima.png"/>
+            <img class="erweima erweima-act2" src="/ccc/global/img/erweima.png"/>
             {{#if user}}
-            <a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
-            <a href="/logout" class="text" style="border-left: 1px solid #fff;color:#333333;margin-right:18px;">|&nbsp;&nbsp;退出</a>
-            <a class="text" style="width: 200px; text-align: right; padding-right: 10px;color:#003690 "><img src="/ccc/global/img/navuseryellow.png" />{{user.loginName}}</a>
-              
-            
-    
-              
-            <!--a href="/login?url=L2FjY291bnQ=" class="account" id="wodezhanghu">我的账户</a-->
+            	{{#if !user.enterprise}}
+					{{#if user.name}}
+					<a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+					{{else}}
+					<a href="/account/umpay" class="text account" style="color:#ff6c08;">我的账户</a>
+					{{/if}}
+            	{{else}}
+                	<a href="/account" class="text account" style="color:#ff6c08;">我的账户</a>
+            	{{/if}}
+            <a href="/logout" class="text" style="color:#6c6c6c;margin-right:18px;">|&nbsp;&nbsp;退出</a>
+			{{#if user.name}}
+            	<a id='head-ractive-container' style="color:#f58220" class="text">{{user.Name}}</a>
+			{{else}}
+            	<a id='head-ractive-container' style="color:#f58220" class="text">{{user.loginName}}</a>
+			{{/if}}
             {{else}}
-            <!--         <a href="/login" style="color:#5a5a5a;margin-left:14px;" class="text">帮助中心|</a>-->
             <div class="nav-mobile">
 
                 <span>|</span> <a href="/help" id="mobileCustomer" class="text">手机客户端</a>
@@ -69,7 +74,7 @@
             </div>
 
             <div class="nav-help">
-                <span>|</span><a href="/aboutus/help" id="nav-help" class="text">帮助中心</a>
+                <span>|</span><a href="/help/aboutus" id="nav-help" class="text">帮助中心</a>
             </div>
 
             <div class="nav-fastregister">
@@ -87,22 +92,56 @@
     </div>
     <div class="s-header-menu" id="menu">
         <div class="s-header-menu-content u-pos-r-center">
-            <a href="/" style="float: left;" alt="九信金融" title="九信金融">
-                <img class="s-icon" style="margin-top:26px;" src="/ccc/global/img/navLogo.png">
+            <a href="/" style="float: left;" alt="正奇金融" title="正奇金融">
+                <img class="s-icon" style="margin-top:26px;width:277px;" src="/ccc/global/img/navLogo.png">
             </a>
 
-            <div id="family">
-                联想控股大家庭<img src="/ccc/global/img/navPlay.png" />
+            <div id="family" onmouseover="this.style.cursor='pointer'"   onmouseout="this.style.cursor='normal'">
+                <p style="background: url(/ccc/global/img/slide.png) no-repeat;text-align:left;"  >联想控股大家庭</p>
+                            <ul style="display: none;">
+
+ 				                <li><a href="http://www.legendholdings.com.cn/Pages/Index.aspx" target="_blank">联想控股</a></li>
+                                <li><a href="http://www.lenovo.com.cn/" target="_blank">联想集团</a></li>
+                                <li><a href="http://www.zqfinancial.com/" target="_blank">正奇金融</a></li>
+                                <li><a href="http://www.legendcapital.com.cn/" target="_blank">君联资本</a></li>
+                                <li><a href="http://www.honycapital.com/" target="_blank">弘毅投资</a></li>
+                                <li><a href="http://www.raycomchina.com/" target="_blank">融科智地</a></li>
+                                <li><a href="http://www.joyvio.com/" target="_blank">佳沃集团</a></li>
+                                <li><a href="http://www.legendholdings.com.cn/Business/Wine.aspx" target="_blank">丰联集团</a></li>
+                                <li><a href="http://www.levima.cn/" target="_blank">联泓集团</a></li>
+                                <li><a href="http://www.legendholdings.com.cn/Business/BetterChain.aspx" target="_blank">增益供应链</a></li>
+                                <li><a href="http://www.legendholdings.com.cn/Business/EnsenCare.aspx" target="_blank">安信颐和</a></li>
+                                <li><a href="http://www.lb-inv.com/" target="_blank">联保投资</a></li>
+                                <li><a href="http://www.lakala.com/?COLLCC=3110440596&" target="_blank">拉卡拉</a></li>
+                                <li><a href="http://www.xingheng.com.cn/" target="_blank">苏州星恒</a></li>
+                                <li><a href="http://www.ibyergroup.com/" target="_blank">拜博口腔</a></li>
+                                <li><a href="http://www.zuche.com/" target="_blank">神州租车</a></li>
+                                <li><a href="http://www.huge.com.cn/" target="_blank">上海弘基</a></li>
+                                <li><a href="http://www.legendstar.com.cn/" target="_blank">联想之星</a></li>
+                           
+            </ul>
             </div>
 
             <ul class="u-nolist-ul">
-                <li><a id="index" href="/">首&nbsp;&nbsp;页</a></li>
-                <li><a id="touzi" href="/invest/list">我要投资</a></li>
-                <li><a id="jiekuan" href="/applyloan">我要借款</a></li>
-                <li>{{#if user}}<a id="safety" href="/account">我的账户</a>{{else}}<a id="safety" href="/login">我的账户</a>{{/if}}</li>
+                {{#if !user.enterprise}}
+                    <li><a id="index" href="/">首页</a></li>
+                    <li><a id="touzi" href="/invest/list">我要投资</a></li>
+                    <li><a id="jiekuan" href="/applyloan">我要借款</a></li>
+                {{/if}}
+                <li>
+					{{#if user}}
+						{{#if user.name}}
+						<a id="safety" href="/account">我的账户</a>
+						{{else}}
+						<a id="safety" href="/account/umpay">我的账户</a>
+						{{/if}}
+					{{else}}
+						<a id="safety" href="/login">我的账户</a>
+					{{/if}}
+				</li>
 
                 <li><a id="help" href="/guide">新手引导</a></li>
-                <li><a id="aboutus" href="/aboutus/aboutus">关于我们</a></li>
+                <li style="margin-left:38px;"><a id="aboutus" href="/aboutus/aboutus" >关于我们</a></li>
             </ul>
 
         </div>
@@ -143,39 +182,45 @@
     <div class="s-footer-nav" id="footer-color">
         <div style="width:1100px;" class="s-footer-nav-content u-pos-r-center">
             <div class="bottom-left">
-                <div class="bottom-right-service"><img src="/ccc/global/img/tel.png"><span>客服热线</span><span class="telNum">400-000-000</span></div>
+                <div class="bottom-right-service"><img src="/ccc/global/img/tel.png"><span style="color:#bcbcbc;">客服热线</span><span class="telNum">400-872-7676</span></div>
                     <p class="bottom-right-mail">服务时间：工作日 8:30 — 21:00</p>
                     <p class="bottom-right-online">在线客服：<img src="/ccc/global/img/navQQ.png" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></p>
-                    <P class="bottom-right-aboutus">关注我们：<img src="/ccc/global/img/navWeibo.png" onmouseover="this.src='/ccc/global/img/yellow-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'" /><img src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'"/></P>
+				<div class="bottom-right-aboutus-box">
+                    <P class="bottom-right-aboutus">关注我们：<a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"><img src="/ccc/global/img/navWeibo.png" onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'" /></a>
+                        <img style="margin-left:8px;" class="weixin-icon weixin-icon-act" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'"/>
+                                    
+                </P>
+				<img class="erweima erweima-act" src="/ccc/global/img/erweima.png"/>
+				</div>
 
 
             </div>
             <div class="bottom-right">
                 <div class="bottom-rightApp">
                     <img src="/ccc/global/img/app.png"/>
-                    <p>奇乐融APP下载</p>
+                    <p class="text-p">奇乐融APP下载</p>
                 </div>
                 <div class="bottom-rightApp">
-                    <img src="/ccc/global/img/weixin.png"/>
-                    <p>微信公众号</p>
+                    <img src="/ccc/global/img/erweima.png"/>
+                    <p class="text-p">微信公众号</p>
                 </div>
             
             </div>
 
             <dl class="footer-guide">
                 <dt><img src="/ccc/global/img/aboutus.png"/><a href="/aboutus/aboutus">关于我们</a></dt>
-                <dd><a href="/aboutus/aboutus">奇乐融</a></dd>
-                <dd class="footer-guide-style"><a href="/aboutus/background">成立背景</a></dd>
-                <dd><a href="/aboutus/announcement">通知公告</a></dd>
-                <dd><a href="/aboutus/news">新闻资讯</a></dd>
-                <dd><a href="/aboutus/contactus">联系我们</a></dd>
+                <dd><a href="/aboutus/aboutus">奇乐融简介</a></dd>
+                <dd class="footer-guide-style"><a href="/aboutus/background">股东背景</a></dd>
+                <dd><a href="/aboutus/announcement">团队介绍</a></dd>
+                <dd><a href="/aboutus/news">合作机构</a></dd>
+<!--                <dd><a href="/aboutus/contactus">联系我们</a></dd>-->
             </dl>
             <dl class="footer-guide">
-                <dt><img src="/ccc/global/img/help.png"/><a href="/aboutus/help">帮助中心</a></dt>
-                <dd><a href="/aboutus/help">注册及认证</a></dd>
-                <dd class="footer-guide-style"><a href="/aboutus/help">投资流程</a></dd>
-                <dd><a href="/aboutus/help">法律法规</a></dd>
-                <dd><a href="/aboutus/help">常见问题</a></dd>
+                <dt><img src="/ccc/global/img/help.png"/><a href="/help/aboutus">帮助中心</a></dt>
+                <dd><a href="/help/login">注册/登录</a></dd>
+                <dd class="footer-guide-style"><a href="/help/money">充值/提现</a></dd>
+                <dd><a href="/help/money">如何投资</a></dd>
+                <dd><a href="/help/safety">风控安全</a></dd>
             </dl>
               <dl class="footer-guide">
                 <dt><img src="/ccc/global/img/map.png"/><a href="">网站地图</a></dt>
@@ -189,34 +234,11 @@
         </div>
         </div>
     </div>
-    <!--
-    <div class="firend-link">
-        <div><span>友情链接：</span><a href="">数金网</a>
-            <a href="">网贷中心</a>
-            <a href="">数金网</a>
-            <a href="">数金网</a>
-            <a href="">数金网</a>
-            <a href="">网贷中心</a>
-            <a href="">数金网</a>
-            <a href="">网贷中心</a>
-            <a href="">数金网</a>
-            <a href="">网贷中心</a>
-            <a href="">网贷中心</a>
-            <a href="">数金网</a>
-            <a href="">网贷中心</a>
-            <a href="">数金网</a>
-            <a href="">网贷中心</a>
-             <a href="">数金网</a>
-            <a href="">网贷中心</a>
-             <a href="">数金网</a>
-            <a href="">网贷中心</a>
-        </div>
-    </div>
--->
+ 
     <div class="bottom-footer-box">
         <div class="bottom-footer">
             <div class="copyright">
-                版权所有©2015 奇乐融&nbsp;&nbsp;皖ICP备XXXXXX号
+                版权所有©2015安徽唯源金融信息服务有限公司&nbsp;&nbsp;皖ICP备15013787号-1
             </div>
             <div>
                 <img src="/ccc/global/img/footer.png" />
@@ -230,7 +252,7 @@
 <!--    旁边导航条-->
 <div class="side-bar-box">
     <div class="side-bar">
-        <a href=""> <img src="/ccc/global/img/service.png" /></a>
+         <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=21486606&amp;site=qq&amp;menu=yes"><img src="/ccc/global/img/service.png" /></a>
 
         <a href="javascript:;" class="calculator-create"><img src="/ccc/global/img/calculator.png" /></a>
         <a class="back-top" href=""><img src="/ccc/global/img/backTop.png" /></a>
@@ -254,4 +276,3 @@
 </script>
 
 <script src="/ccc/global/js/main/header.js" async defer></script>
- <script src="/ccc/global/js/main/company.js"></script>

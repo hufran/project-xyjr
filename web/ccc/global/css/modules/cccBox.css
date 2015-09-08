@@ -36,7 +36,7 @@
   padding: 0 10px;
   border: 1px solid #FFF;
   border: none;
-  background: #f9f9f9 url('/assets/img/box/box-tit.png');
+  background: #f9f9f9 url('/ccc/global/img/box/box-tit.png');
   overflow: hidden;
 }
 .ccc-box-wrap .bar .title {
@@ -59,7 +59,7 @@
   width: 30px;
   height: 30px;
   overflow: hidden;
-  background: transparent url('/assets/img/box/close.png') no-repeat center center;
+  background: transparent url('/ccc/global/img/box/close.png') no-repeat center center;
 }
 .ccc-box-wrap .Dcontent {
   float: left;

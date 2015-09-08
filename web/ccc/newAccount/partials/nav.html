@@ -1,0 +1,82 @@
+<div class="nav-recharge">
+	<div class="space-30"></div>
+	<div class="nav-recharge-btn">充值</div>
+</div>
+<ul class="nav-wrapper">
+	<li class="nav-li">
+		{{#if home}}
+			<span class="icon-home-active"></span>
+		{{else}}
+			<span class="icon-home"></span>
+		{{/if}}
+		<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">我的账户</a></span>
+	</li>
+	<li class="nav-li">
+		{{#if invest}}
+			<span class="icon-invest-active"></span>
+		{{else}}
+			<span class="icon-invest"></span>
+		{{/if}}
+		<span class="nav-text {{#if invest}}nav-text-active{{/if}}"><a href="/newAccount/invest/HOLDING">我的投资</a></span>
+		<span class="nav-toggle-btn" data-toggle="showInvestToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showInvestToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if HOLDING}}active{{/if}}"><a href="/newAccount/invest/HOLDING">计息中</a></li>
+				<li class="{{#if INHAND}}active{{/if}}"><a href="/newAccount/invest/INHAND">募集中</a></li>
+				<li class="{{#if CLEARED}}active{{/if}}"><a href="/newAccount/invest/CLEARED">已结清</a></li>
+			</ul>
+		{{/if}}
+	</li>
+	<li class="nav-li">
+		{{#if fund}}
+			<span class="icon-fund-active"></span>
+		{{else}}
+			<span class="icon-fund"></span>
+		{{/if}}
+		<span class="nav-text {{#if fund}}nav-text-active{{/if}}"><a href="/newAccount/fund">交易记录</a></span>
+	</li>
+	<li class="nav-li">
+		{{#if settings}}
+			<span class="icon-account-active"></span>
+		{{else}}
+			<span class="icon-account"></span>
+		{{/if}}
+		<span class="nav-text {{#if settings}}nav-text-active{{/if}}"><a href="/newAccount/settings/userinfo">账户管理</a></span>
+		<span class="nav-toggle-btn" data-toggle="showAccountToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showAccountToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if userinfo}}active{{/if}}"><a href="/newAccount/settings/userinfo">个人信息</a></li>
+				<li class="{{#if authentication}}active{{/if}}"><a href="/newAccount/settings/authentication">实名认证</a></li>
+				<li class="{{#if bankCards}}active{{/if}}"><a href="/newAccount/settings/bankCards">提现银行卡</a></li>
+				<li class="{{#if password}}active{{/if}}"><a href="/newAccount/settings/password">密码管理</a></li>
+			</ul>
+		{{/if}}
+	</li>
+	<li class="nav-li">
+		{{#if coupon}}
+			<span class="icon-coupon-active"></span>
+		{{else}}
+			<span class="icon-coupon"></span>
+		{{/if}}
+		<span class="nav-text {{#if coupon}}nav-text-active{{/if}}"><a href="/newAccount/coupon">我的红包</a></span>
+	</li>
+	<li class="nav-li">
+		{{#if friend}}
+			<span class="icon-friend-active"></span>
+		{{else}}
+			<span class="icon-friend"></span>
+		{{/if}}
+		<span class="nav-text {{#if friend}}nav-text-active{{/if}}"><a href="/newAccount/friend">好友邀请</a></span>
+	</li>
+	<li class="nav-li">
+		{{#if message}}
+			<span class="icon-message-active"></span>
+		{{else}}
+			<span class="icon-message"></span>
+		{{/if}}
+		<span class="nav-text {{#if message}}nav-text-active{{/if}}"><a href="/newAccount/message">消息中心</a></span>
+	</li>
+</ul>
+<div class="clearfix"></div>

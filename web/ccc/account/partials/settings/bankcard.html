@@ -1,18 +1,18 @@
-{{#if !payment}}
+{{#if !authenticated}}
 <div class="row">
 	<div class="space space-30"></div>
 	<div class="col-md-12 align-center">
-		<p class="text-warning">您还没有开户，开户后才能绑定银行卡</p>
+		<p class="text-warning">您还没有实名认证为，实名后才能绑定银行卡</p>
 		<div class="space space-40"></div>
 		<p>
-			<a href="/account/umpay" style="width: 230px;" class="btn btn-orange">立即开通</a>
+			<a href="/account/umpay" style="width: 230px;" class="btn btn-orange">立即认证</a>
 		</p>
 	</div>
 </div>
 {{else}}
 <!--要绑定银行卡-->
 {{#if status === 0}}
-<div class="bind-card-wrapper">
+<div class="bind-card-wrapper"> 
     <!-- 尚未绑卡提醒 -->
     <div class="errorNoBindedYet">
         <span class="glyphicon glyphicon-exclamation-sign exclamation"></span> 
@@ -23,53 +23,63 @@
         {{/if}}
     </div>
 
-    <form action="/upayment/bindCard" method="POST" on-submit="bind-card-submit" target="_blank">
+    <form action="/lianlianpay/bindCard" method="POST" on-submit="bind-card-submit" target="_blank">
         <div class="banks-container control-group">
-           <div class="space space-30"></div>
-            <div class="ccc-banks-wrap">
-                <div class="banks-wrap-offset">
+            <div class="space space-30"></div>
+            
+            <div class="form-group">
+                <div class="tip">开户银行</div>
+                <select name="bankName">
                     {{#each banks}}
-                    <div class="bank" on-click="selectBank">
-                        <div class="bank-img" style="background-position: 10px -{{imgPos+3}}px" data-code="{{code}}"
-                        data-name="{{name}}"></div>
-                    </div>
+                        <option value="{{name}}">{{name}}</option>
                     {{/each}}
+                </select>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="tip">银行卡号</div>
+                <input on-keyup="validateCardNo" type="text" name="cardNo" value="{{cardNo}}">
+                {{#if cardNoError}}
+                <span class="error">* 银行卡号只能由数字组成</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="tip">预留手机号</div>
+                <input on-keyup="validatePhoneNo" type="text" name="cardPhone" value="{{phoneNo}}">
+                {{#if phoneNoError}}
+                <span class="error">* 手机号码只能由数字组成</span>
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="tip">开户省市</div>
+                <select name="province" on-change="selectPro" style="width:120px;margin-right:12px" value="{{myProvince}}">
+                    {{#each province}}
+                        <option value="{{key}}">{{key}}</option>
+                    {{/each}}
+                </select>
+                <select name="city" style="width:120px;">
+                    {{#each city}}
+                        <option value="{{key}}">{{key}}</option>
+                    {{/each}}
+                </select>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <div class="row row-3">
+                    <div class="col-md-12">                      
+                        <button type="submit" class="btn btn-large btn-success" style="position:relative;left:200px;width:150px;">确认绑定</button>
+                    </div>
                 </div>
-                <div class="space space-30"></div>
+                <div class="space space-10"></div>
             </div>
-        </div>
-
-        <div class="do-bind-card">
-            <div class="row row-1">
-                <div class="form-title col-md-6">银行卡号码（该银行卡仅于提现时使用）</div>
+            <div class="form-group">
+                <p>1、为保障您的资金安全，绑卡前请先进行实名认证。 </p>
+                <p>2、您所绑定的银行卡须是您本人自己的借记卡，奇乐融严禁利用信用卡套现行为。 </p>
+                <p>3、请如实填写您银行卡的开户省市、开户支行信息，如果您不确定开户支行名称，建议您拨打银行“客户服务热线”进行电话咨询。 </p>
+                <p>4、奇乐融目前只支持绑定一张银行卡，认证支付充值提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。 </p>
             </div>
-
-
-            <div class="row row-2">
-                <div class="col-md-6">
-                    <input class="form-control" type="text" name="cardId" value="{{cardId}}" placeholder="请在此输入您的借记卡（储蓄卡）银行卡号" />
-                    <input type="hidden" name="bank" value="{{bank}}" />
-                    <input type="hidden" name="option" value="0" />
-                </div>
-                <div class="col-md-4">
-                    <p class="help-block text-danger">
-                        {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}}
-                        {{#msg.CARD_NULL}}请输入银行卡号{{/msg.CARD_NULL}}
-                        {{#msg.CARD_INVALID}}银行卡号有误{{/msg.CARD_INVALID}}
-            	    </p>
-                </div>
-            </div>
-
-            <div class="row row-3">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-large btn-success">确认绑定</button>
-                </div>
-            </div>
-            <div class="space space-10"></div>
-            <!--<div class="row row-4">
-                <div class="col-md-12 notice">重要提示：下个页面请不要勾选“同意开通借记卡快捷支付”，以免出现绑定失败的情况！</div>
-            </div>
-            <div class="space space-30"></div>-->
         </div>
     </form>
 </div>
@@ -79,16 +89,36 @@
 {{#if status === 1}}
 <div class="binded-card-wrapper">
     <!--一张银行卡-->
-    <div class="bank-card">
-        <div class="card-img {{bankAccount.bank}}">
-        </div>
+    {{#each bankAccount}}
+        <div class="bank-card">
+            <div class="card-img {{account.bank}}">
+            </div>
 
-        <div class="card-num">
-            {{bankAccount.Faccount}}
+            <div class="card-num">
+                {{account.account.substr(0,4)}}-xxxx-xxxx-xxxx-{{account.account.substr(-4,4)}}
+            </div>
         </div>
-    </div>
-
-<!--    <button class="btn btn-sm btn-success btn-change-card" on-click="updateBank">更换银行卡</button>-->
+    {{/each}}
+    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;">
+        <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
+        {{#if ifDel}}
+        <div class="inwr">
+            <div class="tips" style="font-size:12px;float:none;margin-bottom:5px;">请输入交易密码</div>
+            <input type="password" name="paymentPassword" style="width:200px;height:30px;line-height:30px;text-indent:10px;border-radius:5px;">
+            <button type="submit" class="btn btn-sm btn-success btn-change-card" style="padding:5px 20px;float:right;margin:0;width:100px;">确定</button>
+        </div>
+        {{else}}
+            <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">删除银行卡</button>
+        {{/if}}
+    </form>
+    <p style="color:red;">解绑服务说明 </p>
+<p style="font-family:'微软雅黑';">奇乐融只支持绑定一张银行卡，为保障您的资金安全，解绑时请先确定账户情况。如遇问题请联系客服，电话：400-872-7676。</p>
+</div>
+<div class="form-group">
+    <p>1、为保障您的资金安全，绑卡前请先进行实名认证。 </p>
+    <p>2、您所绑定的银行卡须是您本人自己的借记卡，奇乐融严禁利用信用卡套现行为。 </p>
+    <p>3、请如实填写您银行卡的开户省市、开户支行信息，如果您不确定开户支行名称，建议您拨打银行“客户服务热线”进行电话咨询。 </p>
+    <p>4、奇乐融目前只支持绑定一张银行卡，认证支付充值提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。 </p>
 </div>
 {{/if}}
 {{/if}}

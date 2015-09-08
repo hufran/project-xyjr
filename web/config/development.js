@@ -11,15 +11,15 @@ module.exports = {
     
 //       urlBackend: "http://ysjr.uats.cc:4100",
 //    urlBackend: "http://zrzx.uats.cc:4100",
-     urlBackend: "http://zqjr.uats.cc:4100",
+urlBackend: "http://zqjr.uats.cc:4100",
 //    oauth2client: {
 //        id: "client-id-for-node-dev",
 //        secret: "client-secret-for-node-dev"
 //    }
 
     // 凤凰娱乐  pwd: 111111
-//    urlBackend: "http://123.59.61.183/",
-    urlBackend: "http://zqjr.uats.cc:4100",
+// urlBackend: "http://123.59.61.183:8888/",
+//    urlBackend: "http://zqjr.uats.cc:4100",
 //     urlBackend: "http://ysjr.uats.cc:4100/",
 //    urlBackend: "http://ysjr.uats.cc:4100/",
 };

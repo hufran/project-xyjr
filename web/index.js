@@ -102,14 +102,14 @@ app.use(function (req, res, next) {
 //            });
 //        } else {
 //            res.expose({}, 'user');
-        
+
          res.locals.user = res.locals.user || {};
         if (!user) {
             expUser({});
             return next();
         }
 //        next();
-        
+
         user.logined = true;
         if (user.email === 'notavailable@creditcloud.com') {
           user.email = '';
@@ -142,9 +142,34 @@ _.each([
     });
 });
 
+// mobile page (H5) redirection
+_.each([
+    {path: '/'},
+    {path: '/login'},
+    {path: '/register'},
+    {path: '/invest', new_path: '/list'},
+    {path: '/account', new_path: '/dashboard'},
+
+], function (item) {
+    var prefix = '/h5',
+        path = item.path,
+        new_path = item.new_path,
+        LLUN = null;
+
+    app.get(path, function (req, res, next) {
+        var ua = userAgent.parse(req.headers['user-agent']);
+
+        if ((ua.source || '').match(/MicroMessenger|Android|webOS|iPhone|iPod|BlackBerry/)) {
+            return res.redirect(prefix + (new_path || req.url));
+        }
+
+        next();
+    });
+});
+
 app.use(require('ccc/login').setBackUrl); // 全局模板变量添加 loginHrefWithUrl 为登录后返回当前页的登录页面链接
 ds.loader(app);
-app.get('/logout', function (req, res) {
+app.all('/logout', function (req, res) {
     res.clearCookie('ccat');
     if (req.xhr) {
         res.send('');

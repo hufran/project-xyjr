@@ -53,11 +53,29 @@ exports.CommonService = {
                 return res.body;
             });
     },
-      getSmsCaptchaForResetPassword: function (mobile, next) {
+    getSmsCaptchaForResetPassword: function (mobile, next) {
         request('GET', '/api/v2/users/smsCaptcha/changePwd?mobile=' + mobile)
             .end()
             .then(function (res) {
                 next(res.body);
             });
-    }
+    },
+    getMessage: function (smsType, next) {
+        request('POST', '/api/v2/smsCaptcha/MYSELF')
+            .type('form')
+            .send({smsType: smsType})
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
+    },
+    checkMessage: function (smsType, smsCaptcha, next) {
+        request('POST', '/api/v2/checkSMSCaptcha/MYSELF')
+            .type('form')
+            .send({smsCaptcha: smsCaptcha, smsType: smsType})
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
+    },
 };

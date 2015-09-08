@@ -14,7 +14,7 @@
 }
 .topnav-wraper .account-navbar li {
   float: left;
-  margin: 0 40px 0 0;
+  margin: 0 9px 0 0;
   padding-top: 12px;
   padding-bottom: 8px;
   border-bottom: 1px solid #FCFCFC;
@@ -125,7 +125,7 @@
   border-radius: 4px;
 }
 .topnav-wraper .account-panel .user-info .authentication .safety .progress .progress-bar {
-  background: #b5a16b;
+  background: #007ec5;
 }
 .topnav-wraper .account-panel .account-info {
   width: 45%;
@@ -158,10 +158,15 @@
   padding: 3px 20px;
 }
 .topnav-wraper .account-panel .account-info .button .btn-warning {
-  background-color: #b5a16b;
+  background-color: #009ada;
   border-color: transparent;
   color: #fff;
 }
+
+.topnav-wraper .account-panel .account-info .button .btn-warning:hover{
+	background-color: #015989;
+}
+
 .topnav-wraper .account-panel .account-info .coupon {
   color: #ff0700;
 }
@@ -196,8 +201,11 @@ table tbody tr:last-child td {
   background: #eee;
 }
 .has-padding th {
-  padding-left: 5px!important;
-  padding-right: 5px!important;
+  padding-left: 8px!important;
+  padding-right: 8px!important;
+  padding-top: 8px;
+    padding-bottom: 8px;
+    color:#000;
 }
 table.table.repayments-table {
   background-color: #FBFBFB;

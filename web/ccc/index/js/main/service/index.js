@@ -42,10 +42,12 @@ exports.IndexService = {
 };
 
 function parseLoanList(loans) {
-    console.log(loans);
     var max = 6;
     var loanList = [];
     var openLoanLen = loans.open.length;
+    loans.open.sort(function compare(a, b) {
+            return b.timeOpen - a.timeOpen;
+        });
     var scheduledLoanLen = loans.scheduled.length;
     var finishedLoanLen = loans.finished.length;
 

@@ -1,34 +1,42 @@
 <!--{{JSON.stringify(list)}}-->
       <table class="s-list-table">
             <tr>
-                <th style="width:280px;padding-left:40px;">名称</th>
+                <th style="width:280px;padding-left:38px;">名称</th>
                 <th style="width:160px;">借款总额</th>
-                <th style="width:140px;">投资期限</th>
-                <th style="width:160px;">年化收益</th>
+                <th style="width:140px;">年化收益</th>
+                <th style="width:154px;">投资期限</th>
                 <th style="width:190px;">还款方式</th>
-                <th style="width:120px;">状态</th>
+                <th style="width:190px;">进度</th>
+                
+                <th style="width:126px;">状态</th>
             </tr>
         </table>
 {{#list}}
 <div class="loanWrapper">
     <div class="event">
-        <a href="loan/{{ id }}" class="invest-title" target="_blank">
-            {{title}}
+		{{#if title.length>14}}
+			<p>{{title}}</p>
+		{{/if}}
+        <a href="loan/{{ id }}" class="invest-title">
+            {{#if title.length>14}}
+                {{title.substr(0,14)}}...
+				{{else}}
+				{{title}}
+				{{/if}}
         </a>
     </div>
     <div class="amount">{{ amount }}<span>{{ amountUnit }}</span></div>
-    <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span></div>
     <div class="rate">{{ rate }}<i>%</i></div>
+    <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span></div>
+
     <div class="backMoney">{{ method }}</div>
-<!--
-    <div class="process">
+        <div class="process">
         <div class="rate-chart">	 
-          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="left:77.5px;top:9px">
+          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" style="left:33px;top:9px">
             <span class="percentageNum">{{ investPercent }} </span>
-            </div>
+          </div>
         </div>
     </div>
--->
     <div class="opre">
         {{#if status === 'OPENED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
@@ -36,7 +44,7 @@
             </a>
         {{/if}}
         {{#if status === 'SCHEDULED'}}
-            <div class="investbtn" data-id="{{id}}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="background:transparent; color: #fff; width: 150px;text-align: left;">即将开始</div>
+            <div class="investbtn" data-id="{{id}}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="background:#ff7200; color: #fff; width: 150px;text-align: left;">即将开始</div>
         {{/if}}
         {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">
@@ -55,4 +63,13 @@
         {{/if}}
     </div>
 </div>
+<script type="text/javascript">
+	$('.event a').mouseenter(function(){
+		$(this).siblings().fadeIn(200);
+	}).mouseleave(function(){
+		$(this).siblings().fadeOut(100);
+	})
+	
+</script>
+
 {{/list}}

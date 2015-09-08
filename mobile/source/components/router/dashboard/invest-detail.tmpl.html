@@ -1,0 +1,56 @@
+
+<div id="dashboard-invest-detail">
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard/invest"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">订单详情</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="c-list-panel info">
+        <div class="item title">订单信息</div>
+
+        <div class="item">
+            <div class="name">产品名称</div>
+            <div class="value">{{ item.loan.title }}</div>
+        </div>
+        <div class="item">
+            <div class="name">年化收益率</div>
+            <div class="value">{{ item.rate }}%</div>
+        </div>
+        <div class="item">
+            <div class="name">投资金额(元)</div>
+            <div class="value">{{ item.amount | number }}</div>
+        </div>
+        <div class="item">
+            <div class="name">到期收益(元)</div>
+            <div class="value" ng-if="!!item.amount_outstanding">{{ item.amount_outstanding | number }}</div>
+            <div class="value" ng-if="!item.amount_outstanding">-</div>
+        </div>
+        <div class="item">
+            <div class="name">下单时间</div>
+            <div class="value">{{ item.submit_time | moment: 'YYYY-MM-DD HH:mm:ss' }}</div>
+        </div>
+        <div class="item">
+            <div class="name">起息日</div>
+            <div class="value" ng-if="item.loan.value_date">{{ item.loan.value_date | moment: 'YYYY-MM-DD' }}</div>
+            <div class="value" ng-if="!item.loan.value_date">结标后第二天</div>
+        </div>
+        <div class="item">
+            <div class="name">到期日</div>
+            <div class="value" ng-if="item.end_date">{{ item.end_date | moment: 'YYYY-MM-DD' }}</div>
+            <div class="value" ng-if="!item.end_date">-</div>
+        </div>
+    </section>
+
+    <section class="actions container">
+        <a class="item btn btn-block btn-lg btn-theme" target="_blank"
+           ng-if="contract_url"
+           ng-href="{{ contract_url }}"
+        >合同下载</a>
+        <a class="item btn btn-block btn-lg btn-default"
+           ng-href="loan/{{ item.loan.id }}"
+        >产品详情</a>
+    </section>
+</div>

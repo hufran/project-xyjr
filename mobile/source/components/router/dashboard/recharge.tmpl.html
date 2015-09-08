@@ -1,0 +1,76 @@
+
+<div id="dashboard-recharge" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.next_path || 'dashboard' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">充值</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <param ng-model="msg.success" ng-init="msg.success = '充值成功'">
+
+    <section class="container balance">
+        <div class="labels">账户可用余额 (元)</div>
+        <div class="amount">{{ available_amount | number }}</div>
+    </section>
+
+    <form class="form-horizontal"
+          name="form"
+          action="/lianlianpay/deposit"
+          method="post"
+          target="_self"
+          ng-submit="self.submit(amount)"
+          novalidate
+    >
+        <div class="container recharge-form">
+            <div class="multi-line-container-item" x-gyro-comment>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label title">充值卡号</label>
+                    <div class="col-xs-8 row">
+                        <input class="form-control input-sm"
+                               type="text"
+                               value="{{ bank_account.account | string_mask }}"
+                               ng-disabled="true"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">金额 (元)</label>
+                <div class="input-wrap">
+                    <input class="form-control input-amount"
+                           type="number"
+                           id="amount"
+                           name="amount"
+                           ng-model="amount"
+                           min="0.01"
+                           max="1000000"
+                           minlength="1"
+                           pattern="^[0-9\.]+"
+                           placeholder="请输入充值金额"
+                           required
+                    >
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" name="isWAP" value="true">
+        <input type="hidden" name="retUrl" value="{{ return_url }}">
+
+        <p class="container">
+            <button class="btn btn-theme btn-lg btn-block"
+                    type="submit"
+                    ng-if="self.user.has_payment_account"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >确定充值</button>
+        </p>
+    </form>
+
+    <section class="container explain">
+        <h5>充值说明</h5>
+        <p>该卡在银行的预留手机号为在银行登记的手机号码，或使用其他银行卡进行充值。该卡在银行的预留手机号为在银行登记的手机号码，银行的预留手机号，使用其他银行卡进行充值。</p>
+    </section>
+</div>

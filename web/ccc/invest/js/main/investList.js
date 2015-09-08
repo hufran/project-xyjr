@@ -17,7 +17,7 @@ $('.benefit-calculator')
     });
 
 var params = {
-    pageSize: 9,
+    pageSize: 10,
     status: 'SCHEDULED',
     minDuration: 0,
     maxDuration: 100,
@@ -70,7 +70,6 @@ function formatItem(item) {
         "OTHER" : "其它借款"
     };
         
-
     item.rate = item.rate / 100;
     item.purpose = purposeMap[item.purpose];
     item.investPercent = parseInt(item.investPercent * 100, 10);
@@ -92,6 +91,7 @@ function formatItem(item) {
     } else {
         item.amountUnit = '元';
     }
+    
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
         item.open = true;
@@ -117,6 +117,9 @@ function formatItem(item) {
 function parseLoanList(list) {
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
+        var method = list[i].method;
+        var methodFmt = i18n.enums.RepaymentMethod[method][0];
+        list[i].methodFmt = methodFmt;
     }
     return list;
 }
@@ -126,7 +129,8 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         template: require('ccc/global/partials/singleInvestList.html'),
         data: {
             list: parseLoanList(res.results),
-            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+            RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
+            user:CC.user
         }
     });
     initailEasyPieChart();
@@ -136,21 +140,17 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         var hovering = e.name === "mouseover";
         this.set(e.keypath + ".hovering", hovering);
     });
-
-    $('.sRate li').click(function(){
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var minRate = $(this)
-                .data('min-rate');
-            var maxRate = $(this)
-                .data('max-rate');
-
+	
+    $('.no-warry-ul .no-warry').click(function(){
+        if (!$(this).hasClass("selected active")) {
+            $(this).addClass("selected active").siblings().removeClass("selected active");
+             var product = $(this).data('product');
             params.currentPage = 1;
-            params.minRate = minRate;
-            params.maxRate = maxRate;
+            params.product=product;
             render(params);
         }
-    });
+    });    
+    
 
     $('.sDuration li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
@@ -176,54 +176,6 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             render(params);
         }
     });
-    // $('select.condition-rate')
-    //     .on('change', function () {
-    //         var option = this.options[this.selectedIndex];
-        
-    //         var minRate = $(option)
-    //             .data('min-rate');
-    //         var maxRate = $(option)
-    //             .data('max-rate');
-        
-    //         params.currentPage = 1;
-    //         params.minRate = minRate;
-    //         params.maxRate = maxRate;
-    //         render(params);
-    //     });
-
-    // $('select.condition-status')
-    //     .on('change', function () {
-    //         var status = this.value;
-    //         params.status = status;
-    //         params.currentPage = 1;
-    //         render(params);
-    //     });
-
-    // $('select.condition-durations')
-    //     .on('change', function () {
-    //         var option = this.options[this.selectedIndex];
-    //         var minDuration = $(option)
-    //             .data('min-duration');
-    //         var maxDuration = $(option)
-    //             .data('max-duration');
-    //         params.minDuration = minDuration;
-    //         params.maxDuration = maxDuration;
-    //         params.currentPage = 1;
-    //         render(params);
-    //     });
-
-    // $('select.condition-method')
-    //     .on('change', function () {
-    //         var method = this.value;
-    //         params.currentPage = 1;
-    //         if (method) {
-    //             params.method = method;
-    //         } else {
-    //             delete params.method;
-    //         }
-    //         render(params);
-    //     });
-
 
     function render(params) {
         InvestListService.getLoanListWithCondition(jsonToParams(params),
@@ -290,16 +242,10 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
 
 function createList(len, current) {
     var arr = [];
-    var j = 0;
-    for (var i = 4; i > 0; i--) {
-        if (current - i > 0) {
-            arr[j++] = current - i;
-        }
-
-    }
-    arr[j++] = current;
-    for (var i = 0; i < len; i++) {
-        arr[j++] = current + i + 1;
+    var i=parseInt(len/params.pageSize);
+    if(len%params.pageSize>0){i++;}
+    for(var m=0;m<i;m++){
+         arr[m] =  m + 1;
     }
     return arr;
 };
@@ -310,24 +256,31 @@ function ininconut () {
         if(t.data("status") === 'SCHEDULED'){
             var id = t.data("id");  
             var openTime = t.data("open");  
-            var serverDate = t.data("serv");  
+            var serverDate = t.data("serv");
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             var textDay = leftTime.day ? leftTime.day +'天' : '';
-            t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
                 var textDay = leftTime.day ? leftTime.day +'天' : '';
-                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
+                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                     clearInterval(interval);
-                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-                }else{
-                    t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
+					t.prev().hide();
+                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">投标中</div></a>');
+                }else {
+                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
                 }
             }), 1000);
         }
     });
 };
+
+
+
+
+
+
+
 
 function initailEasyPieChart() {
     ///////////////////////////////////////////////////////////
@@ -338,7 +291,7 @@ function initailEasyPieChart() {
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
             // 100%进度条颜色显示为背景色
-            var color = percentage === 100 ? "#b49b5d" : '#b49b5d';
+            var color = percentage === 100 ? "#f58220" : '#009ada';
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
@@ -356,3 +309,11 @@ function initailEasyPieChart() {
 
     });
 };
+
+// banenr动效
+//$(".no-warry").mouseenter(function(){
+//    $(this).addClass("active");
+//}).mouseleave(function(){
+//    $(this).removeClass("active");
+//})
+

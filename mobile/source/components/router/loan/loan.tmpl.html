@@ -1,0 +1,163 @@
+
+<div id="loan" class="loan">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ go_back_path || 'list' }}">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-6 title">标的详情</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="c-list-panel loan-summary">
+        <div class="item subject">
+            <h4 class="title"
+                ng-class="'color-' + (loan.product_type | lowercase) + '-text'"
+            >{{ loan.title }}</h4>
+
+            <div class="media amount">
+                <div class="media-left">
+                    <img class="media-object" width="18"
+                         src="assets/image/loan/amount-icon.png"
+                    >
+                </div>
+
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <span class="num">{{ loan.balance_myriad || loan.balance }}</span><!--
+                        --><small class="unit" ng-if="loan.balance_myriad">万</small><!--
+                        --><small class="unit" nsg-if="!loan.balance_myriad">元</small>
+                        <small>可投金额</small>
+
+                        <small class="min-amount">
+                            {{ loan.raw.loanRequest.investRule.minAmount }}元起投
+                        </small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <ul class="list-unstyled u-off-margin-bottom info-list">
+                <li>
+                    <div class="media rate">
+                        <div class="media-left">
+                            <img class="media-object" width="18"
+                                 src="assets/image/loan/rate-icon.png"
+                            >
+                        </div>
+
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <span class="num">{{ loan.rate }}</span><!--
+                                --><small class="unit">%</small>
+                            </h4>
+                            年化收益率
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="media term-method">
+                        <div class="media-left">
+                            <img class="media-object" width="18"
+                                 src="assets/image/loan/term-icon.png"
+                            >
+                        </div>
+
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <span class="num">{{ loan.total_months || loan.total_days }}</span><!--
+                                --><span class="unit" ng-if="loan.total_months">个月</span><!--
+                                --><span class="unit" ng-if="!loan.total_months">天</span>
+                            </h4>
+                            <div class="method" ng-switch="loan.method">
+                                <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                                <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                                <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                                <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                                <span ng-switch-when="EqualInterest">月平息</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="c-list-panel guarantee">
+        <div class="item">
+            <img width="11"
+                 src="assets/image/loan/guarantee-icon.png"
+                 class="pull-left"
+            >
+            <div ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"></div>
+        </div>
+    </section>
+
+    <section class="c-list-panel links">
+        <a ng-href="loan/{{ loan.id }}/investors" class="item">
+            <div class="clearfix">
+                <div class="pull-left">参投记录</div>
+                <div class="pull-right text-muted">
+                    <span ng-if="investors.length">已有{{ investors.length }}人参投</span>
+                    <param class="glyphicon glyphicon-menu-right">
+                </div>
+            </div>
+        </a>
+
+        <a ng-href="loan/{{ loan.id }}/info" class="item">
+            <div class="clearfix">
+                <div class="pull-left">项目信息</div>
+                <div class="pull-right text-muted">
+                    <param class="glyphicon glyphicon-menu-right">
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <section class="status container" ng-switch="loan.status">
+        <div ng-switch-when="SCHEDULED"
+             class="btn btn-block btn-scheduled btn-lg"
+        >即将开始</div>
+
+        <div ng-switch-when="OPENED">
+            <a class="btn btn-block btn-theme btn-lg"
+               ng-href="loan/{{ loan.id }}/invest"
+            >立即投资</a>
+        </div>
+
+        <div ng-switch-when="FINISHED"
+             class="btn btn-block btn-finished btn-lg"
+        >已满标</div>
+
+        <div ng-switch-when="SETTLED"
+             class="btn btn-block btn-settled btn-lg"
+        >还款中</div>
+
+        <div ng-switch-when="CLEARED"
+             class="btn btn-block btn-cleared btn-lg"
+        >还款结束</div>
+    </section>
+
+    <tabset class="tab inline" justified="true" x-gyro-comment>
+        <tab heading="项目介绍">
+            <div class="loan-text-content"
+                 ng-bind-html="loan.raw.loanRequest.description | sanitize"
+            ></div>
+        </tab>
+        <tab heading="资金用途">
+            <div class="loan-text-content"
+                 ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"
+            ></div>
+        </tab>
+        <tab heading="还款来源">
+            <div class="loan-text-content"
+                 ng-bind-html="loan.raw.loanRequest.mortgageInfo | sanitize"
+            ></div>
+        </tab>
+    </tabset>
+
+</div>

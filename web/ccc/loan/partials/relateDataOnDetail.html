@@ -1,40 +1,73 @@
-<!--detail页面的 相关资料部分-->
-{{#if imgLen}}
-<div class="insurance">
-    <a href="#">
-        <img src="{{ imgs[currentIndex].src }}!1" 
-            alt="{{ imgs[currentIndex].text }}" 
-            class="preview"
-            on-click="begin-big-pic" />
-    </a>
-    <div class="insurance-intro">{{ imgs[currentIndex].text }}</div>    
-</div>
+{{#if career.length}}
+<p class="controler-title">企业认证图片</p>
 
 <div class="controler">
-    {{#if imgs.lenght > 4}}
-        <a href="#" class="left" on-click="left-selector"></a>
-    {{/if}}
-    <div class="selectors-wrapper">
-        <ul class="selectors" style="{{#selectorsMarginLeft}} margin-left: {{ selectorsMarginLeft }}px; {{/}}">
-            {{#each imgs}}
-                <li class="selector {{#if currentIndex === @index}}active{{/if}}">
-                    <a href="#">
-                        <img src="{{ src }}!1" 
-                            alt="{{ text }}"
-                            on-click="selector-click" />
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
+    <div id="carousel-com-career" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
+        <div class="carousel-inner" role="listbox">
+            {{#career}}
+            <div class="item {{#if @index===0}} active {{/if}}">
+                <div class="row">
+                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;width:350px;">
+                        <a on-click="begin-big-pic-career" class="thumbnail-border" style="float:left">
+                            <img src="{{uri}}" style="width:350px;">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            {{/career}} 
+        </div>
+
+        <a class="left carousel-control" href="#carousel-com-career" role="button" data-slide="prev" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-com-career" role="button" data-slide="next" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    {{#if imgs.length > 4}}
-        <a href="#" class="right" on-click="right-selector"></a>
-    {{/if}}
 </div>
+
 {{ else }}
-<!--
-    <div>
-        暂无相关资料
+<div style="text-align:center">
+    暂无相关资料
+</div>
+{{/if}}
+
+{{#if loanPurpose.length}}
+<p class="controler-title">风控认证图片</p>
+
+<div class="controler">
+    <div id="carousel-com-loan" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
+        <div class="carousel-inner" role="listbox">
+            {{#loanPurpose}}
+            <div class="item {{#if @index===0}} active {{/if}}">
+                <div class="row">
+                    <div class="col-xs-6 col-md-2 imgs-list" style="height:200px;width:350px;">
+                        <a on-click="begin-big-pic-loan" class="thumbnail-border" style="float:left">
+                            <img src="{{uri}}" style="width:350px;">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            {{/loanPurpose}} 
+        </div>
+
+        <a class="left carousel-control" href="#carousel-com-loan" role="button" data-slide="prev" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-com-loan" role="button" data-slide="next" style="width:10%;">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
--->
+</div>
+
+{{ else }}
+<div style="text-align:center">
+    暂无相关资料
+</div>
 {{/if}}

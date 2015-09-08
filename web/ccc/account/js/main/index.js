@@ -12,6 +12,8 @@ var Chart = require('chart.js/Chart');
 // repayments
 var Plan = require('ccc/global/js/modules/cccRepayments');
 
+var accountService = require('ccc/account/js/main/service/account').accountService;
+
 // create calendar
 var calendar = new Calendar({
     container: '.account-calendar-wrap',
@@ -24,6 +26,14 @@ var setCurrentMonth = function () {
     $currentMonth.text(calendar.getDate('YYYY年M月份'));
 };
 setCurrentMonth();
+
+accountService.getUserInfo(
+    
+    function(o){
+        console.log(o);
+        $(".username").text(o.name);
+    }
+);
 
 // calendar arrow switch
 $('.btn.arrow').on('click', function () {
@@ -45,6 +55,8 @@ $('.btn.arrow').on('click', function () {
 	setCurrentMonth();
 });
 
+//投资总额
+var totalInvestAmount = CC.user.investStatistics.totalAmount|| 0;
 
 // 可用余额
 var avaAmount = CC.user.availableAmount;
@@ -70,6 +82,7 @@ new Ractive({
 	data: {
 		total: utils.format.amount(totalAmount, 2),
 		investInterestAmount: utils.format.amount(investInterestAmount, 2),
+		totalInvestAmount: utils.format.amount(totalInvestAmount, 2),
 		isIE: (isIE && isIE <=8 && isIE > 0) ? true : false,
 		hasMoney: (avaAmount || dueInAmount || frozenAmount),
 		avaAmount: utils.format.amount(avaAmount, 2),

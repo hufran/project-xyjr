@@ -7,6 +7,7 @@ module.exports = {
     project_name: pathFn.basename(pathFn.join(__dirname, "..")),
     // port 用于开发调试，每个新项目 +1
     port: 4001,
+    domain: 'zqjr.uats.cc',
 
     commonjs: [ // 最常被引用的库写到这里，开发环境加速
         'bluebird',
@@ -19,9 +20,16 @@ module.exports = {
 
     // 支付相关配置，这里主要是联动和联动两种方式的配置
     payment: {
-        // 联动具体配置
-        payment: {},
-
+        // 汇付具体配置
+        pnr: {
+            postUrl: 'http://mertest.chinapnr.com/muser/publicRequests',
+            protocol: 'http://',
+        },
+        //连连支付
+        lianlian: {
+            postUrl: '',
+            protocol: 'http://',
+        },
         // 联动具体配置
         upayment: {
             // 针对https的三方回调处理
@@ -112,5 +120,50 @@ module.exports = {
     oauth2client: {
          id:  "client-id-for-node-dev",
          secret: "client-secret-for-node-dev",
-    }
+    },
+
+    weixinmp: { // 微信公共帐号绑定的相关配置
+        appid: 'appid',
+        secret: 'secret',
+        token: 'token for message signature',
+        useUnionId: false, // 默认只使用 openId，打开此配置可获取 unionId
+        defaultBackUrl: '/account',
+
+        menu: { // 每次启动 web 时会 post 给微信服务器设置自定义菜单
+            button: [
+            {
+                "type":"view",
+                "name":"我的账户",
+                "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx996e9ad463045dc3&redirect_uri=http%3A%2F%2Fzqjr.uats.cc%2Fwx%2Fauth%2Fredirect&state=%2Fh5%2Faccount&response_type=code&scope=snsapi_base#wechat_redirect"
+            },
+            {
+                "type":"click",
+                "name":"账户余额",
+                "key":"my_account"
+            },
+/*
+            {
+                "name":"菜单",
+                "sub_button":[
+                {
+                    "type":"view",
+                    "name":"搜索",
+                    "url":"http://www.soso.com/"
+                },
+                {
+                    "type":"view",
+                    "name":"视频",
+                    "url":"http://v.qq.com/"
+                },
+                {
+                    "type":"click",
+                    "name":"赞一下我们",
+                    "key":"V1001_GOOD"
+                }]
+            }
+*/
+            ]
+        }
+    },
+
 };

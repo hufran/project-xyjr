@@ -1,0 +1,84 @@
+
+<div id="list">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="./">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">
+            {{ {LTB: '乐投保', LXY: '乐享盈', QT: '其他'}[filter_type] || '投资理财' }}
+        </span>
+        <span class="col-xs-3 text-right">
+            <span class="dropdown dropdown-filter" x-dropdown>
+                <img x-dropdown-toggle width="20" src="assets/image/filter-icon.png">
+
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="list/LTB"><img width="24" src="assets/image/ltb-icon-o.png">乐投保</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/LXY"><img width="24" src="assets/image/lxy-icon-o.png">乐享盈</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/QT"><img width="24" src="assets/image/qt-icon-o.png">其他</a>
+                    </li>
+                </ul>
+            </span>
+        </span>
+    </div>
+    </nav>
+
+    <section class="subject"
+             ng-if="filter_type"
+             ng-class="'color-' + (filter_type | lowercase) + '-border'"
+    >
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" width="24"
+                     ng-src="assets/image/{{ filter_type | lowercase }}-icon-o.png"
+                >
+            </div>
+
+            <div class="media-body" ng-switch="filter_type">
+                <div ng-switch-when="LTB">
+                    <h4 class="media-heading color-ltb-text">乐投保</h4>
+                    最高11%收益率，省心理财，稳健收益
+                </div>
+                <div ng-switch-when="LXY">
+                    <h4 class="media-heading color-lxy-text">乐享盈</h4>
+                    8%~11%收益率，项目多元，期限灵活
+                </div>
+                <div ng-switch-when="QT">
+                    <h4 class="media-heading color-qt-text">其他</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="invest-list omit-margin" ng-hide="loading">
+        <div ng-if="!data.length" class="container">
+            <h4 class="alert alert-info text-center">暂无纪录</h4>
+        </div>
+
+        <ul class="list list-unstyled u-off-margin-bottom">
+            <li class="item"
+                ng-repeat="item in data"
+            >
+                <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
+                   x-loan-summary
+                   data-loan="item"
+                ></a>
+            </li>
+        </ul>
+
+        <p ng-if="data.length && self.has_more(data)" class="container">
+            <button class="load-more btn btn-default btn-block"
+                    ng-click="self.add_more(data)"
+            >点击查看更多</button>
+        </p>
+    </section>
+
+</div>

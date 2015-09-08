@@ -2139,10 +2139,10 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  /* padding: 8px; */
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
+  /* border-top: 1px solid #dddddd; */
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -2861,7 +2861,7 @@ select[multiple].form-group-lg .form-control {
 }
 .form-horizontal .form-group {
   margin-left: -15px;
-  margin-right: -15px;
+  /* margin-right: -15px; */
 }
 @media (min-width: 768px) {
   .form-horizontal .control-label {
@@ -8921,7 +8921,7 @@ li a {
   padding: 0 10px;
   border: 1px solid #FFF;
   border: none;
-  background: #f9f9f9 url('/assets/img/box/box-tit.png');
+  background: #f9f9f9 url('/ccc/global/img/box/box-tit.png');
   overflow: hidden;
 }
 .ccc-box-wrap .bar .title {
@@ -10437,6 +10437,7 @@ body {
   position: relative;
   width: 100%;
   height: auto;
+	background-color: #fff;
 }
 .friendLink {
   height: 58px;
@@ -10613,7 +10614,7 @@ a.navbar-brand {
   margin-bottom: 0;
 }
 .table > thead > tr > th {
-  border-bottom-width: 1px;
+  /* border-bottom-width: 1px; */
   padding: 8px 0;
   color: #999;
 }

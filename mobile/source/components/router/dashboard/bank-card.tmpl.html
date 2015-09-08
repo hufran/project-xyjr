@@ -1,0 +1,77 @@
+
+<div id="dashboard-bank-card" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">我的银行卡</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div class="page-content container" ng-if="self.user.has_bank_card">
+    <section>
+
+        <div class="clip clearfix">
+            <span class="icon pull-left">
+                <img width="42" ng-src="assets/image/bank-icons/{{ bank_account.bank | lowercase }}.png">
+            </span>
+            <div class="info">
+                <div class="name" ng-switch="bank_account.bank">
+                    <span ng-switch-when="ICBC">工商银行</span>
+                    <span ng-switch-when="ABC">农业银行</span>
+                    <span ng-switch-when="CCB">建设银行</span>
+                    <span ng-switch-when="SDB">深圳发展银行</span>
+                    <span ng-switch-when="BOC">中国银行</span>
+                    <span ng-switch-when="CEB">光大银行</span>
+                    <span ng-switch-when="CIB">兴业银行</span>
+                    <span ng-switch-when="CMB">招商银行</span>
+                    <span ng-switch-default>{{ bank_account.bank }}</span>
+                </div>
+                <div class="card">
+                    {{ bank_account.mask }}
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center" ng-show="clicked !== true">
+            <button class="btn btn-primary" ng-click="clicked = true">删除银行卡</button>
+        </p>
+    </section>
+
+    <section class="" ng-if="clicked">
+        <div ng-if="!self.user.has_payment_password">
+            请先设置 <a href="dashboard/payment/password" class="btn btn-link u-vb">交易密码</a>
+        </div>
+
+        <form ng-if="self.user.has_payment_password"
+              class="password-form"
+        >
+            <input class="form-control input-sm"
+                   type="password"
+                   ng-model="password"
+                   placeholder="请输入交易密码"
+            >
+
+            <button class="btn btn-danger btn-sm"
+                    ng-click="self.unbind(bank_account.account, password)"
+                    ng-disabled="!password"
+            >确认删除</button>
+        </form>
+    </section>
+
+    <section class="explain">
+        奇乐融只支持绑定一张银行卡，为保障您的资金安全，解绑时请先确定账户情况。如遇问题请联系客服，电话：400-872-7676。
+    </section>
+    </div>
+
+
+
+
+    <div class="page-content" ng-if="!self.user.has_bank_card">
+        <a href="dashboard/payment/bind-card" class="bind-card">
+            <param class="glyphicon glyphicon-plus"> 添加银行卡
+        </a>
+    </div>
+
+</div>

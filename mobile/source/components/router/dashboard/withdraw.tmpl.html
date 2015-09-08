@@ -1,0 +1,120 @@
+
+<div id="dashboard-withdraw" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">提现</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="container balance">
+        <div class="labels">账户可用余额 (元)</div>
+        <div class="amount">{{ available_amount | number }}</div>
+    </section>
+
+    <form class="form-horizontal"
+          name="form"
+          action="/payment/withdraw"
+          method="post"
+          target="_self"
+          ng-submit="self.submit($event)"
+          novalidate
+    >
+        <div class="container withdraw-form">
+            <div class="form-group">
+                <label for="withdraw">金额 (元)</label>
+                <div class="input-wrap">
+                    <input name="withdraw"
+                           id="withdraw"
+                           ng-model="amount"
+                           ng-init="amount = 0"
+                           type="number"
+                           class="form-control input-sm"
+                           min="1"
+                           placeholder="请输入提现金额"
+                           required
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="bankAccount">提现卡号</label>
+                <div class="input-wrap">
+                    <select name="bankAccount" class="form-control input-sm"
+                            id="bankAccount"
+                            ng-model="bank_item"
+                            ng-init="bank_item = bank_list[0]"
+                            ng-options="
+                                bank_item.account.mask for bank_item in bank_list
+                                track by bank_item.account.account
+                            "
+                            required
+                    >
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cashChl">提现方式</label>
+                <div class="input-wrap">
+                    <select name="cashChl" id="cashChl" class="form-control input-sm">
+                        <option value="GENERAL">普通取现</option>
+                        <option value="FAST">快速取现</option>
+                        <option value="IMMEDIATE" ng-if="bank_item.expressAccount">即时取现</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <p class="container" ng-if="auto !== true">
+            <button class="btn btn-theme btn-lg btn-block"
+                    type="submit"
+                    ng-if="self.user.has_payment_account && self.user.has_bank_card"
+                    ng-disabled="form.$invalid || amount <= 0 || amount > available_amount"
+            >
+                <span ng-if="!(amount > available_amount)">确定提现</span>
+                <span ng-if="amount > available_amount">余额不足</span>
+            </button>
+
+            <a href="/payment/account/open"
+               class="btn btn-primary btn-lg btn-block"
+               target="_self"
+               ng-click="self.open_payment_account($event)"
+               ng-if="!self.user.has_payment_account"
+            >开通托管账户</a>
+
+            <a class="btn btn-theme btn-lg btn-block"
+               href="/payment/bindCard"
+               target="_blank"
+               ng-if="self.user.has_payment_account && !self.user.has_bank_card"
+               ng-click="self.prompt_bind_card()"
+            >前去绑定银行卡</a>
+        </p>
+    </form>
+
+    <section class="container explain">
+        <h5>提现说明</h5>
+        <p>该卡在银行的预留手机号为在银行登记的手机号码，或使用其他银行卡进行充值。该卡在银行的预留手机号为在银行登记的手机号码，银行的预留手机号，使用其他银行卡进行充值。</p>
+    </section>
+</div>
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="ngt-withdraw-bind-card.tmpl">
+    <div class="modal-body text-center">
+        绑定银行卡是否成功？
+    </div>
+
+    <div class="modal-buttons">
+        <div class="modal-button" ng-click="$dismiss()">否</div>
+        <div class="modal-button" ng-click="$dismiss()">是</div>
+    </div>
+</script>

@@ -4,6 +4,8 @@
  */
 "use strict";
 
+var accountService = require('ccc/account/js/main/service/account').accountService;
+
 var utils = require('ccc/global/js/lib/utils');
 
 $('.s__top15').mouseover(function() {
@@ -14,7 +16,26 @@ $('.s__top15').mouseover(function() {
 
 
 
+  if(CC.user && CC.user.name){
 
+
+      accountService.getUserInfo(function (res) {
+     if(!res.user){
+         res.user={};
+         res.user.name='';}
+    new Ractive({
+    el: "#head-ractive-container",
+    template:'<img src="/ccc/global/img/navuseryellow.png" />{{#if !name}}{{mobile}}{{else}}{{name}}{{/if}}', 
+    data: {
+       name:res.user.name,
+       loginName:CC.user.loginName,
+        mobile:res.user.mobile
+    }
+});     
+        });
+   };
+
+ 
 
 $(function(){
     utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){
@@ -39,7 +60,7 @@ $(function(){
 //    Cal.create();
 //});
 $(".back-top").click(function(){
-$('body,html').animate({scrollTop:0},1000);
+$('body,html').animate({scrollTop:0},200);
 return false;
 })
 
@@ -56,7 +77,7 @@ if (new RegExp("^/$")
     $(".u-nolist-ul li a#touzi")
         .addClass("navactive");
 
-} else if (new RegExp("^/loan")
+} else if (new RegExp("^/applyloan")
     .test(path)) {
     $(".u-nolist-ul li a#jiekuan")
         .addClass("navactive");
@@ -87,8 +108,24 @@ $('.calculator-create').on('click', function () {
 //导航移动在上面出现微信
 //$('.erweima').hide();
 $('.weixin-icon').mouseenter(function () {
-        $('.erweima').show();
-    })
-$('.weixin-icon').mouseleave(function () {
-        $('.erweima').hide();
-    })
+        $('.erweima-act2').show();
+    }).mouseleave(function () {
+        $('.erweima-act2').hide();
+    });
+
+$('.weixin-icon').mouseenter(function () {
+        $('.erweima-act').show();
+    }).mouseleave(function () {
+        $('.erweima-act').hide();
+    });
+
+//控股下拉菜单
+    	
+		$("#family").hover(function(){
+			$(this).find("p").css("background","url(/ccc/global/img/slideOn.png) no-repeat");
+			$(this).find("ul").stop().slideDown();
+		},function(){
+			$(this).find("ul").stop().slideUp();
+			$(this).find("p").css("background","url(/ccc/global/img/slide.png) no-repeat");
+		});
+

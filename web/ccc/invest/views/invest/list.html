@@ -13,57 +13,42 @@
 <div id="main-container">
     
     <div class="s-content u-pos-r-center">
-        <p class="title"><a href="/index">首页</a>>投资列表</p>
+        <p class="title"><a href="/">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;投资列表</p>
         <div class="investBox">
+<!--
             <p class="investBoxTitle">我要投资</p>
             <p class="investBoxNew">每天固定时间发布新项目，首次投资可前往“<a href="">新手专区</a>”投资新手专享项目</p>
-             <div>
-                 <div>
+-->
+<!--            {{JSON.stringify(products)}}-->
+             <div class="no-warry-ul">
+                 {{#products:num}}
+                 <div class="no-warry" data-product="{{data.productKey}}">
+                     <div class="no-warry-left">
+                          {{#if num===0}}<img src="/ccc/invest/img/nowarry.png"/>{{elseif num===1}}<img src="/ccc/invest/img/stock.png"/>{{else}}<img src="/ccc/invest/img/interest.png"/>{{/if}}
+                           <p {{#if num===0}}style="color:#ffbc08;"{{elseif num===1}}style="color:#009ada;"{{else}}
+                           style="color:#4a4a4a;"{{/if}}>{{data.name}}</p>
+                     </div>
+                     <div class="no-warry-right">
+                        <p>活期理财，存取随心</p>
+                        <p>年化收益{{data.minRate}}%~{{data.maxRate}}%</p>
+                        <p {{#if num===0}}style="color:#999;"{{elseif num===1}}style="color:#999;"{{else}}
+                           style="color:#999;"{{/if}}>{{data.description.substr(0,40)}}</p> 
+                     </div>
                  </div>
+                 {{/products}}
             </div>
         </div>
-<!--        <div class="s-nav-view">-->
-<!--
-            <ul class="u-nolist-ul sRate">
-                <li class="selectTitle">年化收益：</li>
-                <li class="s__is-selected" data-min-rate="0" data-max-rate="100">不限</li>
-                <li data-min-rate="0" data-max-rate="8">8%以下</li>
-                <li data-min-rate="8" data-max-rate="10">8%-10%</li>
-                <li data-min-rate="10" data-max-rate="12">10%－12%</li>
-                <li data-min-rate="12" data-max-rate="100">12%以上</li>
-            </ul>
--->
-<!--
-            <ul class="u-nolist-ul sDuration">
-                <li class="selectTitle">借贷期限：</li>
-                <li class="s__is-selected"  data-min-duration="0" data-max-duration="100">不限</li>
-                <li data-min-duration="0" data-max-duration="1">0－1个月</li>
-                <li data-min-duration="1" data-max-duration="3">1-3个月</li>
-                <li data-min-duration="3" data-max-duration="6">3-6个月</li>
-                <li data-min-duration="6" data-max-duration="12">6-12个月</li>
-                <li data-min-duration="12" data-max-duration="100">一年以上</li>
-            </ul>
--->
-<!--
-            <ul class="u-nolist-ul sStatus">
-                <li class="selectTitle">投标状态：</li>
-                <li class="s__is-selected" data-status="SCHEDULED">不限</li>
-                <li data-status="OPENED">融资中</li>
-                <li data-status="SETTLED">还款中</li>
-                <li data-status="CLEARED">还款结束</li>
-            </ul>
--->
-<!--        </div>-->
-
-<!--        <p style="margin:20px 0;"> 最新公告: PHP吉大利好     207328  </p>-->
-
         <table>
             <tr>
                 <th style="width:280px;padding-left:38px;">名称</th>
                 <th style="width:160px;">借款总额</th>
                 <th style="width:140px;">年化收益</th>
                 <th style="width:154px;">投资期限</th>
-                <th style="width:190px;">进度</th>
+                <th style="width:190px;">还款方式</th>
+
+                <th style="width:172px;">进度</th>
+                
+
                 <th style="width:126px;">状态</th>
             </tr>
         </table>
@@ -78,3 +63,5 @@
 <div class="space space-30"></div>
 <script>{{{state}}}</script>
 <script src="/ccc/invest/js/main/investList.js"></script>
+
+

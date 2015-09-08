@@ -1,0 +1,49 @@
+
+<div class="subject">
+    <h4 class="title"
+        ng-class="'color-' + (loan.product_type | lowercase) + '-text'"
+    >{{ loan.title }}</h4>
+
+    <div class="status" ng-switch="loan.status">
+        <span ng-switch-when="SCHEDULED">即将开始</span>
+    </div>
+</div>
+
+<div class="info">
+    <div class="item rate">
+        <span class="num">{{ loan.rate }}</span><!--
+        --><span class="unit">%</span>
+    </div>
+
+    <div class="item term">
+        <span class="num">{{ loan.total_months || loan.total_days }}</span><!--
+        --><span class="unit" ng-if="loan.total_months">个月</span><!--
+        --><span class="unit" ng-if="!loan.total_months">天</span>
+    </div>
+
+    <div class="item current-progress">
+        <span x-easypiechart class="chart"
+              percent="loan.invest_percent_int"
+              options="loan.chart_options"
+        ></span>
+        <span class="num"
+              ng-class="{ 'text-muted': loan.invest_percent_int == 0 }"
+        >{{ loan.invest_percent_int }}%</span>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="method" ng-switch="loan.method">
+        <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+        <span ng-switch-when="EqualInstallment">按月等额本息</span>
+        <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+        <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+        <span ng-switch-when="EqualInterest">月平息</span>
+    </div>
+
+    <div class="balance">
+        可投金额 {{ loan.balance_myriad || loan.balance }}
+        <span class="unit" ng-if="loan.balance_myriad">万</span>
+        <span class="unit" ng-if="!loan.balance_myriad">元</span>
+    </div>
+</div>

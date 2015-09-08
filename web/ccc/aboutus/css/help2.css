@@ -1,5 +1,6 @@
 #main-container{
-    background: #f5f5f5;
+    background: #fff;
+	margin-top: 7px;
 }
 
 .page-guide{
@@ -16,13 +17,18 @@
     line-height: 44px;
 }
 #aboutus-title a{
-    color:#007ec5;
+    color:#009ada;
 }
 
 #help-left .title-bg{
     position: absolute;
     left: 0;
     top:59px;
+}
+#help-left .title-bg-notice{
+    position: absolute;
+    left: 0;
+    top:535px;
 }
 
 .page-guide div{
@@ -40,7 +46,7 @@
 #help-left .aboutus-title{
     width: 200px;
     height:60px;
-    background: #007ec5;
+    background: #009ada;
     color: #fff;
     margin-left: 0px;
 }
@@ -133,7 +139,7 @@
 }
 
 #help-right h1{
-    color: #007ec5;
+    color: #009ada;
     font-size: 22px;
     line-height: 22px;
     font-family: MicrosoftYaHei ;
@@ -147,10 +153,13 @@
     line-height: 30px;
     color: #4a4a4a;
 }
+#help-right .invest-wrapper .article-content p{
+    margin-left: 28px;
+}
 
 #help-right .new-guide{
     font-size:22px;
-    color:#007ec5;
+    color:#009ada;
     margin-top: 40px;
 }
 #help-right .new-guide-pic{
@@ -368,7 +377,7 @@
     line-height: 50px;
 }
 #help-right .ar-title{
-    color:#007ec5;
+    color:#009ada;
     font-size: 22px;
     margin-top: 40px;
 }
@@ -391,4 +400,18 @@
     height: 50px;
     font-size: 14px;
     color:#4a4a4a;
+}
+
+.page{
+    margin-top: 20px;
+}
+
+.page ul li{
+    text-align: center;
+     width:30px;
+    float: left;
+    height:30px;
+    border:1px solid #999;
+    margin-right: 5px;
+    line-height: 30px;
 }

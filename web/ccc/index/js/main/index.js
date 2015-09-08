@@ -12,8 +12,7 @@ var loginElement=document.getElementsByClassName?document.getElementsByClassName
 
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
-$carousel
-    .on('slid.bs.carousel', function (e) {
+$carousel.on('slid.bs.carousel', function (e) {
         // slide 完成后
     });
 
@@ -21,7 +20,7 @@ $carousel
 IndexService.getLoanSummary(function (list) {
 
      for(var i=0;i<list.length;i++){
-        list[i].method = i18n.enums.RepaymentMethod[list[i].method];
+        list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
     }
     var investRactive = new Ractive({
         el: ".productList",
@@ -33,7 +32,7 @@ IndexService.getLoanSummary(function (list) {
     });
 
     initailEasyPieChart();
-    ininconut();
+//    ininconut();
 
 });
 
@@ -52,35 +51,12 @@ IndexService.getLoanSummary(function (list) {
     });
 
     initailEasyPieChart();
-    ininconut();
+//    ininconut();
 
 });
 
 
 
-function ininconut () {
-    $(".opre > .investbtn").each(function () {
-        var t = $(this);
-        var id = t.data("id");  
-        var openTime = t.data("open");  
-        var serverDate = t.data("serv");  
-        var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-        var textDay = leftTime.day ? leftTime.day +'天' : '';
-        t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
-        var interval = setInterval((function () {
-            serverDate += 1000;
-            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day +'天' : '';
-            if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)){
-                clearInterval(interval);
-                t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-            }else{
-
-                t.html('<span class="text">'+ textDay + leftTime.hour +'时'+ leftTime.min +'分'+ leftTime.sec +'秒</span>')
-            }
-        }), 1000);
-    });
-};
 
 IndexService.getLatestScheduled(function (loan) {
     var serverDate = loan.serverDate;
@@ -124,7 +100,7 @@ function initailEasyPieChart() {
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
             // 100%进度条颜色显示为背景色
-            var color = percentage === 100 ? "#b49b5d" : '#b49b5d';
+            var color = percentage === 100 ? "#f58220" : '#009ada';
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
@@ -215,26 +191,12 @@ $(document).keyup(function (e) {
     }
 });
 
-$.get('/api/v2/analytics/count', function (r) {
-    console.log(r);
-    var count = new Ractive({
-        el: '.report',
-        template: '累计交易<span class="figure">{{dayNumbers}}</span>天，总成交金额<span class="rmb">¥</span><span class="figure">{{loanAll}}<span>',
-        data: {
-            users: r.user.all,
-            loanAll: r.loan.all,
-            dayNumbers: dayNumbers
-        }
-    });
-})
-
-
 request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .end()
     .then(function (res) {
         var count = new Ractive({
         el: '.firendLink',
-        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}{{{content}}}{{/each}}</div></div>',
+        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</div></div>',
         data: {
             items: res.body
         }
@@ -250,10 +212,8 @@ $(' .icon-group1').mouseenter(function(){
     $(this).children('.company-intro').hide(200);
 })
 
-//按箭头显示宝贝计划
-$(".scroll-left").click(function(){
-    $(".invests-list-wrapper").last().animate({left:-245},2000);
-})
+
+
 //require('ccc/index/js/main/ss.js')
 //
 //$(".loanWrapper").hover(function(){$(this).css("border-color","#A0C0EB");},function(){$(this).css("border-color","#d8d8d8")});

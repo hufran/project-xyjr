@@ -1,81 +1,45 @@
 'use strict';
-
+var NETBANKS = require('ccc/global/js/modules/netBank');
 require('ccc/global/js/modules/cccTab');
-var UMPBANKS = {
-    personal: require('ccc/global/js/modules/cccUmpBanks'),
-    company: require('ccc/global/js/modules/cccUmpCompanyBanks')
-};
 
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;
+var banks = _.filter(NETBANKS, function (r) {
+    return r.enable === true;
+});
 
-new Ractive({
+var corBanks = _.filter(NETBANKS, function (r) {
+    return r.isSupportted === true;
+});
+
+var ractive = new Ractive({
     el: '.ccc-tab-panels',
     template: require('ccc/account/partials/recharge.html'),
     data: {
-        personalBanks: UMPBANKS.personal,
-        companyBanks: UMPBANKS.company,
-        showPersonal: 1,
-        showCompany: 0,
         loading: true,
         availableAmount: CC.user.availableAmount || 0,
-        rewardAmount: 0,
-        loanCount: 0,
         msg: {
             BANK_NULL: false,
             AMOUNT_NULL: false,
             AMOUNT_INVALID: false
         },
-        amountValue: 10000000
-    },
-    onrender: function () {
-        var self = this;        
-        accountService.getLoanCount('?status=SETTLED&status=OVERDUE',function (loanCount) {
-            self.set('loanCount',loanCount);                
-            });
+        isNormal: false,
+        banks: banks,
+        corBanks: corBanks,
+        isEnterpriseUser: CC.user.enterprise,
+        amountValue: 10000000,
+        action: '/lianlianpay/onlineBankDeposit'
     },
     oncomplete: function () {
         var self = this;        
         this.$help = $(this.el)
             .find('.help-block');
-        this.$bank = $(this.el)
-            .find('[name=bank]');
         this.$amount = $(this.el)
             .find('[name=rechargeValue]');
         this.$form = $(this.el)
             .find('form[name=rechargeForm]');
-
-        // set form action,修改提交路径       
-        this.on('showPersonal', function () {            
-            this.set('showPersonal',1);
-            this.set('showCompany',0);
-            this.set('amountValue',10000000);
-            $("#personalBtn").addClass("active");
-            $("#companyBtn").removeClass("active");
-            $(".header-text").text("个人充值(只支持借记卡)");
-
-        });
-        
-        this.on('showCompany', function () {            
-            this.set('showPersonal',0);
-            this.set('showCompany',1);
-            this.set('amountValue',100000000);
-            $("#companyBtn").addClass("active");
-            $("#personalBtn").removeClass("active");
-            $(".header-text").text("企业充值(只支持借记卡)");
-        });
-        
-        this.on('selectBank', function (e) {           
-            $('.bank')
-                .removeClass('active');
-            $(e.node)
-                .addClass('active');            
-            //this.$bank.val(e.context.code);  
-            $(".bank").val(e.context.code);
-            this.$help.empty();
-        });
 
         this.on('changeValue', function (e) {
             self.set('msg', {
@@ -83,7 +47,6 @@ new Ractive({
                 AMOUNT_NULL: false,
                 AMOUNT_INVALID: false
             });
-
             var value = $(e.node)
                 .val();
 
@@ -100,47 +63,80 @@ new Ractive({
 
             self.set('msg.AMOUNT_INVALID', !self.match($(e.node)
                 .val()));
+
         });
 
-        this.$form.submit(function (e) {
-            self.set('msg', {
-                BANK_NULL: false,
-                AMOUNT_NULL: false,
-                AMOUNT_INVALID: false
-            });
-
-            if (self.$bank.val() === '') {
-                e.preventDefault();
-                self.set('msg.BANK_NULL', true);
-                return false;
-            } else if (self.$amount.val() === '') {
-                e.preventDefault();
-                self.$amount.focus();
-                //self.set('msg.AMOUNT_NULL', true);
-                return false;
-            } else if (!self.match(self.$amount.val()) || parseFloat(self.$amount.val()) > parseFloat(self.get('amountValue'))) {
-                e.preventDefault();
-                self.set('msg.AMOUNT_INVALID', true);
-                self.$amount.focus();
-                return false;
-            }
-
-            Confirm.create({
-                msg: '充值是否成功？',
-                okText: '充值成功',
-                cancelText: '充值失败',
-                ok: function () {
-                    window.location.href = '/account/funds';
-                },
-                cancel: function () {
-                    window.location.reload();
-                }
-            });
+        $(".bankwrap .bankItem").click(function () {
+            $(this)
+                .addClass('currentBank')
+                .siblings('.bankItem')
+                .removeClass('currentBank');
         });
+
     },
 
     match: function (v) {
-        return v.match(/^[1-9]\d*(\.\d{0,2})?$/);
+        return v.match(/^[0-9]\d*(\.\d{0,2})?$/);
     }
 
+});
+
+ractive.on('recharge_submit', function (e){
+    var amount = this.get('amount');
+    this.set('msg', {
+        BANK_NULL: false,
+        AMOUNT_NULL: false,
+        AMOUNT_INVALID: false,
+        BANKCODE_NULL: false
+    });
+
+    if (amount === '') {
+        console.log(amount=== '');
+        e.original.preventDefault();
+        this.$amount.focus();
+        this.set('msg.AMOUNT_NULL', true);
+        return false;
+    } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
+        e.original.preventDefault();
+        this.set('msg.AMOUNT_INVALID', true);
+        this.$amount.focus();
+        return false;
+    }
+    if (!this.get('isNormal')) {
+        var code = this.get('bankCode');
+        if (!code) {
+            e.original.preventDefault();
+            this.set('msg.BANKCODE_NULL', true);
+            return false;
+        }
+
+    }
+
+    Confirm.create({
+        msg: '充值是否成功？',
+        okText: '充值成功',
+        cancelText: '充值失败',
+        ok: function () {
+            window.location.href = '/account/funds';
+        },
+        cancel: function () {
+            window.location.reload();
+        }
+    });
+});
+
+ractive.on('changeMethod', function (event) {
+    var type = event.node.getAttribute('data-type');
+    if (type !== 'net') {
+        ractive.set('isNormal', true);
+        ractive.set('action', '/lianlianpay/deposit');
+    } else {
+        ractive.set('isNormal', false);
+        ractive.set('action', '/lianlianpay/onlineBankDeposit');
+    }
+});
+
+ractive.on('selectBank', function (event) {
+    var code = event.node.getAttribute('data-code');
+    this.set('bankCode', code);
 });

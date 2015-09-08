@@ -1,3 +1,8 @@
+
+#main-container{
+	margin-top: 7px;
+}
+
 .tab-panel > table > tbody > tr > td {
   padding: 15px 10px!important;
 }

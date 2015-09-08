@@ -153,6 +153,7 @@ module.exports = (function () {
             if (!~pcode.indexOf(idNumber.substring(0, 2))) {
                 if (next) {
                     next(false, 'IDNUMBER_INVALID');
+                    return;
                 } else {
                     return {
                         success: false,
@@ -176,6 +177,7 @@ module.exports = (function () {
                 }, 0) % 11]) {
                 if (next) {
                     next(false, 'IDNUMBER_INVALID');
+                    return;
                 } else {
                     return {
                         success: false,
@@ -185,6 +187,7 @@ module.exports = (function () {
             }
             if (next) {
                 next(true, null);
+                return;
             } else {
                 return {
                     success: true,

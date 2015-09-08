@@ -55,7 +55,10 @@ ractive.on("submit-modify-password", function () {
     if (newPassword.length < 6) {
         return showError("密码长度必须大于6位");
     }
-
+    if (newPassword.indexOf(" ") >=0) {
+        return showError("密码不能为空格");
+    }
+    
     if (!passwordConfirm) {
         // 没重复新密码
         return showError("请重复新密码");
@@ -71,6 +74,9 @@ ractive.on("submit-modify-password", function () {
 
     CommonService.checkCaptcha(ractive.get('captcha'), function (res) {
         if (res.success) {
+            if(currentPassword===newPassword){
+                            return showError('新密码不能与原始密码相同');
+                    }
             request.post("/account/change_password")
                 .type("form")
                 .send({
@@ -82,17 +88,19 @@ ractive.on("submit-modify-password", function () {
                     res = JSON.parse(res.text);
 
                     if (res.success) {
+                        
                         CccOk.create({
                             msg: '恭喜您修改密码成功！',
                             okText: '确定',
                             cancelText: '重新登录',
                             ok: function () {
-                                window.location.reload();
+                                window.location.pathname = "/login";
                             },
                             cancel: function () {
                                 window.location.reload();
                             }
                         });
+                        
                         return;
                     }
 

@@ -4,14 +4,20 @@ var utils = require('ccc/global/js/lib/utils');
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
+var accountService = require('ccc/account/js/main/service/account')
+    .accountService;
 
-new Ractive({
+var banksabled = _.filter(CC.user.bankCards, function (r) {
+    return r.deleted === false;
+});
+
+var ractive = new Ractive({
 	el: '.ccc-recharge-wrap',
 	template: require('ccc/account/partials/withdraw.html'),
 	data: {
 		banks: UMPBANKS,
 		loadMessage: null,
-		bankcards: [],
+		bankcards: banksabled || [],
 		availableAmount: 0,
 		msg: {
 			AMOUNT_NULL: '请输入提现金额',
@@ -21,10 +27,13 @@ new Ractive({
 			ERROR: '请求出现错误',
 
 		},
+		isSend: false,
 		disabled: false,
 		submitText: '确认提现',
 		submitMessage: null,
-		error: false
+		error: false,
+		isEnterpriseUser: CC.user.enterprise,
+        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
 	},
 	oninit: function(){
 		var self = this;
@@ -33,30 +42,17 @@ new Ractive({
 		userInfo.then(function(){
 			self.set('availableAmount', CC.user.availableAmount);
 		});
-		
-		// get banks
-		this.set('loadMessage', '正在载入银行卡...');
-		var url = '/api/v2/user/MYSELF/fundaccounts';
-		$.get(url, function(o){
-			if (o.length === 0) {
-				self.set('loadMessage', '暂无数据');
-			}
-			self.set('bankcards', self.parseData(o));
-			self.set('loadMessage', null);
-		}).error(function(){
-			self.set('loadMessage', '请求出错了');
-		});
 	},
 	oncomplete: function(){
 		var self = this;
 		this.$help = $(this.el).find('.help-block');
-		this.$amount = $(this.el).find('[name=withdraw]');
+		this.$amount = $(this.el).find('[name=amount]');
 		this.$form = $(this.el).find('form[name=withdrawForm]');
-		
+		this.$pass = $(this.el).find('[name=paymentPassword]');
 		this.$amount.focus();
 		
 		// set form action
-		this.set('active', '/upayment/withdraw');
+		this.set('active', '/lianlianpay/withdraw');
 		
 		this.on('changeValue', function(e){
 			var amount = $.trim($(e.node).val());
@@ -71,69 +67,27 @@ new Ractive({
 			} else if (parseFloat(amount) > CC.user.availableAmount) {
 				self.set('submitMessage', self.get('msg.AMOUNT_POOR'));
 				return;
-			} else if (parseFloat(amount) < 100 && parseFloat(amount) != CC.user.availableAmount) {
-				self.set('submitMessage', self.get('msg.AMOUNT_ALL'));
-				return;
 			} else {
 				self.set('submitMessage', null);
 			}
 		});
-		
-		this.$form.submit(function(e){
-			self.$amount.blur();
-			self.set('submitMessage', null);
-			
-			var amount = $.trim(self.$amount.val());
-			
-			if (amount === '') {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_NULL'));
-				return false;
-			}
-			
-			else if (!self.match(amount)) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_INVALID'));
-				self.$amount.focus();
-				return false;
-			}
-			
-			else if (parseFloat(amount) > CC.user.availableAmount) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_POOR'));
-				self.$amount.focus();
-				return false;
-			}
-			
-			else if (parseFloat(amount) < 100 && parseFloat(amount) != CC.user.availableAmount) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.AMOUNT_ALL'));
-				self.$amount.focus();
-				return false;
-			}
 
-			else if (self.get('error')) {
-				e.preventDefault();
-				self.set('submitMessage', self.get('msg.ERROR'));
-				return false;
+		this.on('checkPassword', function () {
+			var password = this.get('paymentPassword');
+
+			if (password === '') {
+				self.set('submitMessage', '请输入交易密码');
+				return;
+			} else {
+				accountService.checkPassword(password, function (r) {
+					if (!r) {
+						self.set('submitMessage', '交易密码错误');
+						return;
+					} else {
+						self.set('submitMessage', null);
+					}
+				});
 			}
-			
-			else if (!self.confirm(amount)) {
-				e.preventDefault();
-				return false;
-			}
-			
-			Confirm.create({
-				msg: '提现是否成功？',
-				okText: '提现成功',
-				cancelText: '提现失败',
-				ok: function() {
-					window.location.href = '/account/funds';
-				},
-				cancel: function() {
-					window.location.reload();
-				}
-			});
 		});
 	},
 	
@@ -198,6 +152,101 @@ new Ractive({
 	},
 	
 	match: function(v){
-		return v.toString().match(/^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
+		return v.toString().match(/^([0-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
 	}
 });
+
+
+ractive.on('sendCode', function (){
+
+	if (!this.get('isSend')) {
+		this.set('isSend', true);
+		var smsType = 'CONFIRM_CREDITMARKET_WITHDRAW';
+		CommonService.getMessage(smsType, function (r) {
+			if (r.success) {
+	            countDown();
+	        }
+		});
+	}
+});
+
+ractive.on('withdrawForm', function (e) {
+	e.original.preventDefault();
+	this.set('submitMessage', null);
+	var isAcess = false;
+	var amount = this.get('amount');
+	var pass = this.get('paymentPassword');
+
+	if (amount === '') {
+		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));
+	}
+	
+	else if (!this.match(amount)) {
+		this.set('submitMessage', this.get('msg.AMOUNT_INVALID'));
+		this.$amount.focus();
+	}
+	
+	else if (parseFloat(amount) > CC.user.availableAmount) {
+		this.set('submitMessage', this.get('msg.AMOUNT_POOR'));
+		this.$amount.focus();
+	}
+	
+	else if (this.get('error')) {
+		this.set('submitMessage', this.get('msg.ERROR'));
+	}
+	
+	else if (pass === '') {
+		this.set('submitMessage', '请输入交易密码');
+	} 
+
+	else if (pass !== '') {
+		accountService.checkPassword(pass, function (r) {
+			if (!r) {
+				ractive.set('submitMessage', '交易密码错误');
+			} else {
+				ractive.set('submitMessage', null);
+				if (ractive.confirm(amount)) {
+					console.log(111);
+					isAcess = true;
+				}
+				
+				if (isAcess) {
+					$('form').submit();
+					Confirm.create({
+						msg: '提现是否成功？',
+						okText: '提现成功',
+						cancelText: '提现失败',
+						ok: function() {
+							window.location.href = '/account/funds';
+						},
+						cancel: function() {
+							window.location.reload();
+						}
+					});
+				}
+			}
+		});
+	}
+});
+
+function countDown() {
+    $('.sendCode')
+        .addClass('disabled');
+    var previousText = '获取验证码';
+    var msg = '$秒后重新发送';
+
+    var left = 120;
+    var interval = setInterval((function () {
+        if (left > 0) {
+            $('.sendCode')
+                .html(msg.replace('$', left--));
+        } else {
+        	ractive.set('isSend', true);
+            $('.sendCode')
+                .html(previousText);
+            $('.sendCode')
+                .removeClass('disabled');
+            clearInterval(interval);
+        }
+    }), 1000);
+}

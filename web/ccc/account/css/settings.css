@@ -1,3 +1,13 @@
+.form-group p{
+	font-family: "微软雅黑";
+}
+
+
+#main-container{
+	margin-top: 7px;
+}
+
+
 .current-container {
   width: 960px;
   margin: 0 auto;
@@ -31,11 +41,14 @@
 }
 .modify-password-wrapper .modify-password .errorMessage {
   position: absolute;
-  padding: 5px 10px 5px 0;
+  padding: 5px 10px 5px 20px;
   border-radius: 5px;
   top: 20px;
-  color: #c9a76c;
+  color: #d2252c;
   background-color: #fcf8e3;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
 }
 .modify-password-wrapper .modify-password .errorMessage .excalmation {
   color: #ff0000;
@@ -61,8 +74,13 @@
   width: 100%;
   margin: 30px auto 0;
   color: #fff;
-  background-color: #b5a16b;
+  background-color: #f58220;
 }
+
+.modify-password-wrapper .modify-password .modify-button:hover{
+	background-color: #df6502;
+}
+
 .open-account-wrapper {
   margin: 30px 75px 0;
 }
@@ -93,11 +111,16 @@
   color: #e05b5b;
 }
 .open-account-wrapper .account-form-wrapper .btn-success {
-  background-color: #b5a16b;
+  background-color: #009ada;
   border-color: transparent;
   color: #fff;
   width: 230px;
 }
+
+.open-account-wrapper .account-form-wrapper .btn-success:hover{
+	background-color: #015989;
+}
+
 .open-account-wrapper .account-form-wrapper .agreement-wrapper {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -115,8 +138,12 @@
   border-radius: 5px;
   padding: 5px;
   background-color: #fcf8e3;
-  color: #c49f60;
+  color: #d2252c;
   font-size: 12px;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 22px;
 }
 .open-account-wrapper .account-form-wrapper .error-message .exclamation {
   color: #f00;
@@ -159,6 +186,10 @@
   margin: 20px auto 50px auto;
   width: 780px;
 }
+ #ractive-container .tips{
+     width: 780px;
+     margin: 0 auto;
+ }
 .account-opened-notice .tips .exclamation {
   color: #f00;
   margin-right: 5px;
@@ -277,11 +308,18 @@
   text-align: center;
 }
 .binded-card-wrapper .btn-change-card {
-  background-color: #7ec123;
+  background-color: #009ada;
   color: #fff;
   display: block;
   margin: 25px auto 0;
+    border: none;
+    margin-bottom: 30px;
 }
+
+.binded-card-wrapper .btn-change-card:hover{
+	background-color: #015989;
+}
+
 .nosecret-agreement-wrapper .form-helper {
   padding-left: 20px;
   color: #888;
@@ -466,5 +504,182 @@ ul.banks-wrap span.WZCB {
 .paypwd-wp .sub-tips {
   padding-top: 15px;
   color: #999;
+}
+
+.banks-container .form-group {
+  padding: 5px;
+	overflow: hidden;
+}
+
+.banks-container .form-group .tip {
+  width: 150px;
+  font-size: 12px;
+  text-align: right;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 15px;
+}
+
+.banks-container .form-group select {
+  width: 250px;
+  position:relative;
+  top:7px;
+  font-size: 16px;
+	float: left;
+}
+
+.banks-container .form-group input {
+  width: 250px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+	float: left;
+}
+/*安全认证*/
+.safety-wrapper .table tr th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  color: #005387;
+  text-align: center;
+}
+.safety-wrapper .table tr td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 14px;
+  text-align:center;
+}
+.safety-wrapper .table tr td .glyphicon {
+  color: #9eca45;
+}
+.safety-wrapper .table tr .align-left {
+  text-align: left;
+}
+.rzz {
+  width: 350px;
+  position: relative;
+  margin: 0 auto;
+  display: none;
+  overflow: auto;
+  zoom:1;
+  margin-top:20px;
+}
+.rZemail {
+  width: 250px;
+  height: 37px;
+  text-indent: 10px;
+  float: left;
+  font-size: 14px;
+}
+.rzE_button {
+  width: 80px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 14px;
+  background: #f58220;
+  float: right;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.rzE_button:hover{
+	background-color: #df6502;
+}
+
+.errors {
+  color: #d2252c;
+  font-size: 12px;
+  clear:both;
+  padding:10px;
+	padding-left: 20px;
+/*	background-image: url(/ccc/register/img/gou-bg.png);*/
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+/*个人信息*/
+.userInfo {
+  width:400px;
+  margin:30px auto;
+  padding: 20px 50px;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 1px 2px 5px grey;
+}
+.userInfo .item {
+  overflow:auto;
+  zoom:1;
+  margin:10px 0;
+}
+.userInfo dl dt {
+  float:left;
+  width:100px;
+  text-align: right;
+}
+.userInfo dl dd {
+  margin-left:120px;
+}
+
+.tabwra .tab {
+  float: right;
+}
+.tabwra .tab li {
+  width: 80px;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+}
+.tabwra .tab li.active {
+  border-bottom: 1px solid #000;
+}
+.payInp {
+  width: 250px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+}
+.formwra {
+  width: 350px;
+  margin: 0 auto;
+}
+.formwra .row {
+  margin-bottom: 5px;
+}
+.row .tipss {
+  display: block;
+  height: 35px;
+  line-height: 35px;
+}
+.row .confir {
+  width: 249px;
+  color: #fff;
+  background: #009ada;
+}
+
+.row .confir:hover{
+	background-color: #015989;
+}
+
+.row .error {
+  width: 249px;
+  color: #d2252c;
+/*  text-align: center;*/
+	display: block;
+	float: left;
+	background-image: url(/ccc/register/img/gou-bg.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 20px;
+}
+.error {
+    color:#f00;
 }
 /*# sourceMappingURL=/ccc/account/css/settings.css.map */

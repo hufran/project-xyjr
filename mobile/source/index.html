@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <base href="/">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <title>奇乐融</title>
+
+        <!-- <link rel="apple-touch-icon" href="assets/image/touch-icon-iphone.png"> -->
+
+        <link href="libs/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet/less" href="styles/main.less?t={time}">
+
+        <script x-dev src="libs/less/2.5.1/less.min.js"></script>
+
+        <script x-pick-lib src="libs/lodash/3.10.1/lodash.min.js"></script>
+        <script x-pick-lib src="libs/moment/2.10.6/moment.min.js"></script>
+        <script x-pick-lib src="libs/humanize-duration/3.2.0/humanize-duration.min.js"></script>
+
+        <script x-pick-lib src="libs/angular/1.4.4/angular.min.js"></script>
+        <script x-pick-lib src="libs/angular/1.4.4/angular-route.min.js"></script>
+        <script x-pick-lib src="libs/angular/1.4.4/angular-cookies.min.js"></script>
+        <script x-pick-lib src="libs/angular/1.4.4/angular-resource.min.js"></script>
+        <script x-pick-lib src="libs/angular/1.4.4/angular-sanitize.min.js"></script>
+        <script x-pick-lib src="libs/angular/1.4.4/angular-messages.min.js"></script>
+        <script x-pick-lib src="libs/angular/1.4.4/angular-animate.min.js"></script>
+        <script x-pick-lib src="libs/angular-ui-utils/1.1.1/validate.min.js"></script>
+        <script x-pick-lib src="libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
+        <script x-pick-lib src="libs/angular-timer/1.3.3/angular-timer.min.js"></script>
+        <script x-pick-lib src="libs/easy-pie-chart/2.1.6/angular.easypiechart.min.js"></script>
+
+        <script x-dev src="libs/coffee-script/1.9.3/coffee-script.min.js"></script>
+
+
+        <script x-pick-main type="text/coffeescript" data-src="scripts/module.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="scripts/lodash-enhancement.coffee"></script>
+
+        <script x-pick-main type="text/coffeescript" data-src="components/header/header.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/footer/footer.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/homepage/homepage.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/list/list.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/login/login.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/register/register.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/password/password.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/announcement/announcement.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/loan/loan.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/loan/loan-investors.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/loan/loan-info.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/loan/loan-invest.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/loan/loan-invest-return.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/home.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/total-assets.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/coupon.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/payment/ump/payment-ump-register.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/payment/ump/payment-ump-agreement.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/payment/ump/payment-ump-bind-card.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/payment/pool/payment-pool-register.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/payment/pool/payment-pool-bind-card.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/payment/pool/payment-pool-password.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/invest.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/invest-detail.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/recharge.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/repayment.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/withdraw.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/bank-card.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/funds.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/invite.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/router/dashboard/return-results.ctrl.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/utils/server-api.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/utils/model-user.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/utils/utils.coffee"></script>
+        <script x-pick-main type="text/coffeescript" data-src="components/utils/carousel.coffee"></script>
+
+        <script x-pick-main type="text/coffeescript" data-src="scripts/boot.coffee"></script>
+
+        <script data-src="libs/package.min.js?t={time}"></script>
+    </head>
+
+    <body ng-cloak>
+
+        <div ng-view></div>
+
+        <script data-src="scripts/main.min.js?t={time}"></script>
+
+        <param x-gyro-footer x-gyro-backfire>
+    </body>
+
+</html>
