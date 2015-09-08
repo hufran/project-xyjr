@@ -24,7 +24,7 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @has_payment_password = true
+                        @user.has_payment_password = true
                         @$location.path @next_path
 
                     .catch (data) =>

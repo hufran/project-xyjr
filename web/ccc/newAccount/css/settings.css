@@ -43,3 +43,170 @@ p.tips {
 .isAu {
 	margin-left: 180px;
 }
+.account-password-tab {
+	height: 30px;
+	border-bottom: 1px #cccccc solid;
+}
+.passTab {
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	color: #999999;
+	cursor: pointer;
+	font-size: 20px;
+}
+.PassTabActive {
+	color: #009ada;
+	border-bottom: 2px #009ada solid;
+}
+.updateWra,.resetWra,.formwra {
+	text-align: center;
+}
+.row {
+	margin-bottom: 15px;
+}
+.row .payInp {
+	width: 200px;
+	height: 30px;
+	border-radius: 5px;
+	text-indent: 10px;
+	border: 1px #cccccc solid;
+}
+.row .tipss {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	width: 80px;
+	font-size: 14px;
+	text-align: left;
+	color: #4a4a4a;
+}
+.row .error {
+	text-align: center;
+	color: red;
+}
+.btn-update {
+	width: 200px;
+	background-color: #009ada;
+	border: 1px #009ada solid;
+	font-size: 18px;
+	height: 40px;
+	margin: 0 auto;
+	color: #fff;
+	font-weight: normal;
+	line-height: 40px;
+	border-radius: 5px;
+}
+.btn-update:hover {
+	color: #fff;
+}
+.tabwra .tab li {
+	cursor: pointer;
+}
+.tabwra .tab .active {
+	color: #009ada;
+	font-size: 16px;
+}
+.modify-password-wrapper {
+	width: 400px;
+	margin: 0 auto;
+}
+.cap {
+	width: 70px;
+	/* height: 12px; */
+	padding: 4px 0px;
+	display: inline-block;
+	position: relative;
+	right: 7px;
+}
+.errorMessage {
+	margin:10px 0;
+	color: red;
+	text-indent: 70px;
+}
+/*bank*/
+.bank-card {
+	width: 305px;
+	height: 170px;
+	border: 1px #eeeeee solid;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+.card-img {
+	width: 100%;
+	height: 120px;
+}
+.card-num {
+	text-align: center;
+	font-size: 14px;
+	color: #4a4a4a;
+}
+.btn-change-card,.btn-change-card:hover {
+	width: 150px;
+	background-color: #009ada;
+	border-color: #009ada;
+}
+.descript p {
+	color: #999999;
+	font-size: 14px;
+	text-align: left;
+	padding: 2px 0;
+}
+.select {
+	width: 200px;
+	font-size: 20px;
+	font-weight: bold;
+}
+.ABC {
+  background-image: url(/ccc/global/img/banks/ABC.png);
+}
+.BCCB {
+  background-image: url(/ccc/global/img/banks/BCCB.png);
+}
+.CCB {
+  background-image: url(/ccc/global/img/banks/CCB.png);
+}
+.CIB {
+  background-image: url(/ccc/global/img/banks/CIB.png);
+}
+.CMBC {
+  background-image: url(/ccc/global/img/banks/CMBC.png);
+}
+.CMB {
+  background-image: url(/ccc/global/img/banks/CMB.png);
+}
+.SPDB {
+  background-image: url(/ccc/global/img/banks/SPDB.png);
+}
+.ICBC {
+  background-image: url(/ccc/global/img/banks/ICBC.png);
+}
+.BOCOM {
+  background-image: url(/ccc/global/img/banks/BOCOM.png);
+}
+.CEB {
+  background-image: url(/ccc/global/img/banks/CEB.png);
+}
+.BOC {
+  background-image: url(/ccc/global/img/banks/BOC.png);
+}
+.SRCB {
+  background-image: url(/ccc/global/img/banks/SRCB.png);
+}
+.HXB {
+  background-image: url(/ccc/global/img/banks/HXB.png);
+}
+.HKBEA {
+  background-image: url(/ccc/global/img/banks/HKBEA.png);
+}
+.WZCB {
+  background-image: url(/ccc/global/img/banks/WZCB.png);
+}
+.PSBC {
+  background-image: url(/ccc/global/img/banks/PSBC.png);
+}
+.PINGAN {
+  background-image: url(/ccc/global/img/banks/pingan.png);
+}
