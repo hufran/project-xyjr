@@ -18,7 +18,7 @@ _.mixin
     compact: (collection) ->
         return _.$compact collection unless _.isPlainObject collection
 
-        collection = _.omit collection, _.isUndefined
-        collection = _.omit collection, _.isNull
-        collection = _.omit collection, _.isNaN
-        collection = _.omit collection, (_.partial _.isEqual, '')
+        filter_list = [_.isUndefined, _.isNull, _.isNaN, _.partial(_.isEqual, '')]
+
+        _.omit collection, (value) ->
+            _.some filter_list, (func) -> func(value)
