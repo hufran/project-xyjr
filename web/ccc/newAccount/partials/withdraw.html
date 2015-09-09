@@ -1,0 +1,59 @@
+<div class="ccc-banks-wrap">
+    {{#if paymentPasswordHasSet}}
+    <div class="row">
+        <div class="methodwr" style="text-indent:14px;">填写提现金额</div>
+        <div class="space space-20"></div>
+        <div class="col-md-7">
+            <p class="help-block text-danger" style="color:red;text-indent:109px;">
+                {{submitMessage}}
+            </p>
+        </div>
+        <div class="space space-20"></div>
+        <div class="rows">
+            <div class="col-md-12">
+                <form role="form" name="withdrawForm" action="{{active}}" method="POST" target="_blank" on-submit="withdrawForm">
+                    <div class="">
+                        <div class="rows">
+                            <span class="tipss">账户余额</span>
+                            <span class="ava">{{availableAmount.toFixed(2)}}</span>
+                            <span class="tipss" style="color:#f58220">元</span>
+                        </div>
+                        <div class="space-20"></div>
+                        <div class="rows">
+                            <span class="tipss">提现金额</span>
+                            <input type="text" name="amount" id="withdraw" on-keyup="changeValue" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;" value="{{amount}}" autocomplete="off" placeholder="单笔最高5,000,000.00">
+                            <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>
+                        </div>
+                        <div class="space-20"></div>
+                        <div class="rows">
+                            <span class="tipss">交易密码</span>
+                            <input type="password" name="paymentPassword" class="inputsMs" placeholder="" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;color:#999999;text-indent:10px;">
+                            <span class="tipss" style="color:#009ada;font-size:14px;text-indent:5px;"><a href="/newAccount/settings/password" style="color:#009ada;text-decoration:none">忘记密码?</a></span>
+                        </div>
+                    </div>
+                    <div class="space space-30"></div>
+                    <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:238px;height:48px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;">{{submitText}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="space-30"></div>
+    <div class="has-line" style="padding:30px 20px;">
+        提现需要先开通交易密码，否则无法进行提现 <a href="/account/paypwd"><span class="btn" style="background-color:#009ada;margin-left:10px;color:#fff">现在去开通</span></a>
+    </div>
+    {{/if}}
+</div>
+
+<div class="space-30"></div>
+<div class="row ccc-container" style="width:850px;background:#f4fcff;padding:15px;padding-top:0">
+    <div class="col-md-12">
+        <div class="space space-20"></div>
+        <p style="color:#f58220">温馨提示：</p>
+        <ul class="dec-li">
+            <li>1、请您选择银行储蓄卡账户提交提现申请。</li>
+            <li>2、为保障您的账户资金安全，申请提现时，您选择的银行卡开户名必须与实名认证一致，否则提现申请将不予受理。<li>
+            <li>3、提现操作预计3个工作日内到账，具体情况依据各银行实际处理为准，请您注意查收。若有任何问题，请联系客服。</li>
+        </ul>
+    </div>
+</div>

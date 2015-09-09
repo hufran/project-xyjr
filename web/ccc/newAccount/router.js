@@ -197,4 +197,39 @@ module.exports = function (router) {
 
             });
     });
+
+    // 对提现进行限制,如果是企业用户,显示企业充值
+    router.get('/newAccount/recharge', function (req, res, next) {
+
+        var enterprise = res.locals.user.enterprise;
+        var banks = _.filter(res.locals.user.bankCards, function (r) {
+            return r.deleted === false;
+        });
+        if (!banks.length && !enterprise) {
+            res.redirect('/newAcount/settings/bankCards')
+        } else {
+            next();
+        }
+    });
+
+    // 对体现进行限制
+    router.get('/newAccount/withdraw', function (req, res, next) {
+
+        var enterprise = res.locals.user.enterprise;
+        Promise.join(req.uest(
+                '/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .get('body'),
+            function (paymentPasswordHasSet) {
+                res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
+                var banks = _.filter(res.locals.user.bankCards, function (r) {
+                    return r.deleted === false;
+                });
+
+                if (!banks.length && !enterprise) {
+                    res.redirect('/newAcount/settings/bankCards');
+                } else {
+                    next();
+                }
+            });        
+    });
 }
