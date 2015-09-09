@@ -89,11 +89,8 @@
 
     <section class="c-list-panel guarantee">
         <div class="item clearfix">
-            <img width="11"
-                 src="assets/image/loan/guarantee-icon.png"
-                 class="pull-left"
-            >
-            <div ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"></div>
+            <img width="11" class="icon" src="assets/image/loan/guarantee-icon.png">
+            <div class="content" ng-bind-html="loan.raw.loanRequest.guaranteeInfo | sanitize"></div>
         </div>
     </section>
 
