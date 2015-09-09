@@ -14,7 +14,7 @@ new Ractive({
     el: '.account-invite-wrapper',
     template: require('ccc/newAccount/partials/invite/wrap.html'),
     data: {
-        host: CC.host,
+        host: location.host,
         user: CC.user,
         mobile: CC.user.mobile,
         Fmobile: '',
@@ -72,8 +72,8 @@ new Ractive({
     },
     buildImgUrl: function(){
         var self = this;
-        var logo = 'https://' + CC.host + $('#er-img-url').attr('src');
-        var text = 'https://' + CC.host + '/register?refm=' + CC.user.mobile;
+        var logo = 'https://' + location.host + $('#er-img-url').attr('src');
+        var text = 'https://' + location.host + '/register?refm=' + CC.user.mobile;
         return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&logo=' + logo + '&text=' + text;
     },
     parseData: function (r) {
