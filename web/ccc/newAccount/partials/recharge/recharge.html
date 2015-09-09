@@ -1,81 +1,96 @@
 <div class="ccc-banks-wrap">
-    <div class="space space-30"></div>
     <div class="recharge-form-wrap">
         <form role="form" name="rechargeForm" action="{{action}}" method="POST" target="_blank" on-submit="recharge_submit">
-            <h4>充值金额</h4>
+            <div class="space space-10"></div>
             <div class="space space-10"></div>
             <div class="row">
-                <div class="col-md-5">
-                    <!-- <input type="hidden" name="bank" class="bank" value=""> -->
-                    <div class="form-group has-error- has-feedback">
-                        <span class="form-control-feedback">
-                        	<i class="fa fa-rmb"></i>
-                        </span>
-                        <input type="text" name="amount" class="form-control input-lg" id="rechargeValue"
-                        on-blur="changeValue" placeholder="" value="{{amount}}">
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <p class="help-block text-danger">
-                        {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}} 
-                        {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
-                        {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
-                        {{#msg.BANKCODE_NULL}}请选择网上银行{{/msg.BANKCODE_NULL}}
-                    </p>
-                </div>
-            </div>
-            <div class="space space-10"></div>
-            <h4>充值方式</h4>
-            <div class="space space-10"></div>
-            <div class="row">
-                <div class="methodwr">
-                {{#if !isEnterpriseUser}}
-                    {{#if !isNormal}}
-                    <span class="rechargeMthod current" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
-                    <span class="rechargeMthod" data-type="normal" on-click="changeMethod">第三方支付</span>
-                    {{else}}
-                    <span class="rechargeMthod" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
-                    <span class="rechargeMthod current" data-type="normal" on-click="changeMethod">第三方支付</span>
-                    {{/if}}
-                {{else}}
-                    <span class="rechargeMthod current" style="margin-left:15px;" data-type="net" on-click="changeMethod">网银银行</span>
-                {{/if}}
+                <div class="methodwr" data-type="net">
+                网银充值
                 </div>
                 <div class="space space-30"></div>
-                {{#if !isNormal}}
-                <div class="bankwrap col-md-12">
+                <div class="bankwrap">
                     {{#if !isEnterpriseUser}}
-                        {{#each banks}}
-                        <span class="bankItem {{code}}" data-code="{{bankCode}}" on-click="selectBank">
-                        </span>
-                        {{/each}}
+                        {{#banks:index}}
+                            {{#if index < showNum}} 
+                            <span class="bankItem {{code}}" data-code="{{bankCode}}" on-click="selectBank">
+                                <span class="check"></span>  
+                            </span>
+                            {{/if}}
+                            {{#if index == showNum}}
+                            <span class="bankItem more" on-click="showAll"></span>
+                            {{/if}}
+                        {{/banks}}
                     {{else}}
                         {{#each corBanks}}
                         <span class="bankItem c{{code}}" data-code="{{bankCode}}" on-click="selectBank">
+                            <span class="check"></span>  
                         </span>
                         {{/each}}
                     {{/if}}
                 </div>
                 <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
                 <input type="hidden" name="bankCode" value="{{bankCode}}"> 
-                {{/if}}
             </div>
+            <div class="space-20"></div>
+            {{#if !isEnterpriseUser}}
+            <div class="row">
+                <div class="methodwr" data-type="normal">
+                第三方充值
+                </div>
+                <div class="space space-30"></div>
+                <div class="bankwrap">
+                    <span class="bankItem llzf">
+                        <span class="check"></span>  
+                    </span>
+                </div>
+                <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
+                <input type="hidden" name="bankCode" value="{{bankCode}}"> 
+            </div>
+            {{/if}}
+            <div class="space-20"></div>
+            <div class="row">
+                <div class="methodwr">填写充值金额</div>
+                <div class="col-md-12">
+                    <p class="help-block text-danger" style="color:red;text-indent:95px;">
+                        {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}} 
+                        {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
+                        {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
+                        {{#msg.BANKCODE_NULL}}请选择网上银行{{/msg.BANKCODE_NULL}}
+                    </p>
+                </div>
+                <div class="space-20"></div>
+                <div class="">
+                    <div class="rows">
+                        <span class="tipss">账户余额</span>
+                        <span class="ava">{{availableAmount.toFixed(2)}}</span>
+                        <span class="tipss" style="color:#f58220">元</span>
+                    </div>
+                    <div class="space-20"></div>
+                    <div class="rows">
+                        <span class="tipss">充值金额</span>
+                        <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="单笔100.00元起" value="{{amount}}" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;">
+                        <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="space space-10"></div>
             <div class="space space-30"></div>
-            <button type="submit" class="btn btn-warning btn-lg">确认充值</button>
+            <button type="submit" class="btn btn-warning btn-lg" style="width:238px;height:48px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;">确认充值</button>
         </form>
     </div>
 </div>
-
-<div class="row ccc-container">
+<div class="space-40"></div>
+<div class="line"></div>
+<div class="space-30"></div>
+<div class="row ccc-container" style="width:850px;background:#f4fcff;padding:15px;padding-top:0">
     <div class="col-md-12">
         <div class="space space-20"></div>
-        <p>注意事项：</p>
+        <p style="color:#f58220">温馨提示：</p>
         <ul class="dec-li">
-            <li>1. 请注意您的浏览器对各银行网银的拦截，建议使用IE浏览器进行充值。</li>
-            <li>2. 您的充值手续费由平台支付，免除所有充值手续费。</li>
-            <li>3. 请确认您的银行卡已开通银行网银功能。</li>
-            <li>4. 请注意您的网银充值额度限制，以免造成不便。</li>
-            <li>5. 如果充值金额没有及时到账，请与网站客服联系。</li>
+            <li>1、请确认您的银行卡内余额充足，以保证交易顺利完成。</li>
+            <li>2、如果充值金额没有及时到账，请联系客服。</li>
+            <li>3、严禁利用充值功能进行信用卡套现、转账、洗钱等行为。违规账户将延缓放款、严重者将配合相关机构封停交易账号。</li>
         </ul>
     </div>
 </div>
