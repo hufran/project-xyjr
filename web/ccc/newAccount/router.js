@@ -125,6 +125,10 @@ module.exports = function (router) {
     });
 	
 	// 特定页面的
+    router.get('/newAccount/invite', function (req, res, next) {
+        res.expose(req.headers.host, 'host');
+        next()
+    });
     router.get('/newAccount/home', function (req, res) {
         req.uest('/api/v2/user/MYSELF/statistics/invest')
             .end()
