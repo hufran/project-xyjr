@@ -390,7 +390,7 @@ $('.sRate li').click(function(){
             console.log(typea);
               ractive.loadData({
                     type: typea,
-                    preset: tab3Preset
+                    preset: tab1Preset
               });
         }
     });
