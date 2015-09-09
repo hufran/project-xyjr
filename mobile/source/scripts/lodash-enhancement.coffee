@@ -1,24 +1,26 @@
 
-_.mixin
+do (_) ->
 
-    # Angular Inject
-    ai: (params, func, result = params.replace(/@|,/g, '')) ->
-        _.split(result).concat func
+    _.mixin
 
-    split: (string) ->
-        string.trim().match(/\S+/g) or []
+        # Angular Inject
+        ai: (params, func, result = params.replace(/@|,/g, '')) ->
+            _.split(result).concat func
 
-    fixed: (digits, num) ->
-        (+num or 0).toFixed digits
+        split: (string) ->
+            string.trim().match(/\S+/g) or []
 
-    fixed_in_2: (num) ->
-        _.fixed 2, num
+        fixed: (digits, num) ->
+            (+num or 0).toFixed digits
 
-    $compact: _.compact
-    compact: (collection) ->
-        return _.$compact collection unless _.isPlainObject collection
+        fixed_in_2: (num) ->
+            _.fixed 2, num
 
-        collection = _.omit collection, _.isUndefined
-        collection = _.omit collection, _.isNull
-        collection = _.omit collection, _.isNaN
-        collection = _.omit collection, (_.partial _.isEqual, '')
+        $compact: _.compact
+        compact: (collection) ->
+            return _.$compact collection unless _.isPlainObject collection
+
+            filter_list = [_.isUndefined, _.isNull, _.isNaN, _.partial(_.isEqual, '')]
+
+            _.omit collection, (value) ->
+                _(filter_list).some (func) -> func(value)

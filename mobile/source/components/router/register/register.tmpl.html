@@ -174,10 +174,10 @@
                 </div>
             </div>
 
-            <div class="form-group agreement" x-gyro-comment>
+            <div class="form-group agreement">
                 <label>
-                    <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                    我阅读并同意 <a href="#" ng-click="self.agreement($event)">《奇乐融注册服务协议》</a>
+                    <input type="checkbox" ng-init="agreement = false" ng-model="agreement" required>
+                    我阅读并同意 <a href="#" ng-click="self.agreement('奇乐融用户注册协议')">《奇乐融注册服务协议》</a>
                 </label>
             </div>
         </div>

@@ -82,7 +82,7 @@ if (new RegExp("^/$")
     $(".u-nolist-ul li a#jiekuan")
         .addClass("navactive");
 
-} else if (new RegExp("^/safety/*")
+} else if (new RegExp("^/newAccount/*")
     .test(path)) {
     $(".u-nolist-ul li a#safety")
         .addClass("navactive");

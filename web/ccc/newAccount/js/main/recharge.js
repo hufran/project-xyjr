@@ -29,7 +29,8 @@ var ractive = new Ractive({
         corBanks: corBanks,
         isEnterpriseUser: CC.user.enterprise,
         amountValue: 10000000,
-        action: '/lianlianpay/onlineBankDeposit'
+        action: '/lianlianpay/onlineBankDeposit',
+        showNum: 9
     },
     oncomplete: function () {
         var self = this;        
@@ -65,11 +66,27 @@ var ractive = new Ractive({
 
         });
 
-        $(".bankwrap .bankItem").click(function () {
-            $(this)
-                .addClass('currentBank')
-                .siblings('.bankItem')
+        $(".bankwrap").delegate('.bankItem', 'click', function () {
+           
+            $('.bankwrap .bankItem')    
                 .removeClass('currentBank');
+            $(this)
+                .addClass('currentBank');
+            $('.bankwrap .bankItem')
+            	.find('span.check')
+            	.hide();    
+            $(this)
+            	.find('span.check')
+            	.show()
+            
+          	var type = $(this).parent().siblings('.methodwr').data('type');
+		    if (type !== 'net') {
+        		ractive.set('isNormal', true);
+		        ractive.set('action', '/lianlianpay/deposit');
+		    } else {
+        		ractive.set('isNormal', false);
+		        ractive.set('action', '/lianlianpay/onlineBankDeposit');
+		    }
         });
 
     },
@@ -134,7 +151,9 @@ ractive.on('changeMethod', function (event) {
         ractive.set('action', '/lianlianpay/onlineBankDeposit');
     }
 });
-
+ractive.on('showAll', function () {
+	this.set('showNum', banks.length);
+});
 ractive.on('selectBank', function (event) {
     var code = event.node.getAttribute('data-code');
     this.set('bankCode', code);
