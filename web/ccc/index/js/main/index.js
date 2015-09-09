@@ -210,7 +210,13 @@ $(' .icon-group1').mouseenter(function(){
     $(this).children('.company-intro').show(200);
 }).mouseleave(function(){
     $(this).children('.company-intro').hide(200);
-})
+});
+
+$('.strengthProtect').click(function(){
+    var url=$(this).find('a').attr('href');
+    location.href=url;
+});
+
 
 
 
