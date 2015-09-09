@@ -19,16 +19,19 @@
 	width: 170px;
 	min-height: 950px;
 	float: left;
-	border-right: 1px #cccccc solid;
+	/* border-right: 1px #cccccc solid; */
 }
 .account-content-wrapper {
 	width: 928px;
 	height: 100%;
 	float: left;
+	border-left: 1px #cccccc solid;
+	min-height: 748px;
 }
 .account-content {
 	width: 870px;
 	margin: 0 auto;
+	margin-bottom: 30px;
 }
 .nav-wrapper .nav-li {
 	width: 100%;
