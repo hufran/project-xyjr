@@ -25,7 +25,7 @@ do (_, angular, moment) ->
                             item.type = 'scheduled'
 
                         filter_loan =
-                            _([open, scheduled, finished, settled])
+                            _([scheduled, open, finished, settled])
                                 .flatten()
                                 .compact()
                                 .map map_loan_summary

@@ -95,7 +95,7 @@ do (_, angular) ->
                 )
 
 
-            agreement: ->
+            agreement: (name) ->
 
                 @$modal.open {
                     size: 'lg'
@@ -106,7 +106,7 @@ do (_, angular) ->
                     resolve: {
                         content: _.ai '$http', ($http) ->
                             $http
-                                .get '/api/v2/cms/category/DECLARATION/name/agreement'
+                                .get '/api/v2/cms/category/DECLARATION/name/' + name, {cache: true}
                                 .then (response) -> _.get response.data, '[0].content'
                     }
 

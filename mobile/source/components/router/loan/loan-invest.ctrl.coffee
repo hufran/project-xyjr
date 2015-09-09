@@ -111,13 +111,17 @@ do (angular, _) ->
                     .then (data) =>
                         @$window.alert '投标成功'
 
+                        @$location.path "/loan/#{ @loan.id }"
+
+                        @$scope.$on '$locationChangeSuccess', =>
+                            @$window.location.reload()
+
                     .catch (data) =>
                         message = _.get data, 'error[0].message', 'something happened...'
                         @$window.alert message
 
                     .finally =>
-                        @$location.path "/loan/#{ @loan.id }"
-                        @$window.location.reload()
+                        # pass
                 )
 
 
