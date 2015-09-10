@@ -64,6 +64,7 @@ function init (type) {
 
         $.get(API,function (o){
           if (o.results.length) {
+			  
             self.pageOneData = o.results;
 			  console.log(o);
 			  console.log('----');
@@ -74,15 +75,27 @@ function init (type) {
       },
       bindAction : function () {
         $('.ctr').click(function (){
-          console.log('succss');
-          $(this).addClass('activeContent')
+			if(type === 'NEW'){
+				$(this).addClass('activeContent');
+				$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+				$(this).css('color','#4a4a4a');
+				$(this).parent().siblings().css('color','#4a4a4a');
+				$(this).parent().parent().css('backgroundColor','#e7e7e7');
+				$(this).parent().parent().siblings().css('backgroundColor','#fff');
+			}else{
+				console.log('succss');
+				$(this).addClass('activeContent');
+				$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+				$(this).parent().parent().css('backgroundColor','#e7e7e7');
+				$(this).parent().parent().siblings().css('backgroundColor','#fff');
+				}
         });
       },
       setData: function(o) {
         var self = this;
         self.set('loading', false);
         self.set('list', self.parseData(o));
-        self.renderPager();
+        self.renderPageraa();
       },
       parseData: function(o) {
         for (var i = 0; i < o.length; i ++) {
@@ -92,19 +105,23 @@ function init (type) {
 
         return o;
       },
-      renderPager: function () {
+      renderPageraa: function () {
         var self = this;
         var totalSize = self.get('total');
-
+		 
         if (totalSize != 0) {
             self.totalPage = Math.ceil(totalSize / self.size);
+			
         }
-
+		  
         var totalPage = [];
-        for (var i = 0; i < self.totalPage; i++) {
-            totalPage[i] = ++i;
+		 // console.log(totalSize);
+        for (var i = 0; i < self.totalPage ; i++) {
+			
+            totalPage[i] =i+1;
         }
-      
+		  
+       console.log(totalPage);
         renderPager(totalPage, self.page);
       }
     });
@@ -177,6 +194,7 @@ function init (type) {
     pagerRactive.on('previous', function (e) {
 		console.log('succss')
         e.original.preventDefault();
+		console.log(e);
         var current = this.get('current');
         if (current > 1) {
             current -= 1;
@@ -216,4 +234,4 @@ function init (type) {
 }
 
 
-init('ALL');
+init('NEW');
