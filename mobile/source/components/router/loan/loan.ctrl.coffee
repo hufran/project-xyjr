@@ -54,7 +54,7 @@ do (_ ,angular, moment, Math, Date) ->
         invest_percent_int = 100 if item.status in _.split 'SETTLED FINISHED'
 
         balance = item.balance
-        balance = 0 if item.status isnt 'OPENED'
+        balance = 0 if item.status not in _.split 'OPENED SCHEDULED'
         balance_myriad = (balance / 10000) | 0 && (balance / 10000)
 
         (finished_date = do (item, {days, time_settled, due_date} = {}) ->
