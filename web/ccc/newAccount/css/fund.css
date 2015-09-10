@@ -1,4 +1,6 @@
-
+#main-container{
+    background: #f4fcff;
+}
 .fund-content {
     height: auto;
     width: 840px;

@@ -1,6 +1,9 @@
 * {
 	font-family: '冬青黑体简体中文';
 }
+#main-container{
+    background: #f4fcff;
+}
 .account-wrapper {
 	width: 100%;
 	height: 100%;
