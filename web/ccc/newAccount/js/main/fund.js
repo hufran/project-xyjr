@@ -18,7 +18,7 @@ typeLists[0] = [{
     type: 'ALL',
     text: '全部'
 }];
-window.u = utils;
+
 
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
