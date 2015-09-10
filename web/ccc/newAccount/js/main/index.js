@@ -2,9 +2,8 @@
 var utils = require('ccc/global/js/lib/utils');
 var Plan = require('ccc/global/js/modules/cccRepayments');
 require('ccc/global/js/modules/tooltip');
+var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-//投资总额
-var totalInvestAmount = CC.user.investStatistics.totalAmount|| 0;
 
 // 可用余额
 var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
@@ -30,6 +29,48 @@ var homeRactive = new Ractive({
 	}
 });
 
+var banksabled = _.filter(CC.user.bankCards, function (r) {
+    return r.deleted === false;
+});
+
+var infoRactive = new Ractive({
+	el: '#userinfo',
+	template: require('ccc/newAccount/partials/home/userinfo.html'),
+	data: {
+		user: null,
+		bindCards: banksabled.length >= 1 ? true :  false,
+		safetyProgress: 25,
+		riskText: '中'
+	},
+	oninit: function () {
+		var safetyProgress = 25;
+
+		accountService.checkAuthenticate(function (r) {
+			accountService.getUserInfo(function (res) {
+				infoRactive.set('user', res.user);
+				infoRactive.set('emailAuthenticated', r.emailAuthenticated);
+
+				if (res.user.name) {
+					safetyProgress += 25;
+				}
+				if (r.emailAuthenticated) {
+					safetyProgress += 25;
+				}
+				if (infoRactive.get('bindCards')) {
+					safetyProgress += 25;
+				}
+				infoRactive.set('safetyProgress', safetyProgress)
+				if (safetyProgress > 75) {
+					infoRactive.set('riskText', '高');
+				}
+			});
+		});
+
+		accountService.getGroupMedal(function (r) {
+			infoRactive.set('groupMedal', r);
+		});
+	}
+});
 var pageSize = 5;
 var STATUS = ["SETTLED", "CLEARED", "OVERDUE", "BREACH"];
 

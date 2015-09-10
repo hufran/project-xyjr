@@ -49,7 +49,8 @@ function init (type) {
           self.getMessageData(function (o){
 			  self.set('total',o.totalSize);
 			  self.setData(o.results);
-			  self.bindAction();
+			  self.bindAction.click();
+			  self.bindAction.mouseenter();
         });
       },
       getMessageData: function(callback) {
@@ -64,47 +65,73 @@ function init (type) {
 
         $.get(API,function (o){
           if (o.results.length) {
-            self.pageOneData = o.results;
 			  console.log(o);
+            self.pageOneData = o.results;
+			  
 			  console.log('----');
 			 console.log(self);
             callback(o);
           }
         });
       },
-      bindAction : function () {
-        $('.ctr').click(function (){
-          console.log('succss');
-          $(this).addClass('activeContent')
-        });
-      },
+      bindAction : {
+		  'click':function () {
+			$('.ctr').click(function (){
+				if(type === 'NEW'){
+					$(this).addClass('activeContent');
+					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+					$(this).css('color','#4a4a4a');
+					$(this).parent().siblings().css('color','#4a4a4a');
+					$(this).parent().parent().css('backgroundColor','#e7e7e7');
+					$(this).parent().parent().siblings().css('backgroundColor','#fff');
+				}else{
+					console.log('succss');
+					$(this).addClass('activeContent');
+					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+					$(this).parent().parent().css('backgroundColor','#e7e7e7');
+					$(this).parent().parent().siblings().css('backgroundColor','#fff');
+					}
+			});
+		  },
+		  'mouseenter':function(){
+			  $('.list-row').mouseenter(function(){
+				  $(this).siblings().css('backgroundColor','#e7e7e7');
+			  }).mouseleave(function(){
+				   $(this).siblings().css('backgroundColor','#fff');
+			  })
+		  }
+	},
       setData: function(o) {
         var self = this;
         self.set('loading', false);
         self.set('list', self.parseData(o));
-        self.renderPager();
+        self.renderListPager();
       },
       parseData: function(o) {
         for (var i = 0; i < o.length; i ++) {
-          o[i].sentTime = moment(o[i].sentTime)
+          o[i].sentTime = moment(o[i].body.sentTime)
           .format("YYYY-MM-DD HH:mm:ss");
         }
 
         return o;
       },
-      renderPager: function () {
+      renderListPager: function () {
         var self = this;
         var totalSize = self.get('total');
-
+		 
         if (totalSize != 0) {
             self.totalPage = Math.ceil(totalSize / self.size);
+			
         }
-
+		  
         var totalPage = [];
-        for (var i = 0; i < self.totalPage; i++) {
-            totalPage[i] = ++i;
+		 // console.log(totalSize);
+        for (var i = 0; i < self.totalPage ; i++) {
+			
+            totalPage[i] =i+1;
         }
-      
+		  
+       console.log(totalPage);
         renderPager(totalPage, self.page);
       }
     });
@@ -177,6 +204,7 @@ function init (type) {
     pagerRactive.on('previous', function (e) {
 		console.log('succss')
         e.original.preventDefault();
+		console.log(e);
         var current = this.get('current');
         if (current > 1) {
             current -= 1;
@@ -190,6 +218,7 @@ function init (type) {
     pagerRactive.on('page', function (e, page) {
 		console.log('succss');
         e.original.preventDefault();
+		console.log(e);
         if (page) {
             current = page;
         } else {
@@ -202,6 +231,7 @@ function init (type) {
     });
     pagerRactive.on('next', function (e) {
 		console.log('succss');
+		console.log(e);
         e.original.preventDefault();
         var current = this.get('current');
         if (current < this.get('totalPage')[this.get('totalPage')
@@ -216,4 +246,4 @@ function init (type) {
 }
 
 
-init('ALL');
+init('NEW');

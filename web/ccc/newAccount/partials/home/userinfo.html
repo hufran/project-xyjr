@@ -1,0 +1,52 @@
+<div class="userinfowra">
+	<div class="infoContent">
+		<div class="info">
+			<div class="tx"></div>
+			<div class="name">
+				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
+			</div>
+		</div>
+		<div class="credit">
+			<div class="doCredit">
+				{{#if user.mobile}}
+				<span class="rzpa cmo-active"></span>
+				{{else}}
+				<span class="rzpa cmo"></span>
+				{{/if}}
+				{{#if user.name}}
+				<a href="newAccount/settings/authentication"><span class="rzpa cid-active"></span></a>
+				{{else}}
+				<a href="newAccount/settings/authentication"><span class="rzpa cid"></span></a>
+				{{/if}}
+				{{#if bindCards}}
+				<a href="/newAccount/settings/bankCards"><span class="rzpa ccr-active"></span></a>
+				{{else}}
+				<a href="/newAccount/settings/bankCards"><span class="rzpa ccr"></span></a>
+				{{/if}}
+				{{#if emailAuthenticated}}
+				<span class="rzpa cem-active"></span>
+				{{else}}
+				<span class="rzpa cem"></span>
+				{{/if}}
+				{{#each groupMedal}}
+                <img src="{{this}}" class="rzpa" alt="勋章" style="margin-top:-38px;">
+                {{/each}}
+			</div>
+			<div class="EdiT">
+				<div class="level">
+					<span>会员等级：</span>
+					<span class="lev">VIP2</span>
+				</div>
+				<div class="safe">
+					<div class="safety">安全等级：
+					<span class="progress">
+					    <div class="progress-bar" role="progressbar" aria-valuemax="100" style="width: {{ safetyProgress }}%;"></div>
+					</span>
+					<span class="risk">{{riskText}}</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<div class="space-40"></div>

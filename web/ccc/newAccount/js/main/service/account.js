@@ -144,5 +144,22 @@ exports.accountService = {
             .then(function (r) {
                 next(r.body);
             });
+    },
+    getGroupMedal: function (next) {
+        request('GET', '/api/v2/users/MYSELF/groupMedal')
+                .end()
+                .then(function (r) {
+                    var results = r.body.results;
+                    if (results) {
+                        for(var i = 0; i < results.length; i ++) {
+                            
+                            results[i] = results[i] + "!3";
+                        } 
+
+                        next(results);
+                    } else {
+                        next([]);
+                    }
+            })
     }
 };

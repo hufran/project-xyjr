@@ -11,7 +11,28 @@
 		{{/if}}
 		<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">我的账户</a></span>
 	</li>
+	{{#if isEnterprise}}
 	<li class="nav-li">
+		{{#if invest}}
+			<span class="icon-invest-active"></span>
+		{{else}}
+			<span class="icon-invest"></span>
+		{{/if}}
+		<span class="nav-text {{#if loan}}nav-text-active{{/if}}"><a href="/newAccount/loan/loan">我的借款</a></span>
+		<span class="nav-toggle-btn" data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showLoanToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if loan}}active{{/if}}"><a href="/newAccount/loan/loan">今日到期</a></li>
+				<li class="{{#if today}}active{{/if}}"><a href="/newAccount/loan/today">今日到期</a></li>
+				<li class="{{#if undue}}active{{/if}}"><a href="/newAccount/loan/undue">尚未到期</a></li>
+				<li class="{{#if repayed}}active{{/if}}"><a href="/newAccount/loan/repayed">已还清</a></li>
+				<li class="{{#if overdue}}active{{/if}}"><a href="/newAccount/loan/overdue">逾期及违约</a></li>
+			</ul>
+		{{/if}}
+	</li>
+	{{else}}
+		<li class="nav-li">
 		{{#if invest}}
 			<span class="icon-invest-active"></span>
 		{{else}}
@@ -28,6 +49,7 @@
 			</ul>
 		{{/if}}
 	</li>
+	{{/if}}
 	<li class="nav-li">
 		{{#if fund}}
 			<span class="icon-fund-active"></span>
@@ -48,13 +70,16 @@
 		{{#if showAccountToggleMenu}}
 			<ul class="nav-toggle-menu">
 				<li class="{{#if userInfo}}active{{/if}}"><a href="/newAccount/settings/userInfo">个人信息</a></li>
+				{{#if !isEnterprise}}
 				<li class="{{#if authentication}}active{{/if}}"><a href="/newAccount/settings/authentication">实名认证</a></li>
 				<li class="{{#if bankCards}}active{{/if}}"><a href="/newAccount/settings/bankCards">提现银行卡</a></li>
+				{{/if}}
 				<li class="{{#if password}}active{{/if}}"><a href="/newAccount/settings/password">密码管理</a></li>
 			</ul>
 		{{/if}}
 	</li>
-	<li class="nav-li">
+	{{#if !isEnterprise}}
+	<li class="nav-li coupon-nav">
 		{{#if coupon}}
 			<span class="icon-coupon-active"></span>
 		{{else}}
@@ -70,6 +95,7 @@
 		{{/if}}
 		<span class="nav-text {{#if invite}}nav-text-active{{/if}}"><a href="/newAccount/invite">好友邀请</a></span>
 	</li>
+	{{/if}}
 	<li class="nav-li">
 		{{#if message}}
 			<span class="icon-message-active"></span>

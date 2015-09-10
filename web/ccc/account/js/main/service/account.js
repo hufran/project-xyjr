@@ -144,5 +144,12 @@ exports.accountService = {
             .then(function (r) {
                 next(r.body);
             });
+    },
+    getNewMessageNum: function (next) {
+        request('GET', '/api/v2/message/countNewNotifications/MYSELF')
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     }
 };

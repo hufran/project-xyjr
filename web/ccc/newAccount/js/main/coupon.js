@@ -1,11 +1,10 @@
-
 'use strict';
 
 var utils = require('ccc/global/js/lib/utils');
 var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/cccTab');
 
-var couponTpl = require('ccc/account/partials/coupon/coupon.html');
+var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
 
 var pagesize = 9;
 var page = 1;
@@ -15,8 +14,8 @@ var getCurrentType = function() {
 	return $('.ccc-tab li.active').data('type');
 };
 
-$('ul.tabs li a').on('click', function() {
-	var type = $(this).parent().data('type');
+$('ul.ttabs li a').on('click', function() {
+	var type = $(this).parent().data('type');	
 	init(type);
 });
 
@@ -37,9 +36,11 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 function init (type) {
+	console.log("==========");
+	console.log(type);
 	if (type) {
 		var couponRactive = new Ractive ({
-			el: '.account-coupon-wrapper',
+			el: '.panel-' + type,
 			template: couponTpl,
 			size: pagesize,
 			page: page,
@@ -84,6 +85,8 @@ function init (type) {
 					page: self.page,
 					size: self.size
 				},function (o){
+					
+					console.log(o.data);
 					if (o.success) {
 						self.pageOneData = o.data.results;
 						callback(o.data);
@@ -193,6 +196,7 @@ function init (type) {
 	}
 }
 
+//var ctype=['CASH','INTEREST','PRINCIPAL','REBATE'];
 init(getCurrentType());
 
 window.redeemCoupon = function(btn) {
