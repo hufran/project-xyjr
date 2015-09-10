@@ -27,8 +27,16 @@
               options="loan.chart_options"
         ></span>
         <span class="num"
+              ng-switch="loan.status"
               ng-class="{ 'text-muted': loan.invest_percent_int == 0 }"
-        >{{ loan.invest_percent_int }}%</span>
+        >
+            <span ng-switch-when="FINISHED">满</span>
+            <span ng-switch-when="SETTLED">还</span>
+            <span ng-switch-when="CLEARED">结</span>
+            <span ng-switch-default>
+                {{ loan.invest_percent_int }}%</span>
+            </span>
+        </span>
     </div>
 </div>
 

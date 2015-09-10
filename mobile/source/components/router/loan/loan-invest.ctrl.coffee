@@ -58,8 +58,13 @@ do (_, angular, Math) ->
 
             amount_polishing: (amount) ->
 
-                step = @$scope.loan.raw.loanRequest.investRule.stepAmount
+                loan = @$scope.loan
+                rule = loan.raw.loanRequest.investRule
+
+                [step, balance] = [rule.stepAmount, loan.balance]
+
                 amount = Math.max 0, amount
+                amount = Math.min amount, balance
 
                 return amount // step * step
 
