@@ -419,6 +419,7 @@
 
 .s-split-view ul li a{
 	font-size: 14px;
+    color: #009ada;
 }
 
 /*表格样式*/
@@ -452,7 +453,7 @@
 .friend-right a{
     float: left;
     font-size: 14px;
-    color: #999999;
+    color: #009ada;
     margin-left: 16px;
     text-decoration: none;
 }
