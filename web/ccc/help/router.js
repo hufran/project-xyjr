@@ -10,7 +10,8 @@ module.exports = function (router) {
             money: 'HELP',
             explain: 'HELP',
             law:'HELP',
-            cash:'HELP'
+            cash:'HELP',
+             member:'HELP'
 
         };
         var nameMap = {
@@ -21,7 +22,8 @@ module.exports = function (router) {
             money: '投资理财',
             explain: '名词解释',
             law: '法律安全',
-            cash:'充值/提现'
+            cash:'充值/提现',
+            member:'会员/积分'
         };
         
             var indexMap={
@@ -32,7 +34,8 @@ module.exports = function (router) {
             money:'投资理财',
             explain: '名词解释',
             law:'法律安全',
-                cash:'充值/提现'
+                cash:'充值/提现',
+                member:'会员/积分'
         };
 
         var tabs = [{
@@ -51,6 +54,9 @@ module.exports = function (router) {
                 text: '充值/提现',
                 url: '/help/cash',
         }, {
+                text:'会员/积分',
+                url:'/help/member',
+        },{
                 text: '投资理财',
                 url: '/help/money',
         }, {
@@ -71,6 +77,9 @@ module.exports = function (router) {
             }
 
             req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
+                console.log("========");
+                console.log(cateMap[req.params.tab]);
+                console.log(nameMap[req.params.tab]);
                 if (r.body.length > 1) {
                     var current = (req.query.page === undefined) ? 1 : req.query.page;
                     req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pagesize=10').end()
