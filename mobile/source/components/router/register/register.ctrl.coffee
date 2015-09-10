@@ -90,7 +90,7 @@ do (_, angular) ->
 
                     .catch (data) =>
                         key = _.get data, '[0].message'
-                        @$window.alert @$scope.msg[key]
+                        @$window.alert @$scope.msg[key] or key
                         @submit_sending = false
                 )
 
