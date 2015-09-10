@@ -32,7 +32,7 @@ module.exports = function (router) {
         };
 
         var indexMap = {
-            aboutus: '奇乐融简介',
+            aboutus: '平台简介',
             background: '股东背景',
             team: '团队介绍',
             partner: '合作机构',

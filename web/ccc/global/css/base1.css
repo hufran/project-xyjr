@@ -1,6 +1,8 @@
 /*重置*/
 
-
+#main-container{
+    padding-bottom: 50px;
+}
 
  #nav-color a, #nav-color div, #nav-color img{
      padding: 0;

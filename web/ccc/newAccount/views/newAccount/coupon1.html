@@ -1,4 +1,50 @@
+<link rel="stylesheet" href="/ccc/newAccount/css/common.css">
+<link rel="stylesheet" href="/ccc/newAccount/css/coupon.css">
 
+<div class="account-wrapper">
+	<div class="space-40"></div>
+	<div class="account-container">
+		<div class="account-nav"></div>
+		<div class="account-content-wrapper">
+			<div class="space-30"></div>
+			<div class="coupon-content">
+				<div class="coupon-nav-view">
+					<ul class="cType">
+						<p class="selectTitle">红包类型:</p>
+						<li class="selected" data-type="cTypeAll">全部</li>
+						<li data-type="REBATE">返现券</li>
+						<li data-type="INTEREST">加息券</li>
+						<li data-type="PRINCIPAL">增值券</li>
+					</ul>
+					<ul class="cUse">
+						<p class="selectTitle">使用情况:</p>
+						<li class="selected" data-type="cUseAll">全部</li>
+						<li data-status="INITIATED">未使用</li>
+						<li data-status="REDEEMED">已使用</li>
+						<li data-status="EXPIRED">已过期</li>
+					</ul>
+				</div>
+				<div class="account-content account-coupon-wrapper">
+					加载中...
+				</div>
+			</div>
+		
+			<div class="space-30"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+<script src="/ccc/newAccount/js/main/common.js"></script>
+<script src="/ccc/newAccount/js/main/coupon.js"></script>
+
+
+
+
+
+
+
+1111
 <!--{{JSON.stringify(list)}}-->
 {{#if list}}
 	{{#each list}}
@@ -66,3 +112,4 @@
 	<div class="next">下一页</div>
 	<div class="clear"></div>
 </div>
+
