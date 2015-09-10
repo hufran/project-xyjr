@@ -9,16 +9,16 @@ require('eonasdan-bootstrap-datetimepicker');
 require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/cccPaging');
 
-var template = require('ccc/account/partials/funds/funds.html');
+var template = require('ccc/newAccount/partials/fund/fund.html');
 var utils = require('ccc/global/js/lib/utils');
 
 var typeLists = [];
-var size = 10; // pageSize;
+var size = 8; // pageSize;
 typeLists[0] = [{
     type: 'ALL',
     text: '全部'
 }];
-window.u = utils;
+
 
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
@@ -59,7 +59,7 @@ var statusMap = {
 var pageOneData = {};
 
 var ractive = new Ractive({
-    el: $('.funds-ractive-container'),
+    el: $('.fund-content'),
     template: template,
 
     data: {
@@ -144,9 +144,7 @@ ractive.on('do-filter', function () { // 开始筛选数据
     } else {
         preset = tab3Preset;
     }
-    console.log("===============");
-    console.log(type);
-     console.log(preset);
+
     ractive.loadData({
         type: type,
         status: status,
@@ -384,3 +382,25 @@ function isNumber(t) {
     var e = new RegExp('^[0-9]*$');
     return e.test(t) ? !0 : !1;
 }
+  
+$('.sRate li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var typea=$(this).data('type');
+            console.log(typea);
+              ractive.loadData({
+                    type: typea,
+                    preset: tab1Preset
+              });
+        }
+    });
+    $('.sDuration li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            
+             ractive.loadData({
+                 type: type,
+                 preset: preset
+    });
+        }
+    });

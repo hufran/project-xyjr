@@ -1,0 +1,97 @@
+#main-container{
+    background: #f4fcff;
+}
+.fund-content {
+    height: auto;
+    width: 840px;
+    margin-bottom: 33px;
+	margin-left: 40px;
+    border-bottom: 1px solid #ccc;
+    height:90px;
+}
+
+.fund-content .fund-nav-view {
+    position: relative;
+    height: auto;
+    width: 840px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.fund-content .fund-nav-view ul {
+    padding: 10px 0;
+    overflow: hidden;
+}
+.fund-content .fund-nav-view ul .selectTitle{
+	width: 100px;
+	color: #000;
+	float: left;
+}
+.fund-content .fund-nav-view ul .select-brame{
+	color: #000;
+	float: left;
+    width: 400px;
+    margin-top: -6px;
+}
+.fund-content .fund-nav-view ul li {
+    width: 50px;
+    text-align: center;
+    color: #6d6c6c;
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin-right: 35px;
+}
+
+.fund-content .fund-nav-view ul li:hover,
+.fund-content .fund-nav-view ul .s__is-selected{
+    background-color: #009ada;
+    color: white;
+	border-radius: 2px;
+}
+
+.fund-content .fund-nav-view ul .get-cash{
+    width:70px;
+}
+.fund-content table {
+    width: 840px;
+    border-collapse: collapse;
+    vertical-align: middle;
+    text-align: center;
+    background-color: white;
+    margin-top: 30px;
+}
+.fund-content table th {
+    background-color: #eeeeee;
+    color: #4a4a4a;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+}
+.select-brame .date-from-picker .icon-calendar {
+    cursor: pointer;
+    background: url(/ccc/newAccount/img/calendar.png) #fff center no-repeat;
+}
+.select-brame .date-to-picker .icon-calendar {
+    cursor: pointer;
+    background: url(/ccc/newAccount/img/calendar.png) #fff center no-repeat;
+}
+.select-brame .input-group{
+    width:122px;
+}
+.select-brame .form-control{
+    background: #fff;
+    border-right:none;
+}
+.select-brame .btn-blue{
+ background-color: #009ada;
+    color: #fff;
+    margin-left: 10px;
+    margin-top: 4px;
+    height: 24px;
+}
+.select-brame .spliter{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 26px;   
+}

@@ -140,6 +140,7 @@ function init (type) {
     });
     pagerRactive.on('next', function (e) {
         e.original.preventDefault();
+		console.log(123);
         var current = this.get('current');
         if (current < this.get('totalPage')[this.get('totalPage')
                 .length - 1]) {
