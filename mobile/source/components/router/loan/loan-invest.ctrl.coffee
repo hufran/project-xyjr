@@ -1,5 +1,5 @@
 
-do (angular, _) ->
+do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
@@ -54,6 +54,14 @@ do (angular, _) ->
             open_payment_account: ($event) ->
 
                 @cookie2root 'return_url', @page_path
+
+
+            amount_polishing: (amount) ->
+
+                step = @$scope.loan.raw.loanRequest.investRule.stepAmount
+                amount = Math.max 0, amount
+
+                return amount // step * step
 
 
             fetch_analyse: (amount = 0, loan = @$scope.loan) ->
