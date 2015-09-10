@@ -28,6 +28,9 @@
                            autocomplete="off"
                            autocorrect="off"
                            ng-model="user_name"
+                           minlength="2"
+                           maxlength="15"
+                           pattern="[\u4E00-\u9FBF]{2,15}"
                            placeholder="真实姓名"
                            required
                     >
@@ -38,6 +41,9 @@
                     <input id="id-number" class="form-control input-target input-lg" type="text"
                            name="id_number"
                            ng-model="id_number"
+                           minlength="18"
+                           maxlength="18"
+                           pattern="\d{17}."
                            placeholder="身份证号"
                            required
                     >
@@ -47,7 +53,7 @@
             <div class="container">
                 <div class="form-group container">
                     <button type="submit" class="btn btn-red btn-block btn-lg"
-                            ng-disabled="self.submit_sending"
+                            ng-disabled="form.$invalid || self.submit_sending"
                     >立即认证</button>
                 </div>
 
