@@ -13,20 +13,20 @@
 
     <section class="info-list">
         <div class="item">
-            <h4 class="title">项目信息</h4>
+            <h4 class="title hidden">项目信息</h4>
             <div class="content"
                  ng-bind-html="loan.raw.loanRequest.description | sanitize"
             ></div>
         </div>
 
-        <div class="item">
+        <div class="item" x-gyro-comment>
             <h4 class="title">风控信息</h4>
             <div class="content"
                  ng-bind-html="loan.raw.corporationName | sanitize"
             ></div>
         </div>
 
-        <div class="item">
+        <div class="item" x-gyro-comment>
             <h4 class="title">安全保障</h4>
             <div class="content"
                  ng-bind-html="loan.raw.loanRequest.riskInfo | sanitize"

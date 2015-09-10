@@ -352,6 +352,9 @@
     margin-right: 27px;
     margin-top: 30px;
 }
+.strengthProtect:hover{
+    cursor: pointer;
+}
 .strengthProtectBg{
 /*    overflow: hidden;*/
     color: #ffffff;

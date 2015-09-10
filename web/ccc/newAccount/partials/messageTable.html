@@ -1,9 +1,15 @@
+
+
+ <p class="li-blue" data-type="READ" on-click="setMessage">
+ 	<a href="javascript:void(0)">标记为已读</a>
+ <p>
+
 <div class="tab-panel panel-HOLDING active">
     <table  class="table table-striped">
         <thead>
             <tr class="thead">
                 <th style="width:70px; text-align:center;">
-                    <input type="checkbox" />
+                    <input type="checkbox" id="all-checkbox" on-click="checkAll" />
                 </th>
                 <th style="width:190px;">标题</th>
                 <th style="width:500px;">内容</th>
@@ -15,7 +21,7 @@
 			{{#list}}
             <tr>
                 <td style="width:70px; text-align:center;">
-                    <input type="checkbox" />
+                    <input type="checkbox" class="check-box" />
                 </td>
                 <td style="width:190px;">{{body.title}}</td>
                 <td>

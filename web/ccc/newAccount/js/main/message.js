@@ -19,17 +19,11 @@ var totalPage = 1;
 
 
 $('.message-nav li a').click(function() {
-	var blue = $(this).parent().hasClass('li-blue');
-	if(blue){
-		var type = $(this).parent().data('type');
-  		init(type);
-	}else{
-		$(this).addClass('active');
-		$(this).parent().siblings().children().removeClass('active');
-  		var type = $(this).parent().data('type');
-  		init(type);
-	}
-	
+	$(this).addClass('active');
+	$(this).parent().siblings().children().removeClass('active');
+	var type = $(this).parent().data('type');
+	console.log(type);
+	init(type);
 });
 
 function init (type) {
@@ -50,10 +44,12 @@ function init (type) {
       }, 
       onrender: function() {
         var self = this;
-        self.getMessageData(function (o){
-          self.set('total',o.totalSize);
-          self.setData(o.results);
-          self.bindAction();
+		  console.log('++++++++++');
+		  console.log(this);
+          self.getMessageData(function (o){
+			  self.set('total',o.totalSize);
+			  self.setData(o.results);
+			  self.bindAction();
         });
       },
       getMessageData: function(callback) {
@@ -63,18 +59,22 @@ function init (type) {
           API = self.apit;
         } else {
           API = self.api + '?status=' + type + '&page=' + self.page + '&pageSize=' + self.size;
+			console.log(API);
         };
 
         $.get(API,function (o){
           if (o.results.length) {
             self.pageOneData = o.results;
+			  console.log(o);
+			  console.log('----');
+			 console.log(self);
             callback(o);
           }
         });
       },
       bindAction : function () {
         $('.ctr').click(function (){
-          console.log(111);
+          console.log('succss');
           $(this).addClass('activeContent')
         });
       },
@@ -110,13 +110,55 @@ function init (type) {
     });
   };
   
-  messageRactive.on('showContent', function (event) {
-    
-    var id = event.node.getAttribute('data-id');
-    var status = event.node.getAttribute('data-status');
-    if (status == 'NEW') {
-      $.get('/api/v2/message/markAsRead/' + id); 
-    }
+  messageRactive.on({
+	  'showContent':function (event) {
+		  			console.log(event);
+					var id = event.node.getAttribute('data-id');
+		  			console.log(id);
+					var status = event.node.getAttribute('data-status');
+		  			console.log(status);
+					if (status == 'NEW') {
+					$.get('/api/v2/message/markAsRead/' + id);
+					}
+			  },
+	  'checkAll':function(){
+		  			if($('#all-checkbox').is(':checked')){
+						$('.check-box').each(function(){
+							$('.check-box:checkbox').prop("checked",true);
+							console.log(123);
+						})
+					}else{
+						$('.check-box').each(function(){
+							$('.check-box:checkbox').prop("checked",false);
+							console.log(456);
+						})
+						
+					}
+		  				
+	  },
+	  'setMessage':function(){
+		  var id = $('.ctr').data('id');
+		  var status = $('.ctr').data('status');
+		  console.log(id);
+		  console.log(status);
+		  if(status == 'NEW'){
+			   var checked = $('.check-box').is(':checked');
+			  	if(checked){
+				$.get('/api/v2/message/markAsRead/' + id);
+			  	alert('标记成功');
+				init(status);
+		  }
+		  }else if(status == 'READ'){
+			  var checked = $('.check-box').is(':checked');
+			  if(checked){
+				  alert('您已阅读了此消息');
+			  	  init(status);
+			  }
+			 
+		  }
+		 
+		  
+	  }
   });
 
   function renderPager(totalPage, current) {
@@ -133,6 +175,7 @@ function init (type) {
     });
 
     pagerRactive.on('previous', function (e) {
+		console.log('succss')
         e.original.preventDefault();
         var current = this.get('current');
         if (current > 1) {
@@ -145,6 +188,7 @@ function init (type) {
     });
 
     pagerRactive.on('page', function (e, page) {
+		console.log('succss');
         e.original.preventDefault();
         if (page) {
             current = page;
@@ -157,6 +201,7 @@ function init (type) {
 
     });
     pagerRactive.on('next', function (e) {
+		console.log('succss');
         e.original.preventDefault();
         var current = this.get('current');
         if (current < this.get('totalPage')[this.get('totalPage')
@@ -169,5 +214,6 @@ function init (type) {
     }); 
   }  
 }
+
 
 init('ALL');
