@@ -42,12 +42,12 @@
 		{{else}}
 			<span class="icon-account"></span>
 		{{/if}}
-		<span class="nav-text {{#if settings}}nav-text-active{{/if}}"><a href="/newAccount/settings/userinfo">账户管理</a></span>
+		<span class="nav-text {{#if settings}}nav-text-active{{/if}}"><a href="/newAccount/settings/userInfo">账户管理</a></span>
 		<span class="nav-toggle-btn" data-toggle="showAccountToggleMenu" on-click="toggleMenu"></span>
 		<div class="clearfix"></div>
 		{{#if showAccountToggleMenu}}
 			<ul class="nav-toggle-menu">
-				<li class="{{#if userinfo}}active{{/if}}"><a href="/newAccount/settings/userinfo">个人信息</a></li>
+				<li class="{{#if userInfo}}active{{/if}}"><a href="/newAccount/settings/userInfo">个人信息</a></li>
 				<li class="{{#if authentication}}active{{/if}}"><a href="/newAccount/settings/authentication">实名认证</a></li>
 				<li class="{{#if bankCards}}active{{/if}}"><a href="/newAccount/settings/bankCards">提现银行卡</a></li>
 				<li class="{{#if password}}active{{/if}}"><a href="/newAccount/settings/password">密码管理</a></li>
