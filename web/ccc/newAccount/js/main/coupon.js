@@ -1,11 +1,10 @@
-
 'use strict';
 
 var utils = require('ccc/global/js/lib/utils');
 var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/cccTab');
 
-var couponTpl = require('ccc/account/partials/coupon/coupon.html');
+var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
 
 var pagesize = 9;
 var page = 1;
@@ -39,7 +38,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
 function init (type) {
 	if (type) {
 		var couponRactive = new Ractive ({
-			el: '.account-coupon-wrapper',
+			el: '.panel-' + type,
 			template: couponTpl,
 			size: pagesize,
 			page: page,

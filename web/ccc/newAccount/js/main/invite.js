@@ -72,9 +72,9 @@ new Ractive({
     },
     buildImgUrl: function(){
         var self = this;
-        var logo = 'https://' + location.host + $('#er-img-url').attr('src');
-        var text = 'https://' + location.host + '/register?refm=' + CC.user.mobile;
-        return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&logo=' + logo + '&text=' + text;
+        //var logo = 'http://' + location.host + $('#er-img-url').attr('src');
+        var text = 'http://' + location.host + '/register?refm=' + CC.user.mobile;
+        return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
     },
     parseData: function (r) {
         for (var i = 0; i < r.results.length; i++) {
