@@ -70,7 +70,7 @@
 
                         <button type="button"
                                 class="btn btn-sm btn-total pull-right"
-                                ng-click="store.amount = self.user.fund.availableAmount; self.fetch_analyse(store.amount)"
+                                ng-click="store.amount = self.amount_polishing(self.user.fund.availableAmount); self.fetch_analyse(store.amount)"
                         >全投</button>
                     </div>
                 </li>
@@ -78,10 +78,10 @@
 
             <div class="invest-input-wrap">
                 <param class="glyphicon glyphicon-minus"
-                       ng-click="store.amount = store.amount - loan.raw.loanRequest.investRule.stepAmount; self.fetch_analyse(store.amount)"
+                       ng-click="store.amount = self.amount_polishing(store.amount - loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
                 >
                 <param class="glyphicon glyphicon-plus"
-                       ng-click="store.amount = store.amount + loan.raw.loanRequest.investRule.stepAmount; self.fetch_analyse(store.amount)"
+                       ng-click="store.amount = self.amount_polishing(store.amount + loan.raw.loanRequest.investRule.stepAmount); self.fetch_analyse(store.amount)"
                 >
                 <input name="amount"
                        id="invest-amount"
