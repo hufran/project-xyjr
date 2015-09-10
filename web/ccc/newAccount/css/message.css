@@ -59,12 +59,16 @@
 	width: 868px;
 }
 
+
+
 .message-box .message-table table {
 	width: 868px;
 }
 
 .message-box .message-table table td {
 	height: auto;
+	line-height: 30px;
+	vertical-align:baseline;
 }
 
 .message-box .message-table table tr {
@@ -95,6 +99,10 @@
 	background-color: #009ada;
 	border: none;
 	padding: 5px 5px 5px 5px;
+}
+
+.invest-pager .current-page-now a{
+	padding: 0 5px 0 5px;
 }
 
 .invest-pager .current-page a {
