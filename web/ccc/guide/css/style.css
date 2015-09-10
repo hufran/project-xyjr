@@ -202,3 +202,13 @@
 .for-parents img{
     margin-left: 7px;
 }
+.guide-register-rightnow{
+    width:360px;
+    height:60px;
+    background: #007ec5;
+    border:none;
+    color: white;
+    font-size: 26px;
+    border-radius: 5px;
+    margin-left: 370px;
+}
