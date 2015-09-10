@@ -3,10 +3,10 @@
 {{#if list}}
 	{{#each list}}
 	<div class="couponWrapper">
-				{{#if type==='CASH'}}
-			<div class="INTEREST">
+			{{#if type==='CASH'}}
+			<div class="CASH">
 				<div class="couponWrapper-left">
-					加息券
+					现金券
 				</div>
 				<div class="couponWrapper-right">
 					<div class="couponTitle">有效期至：{{timeExpire}}</div>
@@ -19,18 +19,6 @@
 			<div class="INTEREST">
 				<div class="couponWrapper-left">
 					<p class="type-title">加息券</p>
-				</div>
-				<div class="couponWrapper-right">
-					<div class="couponTitle">有效期至：{{timeExpire}}</div>
-					<div class="valueText">加{{displayValue}}利息</div>
-					<div class="couponDescription">最低投资{{minimumInvest}} 最短期限{{minimumDuration }}个月</div>
-				</div>	
-			</div>
-			{{/if}}
-			{{#if type==='REBATE'}}
-			<div class="REBATE">
-				<div class="couponWrapper-left">
-					<p class="type-title">返现券</p>
 				</div>
 				<div class="couponWrapper-right">
 					<div class="couponTitle">有效期至：{{timeExpire}}</div>
@@ -52,6 +40,18 @@
 				</div>	
 			</div>
 			{{/if}}
+			{{#if type==='REBATE'}}
+			<div class="REBATE">
+				<div class="couponWrapper-left">
+					<p class="type-title">返现券</p>
+				</div>
+				<div class="couponWrapper-right">
+					<div class="couponTitle">有效期至：{{timeExpire}}</div>
+					<div class="valueText">加{{displayValue}}利息</div>
+					<div class="couponDescription">最低投资{{minimumInvest}} 最短期限{{minimumDuration }}个月</div>
+				</div>	
+			</div>
+			{{/if}}
 
 	</div>
 	{{/each}}
@@ -60,9 +60,12 @@
 {{/if}}
 <div class="clear"></div>
 <div class="ccc-paging">
+	<div class="first">首页</div>
 	<div class="prev">上一页</div>
-	<div class="currentPagewra">第<span class="currentPage"></span>页</div>
-	<div class="totalPagewra">共<span class="totalPage"></span>页</div>
+	<div class="currentPage"></div>
+<!--	<div class="totalPage">共<span></span>页</div>-->
 	<div class="next">下一页</div>
 	<div class="clear"></div>
 </div>
+
+

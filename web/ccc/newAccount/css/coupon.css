@@ -10,7 +10,6 @@
 	position: relative;
 	height: auto;
 	width: 1100px;
-	padding-left: 16px;
 	padding-right: 16px;
 }
 
@@ -19,10 +18,12 @@
 	overflow: hidden;
 }
 
-.coupon-content .coupon-nav-view ul .selectTitle {
+.coupon-content .coupon-nav-view  .selectTitle {
 	width: 100px;
 	color: #000;
 	float: left;
+	padding: 12px;
+	font-size: 14px;
 }
 
 .coupon-content .coupon-nav-view ul li {
@@ -41,14 +42,71 @@
 	color: white;
 	border-radius: 2px;
 }
+.coupon-content-detail{
+	margin: 0 50px;
+}
+
+.has-line{
+	border-bottom: 1px #ccc solid;
+}
+.ccc-tab > ul.ttabs > li a{
+	text-decoration: none;
+	margin: 0;
+	color: #999;
+}
+.ccc-tab > ul.ttabs > li a:hover,
+.ccc-tab > ul.ttabs > li a:focus {
+	color: #fff;
+	text-decoration: none;
+	background-color: #009ada;
+	border-radius: 2px;
+	margin: 0;
+}
+.ccc-tab > ul.ttabs .active {
+  border-bottom: none;
+  margin-bottom: 0px;
+}
+.ccc-tab > ul.ttabs .active a{
+	background-color: #009ada;
+	color: white;
+	border-radius: 2px;
+	border-bottom: none;
+	margin-bottom: 0px;
+	text-decoration: none;
+}
 
 
+.ccc-tab > ul.stabs > li a{
+	text-decoration: none;
+	margin: 0;
+	color: #999;
+}
+.ccc-tab > ul.stabs > li a:hover,
+.ccc-tab > ul.stabs > li a:focus {
+	color: #fff;
+	text-decoration: none;
+	background-color: #009ada;
+	border-radius: 2px;
+	margin: 0;
+}
+.ccc-tab > ul.stabs .active {
+  border-bottom: none;
+  margin-bottom: 0px;
+}
+.ccc-tab > ul.stabs .active a{
+	background-color: #009ada;
+	color: white;
+	border-radius: 2px;
+	border-bottom: none;
+	margin-bottom: 0px;
+	text-decoration: none;
+}
 /*jo*/
 
 .couponWrapper {
 	float: left;
 	color: #fff;
-	margin: 20px 40px;
+	margin: 20px 24px;
 }
 
 .couponWrapper .INTEREST {
@@ -71,6 +129,14 @@
 	height: 140px;
 	border-radius: 10px;
 }
+.couponWrapper .CASH {
+	background: url(/ccc/newAccount/img/coupon/orange-bg.png );
+	width: 350px;
+	height: 140px;
+	border-radius: 10px;
+}
+
+
 .couponWrapper-left {
 	float: left;
 	border-right: 1px dashed #fff;
@@ -79,7 +145,8 @@
 	height: 144px;
 	padding: 12px 30px;
 }
- .couponWrapper-right {
+
+.couponWrapper-right {
 	float: left;
 	width: 260px;
 }
@@ -95,7 +162,7 @@
 	text-align: center;
 	font-size: 30px;
 	height: 90px;
-	padding:27px 0;
+	padding: 27px 0;
 }
 
 .couponWrapper .couponDescription {
@@ -124,7 +191,8 @@
 }
 
 .ccc-paging {
-	margin-top: 20px;
+	margin: 20px auto;
+	width: 260px;
 }
 
 .ccc-paging > div {
@@ -143,10 +211,12 @@
 .ccc-paging > div:hover {
 	border: 1px solid #e5e5e5;
 	background-image: none;
-	background-color: #2A375F;
+	background-color: #009ada;
+		color: #fff;
 }
 
 .ccc-paging .active {
+
 	border: 1px solid #e5e5e5;
 	background-image: none;
 	background-color: #2A375F;
@@ -155,4 +225,3 @@
 .ccc-paging .clear {
 	border: none;
 }
-

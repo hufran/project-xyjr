@@ -14,8 +14,8 @@ var getCurrentType = function() {
 	return $('.ccc-tab li.active').data('type');
 };
 
-$('ul.tabs li a').on('click', function() {
-	var type = $(this).parent().data('type');
+$('ul.ttabs li a').on('click', function() {
+	var type = $(this).parent().data('type');	
 	init(type);
 });
 
@@ -36,6 +36,8 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 function init (type) {
+	console.log("==========");
+	console.log(type);
 	if (type) {
 		var couponRactive = new Ractive ({
 			el: '.panel-' + type,
@@ -83,6 +85,8 @@ function init (type) {
 					page: self.page,
 					size: self.size
 				},function (o){
+					
+					console.log(o.data);
 					if (o.success) {
 						self.pageOneData = o.data.results;
 						callback(o.data);
@@ -192,6 +196,7 @@ function init (type) {
 	}
 }
 
+//var ctype=['CASH','INTEREST','PRINCIPAL','REBATE'];
 init(getCurrentType());
 
 window.redeemCoupon = function(btn) {
