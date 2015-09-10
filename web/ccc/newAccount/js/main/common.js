@@ -5,7 +5,8 @@ var navRactive = new Ractive({
 	template: require('ccc/newAccount/partials/nav.html'),
 	data: {
 		showInvestToggleMenu : false,
-		showAccountToggleMenu : false
+		showAccountToggleMenu : false,
+		isEnterprise: CC.user.enterprise
 	},
 	oninit: function () {
 		var location = window.location.pathname.split('/');
