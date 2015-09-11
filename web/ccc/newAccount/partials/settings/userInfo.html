@@ -1,0 +1,109 @@
+<div class = "account-userInfo-wrapper">
+    <ul class="account-userInfo-tabs">
+        <li on-click="changeTab" class="{{#if showBasic}} tab-active {{/if}} userInfo-tab" data-tab="basic">基本信息</li>
+        <li on-click="changeTab" class="{{#if !showBasic}} tab-active {{/if}} userInfo-tab" data-tab="more">更多信息</li>
+    </ul>
+    {{#if showBasic}}
+    <div class="level-wrapper">
+        <span style="font-weight:bold">安全等级</span>
+        <div class="safetyLevel"><div class="levelBar" style="height:{{100-percent}}%"></div><span class="level-info" style="{{#if percent > 50}} color:white {{/if}}">{{levelText}}</span></div>
+        <span style="font-size:18px;margin-left:100px;">您的信息资料完整度为 <span style="color:#F58220; margin-left:20px;" >{{percent}}%</span></span>
+    </div>
+    <div class="safety-wrapper">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td style="width:35%">
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;手机认证：
+                    </td>
+                    <td style="width:45%">
+                        <span>{{mobile}}</span>
+                    </td>
+                    <td class="align-center">
+                        <span class="status">已认证</span>
+                    </td>
+                </tr>
+                <tr>
+                    {{#if idauthenticated}}
+                   <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;实名认证：
+                   </td>
+                    <td>
+                        {{idNumber}}
+                    </td>
+                    <td class="align-center">
+                        <span class="status">已认证</span>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;实名认证：
+                    </td>
+                    <td>
+                        <span class="status-no">未认证!</span>
+                    </td>
+                    <td class="align-center">
+                        <a href="/newAccount/settings/authentication" class="btn">去认证</a>
+                    </td>
+                    {{/if}}
+                </tr>
+                <tr>
+                    {{#if paymentPasswordHasSet}}
+                    <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码：
+                    </td>
+                    <td>
+                        <span>******</span>
+                    </td>
+                     <td class="align-center">
+                        <a href="/newAccount/settings/password" class="btn">去修改</a>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
+                    </td>
+                    <td>
+                        <span class="status-no">未认证!</span>
+                    </td>
+                    <td class="align-center">
+                        <a href="/newAccount/settings/password" class="btn">去认证</a>
+                    </td>
+                    {{/if}}
+                </tr>
+                <tr>
+                    {{#if activatedEmail}}
+                    <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;认证邮箱：
+                    </td>
+                    <td>
+                    </td>
+                    <td class="align-center">
+                        <span class="status">已认证</span>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;认证邮箱：
+                    </td>
+                    <td>
+                        <span class="status-no">未绑定!</span>
+                    </td>
+                    <td class="align-center">
+                        <a href="#" class="goRz btn">去绑定</a>
+                    </td>
+                    {{/if}}
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="rzz">
+            <input type="text" name="email" class="rZemail" placeholder="请输入邮箱">
+            <div class="rzE_button">确定</div>
+            <div class="errors"></div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}
+    <div class="img-wrapper">
+        <img src="/ccc/newAccount/img/userInfo.png">
+    </div>
+</div>
+

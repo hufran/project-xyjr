@@ -210,3 +210,151 @@ p.tips {
 .PINGAN {
   background-image: url(/ccc/global/img/banks/pingan.png);
 }
+/*个人信息*/
+.account-userInfo-wrapper {
+  position: relative;
+  min-height: 600px;
+}
+.account-userInfo-wrapper .img-wrapper {
+  position: absolute;
+  bottom: 10px;
+  right:20px;
+  width:200px;
+}
+.account-userInfo-wrapper .img-wrapper img {
+  width:100%;
+}
+.account-userInfo-tabs {
+  height: 30px;
+  border-bottom: 1px #cccccc solid;
+}
+.userInfo-tab {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  line-height: 30px;
+  color: #999999;
+  cursor: pointer;
+  line-height: 27px;
+  font-size: 18px;
+}
+.tab-active {
+  color: #434546;
+  border-bottom: 2px #009ada solid;
+}
+.safety-wrapper {
+  position:relative;
+  border-left:1px #cccccc solid;
+  width:600px;
+  margin:auto;
+  padding-left:50px;
+  height:250px;
+}
+.level-wrapper {
+  margin:30px;
+  position:relative;
+}
+.safetyLevel {
+  position: absolute;
+  background:#F58220;
+  width:70px;
+  height:70px;
+  border-radius: 100px;
+  top:-15px;
+  left:70px;
+  overflow: hidden;
+  line-height: 70px;
+  box-shadow: 1px 1px 5px grey;
+}
+.levelBar {
+  position: absolute;
+  width:70px;
+  height:75%;
+  background:rgb(251, 236, 225);
+}
+.level-info{
+  z-index:10;
+  position: absolute;
+  font-size: 20px;
+  left:26px;
+}
+.safety-wrapper .table tr th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  color: #005387;
+  text-align: center;
+}
+.safety-wrapper .table tr td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 14px;
+  border:none;
+  position: relative;
+}
+.safety-wrapper .table tr td .glyphicon {
+  color: #FAFBF8;
+  background-color: #0D9A95;
+  border-radius: 100px;
+  padding: 2px;
+  position: absolute;
+  left:-60px;
+  top:26px;
+}
+.safety-wrapper .table tr td .glyphicon-remove {
+  background-color:#AB1212;
+}
+.safety-wrapper .table tr .align-center {
+  text-align: center;
+}
+.safety-wrapper .table .status {
+  color:dodgerblue;
+}
+.safety-wrapper .table .status-no {
+  color:firebrick;
+}
+.safety-wrapper .table .btn {
+  background-color:#009ADA;
+  color:white;
+}
+.rzz {
+  width: 350px;
+  position: relative;
+  margin: 0 auto;
+  display: none;
+  overflow: auto;
+  zoom:1;
+  margin-top:20px;
+}
+.rZemail {
+  width: 250px;
+  height: 37px;
+  text-indent: 10px;
+  float: left;
+  font-size: 14px;
+}
+.rzE_button {
+  width: 80px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 14px;
+  background: #009ADA;
+  float: right;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.rzE_button:hover{
+  background-color:#009ADA;
+}
+.errors {
+  color: #d2252c;
+  font-size: 12px;
+  clear:both;
+  padding:10px;
+  padding-left: 20px;
+/*	background-image: url(/ccc/register/img/gou-bg.png);*/
+  background-position: left center;
+  background-repeat: no-repeat;
+}
