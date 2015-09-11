@@ -358,3 +358,33 @@ p.tips {
   background-position: left center;
   background-repeat: no-repeat;
 }
+
+#moreInfo {
+  width:600px;
+  margin:auto;
+}
+#moreInfo ul{
+  width: 100%;
+  overflow: auto;
+  zoom:1;
+}
+#moreInfo ul li {
+  float:left;
+  width:50%;
+}
+#moreInfo ul li label {
+  margin-right:30px;
+}
+#moreInfo ul li select {
+  min-width: 100px;
+  border: 1px solid #DFDFDF;
+  outline: none;
+  color: #868383;
+  background-color: white;
+}
+#moreInfo .modify {
+  background-color:#009ADA;
+  color:white;
+  width:80px;
+  margin-left:210px;
+}

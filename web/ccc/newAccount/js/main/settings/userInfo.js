@@ -14,7 +14,6 @@ var ractive = new Ractive({
         idNumber:'',
         percent: 0,
         levelText:'弱',
-        //activatedCard: !!CC.user.bankCards.length,
         agreement: typeof CC.user.accountId === 'undefined' ? false : CC.user
             .agreement,
         accountId: CC.user.agreement ? CC.user.agreement : false,
@@ -23,15 +22,30 @@ var ractive = new Ractive({
         idauthenticated: CC.user.authenticates.idauthenticated,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
     },
-    oninit: function() {
-                var self = this;
-                if (CC.user.authenticates.idauthenticated) {
-                     accountService.getUserInfo(function (res) {
-                         var idNumber = formatNumber(res.user.idNumber, 4, 4);
-                         ractive.set('idNumber', idNumber);
-                     });
-                };
-           
+    init: function() {
+                var self = this;    
+                accountService.getUserInfo(function (userinfo) {
+                    if (userinfo.personal) {
+                        ractive.set('male', ''+userinfo.personal.male);
+                    }
+                    if (userinfo.personal && userinfo.personal.education && userinfo.personal.education.educationLevel) {
+                        ractive.set('educationLevel', userinfo.personal.education.educationLevel)
+                    }
+                    if (userinfo.career && userinfo.career.company && userinfo.career.company.industry) {
+                        ractive.set('companyIndustry', userinfo.career.company.industry);
+                    }
+                    if (userinfo.career && userinfo.career.salary) {
+                        ractive.set('salary', userinfo.career.salary)
+                    }
+                    if (userinfo.personal && userinfo.personal.maritalStatus) {
+                        ractive.set('maritalStatus', userinfo.personal.maritalStatus)
+                    }
+                    
+                    if (CC.user.authenticates.idauthenticated) {
+                        var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
+                        ractive.set('idNumber', idNumber);
+                    };
+                });   
                 var avail = items.reduce(function (
                     ret, item) {
                     if (self[item]()) {
@@ -124,4 +138,25 @@ $(function (){
     });
 });
 
-
+ractive.on('submit',function() {
+    var male = this.get('male');
+    var companyIndustry  = this.get('companyIndustry');
+    var educationLevel = this.get('educationLevel');
+    var salary = this.get('salary');
+    var maritalStatus  = this.get('maritalStatus');
+    accountService.updatePersonalInfo(male,educationLevel,maritalStatus,function(r) {
+        if (!r.error) {
+            accountService.updateCareerInfo(companyIndustry,salary,function(r) {
+                if (!r.error) {
+                    alert('信息编辑成功');
+                } else {
+                   alert('信息编辑失败,请稍后重试！'); 
+                }   
+            });
+        } else {
+             alert('信息编辑失败,请稍后重试！'); 
+        }
+    });
+    return false;
+});
+           
