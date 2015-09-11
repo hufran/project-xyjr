@@ -8,7 +8,7 @@
     float: left;
 }
 .heart-control-box{
-    margin:0px 100px 90px 40px;
+    margin:0px 110px 90px 110px;
     overflow: hidden;
 }
 .heart-pay-box{
@@ -21,7 +21,7 @@
 
 .heart-control{
     float: right;
-    width: 510px;
+    width: 420px;
 }
 .heart-pay{
     float: left;
@@ -37,7 +37,7 @@
     margin-bottom: 20px;
 }
 .heart-control p{
-    font-size: 18px;
+    font-size: 14px;
     color:#999;
     line-height: 38px;
 }
@@ -60,7 +60,7 @@
     width:360px;
     height:64px;
     color:white;
-    background: #f58220;
+    background: #007ec5;
     border: none;
     border-radius: 5px;
     font-size: 30px;
@@ -78,25 +78,29 @@
 .transparent-paper img{
     float: right;
 }
+
 .transparent-house{
-    margin-left: 66px;
-    margin-right: 40px;
+    margin-left: 110px;
+    margin-right: 100px;
     height: 300px;
     margin-bottom: 30px;
 }
 .transparent-house-content{
     float: right;
-    width: 522px;
+    width: 420px;
 }
 .transparent-paper-content{
     float: left;
 }
 .transparent-house-content p{
-    font-size: 18px;
+    font-size: 14px;
     color:#999;
     line-height: 38px;
     margin-top: 120px;
 }
 .transparent-paper-content p{
+    margin-top: 70px;
+}
+.transparent-earn-content p{
     margin-top: 70px;
 }
