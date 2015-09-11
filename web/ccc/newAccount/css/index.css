@@ -1,5 +1,5 @@
 * {
-	font-family: '冬青黑体简体中文';
+	font-family: '微软雅黑';
 }
 .userinfowra {
 	width: 100%;
@@ -36,7 +36,7 @@
 	height: 60px;
 	text-align: center;
 	line-height: 60px;
-	font-family: '冬青黑体简体中文';
+	font-family: '微软雅黑';
 	font-size: 36px;
 }
 .home-top-container .home-tab-info {
@@ -44,7 +44,7 @@
 	height: 20px;
 	text-align: center;
 	line-height: 20px;
-	font-family: '冬青黑体简体中文';
+	font-family: '微软雅黑';
 	font-size: 14px;
 	color: #4a4a4a;
 }

@@ -1,5 +1,5 @@
 * {
-	font-family: '冬青黑体简体中文';
+	font-family: '微软雅黑';
 }
 #main-container{
     background: #f4fcff;
@@ -29,6 +29,7 @@
 	float: left;
 	border-left: 1px #cccccc solid;
 	min-height: 748px;
+	position: relative;
 }
 .account-content {
 	width: 870px;
@@ -43,7 +44,7 @@
 }
 .nav-wrapper .nav-li a {
 	text-decoration: none;
-	font-family: '冬青黑体简体中文';
+	font-family: '微软雅黑';
 	font-size: 14px;
 	color: #999999;
 }
@@ -60,7 +61,7 @@
 	line-height: 40px;
 	text-align: center;
 	font-size: 20px;
-	font-family: '冬青黑体简体中文';
+	font-family: '微软雅黑';
 }
 .nav-li span {
 	display: block;
@@ -188,7 +189,7 @@ table thead tr th {
 	border: 0!important;
 	font-size: 14px!important;
 	color: #4a4a4a!important;
-	font-family: '冬青黑体简体中文'!important;
+	font-family: '微软雅黑'!important;
 }
 table tbody tr td {
 	padding: 0;
@@ -196,7 +197,7 @@ table tbody tr td {
 	border-bottom: 1px #eeeeee solid;
 	font-size:14px!important;
 	color: #4a4a4a;
-	font-family: '冬青黑体简体中文';
+	font-family: '微软雅黑';
 }
 .ccc-paging {
 	text-align: center;
