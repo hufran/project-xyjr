@@ -36,6 +36,7 @@ var ractive = new Ractive({
         province: '',
         city: '',
         ifDel: false,
+        mobile: CC.user.mobile,
         authenticated: CC.user.authenticates.idauthenticated || false
     }
 });
