@@ -20,6 +20,8 @@ var navRactive = new Ractive({
 			this.set(menu, true);
 			if (tab === 'invest') {
 				this.set('showInvestToggleMenu', true);
+			} else if (tab === 'loanRequest') {
+				this.set('showLoanToggleMenu', true);
 			} else {
 				this.set('showAccountToggleMenu', true);
 			}

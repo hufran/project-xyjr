@@ -34,7 +34,6 @@ if(CC.user && CC.user.name){
         });     
     });
     accountService.getNewMessageNum(function (res) {
-        console.log(res);
         var messageRactive = new Ractive({
             el: '#head-message-container',
             template: '({{num}})',

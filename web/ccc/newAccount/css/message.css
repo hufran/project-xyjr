@@ -144,3 +144,16 @@
   text-overflow: clip;
   white-space: normal;
 }
+
+.none-message{
+	margin-top: 140px;
+	text-align: center;
+	font-size: 18px;
+	color: #999;
+	font-weight: normal;
+	font-family: '';
+	background-image: url(/ccc/newAccount/img/icon-message.png);
+	background-repeat: no-repeat;
+	background-position: 526px center;
+
+}
