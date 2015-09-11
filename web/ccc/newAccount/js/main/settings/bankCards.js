@@ -49,6 +49,20 @@ ractive.on("validateCardNo", function () {
     }
 });
 
+ractive.on('checkSame', function () {
+    var no = this.get("cardNo");
+    var reno = this.get("recardNo");
+
+    if (reno !== '') {
+        if (no !== reno) {
+            this.set('cardDiff', true);
+            this.set("cardNoError", false);
+        } else {
+            this.set('cardDiff', false);
+        }
+    }
+});
+
 ractive.on("validatePhoneNo", function () {
     var no = this.get("phoneNo");
     if (!/^\d*$/.test(no)) {
@@ -145,7 +159,7 @@ function countDown() {
     var previousText = '获取验证码';
     var msg = '$秒后重新发送';
 
-    var left = 120;
+    var left = 60;
     var interval = setInterval((function () {
         if (left > 0) {
             $('.sendCode')

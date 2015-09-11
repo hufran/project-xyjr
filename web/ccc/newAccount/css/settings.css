@@ -172,6 +172,7 @@ p.tips {
 	width: 200px;
 	font-size: 20px;
 	font-weight: bold;
+  height: 30px;
 }
 .ABC {
   background-image: url(/ccc/global/img/banks/ABC.png);

@@ -143,6 +143,12 @@ module.exports = function (router) {
     	});
     });
 
+    router.get('/newAccount/loanRequest/*', function (req, res) {
+        res.render('newAccount/loan', {
+            title: '奇乐融'
+        });
+    });
+
     [
         "bankCards",
         "authentication",
