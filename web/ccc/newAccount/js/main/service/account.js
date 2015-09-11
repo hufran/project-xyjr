@@ -161,5 +161,26 @@ exports.accountService = {
                         next([]);
                     }
             })
+    },
+    updatePersonalInfo:function(male,educationLevel,maritalStatus,next) {
+        request('PUT', '/api/v2/user/MYSELF/personal')
+            .type('form')
+            .send({
+                male: male,
+                educationLevel: educationLevel,
+                maritalStatus: maritalStatus
+            })
+            .end()
+            .then(next);
+    },
+    updateCareerInfo:function(companyIndustry,salary,next) {
+        request('PUT', '/api/v2/user/MYSELF/career')
+            .type('form')
+            .send({
+                companyIndustry: companyIndustry,
+                salary: salary 
+            })
+            .end()
+            .then(next);
     }
 };
