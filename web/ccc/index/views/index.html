@@ -129,7 +129,7 @@
             <ul>
                 {{#each latestPublication:num}}
                 {{#if num+1<6 }}
-                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
+                <li><a href="/cms/p/{{this.id}}" class="news" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
                                 {{title.substr(0,22)}}...
                             {{else}}
                                 {{title}}
@@ -148,7 +148,7 @@
             <ul>
                 {{#each latestNews:num}}
                 {{#if num+1<6 }}
-                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
+                <li><a href="/cms/p/{{this.id}}" class="news" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
                                 {{title.substr(0,22)}}...
                             {{else}}
                                 {{title}}
@@ -166,7 +166,9 @@
             <ul>
                 {{#each latestOne:num}}
                 {{#if num+1<6 }}
-                <li><a href="/cms/p/{{this.id}}" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
+                <li><a href="/cms/p/{{this.id}}" class="news"
+					   
+					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
                                 {{title.substr(0,22)}}...
                             {{else}}
                                 {{title}}

@@ -10,8 +10,11 @@
 				</div>
 				<div class="couponWrapper-right">
 					<div class="couponTitle">有效期至：{{timeExpire}}</div>
-					<div class="valueText">加{{displayValue}}利息</div>
-					<div class="couponDescription">最低投资{{minimumInvest}} 最短期限{{minimumDuration }}个月</div>
+					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
+					<div class="couponDescription">
+						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元</p>
+						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
+					</div>
 				</div>	
 			</div>
 			{{/if}}
@@ -22,8 +25,11 @@
 				</div>
 				<div class="couponWrapper-right">
 					<div class="couponTitle">有效期至：{{timeExpire}}</div>
-					<div class="valueText">加{{displayValue}}利息</div>
-					<div class="couponDescription">最低投资{{minimumInvest}} 最短期限{{minimumDuration }}个月</div>
+					<div class="valueText">加<span class="big">{{displayValue}}</span>利息</div>
+					<div class="couponDescription">
+						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元</p>
+						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
+					</div>
 				</div>	
 			</div>
 			{{/if}}
@@ -35,8 +41,11 @@
 				</div>
 				<div class="couponWrapper-right">
 					<div class="couponTitle">有效期至：{{timeExpire}}</div>
-					<div class="valueText">加{{displayValue}}利息</div>
-					<div class="couponDescription">最低投资{{minimumInvest}} 最短期限{{minimumDuration }}个月</div>
+					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
+					<div class="couponDescription">
+						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元</p>
+						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
+					</div>
 				</div>	
 			</div>
 			{{/if}}
@@ -47,8 +56,11 @@
 				</div>
 				<div class="couponWrapper-right">
 					<div class="couponTitle">有效期至：{{timeExpire}}</div>
-					<div class="valueText">加{{displayValue}}利息</div>
-					<div class="couponDescription">最低投资{{minimumInvest}} 最短期限{{minimumDuration }}个月</div>
+					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
+					<div class="couponDescription">
+						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元</p>
+						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
+					</div>
 				</div>	
 			</div>
 			{{/if}}
@@ -60,10 +72,9 @@
 {{/if}}
 <div class="clear"></div>
 <div class="ccc-paging">
-	<div class="first">首页</div>
 	<div class="prev">上一页</div>
-	<div class="currentPage"></div>
-<!--	<div class="totalPage">共<span></span>页</div>-->
+	<div class="currentPagewra">第<span class="currentPage"></span>页</div>
+	<div class="totalPagewra">共<span class="totalPage"></span>页</div>
 	<div class="next">下一页</div>
 	<div class="clear"></div>
 </div>

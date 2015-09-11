@@ -18,7 +18,7 @@
 	overflow: hidden;
 }
 
-.coupon-content .coupon-nav-view  .selectTitle {
+.coupon-content .coupon-nav-view .selectTitle {
 	width: 100px;
 	color: #000;
 	float: left;
@@ -27,7 +27,7 @@
 }
 
 .coupon-content .coupon-nav-view ul li {
-	width: 50px;
+	width: 60px;
 	text-align: center;
 	color: #6d6c6c;
 	cursor: pointer;
@@ -42,31 +42,38 @@
 	color: white;
 	border-radius: 2px;
 }
-.coupon-content-detail{
+
+.coupon-content-detail {
 	margin: 0 50px;
 }
 
-.has-line{
+.has-line {
 	border-bottom: 1px #ccc solid;
 }
-.ccc-tab > ul.ttabs > li a{
+
+.ccc-tab > ul.ttabs > li a {
 	text-decoration: none;
 	margin: 0;
 	color: #999;
 }
+
 .ccc-tab > ul.ttabs > li a:hover,
 .ccc-tab > ul.ttabs > li a:focus {
 	color: #fff;
+/*
 	text-decoration: none;
 	background-color: #009ada;
 	border-radius: 2px;
+*/
 	margin: 0;
 }
+
 .ccc-tab > ul.ttabs .active {
-  border-bottom: none;
-  margin-bottom: 0px;
+	border-bottom: none;
+	margin-bottom: 0px;
 }
-.ccc-tab > ul.ttabs .active a{
+
+.ccc-tab > ul.ttabs .active a {
 	background-color: #009ada;
 	color: white;
 	border-radius: 2px;
@@ -75,12 +82,12 @@
 	text-decoration: none;
 }
 
-
-.ccc-tab > ul.stabs > li a{
+.ccc-tab > ul.stabs > li a {
 	text-decoration: none;
 	margin: 0;
 	color: #999;
 }
+
 .ccc-tab > ul.stabs > li a:hover,
 .ccc-tab > ul.stabs > li a:focus {
 	color: #fff;
@@ -89,11 +96,13 @@
 	border-radius: 2px;
 	margin: 0;
 }
+
 .ccc-tab > ul.stabs .active {
-  border-bottom: none;
-  margin-bottom: 0px;
+	border-bottom: none;
+	margin-bottom: 0px;
 }
-.ccc-tab > ul.stabs .active a{
+
+.ccc-tab > ul.stabs .active a {
 	background-color: #009ada;
 	color: white;
 	border-radius: 2px;
@@ -101,6 +110,8 @@
 	margin-bottom: 0px;
 	text-decoration: none;
 }
+
+
 /*jo*/
 
 .couponWrapper {
@@ -129,13 +140,13 @@
 	height: 140px;
 	border-radius: 10px;
 }
+
 .couponWrapper .CASH {
 	background: url(/ccc/newAccount/img/coupon/orange-bg.png );
 	width: 350px;
 	height: 140px;
 	border-radius: 10px;
 }
-
 
 .couponWrapper-left {
 	float: left;
@@ -156,19 +167,34 @@
 	text-align: right;
 	height: 25px;
 	padding-top: 15px;
+	padding-right: 10px;
 }
 
 .couponWrapper .valueText {
-	text-align: center;
-	font-size: 30px;
 	height: 90px;
 	padding: 27px 0;
+	font-size: 20px;
+	margin-left: 40px;
+}
+
+.couponWrapper .valueText .big {
+	font-size: 34px;
+	padding: 0 15px;
 }
 
 .couponWrapper .couponDescription {
 	text-align: center;
 	font-size: 14px;
-	margin-right: 5px;
+}
+
+.couponWrapper .couponDescription .descriptionLeft {
+	float: left;
+	margin-left: 20px;
+}
+
+.couponWrapper .couponDescription .descriptionRight {
+	float: right;
+	margin-right: 20px;
 }
 
 .exchange {
@@ -192,7 +218,7 @@
 
 .ccc-paging {
 	margin: 20px auto;
-	width: 260px;
+	width: 300px;
 }
 
 .ccc-paging > div {
@@ -212,16 +238,28 @@
 	border: 1px solid #e5e5e5;
 	background-image: none;
 	background-color: #009ada;
-		color: #fff;
+	color: #fff;
 }
 
 .ccc-paging .active {
-
 	border: 1px solid #e5e5e5;
 	background-image: none;
 	background-color: #2A375F;
 }
 
 .ccc-paging .clear {
+	border: none;
+}
+
+.ccc-paging span {
+	display: inline-block;
+    width: 31px;
+	height: 31px;
+	line-height: 26px;
+	text-align: center;
+	font-size: 14px;
+	color: #4a4a4a;
+	margin: 0 5px;
+	cursor: pointer;
 	border: none;
 }
