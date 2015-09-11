@@ -4,6 +4,7 @@ var utils = require('ccc/global/js/lib/utils');
 var LLPBANKS = require('ccc/global/js/modules/cccllpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+var CommonService = require('ccc/global/js/modules/common').CommonService;
 // 过滤银行卡，只显示enabled=true的
 var banks = _.filter(LLPBANKS, function (r) {
     return r.enable === true;
@@ -36,15 +37,6 @@ var ractive = new Ractive({
         city: '',
         ifDel: false,
         authenticated: CC.user.authenticates.idauthenticated || false
-    },
-    oncomplete: function () {
-        accountService.getProvince(function (res) {
-            ractive.set('province', changeToList(res));
-            var fProvince = ractive.get('myProvince') || '新疆';
-            accountService.getCity(fProvince, function (res) {
-                ractive.set('city', changeToList(res));
-            });
-        });
     }
 });
 
@@ -133,3 +125,38 @@ function changeToList(map) {
 
     return _arr;
 };
+
+ractive.on('sendCode', function (){
+
+    if (!this.get('isSend')) {
+        this.set('isSend', true);
+        var smsType = 'CREDITMARKET_CAPTCHA';
+        CommonService.getMessage(smsType, function (r) {
+            if (r.success) {
+                countDown();
+            }
+        });
+    }
+});
+
+function countDown() {
+    $('.sendCode')
+        .addClass('disabled');
+    var previousText = '获取验证码';
+    var msg = '$秒后重新发送';
+
+    var left = 120;
+    var interval = setInterval((function () {
+        if (left > 0) {
+            $('.sendCode')
+                .html(msg.replace('$', left--));
+        } else {
+            ractive.set('isSend', true);
+            $('.sendCode')
+                .html(previousText);
+            $('.sendCode')
+                .removeClass('disabled');
+            clearInterval(interval);
+        }
+    }), 1000);
+}
