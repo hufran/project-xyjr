@@ -158,6 +158,9 @@ ractive.on('do-filter', function () { // 开始筛选数据
 // page,pageSize
 // preset
 ractive.loadData = function (obj) {
+    console.log("=======");
+    console.log($('.date-to-picker>input').val());
+    console.log($('.date-from-picker>input').val());
     if (this.get('loading')) {
         return;
     }
@@ -168,8 +171,8 @@ ractive.loadData = function (obj) {
             type: obj.type || 'ALL',
             allStatus: obj.status || false,
             allOperation: true,
-            startDate: moment(this.get('dateFrom')).unix() * 1000,
-            endDate: moment(this.get('dateTo')).unix() * 1000 + 1000 * 60 * 60 * 24,
+            startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
+            endDate: moment($('.date-to-picker>input').val()).unix() * 1000 + 1000 * 60 * 60 * 24,
             page: obj.page || 1,
             pageSize: size
         })
@@ -382,11 +385,12 @@ function isNumber(t) {
     var e = new RegExp('^[0-9]*$');
     return e.test(t) ? !0 : !1;
 }
-  
+  var typet='';
 $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var typea=$(this).data('type');
+            typet=typea;
             console.log(typea);
               ractive.loadData({
                     type: typea,
@@ -397,10 +401,16 @@ $('.sRate li').click(function(){
     $('.sDuration li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            
+            console.log("---------");
+            //console.log($(this).text());
+            var longtime=$(this).text().substring(0,2);
+             console.log(longtime);
+           $('.date-from-picker>input').val(moment().add('days',-longtime)
+            .format('YYYY-MM-DD'));
+             $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));
              ractive.loadData({
-                 type: type,
-                 preset: preset
+                 type: typet,
+                 preset: tab1Preset
     });
         }
     });
