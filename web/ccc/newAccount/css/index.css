@@ -83,7 +83,7 @@
 	text-align: center;
 	line-height: 36px;
 	color: #4a4a4a;
-	font-size: 20px;
+	font-size: 18px;
 	border-bottom: 4px #009ada solid;
 }
 .repay-plan-wp {
@@ -213,4 +213,13 @@
 }
 .risk {
 	display: inline-block;
+}
+.home-total .home-tab-amount .more-amount{
+    font-size: 24px;
+}
+.home-avaliable .home-tab-amount .more-amount{
+    font-size: 24px;
+}
+.home-interest .home-tab-amount .more-amount{
+    font-size: 24px;
 }

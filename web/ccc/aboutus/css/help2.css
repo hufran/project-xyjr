@@ -404,14 +404,28 @@
 
 .page{
     margin-top: 20px;
+    text-align: center;
 }
 
 .page ul li{
+       display: inline-block;
+    width: 31px;
+    height: 31px;
+    line-height: 31px;
     text-align: center;
-     width:30px;
-    float: left;
-    height:30px;
-    border:1px solid #999;
-    margin-right: 5px;
-    line-height: 30px;
+    font-size: 14px;
+    color: #4a4a4a;
+    border: 1px #eeeeee solid;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.page ul .active-page{
+        background-color: #0096de;
+    color: #fff;
+    border: 1px #0096de solid;
+}
+.page ul .active-page a{
+        
+    color: #fff;
+  
 }

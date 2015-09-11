@@ -7,6 +7,7 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 
 // 可用余额
 var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
+
 // 累计收益
 var investInterestAmount = parseFloat(CC.user.investInterestAmount || 0).toFixed(2);
 
@@ -26,9 +27,33 @@ var homeRactive = new Ractive({
 		avaAmount : avaAmount,
 		investInterestAmount : investInterestAmount,
 		totalAmount : totalAmount
+	},
+    parseData:function(){
+		var self = this;
+        var investInterestAmount = self.get('investInterestAmount') + '';
+        var avaAmount = self.get('avaAmount') + '';
+		var totalAmount = self.get('totalAmount') + '';
+		var check = totalAmount.indexOf('.');
+        var check = avaAmount.indexOf('.');
+        var check = investInterestAmount.indexOf('.');
+		if (check == -1){
+			self.set('totalAmount',parseInt(totalAmount));
+            self.set('avaAmount',parseInt(avaAmount));
+            self.set('investInterestAmount',parseInt(investInterestAmount));
+		}else{
+			var amoutArray = totalAmount.split('.');
+			self.set('totalAmount',parseInt(amoutArray[0]));
+			self.set('moreAmount',amoutArray[1] );
+            var amoutArray = avaAmount.split('.');
+			self.set('avaAmount',parseInt(amoutArray[0]));
+			self.set('morAmount',amoutArray[1]);
+                 var amoutArray = investInterestAmount.split('.');
+			self.set('investInterestAmount',parseInt(amoutArray[0]));
+			self.set('moreiAmount',amoutArray[1]);
+		}
 	}
 });
-
+homeRactive.parseData();
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });

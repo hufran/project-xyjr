@@ -506,7 +506,7 @@ li a {
 	text-decoration: none !important;
 }
 .s-header-menu-content .u-nolist-ul li {
-    margin-left: 38px;
+    margin-left: 24px;
     cursor: pointer;
 }
 
@@ -541,4 +541,9 @@ li a {
 
 input[type=button]{
     cursor:pointer !important;
+}
+.bottom-footer .footer-360{
+    width:100px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
