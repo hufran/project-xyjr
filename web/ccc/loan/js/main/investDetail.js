@@ -184,7 +184,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-        showSelect(num);
+       // showSelect(num);
     });
 
     investRactive.on('add', function (e) {
@@ -198,7 +198,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-        showSelect(num);
+        //showSelect(num);
     });
 
 
@@ -220,7 +220,13 @@ setTimeout((function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
-        
+           var couponSelection=$("#couponSelection").find("option:selected").text();
+        var indexnum=couponSelection.indexOf("最低投资额：");
+        var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
+        if(num<minnum){
+            showErrors('投资额小于奖券最低投资额');
+             return false;
+        }
         if(CC.loan.userId===CC.user.userId){
             showErrors('该标为您本人借款，无法投标 ');
             return false;
@@ -451,7 +457,7 @@ setTimeout((function () {
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
         if (parseFloat(inputNum) !== parseFloat(inum)) {
-            showSelect(inputNum);
+           // showSelect(inputNum);
         }
     });
 }), 100);
