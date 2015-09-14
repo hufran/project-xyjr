@@ -231,6 +231,17 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
+            redeem_coupon: (placementId) ->
+
+                @$http
+                    .post '/api/v2/coupon/MYSELF/redeemCoupon',
+                        @param {placementId}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
             get_loan_investors: (id) ->
 
                 @$resource('/api/v2/loan/:id/invests', {id}).query()
