@@ -182,5 +182,11 @@ exports.accountService = {
             })
             .end()
             .then(next);
-    }
+    },
+    getCurrentMonthLoan:function(to,from,next){
+        request('GET','/api/v2/user/MYSELF/investRepayments/1/10?to='+to+'&from='+from)
+        .end().then(function(res){
+            next(res.body);
+        });
+    },
 };
