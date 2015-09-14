@@ -17,6 +17,10 @@ do (_, angular, moment, Array) ->
 
                 @param_traditional = _.partialRight @param, true
 
+                @process_response = (data) =>
+                    return @$q.reject(data) unless data.success is true
+                    return data
+
 
             fetch_current_user: ->
 
@@ -225,6 +229,17 @@ do (_, angular, moment, Array) ->
                 @$http
                     .post '/api/v2/coupon/MYSELF/listCoupon',
                         @param {months, amount}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            redeem_coupon: (placementId) ->
+
+                @$http
+                    .post '/api/v2/coupon/MYSELF/redeemCoupon',
+                        @param {placementId}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA
