@@ -127,10 +127,17 @@ module.exports = function (router) {
 	// 特定页面的
 
     router.get('/newAccount/home', function (req, res) {
-        req.uest('/api/v2/user/MYSELF/statistics/invest')
-            .end()
-            .then(function (r) {
-                _.assign(res.locals.user, r.body);
+        Promise.join(
+            req.uest('/api/v2/user/MYSELF/statistics/invest')
+            .get('body'),
+            req.uest(
+                '/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .get('body'),
+            function (investStatistics, paymentPasswordHasSet) {
+                res.locals.user.investStatistics =
+                    investStatistics;
+                res.locals.user.paymentPasswordHasSet =
+                    paymentPasswordHasSet;
                 res.render('newAccount/home', {
                     title: '奇乐融'
                 });

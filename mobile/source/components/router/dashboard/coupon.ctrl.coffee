@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'CouponCtrl',
 
-        _.ai '            @data, @$scope, @$window, @$modal', class
-            constructor: (@data, @$scope, @$window, @$modal) ->
+        _.ai '            @data, @api, @$q, @$scope, @$window, @$modal', class
+            constructor: (@data, @api, @$q, @$scope, @$window, @$modal) ->
 
                 @$window.scrollTo 0, 0
 
@@ -32,6 +32,24 @@ do (_, angular) ->
                 @add_more(list)
 
                 @$scope.data = list
+
+
+            redeem: (id) ->
+
+                (@api.redeem_coupon(id)
+
+                    .then (data) =>
+                        do if data is true then @$q.resolve else @$q.reject
+
+                    .then (data) =>
+                        @$window.alert @$scope.msg.SUCCEED
+
+                    .catch (data) =>
+                        @$window.alert @$scope.msg.FAILED
+
+                    .finally =>
+                        do @$window.location.reload
+                )
 
 
             has_more: (list) ->

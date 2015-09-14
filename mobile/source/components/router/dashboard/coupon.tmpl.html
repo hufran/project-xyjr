@@ -11,6 +11,13 @@
     </div>
     </nav>
 
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            SUCCEED: '兑换成功',
+            FAILED: '兑换失败',
+        }">
+    </div>
+
     <section class="coupons">
         <div ng-if="!data.length" class="container">
             <h4 class="alert alert-info text-center">抱歉，您还没有奖券！</h4>
@@ -68,6 +75,14 @@
                         </div>
 
                         <div class="desc">{{ item.couponPackage.description || '暂无描述' }}</div>
+
+                        <button class="btn btn-sm btn-info redeem"
+                                ng-click="self.redeem(item.id)"
+                                ng-if="
+                                    item.couponPackage.type === 'CASH'
+                                 && ['INITIATED', 'PLACED'].indexOf(item.status) > -1
+                                "
+                        >兑换</button>
                     </div>
                 </div>
             </li>

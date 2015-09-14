@@ -214,6 +214,17 @@
 .risk {
 	display: inline-block;
 }
+.wh {
+	display: inline-block;
+	width: 19px;
+	height: 19px;
+	background: url(/ccc/newAccount/img/wh.png) no-repeat center;
+	position: relative;
+	top: 5px;
+	left: 2px;
+	cursor: pointer;
+}
+
 .home-total .home-tab-amount .more-amount{
     font-size: 24px;
 }
@@ -223,3 +234,4 @@
 .home-interest .home-tab-amount .more-amount{
     font-size: 24px;
 }
+
