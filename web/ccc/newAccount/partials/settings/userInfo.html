@@ -101,6 +101,80 @@
         </div>
     </div>
     {{else}}
+        <form method="post" name="moreInfo" id="moreInfo">
+            <ul>
+                <li>
+                    <label>性别：</label>
+                    <select name="male" value={{male}}>
+                        <option value="true">男</option>
+                        <option value="false">女</option>
+                    </select>
+                </li>
+                <li>
+                     <label>行业：</label>
+                     <select name="companyIndustry" id="companyIndustry" value={{companyIndustry}}>
+                        <option value="EXCAVATE">采掘业</option>
+                        <option value="GEO_SURVEY">地质勘查业</option>
+                        <option value="RESEARCH">科学研究/技术服务</option>
+                        <option value="IRRIGATION_ENVIRONMENT">水利/环境/公共设施管理</option>
+                        <option value="RENTAL">租赁/商务服务</option>
+                        <option value="MILITARY">军队/武警</option>
+                        <option value="INTERNATIONAL">国际组织</option>
+                        <option value="MANUFACTURE">制造业</option>
+                        <option value="IT">电信/通信/计算机/软件/互联网</option>
+                        <option value="GOVERNMENT">国家机关/政党机关/社会团体</option>
+                        <option value="MEDIA_ADVERTISEMENT">媒体/广告/广播/电影/电视</option>
+                        <option value="RETAIL_WHOLESALE">零售/批发</option>
+                        <option value="EDUCATION_TRAINING">教育/培训</option>
+                        <option value="PUBLIC_SERVICES">社会服务业</option>
+                        <option value="FINANCE_LAW">金融/保险/法律</option>
+                        <option value="TRANSPORTATION">交通运输/仓储/邮政</option>
+                        <option value="REAL_ESTATE">房地产业</option>
+                        <option value="ENERGY">水/电/煤/气/能源生产供应</option>
+                        <option value="CATERING_HOTEL">住宿/餐饮</option>
+                        <option value="MEDICAL_HEALTH_CARE">医疗/卫生/保健</option>
+                        <option value="CONSTRUCTION_ENGINERRING">建筑/工程</option>
+                        <option value="AGRICULTURE">农/林/牧/渔</option>
+                        <option value="ENTERTAIMENT">文化/娱乐服务业</option>
+                        <option value="SPORT_ART">体育/艺术</option>
+                        <option value="UTILITY">社会福利/公益事业</option>
+                        <option value="OTHER">其他</option>
+                    </select>
+                </li>   
+                <li>
+                     <label>学历：</label>
+                     <select name="educationLevel" value={{educationLevel}}>
+                        <option value="HIGHSCHOOL">高中及以下</option>
+                        <option value="TECHNICALSCHOOL">中专</option>
+                        <option value="JUNIORCOLLEGE">大专</option>
+                        <option value="UNDERGRADUATE">本科</option>
+                        <option value="MASTER">硕士</option>
+                        <option value="DOCTOR">博士</option>
+                    </select>
+                </li>
+                 <li>
+                     <label>收入：</label>
+                     <select name="salary" value={{salary}}>
+                        <option value="SALARY_BELOW_2000">2000以下</option>
+                        <option value="SALARY_2001_50000">2001﹣5000</option>
+                        <option value="SALARY_5001_10000">5001﹣10000</option>
+                        <option value="SALARY_10001_20000">10001﹣20000</option>
+                        <option value="SALARY_20001_50000">20001﹣50000</option>
+                        <option value="SALARY_ABOVE_50001">50001以上</option>       
+                    </select>
+                </li>
+                <li>
+                     <label>婚姻：</label>
+                     <select name="maritalStatus" value={{maritalStatus}}>
+                        <option value="MARRIED">已婚</option>
+                        <option value="SINGLE">未婚</option>
+                        <option value="DIVORCED">离异</option>
+                        <option value="WIDOWED">丧偶</option>
+                    </select>
+                </li>
+            </ul>
+            <button class="modify btn" on-click="submit">编辑</button>
+        </form>
     {{/if}}
     <div class="img-wrapper">
         <img src="/ccc/newAccount/img/userInfo.png">

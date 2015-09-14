@@ -63,7 +63,7 @@
                      ng-show="form.mobile.$invalid && form.mobile.$dirty"
                 >
                     <span ng-show="form.mobile.$error.required">必须填写</span>
-                    <span ng-show="form.mobile.$error.pattern">填写中国大陆正确的 11 位手机号</span>
+                    <span ng-show="form.mobile.$error.pattern">请输入正确的手机号码</span>
                 </div>
             </div>
 
@@ -170,7 +170,7 @@
                 <div class="help-block"
                      ng-show="form.password_confirm.$error.validator && form.password_confirm.$dirty"
                 >
-                    <span ng-show="form.password_confirm.$error.validator">必须相同</span>
+                    <span ng-show="form.password_confirm.$error.validator">两次输入密码不一致</span>
                 </div>
             </div>
 
@@ -191,7 +191,7 @@
                 <div class="help-block"
                      ng-show="form.referral.$invalid && form.referral.$dirty"
                 >
-                    <span ng-show="form.referral.$error.pattern">填写中国大陆正确的 11 位手机号</span>
+                    <span ng-show="form.referral.$error.pattern">请输入正确的手机号码</span>
                 </div>
             </div>
 
