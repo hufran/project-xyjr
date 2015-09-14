@@ -4,6 +4,7 @@
 
 #main-container{
     background: #fff;
+    padding-bottom: 0px;
 }
 .small img {
     margin-right: 8px;
@@ -358,7 +359,7 @@
 .strengthProtectBg{
 /*    overflow: hidden;*/
     color: #ffffff;
-    height: 180px;
+    height: 140px;
 }
 
 .strengthProtect h2{
@@ -408,9 +409,11 @@
 }
 
 .productBoxTitle .titleRight a{
+/*
 	font-size: 14px;
 	text-decoration: none;
 	color: #999;
+*/
 }
 
 .productBoxTitle .titleRight a:hover{
