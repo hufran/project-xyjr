@@ -24,8 +24,7 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
 <title>奇乐融</title>
 <script>
-    window.CC = {};
-    {{{ state }}}
+    window.CC = {};{{{ state }}}
     window.global = window.global || window;
     window.process = window.process || CC.process;
     if(process.env.NODE_ENV === 'development'){document.write('<script src="/ccc/template-watch/js/getRactiveTemplate.js"></'+'script>');}
@@ -58,15 +57,15 @@
             <!-- <a href="/newAccount/home" class="text account" style="color:#bcbcbc;font-size:12px;margin-left:10px;text-decoration:none">用户反馈 </a> -->
             {{#if user.loginName}}
             <a href="/newAccount/message">
-                <div  style="color:#f58220;position:relative;bottom:2px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;"><span id='head-message-container' style="color:#f58220;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
+                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;"><span id='head-message-container' style="color:#f58220;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
 				</div>
             </a>
             {{/if}}
             <a href="/logout" class="text" style="color:#bcbcbc;margin-right:5px;">退出&nbsp;&nbsp;|</a>
 			{{#if user.name}}
-            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:2px;" class="text">{{user.Name}}</div></a>
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text">{{user.Name}}</div></a>
 			{{else}}
-            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:2px;" class="text">{{user.loginName}}</div></a>
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text">{{user.loginName}}</div></a>
 			{{/if}}
             {{else}}
             <div class="nav-mobile">

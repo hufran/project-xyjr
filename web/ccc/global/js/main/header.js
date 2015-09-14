@@ -16,7 +16,7 @@ $('.s__top15').mouseover(function() {
 
 
 
-if(CC.user && CC.user.name){
+if(CC.user){
 
 
     accountService.getUserInfo(function (res) {

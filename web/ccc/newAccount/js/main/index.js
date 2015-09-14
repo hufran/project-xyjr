@@ -19,15 +19,18 @@ var frozenAmount = CC.user.frozenAmount || 0;
 // 总资产
 var totalAmount = parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2);
 
+
+
 var homeRactive = new Ractive({
 	el: '.account-home-wrapper',
 	template: require('ccc/newAccount/partials/home.html'),
 	data: {
 		avaAmount : avaAmount,
 		investInterestAmount : investInterestAmount,
-		totalAmount : totalAmount
+		totalAmount : totalAmount,
 	}
 });
+
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
