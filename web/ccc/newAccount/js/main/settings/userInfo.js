@@ -1,6 +1,5 @@
 "use strict";
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
-var items = ['checkMobile','checkId', 'checkPwd','checkEmail'];
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/userInfo.html'),
@@ -11,73 +10,65 @@ var ractive = new Ractive({
         expand: true,
         bindMsg: null,
         unbindMsg: null,
-        idNumber:'',
-        percent: 0,
-        levelText:'弱',
         agreement: typeof CC.user.accountId === 'undefined' ? false : CC.user
             .agreement,
         accountId: CC.user.agreement ? CC.user.agreement : false,
         mobile: formatNumber(CC.user.mobile),
-        activatedEmail: CC.user.authenticates.emailAuthenticated,
-        idauthenticated: CC.user.authenticates.idauthenticated,
-        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
+        idNumber: false,
+        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
+        email: false,
+        percent: 25,
+        levelText:'弱',
     },
     init: function() {
-                var self = this;    
-                accountService.getUserInfo(function (userinfo) {
-                    if (userinfo.personal) {
-                        ractive.set('male', ''+userinfo.personal.male);
-                    }
-                    if (userinfo.personal && userinfo.personal.education && userinfo.personal.education.educationLevel) {
-                        ractive.set('educationLevel', userinfo.personal.education.educationLevel)
-                    }
-                    if (userinfo.career && userinfo.career.company && userinfo.career.company.industry) {
-                        ractive.set('companyIndustry', userinfo.career.company.industry);
-                    }
-                    if (userinfo.career && userinfo.career.salary) {
-                        ractive.set('salary', userinfo.career.salary)
-                    }
-                    if (userinfo.personal && userinfo.personal.maritalStatus) {
-                        ractive.set('maritalStatus', userinfo.personal.maritalStatus)
-                    }
-                    
-                    if (CC.user.authenticates.idauthenticated) {
-                        var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
-                        ractive.set('idNumber', idNumber);
-                    };
-                });   
-                var avail = items.reduce(function (
-                    ret, item) {
-                    if (self[item]()) {
-                        ret += 1;
-                    }
-                    return ret;
-                }, 0);
-                var percent = avail/items.length * 100;
-                self.set('percent',percent);
-                var levelText;
-                if (percent <= 25) {
-                    levelText = '弱';
-                } else if (percent > 25 && percent <=
-                    75) {
-                    levelText = '中';
+        var percent = 25;
+        accountService.getUserInfo(function (userinfo) {
+            //基本信息
+            if (userinfo.user.idNumber) {
+                var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
+                ractive.set('idNumber', idNumber);
+                percent += 25;
+            }
+            if (CC.user.paymentPasswordHasSet) {
+                percent += 25;
+            }
+            if (userinfo.user.email && userinfo.user.email != 'notavailable@creditcloud.com') {
+                var arr = userinfo.user.email.split('@');
+                var length = arr[0].length;
+                if (length > 4) {
+                    var email = arr[0].substring(0,4) + (new Array(length-3)).join('*') + "@" + arr[1];
+                } else if (length == 1) {
+                    var email = "*" + "@" + arr[1];
                 } else {
-                    levelText = '强';
+                    var email = arr[0].substring(0,1) + (new Array(length)).join('*') + "@" + arr[1];
                 }
-                self.set('levelText',levelText);
+                ractive.set('email', email);
+                percent += 25;
+            }
+            ractive.set('percent',percent);
+            if (percent > 25 && percent <= 75) {
+                ractive.set('levelText','中');
+            } else if (percent > 75) {
+                ractive.set('levelText','高');
+            }
+            //更多信息
+            if (userinfo.personal) {
+                ractive.set('male', ''+userinfo.personal.male);
+            }
+            if (userinfo.personal && userinfo.personal.education && userinfo.personal.education.educationLevel) {
+                ractive.set('educationLevel', userinfo.personal.education.educationLevel)
+            }
+            if (userinfo.career && userinfo.career.company && userinfo.career.company.industry) {
+                ractive.set('companyIndustry', userinfo.career.company.industry);
+            }
+            if (userinfo.career && userinfo.career.salary) {
+                ractive.set('salary', userinfo.career.salary)
+            }
+            if (userinfo.personal && userinfo.personal.maritalStatus) {
+                ractive.set('maritalStatus', userinfo.personal.maritalStatus)
+            }
+        });   
     },
-    checkMobile:function() {
-        return !!CC.user.mobile;
-    },
-    checkId: function() {
-        return CC.user.authenticates.idauthenticated;
-    },
-    checkPwd: function() {
-        return CC.user.paymentPasswordHasSet; 
-    },
-    checkEmail: function() {
-        return CC.user.authenticates.emailAuthenticated;
-    }
 });
 
 ractive.on('changeTab', function (event) {
