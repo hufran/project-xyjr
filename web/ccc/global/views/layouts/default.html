@@ -48,7 +48,7 @@
 
     <div class="s-header-info" id="nav-color" style="background:#6c6c6c">
         <div class="s-header-info-content u-pos-r-center">
-            <span class="nav-customer">客服热线：400-872-7676<img src="/ccc/global/img/navQQ.png" style="margin-bottom:3px;" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></span>
+            <span class="nav-customer">客服热线：400-872-7676<img src="/ccc/global/img/navQQ.png" style="margin-bottom:3px;" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" onclick="clickQq()"/></span>
             <span class="nav-aboutus">关注我们：            <a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"  class="nav-weibo" style="margin-top:-5px;"><img src="/ccc/global/img/navWeibo.png"  onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'"/></a></span>
 
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
@@ -63,9 +63,9 @@
             {{/if}}
             <a href="/logout" class="text" style="color:#bcbcbc;margin-right:5px;">退出&nbsp;&nbsp;|</a>
 			{{#if user.name}}
-            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text">{{user.Name}}</div></a>
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:2px;" class="text">{{user.Name}}</div></a>
 			{{else}}
-            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text">{{user.loginName}}</div></a>
+            	<a href="/newAccount/settings/authentication"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text">{{user.loginName}}</div></a>
 			{{/if}}
             {{else}}
             <div class="nav-mobile">
@@ -134,7 +134,7 @@
 						{{#if user.name}}
 						<a id="safety" href="/newAccount/home">我的账户</a>
 						{{else}}
-						<a id="safety" href="/newAccount/umpay">我的账户</a>
+						<a id="safety" href="/newAccount/settings/authentication">我的账户</a>
 						{{/if}}
 					{{else}}
 						<a id="safety" href="/login">我的账户</a>
@@ -273,7 +273,13 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
-
+	
+	//QQ
+	function clickQq(){
+		document.write('<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAxNDcwNF8zMTg5OTVfNDAwODcyNzY3Nl8"></"+"script>')
+	}
+	
+		
 </script>
 
 <script src="/ccc/global/js/main/header.js" async defer></script>
