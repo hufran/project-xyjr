@@ -32,6 +32,7 @@
                 <img src="{{this}}" class="rzpa" alt="勋章" style="margin-top:-38px;">
                 {{/each}}
 			</div>
+			{{#if !isEnterprise}}
 			<div class="EdiT">
 				<div class="level">
 					<span>会员等级：</span>
@@ -45,6 +46,7 @@
 					<span class="risk">{{riskText}}</span></div>
 				</div>
 			</div>
+			{{/if}}
 		</div>
 	</div>
 </div>

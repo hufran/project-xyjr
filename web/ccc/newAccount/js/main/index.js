@@ -1,8 +1,9 @@
 'use strict';
 var utils = require('ccc/global/js/lib/utils');
 var Plan = require('ccc/global/js/modules/cccRepayments');
-require('ccc/global/js/modules/tooltip');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+require('ccc/global/js/modules/tooltip');
+require('ccc/global/js/modules/cccPaging');
 
 
 // 可用余额
@@ -28,6 +29,7 @@ var homeRactive = new Ractive({
 		avaAmount : avaAmount,
 		investInterestAmount : investInterestAmount,
 		totalAmount : totalAmount,
+		isEnterprise : CC.user.enterprise
 	}
 });
 
@@ -74,12 +76,93 @@ var infoRactive = new Ractive({
 		});
 	}
 });
-var pageSize = 5;
-var STATUS = ["SETTLED", "CLEARED", "OVERDUE", "BREACH"];
+
+var pageSize = 10;
+var page = 1;
+var moment = require('moment');
+var aaa = moment();
+var currentTime = aaa._d;
+var currentYear = currentTime.getFullYear();
+var currentMonth = currentTime.getMonth()+1;
+var currentDay = currentTime.getDate()+1;
+var startTime = Date.UTC(currentYear,currentTime.getMonth(),1,-8,0,0);
+var endTime = Date.UTC(currentYear,currentMonth,1,-8,0,0);
+var investRactive = new Ractive({
+    el:'.ccc-myinvest-wrap',
+    template: require('ccc/newAccount/partials/home/invest.html'),
+    api: '/api/v2/user/MYSELF/investRepayments/$page/$pageSize?to='+endTime+'&from='+startTime,
+    data:{
+        totalSize:0,
+        list:[]
+    },
+    onrender: function() {
+		var self = this;
+		this.getData(function(o) {
+			self.setData(parseData(o));
+    		self.tooltip();
+		});
+	},
+    getData :function(callback){
+		var api = this.api.replace('$page', 1).replace('$pageSize', pageSize);
+		$.get(api, function(o) {
+			callback(o.data);
+		}).error(function(o) {
+			console.info('请求出现错误，' + o.statusText);
+		});
+    },
+    setData: function (o) {
+		this.set('totalSize', o.totalSize);
+		this.set('pageOne', o.results);
+		this.set('list', o.results);
+		this.renderPager();
+    },
+    renderPager: function() {
+		var self = this;
+		console.log(self.get('totalSize'));
+		$(this.el).find(".ccc-paging").cccPaging({
+			total: self.get('totalSize'),
+			perpage: pageSize,
+			api: self.api.replace('$size', pageSize),
+			params: {
+				pageFromZero: true,
+				type: 'GET',
+				error: function(o) {
+					console.info('请求出现错误，' + o.statusText);
+				}
+			},
+			onSelect: function(p, o) {
+				self.set('list', p > 0 ? parseData(o).results : self.get('pageOne'));
+			}
+		});
+	},
+	tooltip: function() {
+		$('.tips-top').tooltip({
+			container: 'body',
+			placement: 'top'
+		});
+	},
+});
+
+var parseData = function (o) {
+	var methodZh = {
+        'MonthlyInterest': '按月付息到期还本',
+        'EqualInstallment': '按月等额本息',
+        'EqualPrincipal': '按月等额本金',
+        'BulletRepayment': '一次性还本付息',
+        'EqualInterest': '月平息'
+    };
+
+    for(var i = 0;i < o.results.length; i ++) {
+    	o.results[i].repayMethod = methodZh[o.results[i].repayment.invest.repayMethod];
+    }
+
+    return o;
+};
+
 
 // my invest
 var investRactive = new Ractive({
-    el: '.ccc-myinvest-wrap',
+    el: '#ccc-myinvest-wrap',
     template: require('ccc/newAccount/partials/home/invest.html'),
     data: {
         list: []
@@ -143,12 +226,7 @@ var investRactive = new Ractive({
 		}
 		return datas;
 	},
-	tooltip: function() {
-		$('.tips-top').tooltip({
-			container: 'body',
-			placement: 'top'
-		});
-	},
+	
 	getRepay: function(datas) {
 		// repayed, unrepay
 		var repay = {
