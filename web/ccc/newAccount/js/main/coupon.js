@@ -36,7 +36,6 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 function init (type) {
-	console.log("==========");
 	console.log(type);
 	if (type) {
 		var couponRactive = new Ractive ({

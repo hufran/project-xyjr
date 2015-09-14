@@ -158,9 +158,6 @@ ractive.on('do-filter', function () { // 开始筛选数据
 // page,pageSize
 // preset
 ractive.loadData = function (obj) {
-    console.log("=======");
-    console.log($('.date-to-picker>input').val());
-    console.log($('.date-from-picker>input').val());
     if (this.get('loading')) {
         return;
     }
@@ -391,7 +388,6 @@ $('.sRate li').click(function(){
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var typea=$(this).data('type');
             typet=typea;
-            console.log(typea);
               ractive.loadData({
                     type: typea,
                     preset: tab1Preset
@@ -401,10 +397,7 @@ $('.sRate li').click(function(){
     $('.sDuration li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            console.log("---------");
-            //console.log($(this).text());
             var longtime=$(this).text().substring(0,2);
-             console.log(longtime);
            $('.date-from-picker>input').val(moment().add('days',-longtime)
             .format('YYYY-MM-DD'));
              $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));

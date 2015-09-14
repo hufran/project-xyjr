@@ -29,7 +29,7 @@ var ractive = new Ractive({
         msg: {
             BANK_NULL: false,
             CARD_NULL: false,
-            CARD_INVALID: false
+            CARD_INVALID: false,
         },
         bank: '',
         bankAccount: banksabled || [],
@@ -37,6 +37,7 @@ var ractive = new Ractive({
         city: '',
         ifDel: false,
         mobile: CC.user.mobile,
+        realName: CC.user.name,
         authenticated: CC.user.authenticates.idauthenticated || false
     }
 });
@@ -64,6 +65,16 @@ ractive.on('checkSame', function () {
     }
 });
 
+
+ractive.on('checkSmsCaptcha', function () {
+    var smsCaptcha = this.get('smsCaptcha');
+    if (smsCaptcha === '') {
+        this.set('SMS_NULL', true);
+    } else {
+        this.set('SMS_NULL', false);
+    }
+});
+
 ractive.on("validatePhoneNo", function () {
     var no = this.get("phoneNo");
     if (!/^\d*$/.test(no)) {
@@ -79,7 +90,8 @@ ractive.on('doDel', function () {
 ractive.on("bind-card-submit", function () {
     var cardNoError = this.get("cardNoError");
     var phoneNoError = this.get("phoneNoError");
-    if (cardNoError || phoneNoError) {
+    var SMS_NULL = this.get('SMS_NULL');
+    if (cardNoError || phoneNoError || SMS_NULL) {
         return false;
     }
     Confirm.create({
