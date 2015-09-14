@@ -1298,6 +1298,7 @@
 
 .invest-detail-wrapper .tab-panels .tab-panel {
 	display: none;
+	overflow: hidden;
 }
 
 .invest-detail-wrapper .tab-panels .active {
