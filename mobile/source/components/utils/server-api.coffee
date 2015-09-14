@@ -17,6 +17,10 @@ do (_, angular, moment, Array) ->
 
                 @param_traditional = _.partialRight @param, true
 
+                @process_response = (data) =>
+                    return @$q.reject(data) unless data.success is true
+                    return data
+
 
             fetch_current_user: ->
 
