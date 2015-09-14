@@ -1732,6 +1732,20 @@ a {
 
     .form-flatten {
         #login > .form-flatten;
+
+        .form-group {
+            -webkit-flex-direction: column;
+                    flex-direction: column;
+
+            input.form-control {
+                margin-left: 15px;
+            }
+
+            .help-block {
+                text-align: right;
+                padding-right: 10px;
+            }
+        }
     }
 
     .alert {
