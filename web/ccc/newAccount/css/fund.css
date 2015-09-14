@@ -32,6 +32,9 @@
     width: 400px;
     margin-top: -6px;
 }
+
+
+
 .fund-content .fund-nav-view ul li {
     width: 50px;
     text-align: center;
@@ -76,8 +79,14 @@
     background: url(/ccc/newAccount/img/calendar.png) #fff center no-repeat;
 }
 .select-brame .input-group{
-    width:122px;
+    width:125px;
 }
+
+.select-brame .input-group input{
+	padding: 0;
+	padding-left: 10px;
+}
+
 .select-brame .form-control{
     background: #fff;
     border-right:none;
@@ -90,7 +99,7 @@
     height: 24px;
 }
 .select-brame .spliter{
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     font-size: 26px;   
 }

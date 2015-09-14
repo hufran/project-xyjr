@@ -1298,6 +1298,7 @@
 
 .invest-detail-wrapper .tab-panels .tab-panel {
 	display: none;
+	overflow: hidden;
 }
 
 .invest-detail-wrapper .tab-panels .active {
@@ -1436,7 +1437,8 @@
 }
 
 .detailTitle {
-	line-height: 46px;
+	padding-top: 30px;
+	padding-bottom: 10px;
 }
 
 .detailBanner {
