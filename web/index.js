@@ -21,6 +21,7 @@ var ds = require('@ds/base');
 
 var port = Number(process.env.PORT || config.port) || 4000;
 var app = exports = module.exports = require('express')();
+app.httpServer = require('http').createServer(app);
 ds.expose(app);
 ds.apiproxy(app, config.urlBackend);
 ds.request(app, config.urlBackend);
@@ -185,7 +186,7 @@ if (app.get('env') === 'production') {
     app.use('/ccc', require('ecstatic')({root: path.join(__dirname, '/ccc')}));
 }
 
-app.listen(port, '0.0.0.0', function () {
+app.httpServer.listen(port, '0.0.0.0', function () {
     console.log("server listening at http://127.0.0.1:%d",
         this.address()
         .port);
