@@ -4,6 +4,59 @@
         <li on-click="changeTab" class="{{#if !showBasic}} tab-active {{/if}} userInfo-tab" data-tab="more">更多信息</li>
     </ul>
     {{#if showBasic}}
+    {{#if isEnterprise}}
+    <div class="level-wrapper">
+        <span style="font-weight:bold">安全等级</span>
+        <div class="safetyLevel"><div class="levelBar" style="height:{{100-percent}}%"></div><span class="level-info" style="{{#if percent > 50}} color:white {{/if}}">{{levelText}}</span></div>
+        <span style="font-size:18px;margin-left:100px;">您的信息资料完整度为 <span style="color:#F58220; margin-left:20px;" >{{percent}}%</span></span>
+    </div>
+    <div class="safety-wrapper" style="height:100px;">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td style="width:35%">
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;手机认证：
+                    </td>
+                    <td style="width:45%">
+                        <span>{{mobile}}</span>
+                    </td>
+                    <td class="align-center">
+                        <span class="status">已认证</span>
+                    </td>
+                </tr>
+                <tr>
+                    {{#if paymentPasswordHasSet}}
+                    <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码：
+                    </td>
+                    <td>
+                        <span>******</span>
+                    </td>
+                     <td class="align-center">
+                        <a href="/newAccount/settings/password" class="btn">去修改</a>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
+                    </td>
+                    <td>
+                        <span class="status-no">未认证!</span>
+                    </td>
+                    <td class="align-center">
+                        <a href="/newAccount/settings/password" class="btn">去认证</a>
+                    </td>
+                    {{/if}}
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="rzz">
+            <input type="text" name="email" class="rZemail" placeholder="请输入邮箱">
+            <div class="rzE_button">确定</div>
+            <div class="errors"></div>
+        </div>
+    </div>
+    {{else}}
     <div class="level-wrapper">
         <span style="font-weight:bold">安全等级</span>
         <div class="safetyLevel"><div class="levelBar" style="height:{{100-percent}}%"></div><span class="level-info" style="{{#if percent > 50}} color:white {{/if}}">{{levelText}}</span></div>
@@ -101,6 +154,7 @@
             <div class="errors"></div>
         </div>
     </div>
+    {{/if}}
     {{else}}
         <form method="post" name="moreInfo" id="moreInfo">
             <ul>
