@@ -220,7 +220,7 @@ module.exports = function (router) {
             return r.deleted === false;
         });
         if (!banks.length && !enterprise) {
-            res.redirect('/newAccount/settings/bankCards')
+            res.redirect('/newAccount/settings/bankCards');
         } else {
             next();
         }
