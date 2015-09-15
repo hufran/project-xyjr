@@ -5,6 +5,7 @@
 	width: 100%;
 	height: 160px;
 	background: url(/ccc/newAccount/img/topbg.png) no-repeat center;
+    background-color:#78dffe;
 }
 .home-topnav {
 	height: 147px;
@@ -90,7 +91,7 @@
 	display: none;
 }
 .home-invest-container table thead tr{
-	height: 40px;
+	height: 50px;
 	background-color: #eeeeee;
 }
 .home-invest-container table thead tr th {
