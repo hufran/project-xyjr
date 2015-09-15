@@ -251,7 +251,7 @@ function createList(len, current) {
 };
 
 function ininconut () {
-    $(".investBtn > .investbtn").each(function () {
+    $(".investBtn > .investbtn-time").each(function () {
         var t = $(this);
         if(t.data("status") === 'SCHEDULED'){
             var id = t.data("id");  

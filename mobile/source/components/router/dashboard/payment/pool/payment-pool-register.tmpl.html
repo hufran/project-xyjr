@@ -20,8 +20,9 @@
               novalidate
         >
             <div class="inputs container">
-                <div class="form-group merge">
-                    <label for="user-name"></label>
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.user_name.$invalid && form.user_name.$dirty}"
+                    >
                     <input id="user-name" class="form-control input-target input-lg" type="text"
                            name="user_name"
                            autocapitalize="none"
@@ -34,10 +35,17 @@
                            placeholder="真实姓名"
                            required
                     >
+                    <div class="help-block"
+                         ng-show="form.user_name.$invalid && form.user_name.$dirty"
+                    >
+                        <span ng-show="form.user_name.$error.required">必须填写</span>
+                        <span ng-show="form.user_name.$error.pattern">2 至 15 位中文</span>
+                    </div>
                 </div>
 
-                <div class="form-group merge">
-                    <label for="id-number"></label>
+                <div class="form-group merge"
+                     ng-class="{'has-error': form.id_number.$invalid && form.id_number.$dirty}"
+                >
                     <input id="id-number" class="form-control input-target input-lg" type="text"
                            name="id_number"
                            ng-model="id_number"
@@ -47,6 +55,12 @@
                            placeholder="身份证号"
                            required
                     >
+                    <div class="help-block"
+                         ng-show="form.id_number.$invalid && form.id_number.$dirty"
+                    >
+                        <span ng-show="form.id_number.$error.required">必须填写</span>
+                        <span ng-show="form.id_number.$error.pattern">18 位身份证号</span>
+                    </div>
                 </div>
             </div>
 

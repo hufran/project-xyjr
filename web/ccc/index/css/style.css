@@ -665,6 +665,11 @@ a {
 	position: relative;
 }
 
+.loanWrapper:hover{
+	background-color: #F5F4F9;
+	
+}
+
 .loanWrapper > div {
 	float: left;
 	height: 72px;

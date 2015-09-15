@@ -40,11 +40,11 @@
     color:#007ec5;
 }
 #main-container .s-content table th{
-    background: #f8f8f8;
+    background-color: #F5F4F9;
     color:#4a4a4a;
     font-size: 14px;
     text-align: left;
-    height:42px;
+    height:50px;
 	font-weight: bold;
 
 }
