@@ -220,7 +220,7 @@ module.exports = function (router) {
             return r.deleted === false;
         });
         if (!banks.length && !enterprise) {
-            res.redirect('/newAcount/settings/bankCards')
+            res.redirect('/newAccount/settings/bankCards')
         } else {
             next();
         }
@@ -240,7 +240,7 @@ module.exports = function (router) {
                 });
 
                 if (!banks.length && !enterprise) {
-                    res.redirect('/newAcount/settings/bankCards');
+                    res.redirect('/newAccount/settings/bankCards');
                 } else {
                     next();
                 }
