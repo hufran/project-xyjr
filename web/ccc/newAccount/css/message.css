@@ -8,7 +8,8 @@
 	overflow: hidden;
 	border-bottom: 1px solid #999;
 	margin-right: 30px;
-	margin-bottom: 30px;
+    line-height: 36px;
+    font-size: 18px;
 }
 
 .message-box .message-nav li {
