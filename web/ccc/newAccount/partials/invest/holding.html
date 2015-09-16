@@ -9,8 +9,11 @@
             <th class="w-180 align-center">操作</th>
         </tr>
     </thead>
+     {{#if list.length}}
     <tbody>
+         
         {{#each list}}
+       
         <tr>
             <td style="text-indent:20px;">
                 <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none">{{loanTitle}}</a>
@@ -39,9 +42,15 @@
             <td colspan="6">
                 <p class="loading">loading...</p>
             </td>
-        </tr>
+        </tr>   
+       
+        
         {{/each}}
+        
     </tbody>
+     {{else}}
+        <div>暂无数据</div>
+         {{/if}}
 </table>
 <div class="space-40"></div>
 <div class="ccc-paging"></div>
