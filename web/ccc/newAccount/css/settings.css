@@ -35,7 +35,6 @@ p.tips {
 .form-control {
 	height: 45px;
 	line-height: 45px;
-	text-indent: 20px;
 	position: relative;
 	top: 20px;
 }
@@ -111,6 +110,7 @@ p.tips {
 	font-weight: normal;
 	line-height: 40px;
 	border-radius: 5px;
+  cursor: pointer;
 }
 .btn-update:hover {
 	color: #fff;
@@ -169,8 +169,7 @@ p.tips {
 }
 .select {
 	width: 200px;
-	font-size: 20px;
-	font-weight: bold;
+	font-size: 16px;
   height: 30px;
 }
 .ABC {

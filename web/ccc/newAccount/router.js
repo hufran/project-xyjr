@@ -160,6 +160,7 @@ module.exports = function (router) {
         "bankCards",
         "authentication",
         "password",
+        "resetPassword",
         "userInfo"
     ].forEach(function (tabName) {
         router.get('/newAccount/settings/' + tabName, function (req, res) {

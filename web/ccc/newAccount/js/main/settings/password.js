@@ -1,5 +1,4 @@
 "use strict";
-"use strict";
 require('ccc/global/js/modules/cccTab');
 var utils = require('ccc/global/js/lib/utils');
 var CccOk = require('ccc/global/js/modules/cccOk');
