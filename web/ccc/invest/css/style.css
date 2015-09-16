@@ -13,7 +13,7 @@
 }
 #main-container .s-content table{
     width: 1100px;
-    border-top:2px solid #007ec5;
+    border-top:2px solid #009ada;
 }
 #main-container .s-content .investBoxTitle{
     text-align: center;
@@ -88,6 +88,6 @@ float: right;
     color: #4a4a4a;
 }
 .s-content .no-warry-left p{
-      font-size: 28px;
+      font-size: 24px;
     color: #ffc808;
 }
