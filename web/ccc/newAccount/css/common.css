@@ -228,3 +228,15 @@ table tbody tr td {
 	color: #fff;
 	border: 1px #0096de solid;
 }
+.null {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/null.png) no-repeat center;
+}
+.nomsg {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/msg.png) no-repeat center;
+}

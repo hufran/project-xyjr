@@ -57,7 +57,7 @@
                         <th>备注</th>
                     </tr>
                 </thead>
-
+                {{#if list}}
                 <tbody>
                     {{#each list}}
                     <tr>
@@ -75,6 +75,7 @@
                     </tr>
                     {{/each}}
                 </tbody>
+                {{/if}}
             </table>
         </div>
          {{else}}
@@ -85,5 +86,9 @@
             </div>
         </div>
 {{/if}}
+{{#if list}}
 <div class="ccc-paging"></div>
 <div class="clearfix"></div>
+{{else}}
+<div class="null"></div>
+{{/if}}
