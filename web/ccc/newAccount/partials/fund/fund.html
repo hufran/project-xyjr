@@ -5,7 +5,7 @@
                         <li data-min-rate="0" data-max-rate="8" data-type="INVEST">投资</li>
                         <li data-min-rate="8" data-max-rate="10" data-type="WITHDRAW">提现</li>
                         <li data-min-rate="10" data-max-rate="12" data-type="DEPOSIT">充值</li>
-                        <li data-min-rate="12" data-max-rate="14" data-type="LOAN">回款</li>
+                        <li data-min-rate="12" data-max-rate="14" data-type="INVEST_REPAY">回款</li>
                         <li data-min-rate="14" data-max-rate="100" class="get-cash" data-type="FEE_WITHDRAW">提现手续费</li>
                     </ul>
                     <ul class="sDuration">
@@ -62,7 +62,7 @@
                     {{#each list}}
                     <tr>
                         <td>{{ dateTime }}</td>
-                        <td>{{ transactionType }}</td>
+                        <td>{{#if transactionType === '投资还款' }}回款{{else}}{{transactionType}}{{/if}}</td>
                         <td>{{ orderId }}</td>
 
                         <td class="col-amount {{ amountClass }}" style="color:#f58220;">
