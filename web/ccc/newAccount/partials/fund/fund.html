@@ -52,6 +52,7 @@
                         <th>交易类型</th>
                         <th>单号</th>
                         <th class="col-amount">收支金额</th>
+                        <th>操作</th>
                         <th>状态</th>
                         <th>备注</th>
                     </tr>
@@ -67,9 +68,10 @@
                         <td class="col-amount {{ amountClass }}" style="color:#f58220;">
                             {{ amount }}
                         </td>
+                        <td>{{operationName}}</td>
                         <td>{{ status }}</td>
                         <!-- summary -->
-                        <td>{{ description }}</td>
+                        <td style="width:100px;">{{ description }}</td>
                     </tr>
                     {{/each}}
                 </tbody>
