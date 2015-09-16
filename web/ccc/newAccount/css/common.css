@@ -181,7 +181,7 @@
 }
 table thead tr {
 	height: 40px;
-	background: #eeeeee;
+	background: #f5f4f9;
 }
 table thead tr th {
 	border: 0!important;
@@ -199,7 +199,7 @@ table tbody tr td {
 }
 .ccc-paging {
 	text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .ccc-paging a {
 	padding: 8px 11px;

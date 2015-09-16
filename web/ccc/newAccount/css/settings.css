@@ -351,6 +351,8 @@ p.tips {
 .safety-wrapper .table .btn {
   background-color:#009ADA;
   color:white;
+    width: 80px;
+    height: 30px;
 }
 .rzz {
   width: 350px;
@@ -422,4 +424,5 @@ p.tips {
   color:white;
   width:80px;
   margin-left:210px;
+    height: 30px;
 }

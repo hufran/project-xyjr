@@ -270,6 +270,7 @@ hr {
 	float: left;
 	width: 250px;
 	height: 100%;
+    text-indent: 20px;
 }
 
 .loanItemWrapper .loanPartOne > div {
