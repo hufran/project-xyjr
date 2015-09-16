@@ -9,7 +9,7 @@
             <th class="w-180 align-center">操作</th>
         </tr>
     </thead>
-     {{#if list.length}}
+    {{#if list}}
     <tbody>
          
         {{#each list}}
@@ -48,9 +48,11 @@
         {{/each}}
         
     </tbody>
-     {{else}}
-        <div>暂无数据</div>
-         {{/if}}
+    {{/if}}
 </table>
+{{#if list}}
 <div class="space-40"></div>
 <div class="ccc-paging"></div>
+{{else}}
+<div class="null"></div>
+{{/if}}

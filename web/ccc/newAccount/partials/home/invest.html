@@ -1,3 +1,4 @@
+
 <table class="table table-hover has-padding">
     <thead>
         <tr>
@@ -7,6 +8,7 @@
             <th>还款日期</th>
         </tr>
     </thead>
+    {{#if list}}
     <tbody>
         {{#each list}}
         <tr>
@@ -20,7 +22,12 @@
         </tr>
         {{/each}}
     </tbody>
+    {{/if}}
 </table>
+{{#if list}}
 <div class="space-10"></div>
 <div class="ccc-paging"></div>
 <div class="sapce-30"></div>
+{{else}}
+<div class="null"></div>
+{{/if}}
