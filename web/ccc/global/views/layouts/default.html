@@ -64,7 +64,7 @@
             {{/if}}
             <a href="/logout" class="text" style="color:#bcbcbc;margin-right:5px;">退出&nbsp;&nbsp;|</a>
 			{{#if user.name}}
-            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:2px;" class="text"></div></a>
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div></a>
 			{{else}}
             	<a href="/newAccount/settings/authentication"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div></a>
 			{{/if}}
@@ -194,8 +194,6 @@
                 </P>
 				<img class="erweima erweima-act" src="/ccc/global/img/erweima.png"/>
 				</div>
-
-
             </div>
             <div class="bottom-right">
                 <div class="bottom-rightApp">
@@ -215,7 +213,6 @@
                 <dd class="footer-guide-style"><a href="/aboutus/background">股东背景</a></dd>
                 <dd><a href="/aboutus/team">团队介绍</a></dd>
                 <dd><a href="/aboutus/partner">合作机构</a></dd>
-<!--                <dd><a href="/aboutus/contactus">联系我们</a></dd>-->
             </dl>
             <dl class="footer-guide">
                 <dt><img src="/ccc/global/img/help.png"/><a href="/help/aboutus">帮助中心</a></dt>
@@ -246,8 +243,11 @@
             <div>
                 <img src="/ccc/global/img/footer-norton.png" />
                             <a href="http://webscan.360.cn/index/checkwebsite/url/www.qilerong.com"><img border="0" src="http://img.webscan.360.cn/status/pai/hash/7844e0b4e28d3fad0c5dfcad17cbfdf4" class="footer-360"/></a>
-                <img src="/ccc/global/img/footer-other.png" />
 
+                <img src="/ccc/global/img/computer.png" />
+                <a id='___szfw_logo___' href='https://credit.szfw.org/CX20150915011323560186.html' target='_blank'><img src='http://icon.szfw.org/cert.png' border='0' class="footer-360"/></a>
+                <img src="/ccc/global/img/cfca.png" />
+                <img src="/ccc/global/img/v.png" class="footer-360" />
             </div>
         </div>
     </div>
@@ -258,7 +258,6 @@
 <div class="side-bar-box">
     <div class="side-bar">
          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=21486606&amp;site=qq&amp;menu=yes"><img src="/ccc/global/img/service.png" /></a>
-
         <a href="javascript:;" class="calculator-create"><img src="/ccc/global/img/calculator.png" /></a>
         <a class="back-top" href=""><img src="/ccc/global/img/backTop.png" /></a>
     </div>
@@ -282,7 +281,7 @@
 	function clickQq(){
 		document.write('<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAxNDcwNF8zMTg5OTVfNDAwODcyNzY3Nl8"></"+"script>')
 	}
-	
+(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();
 		
 </script>
 

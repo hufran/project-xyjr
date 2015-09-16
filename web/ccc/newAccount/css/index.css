@@ -125,18 +125,20 @@
 	height: 100px;
 	background: url(/ccc/newAccount/img/txn.png) no-repeat center #fff;
 	border-radius: 50%;
+      margin-left: 25px;
 }
 .name {
 	height: 55px;
-	width: 95px;
+	width: 145px;
 	line-height: 55px;
 	color: #4a4a4a;
-	font-size: 24px;
+	font-size: 20px;
 	text-align: center;
 }
 .info {
-	width: 130px;
+	width: 145px;
 	float: left;
+  
 }
 .credit {
 	float: left;
