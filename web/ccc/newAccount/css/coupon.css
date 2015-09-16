@@ -167,7 +167,12 @@
 	float: left;
 	width: 260px;
 }
-
+.couponWrapper .couponTitle1 {
+	font-size: 12px;
+	height: 25px;
+	padding-top: 15px;
+	padding-right: 10px;
+}
 .couponWrapper .couponTitle {
 	font-size: 12px;
 	text-align: right;
