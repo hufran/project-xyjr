@@ -68,6 +68,9 @@ var ractive = new Ractive({
                 }
             }
             //更多信息
+            if (userinfo.career) {
+                ractive.set('isSave',true);
+            }
             if (userinfo.personal) {
                 ractive.set('male', ''+userinfo.personal.male);
             }
@@ -95,6 +98,9 @@ ractive.on('changeTab', function (event) {
 	}
 });
 
+ractive.on('updateInfo', function () {
+    this.set('isSave', false);
+});
 function formatNumber(number, left, right) {
     if (!number) {
         return '';
@@ -156,6 +162,7 @@ ractive.on('submit',function() {
             accountService.updateCareerInfo(companyIndustry,salary,function(r) {
                 if (!r.error) {
                     alert('信息编辑成功');
+                    window.location.reload();
                 } else {
                    alert('信息编辑失败,请稍后重试！'); 
                 }   

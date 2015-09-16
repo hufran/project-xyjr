@@ -30,6 +30,8 @@ var homeRactive = new Ractive({
 		avaAmount : avaAmount,
 		investInterestAmount : investInterestAmount,
 		totalAmount : totalAmount,
+		dueInAmount : dueInAmount,
+		frozenAmount : frozenAmount
 	},
     parseData:function(){
 		var self = this;
@@ -102,7 +104,7 @@ var infoRactive = new Ractive({
 	}
 });
 
-var pageSize = 10;
+var pageSize = 6;
 var page = 1;
 var moment = require('moment');
 var aaa = moment();

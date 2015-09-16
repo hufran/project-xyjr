@@ -30,7 +30,7 @@ $.validator.addMethod("amount", function (value, element) {
 }, "借款金额错误");
 $.validator.addMethod("deadline", function (value, element) {
     var length = value.length;
-    var deadline = /(^[^0|5|6|7|8|9][0-9]{0,2}$)/;
+    var deadline = /^\d+$/;
     return this.optional(element) || (value <= 48 && deadline.test(value));
 }, "借款期限格式有误，必须为小于48的正整数");
 
