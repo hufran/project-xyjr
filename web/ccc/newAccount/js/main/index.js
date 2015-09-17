@@ -71,6 +71,7 @@ var infoRactive = new Ractive({
 		user: null,
 		paymentPasswordHasSet : CC.user.paymentPasswordHasSet,
 		isEnterprise : CC.user.enterprise,
+		banksabled : banksabled.length? true : false,
 		safetyProgress: 25,
 		riskText: '中'
 	},
