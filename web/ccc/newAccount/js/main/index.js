@@ -73,11 +73,18 @@ var infoRactive = new Ractive({
 		isEnterprise : CC.user.enterprise,
 		banksabled : banksabled.length? true : false,
 		safetyProgress: 25,
-		riskText: '中'
+		riskText: '中',
+		vip:''
 	},
 	oninit: function () {
 		var safetyProgress = 25;
-
+		accountService.getVipLevel(function (r) {
+			if(r.success && r.data) {
+				console.log(r.data.level)
+				infoRactive.set('showVip', true);
+				infoRactive.set('vip', r.data.level.name);
+			}
+		});
 		accountService.checkAuthenticate(function (r) {
 			accountService.getUserInfo(function (res) {
 				infoRactive.set('user', res.user);
