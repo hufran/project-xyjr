@@ -199,7 +199,9 @@ setTimeout((function () {
         }
         if (CC.user.availableAmount > CC.loan.rule.max) {
             investRactive.set('inputNum', CC.loan.rule.max);
-        } else {
+        } else if(CC.user.availableAmount>CC.loan.rule.leftAmount){
+            investRactive.set('inputNum', Math.floor(CC.loan.rule.leftAmount));
+        }else{
             investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
         }
     });
