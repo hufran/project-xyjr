@@ -134,6 +134,15 @@
 #loanForm input.error {
 	border: 1px solid red;
 }
+#loanForm #months.error{
+        border: none;
+}
+#loanForm .loan-limit.error {
+	border: 1px solid red;
+}
+#loanForm .want-loan.error {
+	border: 1px solid red;
+}
 
 #applyloan-page .form-horizontal .control-label {
 	font-weight: normal;
@@ -174,7 +183,7 @@
 
 .loan-title {
 	height: 52px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 2px solid #009ada;
 	font-size: 18px;
 	line-height: 52px;
 	padding-left: 20px;
@@ -292,12 +301,11 @@
 	font-style: normal;
 	color: #d2252c;
 	padding-left: 10px;
-	line-height: 47px;
+/*	line-height: 47px;*/
 }
 
-#loanForm input.error {
-	/*    border: 1px solid red;*/
-}
+
+
 
 .col-sm-8 select {
 	width: 310px;
@@ -312,6 +320,15 @@
 }
 
 #loanForm .loan-limit {
+	width: 310px;
+	padding: 0;
+	margin-left: 15px;
+	line-height: 45px;
+	text-align: right;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+#loanForm .want-loan {
 	width: 310px;
 	padding: 0;
 	margin-left: 15px;

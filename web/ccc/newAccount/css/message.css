@@ -8,7 +8,8 @@
 	overflow: hidden;
 	border-bottom: 1px solid #999;
 	margin-right: 30px;
-	margin-bottom: 30px;
+    line-height: 36px;
+    font-size: 18px;
 }
 
 .message-box .message-nav li {
@@ -67,16 +68,19 @@
 
 .message-box .message-table table td {
 	height: auto;
-	line-height: 30px;
+	line-height: 72px;
 	vertical-align:baseline;
 }
 
 .message-box .message-table table tr {
 	background-color: white;
 }
+.message-box .message-table table tr:hover{
+	background-color: #e7e7e7;
+}
 
 .message-box .message-table table .thead {
-	background-color: #eee;
+	background-color: #f5f4f9;
 }
 
 .invest-pager {
@@ -127,11 +131,11 @@
 }
 
 #invest-pager {
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 .ctr {
-  height: 22px;
+  line-height: 72px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

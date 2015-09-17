@@ -156,6 +156,12 @@
 .nav-li .nav-toggle-btn {
 	cursor: pointer;
 	width: 16px;
+/*	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
+}
+.nav-li .nav-toggle-btn-up {
+	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;
+}
+.nav-li .nav-toggle-btn-down {
 	background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
 }
 .nav-li .nav-toggle-menu li a {
@@ -181,7 +187,7 @@
 }
 table thead tr {
 	height: 40px;
-	background: #eeeeee;
+	background: #f5f4f9;
 }
 table thead tr th {
 	border: 0!important;
@@ -199,7 +205,7 @@ table tbody tr td {
 }
 .ccc-paging {
 	text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .ccc-paging a {
 	padding: 8px 11px;
@@ -227,4 +233,16 @@ table tbody tr td {
 	background-color: #0096de;
 	color: #fff;
 	border: 1px #0096de solid;
+}
+.null {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/null.png) no-repeat center;
+}
+.nomsg {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/msg.png) no-repeat center;
 }

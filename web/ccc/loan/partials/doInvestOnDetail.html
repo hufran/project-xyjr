@@ -98,7 +98,7 @@
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
 
             <div class="leftMoney-open">账户余额（元）： &yen;<i class="red">{{user.availableAmount}}</i>
-                <a href="/account/recharge" class="recharge"><button>充值</button></a>
+                <a href="/newAccount/recharge" class="recharge"><button>充值</button></a>
             </div>
             <div class="input">
                 <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">

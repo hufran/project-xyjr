@@ -218,6 +218,7 @@ function tab1Preset(item) {
 
     // 交易类型
     typeLists[0].forEach(function (t) {
+        
         if (t.type === item.type) {
             if (t.operation) {
                 // 在typeList中规定了operation,需要两个都等

@@ -18,7 +18,7 @@ var ractive = new Ractive({
 		banks: UMPBANKS,
 		loadMessage: null,
 		bankcards: banksabled || [],
-		availableAmount: 0,
+		availableAmount:CC.user.availableAmount||0,
 		msg: {
 			AMOUNT_NULL: '请输入提现金额',
 			AMOUNT_INVALID: '输入的金额有误',
@@ -27,6 +27,8 @@ var ractive = new Ractive({
 			ERROR: '请求出现错误',
 
 		},
+        pointNum:null,
+        intNum:null,
 		isSend: false,
 		disabled: false,
 		submitText: '确认提现',
@@ -35,9 +37,22 @@ var ractive = new Ractive({
 		isEnterpriseUser: CC.user.enterprise,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
 	},
+    parseDataNum:function(){
+        var self = this;
+        var availableAmount = parseInt(self.get('availableAmount')).toFixed(2)+'';
+        console.log(availableAmount);
+        var point = availableAmount.indexOf('.');
+        if(point !== -1){
+            var num = availableAmount.split('.');
+            self.set({
+                'intNum':num[0],
+                'pointNum':num[1]
+            })
+        }
+        console.log(num);
+    },
 	oninit: function(){
 		var self = this;
-		
 		var userInfo = CommonService.getUserInfo();
 		userInfo.then(function(){
 			self.set('availableAmount', CC.user.availableAmount);
@@ -155,6 +170,7 @@ var ractive = new Ractive({
 		return v.toString().match(/^([0-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
 	}
 });
+ractive.parseDataNum();
 
 ractive.on('withdrawForm', function (e) {
 	e.original.preventDefault();

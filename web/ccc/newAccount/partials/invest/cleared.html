@@ -9,6 +9,7 @@
             <th class="w-180 align-center">操作</th>
         </tr>
     </thead>
+    {{#if list}}
     <tbody>
         {{#each list}}
         <tr>
@@ -45,6 +46,11 @@
         </tr>
         {{/each}}
     </tbody>
+    {{/if}}
 </table>
+{{#if list}}
 <div class="space-40"></div>
 <div class="ccc-paging"></div>
+{{else}}
+<div class="null"></div>
+{{/if}}

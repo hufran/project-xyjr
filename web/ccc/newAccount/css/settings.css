@@ -25,7 +25,7 @@ label {
 }
 p.tips {
 	color: #999999;
-	padding: 3px 65px;
+/*	padding: 3px 65px;*/
 }
 .error-message {
 	text-align: center;
@@ -35,7 +35,6 @@ p.tips {
 .form-control {
 	height: 45px;
 	line-height: 45px;
-	text-indent: 20px;
 	position: relative;
 	top: 20px;
 }
@@ -68,7 +67,7 @@ p.tips {
 	line-height: 30px;
 	color: #999999;
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 18px;
 }
 .PassTabActive {
 	color: #009ada;
@@ -79,6 +78,8 @@ p.tips {
 }
 .row {
 	margin-bottom: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .row .payInp {
 	width: 200px;
@@ -111,6 +112,7 @@ p.tips {
 	font-weight: normal;
 	line-height: 40px;
 	border-radius: 5px;
+  cursor: pointer;
 }
 .btn-update:hover {
 	color: #fff;
@@ -169,9 +171,9 @@ p.tips {
 }
 .select {
 	width: 200px;
-	font-size: 20px;
-	font-weight: bold;
+	font-size: 16px;
   height: 30px;
+    font-weight: bold;
 }
 .ABC {
   background-image: url(/ccc/global/img/banks/ABC.png);
@@ -351,6 +353,8 @@ p.tips {
 .safety-wrapper .table .btn {
   background-color:#009ADA;
   color:white;
+    width: 80px;
+    height: 30px;
 }
 .rzz {
   width: 350px;
@@ -422,4 +426,5 @@ p.tips {
   color:white;
   width:80px;
   margin-left:210px;
+    height: 30px;
 }

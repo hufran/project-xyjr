@@ -2,8 +2,7 @@
 	height: auto;
 	width: 1100px;
 	margin-top: 28px;
-	margin-bottom: 33px;
-	margin-left: 50px;
+	margin-bottom: 12px;
 }
 
 .coupon-content .coupon-nav-view {
@@ -22,12 +21,12 @@
 	width: 100px;
 	color: #000;
 	float: left;
-	padding: 12px;
+	padding-top: 12px;
 	font-size: 14px;
 }
 
 .coupon-content .coupon-nav-view ul li {
-	width: 60px;
+	width: 50px;
 	text-align: center;
 	color: #6d6c6c;
 	cursor: pointer;
@@ -49,23 +48,19 @@
 
 .has-line {
 	border-bottom: 1px #ccc solid;
+        width: 840px;
+    margin-left: 40px;
 }
 
 .ccc-tab > ul.ttabs > li a {
 	text-decoration: none;
 	margin: 0;
-	color: #999;
+	color: #6a6c6c;
+    font-size: 14px;
 }
-
 .ccc-tab > ul.ttabs > li a:hover,
 .ccc-tab > ul.ttabs > li a:focus {
 	color: #fff;
-/*
-	text-decoration: none;
-	background-color: #009ada;
-	border-radius: 2px;
-*/
-	margin: 0;
 }
 
 .ccc-tab > ul.ttabs .active {
@@ -154,10 +149,10 @@
 .couponWrapper-left {
 	float: left;
 	border-right: 1px dashed #fff;
-	font-size: 30px;
+	font-size: 18px;
 	width: 85px;
 	height: 144px;
-	padding: 12px 30px;
+	padding: 20px 12px 0 30px;
     word-break: break-all;
 }
 
@@ -165,15 +160,19 @@
 	float: left;
 	width: 260px;
 }
-
 .couponWrapper .couponTitle {
 	font-size: 12px;
-	text-align: right;
 	height: 25px;
 	padding-top: 15px;
 	padding-right: 10px;
+	padding-left: 10px;
 }
-
+.couponWrapper .couponTitle .couponTitle-left{
+	float: left;
+}
+.couponWrapper .couponTitle .couponTitle-right{
+	float: right;
+}
 .couponWrapper .valueText {
 	margin-top: 27px;
 	font-size: 20px;

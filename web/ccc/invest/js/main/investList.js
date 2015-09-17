@@ -297,7 +297,7 @@ function initailEasyPieChart() {
                 trackColor: '#ddd',
                 scaleColor: false,
                 lineCap: 'butt',
-                lineWidth: 2,
+                lineWidth: 4,
                 animate: oldie ? false : 1000,
                 size: 45,
                 onStep: function (from, to, percent) {

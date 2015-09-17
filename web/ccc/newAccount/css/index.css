@@ -85,14 +85,14 @@
 	line-height: 36px;
 	color: #4a4a4a;
 	font-size: 18px;
-	border-bottom: 4px #009ada solid;
+	border-bottom: 3px #009ada solid;
 }
 .repay-plan-wp {
 	display: none;
 }
 .home-invest-container table thead tr{
 	height: 50px;
-	background-color: #eeeeee;
+	background-color: #f5f4f9;
 }
 .home-invest-container table thead tr th {
 	color: #4a4a4a;
@@ -100,7 +100,7 @@
 	font-size: 14px;
 }
 .home-invest-container table tbody tr {
-	height: 69px;
+	height: 72px;
 	border-top: none;
 }
 .home-invest-container table tbody tr td {
@@ -121,22 +121,24 @@
 	margin: 0 auto;
 }
 .tx {
-	width: 95px;
-	height: 95px;
+	width: 100px;
+	height: 100px;
 	background: url(/ccc/newAccount/img/txn.png) no-repeat center #fff;
 	border-radius: 50%;
+      margin-left: 25px;
 }
 .name {
 	height: 55px;
-	width: 95px;
+	width: 145px;
 	line-height: 55px;
 	color: #4a4a4a;
-	font-size: 24px;
+	font-size: 20px;
 	text-align: center;
 }
 .info {
-	width: 130px;
+	width: 145px;
 	float: left;
+  
 }
 .credit {
 	float: left;
@@ -182,15 +184,17 @@
 .level {
 	float: left;
 	line-height: 60px;
-	width: 170px;
+	/*width: 170px;*/
 	font-size: 14px;
 	color: #4a4a4a;
+	margin-right: 20px;
 }
 .lev {
 	color: #f58220;
 	font-size: 20px;
 	font-weight: bold;
 	font-style: oblique;
+	cursor: pointer;
 }
 .safe {
 	float: left;
@@ -225,7 +229,9 @@
 	left: 2px;
 	cursor: pointer;
 }
-
+.money {
+	font-size: 24px;
+}
 .home-total .home-tab-amount .more-amount{
     font-size: 24px;
 }
@@ -235,4 +241,6 @@
 .home-interest .home-tab-amount .more-amount{
     font-size: 24px;
 }
-
+.tooltip {
+	width: 300px!important;
+}

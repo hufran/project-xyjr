@@ -2,10 +2,10 @@
                     <ul class="sRate">
                         <p class="selectTitle">交易类型:</p>
                         <li class="selected s__is-selected" data-min-rate="0" data-max-rate="100" data-type="ALL">全部</li>
-                        <li data-min-rate="0" data-max-rate="8" data-type="INVEST">投资</li>
+                        <li data-min-rate="0" data-max-rate="8" data-type="INVEST">投标</li>
                         <li data-min-rate="8" data-max-rate="10" data-type="WITHDRAW">提现</li>
                         <li data-min-rate="10" data-max-rate="12" data-type="DEPOSIT">充值</li>
-                        <li data-min-rate="12" data-max-rate="14" data-type="LOAN">回款</li>
+                        <li data-min-rate="12" data-max-rate="14" data-type="INVEST_REPAY">回款</li>
                         <li data-min-rate="14" data-max-rate="100" class="get-cash" data-type="FEE_WITHDRAW">提现手续费</li>
                     </ul>
                     <ul class="sDuration">
@@ -44,35 +44,38 @@
                 <col width="208px" />
                 <col width="110px" align="right" class="col-amount" />
                 <col width="120px" />
-                <col width="154px" />
-
+                <col width="90px" />
+                <col width="90px" />
                 <thead>
                     <tr>
                         <th>时间</th>
                         <th>交易类型</th>
                         <th>单号</th>
                         <th class="col-amount">收支金额</th>
+                        <th>操作</th>
                         <th>状态</th>
                         <th>备注</th>
                     </tr>
                 </thead>
-
+                {{#if list}}
                 <tbody>
                     {{#each list}}
                     <tr>
                         <td>{{ dateTime }}</td>
-                        <td>{{ transactionType }}</td>
+                        <td>{{#if transactionType === '投资还款' }}回款{{else}}{{transactionType}}{{/if}}</td>
                         <td>{{ orderId }}</td>
 
                         <td class="col-amount {{ amountClass }}" style="color:#f58220;">
                             {{ amount }}
                         </td>
+                        <td>{{operationName}}</td>
                         <td>{{ status }}</td>
                         <!-- summary -->
-                        <td>{{ description }}</td>
+                        <td style="width:100px;">{{ description }}</td>
                     </tr>
                     {{/each}}
                 </tbody>
+                {{/if}}
             </table>
         </div>
          {{else}}
@@ -83,5 +86,9 @@
             </div>
         </div>
 {{/if}}
+{{#if list}}
 <div class="ccc-paging"></div>
 <div class="clearfix"></div>
+{{else}}
+<div class="null"></div>
+{{/if}}
