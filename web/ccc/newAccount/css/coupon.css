@@ -228,21 +228,32 @@
 .ccc-paging > div {
 	float: left;
 	min-width: 25px;
-	height: 25px;
+
 	text-align: center;
-	color: #939393;
-	line-height: 25px;
+    font-size: 14px;
+	color: #4a4a4a;
+/*	line-height: 25px;*/
 	cursor: pointer;
-	margin-left: 5px;
-	padding: 0 5px;
+	margin:0px 5px;
+	    padding: 5px 10px;
 	border: 1px solid #ddd;
 }
 
 .ccc-paging > div:hover {
-	border: 1px solid #e5e5e5;
+	border:1px #eeeeee solid;
 	background-image: none;
 	background-color: #009ada;
 	color: #fff;
+}
+.ccc-paging .currentPagewra{
+    width:31px;
+    height:32px;
+    padding-right:2px;
+    text-align: center;
+/*    margin: 0;*/
+    position: relative;}
+.ccc-paging .currentPagewra .currentPage:hover{
+      color:#fff;
 }
 
 .ccc-paging .active {
@@ -257,13 +268,14 @@
 
 .ccc-paging span {
 	display: inline-block;
-    width: 31px;
-	height: 31px;
-	line-height: 26px;
 	text-align: center;
 	font-size: 14px;
 	color: #4a4a4a;
-	margin: 0 5px;
+/*	margin: 0 5px;*/
 	cursor: pointer;
 	border: none;
+/*    padding: 8px 11px;*/
+    position: absolute;
+    top: 0px;
+    left: -5px;
 }

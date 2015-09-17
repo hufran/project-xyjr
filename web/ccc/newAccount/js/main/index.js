@@ -173,7 +173,7 @@ var investRactive = new Ractive({
 	tooltip: function() {
 		$('.tips-top').tooltip({
 			container: 'body',
-			placement: 'top'
+			placement: 'bottom'
 		});
 	},
 });
