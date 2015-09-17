@@ -162,15 +162,6 @@ setTimeout((function () {
         });
     }
 
-//    investRactive.on('checkPaymentPassword', function () {
-//        var paymentPassword = this.get('paymentPassword');
-//        accountService.checkPassword(paymentPassword, function (r) {
-//            if (!r) {
-//                showErrors('请输入正确的交易密码!');
-//            }
-//        });
-//    });
-
     investRactive.set('user', CC.user);
     if ($('.invest-submit').length > 0) {
 
@@ -296,28 +287,6 @@ setTimeout((function () {
   
                         ok: function () {
                             $('form').submit();
-							
-//							var data ={
-//								loadId:CC.user.id,
-//								amount:$('input[name="amount"]').val(),
-//								placementId:$("#couponSelection").find("option:selected").val(),
-//								paymentPassword:$('input[name="paymentPassword"]').val()
-//							}
-//							request.post('/api/v2/invest/' + CC.user.id + '/MYSELF')
-//								.type('JSON')
-//								.send(data)
-//								.end()
-//								.then(function(r){
-//								console.log(r.body);
-//								if(r.body.success){
-//									alert('抢标成功');
-//									window.location.reload();
-//								}else{
-//									alert('抢标失败');
-//										window.location.reload();
-//								}
-//							})
-							
                             $('.dialog').hide();
                             Confirm.create({
                                msg: '抢标是否成功？',                                
@@ -442,13 +411,10 @@ setTimeout((function () {
             $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
-            disableErrors()
-            $.post('/loan/selectOption', {
-                amount: amount,
-                months: months
-            }, function (o) {
-                if (o.success) {
-                    investRactive.set('selectOption', parsedata(o.data));
+            disableErrors();
+            loanService.getMyCoupon(amount, months, function (coupon) {
+                if(coupon.success) {
+                    investRactive.set('selectOption', parsedata(coupon.data));
                 }
             });
         }
@@ -459,7 +425,7 @@ setTimeout((function () {
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
         if (parseFloat(inputNum) !== parseFloat(inum)) {
-           // showSelect(inputNum);
+           showSelect(inputNum);
         }
     });
 }), 100);

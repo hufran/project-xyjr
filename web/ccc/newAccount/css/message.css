@@ -75,6 +75,9 @@
 .message-box .message-table table tr {
 	background-color: white;
 }
+.message-box .message-table table tr:hover{
+	background-color: #e7e7e7;
+}
 
 .message-box .message-table table .thead {
 	background-color: #f5f4f9;
