@@ -21,5 +21,18 @@ exports.loanService = {
             .then(function (res) {
                 next(res.body);
             });
-    }
+    },
+    getMyCoupon: function (amount, months, next) {
+        var sendObj = {
+            amount: amount,
+            months:months
+        };
+        request('POST', '/api/v2/coupon/MYSELF/listCoupon')
+            .type('form')
+            .send(sendObj)
+            .end()
+            .then(function (r){
+                next(r.body);
+            })
+        }
 };
