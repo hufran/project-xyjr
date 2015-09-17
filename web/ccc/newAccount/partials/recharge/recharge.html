@@ -54,29 +54,30 @@
                 <div class="">
                     <div class="rows">
                         <span class="tipss">账户余额</span>
-                        <span class="ava">{{availableAmount.toFixed(2)}}</span>
+                        <span class="ava">{{intNum}}.<span style="font-size:14px;">{{pointNum}}</span></span>
                         <span class="tipss" style="color:#f58220">元</span>
                     </div>
                     <div class="space-20"></div>
                     <div class="rows">
                         <span class="tipss">充值金额</span>
-                        <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="单笔100.00元起" value="{{amount}}" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;">
+                        <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder="单笔100.00元起" value="{{amount}}" style="width:238px;height:44px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;">
                         <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>
-                    </div>
-                    <div class="col-md-12">
-                        <p class="help-block text-danger" style="color:red;text-indent:95px;">
+                          <p class="help-block text-danger" style="color:red;text-indent:95px;display:inline;">
                             {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}} 
                             {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
                             {{#msg.AMOUNT_INVALID}}输入的金额有误{{/msg.AMOUNT_INVALID}}
                             {{#msg.BANKCODE_NULL}}请选择网上银行{{/msg.BANKCODE_NULL}}
                         </p>
                     </div>
+                    <div class="col-md-12">
+                      
+                    </div>
                 </div>
             </div>
             
             <div class="space space-10"></div>
             <div class="space space-30"></div>
-            <button type="submit" class="btn btn-warning btn-lg" style="width:238px;height:48px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;">确认充值</button>
+            <button type="submit" class="btn btn-warning btn-lg" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;font-size:16px;">确认充值</button>
         </form>
     </div>
 </div>

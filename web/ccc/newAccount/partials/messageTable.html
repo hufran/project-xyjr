@@ -32,13 +32,13 @@
                 </td>
 -->
 				{{#if status == 'NEW'}}
-                <td style="padding-left:20px;color:#f58220;">{{body.title}}</td>
+                <td style="padding-left:20px;color:#4a4a4a;">{{body.title}}</td>
 				{{else}}
 				<td style="padding-left:20px;">{{body.title}}</td>
 				{{/if}}
 				{{#if status == 'NEW'}}
                 <td>
-                    <div style="padding-left:20px;color:#f58220;" data-status="{{status}}" data-id="{{id}}" on-click="showContent" class="ctr">
+                    <div style="padding-left:20px;color:#4a4a4a;" data-status="{{status}}" data-id="{{id}}" on-click="showContent" class="ctr">
                         {{body.content}}
                     </div>
                 </td>
@@ -50,7 +50,7 @@
                 </td>
 				{{/if}}
 				{{#if status == 'NEW'}}
-                <td style="padding-left:20px;color:#f58220;">{{sentTime}}</td>
+                <td style="padding-left:20px;color:#4a4a4a;">{{sentTime}}</td>
 				{{else}}
 				<td style="padding-left:20px;">{{sentTime}}</td>
 				{{/if}}
