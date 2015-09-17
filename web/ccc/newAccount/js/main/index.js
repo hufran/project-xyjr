@@ -126,14 +126,15 @@ var investRactive = new Ractive({
     onrender: function() {
 		var self = this;
 		this.getData(function(o) {
-			self.setData(parseData(o));
+			self.setData(parseInvestData(o));
     		self.tooltip();
 		});
 	},
     getData :function(callback){
-		var api = this.api.replace('$page', 1).replace('$pageSize', pageSize);
+		var api = this.api;
+		api = api.replace('$page', 1).replace('$pageSize', pageSize);
 		$.get(api, function(o) {
-			callback(o.data);
+			callback(o);
 		}).error(function(o) {
 			console.info('请求出现错误，' + o.statusText);
 		});
@@ -146,20 +147,20 @@ var investRactive = new Ractive({
     },
     renderPager: function() {
 		var self = this;
-		console.log(self.get('totalSize'));
+		
 		$(this.el).find(".ccc-paging").cccPaging({
 			total: self.get('totalSize'),
 			perpage: pageSize,
-			api: self.api.replace('$size', pageSize),
+			api: self.api.replace('$pageSize', pageSize),
 			params: {
-				pageFromZero: true,
+				pageFromZero: false,
 				type: 'GET',
 				error: function(o) {
 					console.info('请求出现错误，' + o.statusText);
 				}
 			},
 			onSelect: function(p, o) {
-				self.set('list', p > 0 ? parseData(o).results : self.get('pageOne'));
+				self.set('list', p > 1 ? parseInvestData(o).results : self.get('pageOne'));
 			}
 		});
 	},
@@ -171,7 +172,9 @@ var investRactive = new Ractive({
 	},
 });
 
-var parseData = function (o) {
+var parseInvestData = function (o) {
+	
+	var res = o.data.results;
 	var methodZh = {
         'MonthlyInterest': '按月付息到期还本',
         'EqualInstallment': '按月等额本息',
@@ -179,10 +182,10 @@ var parseData = function (o) {
         'BulletRepayment': '一次性还本付息',
         'EqualInterest': '月平息'
     };
-
-    for(var i = 0;i < o.results.length; i ++) {
-    	o.results[i].repayMethod = methodZh[o.results[i].repayment.invest.repayMethod];
+    
+    for(var i = 0;i < res.length; i ++) {
+    	res[i].repayMethod = methodZh[res[i].repayment.invest.repayMethod];
     }
 
-    return o;
+    return o.data;
 };
