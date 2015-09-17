@@ -8,29 +8,37 @@
 		</div>
 		<div class="credit">
 			<div class="doCredit">
-				{{#if user.mobile}}
-				<span class="rzpa cmo-active"></span>
-				{{else}}
-				<span class="rzpa cmo"></span>
-				{{/if}}
-				{{#if user.name}}
-				<a href="/newAccount/settings/authentication"><span class="rzpa cid-active"></span></a>
-				{{else}}
-				<a href="/newAccount/settings/authentication"><span class="rzpa cid"></span></a>
-				{{/if}}
 				{{#if user.enterprise}}
-				<a href="/newAccount/settings/bankCards"><span class="rzpa ccr-active"></span></a>
+					{{#if user.mobile}}
+					<span class="rzpa cmo-active"></span>
+					{{else}}
+					<span class="rzpa cmo"></span>
+					{{/if}}
 				{{else}}
-				<a href="/newAccount/settings/bankCards"><span class="rzpa ccr"></span></a>
-				{{/if}}
-				{{#if emailAuthenticated}}
-				<a href="/newAccount/settings/userInfo"><span class="rzpa cem-active"></span></a>
-				{{else}}
-				<a href="/newAccount/settings/userInfo"><span class="rzpa cem"></span></a>
-				{{/if}}
-				{{#each groupMedal}}
-                <img src="{{this}}" class="rzpa" alt="勋章" style="margin-top:-38px;">
-                {{/each}}
+					{{#if user.mobile}}
+					<span class="rzpa cmo-active"></span>
+					{{else}}
+					<span class="rzpa cmo"></span>
+					{{/if}}
+					{{#if user.name}}
+					<a href="/newAccount/settings/authentication"><span class="rzpa cid-active"></span></a>
+					{{else}}
+					<a href="/newAccount/settings/authentication"><span class="rzpa cid"></span></a>
+					{{/if}}
+					{{#if banksabled}}
+					<a href="/newAccount/settings/bankCards"><span class="rzpa ccr-active"></span></a>
+					{{else}}
+					<a href="/newAccount/settings/bankCards"><span class="rzpa ccr"></span></a>
+					{{/if}}
+					{{#if emailAuthenticated}}
+					<a href="/newAccount/settings/userInfo"><span class="rzpa cem-active"></span></a>
+					{{else}}
+					<a href="/newAccount/settings/userInfo"><span class="rzpa cem"></span></a>
+					{{/if}}
+					{{#each groupMedal}}
+	                <img src="{{this}}" class="rzpa" alt="勋章" style="margin-top:-38px;">
+	                {{/each}}
+                {{/if}}
 			</div>
 			{{#if !isEnterprise}}
 			<div class="EdiT">
