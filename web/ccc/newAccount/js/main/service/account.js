@@ -189,4 +189,11 @@ exports.accountService = {
             next(res.body);
         });
     },
+    getVipLevel: function (next) {
+        request('GET','/api/v2/user/MYSELF/membership')
+            .end()
+            .then(function(res){
+                next(res.body);
+        });
+    }
 };

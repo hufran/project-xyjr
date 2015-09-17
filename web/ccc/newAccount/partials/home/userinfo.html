@@ -42,10 +42,12 @@
 			</div>
 			{{#if !isEnterprise}}
 			<div class="EdiT">
+				{{#if showVip}}
 				<div class="level">
 					<span>会员等级：</span>
-					<a href="/help/member" style="text-decoration:none"><span class="lev">VIP2</span></a>
+					<a href="/help/member" style="text-decoration:none"><span class="lev">{{vip}}</span></a>
 				</div>
+				{{/if}}
 				<div class="safe">
 					<div class="safety">安全等级：
 					<span class="progress">
