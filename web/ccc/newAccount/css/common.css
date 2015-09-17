@@ -156,6 +156,12 @@
 .nav-li .nav-toggle-btn {
 	cursor: pointer;
 	width: 16px;
+/*	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
+}
+.nav-li .nav-toggle-btn-up {
+	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;
+}
+.nav-li .nav-toggle-btn-down {
 	background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
 }
 .nav-li .nav-toggle-menu li a {

@@ -13,7 +13,7 @@ var utils = require('ccc/global/js/lib/utils');
 var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/cccTab');
 
-var pagesize = 7;
+var pagesize = 1;
 var page = 1;
 var totalPage = 1;
 
@@ -73,27 +73,30 @@ function init (type) {
 			$('.ctr').click(function (){
 				if(type === 'NEW'){
 					$(this).addClass('activeContent');
-					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
-					$(this).css('color','#4a4a4a');
-					$(this).parent().siblings().css('color','#4a4a4a');
-					$(this).parent().parent().css('backgroundColor','#e7e7e7');
-					$(this).parent().parent().siblings().css('backgroundColor','#fff');
-				}else{
+                    $('.ctr').click(function(){
+                        $(this).removeClass('activeContent')
+                    })
+//					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+//					$(this).css('color','#4a4a4a');
+//					$(this).parent().siblings().css('color','#4a4a4a');
+//					$(this).parent().parent().css('backgroundColor','#fff');
+//					$(this).parent().parent().siblings().css('backgroundColor','#e7e7e7');
+//				}else{
 					
-					$(this).addClass('activeContent');
-					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
-					$(this).parent().parent().css('backgroundColor','#e7e7e7');
-					$(this).parent().parent().siblings().css('backgroundColor','#fff');
+//					$(this).addClass('activeContent');
+//					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+//					$(this).parent().parent().css('backgroundColor','#fff');
+//					$(this).parent().parent().siblings().css('backgroundColor','#e7e7e7');
 					}
 			});
 		  },
-		  'mouseenter':function(){
-			  $('.list-row').mouseenter(function(){
-				  $(this).siblings().css('backgroundColor','#e7e7e7');
-			  }).mouseleave(function(){
-				   $(this).siblings().css('backgroundColor','#fff');
-			  })
-		  }
+//		  'mouseenter':function(){
+//			  $('.list-row').mouseenter(function(){
+//				  $(this).siblings().css('backgroundColor','#fff');
+//			  }).mouseleave(function(){
+//				   $(this).siblings().css('backgroundColor','#e7e7e7');
+//			  })
+//		  }
 	},
       setData: function(o) {
         var self = this;
