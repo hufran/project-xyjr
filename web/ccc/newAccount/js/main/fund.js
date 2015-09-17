@@ -399,6 +399,9 @@ $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var longtime=$(this).text().substring(0,2);
+           if(longtime==='全部'){
+               longtime=300;
+           }
            $('.date-from-picker>input').val(moment().add('days',-longtime)
             .format('YYYY-MM-DD'));
              $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));
