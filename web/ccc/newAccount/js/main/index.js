@@ -74,14 +74,13 @@ var infoRactive = new Ractive({
 		banksabled : banksabled.length? true : false,
 		safetyProgress: 25,
 		riskText: '中',
-		vip:''
+		vip:'普通用户',
+		showVip: true
 	},
 	oninit: function () {
 		var safetyProgress = 25;
 		accountService.getVipLevel(function (r) {
 			if(r.success && r.data) {
-				console.log(r.data.level)
-				infoRactive.set('showVip', true);
 				infoRactive.set('vip', r.data.level.name);
 			}
 		});
