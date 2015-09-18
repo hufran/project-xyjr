@@ -3,6 +3,8 @@ var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
+var CccOk = require('ccc/global/js/modules/cccOk');
+
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
@@ -286,19 +288,39 @@ setTimeout((function () {
                         cancelText: '取消',
   
                         ok: function () {
-                            $('form').submit();
-                            $('.dialog').hide();
-                            Confirm.create({
-                               msg: '抢标是否成功？',                                
-								okText: '抢标成功',                                
-								cancelText: '抢标失败',
-                                ok: function () {
-                                    window.location.reload();
-                                },  
-                                cancel: function () {
-                                    $('.dialog').hide();
+                            $.post('/lianlianpay/tender', {
+                                amount : num,
+                                loanId : investRactive.get('loan.id'),
+                                placementId : investRactive.get('coupon'),
+                                paymentPassword : investRactive.get('paymentPassword')
+                            }, function (res) {
+                                if (res.success) {
+                                    CccOk.create({
+                                        msg: '投资成功，<a href="/invest/list" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                        okText: '确定',
+                                        // cancelText: '重新登录',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    CccOk.create({
+                                        msg: '投资失败，' + res.error[0].message,
+                                        okText: '确定',
+                                        // cancelText: '重新登录',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
+                                    });
                                 }
                             });
+                            $('.dialog').hide();
                         },
                         cancel: function () {
                            $('.dialog').hide();                    
