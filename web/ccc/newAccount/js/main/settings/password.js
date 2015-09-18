@@ -9,7 +9,7 @@ var passwordRactive = new Ractive({
 	el: '#ractive-container',
 	template: require('ccc/newAccount/partials/settings/password.html'),
 	data: {
-		paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
+		paymentPasswordHasSet : false,
         step : '0',
 		showFundPass: true,
 		frontTab: 'fundPass',
@@ -40,6 +40,8 @@ passwordRactive.on('initialPassword', function () {
     var isAcess = false;
     if (pwd === '') {
         showError('交易密码不能为空');
+    } else if (pwd.length < 6) {
+        showError('交易密码长度最少为6位');
     } else if (rePwd === '') {
         showError('交易密码不能为空');
     } else if (pwd !== rePwd) {
@@ -73,7 +75,9 @@ passwordRactive.on('updatePassword', function () {
     var newPwd = this.get('newPassword');
     var reNewPwd = this.get('reNewPassword');
     var isAcess = false;
-    if (oldpwd === '') {
+    if (oldpwd.length < 6 || newPwd.length < 6) {
+        showError('交易密码长度最少为6位');
+    } if (oldpwd === '') {
         showError('原密码不能为空');
     } else if (newPwd === '' || reNewPwd === '') {
         showError('交易密码不能为空');
