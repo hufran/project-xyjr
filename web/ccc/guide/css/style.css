@@ -1,13 +1,6 @@
 .guide-banner-box{
-    height: 190px;
-/*    overflow: hidden;*/
-}
-.guide-banner{
-    position: absolute;
-    left:50%;
-    margin-left: -550px;
-    
-    
+    height: 160px;
+    background:url('/ccc/guide/img/banner.png') center top no-repeat;
 }
 .guide-box{
     background: #fff;
@@ -15,7 +8,7 @@
 }
 .guide-model{
     width:1000px;
-    margin: 0px auto;
+    margin: 0px auto 40px;
 }
 .guide-model *{
 	font-family: '微软雅黑';
@@ -25,9 +18,10 @@
     text-align: center;
     color: #4a4a4a;
     font-size: 36px;
-    line-height: 116px;
-    font-weight: bold;
-    margin-bottom: 18px;
+    /*line-height: 116px;
+    font-weight: bold;*/
+    margin-bottom: 50px;
+    margin-top:40px;
 }
 .model-title-second{
     margin-top: 80px;
@@ -37,9 +31,8 @@
     font-size: 16px;
     line-height: 22px;
 /*    text-align: center;*/
-    margin-bottom: 50px;
     width: 800px;
-    margin: 0 auto;
+    margin:50px auto 0px;
 }
 
 .model-pic img{
@@ -135,6 +128,7 @@
 }
 .step-title{
     margin-left: 202px;
+    margin-top: 30px;
 }
 .steps-pic{
     margin-left: 89px;
@@ -182,7 +176,6 @@
     font-size: 18px;
     text-align: center;
     line-height: 45px;
-    font-weight: bold;
 }
 .for-parents-content{
     font-size: 14px;
