@@ -13,7 +13,7 @@ var utils = require('ccc/global/js/lib/utils');
 var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/cccTab');
 
-var pagesize = 1;
+var pagesize = 10;
 var page = 1;
 var totalPage = 1;
 

@@ -70,7 +70,7 @@ p.tips {
 	font-size: 18px;
 }
 .PassTabActive {
-	color: #009ada;
+	color: #4a4a4a;
 	border-bottom: 2px #009ada solid;
 }
 .updateWra,.resetWra,.formwra {
@@ -127,6 +127,8 @@ p.tips {
 .modify-password-wrapper {
 	width: 400px;
 	margin: 0 auto;
+  position: relative;
+  left: 60px;
 }
 .cap {
 	width: 70px;

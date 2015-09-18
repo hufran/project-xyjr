@@ -15,6 +15,8 @@ resetPasswordRactive.on('resetPassword', function () {
 
     if (pwd.indexOf(" ") >=0) {
         return showError("密码不能为空格");
+    } else if (pwd.length < 6) {
+        return showError('交易密码至少为6位');
     } else {
         isAcess = true;
         if (pwd === '') {
