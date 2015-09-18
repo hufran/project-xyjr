@@ -114,7 +114,7 @@
                         <p>单笔最多可投：{{loan.rule.max}}元</p>
                     {{#if selectOption}}
                     <div class="selectOption">
-                        <select name="placementId" id="couponSelection">
+                        <select name="placementId" id="couponSelection" value="{{coupon}}">
                             <option value="">使用奖券: 无</option>
                             {{#each selectOption}}
                                 {{#if !hide}}
