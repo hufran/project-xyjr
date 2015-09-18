@@ -163,6 +163,12 @@
 .cid-active {
 	background: url(/ccc/newAccount/img/ID-active.png) no-repeat center;
 }
+.cpass-active {
+	background: url(/ccc/newAccount/img/pass-active.png) no-repeat center;
+}
+.cpass {
+	background: url(/ccc/newAccount/img/pass.png) no-repeat center;
+}
 .ccr-active {
 	background: url(/ccc/newAccount/img/card-active.png) no-repeat center;
 }
