@@ -28,10 +28,11 @@ var homeRactive = new Ractive({
 	template: require('ccc/newAccount/partials/home.html'),
 	data: {
 		avaAmount : avaAmount,
+		cAmount : parseFloat(CC.user.availableAmount).toFixed(2),
 		investInterestAmount : investInterestAmount,
 		totalAmount : totalAmount,
-		dueInAmount : dueInAmount,
-		frozenAmount : frozenAmount
+		dueInAmount : parseFloat(dueInAmount).toFixed(2),
+		frozenAmount : parseFloat(frozenAmount).toFixed(2)
 	},
     parseData:function(){
 		var self = this;
