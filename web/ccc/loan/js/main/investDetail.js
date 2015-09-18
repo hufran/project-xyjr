@@ -175,7 +175,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-       // showSelect(num);
+        showSelect(num);
     });
 
     investRactive.on('add', function (e) {
@@ -189,7 +189,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-        //showSelect(num);
+        showSelect(num);
     });
 
 

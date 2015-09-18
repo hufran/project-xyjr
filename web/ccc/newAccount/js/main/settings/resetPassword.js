@@ -34,7 +34,7 @@ resetPasswordRactive.on('resetPassword', function () {
                         okText: '确定',
                         // cancelText: '重新登录',
                         ok: function () {
-                            window.location.reload();
+                            window.location.href = "/newAccount/home";
                         },
                         cancel: function () {
                             window.location.reload();
