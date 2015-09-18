@@ -21,8 +21,6 @@ var frozenAmount = CC.user.frozenAmount || 0;
 // 总资产
 var totalAmount = parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2);
 
-
-
 var homeRactive = new Ractive({
 	el: '.account-home-wrapper',
 	template: require('ccc/newAccount/partials/home.html'),
@@ -31,6 +29,7 @@ var homeRactive = new Ractive({
 		cAmount : parseFloat(CC.user.availableAmount).toFixed(2),
 		investInterestAmount : investInterestAmount,
 		totalAmount : totalAmount,
+		cTotalAmount : parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2),
 		dueInAmount : parseFloat(dueInAmount).toFixed(2),
 		frozenAmount : parseFloat(frozenAmount).toFixed(2)
 	},
