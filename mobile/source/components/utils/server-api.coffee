@@ -321,6 +321,29 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
+            payment_pool_withdraw: (amount, paymentPassword) ->
+
+                @$http
+                    .post '/api/v2/lianlianpay/withdraw/MYSELF',
+                        @param {amount, paymentPassword}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_check_password: (password) ->
+
+                return @$q.reject() unless password
+
+                @$http
+                    .get '/api/v2/user/MYSELF/validatePaymentPassword',
+                        params: {password}
+
+                    .then (response) -> success: response.data is true
+                    .catch TAKE_RESPONSE_DATA
+
+
             payment_pool_set_password: (password) ->
 
                 @$http
