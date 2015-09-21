@@ -14,7 +14,7 @@
                               <ul class="dropdown-menu" role="listbox">
             {{# {typeList: typeLists[tabIndex]} }} {{#each typeList}}
             <li role="presentation">
-                <a role="menuitem" href="#" on-click="select-type">
+                <a role="menuitem" href="#" on-click="select-type" data-type='{{type}}'>
                         {{ text }}
                     </a>
             </li>
