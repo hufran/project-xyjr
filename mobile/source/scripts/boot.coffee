@@ -282,16 +282,27 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                 (                   api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then (user) ->
-                                            return $q.reject(true) unless user.has_payment_account
-                                            return user
-                                        .catch (has_logged_in = false) ->
-                                            return unless has_logged_in
-                                            $location
-                                                .replace()
-                                                .path 'dashboard/payment/register'
-                                                .search
-                                                    back: 'dashboard'
-                                                    next: 'dashboard/withdraw'
+                                            return user if user.has_payment_account and user.has_bank_card
+                                            return $q.reject(user)
+                                        .catch (user) ->
+                                            return unless user
+
+                                            switch
+                                                when user.has_payment_account isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/withdraw'
+
+                                                when user.has_bank_card isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/bind-card'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/withdraw'
                     }
 
                     .when '/dashboard/invite', {

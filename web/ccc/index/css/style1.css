@@ -408,17 +408,10 @@
     line-height: 48px;
 }
 
-.productBoxTitle .titleRight a{
-/*
-	font-size: 14px;
-	text-decoration: none;
-	color: #999;
-*/
+.productBoxTitle .titleRight a:hover{
+   color:#009ada
 }
 
-.productBoxTitle .titleRight a:hover{
-	color: #4a4a4a;
-}
 
 .s-split-view ul li .news{
 	font-size: 14px;
@@ -452,7 +445,7 @@
     float: left;
 }
 .friend-right{
-    float: left;
+    /*float: left;*/
     font-size: 14px;
     color: #999999;
 /*    margin-left: 16px;*/
@@ -474,6 +467,9 @@
     width: 1100px;
     margin: 0 auto;
     position: relative;
+}
+.u-float-right:hover{
+     color:#009ada
 }
 
 

@@ -218,6 +218,7 @@ function tab1Preset(item) {
 
     // 交易类型
     typeLists[0].forEach(function (t) {
+        
         if (t.type === item.type) {
             if (t.operation) {
                 // 在typeList中规定了operation,需要两个都等
@@ -398,6 +399,9 @@ $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var longtime=$(this).text().substring(0,2);
+           if(longtime==='全部'){
+               longtime=300;
+           }
            $('.date-from-picker>input').val(moment().add('days',-longtime)
             .format('YYYY-MM-DD'));
              $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));

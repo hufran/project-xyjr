@@ -4,9 +4,7 @@
         <div class="methodwr" style="text-indent:14px;">填写提现金额</div>
         <div class="space space-20"></div>
         <div class="col-md-7">
-            <p class="help-block text-danger" style="color:red;text-indent:109px;">
-                {{submitMessage}}
-            </p>
+           
         </div>
         <div class="space space-20"></div>
         <div class="rows">
@@ -15,14 +13,18 @@
                     <div class="">
                         <div class="rows">
                             <span class="tipss">账户余额</span>
-                            <span class="ava">{{availableAmount.toFixed(2)}}</span>
+                            <span class="ava">{{intNum}}.<span style="font-size:14px;">{{pointNum}}</span></span>
                             <span class="tipss" style="color:#f58220">元</span>
-                        </div>
+                 </div>
                         <div class="space-20"></div>
                         <div class="rows">
                             <span class="tipss">提现金额</span>
                             <input type="text" name="amount" id="withdraw" on-keyup="changeValue" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;" value="{{amount}}" autocomplete="off" placeholder="单笔最高5,000,000.00">
                             <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>
+                            <p class="help-block text-danger" style="color:red;text-indent:109px;display:inline">
+                {{submitMessage}}
+            </p>
+                 
                         </div>
                         <div class="space-20"></div>
                         <div class="rows">
@@ -32,7 +34,7 @@
                         </div>
                     </div>
                     <div class="space space-30"></div>
-                    <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:238px;height:48px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;">{{submitText}}</button>
+                    <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;font-size:16px;">{{submitText}}</button>
                 </form>
             </div>
         </div>

@@ -9,8 +9,26 @@
 					{{displayName}}
 				</div>
 				<div class="couponWrapper-right">
-                   
-					<div class="couponTitle">有效期至：{{timeExpire}}</div>
+					<div class="couponTitle">
+						<div class="couponTitle-left">
+							{{#if notUse}}
+								<span class="label label-light">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if USED}}
+								<span class=" label label-warning">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if REDEEMED}}
+								<span class="label label-success">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if EXPIRED}}
+								<span class=" label label-pink">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if CANCELLED}}
+								<span class=" label label-light">{{ displayStatus }}</span>
+							{{/if}}
+						</div>
+						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
+					</div>
 					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
 					<div class="couponDescription">
 					 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
@@ -21,13 +39,32 @@
 			{{#if type==='INTEREST'}}
 			<div class="INTEREST">
 				<div class="couponWrapper-left">
-					<p class="type-title">加息券</p>
+					<p class="type-title">{{displayName}}</p>
 				</div>
 				<div class="couponWrapper-right">
-					<div class="couponTitle">有效期至：{{timeExpire}}</div>
+					<div class="couponTitle">
+						<div class="couponTitle-left">
+							{{#if notUse}}
+								<span class="label label-light">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if USED}}
+								<span class=" label label-warning">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if REDEEMED}}
+								<span class="label label-success">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if EXPIRED}}
+								<span class=" label label-pink">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if CANCELLED}}
+								<span class=" label label-light">{{ displayStatus }}</span>
+							{{/if}}
+						</div>
+						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
+					</div>
 					<div class="valueText">加<span class="big">{{displayValue}}</span>利息</div>
 					<div class="couponDescription">
-						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元</p>
+						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
 						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
 					</div>
 				</div>	
@@ -37,13 +74,32 @@
 			<div class="PRINCIPAL">
 				
 				<div class="couponWrapper-left">
-					<p class="type-title">增值券</p>
+					<p class="type-title">{{displayName}}</p>
 				</div>
 				<div class="couponWrapper-right">
-					<div class="couponTitle">有效期至：{{timeExpire}}</div>
+					<div class="couponTitle">
+						<div class="couponTitle-left">
+							{{#if notUse}}
+								<span class="label label-light">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if USED}}
+								<span class=" label label-warning">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if REDEEMED}}
+								<span class="label label-success">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if EXPIRED}}
+								<span class=" label label-pink">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if CANCELLED}}
+								<span class=" label label-light">{{ displayStatus }}</span>
+							{{/if}}
+						</div>
+						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
+					</div>
 					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
 					<div class="couponDescription">
-						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元</p>
+						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
 						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
 					</div>
 				</div>	
@@ -52,13 +108,32 @@
 			{{#if type==='REBATE'}}
 			<div class="REBATE">
 				<div class="couponWrapper-left">
-					<p class="type-title">返现券</p>
+					<p class="type-title">{{displayName}}</p>
 				</div>
 				<div class="couponWrapper-right">
-					<div class="couponTitle">有效期至：{{timeExpire}}</div>
+					<div class="couponTitle">
+						<div class="couponTitle-left">
+							{{#if notUse}}
+								<span class="label label-light">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if USED}}
+								<span class=" label label-warning">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if REDEEMED}}
+								<span class="label label-success">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if EXPIRED}}
+								<span class=" label label-pink">{{ displayStatus }}</span>
+							{{/if}}
+							{{#if CANCELLED}}
+								<span class=" label label-light">{{ displayStatus }}</span>
+							{{/if}}
+						</div>
+						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
+					</div>
 					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
 					<div class="couponDescription">
-						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元</p>
+						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
 						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
 					</div>
 				</div>	
@@ -73,8 +148,8 @@
 <div class="clear"></div>
 <div class="ccc-paging">
 	<div class="prev">上一页</div>
-	<div class="currentPagewra">第<span class="currentPage"></span>页</div>
-	<div class="totalPagewra">共<span class="totalPage"></span>页</div>
+	<div class="currentPagewra current"><span class="currentPage"></span></div>
+<!--	<div class="totalPagewra">共<span class="totalPage"></span>页</div>-->
 	<div class="next">下一页</div>
 	<div class="clear"></div>
 </div>

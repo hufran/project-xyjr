@@ -106,7 +106,7 @@ function initailEasyPieChart() {
                 trackColor: '#ddd',
                 scaleColor: false,
                 lineCap: 'butt',
-                lineWidth: 2,
+                lineWidth: 4,
                 animate: oldie ? false : 1000,
                 size: 45,
                 onStep: function (from, to, percent) {
@@ -196,7 +196,7 @@ request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .then(function (res) {
         var count = new Ractive({
         el: '.firendLink',
-        template: '<div><p class="friend-left">友情链接</p><div class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</div></div>',
+        template: '<span class="friend-left">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
         data: {
             items: res.body
         }

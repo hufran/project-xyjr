@@ -160,6 +160,7 @@ module.exports = function (router) {
         "bankCards",
         "authentication",
         "password",
+        "resetPassword",
         "userInfo"
     ].forEach(function (tabName) {
         router.get('/newAccount/settings/' + tabName, function (req, res) {
@@ -220,7 +221,7 @@ module.exports = function (router) {
             return r.deleted === false;
         });
         if (!banks.length && !enterprise) {
-            res.redirect('/newAcount/settings/bankCards')
+            res.redirect('/newAccount/settings/bankCards');
         } else {
             next();
         }
@@ -240,7 +241,7 @@ module.exports = function (router) {
                 });
 
                 if (!banks.length && !enterprise) {
-                    res.redirect('/newAcount/settings/bankCards');
+                    res.redirect('/newAccount/settings/bankCards');
                 } else {
                     next();
                 }

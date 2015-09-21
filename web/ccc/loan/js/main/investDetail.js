@@ -3,6 +3,8 @@ var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
+var CccOk = require('ccc/global/js/modules/cccOk');
+
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
@@ -162,15 +164,6 @@ setTimeout((function () {
         });
     }
 
-//    investRactive.on('checkPaymentPassword', function () {
-//        var paymentPassword = this.get('paymentPassword');
-//        accountService.checkPassword(paymentPassword, function (r) {
-//            if (!r) {
-//                showErrors('请输入正确的交易密码!');
-//            }
-//        });
-//    });
-
     investRactive.set('user', CC.user);
     if ($('.invest-submit').length > 0) {
 
@@ -184,7 +177,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-       // showSelect(num);
+        showSelect(num);
     });
 
     investRactive.on('add', function (e) {
@@ -198,7 +191,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-        //showSelect(num);
+        showSelect(num);
     });
 
 
@@ -208,7 +201,9 @@ setTimeout((function () {
         }
         if (CC.user.availableAmount > CC.loan.rule.max) {
             investRactive.set('inputNum', CC.loan.rule.max);
-        } else {
+        } else if(CC.user.availableAmount>CC.loan.rule.leftAmount){
+            investRactive.set('inputNum', Math.floor(CC.loan.rule.leftAmount));
+        }else{
             investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
         }
     });
@@ -293,41 +288,39 @@ setTimeout((function () {
                         cancelText: '取消',
   
                         ok: function () {
-                            $('form').submit();
-							
-//							var data ={
-//								loadId:CC.user.id,
-//								amount:$('input[name="amount"]').val(),
-//								placementId:$("#couponSelection").find("option:selected").val(),
-//								paymentPassword:$('input[name="paymentPassword"]').val()
-//							}
-//							request.post('/api/v2/invest/' + CC.user.id + '/MYSELF')
-//								.type('JSON')
-//								.send(data)
-//								.end()
-//								.then(function(r){
-//								console.log(r.body);
-//								if(r.body.success){
-//									alert('抢标成功');
-//									window.location.reload();
-//								}else{
-//									alert('抢标失败');
-//										window.location.reload();
-//								}
-//							})
-							
-                            $('.dialog').hide();
-                            Confirm.create({
-                               msg: '抢标是否成功？',                                
-								okText: '抢标成功',                                
-								cancelText: '抢标失败',
-                                ok: function () {
-                                    window.location.reload();
-                                },  
-                                cancel: function () {
-                                    $('.dialog').hide();
+                            $.post('/lianlianpay/tender', {
+                                amount : num,
+                                loanId : investRactive.get('loan.id'),
+                                placementId : investRactive.get('coupon'),
+                                paymentPassword : investRactive.get('paymentPassword')
+                            }, function (res) {
+                                if (res.success) {
+                                    CccOk.create({
+                                        msg: '投资成功，<a href="/invest/list" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                        okText: '确定',
+                                        // cancelText: '重新登录',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    CccOk.create({
+                                        msg: '投资失败，' + res.error[0].message,
+                                        okText: '确定',
+                                        // cancelText: '重新登录',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
+                                    });
                                 }
                             });
+                            $('.dialog').hide();
                         },
                         cancel: function () {
                            $('.dialog').hide();                    
@@ -440,13 +433,10 @@ setTimeout((function () {
             $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
-            disableErrors()
-            $.post('/loan/selectOption', {
-                amount: amount,
-                months: months
-            }, function (o) {
-                if (o.success) {
-                    investRactive.set('selectOption', parsedata(o.data));
+            disableErrors();
+            loanService.getMyCoupon(amount, months, function (coupon) {
+                if(coupon.success) {
+                    investRactive.set('selectOption', parsedata(coupon.data));
                 }
             });
         }
@@ -457,7 +447,7 @@ setTimeout((function () {
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
         if (parseFloat(inputNum) !== parseFloat(inum)) {
-           // showSelect(inputNum);
+           showSelect(inputNum);
         }
     });
 }), 100);

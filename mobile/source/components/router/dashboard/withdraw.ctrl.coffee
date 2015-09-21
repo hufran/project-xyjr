@@ -18,28 +18,32 @@ do (angular) ->
                 }
 
 
-            open_payment_account: ($event) ->
+            submit: (amount = @$scope.amount or 0, password) ->
 
-                @cookie2root 'return_url', 'dashboard/withdraw'
+                (@api.payment_pool_check_password(password)
 
+                    .then (data) =>
+                        return @$q.reject(data) unless data.success is true
+                        return data
 
-            submit: ($event, amount = @$scope.amount or 0) ->
-
-                @cookie2root 'return_url', 'dashboard/funds'
-
-
-            prompt_bind_card: ->
-
-                prompt = @$modal.open {
-                    size: 'sm'
-                    keyboard: false
-                    backdrop: 'static'
-                    windowClass: 'center modal-confirm'
-                    animation: true
-                    templateUrl: 'ngt-withdraw-bind-card.tmpl'
-                }
-
-                prompt.result.catch () =>
-                    @$window.location.reload()
+                    .catch (data) =>
+                        @$q.reject error: [message: 'INCORRECT_PASSWORD']
 
 
+                    .then (data) => @api.payment_pool_withdraw(amount, password)
+
+                    .then (data) =>
+                        return @$q.reject(data) unless data.success is true
+                        return data
+
+                    .then (data) =>
+                        @$window.alert @$scope.msg.SUCCEED
+                        @$window.location.reload()
+
+                    .catch (data) =>
+                        key = _.get data, 'error[0].message'
+                        @$window.alert @$scope.msg[key] or key
+
+                    .finally =>
+                        42
+                )

@@ -10,7 +10,7 @@
 	{{#if list}}
     <table  class="table table-striped">
         <thead>
-            <tr class="thead">
+            <tr class="thead" style="height:50px;">
 <!--
                 <th style="width:70px; text-align:center;">
                     <input type="checkbox" id="all-checkbox" on-click="checkAll" />
@@ -32,13 +32,13 @@
                 </td>
 -->
 				{{#if status == 'NEW'}}
-                <td style="padding-left:20px;color:#f58220;">{{body.title}}</td>
+                <td style="padding-left:20px;color:#4a4a4a;">{{body.title}}</td>
 				{{else}}
 				<td style="padding-left:20px;">{{body.title}}</td>
 				{{/if}}
 				{{#if status == 'NEW'}}
                 <td>
-                    <div style="padding-left:20px;color:#f58220;" data-status="{{status}}" data-id="{{id}}" on-click="showContent" class="ctr">
+                    <div style="padding-left:20px;color:#4a4a4a;" data-status="{{status}}" data-id="{{id}}" on-click="showContent" class="ctr">
                         {{body.content}}
                     </div>
                 </td>
@@ -50,7 +50,7 @@
                 </td>
 				{{/if}}
 				{{#if status == 'NEW'}}
-                <td style="padding-left:20px;color:#f58220;">{{sentTime}}</td>
+                <td style="padding-left:20px;color:#4a4a4a;">{{sentTime}}</td>
 				{{else}}
 				<td style="padding-left:20px;">{{sentTime}}</td>
 				{{/if}}
@@ -69,7 +69,7 @@
 			</tr>
 		</thead>
 	</table>
-		<h1 class="none-message">您暂无该状态消息哦~~</h1>
+		<div class="nomsg"></div>
 	{{/if}}
 <!--	{{JSON.stringify(list)}}-->
 </div>

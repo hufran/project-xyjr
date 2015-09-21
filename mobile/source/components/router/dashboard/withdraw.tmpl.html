@@ -9,6 +9,15 @@
     </div>
     </nav>
 
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+
+            SUCCEED: '提现申请已经提交，请等待审核',
+            UNKNOWN: '提现失败',
+        }">
+    </div>
+
     <section class="container balance">
         <div class="labels">账户可用余额 (元)</div>
         <div class="amount">{{ available_amount | number }}</div>
@@ -16,10 +25,7 @@
 
     <form class="form-horizontal"
           name="form"
-          action="/payment/withdraw"
-          method="post"
-          target="_self"
-          ng-submit="self.submit($event)"
+          ng-submit="self.submit(amount, password)"
           novalidate
     >
         <div class="container withdraw-form">
@@ -32,7 +38,7 @@
                            ng-init="amount = 0"
                            type="number"
                            class="form-control input-sm"
-                           min="1"
+                           min="0.01"
                            placeholder="请输入提现金额"
                            required
                     >
@@ -50,6 +56,7 @@
                                 bank_item.account.mask for bank_item in bank_list
                                 track by bank_item.account.account
                             "
+                            disabled
                             required
                     >
                     </select>
@@ -57,13 +64,16 @@
             </div>
 
             <div class="form-group">
-                <label for="cashChl">提现方式</label>
+                <label for="password">交易密码</label>
                 <div class="input-wrap">
-                    <select name="cashChl" id="cashChl" class="form-control input-sm">
-                        <option value="GENERAL">普通取现</option>
-                        <option value="FAST">快速取现</option>
-                        <option value="IMMEDIATE" ng-if="bank_item.expressAccount">即时取现</option>
-                    </select>
+                    <input name="password"
+                           id="password"
+                           ng-model="password"
+                           type="password"
+                           class="form-control input-sm"
+                           placeholder="请输入交易密码"
+                           required
+                    >
                 </div>
             </div>
         </div>
@@ -77,26 +87,17 @@
                 <span ng-if="!(amount > available_amount)">确定提现</span>
                 <span ng-if="amount > available_amount">余额不足</span>
             </button>
-
-            <a href="/payment/account/open"
-               class="btn btn-primary btn-lg btn-block"
-               target="_self"
-               ng-click="self.open_payment_account($event)"
-               ng-if="!self.user.has_payment_account"
-            >开通托管账户</a>
-
-            <a class="btn btn-theme btn-lg btn-block"
-               href="/payment/bindCard"
-               target="_blank"
-               ng-if="self.user.has_payment_account && !self.user.has_bank_card"
-               ng-click="self.prompt_bind_card()"
-            >前去绑定银行卡</a>
         </p>
     </form>
 
     <section class="container explain">
         <h5>提现说明</h5>
-        <p>该卡在银行的预留手机号为在银行登记的手机号码，或使用其他银行卡进行充值。该卡在银行的预留手机号为在银行登记的手机号码，银行的预留手机号，使用其他银行卡进行充值。</p>
+        <ol>
+            <li>提现手续费每笔 2 元</li>
+            <li>请您选择银行储蓄卡账户提交提现申请。</li>
+            <li>为保障您的账户资金安全，申请提现时，您选择的银行卡开户名必须与实名认证一致，否则提现申请将不予受理。</li>
+            <li>提现操作预计3个工作日内到账，具体情况依据各银行实际处理为准，请您注意查收。若有任何问题，请联系客服。</li>
+        </ol>
     </section>
 </div>
 

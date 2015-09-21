@@ -37,6 +37,10 @@ var captchaRequired = conext(function *(req, res, next) {
 });
 
 module.exports = function (router) {
+    router.get('/register', function(req,res,next) {
+        res.expose(req.query.refm, 'registerRel');
+        next();
+    });
     var result = {
         'SUCCESSFUL' : '邮箱认证成功！',
         'UNSUCCESSFUL':'邮箱认证失败！',

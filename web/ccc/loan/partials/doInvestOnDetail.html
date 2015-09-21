@@ -14,7 +14,7 @@
                 </div>
 <p class="finished-money">预期收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span style="font-size:14px;">元</span></p>
 {{#if loan.status == "FINISHED"}}
-<button class="finished-btn">已取消</button>{{/if}}{{#if loan.status == "SETTLED"}}
+<button class="finished-btn">已满标</button>{{/if}}{{#if loan.status == "SETTLED"}}
 <button class="finished-btn">还款中</button>{{/if}}{{#if loan.status == "CLEARED"}}
 <button class="finished-btn">还款结束</button>{{/if}}
 <!--<button class="finished-btn">还款结束</button>-->
@@ -98,7 +98,7 @@
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
 
             <div class="leftMoney-open">账户余额（元）： &yen;<i class="red">{{user.availableAmount}}</i>
-                <a href="/account/recharge" class="recharge"><button>充值</button></a>
+                <a href="/newAccount/recharge" class="recharge"><button>充值</button></a>
             </div>
             <div class="input">
                 <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form" target="_blank" on-submit="invest-submit">
@@ -114,7 +114,7 @@
                         <p>单笔最多可投：{{loan.rule.max}}元</p>
                     {{#if selectOption}}
                     <div class="selectOption">
-                        <select name="placementId" id="couponSelection">
+                        <select name="placementId" id="couponSelection" value="{{coupon}}">
                             <option value="">使用奖券: 无</option>
                             {{#each selectOption}}
                                 {{#if !hide}}
@@ -126,7 +126,7 @@
                     </div>
                     {{/if}} 
                     <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" />    
-                    <input style="display:none" type="password" placeholder="请输入交易密码" />    
+                    <input style="display:none" type="password" placeholder="请输入交易密码" />                    <p>忘记交易密码？<a href="/newAccount/settings/password">点击进入密码重置</a></p>
                         <input type="submit" class="btn btn-warning invest-button" value="确认投资" />
 						<p class="agree-box">
 							<input type="checkbox" class="agree" checked id="agree"/>

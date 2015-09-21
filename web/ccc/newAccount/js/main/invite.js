@@ -29,9 +29,6 @@ new Ractive({
         record:true,
         reward:false
     },
-    oninit: function () {
-        this.getFmobile();
-    },
     onrender: function () {
         var self = this;
         this.api = '/api/v2/user/MYSELF/invite';
@@ -49,26 +46,8 @@ new Ractive({
          self.set('rewardlist', self.parseRewardListData(o));
         });
     },
-    getFmobile: function () {
-        var self = this;
-        $.post('/api/v2/users/mobile/encrypt', {
-            mobile: CC.user.mobile
-        }, function (r) {
-            if (r.success) {
-                self.set('Fmobile', r.data);
-                console.log(r.data);
-            }
-            self.bindActions();
-            console.log(1);
-
-        }).error(function () {
-            self.bindActions();
-            console.log(2)
-        });
-
-    },
     oncomplete: function () {
-
+        this.bindActions();
     },
     buildImgUrl: function(){
         var self = this;
@@ -77,10 +56,13 @@ new Ractive({
         return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
     },
     parseData: function (r) {
+        r.results.sort(function(a,b){
+            return (b.user.registerDate - a.user.registerDate);
+        });
         for (var i = 0; i < r.results.length; i++) {
             var o = r.results[i];
             r.results[i].user.registerDate = new Date(r.results[i].user.registerDate);
-            r.results[i].user.registerDate = moment(r.results[i].user.registerDate).format('YYYY-MM-DD hh:mm:ss')
+            r.results[i].user.registerDate = moment(r.results[i].user.registerDate).format('YYYY-MM-DD');
             r.results[i].user.loginName = format.mask(o.user.loginName);
             r.results[i].Fmobile = format.mask(o.user.mobile, 3, 4);
         }
@@ -103,7 +85,6 @@ new Ractive({
     bindActions: function () {
         var self = this;
         // 初始化二维码
-        console.log(this.buildImgUrl());
         $('#er-img').replaceWith('<img style="width:150px;height:150px;" src="'+ this.buildImgUrl() +'">');
         
         $(this.el).find("#btn-invite-copy").mouseover(function () {

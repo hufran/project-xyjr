@@ -4,6 +4,59 @@
         <li on-click="changeTab" class="{{#if !showBasic}} tab-active {{/if}} userInfo-tab" data-tab="more">更多信息</li>
     </ul>
     {{#if showBasic}}
+    {{#if isEnterprise}}
+    <div class="level-wrapper">
+        <span style="font-weight:bold">安全等级</span>
+        <div class="safetyLevel"><div class="levelBar" style="height:{{100-percent}}%"></div><span class="level-info" style="{{#if percent > 50}} color:white {{/if}}">{{levelText}}</span></div>
+        <span style="font-size:18px;margin-left:100px;">您的信息资料完整度为 <span style="color:#F58220; margin-left:20px;" >{{percent}}%</span></span>
+    </div>
+    <div class="safety-wrapper" style="height:100px;">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td style="width:35%">
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;手机认证：
+                    </td>
+                    <td style="width:45%">
+                        <span>{{mobile}}</span>
+                    </td>
+                    <td class="align-center">
+                        <span class="status">已认证</span>
+                    </td>
+                </tr>
+                <tr>
+                    {{#if paymentPasswordHasSet}}
+                    <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码：
+                    </td>
+                    <td>
+                        <span>******</span>
+                    </td>
+                     <td class="align-center">
+                        <a href="/newAccount/settings/password" class="btn">去修改</a>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
+                    </td>
+                    <td>
+                        <span class="status-no">未设置!</span>
+                    </td>
+                    <td class="align-center">
+                        <a href="/newAccount/settings/password" class="btn">去认证</a>
+                    </td>
+                    {{/if}}
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="rzz">
+            <input type="text" name="email" class="rZemail" placeholder="请输入邮箱">
+            <div class="rzE_button">确定</div>
+            <div class="errors"></div>
+        </div>
+    </div>
+    {{else}}
     <div class="level-wrapper">
         <span style="font-weight:bold">安全等级</span>
         <div class="safetyLevel"><div class="levelBar" style="height:{{100-percent}}%"></div><span class="level-info" style="{{#if percent > 50}} color:white {{/if}}">{{levelText}}</span></div>
@@ -101,7 +154,9 @@
             <div class="errors"></div>
         </div>
     </div>
+    {{/if}}
     {{else}}
+        {{#if !isSave}}
         <form method="post" name="moreInfo" id="moreInfo">
             <ul>
                 <li>
@@ -174,8 +229,81 @@
                     </select>
                 </li>
             </ul>
-            <button class="modify btn" on-click="submit">编辑</button>
+            <button class="modify btn" on-click="submit">保存</button>
         </form>
+        {{else}}
+        <div id="moreInfo">
+            <ul>
+                <li>
+                    <label>性别：</label>
+                    <span>{{#if male}}男{{else}}女{{/if}}</span>
+                </li>
+                <li>
+                    <label>行业：</label>
+                    <span>
+                    {{#if companyIndustry == 'EXCAVATE'}}采掘业{{/if}}
+                    {{#if companyIndustry == 'GEO_SURVEY'}}地质勘查业{{/if}}
+                    {{#if companyIndustry == 'RESEARCH'}}科学研究/技术服务{{/if}}
+                    {{#if companyIndustry == 'IRRIGATION_ENVIRONMENT'}}水利/环境/公共设施管理{{/if}}
+                    {{#if companyIndustry == 'RENTAL'}}租赁/商务服务{{/if}}
+                    {{#if companyIndustry == 'MILITARY'}}军队/武警{{/if}}
+                    {{#if companyIndustry == 'INTERNATIONAL'}}国际组织{{/if}}
+                    {{#if companyIndustry == 'MANUFACTURE'}}制造业{{/if}}
+                    {{#if companyIndustry == 'IT'}}电信/通信/计算机/软件/互联网{{/if}}
+                    {{#if companyIndustry == 'GOVERNMENT'}}国家机关/政党机关/社会团体{{/if}}
+                    {{#if companyIndustry == 'MEDIA_ADVERTISEMENT'}}媒体/广告/广播/电影/电视{{/if}}
+                    {{#if companyIndustry == 'RETAIL_WHOLESALE'}}零售/批发{{/if}}
+                    {{#if companyIndustry == 'EDUCATION_TRAINING'}}教育/培训{{/if}}
+                    {{#if companyIndustry == 'PUBLIC_SERVICES'}}社会服务业{{/if}}
+                    {{#if companyIndustry == 'FINANCE_LAW'}}金融/保险/法律{{/if}}
+                    {{#if companyIndustry == 'TRANSPORTATION'}}交通运输/仓储/邮政{{/if}}
+                    {{#if companyIndustry == 'REAL_ESTATE'}}房地产业{{/if}}
+                    {{#if companyIndustry == 'ENERGY'}}水/电/煤/气/能源生产供应{{/if}}
+                    {{#if companyIndustry == 'CATERING_HOTEL'}}住宿/餐饮{{/if}}
+                    {{#if companyIndustry == 'MEDICAL_HEALTH_CARE'}}医疗/卫生/保健{{/if}}
+                    {{#if companyIndustry == 'CONSTRUCTION_ENGINERRING'}}建筑/工程{{/if}}
+                    {{#if companyIndustry == 'AGRICULTURE'}}农/林/牧/渔{{/if}}
+                    {{#if companyIndustry == 'ENTERTAIMENT'}}文化/娱乐服务业{{/if}}
+                    {{#if companyIndustry == 'SPORT_ART'}}体育/艺术{{/if}}
+                    {{#if companyIndustry == 'UTILITY'}}社会福利/公益事业{{/if}}
+                    {{#if companyIndustry == 'OTHER'}}其他{{/if}}
+                    </span>
+                </li>   
+                <li>
+                    <label>学历：</label>
+                    <span>
+                    {{#if educationLevel == 'HIGHSCHOOL'}}高中及以下{{/if}}
+                    {{#if educationLevel == 'HIGHSCHOOL'}}中专{{/if}}
+                    {{#if educationLevel == 'JUNIORCOLLEGE'}}大专{{/if}}
+                    {{#if educationLevel == 'UNDERGRADUATE'}}本科{{/if}}
+                    {{#if educationLevel == 'MASTER'}}硕士{{/if}}
+                    {{#if educationLevel == 'DOCTOR'}}博士{{/if}}
+                    </span>
+                </li>
+                 <li>
+                    <label>收入：</label>
+                    <span>
+                    {{#if salary == 'SALARY_BELOW_2000'}}2000以下{{/if}}
+                    {{#if salary == 'SALARY_2001_50000'}}2001﹣5000{{/if}}
+                    {{#if salary == 'SALARY_5001_10000'}}5001﹣10000{{/if}}
+                    {{#if salary == 'SALARY_10001_20000'}}10001﹣20000{{/if}}
+                    {{#if salary == 'SALARY_20001_50000'}}20001﹣50000{{/if}}
+                    {{#if salary == 'SALARY_ABOVE_50001'}}50001以上{{/if}}
+                    </span>     
+                </li>
+                <li>
+                    <label>婚姻：</label>
+                    <span>
+                    {{#if maritalStatus == "MARRIED"}}已婚{{/if}}
+                    {{#if maritalStatus == "SINGLE"}}未婚{{/if}}
+                    {{#if maritalStatus == "DIVORCED"}}离异{{/if}}
+                    {{#if maritalStatus == "WIDOWED"}}丧偶{{/if}}
+                    </span>
+                </li>
+            </ul>
+            <button class="modify btn" on-click="updateInfo">编辑</button>
+        </div>
+        {{/if}}
     {{/if}}
     <div class="img-wrapper">
         <img src="/ccc/newAccount/img/userInfo.png">
