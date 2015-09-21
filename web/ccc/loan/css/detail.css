@@ -90,8 +90,8 @@
 .invest-data-wrapper .investContainer .investTitle .title {
 	font-size: 20px;
 	/*  font-weight: bold;*/
-	color: #009ada;
 	
+	color: #009ada;
 	float: left;
 	width: 500px;
 	word-break: break-all;
@@ -624,7 +624,7 @@
 
 .do-invest-wrapper .status .userBlock .input .selectOption select {
 	background: #fff;
-	height: 40px; 
+	height: 40px;
 	color: #6b6b6b;
 	font-size: 14px;
 	width: 280px;
@@ -642,7 +642,6 @@
 }
 
 .do-invest-wrapper .status .userBlock .input .invest-button {
-	
 	height: 44px;
 	width: 280px;
 	color: #fff;
@@ -671,7 +670,6 @@
 	padding-bottom: 10px;
 	margin-top: 13px;
 	padding-left: 30px;
-	
 }
 
 .do-invest-wrapper .status .userBlock p {
@@ -680,24 +678,24 @@
 	font-size: 14px;
 }
 
-.do-invest-wrapper .status .userBlock .agree-error{
+.do-invest-wrapper .status .userBlock .agree-error {
 	font-size: 12px;
 	color: #d2252c;
 	background-image: url(/ccc/register/img/gou-bg.png);
 	background-repeat: no-repeat;
 	background-position: left center;
 	padding-left: 20px;
-	visibility:hidden;
+	visibility: hidden;
 	margin-left: 51px;
 }
 
-.do-invest-wrapper .status .userBlock .agree-box{
+.do-invest-wrapper .status .userBlock .agree-box {
 	width: 212px;
 	margin: auto;
 }
 
 .do-invest-wrapper .status .userBlock .agree-box span,
-.do-invest-wrapper .status .userBlock .agree-box span a{
+.do-invest-wrapper .status .userBlock .agree-box span a {
 	font-size: 12px;
 }
 
@@ -1510,7 +1508,6 @@
 #userBlock .calculatorBox {
 	overflow: hidden;
 	margin-top: 20px;
-	
 	padding-left: 30px;
 	padding-right: 30px;
 }
@@ -1667,6 +1664,7 @@
 .controler-title {
 	font-size: 28px;
 }
-.protocol{
-    color:#007ec5;
+
+.protocol {
+	color: #007ec5;
 }
