@@ -22,11 +22,15 @@ typeLists[0] = [{
 
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
-    typeLists[0].push({
+    if(k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
+      ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'){
+        typeLists[0].push({
         type: k,
         text: v
     });
+    }
 });
+
 
 typeLists[1] = [{
     type: true,
@@ -63,12 +67,12 @@ var ractive = new Ractive({
     template: template,
 
     data: {
+        user:CC.user,
         tabIndex: 0,
         selectedIndex: 0, // 类别的selectedIndex
-
+        
         typeLists: typeLists, // 切换类别
         list: [], // 数据,
-
         dateFrom: moment()
             .subtract(1, 'M') // 前1月
             .format('YYYY-MM-DD'),
@@ -76,7 +80,8 @@ var ractive = new Ractive({
             .format('YYYY-MM-DD')
     }
 });
-
+console.log('=======');
+console.log(ractive.get('user'));
 // 切换tab
 $('.ccc-tab')
     .on('select', function (e) {

@@ -1,5 +1,6 @@
 #main-container{
     background: #f4fcff;
+    position: relative;
 }
 .fund-content {
     height: auto;
@@ -17,9 +18,13 @@
     border-bottom: 1px solid #ccc;
 }
 
-.fund-content .fund-nav-view ul {
+.fund-content .fund-nav-view .sDuration {
     padding: 10px 0;
     overflow: hidden;
+}
+.fund-content .fund-nav-view .sRate {
+    padding: 10px 0;
+    height:50px;
 }
 .fund-content .fund-nav-view ul .selectTitle{
 	width: 100px;
@@ -105,4 +110,33 @@
     margin-left: 5px;
     margin-right: 5px;
     font-size: 26px;   
+}
+/*企业用户*/
+.dropdown{
+    width: 170px;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu > li > a{
+    font-size: 14px;
 }

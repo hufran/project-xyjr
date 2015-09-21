@@ -23,12 +23,30 @@
                            <p {{#if num===0}}style="color:#ffbc08;"{{elseif num===1}}style="color:#009ada;"{{else}}
                            style="color:#4a4a4a;"{{/if}}>{{data.name}}</p>
                      </div>
+                     {{#if num===0}}
                      <div class="no-warry-right">
-                        <p>活期理财，存取随心</p>
-                        <p>年化收益{{data.minRate}}%~{{data.maxRate}}%</p>
+                        <p>行业明星企业优质债权</p>
+                        <p>年化收益率8%~11%</p>
+                        <p style="color:#999;">期限以6-12个月为主</p>
+<!--                        <p>年化收益{{data.minRate}}%~{{data.maxRate}}%</p>-->
+<!--
                         <p {{#if num===0}}style="color:#999;"{{elseif num===1}}style="color:#999;"{{else}}
                            style="color:#999;"{{/if}}>{{data.description.substr(0,40)}}</p> 
+-->
                      </div>
+                      {{elseif num===1}}
+                    <div class="no-warry-right">
+                        <p>类金融机构资产转让项目</p>
+                        <p>年化收益率高达9%</p>
+                        <p style="color:#999;">期限以3-6个月为主</p>
+                    </div>
+                     {{else}}
+                    <div class="no-warry-right">
+                        <p>随心理财</p>
+                        <p>随存随取</p>
+                        <p style="color:#999;">敬请期待</p>
+                    </div>
+                     {{/if}}
                  </div>
                  {{/products}}
             </div>
