@@ -685,13 +685,14 @@
 	background-repeat: no-repeat;
 	background-position: left center;
 	padding-left: 20px;
-	visibility: hidden;
+	display: none;
 	margin-left: 51px;
 }
 
 .do-invest-wrapper .status .userBlock .agree-box {
-	width: 212px;
-	margin: auto;
+/*	width: 212px;*/
+	display: inline-block;
+/*	margin: auto;*/
 }
 
 .do-invest-wrapper .status .userBlock .agree-box span,

@@ -28,6 +28,8 @@ $.each(FundRecordType, function (k, v) {
     });
 });
 
+console.log(typeLists);
+
 typeLists[1] = [{
     type: true,
     text: '全部状态'

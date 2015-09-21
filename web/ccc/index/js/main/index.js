@@ -17,10 +17,17 @@ $carousel.on('slid.bs.carousel', function (e) {
     });
 
 
+function replaceStr(str){
+	return str.replace(/[^\x00-xff]/g,'xx').length;
+}
+
+
 IndexService.getLoanSummary(function (list) {
 
      for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
+		list[i].titleLength = replaceStr(list[i].title);
+//		 console.log(list[i].titleLength);
     }
     var investRactive = new Ractive({
         el: ".productList",
