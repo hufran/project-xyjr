@@ -127,11 +127,12 @@ exports.accountService = {
                 next(r.body);
             });
     },
-    resetPassword: function (password, next) {
+    resetPassword: function (password, smsCaptcha, next) {
         request('POST', '/api/v2/user/MYSELF/resetPaymentPassword')
             .type('form')
             .send({
-                password : password
+                password : password,
+                smsCaptcha : smsCaptcha
             })
             .end()
             .then(function (r) {
