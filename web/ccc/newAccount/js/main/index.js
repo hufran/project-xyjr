@@ -2,15 +2,16 @@
 var utils = require('ccc/global/js/lib/utils');
 var Plan = require('ccc/global/js/modules/cccRepayments');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/modules/cccPaging');
 
-
+var repayDetailTpl = require('ccc/newAccount/partials/loan/repayDetail.html');
 // 可用余额
 var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
 
 // 累计收益
-var investInterestAmount = parseFloat(CC.user.investInterestAmount || 0).toFixed(2);
+var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
 
 // 待收金额
 var dueInAmount = CC.user.dueInAmount || 0;
@@ -46,15 +47,18 @@ var homeRactive = new Ractive({
             self.set('avaAmount',parseInt(avaAmount));
             self.set('investInterestAmount',parseInt(investInterestAmount));
 		}else{
+			console.log(investInterestAmount);
 			var amoutArray = totalAmount.split('.');
 			self.set('totalAmount',parseInt(amoutArray[0]));
 			self.set('moreAmount',amoutArray[1] );
             var amoutArray = avaAmount.split('.');
 			self.set('avaAmount',parseInt(amoutArray[0]));
 			self.set('morAmount',amoutArray[1]);
-                 var amoutArray = investInterestAmount.split('.');
+            var amoutArray = investInterestAmount.split('.');
 			self.set('investInterestAmount',parseInt(amoutArray[0]));
 			self.set('moreiAmount',amoutArray[1]);
+			console.log(amoutArray);
+			console.log(this.get('moreiAmount'));
 		}
 	}
 });
@@ -170,14 +174,67 @@ var investRactive = new Ractive({
 			}
 		});
 	},
+	getDetail: function(id, type, callback) {
+		var url = '/api/v2/loan/repay/' + id + (type === 'overdue' ? '/'+type: '') + '/detail';
+		$.get(url + '?t=' + (new Date()).getTime(), function(o) {
+			callback(o);
+		});
+	},
+	parseDetailData: function(data) {
+		if (type === 'overdue') {
+			data.detail.Finterest = utils.format.amount(data.detail.interest, 2);
+			data.detail.FloanFee = utils.format.amount(data.detail.loanFee, 2);
+			data.detail.FmanageFee = utils.format.amount(data.detail.manageFee, 2);
+			data.detail.Foutstanding = utils.format.amount(data.detail.outstanding, 2);
+			data.detail.Fprincipal = utils.format.amount(data.detail.principal, 2);
+			data.detail.Ftotal = utils.format.amount(data.detail.total, 2);
+			data.penalty.Foverdue = utils.format.amount(data.penalty.overdue, 2);
+			data.penalty.Fpenalty = utils.format.amount(data.penalty.penalty, 2);
+			data.penalty.Ftotal = utils.format.amount(data.penalty.total, 2);
+			data.Ftotal = utils.format.amount(data.total, 2);
+		} else {
+			data.Finterest = utils.format.amount(data.interest, 2);
+			data.FloanFee = utils.format.amount(data.loanFee, 2);
+			data.FmanageFee = utils.format.amount(data.manageFee, 2);
+			data.Foutstanding = utils.format.amount(data.outstanding, 2);
+			data.Fprincipal = utils.format.amount(data.principal, 2);
+			data.Ftotal = utils.format.amount(data.total, 2);
+		}
+		return data;
+	},
 	tooltip: function() {
 		$('.tips-top').tooltip({
 			container: 'body',
 			placement: 'bottom'
 		});
-	},
+	}
 });
 
+
+investRactive.on('repay-detail', function(e) {
+	var $this = $(e.node);
+	var id = $this.parent().attr('data-id');
+	var type = $this.parent().attr('data-status');
+	investRactive.getDetail(id, type, function(data){
+	Tips.create({
+		obj: $this,
+		width: 270,
+		height: type === 'overdue' ? 305 : 260,
+		callback: function (container) {
+			new Ractive({
+				el: container,
+				template: repayDetailTpl,
+				data: {
+					data: self.parseDetailData(data),
+					overDueType: (type === 'overdue' ? true : false)
+				},
+				oncomplete: function() {
+					this.on('close-detail', Tips.close);
+				}
+			});
+		}
+	});});
+});
 var parseInvestData = function (o) {
 	
 	var res = o.data.results;
@@ -190,6 +247,7 @@ var parseInvestData = function (o) {
     };
     
     for(var i = 0;i < res.length; i ++) {
+		res[i].FavaAmount = utils.format.amount(CC.user.availableAmount, 2);
     	res[i].repayMethod = methodZh[res[i].repayment.invest.repayMethod];
     }
 

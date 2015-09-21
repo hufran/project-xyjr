@@ -2,9 +2,15 @@
 	<div class="infoContent">
 		<div class="info">
 			<div class="tx"></div>
+			{{#if user.enterprise}}
+			<div class="name" style="width:500px;text-align:left;">
+				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
+			</div>
+			{{else}}
 			<div class="name">
 				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
 			</div>
+			{{/if}}
 		</div>
 		<div class="credit">
 			<div class="doCredit">
