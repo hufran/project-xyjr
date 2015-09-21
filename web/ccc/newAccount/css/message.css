@@ -68,8 +68,8 @@
 
 .message-box .message-table table td {
 	height: auto;
-	line-height: 72px;
 	vertical-align:baseline;
+	padding: 10px 0 10px 0;
 }
 
 .message-box .message-table table tr {
@@ -140,7 +140,7 @@
 }
 
 .ctr {
-  line-height: 72px;
+  line-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
