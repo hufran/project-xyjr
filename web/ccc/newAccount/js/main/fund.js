@@ -400,7 +400,7 @@ $('.sRate li').click(function(){
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var longtime=$(this).text().substring(0,2);
            if(longtime==='全部'){
-               longtime=300;
+               longtime=0;
            }
            $('.date-from-picker>input').val(moment().add('days',-longtime)
             .format('YYYY-MM-DD'));
