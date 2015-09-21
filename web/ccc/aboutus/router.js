@@ -86,8 +86,9 @@ module.exports = function (router) {
         var tabIndex;
         for (var index = 0, length = tabs.length; index < length; index++) {
             var tab = tabs[index];
-            if (tab.text === indexMap[req.params.tab]) {
+            if (tab.text === indexMap[req.params.tab]||tab.text==='大 事 记') {
                 tabIndex = index;
+                 console.log(tabIndex);
                 break;
             }
         }
