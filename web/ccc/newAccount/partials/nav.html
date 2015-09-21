@@ -19,7 +19,7 @@
 			<span class="icon-invest"></span>
 		{{/if}}
 		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan">还款管理</a></span>
-		<span class="nav-toggle-btn" data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
+		<span class='nav-toggle-btn {{showLoanToggleMenu?"nav-toggle-btn-down":"nav-toggle-btn-up"}}' data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
 		<div class="clearfix"></div>
 		{{#if showLoanToggleMenu}}
 			<ul class="nav-toggle-menu">

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
 <link rel="stylesheet" href="/ccc/loan/css/detail.css">
 
-<!--{{JSON.stringify(loans)}}-->
+<!--{{JSON.stringify(user)}}-->
 
 <div class="">
     <div class="current-container">
@@ -106,16 +106,16 @@
         <div class="clearfix"></div>
 
         <div class="tab-panels">
-              <div class="tab-panel">
-                     <div class="loanInfoWrapper">
-                    <div class="loanInfo">
-                      {{{loans.loanRequest.riskInfo}}}
+                <div class="tab-panel">
+                    <div class="loanInfoWrapper">
+                        <div class="loanInfo">
+                          {{{loans.loanRequest.riskInfo}}}
+                        </div>
                     </div>
-                </div>
-                  
             </div>
           
             <div class="tab-panel">
+                {{#if user}}
                 <table class="table repay-plan repay-record">
                     <thead>
                         <th style="border-top-left-radius: 3px;">投标人</th>
@@ -131,20 +131,24 @@
                     </tr>
                     {{/invests}}
                 </table>
+                {{else}}
+                <div class="notLogin">
+                    <p>用户详情</p>
+                    <p>请 <a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
+                </div>
+                {{/if}}
             </div>
             <div class="tab-panel">
                 <div class="loanInfoWrapper">
                     <div class="loanInfo">
-                       
-                        
                        {{{loans.loanRequest.guaranteeInfo}}}
-                    
                     </div>
                 </div>
             </div>
             <div class="tab-panel">
-                               <table class="table repay-plan repay-record">
-                    {{#if user}}
+                {{#if user}}
+                <table class="table repay-plan repay-record">
+                   
                     <thead>
                         <th style="border-top-left-radius: 3px;">期次</th>
                         <th>预期还款时间</th>
@@ -163,13 +167,13 @@
                         <th>{{amountOutstanding}}</th>
                     </tr>
                     {{/replay}}
-                    {{else}}
-                    <div class="notLogin">
+                </table>
+                {{else}}
+                <div class="notLogin">
                     <p>用户详情</p>
                     <p>请 <a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
-                        </div>
-                    {{/if}}
-                </table>
+                </div>
+                {{/if}}
             </div>
              <div class="tab-panel  active">
                 <div class="loanInfoWrapper">

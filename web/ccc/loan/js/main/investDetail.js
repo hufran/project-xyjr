@@ -281,7 +281,7 @@ setTimeout((function () {
 					
 					
 					if (document.getElementById('agree').checked == true){
-						$('.agree-error').css('visibility','hidden');
+						$('.agree-error').css('display','none');
                     	Confirm.create({
                         msg: '您本次投资的金额为' + num + '元，'+ couponText +'，是否确认投资？',
                         okText: '确定',
@@ -327,7 +327,7 @@ setTimeout((function () {
 						}
                     });
 					}else{
-						$('.agree-error').css('visibility','visible');
+						$('.agree-error').css('display','block');
 						$('.agree-error').html('请先同意奇乐融投资协议');
 					}
                 }

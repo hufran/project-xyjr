@@ -120,9 +120,15 @@ function parseLoanList(list) {
         var method = list[i].method;
         var methodFmt = i18n.enums.RepaymentMethod[method][0];
         list[i].methodFmt = methodFmt;
+		list[i].titleLength = replaceStr(list[i].title);
     }
     return list;
 }
+	
+function replaceStr(str){
+	return str.replace(/[^\x00-xff]/g,'xx').length;
+}
+	
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
@@ -184,6 +190,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
                 investRactive.set('list', []);
                 setTimeout(function () {
                     investRactive.set('list', parseLoanList(res.results));
+					console.log(investRactive.get('list'));
                     initailEasyPieChart();
                     ininconut();
                     renderPager(res, params.currentPage);

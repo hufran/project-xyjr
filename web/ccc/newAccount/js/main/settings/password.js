@@ -9,7 +9,7 @@ var passwordRactive = new Ractive({
 	el: '#ractive-container',
 	template: require('ccc/newAccount/partials/settings/password.html'),
 	data: {
-		paymentPasswordHasSet : false,
+		paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
         step : '0',
 		showFundPass: true,
 		frontTab: 'fundPass',

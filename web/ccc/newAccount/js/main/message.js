@@ -48,7 +48,6 @@ function init (type) {
 			  self.set('total',o.totalSize);
 			  self.setData(o.results);
 			  self.bindAction.click();
-			  self.bindAction.mouseenter();
         });
       },
       getMessageData: function(callback) {
@@ -70,13 +69,9 @@ function init (type) {
       },
       bindAction : {
 		  'click':function () {
-			$('.ctr').click(function (){
-				if(type === 'NEW'){
-					$(this).addClass('activeContent');
-                    $('.ctr').click(function(){
-                        $(this).removeClass('activeContent')
-                    })
-//					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+			$('.ctr-box').click(function (){
+					$(this).children().addClass('activeContent');   
+					$(this).parent().siblings().children().children('.ctr').removeClass('activeContent');
 //					$(this).css('color','#4a4a4a');
 //					$(this).parent().siblings().css('color','#4a4a4a');
 //					$(this).parent().parent().css('backgroundColor','#fff');
@@ -87,7 +82,7 @@ function init (type) {
 //					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
 //					$(this).parent().parent().css('backgroundColor','#fff');
 //					$(this).parent().parent().siblings().css('backgroundColor','#e7e7e7');
-					}
+					
 			});
 		  },
 //		  'mouseenter':function(){
@@ -136,11 +131,8 @@ function init (type) {
   
   messageRactive.on({
 	  'showContent':function (event) {
-		  			
 					var id = event.node.getAttribute('data-id');
-		  			
 					var status = event.node.getAttribute('data-status');
-		  			
 					if (status == 'NEW') {
 					$.get('/api/v2/message/markAsRead/' + id);
 					}

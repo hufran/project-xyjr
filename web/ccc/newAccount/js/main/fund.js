@@ -31,6 +31,7 @@ $.each(FundRecordType, function (k, v) {
     }
 });
 
+//console.log(typeLists);
 
 typeLists[1] = [{
     type: true,
