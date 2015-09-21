@@ -111,12 +111,19 @@ $('.date-to-picker>input').change(function () {
 ractive.on('select-type', function (e) { // dropdown 选择类型的时候
     var selectedIndex = +(e.keypath.substring(e.keypath.lastIndexOf('.') +
         1));
-
-    this.set('selectedIndex', selectedIndex);
+    
+   this.set('selectedIndex', selectedIndex);
 
     $(this.find('.type-checker'))
         .removeClass('open');
-
+    var typea=typeLists[0][selectedIndex].type;
+    // console.log("======");
+  // console.log(typeLists[0][selectedIndex]);
+            typet=typea;
+              ractive.loadData({
+                    type: typea,
+                    preset: tab1Preset
+              });
     return false;
 });
 
