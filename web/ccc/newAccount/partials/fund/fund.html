@@ -1,6 +1,7 @@
-             <div class="fund-nav-view">
+          <div class="fund-nav-view">
                     <ul class="sRate">
                         <p class="selectTitle">交易类型:</p>
+                        {{#if !user.enterprise}}
                         <li class="selected s__is-selected" data-min-rate="0" data-max-rate="100" data-type="ALL">全部</li>
                         <li data-min-rate="0" data-max-rate="8" data-type="INVEST">投标</li>
                         <li data-min-rate="8" data-max-rate="10" data-type="WITHDRAW">提现</li>
@@ -8,6 +9,29 @@
                         <li data-min-rate="12" data-max-rate="14" data-type="INVEST_REPAY">回款</li>
                         <li data-min-rate="14" data-max-rate="100" class="get-cash" data-type="FEE_WITHDRAW">提现手续费</li>
                         <li data-min-rate="14" data-max-rate="100" class="get-cash" data-type="TRANSFER">平台奖励</li>
+                        {{else}}
+                        <div class="dropdown input-group type-checker pull-left">
+                              <ul class="dropdown-menu" role="listbox">
+            {{# {typeList: typeLists[tabIndex]} }} {{#each typeList}}
+            <li role="presentation">
+                <a role="menuitem" href="#" on-click="select-type">
+                        {{ text }}
+                    </a>
+            </li>
+            {{/each}} {{/}}
+        </ul>
+
+        <span class="form-control type-text" data-toggle="dropdown" data-type="{{ typeLists[tabIndex][selectedIndex].type }}">
+            {{ typeLists[tabIndex][selectedIndex].text }}
+        </span>
+
+        <span class="input-group-addon btn-drop" data-toggle="dropdown">
+            <span class="caret"></span>
+        </span>
+
+    </div>
+                        {{/if}}
+
                     </ul>
                     <ul class="sDuration">
                         <p class="selectTitle">交易时间:</p>

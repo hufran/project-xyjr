@@ -26,7 +26,6 @@ var navRactive = new Ractive({
 				this.set('showAccountToggleMenu', true);
 			}
 		}
-		
 	}	
 });
 	

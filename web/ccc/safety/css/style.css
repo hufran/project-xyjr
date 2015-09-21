@@ -1,14 +1,17 @@
 
 #main-container{
-    background: #f4fcff;
+/*    background: #f4fcff;*/
     padding-bottom: 66px;
     overflow: hidden;
 }
 .heart-control-box img{
     float: left;
 }
+.heart-control-box .heart-control img{
+    float: none;
+}
 .heart-control-box{
-    margin:0px 110px 90px 110px;
+    margin:0px 110px 0px 110px;
     overflow: hidden;
 }
 .heart-pay-box{
@@ -37,14 +40,14 @@
     margin-bottom: 20px;
 }
 .heart-control p{
-    font-size: 14px;
-    color:#999;
+    font-size: 16px;
+    color:#4a4a4a;
     line-height: 38px;
 }
 .heart-banner img{
     position: absolute;
     left: 50%;
-    margin-left: -750px;
+    margin-left: -960px;
 }
 .heart-banner{
     height: 160px;
@@ -52,8 +55,8 @@
 .heart-content-box{
     width: 1100px;
     margin: 0px auto;
-    height: 1880px;
-     background: #fff;
+/*    height: 270px;*/
+     background: #f4fcff;
      padding-top: 30px;
 }
 .regist-rightnow{
@@ -65,6 +68,8 @@
     border-radius: 5px;
     font-size: 30px;
     margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 40px;
 }
 .regist-rightnow-btn{
     margin-left: 370px;
@@ -82,8 +87,8 @@
 .transparent-house{
     margin-left: 110px;
     margin-right: 100px;
-    height: 300px;
-    margin-bottom: 30px;
+    height: 270px;
+/*    margin-bottom: 30px;*/
 }
 .transparent-house-content{
     float: right;
@@ -93,14 +98,30 @@
     float: left;
 }
 .transparent-house-content p{
-    font-size: 14px;
-    color:#999;
+    font-size: 16px;
+    color:#4a4a4a;
     line-height: 38px;
-    margin-top: 120px;
+    margin-top: 86px;
 }
 .transparent-paper-content p{
-    margin-top: 70px;
+    margin-top: 30px;
 }
 .transparent-earn-content p{
     margin-top: 70px;
+}
+.heart-bg{
+   background: #f4fcff; 
+}
+.bg-white{
+    background: #fff;
+    height: 270px
+}
+.content-box{
+    background: #fff;
+}
+.bg-bottom{
+    height:auto;
+}
+.more-height{
+    height:320px;
 }
