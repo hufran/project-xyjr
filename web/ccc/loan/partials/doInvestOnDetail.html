@@ -4,7 +4,7 @@
     <div class="tip">投资金额 </div>
 <!--    <div class="tip">{{loan.rule.min}}元起投 </div>-->
 <!--    <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>-->
-    <div class="highAmount">可投¥0.00元</div>
+<!--    <div class="highAmount">可投¥0.00元</div>-->
 </div>
 <p class="finished-money">可投金额&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;font-size:20px;">0.00</span><span style="font-size:14px;">元</span></p>
 <p class="finished-money">剩余时间&nbsp;&nbsp;&nbsp;<span style="font-size:14px;">已完成</span></p>
@@ -35,6 +35,8 @@
 				{{#if user.availableAmount}}
 				{{#if user.availableAmount.length>8}}
 					{{user.availableAmount.substr(0,5)}}...
+                {{else}}
+                    {{user.availableAmount}}
 				{{/if}}
 				{{else}}0{{/if}}元
 			 </h1>
@@ -62,9 +64,9 @@
 <!--                <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>-->
 				<p class="rule-max">单笔最多可投：{{loan.rule.max}}元</p>
                 {{#if user}}
-                <a href="/login">
-                    <input type="submit" class="btn btn-warning1 invest-button" value="即将开始" />
-                </a>
+               
+                    <input type="submit" class="finished-btn" value="即将开始" />
+               
                 {{else}}
                 <a href="/login">
                     <input type="submit" class="btn btn-warning invest-button" value="立即登录" />
@@ -126,7 +128,7 @@
                     </div>
                     {{/if}} 
                     <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" />    
-                    <input style="display:none" type="password" placeholder="请输入交易密码" />                    <p>忘记交易密码？<a href="/newAccount/settings/password">点击进入密码重置</a></p>
+                    <input style="display:none" type="password" placeholder="请输入交易密码" />                    <p><a href="/newAccount/settings/password">忘记交易密码？</a></p>
                         <input type="submit" class="btn btn-warning invest-button" value="确认投资" />
 						<p class="agree-box">
 							<input type="checkbox" class="agree" checked id="agree"/>
