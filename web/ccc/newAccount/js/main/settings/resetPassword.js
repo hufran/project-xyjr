@@ -84,7 +84,7 @@ function countDown() {
             $('.sendCode')
                 .html(msg.replace('$', left--));
         } else {
-            ractive.set('isSend', true);
+            resetPasswordRactive.set('isSend', true);
             $('.sendCode')
                 .html(previousText);
             $('.sendCode')
