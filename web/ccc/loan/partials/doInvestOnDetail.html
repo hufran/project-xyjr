@@ -87,20 +87,32 @@
     <div class="info">
       
         <div class="userBlock" id="userBlock">
-            {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if !name}}
-              <div class="firstLine renzheng" style="padding:0px;">
-            <div class="tip">{{loan.rule.min}}元起投 </div>
-            <div class="highAmount">最高投资限额：{{loan.rule.max}}元</div>
-        </div>
+            {{#if user}} {{! 已登录,但是没开第三方支付 }} 
+			{{#if !name}}
+               <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red">{{user.availableAmount}}</i>
+                <a href="/newAccount/recharge" class="recharge"><button>充值</button></a>
+            </div>
+			<div class="calculatorBox">
+			 <div class="calculator">
+                            <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
+                            <input type="hidden" name="loanId" value="{{loan.id}}">
+                            <input placeholder="{{loan.rule.min}}"  name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon" />
+                            <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
+                        </div>
+				 <span class="topAmount" on-click="maxNumber">最大可投金额</span>
+			</div>
+			<p class="one-time-max">单笔最多可投：{{loan.rule.max}}元</p>
+                       
+                        <div class="clearfix"></div>
             <div class="prompt-open-3rdpay">
-                <p class="shiming" style="margin-bottom: 20px">实名认证后才能参与投资</p>
+                <p class="shiming">您的账户尚未实名认证，认证后可投资</p>
             </div>
             <div class="invest-button-wrapper">
-                <a class="btn btn-warning open-button" style="float: none" href="/account/umpay">立即认证</a>
+                <a class="btn btn-warning open-button"  href="/account/umpay">立即认证</a>
             </div>
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
 
-            <div class="leftMoney-open">账户余额（元）： &yen;<i class="red">{{user.availableAmount}}</i>
+            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red">{{user.availableAmount}}</i>
                 <a href="/newAccount/recharge" class="recharge"><button>充值</button></a>
             </div>
             <div class="input">
@@ -114,7 +126,7 @@
                         </div>
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
                         <div class="clearfix"></div>
-                        <p>单笔最多可投：{{loan.rule.max}}元</p>
+                        <p class="p-max">单笔最多可投：{{loan.rule.max}}元</p>
                     {{#if selectOption}}
                     <div class="selectOption">
                         <select name="placementId" id="couponSelection" value="{{coupon}}">
@@ -128,8 +140,13 @@
                         </select>
                     </div>
                     {{/if}} 
-                    <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" />    
-                    <input style="display:none" type="password" placeholder="请输入交易密码" />                    <p><a href="/newAccount/settings/password">忘记交易密码？</a></p>
+						<div class="password-box">
+					<div class="password">
+                    	<input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" />
+					</div>
+						<p><a href="/newAccount/settings/password" style="font-size:14px">忘记交易密码？</a></p>
+						</div>
+                    <input style="display:none" type="password" placeholder="请输入交易密码" />                  
                         <input type="submit" class="btn btn-warning invest-button" value="确认投资" />
 						<p class="agree-box">
 							<input type="checkbox" class="agree" checked id="agree"/>
@@ -161,7 +178,7 @@
             {{/if}} {{else}}
 			
 			<p class="left-money">
-                账户余额：<a href="/login" style="color:#007ec5;">登录</a> 后可见
+                账户余额：<a href="/login" style="color:#009ada;">登录</a> 后可见
             </p>
             <div class="firstLine" style="padding:0px;">
 <!--
@@ -179,6 +196,7 @@
                 </div>
                 <span class="topAmount" on-click="">最大可投金额</span>
             </div>
+			<p class="one-time-max">单笔最多可投：{{loan.rule.max}}元</p>
 <!--            <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>-->
 
             <a href="/login?url={{backUrl}}" class="loginBtn">

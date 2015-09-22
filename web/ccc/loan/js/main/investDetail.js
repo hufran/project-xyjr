@@ -56,6 +56,7 @@ function initailEasyPieChart() {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
+			var percentageNum = CC.loan.rule.leftAmount/10000;
             // 100%进度条颜色显示为背景色
             var color = percentage === 100 ? "#f58220" : '#009ada';
             $(this).easyPieChart({
@@ -63,14 +64,18 @@ function initailEasyPieChart() {
                 trackColor: '#ddd',
                 scaleColor: false,
                 lineCap: 'butt',
-                lineWidth: 2,
+                lineWidth: 4,
                 animate: oldie ? false : 1000,
-                size: 100,
+                size: 130,
                 onStep: function (from, to, percent) {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
             });
-            $(this).find("span.percentageNum").html(percentage + "%");
+            $(this).find("span.percentageNum").html('<span style="color:#f58220;font-size:24px;">' + percentageNum + '</span>' + '<span style="color:#4b4b4b;">' + '万' + '</span>');
+			var width = $(this).find("span.percentageNum").width();
+			$(this).find("span.percentageNum").css({'left':'50%','margin-left':-width/2});
+			console.log(width);
+			
         });
 
     });
@@ -108,7 +113,7 @@ setTimeout((function () {
                 ss: ss
             }
             var days = newTimeleftTotal.dd ? '<i>' + newTimeleftTotal.dd + '</i>日' : '';
-            $('.time>span').html('剩余时间：' + days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
+            $('.time>span').html( days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
         }, 1000)
         //获取最后还款日期
     if (CC.repayments instanceof Array && CC.repayments.length > 0) {
@@ -285,7 +290,7 @@ setTimeout((function () {
 					
 					
 					if (document.getElementById('agree').checked == true){
-						$('.agree-error').css('display','none');
+						$('.agree-error').css('visibility','hidden');
                     	Confirm.create({
                         msg: '您本次投资的金额为' + num + '元，'+ couponText +'是否确认投资？',
                         okText: '确定',
@@ -331,7 +336,7 @@ setTimeout((function () {
 						}
                     });
 					}else{
-						$('.agree-error').css('display','block');
+						$('.agree-error').css('visibility','visible');
 						$('.agree-error').html('请先同意奇乐融投资协议');
 					}
                 }

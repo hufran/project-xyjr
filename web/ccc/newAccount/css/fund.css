@@ -40,7 +40,7 @@
 
 
 
-.fund-content .fund-nav-view ul li {
+.fund-content .fund-nav-view .sDuration li {
     width: 50px;
     text-align: center;
     color: #6d6c6c;
@@ -113,15 +113,17 @@
 }
 /*企业用户*/
 .dropdown{
-    width: 170px;
+    width: 220px;
 }
 .dropdown-menu {
+/*
     position: absolute;
     top: 100%;
     left: 0;
     z-index: 1000;
+*/
     display: none;
-    float: left;
+/*    float: left;*/
     min-width: 160px;
     padding: 5px 0;
     margin: 2px 0 0;
@@ -132,6 +134,7 @@
     border: 1px solid #cccccc;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
+	text-align: left;
 
 }
 .open > .dropdown-menu {
@@ -139,4 +142,5 @@
 }
 .dropdown-menu > li > a{
     font-size: 14px;
+	text-align: left;
 }
