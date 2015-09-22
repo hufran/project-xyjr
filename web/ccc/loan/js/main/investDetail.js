@@ -272,10 +272,12 @@ setTimeout((function () {
                     var couponText = '';
                     if ($("#couponSelection")) {
                         var value = $("#couponSelection").find("option:selected").val();
-                        if ( value == '' ) {
-                            couponText = '未使用任何奖券';
+                        if(investRactive.get('selectOption')==null){
+                        if ( value == '') {
+                            couponText = '未使用任何奖券,';
                         } else {
                             couponText = '将使用' + $("#couponSelection").find("option:selected").text();
+                        }
                         }
                     }
 					
@@ -283,7 +285,7 @@ setTimeout((function () {
 					if (document.getElementById('agree').checked == true){
 						$('.agree-error').css('display','none');
                     	Confirm.create({
-                        msg: '您本次投资的金额为' + num + '元，'+ couponText +'，是否确认投资？',
+                        msg: '您本次投资的金额为' + num + '元，'+ couponText +'是否确认投资？',
                         okText: '确定',
                         cancelText: '取消',
   
