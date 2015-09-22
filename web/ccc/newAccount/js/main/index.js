@@ -32,7 +32,8 @@ var homeRactive = new Ractive({
 		totalAmount : totalAmount,
 		cTotalAmount : parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2),
 		dueInAmount : parseFloat(dueInAmount).toFixed(2),
-		frozenAmount : parseFloat(frozenAmount).toFixed(2)
+		frozenAmount : parseFloat(frozenAmount).toFixed(2),
+		isEnterprise : CC.user.enterprise
 	},
     parseData:function(){
 		var self = this;
