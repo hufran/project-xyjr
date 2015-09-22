@@ -219,7 +219,7 @@ ractive.on('withdrawForm', function (e) {
 						okText: '提现成功',
 						cancelText: '提现失败',
 						ok: function() {
-							window.location.href = '/account/funds';
+							window.location.href = '/newAccount/funds';
 						},
 						cancel: function() {
 							window.location.reload();
