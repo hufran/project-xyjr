@@ -553,16 +553,23 @@
 .do-invest-wrapper .status .leftMoney {
 	font-size: 13px;
 	margin-bottom: 5px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ccc;
 	text-align: left;
-	padding-left: 10px;
+/*	padding-left: 10px;*/
 	overflow: hidden;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .do-invest-wrapper .status .leftMoney h1 {
 	display: inline;
-	color: #4a4a4a;
+    font-size: 13px;
+    color: #6b6b6b;
 	line-height: 40px;
+}
+.do-invest-wrapper .status .leftMoney h1 .left-money{
+    font-size: 20px;
+    color: #ff7200;	
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney-open {
@@ -602,7 +609,7 @@
 	color: white;
 	text-decoration: none;
 	width: 56px;
-	background-color: #009ada;
+	background-color: #f58220;
 	border-radius: 3px;
 	text-align: center;
 	line-height: 22px;
@@ -613,7 +620,7 @@
 }
 
 .do-invest-wrapper .status .leftMoney .recharge:hover {
-	background-color: #015989;
+	background-color: #df6502;
 }
 
 .do-invest-wrapper .status .userBlock .open-button {
@@ -768,7 +775,7 @@
 }
 
 .do-invest-wrapper .status .userBlock .rule-max {
-	margin-left: 10px;
+	margin-left: 30px;
 }
 
 .do-invest-wrapper .status .userBlock .loginBtn {
@@ -1608,9 +1615,9 @@
 	margin-bottom: 5px;
 	overflow: hidden;
 	margin-top: 20px;
-	margin-left: 10px;
-	padding-right: 40px;
-	padding-left: 0px;
+/*	margin-left: 10px;*/
+/*	padding-right: 40px;*/
+/*	padding-left: 0px;*/
 }
 
 #userBlock .totalInterest {
@@ -1715,12 +1722,13 @@
 }
 
 .finished-btn {
-	width: 300px;
-	height: 38px;
-	background: #ccc;
+	width: 280px;
+	height: 44px;
+	background: #f58220;
 	color: white;
 	border: none;
-	font-size: 16px;
+	font-size: 18px;
+    border-radius: 4px;
 }
 
 .finished-money {

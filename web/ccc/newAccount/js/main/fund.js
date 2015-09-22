@@ -30,7 +30,10 @@ $.each(FundRecordType, function (k, v) {
     });
     }
 });
-
+typeLists[0].push({
+    type:'OFFLINE_DEPOSIT',
+    text:'线下充值'
+});
 //console.log(typeLists);
 
 typeLists[1] = [{
@@ -81,8 +84,7 @@ var ractive = new Ractive({
             .format('YYYY-MM-DD')
     }
 });
-console.log('=======');
-console.log(ractive.get('user'));
+
 // 切换tab
 $('.ccc-tab')
     .on('select', function (e) {

@@ -45,14 +45,14 @@
         <th>被邀请用户</th>
         <th>真实姓名</th>
         <th>注册时间</th>
-        <th>我的奖励</th>
+        <!-- <th>我的奖励</th> -->
     </tr>
 {{#list}}
     <tr>
         <td>{{Fmobile}}</td>
         <td>{{#if user.name}}{{user.name}}{{else}}未认证{{/if}}</td>
         <td>{{user.registerDate}}</td>
-        <td>{{rewardAmount}}</td>
+        <!-- <td>{{rewardAmount}}</td> -->
     </tr>
  {{/list}}
 </table>

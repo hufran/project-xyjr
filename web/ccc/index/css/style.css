@@ -800,9 +800,16 @@ a {
 	font-size: 14px;
 	display: inline-block;
 }
+.loanWrapper .opre .investbtn-hover{
+        background-color: #fff;
+    border: 1px solid #f58220;
+    color:#f58220;
+}
+
 
 .loanWrapper .opre .investbtn:hover {
 	background-color: #df6502;
+    color:#fff;
 }
 
 .easyPieChart {
@@ -831,3 +838,9 @@ a {
 	font-size: 18px;
 }
 /*# sourceMappingURL=/ccc/index/css/style.css.map */
+.loanWrapper .opre .investbtn-time{
+	width: 180px;
+	text-align: center;
+	margin-left: -30px;
+	margin-top: 5px;
+}

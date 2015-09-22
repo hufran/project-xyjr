@@ -39,7 +39,7 @@ IndexService.getLoanSummary(function (list) {
     });
 
     initailEasyPieChart();
-//    ininconut();
+    ininconut();
 
 });
 
@@ -58,7 +58,7 @@ IndexService.getLoanSummary(function (list) {
     });
 
     initailEasyPieChart();
-//    ininconut();
+    ininconut();
 
 });
 
@@ -203,7 +203,7 @@ request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .then(function (res) {
         var count = new Ractive({
         el: '.firendLink',
-        template: '<span class="friend-left">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
+        template: '<span class="friend-left" style="margin-right:16px;">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
         data: {
             items: res.body
         }
@@ -224,7 +224,30 @@ $('.strengthProtect').click(function(){
     location.href=url;
 });
 
-
+function ininconut () {
+    $(".opre > .investbtn-time").each(function () {
+        var t = $(this);
+        if(t.data("status") === 'SCHEDULED'){
+            var id = t.data("id");  
+            var openTime = t.data("open");  
+            var serverDate = t.data("serv");
+            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+            var textDay = leftTime.day ? leftTime.day +'天' : '';
+            var interval = setInterval((function () {
+                serverDate += 1000;
+                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+                var textDay = leftTime.day ? leftTime.day +'天' : '';
+                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+                    clearInterval(interval);
+					t.prev().hide();
+                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">投标中</div></a>');
+                }else {
+                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
+                }
+            }), 1000);
+        }
+    });
+};
 
 
 //require('ccc/index/js/main/ss.js')
