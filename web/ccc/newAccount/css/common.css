@@ -3,6 +3,7 @@
 }
 #main-container{
     background: #f4fcff;
+    position: relative;
 }
 .account-wrapper {
 	width: 100%;
@@ -245,4 +246,35 @@ table tbody tr td {
 	width: 250px;
 	height: 250px;
 	background: url(/ccc/newAccount/img/msg.png) no-repeat center;
+}
+.account-bg{
+    background:#4a4a4a;
+    opacity:0.7;
+    display:block;
+    z-index: 9999;
+    width: 100%;
+    height:100%;
+    position: fixed;
+    left: 0;
+    top:0;
+}
+.bankcard-gray{
+    z-index: 10000;
+    position: absolute;
+    top:24px;
+    left: 390px;
+    cursor: pointer;
+}
+.rightnow{
+    z-index: 10000;
+    position: absolute;
+    top:170px;
+    left:650px;
+}
+.password{
+    z-index: 10000;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    cursor: pointer; 
 }

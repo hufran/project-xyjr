@@ -36,11 +36,20 @@
 					{{#if paymentPasswordHasSet}}
 					<a href="/newAccount/settings/password"><span class="rzpa cpass-active"></span></a>
 					{{else}}
+<!--
+                    <img class="password" src="/ccc/newAccount/img/password.png"/>
+                    <div class="account-bg"></div>
+                    <a href="/newAccount/settings/password"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+-->
+					<a href="/newAccount/settings/bankCards"><span class="rzpa ccr"></span></a>
 					<a href="/newAccount/settings/password"><span class="rzpa cpass"></span></a>
 					{{/if}}
 					{{#if banksabled}}
 					<a href="/newAccount/settings/bankCards"><span class="rzpa ccr-active"></span></a>
 					{{else}}
+                    <img class="bankcard-gray" src="/ccc/newAccount/img/bankcard.png"/>
+                    <div class="account-bg"></div>
+                    <a href="/newAccount/settings/bankCards"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
 					<a href="/newAccount/settings/bankCards"><span class="rzpa ccr"></span></a>
 					{{/if}}
 					{{#if emailAuthenticated}}
@@ -76,3 +85,12 @@
 </div>
 <div class="clearfix"></div>
 <div class="space-30"></div>
+
+<script type="text/javascript">
+    $(".bankcard-gray").click(function(){
+    $(".account-bg").css('display','none');
+    $(this).css('display','none');
+    $(".rightnow").css('display','none') ;   
+})
+
+</script>
