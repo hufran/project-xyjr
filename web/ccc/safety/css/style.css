@@ -60,17 +60,21 @@
      padding-top: 30px;
 }
 .regist-rightnow{
-    width:360px;
-    height:64px;
+    width:320px;
+    height:60px;
     color:white;
-    background: #007ec5;
+    background: #f58200;;
     border: none;
     border-radius: 5px;
-    font-size: 30px;
+    font-size: 24px;
     margin: 0 auto;
     margin-bottom: 50px;
     margin-top: 40px;
 }
+.regist-rightnow:hover{
+    background: #df6502;
+}
+
 .regist-rightnow-btn{
     margin-left: 370px;
 }
@@ -92,7 +96,7 @@
 }
 .transparent-house-content{
     float: right;
-    width: 420px;
+    width: 421px;
 }
 .transparent-paper-content{
     float: left;

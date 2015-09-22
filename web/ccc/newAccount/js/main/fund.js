@@ -81,8 +81,7 @@ var ractive = new Ractive({
             .format('YYYY-MM-DD')
     }
 });
-console.log('=======');
-console.log(ractive.get('user'));
+
 // 切换tab
 $('.ccc-tab')
     .on('select', function (e) {
