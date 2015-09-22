@@ -81,8 +81,7 @@ var ractive = new Ractive({
             .format('YYYY-MM-DD')
     }
 });
-console.log('=======');
-console.log(ractive.get('user'));
+
 // 切换tab
 $('.ccc-tab')
     .on('select', function (e) {
@@ -93,8 +92,6 @@ $('.ccc-tab')
         loadInitData(e.index);
         return false;
     });
-
-
 // datetime picker
 $('.date-from-picker,.date-to-picker').datetimepicker({
     language: 'zh-cn',
@@ -217,6 +214,8 @@ loadInitData(0);
 
 // tab1,对ajax数据 set到ractive之前的操作
 function tab1Preset(item) {
+    console.log("========");
+    console.log(item);
     // 如果备注是数字，转换成第x期
     if (item.description !== null && isNumber(item.description)) {
         item.description = '第' + item.description + '期';

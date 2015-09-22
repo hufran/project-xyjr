@@ -31,14 +31,15 @@
 <div class="status">
     <div class="info">
 		 <div class="leftMoney">
-			<h1 class="red"> 账户余额：
+			<h1 class="red"> 账户余额（元）：¥<span class="left-money">
 				{{#if user.availableAmount}}
 				{{#if user.availableAmount.length>8}}
 					{{user.availableAmount.substr(0,5)}}...
                 {{else}}
                     {{user.availableAmount}}
 				{{/if}}
-				{{else}}0{{/if}}元
+				{{else}}0{{/if}}
+                </span>
 			 </h1>
          	<a href="#" class="recharge">充值</a>
          </div>

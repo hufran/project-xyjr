@@ -73,8 +73,7 @@
 
                 <RInput field="agreement" valueStableDuration=100>
                     <div class="rinput agreement-div">
-                        <br>
-                        <br> {{#if stepLoading}}
+                         {{#if stepLoading}}
                         <input class="next-step" type="button" value="请稍等" disabled /> {{else}}
                         <input on-click='nextStep' class="next-step" type="button" value="立即注册" /> {{/if}}
                         <label class="agree-register-protocol">

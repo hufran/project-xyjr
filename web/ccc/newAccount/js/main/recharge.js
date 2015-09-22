@@ -70,6 +70,10 @@ var ractive = new Ractive({
                 self.set('msg.AMOUNT_NULL', true);
                 return;
             }
+            if (value <100){
+                self.set('msg.AMOUNT_INVALID',true);
+                return;
+            }
 
             if (!self.get('msg.AMOUNT_MULL')) {
                 self.set('msg.AMOUNT_NULL', false);

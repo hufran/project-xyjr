@@ -274,7 +274,8 @@ setTimeout((function () {
                         var value = $("#couponSelection").find("option:selected").val();
                         if ( value == '' ) {
                             couponText = '未使用任何奖券';
-                        } else {
+                        }  
+                        else {
                             couponText = '将使用' + $("#couponSelection").find("option:selected").text();
                         }
                     }
@@ -334,6 +335,7 @@ setTimeout((function () {
             });
         };
     });
+   
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
@@ -429,7 +431,6 @@ setTimeout((function () {
         });
 
     function showSelect(amount) {
-
             $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
