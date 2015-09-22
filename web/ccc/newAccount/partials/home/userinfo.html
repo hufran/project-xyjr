@@ -1,3 +1,4 @@
+
 <div class="userinfowra">
 	<div class="infoContent">
 		<div class="info">
@@ -13,44 +14,72 @@
 			{{/if}}
 		</div>
 		<div class="credit">
-			<div class="doCredit">
+			<ul class="doCredit">
 				{{#if user.enterprise}}
 					{{#if user.mobile}}
-					<span class="rzpa cmo-active"></span>
+					<li class="rzpa cmo-active"></li>
 					{{else}}
-					<span class="rzpa cmo"></span>
+					<li class="rzpa cmo"></li>
 					{{/if}}
 				{{else}}
 					{{#if user.mobile}}
-					<span class="rzpa cmo-active"></span>
+					<li class="rzpa cmo-active"></li>
 					{{else}}
-					<span class="rzpa cmo"></span>
+					<li class="rzpa cmo"></li>
 					{{/if}}
 					{{#if user.name}}
-					<a href="/newAccount/settings/authentication"><span class="rzpa cid-active"></span></a>
+				<li>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" ></a>
+					<p class="info-tip" style="top:16px;left:23px;">点击查看实名认证</p>
+				</li>
 					{{else}}
-					<a href="/newAccount/settings/authentication"><span class="rzpa cid"></span></a>
+				<li>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter"></a>
+					<p class="info-tip" style="top:16px;left:23px;">点击查看实名认证</p>
+				</li>
 					{{/if}}
 					{{#if paymentPasswordHasSet}}
-					<a href="/newAccount/settings/password"><span class="rzpa cpass-active"></span></a>
+				<li>
+					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass-active"></a>
+					<p class="info-tip" style="top:16px;left:85px;">点击设置交易密码</p>
+				</li>
 					{{else}}
-					<a href="/newAccount/settings/password"><span class="rzpa cpass"></span></a>
+				<li>
+					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass"></a>
+					<p class="info-tip" style="top:16px;left:85px;">点击设置交易密码</p>
+				</li>
 					{{/if}}
 					{{#if banksabled}}
-					<a href="/newAccount/settings/bankCards"><span class="rzpa ccr-active"></span></a>
+				<li>
+					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr-active"></a>
+					<p class="info-tip" style="top:16px;left:152px;">点击设置银行卡</p>
+				</li>
 					{{else}}
-					<a href="/newAccount/settings/bankCards"><span class="rzpa ccr"></span></a>
+				<li>
+					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr"></a>
+					<p class="info-tip" style="top:16px;left:152px;">点击设置银行卡</p>
+				</li>
 					{{/if}}
 					{{#if emailAuthenticated}}
-					<a href="/newAccount/settings/userInfo"><span class="rzpa cem-active"></span></a>
+				<li>
+					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem-active"></a>
+					<p class="info-tip" style="top:16px;left:220px;">点击设置邮箱</p>
+				</li>
 					{{else}}
-					<a href="/newAccount/settings/userInfo"><span class="rzpa cem"></span></a>
+				<li>
+					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem"></a>
+					<p class="info-tip" style="top:16px;left:220px;">点击设置邮箱</p>
+				</li>
 					{{/if}}
+				
 					{{#each groupMedal}}
-	                <img src="{{this}}" class="rzpa" alt="勋章" style="margin-top:-38px;">
+				<li>
+	                <img src="{{this}}" class="rzpa" alt="勋章" >
+				</li>
 	                {{/each}}
+					
                 {{/if}}
-			</div>
+			</ul>
 			{{#if !isEnterprise}}
 			<div class="EdiT">
 				{{#if showVip}}
@@ -74,3 +103,14 @@
 </div>
 <div class="clearfix"></div>
 <div class="space-30"></div>
+<script type="text/javascript">
+	
+	
+//	var classA =document.getElementsByClassName('mouse-enter');
+//	console.log(classA);
+//	for(var i = 0;i<classA.length;i++){
+//		classA[i].onmouseover = function(){
+//			classA[i].nextSibling.style.display = 'block';
+//		}
+//	}
+</script>

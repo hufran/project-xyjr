@@ -446,3 +446,14 @@ var loanRactive = new Ractive({
 		return data;
 	}
 });
+
+
+
+window.onload = function(){
+	$('.doCredit li a').mouseover(function(){
+		$(this).siblings().fadeIn(100);
+	
+	}).mouseleave(function(){
+		$(this).siblings().fadeOut(0);
+	});
+}

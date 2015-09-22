@@ -35,4 +35,3 @@ navRactive.on('toggleMenu', function (event) {
 	this.set(toggleMenu, !this.get(toggleMenu));
 });
 
-
