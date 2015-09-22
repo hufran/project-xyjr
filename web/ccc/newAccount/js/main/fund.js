@@ -30,7 +30,10 @@ $.each(FundRecordType, function (k, v) {
     });
     }
 });
-
+typeLists[0].push({
+    type:'OFFLINE_DEPOSIT',
+    text:'线下充值'
+});
 //console.log(typeLists);
 
 typeLists[1] = [{
