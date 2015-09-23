@@ -142,7 +142,7 @@
 }
 .credit {
 	float: left;
-	/* width: 370px; */
+	 width: 500px; 
 	position: absolute;
 	left: 28%;
 }
@@ -154,7 +154,7 @@
 
 .credit .doCredit li{
 	float: left;
-	margin-right: 4%;
+	margin-right: 3%;
 }
 
 .credit .doCredit .info-tip{

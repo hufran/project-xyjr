@@ -285,7 +285,14 @@ table tbody tr td {
 
 .password-png{
 	background-image: url(/ccc/newAccount/img/password.png);
-	left: 30%;
+	left: 30.4%;
+}
+
+
+@media screen (max-width:1660px){
+	.backcard-png{
+		left: 34%;
+	}
 }
 
 @media screen and (min-width:1470px) and (max-width:1660px){
@@ -296,7 +303,7 @@ table tbody tr td {
 
 @media screen and (min-width:1240px) and (max-width:1469px){
 	.backcard-png{
-		left: 34%;
+		left: 35.5%;
 	}
 }
 
