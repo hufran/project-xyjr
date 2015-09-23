@@ -143,7 +143,7 @@
 .credit {
 	float: left;
 	 width: 500px; 
-	position: absolute;
+	/*position: absolute;*/
 	left: 28%;
 }
 .credit .doCredit {
