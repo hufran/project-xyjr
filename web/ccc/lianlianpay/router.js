@@ -75,11 +75,14 @@ module.exports = function (router) {
 	            req: req,
 	            body: req.body
 	        });
-	        // req.body.retUrl = (req.connection.encrypted ? 'https://' : 'http://') + req.headers.host;
+            req.body.notifyUrl = 'http://123.59.61.183/lianlianpay/depositReturn';
+	        // req.body.notifyUrl = (req.connection.encrypted ? 'https://' : 'http://') + req.headers.host + '/api/v2/lianlianpay/depositReturn';
 	        var data = qs.stringify(req.body);
 	        req.body = data.replace(/%5B\d+%5D/g, '');
 	        next();
 	    }, function (req, res) {
+            console.log("#{#{#{#{#{#{#{#{}}}}}}}}");
+            console.log(req.body);
 	        req.uest.post('/api/v2/lianlianpay' + api + '/MYSELF')
 	            .type("form")
 	            .send(req.body)
@@ -133,5 +136,29 @@ module.exports = function (router) {
     //                 });
     //         });
     // });
+
+    _.each({
+        '/depositReturn': '/depositReturn',
+    }, function (api, fe) {
+        router.post('/lianlianpay' + fe,
+            function (req, res) {
+                log.info({
+                    type: 'lianlianpay'+fe + '/request',
+                    req: req,
+                });
+                req.uest.post('/api/v2/lianlianpay' + api)
+                    .end()
+                    .then(function (r) {
+                        log.info({
+                            type: 'lianlianpay'+fe+'/result',
+                            req: req,
+                            body: r.body
+                        });
+                        res.render('lianlianpay/return', {
+                            data: r.body
+                        });
+                    });
+            });
+    });
 
 };
