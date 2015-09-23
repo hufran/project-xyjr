@@ -30,9 +30,13 @@
 						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
 					</div>
 					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
-					<div class="couponDescription">
-					 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
-					</div>
+					{{#if !EXPIRED}}
+						{{#if !USED}}
+						<div class="couponDescription">
+						 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
+						</div>
+						{{/if}}
+					{{/if}}
 				</div>	
 			</div>
 			{{/if}}
