@@ -26,6 +26,18 @@
     padding: 10px 0;
     height:50px;
 }
+.fund-content .fund-nav-view .sRate .personal{
+  width: 50px;
+    text-align: center;
+/*    color: #6d6c6c;*/
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin-right: 35px;
+}
+.fund-content .fund-nav-view .sRate .personal-big{
+    width: 100px;
+}
 .fund-content .fund-nav-view ul .selectTitle{
 	width: 100px;
 	color: #4a4a4a;
