@@ -460,4 +460,12 @@ infoRactive.on('maimai',function(){
 }
 );
     
+
+// $('.rzpa').hover(function (){
+// 	console.log(111);
+// 	$(this).siblings('.info-tip').fadeIn();
+// },function () {
+// 	$(this).siblings('.info-tip').fadeOut();
+
+// });
     

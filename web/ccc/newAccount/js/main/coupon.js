@@ -203,12 +203,11 @@ window.redeemCoupon = function(btn) {
     $.post("/api/v2/coupon/MYSELF/redeemCoupon", {
     	placementId: id
     }, function (res) {
-    	console.log(res);
         if (res) {
-            alert("使用成功");
+            alert("兑换申请提交成功!");
             location.reload();
         } else {
-            alert("使用失败");
+            alert("兑换申请提交失败!");
         }
     });
 }
