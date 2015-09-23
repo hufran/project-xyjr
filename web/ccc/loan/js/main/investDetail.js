@@ -201,16 +201,23 @@ setTimeout((function () {
 
 
     investRactive.on('maxNumber', function (e) {
-        if (CC.user.availableAmount < CC.loan.rule.min) {
-            investRactive.set('inputNum', CC.loan.rule.min);
+//        if (CC.user.availableAmount < CC.loan.rule.min) {
+//            investRactive.set('inputNum', CC.loan.rule.min);
+//        }
+//        if (CC.user.availableAmount > CC.loan.rule.max) {
+//            investRactive.set('inputNum', CC.loan.rule.max);
+//        } else if(CC.user.availableAmount>CC.loan.rule.leftAmount){
+//            investRactive.set('inputNum', Math.floor(CC.loan.rule.leftAmount));
+//        }else{
+//            investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
+//        }
+      var lmount=CC.loan.rule.leftAmount;
+        if(CC.loan.rule.dw==='万'){
+            lmount=lmount*10000;
         }
-        if (CC.user.availableAmount > CC.loan.rule.max) {
-            investRactive.set('inputNum', CC.loan.rule.max);
-        } else if(CC.user.availableAmount>CC.loan.rule.leftAmount){
-            investRactive.set('inputNum', Math.floor(CC.loan.rule.leftAmount));
-        }else{
-            investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
-        }
+       var minNum=Math.min(CC.user.availableAmount,CC.loan.rule.max,lmount);
+     
+        investRactive.set('inputNum', Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
     });
 
 
