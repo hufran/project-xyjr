@@ -24,6 +24,42 @@ var app = exports = module.exports = require('express')();
 app.httpServer = require('http').createServer(app);
 ds.expose(app);
 ds.apiproxy(app, config.urlBackend);
+
+var proxy = require('simple-http-proxy');
+// 连连回调转发
+_.each({
+    '/depositReturn': '/depositReturn',
+    '/withdrawReturn': '/withdrawReturn'
+}, function (api, fe) {
+    var proxyUrl = (config.proxy.market || 'http://127.0.0.1:8888').replace(\/+$/, '') + '/api/v2/lianlianpay' + api;
+    app.use('/lianlianpay' + fe, proxy(proxyUrl, {
+    }));
+});
+
+/*
+log.info({
+    type: 'lianlianpay'+fe+'/request',
+    req: req,
+    body: req.body
+});
+req.uest.post('/api/v2/lianlianpay' + api)
+    .type("form")
+    .send(req.body)
+    .end()
+    .then(function (r) {
+        log.info({
+            type: 'lianlianpay'+fe+'/return',
+            req: req,
+            body: r.body
+        });
+        res.render('lianlianpay/return', {
+            data: r.body
+        });
+    });
+});
+*/
+
+
 ds.request(app, config.urlBackend);
 ds.prodrev(app);
 app.use(require('cookie-parser')());
