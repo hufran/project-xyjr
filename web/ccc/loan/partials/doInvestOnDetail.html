@@ -31,7 +31,7 @@
 <div class="status">
     <div class="info">
 		 <div class="leftMoney">
-			<h1 class="red"> 账户余额（元）：¥<span class="left-money">
+			<h1 class="red"> 账户余额：¥<span class="left-money">
 				{{#if user.availableAmount}}
 				{{#if user.availableAmount.length>8}}
 					{{user.availableAmount.substr(0,5)}}...
@@ -177,7 +177,7 @@
 
             {{/if}} {{else}}
 			
-			<p class="left-money">
+			<p class="left-money login-see">
                 账户余额：<a href="/login" style="color:#009ada;">登录</a> 后可见
             </p>
             <div class="firstLine" style="padding:0px;">

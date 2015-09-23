@@ -1,26 +1,28 @@
 {{#if !user.enterprise}}
 {{#if !user.name}}
-<div>
-    <img class="bankcard-gray" src="/ccc/newAccount/img/true-name.png" on-click='maimai'/>
-    <div class="account-bg"></div>
-    <a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+<div class="bankcard-gray">
+	<div class="box-main">
+    	<a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+		<input class="know" type="button" value="我知道了" on-click="guide"/>
+	</div>
 </div>
-{{else}}
-    {{#if !paymentPasswordHasSet}}
-   <div>
-      <img class="bankcard-gray" src="/ccc/newAccount/img/password.png" on-click='maimai'/>
-       <div class="account-bg"></div>
-       <a href="/newAccount/settings/password" ><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
-   </div>
-    {{else}}
-     {{#if !banksabled}}
-    <div>
-    <img class="bankcard-gray" src="/ccc/newAccount/img/bankcard.png" on-click='maimai'/>
-    <div class="account-bg"></div>
-    <a href="/newAccount/settings/bankCards"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
- </div>
-     {{/if}}
-    {{/if}}
+<div class="account-bg"></div>
+{{elseif !paymentPasswordHasSet}}
+<div class="bankcard-gray password-png">
+	<div class="box-main">
+		<a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+		<input class="know" type="button" value="我知道了" on-click="guide"/>
+	</div>
+</div>
+<div class="account-bg"></div>
+{{elseif !banksabled}}
+<div class="bankcard-gray backcard-png">
+	<div class="box-main">
+		<a href="/newAccount/settings/bankCards"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+		<input class="know" type="button" value="我知道了" on-click="guide"/>
+	</div>
+</div>
+<div class="account-bg"></div>
 {{/if}}
 {{/if}}
 <div class="userinfowra">
@@ -55,31 +57,31 @@
 					{{/if}}
 					{{#if user.name}}
 				<li>
-					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" ></a>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:23px;">点击查看实名认证</p>
 				</li>
 					{{else}}
 				<li>
-					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter"></a>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:23px;">点击查看实名认证</p>
 				</li>
 					{{/if}}
 					{{#if paymentPasswordHasSet}}
 				<li>
-					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass-active"></a>
+					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass-active" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:85px;">点击设置交易密码</p>
 				</li>
 					{{else}}
 
 				<li>
-					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass"></a>
+					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:85px;">点击设置交易密码</p>
 				</li>
 
 					{{/if}}
 					{{#if banksabled}}
 				<li>
-					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr-active"></a>
+					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr-active" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:152px;">点击设置银行卡</p>
 				</li>
 					{{else}}
@@ -87,19 +89,19 @@
                     
 
 				<li>
-					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr"></a>
+					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:152px;">点击设置银行卡</p>
 				</li>
 
 					{{/if}}
 					{{#if emailAuthenticated}}
 				<li>
-					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem-active"></a>
+					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem-active" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:220px;">点击设置邮箱</p>
 				</li>
 					{{else}}
 				<li>
-					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem"></a>
+					<a href="/newAccount/settings/userInfo" class="mouse-enter rzpa cem" on-mouseover="showTip" on-mouseleave="hideTip"></a>
 					<p class="info-tip" style="top:16px;left:220px;">点击设置邮箱</p>
 				</li>
 					{{/if}}

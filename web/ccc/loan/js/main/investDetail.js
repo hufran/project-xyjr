@@ -152,11 +152,11 @@ setTimeout((function () {
     if (CC.loan.status === 'SCHEDULED') {
         var interval = setInterval((function () {
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day + '天' : '';
+            var textDay = leftTime.day ? leftTime.day : '';
             if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                 clearInterval(interval);
             } else {
-                $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开标时间还有<span style="color:#007ec5">' + textDay + leftTime.hour + '</span>时<span style="color:#007ec5">' + leftTime.min + '</span>分<span style="color:#007ec5">' + leftTime.sec + '</span>秒</span>')
+                $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">'+ leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
             }
         }), 1000);
     }
