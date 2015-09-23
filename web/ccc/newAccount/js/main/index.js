@@ -460,9 +460,7 @@ infoRactive.on({
 	},
 	hideTip:function(event){
 		$($(event)[0].node.nextElementSibling).fadeOut(0);
-	},
-	guide:function(){
-   		$('.bankcard-gray').parent().css('display','none');
+	}
 })
 
 //window.onload = function(){
@@ -474,6 +472,10 @@ infoRactive.on({
 //}
 
 
-
+infoRactive.on('guide',function(){
+    $('.bankcard-gray').css('display','none');
+	$('.account-bg').css('display','none');
+}
+);
     
 

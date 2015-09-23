@@ -1,26 +1,28 @@
 {{#if !user.enterprise}}
 {{#if !user.name}}
-<div>
-    <img class="bankcard-gray" src="/ccc/newAccount/img/true-name.png" on-click='guide'/>
-    <div class="account-bg"></div>
-    <a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+<div class="bankcard-gray">
+	<div class="box-main">
+    	<a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+		<input class="know" type="button" value="我知道了" on-click="guide"/>
+	</div>
 </div>
-{{else}}
-    {{#if !paymentPasswordHasSet}}
-   <div>
-      <img class="bankcard-gray" src="/ccc/newAccount/img/password.png" on-click='guide'/>
-       <div class="account-bg"></div>
-       <a href="/newAccount/settings/password" ><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
-   </div>
-    {{else}}
-     {{#if !banksabled}}
-    <div>
-    <img class="bankcard-gray" src="/ccc/newAccount/img/bankcard.png" on-click='guide'/>
-    <div class="account-bg"></div>
-    <a href="/newAccount/settings/bankCards"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
- </div>
-     {{/if}}
-    {{/if}}
+<div class="account-bg"></div>
+{{elseif !paymentPasswordHasSet}}
+<div class="bankcard-gray password-png">
+	<div class="box-main">
+		<a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+		<input class="know" type="button" value="我知道了" on-click="guide"/>
+	</div>
+</div>
+<div class="account-bg"></div>
+{{elseif !banksabled}}
+<div class="bankcard-gray backcard-png">
+	<div class="box-main">
+		<a href="/newAccount/settings/bankCards"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+		<input class="know" type="button" value="我知道了" on-click="guide"/>
+	</div>
+</div>
+<div class="account-bg"></div>
 {{/if}}
 {{/if}}
 <div class="userinfowra">

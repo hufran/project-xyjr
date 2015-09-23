@@ -143,6 +143,8 @@
 .credit {
 	float: left;
 	/* width: 370px; */
+	position: absolute;
+	left: 28%;
 }
 .credit .doCredit {
 	padding-top: 25px;
@@ -152,7 +154,7 @@
 
 .credit .doCredit li{
 	float: left;
-	margin-right: 10px;
+	margin-right: 4%;
 }
 
 .credit .doCredit .info-tip{
