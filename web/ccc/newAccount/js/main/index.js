@@ -449,12 +449,15 @@ var loanRactive = new Ractive({
 });
 
 
+//
+//window.onload = function(){
+//	
+//}
 
-window.onload = function(){
-	$('.doCredit li a').mouseover(function(){
-		$(this).siblings().fadeIn(100);
-	
-	}).mouseleave(function(){
-		$(this).siblings().fadeOut(0);
-	});
+
+infoRactive.on('maimai',function(){
+   $('.bankcard-gray').parent().css('display','none');  
 }
+);
+    
+    

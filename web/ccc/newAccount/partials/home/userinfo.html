@@ -1,4 +1,28 @@
-
+{{#if !user.enterprise}}
+{{#if !user.name}}
+<div>
+    <img class="bankcard-gray" src="/ccc/newAccount/img/true-name.png" on-click='maimai'/>
+    <div class="account-bg"></div>
+    <a href="/newAccount/settings/authentication"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+</div>
+{{else}}
+    {{#if !paymentPasswordHasSet}}
+   <div>
+      <img class="bankcard-gray" src="/ccc/newAccount/img/password.png" on-click='maimai'/>
+       <div class="account-bg"></div>
+       <a href="/newAccount/settings/password" ><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+   </div>
+    {{else}}
+     {{#if !banksabled}}
+    <div>
+    <img class="bankcard-gray" src="/ccc/newAccount/img/bankcard.png" on-click='maimai'/>
+    <div class="account-bg"></div>
+    <a href="/newAccount/settings/bankCards"><img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/></a>
+ </div>
+     {{/if}}
+    {{/if}}
+{{/if}}
+{{/if}}
 <div class="userinfowra">
 	<div class="infoContent">
 		<div class="info">
@@ -46,10 +70,12 @@
 					<p class="info-tip" style="top:16px;left:85px;">点击设置交易密码</p>
 				</li>
 					{{else}}
+
 				<li>
 					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass"></a>
 					<p class="info-tip" style="top:16px;left:85px;">点击设置交易密码</p>
 				</li>
+
 					{{/if}}
 					{{#if banksabled}}
 				<li>
@@ -57,10 +83,14 @@
 					<p class="info-tip" style="top:16px;left:152px;">点击设置银行卡</p>
 				</li>
 					{{else}}
+
+                    
+
 				<li>
 					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr"></a>
 					<p class="info-tip" style="top:16px;left:152px;">点击设置银行卡</p>
 				</li>
+
 					{{/if}}
 					{{#if emailAuthenticated}}
 				<li>
@@ -105,14 +135,4 @@
 </div>
 <div class="clearfix"></div>
 <div class="space-30"></div>
-<script type="text/javascript">
-	
-	
-//	var classA =document.getElementsByClassName('mouse-enter');
-//	console.log(classA);
-//	for(var i = 0;i<classA.length;i++){
-//		classA[i].onmouseover = function(){
-//			classA[i].nextSibling.style.display = 'block';
-//		}
-//	}
-</script>
+
