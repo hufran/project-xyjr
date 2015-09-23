@@ -40,6 +40,10 @@
             <p>用户可以通过网站、微博、微信、APP、QQ群和客服电话等多个渠道方便、快捷、详细获悉平台真实信息，及时跟踪标的项目进展情况。</p>
         </div>
     </div>
+    {{#if !user}}
     <div class="regist-rightnow-btn"><a href="/register"><button class="regist-rightnow">立即注册</button></a></div>
+    {{else}}
+    <div class="regist-rightnow-btn"><a href="/invest/list"><button class="regist-rightnow">马上投资</button></a></div>
+    {{/if}}
 </div>
 </div>

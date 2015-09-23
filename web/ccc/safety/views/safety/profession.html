@@ -40,6 +40,10 @@
             <p>奇乐融依托正奇金融强大的专业团队，高标准和高要求选拔标杆人才，注重企业文化和经验传承，倾力打造一支专业化程度高、责任心强的互联网金融专业人才团队。奇乐融和正奇金融团队构成体现专业化、职业化、年轻化的特点，本科及以上学历占比超过90%，拥有注册会计师、审计师、律师等职业资格占比超过30%</p>
         </div>
     </div>
+    {{#if !user}}
     <div class="regist-rightnow-btn"><a href="/register"><button class="regist-rightnow">立即注册</button></a></div>
+    {{else}}
+    <div class="regist-rightnow-btn"><a href="/invest/list"><button class="regist-rightnow">马上投资</button></a></div>
+    {{/if}}
 </div>
 </div>    
