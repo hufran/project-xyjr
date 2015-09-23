@@ -101,13 +101,16 @@ module.exports = function (router) {
         '/depositReturn': '/depositReturn',
         '/withdrawReturn': '/withdrawReturn'
     }, function (api, fe) {
-        router.post('/lianlianpay' + fe, ccBody,
-            function (req, res) {
-                log.info({
-                    type: 'lianlianpay'+fe + '/request',
-                    req: req,
-                });
-                req.uest.post('/api/v2/lianlianpay' + api)
+        router.post('/lianlianpay' + fe, ccBody, function (req, res) {
+            log.info({
+                type: 'lianlianpay'+fe+'/request',
+                req: req,
+                body: req.body
+            });
+            
+            next();
+        }, function (req, res) {
+            req.uest.post('/api/v2/lianlianpay' + api)
                 .type("form")
                 .send(req.body)
                 .end()
