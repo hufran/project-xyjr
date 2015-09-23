@@ -30,7 +30,10 @@
             <p>奇乐融借助网络技术，建立起投资人与中小企业的投融资桥梁，省去了传统金融模式的繁琐手续，降低投资门槛，简化投资流程，提高投资效率，将收益真正让利给用户。</p>
         </div>
     </div>
-
+    {{#if !user}}
     <div class="regist-rightnow-btn"><a href="/register"><button class="regist-rightnow">立即注册</button></a></div>
+    {{else}}
+    <div class="regist-rightnow-btn"><a href="/invest/list"><button class="regist-rightnow">马上投资</button></a></div>
+    {{/if}}
 </div>
 </div>    

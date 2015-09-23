@@ -54,11 +54,11 @@ passwordRactive.on('initialPassword', function () {
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
                 CccOk.create({
-                    msg: '交易密码初始化成功！',
-                    okText: '确定',
-                    // cancelText: '重新登录',
+                    msg: '交易密码初始化成功，请继续绑定银行卡!',
+                    okText: '现在绑定',
+                    cancelText: '稍后再说',
                     ok: function () {
-                        window.location.href = "/newAccount/home";
+                        window.location.href = '/newAccount/settings/bankCards';
                     },
                     cancel: function () {
                         window.location.reload();
