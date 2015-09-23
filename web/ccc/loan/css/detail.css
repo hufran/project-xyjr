@@ -66,12 +66,13 @@
 	float: left;
 	background: #fff;
 	border-radius: 3px;
+	
 }
 
 .invest-data-wrapper .investContainer {
 	width: 730px;
 	height: 315px;
-	border: 1px solid #eee;
+/*	border: 1px solid #eee;*/
 	/*  margin: 0 25px;*/
 }
 
@@ -93,7 +94,7 @@
 	
 	color: #009ada;
 	float: left;
-	width: 500px;
+/*	width: 500px;*/
 	word-break: break-all;
 }
 
@@ -223,23 +224,48 @@
 
 .invest-data-wrapper .investContainer .content .innerBottom {
 	/*  margin-top: 25px;*/
+	overflow: hidden;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .process {
-	float: right;
+/*	float: right;*/
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom ul {
+	display: inline-block;
+	overflow: hidden;
+	float: right;
+	position: relative;
+	height: 80px;
+	margin-top: 30px;
+}
+
+.invest-data-wrapper .investContainer .content .innerBottom ul div{
+	position: absolute;
+	right: 35px;
+	bottom: 0;
+	color: #009ada;
+	font-family: '微软雅黑';
+}
+
+.invest-data-wrapper .investContainer .content .innerBottom ul li{
 	float: left;
-	margin-left: 50px;
-	margin-top: 25px;
+	font-family: '微软雅黑';
+	color: #999;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .itemt {
-	height: 25px;
-	line-height: 25px;
 	font-size: 14px;
 	color: #999;
+}
+
+.invest-data-wrapper .investContainer .content .innerBottom .pic{
+	width: 130px;
+	height: 130px;
+	float: left;
+	margin-left: 60px;
+	margin-top: 16px;
+	position: relative;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .protocol {
@@ -247,6 +273,7 @@
 	font-weight: normal;
 	width: 100%;
 	text-align: left;
+	color: #009ada;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .itemt .leftAmount {
@@ -400,15 +427,16 @@
 }
 
 .do-invest-wrapper {
-	position: relative;
+/*	position: relative;*/
 	float: right;
 	width: 350px;
-	height: 315px;
+/*	height: 315px;*/
 	background-color: #fff;
 	border-radius: 3px;
 	text-align: center;
-	border: solid #eee 1px;
+	border-left: solid #eee 1px;
 	/*background-image: url(/assets/img/box_bj.jpg);*/
+	min-height: 315px;
 }
 
 .do-invest-wrapper .tooltip {
@@ -443,9 +471,6 @@
 }
 
 .do-invest-wrapper .status .info {
-	height: 130px;
-	/*  margin-top: 30px;*/
-	
 	background-color: #fff;
 	border-radius: 3px;
 }
@@ -548,17 +573,23 @@
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney-open {
-	font-size: 13px;
-	color: #6b6b6b;
+	font-size: 16px;
+	color: #4b4b4b;
 	text-align: left;
 	margin-bottom: 5px;
 	/*    text-indent: 15px;*/
 	
 	padding-top: 10px;
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 10px;
-	margin-left: 30px;
-	margin-right: 30px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 14px;
+	margin-left: 15px;
+	margin-right: 15px;
+	font-family: '微软雅黑';
+}
+
+.do-invest-wrapper .status .userBlock .leftMoney-open .recharge{
+	float: right;
+	display:block;
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney .red {
@@ -593,13 +624,14 @@
 }
 
 .do-invest-wrapper .status .userBlock .open-button {
-	width: 220px;
+	width: 320px;
 	height: 40px;
-	float: left;
 	background-color: #009ada;
 	border: none;
 	font-size: 16px;
 	line-height: 30px;
+	letter-spacing: 5px;
+	
 }
 
 .do-invest-wrapper .status .userBlock .open-button:hover {
@@ -627,6 +659,7 @@
 .do-invest-wrapper .status .userBlock .input .selectOption {
 	clear: both;
 	text-align: left;
+	margin-top: 5px;
 }
 
 .do-invest-wrapper .status .userBlock .input .selectOption select {
@@ -634,12 +667,12 @@
 	height: 40px;
 	color: #6b6b6b;
 	font-size: 14px;
-	width: 280px;
+	width: 318px;
 	border: none;
 	line-height: 20px;
-	margin-top: 2px;
+	
 	text-indent: 8px;
-	margin-left: 3px;
+	
 	border: 1px solid #ccc;
 }
 
@@ -650,15 +683,17 @@
 
 .do-invest-wrapper .status .userBlock .input .invest-button {
 	height: 44px;
-	width: 280px;
+	width: 319px;
 	color: #fff;
-	background-color: #f58220;
+	background-color: #009ada;
 	font-size: 18px;
 	line-height: 36px;
 	/*    padding: 1px;*/
 	
 	border: none;
-	margin-top: 5px;
+	margin-top: 20px;
+	font-family: '微软雅黑';
+	letter-spacing: 5px;
 }
 
 .do-invest-wrapper .status .userBlock .input .btn-warning1 {
@@ -666,24 +701,37 @@
 }
 
 .do-invest-wrapper .status .userBlock .input .invest-button:hover {
-	background-color: #df6502;
+	background-color: #015989;
 }
 
 .do-invest-wrapper .status .userBlock .left-money {
-	color: #6b6b6b;
+	color: #999;
 	text-align: left;
 	font-size: 20px;
 	border-bottom: 1px solid #eee;
 	padding-bottom: 10px;
 	margin-top: 13px;
 	padding-left: 30px;
+	font-weight: normal;
+	font-family: '微软雅黑';
 }
 
-.do-invest-wrapper .status .userBlock p {
-	color: #6b6b6b;
+.do-invest-wrapper .status .userBlock .p-max {
+	color: #999;
 	text-align: left;
 	font-size: 14px;
+	font-family: '微软雅黑';
+	line-height: 30px;
 }
+
+.do-invest-wrapper .status .userBlock .one-time-max{
+	color: #999;
+	text-align: left;
+	font-size: 12px;
+	font-family: '微软雅黑';
+	line-height: 30px;
+	margin-left: 15px;
+} 
 
 .do-invest-wrapper .status .userBlock .agree-error {
 	font-size: 12px;
@@ -692,23 +740,38 @@
 	background-repeat: no-repeat;
 	background-position: left center;
 	padding-left: 20px;
-	display: none;
-	margin-left: 51px;
+	visibility: hidden;
+
+	text-align: left;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	margin-bottom: 5px;
 }
 
 .do-invest-wrapper .status .userBlock .agree-box {
 /*	width: 212px;*/
-	display: inline-block;
+/*	display: inline-block;*/
 /*	margin: auto;*/
 }
 
 .do-invest-wrapper .status .userBlock .agree-box span,
 .do-invest-wrapper .status .userBlock .agree-box span a {
 	font-size: 12px;
+	
+}
+
+.do-invest-wrapper .status .userBlock .agree-box span a{
+	color: #009ada;
 }
 
 .do-invest-wrapper .status .userBlock .shiming {
 	text-align: center;
+	text-align: left;
+	margin-left: 15px;
+	color: #d4242f;
+	font-size: 12px;
+	margin-bottom: 10px;
 }
 
 .do-invest-wrapper .status .userBlock .rule-max {
@@ -718,21 +781,22 @@
 .do-invest-wrapper .status .userBlock .loginBtn {
 	height: 44px;
 	color: #fff;
-	background-color: #f58220;
+	background-color: #009ada;
 	font-size: 18px;
 	line-height: 44px;
 	padding: 0;
 	border: none;
 	display: block;
-	width: 280px;
+	width: 318px;
 	border-radius: 6px;
 	margin: 0 auto;
 	margin-top: 10px;
 	text-decoration: none;
+	font-family: '微软雅黑';
 }
 
 .do-invest-wrapper .status .userBlock .loginBtn:hover {
-	background-color: #df6502;
+	background-color: #015989;
 }
 
 .do-invest-wrapper .finishBlock {
@@ -938,7 +1002,7 @@
 }
 
 .do-invest-wrapper .invest-button-wrapper {
-	margin: 20px auto 0;
+/*	margin: 20px auto 0;*/
 	text-align: center;
 }
 
@@ -1020,6 +1084,7 @@
 	margin-top: 20px;
 	margin-left: 70px;
 }
+
 
 .invest-info-wrapper .insurance-info .insurance-wrapper .insurance {
 	height: 190px;
@@ -1103,30 +1168,34 @@
 }
 
 .invest-detail-wrapper .scontent {
-	min-height: 560px;
+	min-height: 800px;
 	background: #fff;
-	margin-top: 20px;
+/*	margin-top: 20px;*/
 	width: 730px;
 	margin-left: 0;
 	float: left;
-	border: 1px solid #eee;
+	border-right: 1px solid #eee;
 	border-top: none;
 }
 
 .invest-detail-wrapper .nav-tabs {
-	border: solid 1px #eee;
+/*	border: solid 1px #eee;*/
 	border-left: none;
 	border-right: none;
+	margin: 0 5px 0 5px;
+	border-color: #ccc;
 }
 
 .invest-detail-wrapper {
 	width: 1100px;
 	margin: auto;
 	overflow: hidden;
+	border:1px solid #ccc;
+	margin-top: 15px;
 }
 
 .invest-detail-wrapper .nav-tabs li {
-	border-right: 1px solid #eee;
+/*	border-right: 1px solid #eee;*/
 }
 
 .invest-detail-wrapper .nav-tabs li a {
@@ -1140,9 +1209,11 @@
 	font-weight: normal;
 	font-size: 16px;
 	border: none;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ccc;
 	text-align: center;
 	background: #fff;
+	font-size: 18px;
+	font-family: '微软雅黑';
 }
 
 .invest-detail-wrapper .nav-tabs .active a,
@@ -1152,7 +1223,7 @@
 	text-align: center;
 	color: #4a4a4a;
 	background: #fff;
-	border-top: 2px solid #009ada;
+	border-bottom: 2px solid #009ada;
 }
 
 .invest-detail-wrapper .tab-panels {
@@ -1217,7 +1288,7 @@
 
 .invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper {
 	width: 300px;
-	margin-top: 20px;
+/*	margin-top: 20px;*/
 	/*margin-left: 70px;*/
 }
 
@@ -1486,11 +1557,12 @@
 	font-size: 14px;
 	width: 100px;
 	height: 40px;
-	border: 1px solid #009ada;
+	border: 1px solid #f58220;
 	border-radius: 5px;
 	line-height: 40px;
-	color: #009ada;
+	color: #f58220;
 	background: #fff;
+	font-family: '微软雅黑';
 }
 
 .topAmountActive {
@@ -1531,8 +1603,12 @@
 #userBlock .calculatorBox {
 	overflow: hidden;
 	margin-top: 20px;
+/*
 	padding-left: 30px;
 	padding-right: 30px;
+*/
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 #userBlock .calculatorBox1 {
@@ -1555,12 +1631,17 @@
 .percentageNum {
 	color: #009ada;
 	position: absolute;
-	margin: 10px 0 0 40px;
+/*	margin: 10px 0 0 40px;*/
+	top: 20px;
 }
 
 .itemt .processFont {
 	position: absolute;
-	margin: 25px 0 0 20px;
+/*	margin: 25px 0 0 20px;*/
+	color: #4a4a4a;
+	left: 50%;
+	margin-left: -28px;
+	top: 36px;
 }
 
 #mask-layer-wraper {
@@ -1590,9 +1671,9 @@
 .insurance-wrapper {
 	width: 350px;
 	float: left;
-	margin-top: 14px;
-	margin-left: 20px;
-	height: 200px;
+/*	margin-top: 14px;*/
+/*	margin-left: 20px;*/
+/*	height: 200px;*/
 }
 
 .do-invest-wrapper .status .userBlock .left-time-start {
@@ -1660,25 +1741,46 @@
 }
 
 .calculatorBox .trade-password {
-	height: 40px;
-	width: 280px;
 	padding-left: 10px;
 	font-size: 14px;
 	color: #6b6b6b;
-	margin-top: 6px;
 	border: none;
+	line-height: 38px;
+	width: 190px;
+}
+
+.calculatorBox .password-box{
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.calculatorBox .password-box p{
+	float: right;
+	line-height: 40px;
+}
+
+.calculatorBox .password-box p a{
+	color: #009ada;
+}
+
+.calculatorBox .password{
 	border: 1px solid #ccc;
 	border-radius: 6px;
+	height: 40px;
+	
+	width: 200px;
+	overflow: hidden;
+	float: left;
 }
 
 #userBlock .leftMoney-open .recharge button {
 	background: #f58220;
 	color: #fff;
 	border: none;
-	border-radius: 6px;
-	width: 56px;
-	height: 22px;
-	float: right;
+	border-radius: 3px;
+	width: 80px;
+	height: 30px;
+	font-family: '微软雅黑';
 }
 
 #userBlock .leftMoney-open .recharge button:hover {
@@ -1686,9 +1788,36 @@
 }
 
 .controler-title {
-	font-size: 28px;
+	font-size: 18px;
+	color: #999;
+	line-height: 50px;
+	margin-left: 10px;
+	font-family: '微软雅黑';
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 45px;
 }
 
 .protocol {
 	color: #007ec5;
+}
+
+.time-left{
+	color: #f58220;
+}
+
+.box-large{
+	border: 1px solid #cccccc;
+	overflow: hidden;
+	background-color: white;
+}
+
+.item-pic{
+	height: 250px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+
+。easy-pie-chart{
+	position: relative;
 }
