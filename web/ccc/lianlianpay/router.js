@@ -112,30 +112,30 @@ module.exports = function (router) {
 
     
 
-    _.each({
-        '/withdrawReturn': '/withdrawReturn',
-        '/depositReturn': '/depositReturn',
-    }, function (api, fe) {
-        router.get('/lianlianpay' + fe,
-            function (req, res) {
-                log.info({
-                    type: 'lianlianpay'+fe + '/request',
-                    req: req,
-                });
-                req.uest.get('/api/v2' + req.url)
-                    .end()
-                    .then(function (r) {
-                        log.info({
-                            type: 'lianlianpay'+fe+'/result',
-                            req: req,
-                            body: r.body
-                        });
-                        res.render('lianlianpay/return', {
-                            data: r.body
-                        });
-                    });
-            });
-    });
+    // _.each({
+    //     '/withdrawReturn': '/withdrawReturn',
+    //     '/depositReturn': '/depositReturn',
+    // }, function (api, fe) {
+    //     router.get('/lianlianpay' + fe,
+    //         function (req, res) {
+    //             log.info({
+    //                 type: 'lianlianpay'+fe + '/request',
+    //                 req: req,
+    //             });
+    //             req.uest.get('/api/v2' + req.url)
+    //                 .end()
+    //                 .then(function (r) {
+    //                     log.info({
+    //                         type: 'lianlianpay'+fe+'/result',
+    //                         req: req,
+    //                         body: r.body
+    //                     });
+    //                     res.render('lianlianpay/return', {
+    //                         data: r.body
+    //                     });
+    //                 });
+    //         });
+    // });
 
     _.each({
         '/depositReturn': '/depositReturn',
