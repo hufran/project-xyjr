@@ -140,13 +140,13 @@ module.exports = function (router) {
     _.each({
         '/depositReturn': '/depositReturn',
     }, function (api, fe) {
-        router.get('/lianlianpay' + fe,
+        router.post('/lianlianpay' + fe,
             function (req, res) {
                 log.info({
                     type: 'lianlianpay'+fe + '/request',
                     req: req,
                 });
-                req.uest.get('/api/v2/lianlianpay' + api)
+                req.uest.post('/api/v2/lianlianpay' + api)
                     .end()
                     .then(function (r) {
                         log.info({
