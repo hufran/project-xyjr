@@ -107,9 +107,7 @@ module.exports = function (router) {
                 req: req,
                 body: req.body
             });
-            
-            next();
-        }, function (req, res) {
+        
             req.uest.post('/api/v2/lianlianpay' + api)
                 .type("form")
                 .send(req.body)
