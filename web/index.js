@@ -32,33 +32,26 @@ _.each({
     '/withdrawReturn': '/withdrawReturn'
 }, function (api, fe) {
     var proxyUrl = (config.proxy && config.proxy.market || 'http://127.0.0.1:8888').replace(/\/+$/, '') + '/api/v2/lianlianpay' + api;
+    var log = require('bunyan-hub-logger')({app: 'web', name: 'lianlianpay'});
     app.use('/lianlianpay' + fe, proxy(proxyUrl, {
+        onrequest: function (opts, req) {
+            var chunks = [];
+            req.on('data',function(chunk) {
+                chunks.push(chunk);
+            });
+            req.on('end',function() {
+                var buf = Buffer.concat(chunks);
+                var body = buf.toString('utf-8');
+                log.info({
+                    type: 'lianlianpay'+fe+'/request',
+                    req: req,
+                    proxy: opts,
+                    body: body,
+                });
+            });
+        },
     }));
 });
-
-/*
-log.info({
-    type: 'lianlianpay'+fe+'/request',
-    req: req,
-    body: req.body
-});
-req.uest.post('/api/v2/lianlianpay' + api)
-    .type("form")
-    .send(req.body)
-    .end()
-    .then(function (r) {
-        log.info({
-            type: 'lianlianpay'+fe+'/return',
-            req: req,
-            body: r.body
-        });
-        res.render('lianlianpay/return', {
-            data: r.body
-        });
-    });
-});
-*/
-
 
 ds.request(app, config.urlBackend);
 ds.prodrev(app);
