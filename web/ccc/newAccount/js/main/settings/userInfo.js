@@ -47,7 +47,7 @@ var ractive = new Ractive({
                 if (CC.user.paymentPasswordHasSet) {
                     percent += 25;
                 }
-                if (userinfo.user.email && userinfo.user.email != 'notavailable@qilerong.com') {
+                if (userinfo.user.email && userinfo.user.email != 'notavailable@qilerong.com' && userinfo.user.email != 'notavailable@creditcloud.com') {
                     var arr = userinfo.user.email.split('@');
                     var length = arr[0].length;
                     if (length > 4) {
