@@ -452,6 +452,7 @@ var loanRactive = new Ractive({
 });
 
 
+
 infoRactive.on({
 	'showTip':function(event){
 		$($(event)[0].node.nextElementSibling).fadeIn(200);
@@ -459,7 +460,9 @@ infoRactive.on({
 	},
 	hideTip:function(event){
 		$($(event)[0].node.nextElementSibling).fadeOut(0);
-	}
+	},
+	guide:function(){
+   		$('.bankcard-gray').parent().css('display','none');
 })
 
 //window.onload = function(){
@@ -469,4 +472,8 @@ infoRactive.on({
 //		$(this).siblings().fadeOut(0);
 //	});
 //}
+
+
+
+    
 
