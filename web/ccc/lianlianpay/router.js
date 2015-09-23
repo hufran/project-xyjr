@@ -97,34 +97,34 @@ module.exports = function (router) {
 	    });
 	});
 
-    // _.each({
-    //     '/depositReturn': '/depositReturn',
-    //     '/withdrawReturn': '/withdrawReturn'
-    // }, function (api, fe) {
-    //     router.post('/lianlianpay' + fe, ccBody, function (req, res) {
-    //         log.info({
-    //             type: 'lianlianpay'+fe+'/request',
-    //             req: req,
-    //             body: req.body
-    //         });
+    _.each({
+        '/depositReturn': '/depositReturn',
+        '/withdrawReturn': '/withdrawReturn'
+    }, function (api, fe) {
+        router.post('/lianlianpay' + fe, ccBody, function (req, res) {
+            log.info({
+                type: 'lianlianpay'+fe+'/request',
+                req: req,
+                body: req.body
+            });
             
-    //         next();
-    //     }, function (req, res) {
-    //         req.uest.post('/api/v2/lianlianpay' + api)
-    //             .type("form")
-    //             .send(req.body)
-    //             .end()
-    //             .then(function (r) {
-    //                 log.info({
-    //                     type: 'lianlianpay'+fe+'/return',
-    //                     req: req,
-    //                     body: r.body
-    //                 });
-    //                 res.render('lianlianpay/return', {
-    //                     data: r.body
-    //                 });
-    //             });
-    //         });
-    // });
+            next();
+        }, function (req, res) {
+            req.uest.post('/api/v2/lianlianpay' + api)
+                .type("form")
+                .send(req.body)
+                .end()
+                .then(function (r) {
+                    log.info({
+                        type: 'lianlianpay'+fe+'/return',
+                        req: req,
+                        body: r.body
+                    });
+                    res.render('lianlianpay/return', {
+                        data: r.body
+                    });
+                });
+            });
+    });
 
 };
