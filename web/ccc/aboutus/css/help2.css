@@ -1,8 +1,12 @@
 #main-container{
-    background: #fff;
-	margin-top: 7px;
+    background: #f4fcff;
+/*	margin-top: 7px;*/
 }
-
+.nav-shadow{
+    background-image: url(/ccc/aboutus/img/shadow_repeat.png);
+    height:2px;
+    width: auto;
+}
 .page-guide{
 /*    position: relative;*/
      width:1100px;
@@ -309,17 +313,17 @@
  }
 /*安全保障*/
  .brand-box{
-     background:#f0f0f0;
-     height: 376px;
+     background:#f4fcff;
+     height: 288px;
  }
  .safety-box{
-     background:#f6f6f6;
-     height: 410px;
+     background:#fff;
+     height: 270px;
  }
 .brand-left{
     width:230px;
     float: left;
-     margin-left: 116px;
+     margin-left: 50px;
 }
 .brand-left p{
     text-align: center;
@@ -340,12 +344,12 @@
    margin-top: 26px;
 }
 .brand-left img{
-   margin-top: 26px;
+/*   margin-top: 26px;*/
 }
 .brand-right{
     float: left;
-    width: 316px;
-    margin-left: 120px;
+    width: 412px;
+    margin-left: 140px;
     margin-top: 20px;
 }
 .brand-right-content p{
@@ -360,15 +364,15 @@
     line-height: 24px;
 }
 .safety-left{
-      width:316px;
+      width:412px;
     float: left;
-     margin-left: 80px;
+     margin-left: 50px;
 }
 .safety-right{
         float: left;
     width: 230px;
-    margin-left: 90px;
-    margin-top: 20px;
+    margin-left: 50px;
+/*    margin-top: 20px;*/
 }
 #help-right .each-question{
     border-bottom: 1px solid #eeeeee;
