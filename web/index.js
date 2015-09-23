@@ -31,7 +31,7 @@ _.each({
     '/depositReturn': '/depositReturn',
     '/withdrawReturn': '/withdrawReturn'
 }, function (api, fe) {
-    var proxyUrl = (config.proxy.market || 'http://127.0.0.1:8888').replace(\/+$/, '') + '/api/v2/lianlianpay' + api;
+    var proxyUrl = (config.proxy && config.proxy.market || 'http://127.0.0.1:8888').replace(/\/+$/, '') + '/api/v2/lianlianpay' + api;
     app.use('/lianlianpay' + fe, proxy(proxyUrl, {
     }));
 });
