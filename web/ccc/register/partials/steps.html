@@ -6,7 +6,7 @@
                     <div class="rinput">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>手机号码:</label>
                         <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号码">
-                        <span class="tip-loading">{{#loading}}<img src='ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}  
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}  
                         </span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
                     </div>
@@ -39,7 +39,7 @@
                             {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 获取短信验证码 {{/if}}
                         </button>
                         {{/if}}
-                        <span class="tip-loading">{{#loading}}<img src='ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
@@ -48,7 +48,7 @@
                     <div class="rinput">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>密码:</label>
                         <input class="password" id="{{rinputId}}" type="password" value="{{value}}" placeholder="输入密码，6-16位字符" maxlength="16">
-                        <span class="tip-loading">{{#loading}}<img src='ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">
         {{#errMsg}}{{errMsg}}{{/errMsg}}
     </span>
@@ -57,8 +57,8 @@
                 <RInput field="repassword" valueStableDuration=200>
                     <div class="rinput">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>确认密码:</label>
-                        <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" placeholder="再次输入密码">
-                        <span class="tip-loading">{{#loading}}<img src='ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <input class="repassword" id="{{rinputId}}" type="password" value="{{value}}" placeholder="再次输入密码" maxlength="16">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
@@ -67,7 +67,7 @@
                     <div class="rinput">
                         <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐人:</label>
                         <input id="{{rinputId}}" name="refm" value="{{value}}" placeholder="请输入推荐人的手机号码，可不填">
-                        <span class="tip-loading">{{#loading}}<img src='ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
