@@ -137,7 +137,7 @@ _.each([
 ], function(url){
     app.get(url, function (req, res, next) {
         if (res.locals.user && res.locals.user.id) {
-            res.redirect('/account');
+            res.redirect('/newAccount');
         }
         next();
     });
