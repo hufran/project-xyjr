@@ -6,24 +6,29 @@
 			{{#if type==='CASH'}}
 			<div class="CASH">
                 <div class="valueText">￥<span class="big">{{displayValue}}</span></div>
-                <div class="couponDescription needChange">
-					 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
-				</div>
+<!--					{{#if !EXPIRED}}-->
+						{{#if canuse}}
+						<div class="couponDescription" style="float:right;margin-right:20px;">
+						 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
+						</div>
+						{{/if}}
+<!--					{{/if}}	-->
 				
 				<div class="couponWrapper-right">
                     <div class="couponWrapper-left">
 					{{displayName}}
 				    </div>
-					<div class="couponTitle">
+					
 						
 						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
-					</div>
+					
 				</div>	
-                	<div class="couponDescription" style="float:left;">
+                	<div class="couponDescription couponDescription-invest" style="float:left;">
 						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
 						<p class="descriptionRight">最短期限{{couponPackage.minimumDuration }}个月</p>
 					</div>
-                   <div class="couponTitle-left">
+                   <div class="couponTitle">
+                   <div class="couponTitle-left incline">
 							{{#if notUse}}
 								<span class="label label-light">{{ displayStatus }}</span>
 							{{/if}}
@@ -40,20 +45,12 @@
 								<span class=" label label-light">{{ displayStatus }}</span>
 							{{/if}}
 						</div>
-
-						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
+                     </div>
 					</div>
-					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>
-					{{#if !EXPIRED}}
-						{{#if !USED}}
-						<div class="couponDescription">
-						 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
-						</div>
-						{{/if}}
-					{{/if}}
-				</div>	
+<!--					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>-->
 
-			</div>
+
+			
 			{{/if}}
 			{{#if type==='INTEREST'}}
 			<div class="INTEREST">

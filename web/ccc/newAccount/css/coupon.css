@@ -311,6 +311,10 @@
     margin-left: 20px;
     padding-top: 15px;
 }
+.CASH .couponWrapper-right .couponTitle-right{
+    margin-left: 20px;
+    padding-top: 15px;
+}
 .INTEREST .couponTitle .incline{
     transform: rotate(-45deg);
     position: absolute;
@@ -318,6 +322,12 @@
     right:0px;
 }
 .REBATE .couponTitle .incline{
+    transform: rotate(-45deg);
+    position: absolute;
+    bottom: 16px;
+    right:0px;
+}
+.CASH .couponTitle .incline{
     transform: rotate(-45deg);
     position: absolute;
     bottom: 16px;
