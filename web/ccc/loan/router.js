@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (router) {
 var ccBody = require('cc-body');
-
+var format = require('@ds/format')
 function mask (str, s, l) {
 	if (!str) {
 		return '';
@@ -90,15 +90,21 @@ router.get('/loan/:id',
                 '/api/v2/loan/' + req.params.id + '/invests')
                 .end()
                 .then(function (r) {
+
                     for (var i = 0, l = r.body.length; i < l; i++) {
                         r.body[i].submitTime = moment(r.body[i].submitTime)
                             .format('YYYY-MM-DD');
-                        var _name = r.body[i].userLoginName;
-						if (_name.length === 2) {
-							r.body[i].userLoginName = mask(_name, 1);
-						} else {
-							r.body[i].userLoginName = mask(_name, 2);
-						}
+                        if (r.body[i].userLoginName.indexOf('手机用户') === 0) {
+                            var _name = format.maskMobile(r.body[i].userLoginName.substring(4));
+                        } else {
+                            if (r.body[i].userLoginName.length === 2) {
+                                var _name = mask(r.body[i].userLoginName, 1);
+                            } else {
+                                var _name = mask(r.body[i].userLoginName, 2);
+                            }
+                        }
+                        
+                        r.body[i].userLoginName = _name;	
                     }
                     return r.body;
                 }),

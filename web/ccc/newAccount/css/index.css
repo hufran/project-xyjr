@@ -6,6 +6,7 @@
 	height: 160px;
 	background: url(/ccc/newAccount/img/topbg.png) no-repeat center;
     background-color:#78dffe;
+	
 }
 .home-topnav {
 	height: 147px;
@@ -119,6 +120,7 @@
 	height: 160px;
 	padding: 5px 0;
 	margin: 0 auto;
+	position: relative;
 }
 .tx {
 	width: 100px;
@@ -142,7 +144,9 @@
 }
 .credit {
 	float: left;
-	/* width: 370px; */
+	width: 500px; 
+/*	position: absolute;*/
+	left: 17%;
 }
 .credit .doCredit {
 	padding-top: 25px;
@@ -152,7 +156,7 @@
 
 .credit .doCredit li{
 	float: left;
-	margin-right: 10px;
+	margin-right: 3%;
 }
 
 .credit .doCredit .info-tip{

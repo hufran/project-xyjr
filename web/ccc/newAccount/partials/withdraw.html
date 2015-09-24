@@ -9,7 +9,7 @@
         <div class="space space-20"></div>
         <div class="rows">
             <div class="col-md-12">
-                <form role="form" name="withdrawForm" action="{{active}}" method="POST" target="_blank" on-submit="withdrawForm">
+                <form role="form" name="withdrawForm" action="/lianlianpay/withdraw" method="POST" target="_blank" on-submit="withdrawForm">
                     <div class="">
                         <div class="rows">
                             <span class="tipss">账户余额</span>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="space space-30"></div>
-                    <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;font-size:16px;">{{submitText}}</button>
+                    <button type="button" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;font-size:16px;" on-click="withDrawSubmit">{{submitText}}</button>
                 </form>
             </div>
         </div>
@@ -53,9 +53,10 @@
         <div class="space space-20"></div>
         <p style="color:#f58220">温馨提示：</p>
         <ul class="dec-li">
-            <li>1、请您选择银行储蓄卡账户提交提现申请。</li>
-            <li>2、为保障您的账户资金安全，申请提现时，您选择的银行卡开户名必须与实名认证一致，否则提现申请将不予受理。<li>
-            <li>3、提现操作预计3个工作日内到账，具体情况依据各银行实际处理为准，请您注意查收。若有任何问题，请联系客服。</li>
+            <li>1、试运营期间，提现手续费2元/笔，由第三方支付平台连连支付收取；每日提现限制3次以内(含3次)。奇乐融试运营至2015年12月31日截止，试运营结束后提现手续费另行公告。</li>
+            <li>2、提现到账时间：提现申请提交成功后，资金预计在1-2个工作日（双休日或法定节假日顺延）到账，请您注意查收。<li>
+            <li>3、根据《反洗钱法》规定，奇乐融禁止洗钱、信用卡套现、虚假交易等行为。</li>
+            <li>4、提现过程遇到问题，请联系客服：400-872-7676。</li>
         </ul>
     </div>
 </div>

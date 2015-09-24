@@ -73,7 +73,7 @@ var infoRactive = new Ractive({
 	el: '#userinfo',
 	template: require('ccc/newAccount/partials/home/userinfo.html'),
 	data: {
-		user: null,
+		user: CC.user,
 		paymentPasswordHasSet : CC.user.paymentPasswordHasSet,
 		isEnterprise : CC.user.enterprise,
 		banksabled : banksabled.length? true : false,
@@ -82,6 +82,7 @@ var infoRactive = new Ractive({
 		vip:'普通用户',
 		showVip: true
 	},
+	
 	oninit: function () {
 		var safetyProgress = 25;
 		accountService.getVipLevel(function (r) {
@@ -115,6 +116,8 @@ var infoRactive = new Ractive({
 		});
 	}
 });
+
+
 
 var pageSize = 6;
 var page = 1;
@@ -449,23 +452,30 @@ var loanRactive = new Ractive({
 });
 
 
-//
+
+infoRactive.on({
+	'showTip':function(event){
+		$($(event)[0].node.nextElementSibling).fadeIn(200);
+		
+	},
+	hideTip:function(event){
+		$($(event)[0].node.nextElementSibling).fadeOut(0);
+	}
+})
+
 //window.onload = function(){
-//	
+//	$('.doCredit li a').mouseover(function(){
+//		
+//	}).mouseleave(function(){
+//		$(this).siblings().fadeOut(0);
+//	});
 //}
 
 
-infoRactive.on('maimai',function(){
-   $('.bankcard-gray').parent().css('display','none');  
+infoRactive.on('guide',function(){
+    $('.bankcard-gray').css('display','none');
+	$('.account-bg').css('display','none');
 }
 );
     
 
-// $('.rzpa').hover(function (){
-// 	console.log(111);
-// 	$(this).siblings('.info-tip').fadeIn();
-// },function () {
-// 	$(this).siblings('.info-tip').fadeOut();
-
-// });
-    

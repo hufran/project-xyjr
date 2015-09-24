@@ -39,6 +39,11 @@ var ractive = new Ractive({
         mobile: CC.user.mobile,
         realName: CC.user.name,
         authenticated: CC.user.authenticates.idauthenticated || false
+    },
+    oninit: function () {
+        accountService.getUserInfo(function (o) {
+            this.set('realName', o.user.name);
+        });
     }
 });
 
