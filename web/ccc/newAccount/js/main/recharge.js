@@ -32,7 +32,8 @@ var ractive = new Ractive({
         isEnterpriseUser: CC.user.enterprise,
         amountValue: 10000000,
         action: '/lianlianpay/onlineBankDeposit',
-        showNum: 9
+        showNum: 9,
+        minAmount: 100
     },
     parseData:function(){
         var self = this;
@@ -71,7 +72,7 @@ var ractive = new Ractive({
                 return;
             }
             if (value <100){
-                self.set('msg.AMOUNT_INVALID',true);
+                self.set('msg.AMOUNT_NOTENOUGH',true);
                 return;
             }
 
@@ -135,7 +136,8 @@ ractive.on('recharge_submit', function (e){
         BANK_NULL: false,
         AMOUNT_NULL: false,
         AMOUNT_INVALID: false,
-        BANKCODE_NULL: false
+        BANKCODE_NULL: false,
+        AMOUNT_NOTENOUGH : false,
     });
 
     if (amount === '') {
@@ -143,6 +145,11 @@ ractive.on('recharge_submit', function (e){
         e.original.preventDefault();
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
+        return false;
+    } else if (amount < 100 ) {
+        e.original.preventDefault();
+        this.set('msg.AMOUNT_NOTENOUGH', true);
+        this.$amount.focus();
         return false;
     } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
         e.original.preventDefault();
