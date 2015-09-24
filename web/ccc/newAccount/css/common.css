@@ -255,6 +255,7 @@ table tbody tr td {
 	position: fixed;
 	z-index: 100;
 	top: 0;
+	left: 0;
 }
 
 .box-main {
@@ -272,6 +273,7 @@ table tbody tr td {
 	height: 250px;
 	position: absolute;
 	z-index: 101;
+
 	left: 159px;
 	top: 21px;
 }
@@ -279,6 +281,7 @@ table tbody tr td {
 	position: absolute;
 	right: -20px;
 	bottom: 0;
+
 }
 .bankcard-gray a{
 	display: block;
@@ -290,11 +293,17 @@ table tbody tr td {
 .password-png{
 	background-image: url(/ccc/newAccount/img/password.png);
 	left: 227px;
+
 }
+
+
+
 
 .backcard-png{
 	background-image: url(/ccc/newAccount/img/bankcard.png);
+
 	left: 291px;
+
 }
 
 .know{
@@ -314,7 +323,9 @@ table tbody tr td {
 	background-color: #015989;
 }
 
+
 .hide {
 	display: none;
 }
+
 
