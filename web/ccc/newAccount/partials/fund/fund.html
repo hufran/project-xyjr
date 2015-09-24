@@ -87,7 +87,7 @@
                     {{#each list}}
                     <tr>
                         <td>{{ dateTime }}</td>
-                        <td>{{#if transactionType === '投资还款' }}回款{{elseif transactionType === '转账扣款'}}平台奖励{{else}}{{transactionType}}{{/if}}</td>
+                        <td>{{#if transactionType === 'INVEST_REPAY' }}回款{{elseif transactionType === '转账扣款'}}平台奖励{{else}}{{transactionType}}{{/if}}</td>
                         <td>{{ orderId }}</td>
 
                         <td class="col-amount {{ amountClass }}" style="color:#f58220;">

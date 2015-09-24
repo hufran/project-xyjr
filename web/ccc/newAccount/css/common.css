@@ -255,6 +255,7 @@ table tbody tr td {
 	position: fixed;
 	z-index: 100;
 	top: 0;
+	left: 0;
 }
 
 .box-main {
@@ -272,8 +273,8 @@ table tbody tr td {
 	height: 250px;
 	position: absolute;
 	z-index: 101;
-	left: 25.5%;
-	top: 22px;
+	left: 13.5%;
+	top: 16px;
 }
 
 .bankcard-gray a{
@@ -285,36 +286,37 @@ table tbody tr td {
 
 .password-png{
 	background-image: url(/ccc/newAccount/img/password.png);
-	left: 30.4%;
+	left: 20.4%;
 }
 
 
 @media screen (max-width:1660px){
 	.backcard-png{
-		left: 34%;
+		left: 27%;
 	}
 }
 
 @media screen and (min-width:1470px) and (max-width:1660px){
 	.backcard-png{
-		left: 34%;
+		left: 27%;
 	}
 }
 
 @media screen and (min-width:1240px) and (max-width:1469px){
 	.backcard-png{
-		left: 35.5%;
+		left: 27%;
 	}
 }
 
 @media screen and (min-width:480px) and (max-width:1239px){
 	.backcard-png{
-		left: 36%;
+		left: 27%;
 	}
 }
 
 .backcard-png{
 	background-image: url(/ccc/newAccount/img/bankcard.png);
+	left: 27%;
 }
 
 .know{
@@ -334,4 +336,8 @@ table tbody tr td {
 	background-color: #015989;
 }
 
-
+.box-mutual{
+	width: 100%;
+	position: absolute;
+	height: 280px;
+}
