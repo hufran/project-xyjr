@@ -44,6 +44,15 @@ var ractive = new Ractive({
         accountService.getUserInfo(function (o) {
             this.set('realName', o.user.name);
         });
+    },
+    oncomplete: function () {
+        accountService.getProvince(function (res) {
+            ractive.set('province', changeToList(res));
+            var fProvince = ractive.get('myProvince') || '安徽省';
+            accountService.getCity(fProvince, function (res) {
+                ractive.set('city', changeToList(res));
+            });
+        });
     }
 });
 
