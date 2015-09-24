@@ -1,6 +1,49 @@
+<!--
+{{#if !user.enterprise}}
+{{#if user.name === ''}}
+-->
+<div style="width:1100px;position:relative;margin: 0 auto">
+	<a href="/newAccount/settings/authentication"><div class="bankcard-gray">
+		<div class="box-main">
+	    	<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
+		</div>
+	</div>
+	</a>
+</div>
+<!--
+<div class="account-bg" on-click="guide"></div>
+{{elseif !paymentPasswordHasSet}}
+-->
+<div style="width:1100px;position:relative;margin: 0 auto">
+	<a href="/newAccount/settings/authentication">
+	<div class="bankcard-gray password-png">
+		<div class="box-main">
+			<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
+		</div>
+	</div>
+	</a>
+</div>
+<!--
+<div class="account-bg" on-click="guide"></div>
+{{elseif !banksabled}}
+-->
+<div style="width:1100px;position:relative;margin: 0 auto">
+	<a href="/newAccount/settings/bankCards"><div class="bankcard-gray backcard-png">
+		<div class="box-main">
+			<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
+		</div>
+	</div>
+	</a>
+</div>
+<div class="account-bg" on-click="guide"></div>
+<!--
+{{/if}}
+{{/if}}
+-->
 
 <div class="userinfowra">
 	<div class="infoContent">
+<!--
 		<div class="box-mutual">
 			
 			{{#if !user.enterprise}}
@@ -38,6 +81,7 @@
 			{{/if}}
 			
 		</div>
+-->
 		<div class="info">
 			<div class="tx"></div>
 			{{#if user.enterprise}}

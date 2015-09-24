@@ -144,8 +144,8 @@
 }
 .credit {
 	float: left;
-	 width: 500px; 
-	position: absolute;
+	width: 500px; 
+/*	position: absolute;*/
 	left: 17%;
 }
 .credit .doCredit {

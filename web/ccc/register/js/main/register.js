@@ -19,7 +19,7 @@ baconflux.store('register', 'success').onValue(function (data) {
         if (left == 0) {
             console.log(left)
             clearInterval(interval);
-            window.location.href = "/newAccount/home";
+            window.location.href = "/newAccount/settings/authentication";
         }
     }), 1000);
 });
