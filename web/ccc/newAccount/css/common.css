@@ -273,12 +273,7 @@ table tbody tr td {
 	height: 250px;
 	position: absolute;
 	z-index: 101;
-/*
-<<<<<<< HEAD
-	left: 13.5%;
-	top: 16px;
-=======
-*/
+
 	left: 159px;
 	top: 21px;
 }
@@ -286,7 +281,7 @@ table tbody tr td {
 	position: absolute;
 	right: -20px;
 	bottom: 0;
-/*>>>>>>> eff0e22308bcdcf7340c6893e604e8bb4f2bb0e1*/
+
 }
 .bankcard-gray a{
 	display: block;
@@ -298,51 +293,17 @@ table tbody tr td {
 .password-png{
 	background-image: url(/ccc/newAccount/img/password.png);
 	left: 227px;
-/*
-<<<<<<< HEAD
-	left: 20.4%;
-*/
+
 }
 
 
-/*
-@media screen (max-width:1660px){
-	.backcard-png{
-		left: 27%;
-	}
-}
 
-@media screen and (min-width:1470px) and (max-width:1660px){
-	.backcard-png{
-		left: 27%;
-	}
-}
-
-@media screen and (min-width:1240px) and (max-width:1469px){
-	.backcard-png{
-		left: 27%;
-	}
-}
-
-@media screen and (min-width:480px) and (max-width:1239px){
-	.backcard-png{
-		left: 27%;
-	}
-=======
-	left: 227px;
->>>>>>> eff0e22308bcdcf7340c6893e604e8bb4f2bb0e1
-}
-*/
 
 .backcard-png{
 	background-image: url(/ccc/newAccount/img/bankcard.png);
-/*
-<<<<<<< HEAD
-	left: 27%;
-=======
-*/
+
 	left: 291px;
-/*>>>>>>> eff0e22308bcdcf7340c6893e604e8bb4f2bb0e1*/
+
 }
 
 .know{
@@ -362,17 +323,9 @@ table tbody tr td {
 	background-color: #015989;
 }
 
-/*
-<<<<<<< HEAD
-.box-mutual{
-	width: 100%;
-	position: absolute;
-	height: 280px;
-}
-=======
-*/
+
 .hide {
 	display: none;
 }
 
-/*>>>>>>> eff0e22308bcdcf7340c6893e604e8bb4f2bb0e1*/
+
