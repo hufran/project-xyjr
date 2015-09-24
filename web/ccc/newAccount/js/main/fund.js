@@ -207,10 +207,8 @@ ractive.loadData = function (obj) {
                 list.forEach(obj.preset);
             }
             // set first one data
-            console.log(list);
             pageOneData = parseList(list);
             ractive.set('list', parseList(list));
-            console.log(ractive.get('list'));
             renderPage(res.totalSize, obj);
         });
 };
