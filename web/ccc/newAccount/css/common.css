@@ -272,10 +272,14 @@ table tbody tr td {
 	height: 250px;
 	position: absolute;
 	z-index: 101;
-	left: 25.5%;
-	top: 22px;
+	left: 159px;
+	top: 21px;
 }
-
+.rightnow {
+	position: absolute;
+	right: -20px;
+	bottom: 0;
+}
 .bankcard-gray a{
 	display: block;
 	position: absolute;
@@ -285,36 +289,12 @@ table tbody tr td {
 
 .password-png{
 	background-image: url(/ccc/newAccount/img/password.png);
-	left: 30.4%;
-}
-
-
-@media screen (max-width:1660px){
-	.backcard-png{
-		left: 34%;
-	}
-}
-
-@media screen and (min-width:1470px) and (max-width:1660px){
-	.backcard-png{
-		left: 34%;
-	}
-}
-
-@media screen and (min-width:1240px) and (max-width:1469px){
-	.backcard-png{
-		left: 35.5%;
-	}
-}
-
-@media screen and (min-width:480px) and (max-width:1239px){
-	.backcard-png{
-		left: 36%;
-	}
+	left: 227px;
 }
 
 .backcard-png{
 	background-image: url(/ccc/newAccount/img/bankcard.png);
+	left: 291px;
 }
 
 .know{
@@ -334,4 +314,7 @@ table tbody tr td {
 	background-color: #015989;
 }
 
+.hide {
+	display: none;
+}
 

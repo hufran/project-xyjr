@@ -7,7 +7,6 @@ module.exports = function (router) {
     // post绑卡单独处理
     _.each({
         '/bindCard': '/bindCard',
-        '/withdraw': '/withdraw',
         '/deleteCard': '/deleteCard'
     }, function (api, fe) {
         router.post('/lianlianpay' + fe, ccBody,
@@ -23,8 +22,6 @@ module.exports = function (router) {
                     .send(req.body)
                     .end()
                     .then(function (r) {
-                        console.log(r.body);
-                        console.log("#############");
                         if (r.body.success) {
                             var data = {
                                 success: r.body.success,
@@ -41,9 +38,8 @@ module.exports = function (router) {
             });
     });
 
-
 	_.each({
-	    '/tender': '/tender'
+	    '/tender': '/tender',
 	}, function (api, fe) {
 	    router.post('/lianlianpay' + fe, ccBody,
 	        function (req, res, next) {
@@ -65,6 +61,28 @@ module.exports = function (router) {
 	        });
 	});
 	
+    _.each({
+        '/withdraw': '/withdraw',
+    }, function (api, fe) {
+        router.post('/lianlianpay' + fe, ccBody,
+            function (req, res, next) {
+                req.body.userId = res.locals.user.id;
+                var data = qs.stringify(req.body);
+                req.body = data.replace(/%5B\d+%5D/g, '');
+                next();
+            },
+            function (req, res) {
+                console.log(req.body);
+                req.uest.post('/api/v2/lianlianpay' + api + '/MYSELF')
+                    .type('form')
+                    .send(req.body)
+                    .end()
+                    .then(function (r) {
+                        res.json(r.body);
+                    });
+            });
+    });
+
 	_.each({
 	    '/deposit': '/deposit',
 	    '/onlineBankDeposit' : '/onlineBankDeposit'
@@ -107,7 +125,7 @@ module.exports = function (router) {
                 req: req,
                 body: req.body
             });
-        
+
             req.uest.post('/api/v2/lianlianpay' + api)
                 .type("form")
                 .send(req.body)

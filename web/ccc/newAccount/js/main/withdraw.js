@@ -6,6 +6,7 @@ var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
+var CccOk = require('ccc/global/js/modules/cccOk');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
@@ -39,7 +40,7 @@ var ractive = new Ractive({
 	},
     parseDataNum:function(){
         var self = this;
-        var availableAmount = parseInt(self.get('availableAmount')).toFixed(2)+'';
+        var availableAmount = parseFloat(self.get('availableAmount')).toFixed(2)+'';
         console.log(availableAmount);
         var point = availableAmount.indexOf('.');
         if(point !== -1){
@@ -172,13 +173,13 @@ var ractive = new Ractive({
 });
 ractive.parseDataNum();
 
-ractive.on('withdrawForm', function (e) {
-	e.original.preventDefault();
+
+ractive.on('withDrawSubmit', function () {
 	this.set('submitMessage', null);
 	var isAcess = false;
 	var amount = this.get('amount');
 	var pass = this.get('paymentPassword');
-
+	console.log();
 	if (amount === '') {
 		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));
 	}
@@ -208,27 +209,44 @@ ractive.on('withdrawForm', function (e) {
 			} else {
 				ractive.set('submitMessage', null);
 				if (ractive.confirm(amount)) {
-					console.log(111);
 					isAcess = true;
 				}
 				
 				if (isAcess) {
-					$('form').submit();
-					Confirm.create({
-						msg: '提现是否成功？',
-						okText: '提现成功',
-						cancelText: '提现失败',
-						ok: function() {
-							window.location.href = '/newAccount/funds';
-						},
-						cancel: function() {
-							window.location.reload();
-						}
+					$.post('/lianlianpay/withdraw', 
+					{
+						paymentPassword : pass,
+						amount : amount
+
+					}, function (res) {
+						if (res.success) {
+                            CccOk.create({
+                                msg: '提现申请提交成功，等待审核中!',
+                                okText: '确定',
+                                // cancelText: '重新登录',
+                                ok: function () {
+                                    window.location.reload();
+                                },
+                                cancel: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        } else {
+                            CccOk.create({
+                                msg: '提现申请失败!',
+                                okText: '确定',
+                                // cancelText: '重新登录',
+                                ok: function () {
+                                    window.location.reload();
+                                },
+                                cancel: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        }
 					});
 				}
 			}
 		});
 	}
 });
-
-
