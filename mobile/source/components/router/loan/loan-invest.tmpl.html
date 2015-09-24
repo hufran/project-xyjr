@@ -30,13 +30,17 @@
             </h3>
 
             <ul class="list-unstyled u-off-margin-bottom info-list">
-                <li class="clearfix">
-                    <div class="info pull-left">
-                        <span class="name text-muted">可投金额</span>
+                <li class="clearfix text-muted">
+                    <span class="info">
+                        <span class="name">可投金额</span>
                         <span class="value">{{ loan.balance | number }} 元</span>
-                    </div>
+                    </span>
+                    <span class="info pull-right">
+                        <span class="name">单笔最多可投</span>
+                        <span class="value">{{ loan.raw.loanRequest.investRule.maxAmount }} 元</span>
+                    </span>
                     <div class="info pull-right" x-gyro-comment>
-                        <span class="name text-muted">获赠积分</span>
+                        <span class="name">获赠积分</span>
                         <span class="value"><span class="num">{{  }}</span></span>
                     </div>
                 </li>
@@ -50,15 +54,15 @@
                     </div>
                 </li>
 
-                <li class="clearfix text-muted">
-                    <div class="info pull-left">
+                <li class="text-muted">
+                    <span class="info">
                         <span class="name">起投金额</span>
                         <span class="value">{{ loan.raw.loanRequest.investRule.minAmount }} 元</span>
-                    </div>
-                    <div class="info pull-left">
+                    </span>
+                    <span class="info">
                         <span class="name">递增金额</span>
                         <span class="value">{{ loan.raw.loanRequest.investRule.stepAmount }} 元</span>
-                    </div>
+                    </span>
                 </li>
 
                 <li>
@@ -114,15 +118,23 @@
                 <div class="coupon-tip" ng-if="!coupon_list.length">暂无可用券</div>
             </div>
 
-            <div class="agreement">
-                <label>
+            <div class="agreement"
+                 ng-model="argument_name"
+                 ng-init="
+                    argument_name = {
+                        LTB: '乐投保用户投资服务协议',
+                        LXY: '乐享盈用户投资服务协议',
+                    }[loan.product_type]
+                 "
+            >
+                <label ng-show="argument_name">
                     <input type="checkbox"
                            class="pull-left"
                            ng-init="agreement = true"
                            ng-model="agreement"
                            required
                     >
-                    <span class="desc">我已经阅读了<a href="#" ng-click="self.agreement($event)">《投资风险协议》</a>等所有协议条款，充分了解并已经知晓相应的权益和义务，愿意承担相关风险。</span>
+                    <span class="desc">我已经阅读了<a href="#" ng-click="self.agreement(argument_name)">《{{ argument_name }}》</a>等所有协议条款，充分了解并已经知晓相应的权益和义务，愿意承担相关风险。</span>
                 </label>
             </div>
         </section>
@@ -130,7 +142,7 @@
         <p class="container invest-btn-wrap">
             <button type="submit"
                     class="btn btn-theme btn-lg btn-block"
-                    ng-disabled="form.$invalid || !agreement"
+                    ng-disabled="form.$invalid || (!!argument_name && !agreement)"
             >确认投资</button>
         </p>
 

@@ -36,7 +36,7 @@ do (_, angular) ->
                 @$location.path new_path
 
 
-            login: ({username, password}) ->
+            login: ({username, password} = {}) ->
 
                 unless username and password
                     return do @error_message_flash
