@@ -77,6 +77,24 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard'
                                         do $q.reject
+
+                            _payment_account: _.ai 'api, $location, $route, $q',
+                                (                   api, $location, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then (user) ->
+                                            return user if user.has_payment_account
+                                            return $q.reject(user)
+                                        .catch (user) ->
+                                            return unless user
+
+                                            switch
+                                                when user.has_payment_account isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: '/'
+                                                            next: 'dashboard'
                     }
 
                     .when '/dashboard/bank-card', {
