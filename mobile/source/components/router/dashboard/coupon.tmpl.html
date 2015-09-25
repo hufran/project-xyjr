@@ -74,7 +74,12 @@
                             <span ng-if="!item.couponPackage.timeExpire">永不过期</span>
                         </div>
 
-                        <div class="desc">{{ item.couponPackage.description || '暂无描述' }}</div>
+                        <div class="desc">{{ item.couponPackage.displayName || '暂无描述' }}</div>
+
+                        <div class="desc">
+                            最低投资 {{ item.couponPackage.minimumInvest | number }}元，
+                            最短期限 {{ item.couponPackage.minimumDuration }}个月
+                        </div>
 
                         <button class="btn btn-sm btn-info redeem"
                                 ng-click="self.redeem(item.id)"
