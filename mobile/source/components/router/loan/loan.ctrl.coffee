@@ -84,7 +84,7 @@ do (_ ,angular, moment, Math, Date) ->
 
             corporate_name: item.corporationShortName
             product_key: loanRequest.productKey
-            product_type: loanRequest.productKey?.match(/^\w+/)[0] or 'UNKNOW'
+            product_type: loanRequest.productKey?.trim().match(/^\w+/)[0] or 'UNKNOW'
             value_date: loanRequest.valueDate
 
             balance

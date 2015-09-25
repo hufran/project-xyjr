@@ -61,10 +61,11 @@ do (_, angular, Math) ->
                 loan = @$scope.loan
                 rule = loan.raw.loanRequest.investRule
 
-                [step, balance] = [rule.stepAmount, loan.balance]
+                [step, balance, maximum] = [rule.stepAmount, loan.balance, rule.maxAmount]
 
                 amount = Math.max 0, amount
                 amount = Math.min amount, balance
+                amount = Math.min amount, maximum
 
                 return amount // step * step
 
@@ -90,6 +91,7 @@ do (_, angular, Math) ->
 
                 amount = @$scope.store.amount or 0
                 loan_minimum = @loan.loanRequest.investRule.minAmount
+                loan_maximum = @loan.loanRequest.investRule.maxAmount
                 loan_step = @loan.loanRequest.investRule.stepAmount
                 loan_available = @loan.balance
                 user_available = @user.fund.availableAmount
@@ -107,6 +109,10 @@ do (_, angular, Math) ->
                 else if amount > loan_available
                     good_to_go = false
                     @alert "当前可投 #{ loan_available }元"
+
+                else if amount > loan_maximum
+                    good_to_go = false
+                    @alert "单笔最多可投 #{ loan_maximum }元"
 
                 else if coupon_minimum and amount < coupon_minimum
                     good_to_go = false
@@ -200,9 +206,9 @@ do (_, angular, Math) ->
                 }
 
 
-            agreement: ->
+            agreement: (name) ->
 
-                api_path = '' # To do: add api_path url
+                api_path = '/api/v2/cms/category/DECLARATION/name/' + name
 
                 @$modal.open {
                     size: 'lg'
@@ -214,7 +220,7 @@ do (_, angular, Math) ->
                     resolve: {
                         content: _.ai '$http', ($http) ->
                             $http
-                                .get encodeURI(api_path), {cache: true}
+                                .get api_path, {cache: true}
                                 .then (response) -> _.get response.data, '[0].content'
                     }
 

@@ -73,7 +73,7 @@ var infoRactive = new Ractive({
 	el: '#userinfo',
 	template: require('ccc/newAccount/partials/home/userinfo.html'),
 	data: {
-		user: null,
+		user: CC.user,
 		paymentPasswordHasSet : CC.user.paymentPasswordHasSet,
 		isEnterprise : CC.user.enterprise,
 		banksabled : banksabled.length? true : false,
