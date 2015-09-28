@@ -112,6 +112,7 @@ do (_, angular, moment, Array) ->
                 @$http
                     .get '/api/v2/user/MYSELF/funds',
                         params: query_set
+                        cache: true
 
                     .then TAKE_RESPONSE_DATA
 
