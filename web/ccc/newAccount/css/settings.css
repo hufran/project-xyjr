@@ -430,3 +430,10 @@ p.tips {
   margin-left:210px;
     height: 30px;
 }
+.descript p a{
+    color: #999;
+}
+.descript p a:hover{
+    color: #009ada;
+    text-decoration: none;
+}
