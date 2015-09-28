@@ -449,6 +449,8 @@
     font-size: 14px;
     color: #999999;
 /*    margin-left: 16px;*/
+	overflow: hidden;
+	display: block;
 }
 .friend-right a{
     float: left;
