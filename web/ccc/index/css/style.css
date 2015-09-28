@@ -557,7 +557,7 @@ a {
 
 .s-split-view {
 	overflow: hidden;
-	padding-top: 30px;
+	padding-top: 17px;
 	margin-bottom: 30px;
 	cursor: pointer;
 	width: 1100px;
@@ -573,21 +573,29 @@ a {
 }
 
 #newsBg {
-	background: #fff;
+	background-color: inherit;
 	width: 100%;
 	overflow: hidden;
 }
 
 .s-split-view .s-right-view {
-	width: 350px;
+	width: 366px;
 	float: left;
-	margin-right: 24px;
+/*
+	margin-right: 24px;	
+*/
+}
+
+.s-split-view .s-right-view ul{
+	border-left: none;
+	border-right: none;
 }
 
 .s-split-view .s-left-view {
-	width: 350px;
+	width: 366px;
 	float: left;
-	margin-right: 24px;
+/*	margin-right: 24px;*/
+	
 }
 
 .s-split-view h4 {
@@ -612,11 +620,12 @@ a {
 	font-size: 14px;
 	color: #666666;
 	line-height: 32px;
-	width: 350px;
+	width: 366px;
 	height: 160px;
 	border-bottom: 1px solid #eeeeee;
 	border-left: 1px solid #eee;
 	border-right: 1px solid #eee;
+	background-color: white;
 }
 
 #newsBg .s-split-view li {
@@ -639,14 +648,15 @@ a {
 }
 
 .firendLinkBox {
-	background: #fff;
+	background-color: inherit;
 	width: 100%;
-	overflow: hidden;
+/*	overflow: hidden;*/
 }
 
 .firendLink {
 	width: 1100px;
 	margin: auto;
+	overflow: hidden;
 }
 
 .s-split-view ul li a img {

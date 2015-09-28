@@ -54,7 +54,7 @@ function initailEasyPieChart() {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
-			 var percentageNum = CC.loan.rule.leftAmount/10000;
+			var percentageNum = CC.loan.rule.leftAmount;
             // 100%进度条颜色显示为背景色
             var color = percentage === 100 ? "#f58220" : '#009ada';
             $(this).easyPieChart({
@@ -69,8 +69,9 @@ function initailEasyPieChart() {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
             });
-            $(this).find("span.percentageNum").html('<span style="color:#f58220;font-size:24px;">' + percentageNum + '</span>' + '<span style="color:#4b4b4b;">' + '万' + '</span>');
-            
+
+            $(this).find("span.percentageNum").html('<span style="color:#f58220;font-size:24px;">' + percentageNum + '</span>' + '<span style="color:#4b4b4b;">' +  CC.loan.rule.dw + '</span>');
+
 			var width = $(this).find("span.percentageNum").width();
 			$(this).find("span.percentageNum").css({'left':'50%','margin-left':-width/2});
 			console.log(width);

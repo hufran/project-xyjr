@@ -460,8 +460,26 @@ infoRactive.on({
 	},
 	hideTip:function(event){
 		$($(event)[0].node.nextElementSibling).fadeOut(0);
+	},
+	showLevel:function(){
+		var p = $('<p>点击查看会员体系详情</p>');
+		p.css({backgroundColor:'black',
+			   color:'white',
+			   lineHeight:'24px',
+			   padding:'0 5px 0 5px',
+			   borderRadius:'5px',
+			   opacity:0.7,
+			   position:'absolute',
+			   left:'105px',
+			   top:0
+			  })
+		$('.level').after(p);
+	},
+	hideLevel:function(){
+		$('.EdiT p').remove();
 	}
 })
+
 
 //window.onload = function(){
 //	$('.doCredit li a').mouseover(function(){
