@@ -54,12 +54,7 @@ function initailEasyPieChart() {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
-<<<<<<< HEAD
 			var percentageNum = CC.loan.rule.leftAmount;
-				
-=======
-			 var percentageNum = CC.loan.rule.leftAmount/10000;
->>>>>>> 7c9a26651aed302512dd76afca059d886a2eceae
             // 100%进度条颜色显示为背景色
             var color = percentage === 100 ? "#f58220" : '#009ada';
             $(this).easyPieChart({
