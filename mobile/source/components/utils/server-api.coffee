@@ -106,7 +106,6 @@ do (_, angular, moment, Array) ->
                     endDate: convert_to_day moment().add 1, 'd'
                     page: 1
                     pageSize: 40
-                    _t: +Date.now()
                 }
 
                 @$http
