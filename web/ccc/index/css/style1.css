@@ -404,10 +404,12 @@
 }
 .productBoxTitle .titleRight{
     float: right;
-       font-size: 14px;
+    font-size: 14px;
     color: #4a4a4a;
+
     line-height: 48px;
     padding-top: 16px;
+
 }
 
 .productBoxTitle .titleRight a:hover{
