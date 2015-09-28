@@ -1185,7 +1185,7 @@
 	min-height: 800px;
 	background: #fff;
 /*	margin-top: 20px;*/
-	width: 730px;
+	width: 749px;
 	margin-left: 0;
 	float: left;
 	border-right: 1px solid #eee;
@@ -1232,7 +1232,7 @@
 
 .invest-detail-wrapper .nav-tabs .active a,
 .invest-detail-wrapper .nav-tabs .active a:focus {
-	font-size: 16px;
+	font-size: 18px;
 	border: none;
 	text-align: center;
 	color: #4a4a4a;
@@ -1683,11 +1683,8 @@
 }
 
 .insurance-wrapper {
-	width: 350px;
+	width: 349px;
 	float: left;
-/*	margin-top: 14px;*/
-/*	margin-left: 20px;*/
-/*	height: 200px;*/
 }
 
 .do-invest-wrapper .status .userBlock .left-time-start span {
@@ -1817,7 +1814,7 @@
 	margin-left: 10px;
 	font-family: '微软雅黑';
 	border-bottom: 1px solid #ccc;
-	margin-bottom: 45px;
+	margin-bottom: 10px;
 }
 
 .protocol {
@@ -1841,6 +1838,11 @@
 	background-size: contain;
 }
 
-。easy-pie-chart{
+.easy-pie-chart{
 	position: relative;
+}
+.no-pics{
+    color:#ccc;
+    font-size: 14px;
+    text-align:center
 }
