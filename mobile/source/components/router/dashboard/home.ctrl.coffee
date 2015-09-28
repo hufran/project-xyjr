@@ -44,7 +44,6 @@ do (_, angular) ->
 
                 # prefetch following API calls for getting out from cache directly later on
 
-                @api.get_user_funds()
                 @api.get_user_investments()
 
 
