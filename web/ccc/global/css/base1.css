@@ -142,7 +142,7 @@
 }
 .footer-guide{
     float: left;
-    margin-right:45px;
+    margin-right:102px;
     margin-top:12px;
     margin-bottom: 90px;
 }
@@ -171,7 +171,7 @@
 .bottom-left{
     float:left;
     margin-right:0px;
-    margin-right: 55px;
+    margin-right: 102px;
 }
 .bottom-right-service{
     font-size: 18px;
@@ -413,11 +413,11 @@
 .bottom-right{
     float: right;
     height:126px;
-    margin-right: 50px;
+/*    margin-right: 50px;*/
     }
 .bottom-right .bottom-rightApp{
     float: left;
-    margin-right: 50px;
+/*    margin-right: 24px;*/
     color:#4a4a4a;
     font-size: 14px;
     line-height: 26px;

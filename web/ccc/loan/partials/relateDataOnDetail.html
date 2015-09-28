@@ -1,6 +1,6 @@
 <p class="controler-title">企业认证图片</p>
 {{#if career.length}}
-<div class="controler" style="margin-left:12px;">
+<div class="controler" style="margin-left:10px;margin-right:10px">
     <div id="carousel-com-career" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner" role="listbox">
             {{#career}}
@@ -31,14 +31,14 @@
 </div>
 
 {{ else }}
-<div style="text-align:center">
+<div class="no-pics">
     暂无相关资料
 </div>
 {{/if}}
 
-<p class="controler-title" style="margin-top:30px;">风控认证图片</p>
+<p class="controler-title">风控认证图片</p>
 {{#if loanPurpose.length}}
-<div class="controler">
+<div class="controler" style="margin-left:10px;margin-right:10px">
     <div id="carousel-com-loan" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner" role="listbox">
             {{#loanPurpose}}
@@ -69,7 +69,7 @@
 </div>
 
 {{ else }}
-<div style="text-align:center">
+<div class="no-pics">
     暂无相关资料
 </div>
 {{/if}}

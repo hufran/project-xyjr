@@ -5,6 +5,7 @@ var LLPBANKS = require('ccc/global/js/modules/cccllpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
+var CccOk = require('ccc/global/js/modules/cccOk');
 // 过滤银行卡，只显示enabled=true的
 var banks = _.filter(LLPBANKS, function (r) {
     return r.enable === true;
@@ -108,17 +109,43 @@ ractive.on("bind-card-submit", function () {
     if (cardNoError || phoneNoError || SMS_NULL) {
         return false;
     }
-    Confirm.create({
-        msg: '绑卡是否成功？',
-        okText: '绑卡成功',
-        cancelText: '绑卡失败',
-        ok: function () {
-            window.location.reload();
-        },
-        cancel: function () {
-            window.location.reload();
-        }
+    var bankr= _.filter(CC.user.bankCards, function (r) {
+    return r.deleted === false;
     });
+    if(bankr){
+         CccOk.create({
+             msg: '绑卡成功', 
+             okText: '确定',
+             ok: function () {
+                  window.location.reload();
+             },
+              cancel: function () {
+                  window.location.reload();
+              }
+         });
+    }else{
+        CccOk.create({
+             msg: '绑卡失败', 
+             okText: '确定',
+             ok: function () {
+                  window.location.reload();
+             },
+              cancel: function () {
+                  window.location.reload();
+              }
+         }); 
+    }
+//    Confirm.create({
+//        msg: '绑卡是否成功？',
+//        okText: '绑卡成功',
+//        cancelText: '绑卡失败',
+//        ok: function () {
+//            window.location.reload();
+//        },
+//        cancel: function () {
+//            window.location.reload();
+//        }
+//    });
 });
 
 ractive.on("delete-card-submit", function (e) {
