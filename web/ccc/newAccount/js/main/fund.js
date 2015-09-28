@@ -240,9 +240,9 @@ var nameMap={
     FEE_DEPOSIT:'充值手续费',
     FEE_ADVANCE_REPAY:'提前还款违约金(给商户)',
     FEE_ADVANCE_REPAY_INVEST:'提前还款违约金(给投资人)',
-    FSS:'生利宝'
+    FSS:'生利宝',
+    OFFLINE_DEPOSIT:'线下充值'
 };
-
 function parseList(date){
     for(var i=0;i<date.length;i++){
         date[i].transactionType=nameMap[date[i].type];
