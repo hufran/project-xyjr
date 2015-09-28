@@ -395,6 +395,7 @@
     font-size: 20px;
     color: #4a4a4a;
     line-height: 48px;
+	padding-top: 16px;
 }
 
 .productBoxTitle .titleLeft img{
@@ -435,10 +436,11 @@
     line-height: 50px;
 }
 .productBg{
-    background: #ffffff;
+    background: #f6f8fc;
 /*    height:500px;*/
     overflow: hidden;
     clear: both;
+	padding-bottom: 50px;
 }
 /*友情链接*/
 .friend-left{
