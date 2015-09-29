@@ -854,3 +854,6 @@ a {
 	margin-left: -30px;
 	margin-top: 5px;
 }
+.strengthProtectBox p:hover{
+    color: #009ada;
+}
