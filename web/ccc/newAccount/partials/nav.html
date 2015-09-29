@@ -49,6 +49,25 @@
 			</ul>
 		{{/if}}
 	</li>
+        	<li class="nav-li">
+		{{#if loanRequest}}
+			<span class="icon-invest-active"></span>
+		{{else}}
+			<span class="icon-invest"></span>
+		{{/if}}
+		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan">还款管理</a></span>
+		<span class='nav-toggle-btn {{showLoanToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showLoanToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if loan}}active{{/if}}"><a href="/newAccount/loanRequest/loan">我的借款</a></li>
+				<li class="{{#if today}}active{{/if}}"><a href="/newAccount/loanRequest/today">今日到期</a></li>
+				<li class="{{#if undue}}active{{/if}}"><a href="/newAccount/loanRequest/undue">尚未到期</a></li>
+				<li class="{{#if repayed}}active{{/if}}"><a href="/newAccount/loanRequest/repayed">已还清</a></li>
+				<li class="{{#if overdue}}active{{/if}}"><a href="/newAccount/loanRequest/overdue">逾期及违约</a></li>
+			</ul>
+		{{/if}}
+	</li>
 	{{/if}}
 	<li class="nav-li">
 		{{#if fund}}
@@ -79,6 +98,7 @@
 		{{/if}}
 	</li>
 	{{#if !isEnterprise}}
+
 	<li class="nav-li coupon-nav">
 		{{#if coupon}}
 			<span class="icon-coupon-active"></span>
