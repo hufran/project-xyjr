@@ -173,11 +173,15 @@ module.exports = function (router) {
                 req.uest(
                     '/api/v2/user/MYSELF/paymentPasswordHasSet')
                 .get('body'),
-                function (authenticates, paymentPasswordHasSet) {
+                req.uest('/api/v2/user/MYSELF/fundaccountsMap')
+                .get('body'),
+                function (authenticates, paymentPasswordHasSet, fundaccountsMap) {
                     res.locals.user.authenticates =
                         authenticates;
                     res.locals.user.paymentPasswordHasSet =
                         paymentPasswordHasSet;
+                    res.locals.user.fundaccountsMap =
+                        fundaccountsMap;
                     res.render('newAccount/settings', {
                         tabName: tabName,
                         title: '奇乐融'

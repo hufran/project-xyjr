@@ -39,6 +39,7 @@ var ractive = new Ractive({
         ifDel: false,
         mobile: CC.user.mobile,
         realName: CC.user.name,
+        isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false,
         authenticated: CC.user.authenticates.idauthenticated || false
     },
     oninit: function () {
