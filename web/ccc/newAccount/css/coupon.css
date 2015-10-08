@@ -2,7 +2,6 @@
 	height: auto;
 	width: 1100px;
 	margin-top: 28px;
-	margin-bottom: 12px;
 }
 
 .coupon-content .coupon-nav-view {
@@ -13,7 +12,7 @@
 }
 
 .coupon-content .coupon-nav-view ul {
-	padding: 10px 0;
+/*	padding: 10px 0;*/
 	overflow: hidden;
 }
 
@@ -24,22 +23,25 @@
 	padding-top: 12px;
 	font-size: 14px;
 }
+ .col-md-12{
+     padding-left: 0px;
+ }
 
 .coupon-content .coupon-nav-view ul li {
-	width: 50px;
+	width: 100px;
 	text-align: center;
 	color: #6d6c6c;
 	cursor: pointer;
 	display: block;
 	float: left;
-	margin-right: 35px;
+/*	margin-right: 35px;*/
+    line-height: 38px;
 }
 
 .coupon-content .coupon-nav-view ul li:hover,
 .coupon-content .coupon-nav-view ul li.active {
-	background-color: #009ada;
-	color: white;
-	border-radius: 2px;
+	    border-bottom: 2px solid #009ada;
+    color: #4a4a4a;
 }
 
 .coupon-content-detail {
@@ -55,12 +57,12 @@
 .ccc-tab > ul.ttabs > li a {
 	text-decoration: none;
 	margin: 0;
-	color: #6a6c6c;
-    font-size: 14px;
+	color: #999;
+    font-size: 18px;
 }
 .ccc-tab > ul.ttabs > li a:hover,
 .ccc-tab > ul.ttabs > li a:focus {
-	color: #fff;
+/*	color: #fff;*/
 }
 
 .ccc-tab > ul.ttabs .active {
@@ -69,12 +71,9 @@
 }
 
 .ccc-tab > ul.ttabs .active a {
-	background-color: #009ada;
-	color: white;
-	border-radius: 2px;
-	border-bottom: none;
-	margin-bottom: 0px;
-	text-decoration: none;
+/*	background-color: #009ada;*/
+/*    border-bottom: 2px solid #009ada;*/
+    color: #4a4a4a;
 }
 
 .ccc-tab > ul.stabs > li a {
@@ -85,7 +84,7 @@
 
 .ccc-tab > ul.stabs > li a:hover,
 .ccc-tab > ul.stabs > li a:focus {
-	color: #fff;
+/*	color: #fff;*/
 	text-decoration: none;
 	background-color: #009ada;
 	border-radius: 2px;
@@ -99,7 +98,7 @@
 
 .ccc-tab > ul.stabs .active a {
 	background-color: #009ada;
-	color: white;
+/*	color: white;*/
 	border-radius: 2px;
 	border-bottom: none;
 	margin-bottom: 0px;
@@ -254,7 +253,7 @@
 	border:1px #eeeeee solid;
 	background-image: none;
 	background-color: #009ada;
-	color: #fff;
+/*	color: #fff;*/
 }
 .ccc-paging .currentPagewra{
     width:31px;

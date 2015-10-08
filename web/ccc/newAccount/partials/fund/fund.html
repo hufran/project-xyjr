@@ -82,6 +82,7 @@
                         <th>备注</th>
                     </tr>
                 </thead>
+<!--                {{JSON.stringify(list)}}-->
                 {{#if list}}
                 <tbody>
                     {{#each list}}
@@ -96,7 +97,11 @@
                         <td>{{operationName}}</td>
                         <td>{{ status }}</td>
                         <!-- summary -->
-                        <td style="width:100px;">{{ description }}</td>
+                        <td style="width:100px;">{{ description }}<br/>
+                             {{#if type=='INVEST'}}
+                            {{hint}}
+                            {{/if}}
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>

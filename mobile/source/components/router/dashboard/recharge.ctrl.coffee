@@ -16,7 +16,7 @@ do (angular) ->
                     available_amount: @user.fund.availableAmount
                     total_amount: @user.fund.availableAmount + @user.fund.frozenAmount
                     bank_account: @user.bank_account
-                    return_url: @baseURI + 'dashboard/funds'
+                    return_url: @baseURI + 'dashboard'
                 }
 
             submit: (amount) ->

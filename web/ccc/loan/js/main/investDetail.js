@@ -37,11 +37,9 @@ new Ractive({
     template: template,
     data: {
         timeOpen: moment(CC.loan.timeOpen).format('YY.MM.DD HH:mm'),
-        timeFinished: moment(CC.loan.timeFinished).format('YY.MM.DD HH:mm')
+        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YY.MM.DD HH:mm')
     }
 });
-
-
 
 
 

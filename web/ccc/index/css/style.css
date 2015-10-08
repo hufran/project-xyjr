@@ -568,7 +568,7 @@ a {
 .s-split-view .u-float-right {
 	line-height: 48px;
 	/*  padding-right: 36px;*/
-	
+	margin-right: 20px;
 	color: #4a4a4a;
 }
 
@@ -853,4 +853,7 @@ a {
 	text-align: center;
 	margin-left: -30px;
 	margin-top: 5px;
+}
+.strengthProtectBox p:hover{
+    color: #009ada;
 }
