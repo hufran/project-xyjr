@@ -1464,6 +1464,7 @@
 	top: 15px;
 	right: 50px;
 	background: url(/ccc/global/img/main/close.png);
+	z-index: 100px;
 }
 
 .big-pic-wrapper .control {
