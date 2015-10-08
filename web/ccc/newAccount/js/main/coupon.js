@@ -44,7 +44,8 @@ function init (type) {
 			size: pagesize,
 			page: page,
 			totalPage: totalPage,
-			api: '/api/v2/coupon/MYSELF/coupons',
+			//api: '/api/v2/coupon/MYSELF/coupons',
+            api:'/api/v2/coupon/'+CC.user.userId+'/coupons/byStatus',
 			data: {
 				loading: true,
 				list: [],
@@ -79,10 +80,10 @@ function init (type) {
 			getCouponData: function(callback) {
 				var self = this;
 
-				$.post(self.api,{
-					type: type,
-					page: self.page,
-					size: self.size
+				$.get(self.api,{
+					status: type,
+					pageNo: self.page,
+					pageSize: self.size
 				},function (o){
 					
 					console.log(o.data);
@@ -125,7 +126,7 @@ function init (type) {
 	                    o[i].displayStatus = '未使用';
 	                } else if (o[i].status === 'USED') {
 	                	o[i].USED = true;
-	                    o[i].displayStatus = '待处理';
+	                    o[i].displayStatus = '已使用';
 	                } else if (o[i].status === 'REDEEMED') {
 	                	o[i].REDEEMED = true;
 	                    o[i].displayStatus = '已兑换';
