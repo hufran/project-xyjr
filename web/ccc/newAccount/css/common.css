@@ -75,7 +75,7 @@
 .nav-li .icon-invest {
 	width: 52px;
 	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-invest.png) no-repeat center right;
+	background: url(/ccc/newAccount/img/invest.png) no-repeat center right;
 }
 .nav-li .icon-fund {
 	width: 52px;
@@ -119,7 +119,7 @@
 .nav-li .icon-invest-active {
 	width: 52px;
 	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-invest-active.png) no-repeat center right;
+	background: url(/ccc/newAccount/img/invest_active.png) no-repeat center right;
 }
 .nav-li .icon-fund-active {
 	width: 52px;
