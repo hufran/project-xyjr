@@ -3,6 +3,8 @@ var loanService = require('./service/loans.js').loanService;
 var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
+var CccOk = require('ccc/global/js/modules/cccOk');
+
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
@@ -49,11 +51,10 @@ function initailEasyPieChart() {
     // 初始化饼状图
     ///////////////////////////////////////////////////////////
     $(function () {
-        console.log(CC.user);
-        console.log(CC.loan);
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
+			var percentageNum = CC.loan.rule.leftAmount;
             // 100%进度条颜色显示为背景色
             var color = percentage === 100 ? "#f58220" : '#009ada';
             $(this).easyPieChart({
@@ -61,14 +62,20 @@ function initailEasyPieChart() {
                 trackColor: '#ddd',
                 scaleColor: false,
                 lineCap: 'butt',
-                lineWidth: 2,
+                lineWidth: 4,
                 animate: oldie ? false : 1000,
-                size: 100,
+                size: 130,
                 onStep: function (from, to, percent) {
                     $(this.el).find('.percent').text(Math.round(percent));
                 }
             });
-            $(this).find("span.percentageNum").html(percentage + "%");
+
+            $(this).find("span.percentageNum").html('<span style="color:#f58220;font-size:24px;">' + percentageNum + '</span>' + '<span style="color:#4b4b4b;">' +  CC.loan.rule.dw + '</span>');
+
+			var width = $(this).find("span.percentageNum").width();
+			$(this).find("span.percentageNum").css({'left':'50%','margin-left':-width/2});
+			console.log(width);
+			
         });
 
     });
@@ -106,7 +113,7 @@ setTimeout((function () {
                 ss: ss
             }
             var days = newTimeleftTotal.dd ? '<i>' + newTimeleftTotal.dd + '</i>日' : '';
-            $('.time>span').html('剩余时间：' + days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
+            $('.time>span').html( days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
         }, 1000)
         //获取最后还款日期
     if (CC.repayments instanceof Array && CC.repayments.length > 0) {
@@ -145,11 +152,11 @@ setTimeout((function () {
     if (CC.loan.status === 'SCHEDULED') {
         var interval = setInterval((function () {
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day + '天' : '';
+            var textDay = leftTime.day ? leftTime.day : '';
             if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                 clearInterval(interval);
             } else {
-                $('.left-time-start').html('<span class="text" style="color:#c6c6c6">距离开标时间还有<span style="color:#007ec5">' + textDay + leftTime.hour + '</span>时<span style="color:#007ec5">' + leftTime.min + '</span>分<span style="color:#007ec5">' + leftTime.sec + '</span>秒</span>')
+                $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">'+ leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
             }
         }), 1000);
     }
@@ -161,15 +168,6 @@ setTimeout((function () {
             investRactive.set('name', res.user.name);
         });
     }
-
-//    investRactive.on('checkPaymentPassword', function () {
-//        var paymentPassword = this.get('paymentPassword');
-//        accountService.checkPassword(paymentPassword, function (r) {
-//            if (!r) {
-//                showErrors('请输入正确的交易密码!');
-//            }
-//        });
-//    });
 
     investRactive.set('user', CC.user);
     if ($('.invest-submit').length > 0) {
@@ -184,7 +182,7 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-       // showSelect(num);
+        showSelect(num);
     });
 
     investRactive.on('add', function (e) {
@@ -198,19 +196,28 @@ setTimeout((function () {
             return;
         }
         investRactive.set('inputNum', num);
-        //showSelect(num);
+        showSelect(num);
     });
 
 
     investRactive.on('maxNumber', function (e) {
-        if (CC.user.availableAmount < CC.loan.rule.min) {
-            investRactive.set('inputNum', CC.loan.rule.min);
+//        if (CC.user.availableAmount < CC.loan.rule.min) {
+//            investRactive.set('inputNum', CC.loan.rule.min);
+//        }
+//        if (CC.user.availableAmount > CC.loan.rule.max) {
+//            investRactive.set('inputNum', CC.loan.rule.max);
+//        } else if(CC.user.availableAmount>CC.loan.rule.leftAmount){
+//            investRactive.set('inputNum', Math.floor(CC.loan.rule.leftAmount));
+//        }else{
+//            investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
+//        }
+      var lmount=CC.loan.rule.leftAmount;
+        if(CC.loan.rule.dw==='万'){
+            lmount=lmount*10000;
         }
-        if (CC.user.availableAmount > CC.loan.rule.max) {
-            investRactive.set('inputNum', CC.loan.rule.max);
-        } else {
-            investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
-        }
+       var minNum=Math.min(CC.user.availableAmount,CC.loan.rule.max,lmount);
+     
+        investRactive.set('inputNum', Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
     });
 
 
@@ -277,10 +284,14 @@ setTimeout((function () {
                     var couponText = '';
                     if ($("#couponSelection")) {
                         var value = $("#couponSelection").find("option:selected").val();
-                        if ( value == '' ) {
-                            couponText = '未使用任何奖券';
+
+                        if(investRactive.get('selectOption')==null){
+                        if ( value == '') {
+                            couponText = '未使用任何奖券,';
                         } else {
+
                             couponText = '将使用' + $("#couponSelection").find("option:selected").text();
+                        }
                         }
                     }
 					
@@ -288,46 +299,44 @@ setTimeout((function () {
 					if (document.getElementById('agree').checked == true){
 						$('.agree-error').css('visibility','hidden');
                     	Confirm.create({
-                        msg: '您本次投资的金额为' + num + '元，'+ couponText +'，是否确认投资？',
+                        msg: '您本次投资的金额为' + num + '元，'+ couponText +'是否确认投资？',
                         okText: '确定',
                         cancelText: '取消',
   
                         ok: function () {
-                            $('form').submit();
-							
-//							var data ={
-//								loadId:CC.user.id,
-//								amount:$('input[name="amount"]').val(),
-//								placementId:$("#couponSelection").find("option:selected").val(),
-//								paymentPassword:$('input[name="paymentPassword"]').val()
-//							}
-//							request.post('/api/v2/invest/' + CC.user.id + '/MYSELF')
-//								.type('JSON')
-//								.send(data)
-//								.end()
-//								.then(function(r){
-//								console.log(r.body);
-//								if(r.body.success){
-//									alert('抢标成功');
-//									window.location.reload();
-//								}else{
-//									alert('抢标失败');
-//										window.location.reload();
-//								}
-//							})
-							
-                            $('.dialog').hide();
-                            Confirm.create({
-                               msg: '抢标是否成功？',                                
-								okText: '抢标成功',                                
-								cancelText: '抢标失败',
-                                ok: function () {
-                                    window.location.reload();
-                                },  
-                                cancel: function () {
-                                    $('.dialog').hide();
+                            $.post('/lianlianpay/tender', {
+                                amount : num,
+                                loanId : investRactive.get('loan.id'),
+                                placementId : investRactive.get('coupon'),
+                                paymentPassword : investRactive.get('paymentPassword')
+                            }, function (res) {
+                                if (res.success) {
+                                    CccOk.create({
+                                        msg: '投资成功，<a href="/invest/list" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                        okText: '确定',
+                                        // cancelText: '重新登录',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    CccOk.create({
+                                        msg: '投资失败，' + res.error[0].message,
+                                        okText: '确定',
+                                        // cancelText: '重新登录',
+                                        ok: function () {
+                                            window.location.reload();
+                                        },
+                                        cancel: function () {
+                                            window.location.reload();
+                                        }
+                                    });
                                 }
                             });
+                            $('.dialog').hide();
                         },
                         cancel: function () {
                            $('.dialog').hide();                    
@@ -341,6 +350,7 @@ setTimeout((function () {
             });
         };
     });
+   
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
@@ -436,17 +446,13 @@ setTimeout((function () {
         });
 
     function showSelect(amount) {
-
             $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
-            disableErrors()
-            $.post('/loan/selectOption', {
-                amount: amount,
-                months: months
-            }, function (o) {
-                if (o.success) {
-                    investRactive.set('selectOption', parsedata(o.data));
+            disableErrors();
+            loanService.getMyCoupon(amount, months, function (coupon) {
+                if(coupon.success) {
+                    investRactive.set('selectOption', parsedata(coupon.data));
                 }
             });
         }
@@ -457,7 +463,7 @@ setTimeout((function () {
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
         if (parseFloat(inputNum) !== parseFloat(inum)) {
-           // showSelect(inputNum);
+           showSelect(inputNum);
         }
     });
 }), 100);

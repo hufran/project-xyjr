@@ -69,7 +69,7 @@ ractive.on("register-account-submit", function () {
                                 okText: '现在开通',
                                 cancelText: '稍后再说',
                                 ok: function () {
-                                    window.location.href = '/account/paypwd';
+                                    window.location.href = '/newAccount/settings/password';
                                 },
                                 cancel: function () {
                                     window.location.reload();

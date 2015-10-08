@@ -1,19 +1,20 @@
-{{#if career.length}}
 <p class="controler-title">企业认证图片</p>
-
-<div class="controler">
+{{#if career.length}}
+<div class="controler" style="margin-left:10px;margin-right:10px">
     <div id="carousel-com-career" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner" role="listbox">
             {{#career}}
-            <div class="item {{#if @index===0}} active {{/if}}">
+            <div class="item item-pic {{#if @index===0}} active {{/if}}" style="background-image:url({{uri}});" on-click="begin-big-pic-career">
+<!--
                 <div class="row">
                     <div class="col-xs-6 col-md-2 imgs-list" style="width:350px;">
-                        <a on-click="begin-big-pic-career" class="thumbnail-border" style="float:left">
+                        <a  class="thumbnail-border" style="float:left">
                             <img src="{{uri}}" style="width:100%;">
                         </a>
 
                     </div>
                 </div>
+-->
             </div>
             {{/career}} 
         </div>
@@ -30,19 +31,19 @@
 </div>
 
 {{ else }}
-<div style="text-align:center">
+<div class="no-pics">
     暂无相关资料
 </div>
 {{/if}}
 
-{{#if loanPurpose.length}}
 <p class="controler-title">风控认证图片</p>
-
-<div class="controler">
+{{#if loanPurpose.length}}
+<div class="controler" style="margin-left:10px;margin-right:10px">
     <div id="carousel-com-loan" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner" role="listbox">
             {{#loanPurpose}}
-            <div class="item {{#if @index===0}} active {{/if}}">
+            <div class="item item-pic {{#if @index===0}} active {{/if}}" style="background-image:url({{uri}});" on-click="begin-big-pic-loan">
+<!--
                 <div class="row">
                     <div class="col-xs-6 col-md-2 imgs-list" style="width:350px;">
                         <a on-click="begin-big-pic-loan" class="thumbnail-border" style="float:left">
@@ -51,6 +52,7 @@
 
                     </div>
                 </div>
+-->
             </div>
             {{/loanPurpose}} 
         </div>
@@ -67,7 +69,7 @@
 </div>
 
 {{ else }}
-<div style="text-align:center">
+<div class="no-pics">
     暂无相关资料
 </div>
 {{/if}}

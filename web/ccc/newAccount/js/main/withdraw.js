@@ -6,6 +6,7 @@ var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
+var CccOk = require('ccc/global/js/modules/cccOk');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
@@ -18,7 +19,7 @@ var ractive = new Ractive({
 		banks: UMPBANKS,
 		loadMessage: null,
 		bankcards: banksabled || [],
-		availableAmount: 0,
+		availableAmount:CC.user.availableAmount||0,
 		msg: {
 			AMOUNT_NULL: '请输入提现金额',
 			AMOUNT_INVALID: '输入的金额有误',
@@ -27,6 +28,8 @@ var ractive = new Ractive({
 			ERROR: '请求出现错误',
 
 		},
+        pointNum:null,
+        intNum:null,
 		isSend: false,
 		disabled: false,
 		submitText: '确认提现',
@@ -35,9 +38,22 @@ var ractive = new Ractive({
 		isEnterpriseUser: CC.user.enterprise,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
 	},
+    parseDataNum:function(){
+        var self = this;
+        var availableAmount = parseFloat(self.get('availableAmount')).toFixed(2)+'';
+        console.log(availableAmount);
+        var point = availableAmount.indexOf('.');
+        if(point !== -1){
+            var num = availableAmount.split('.');
+            self.set({
+                'intNum':num[0],
+                'pointNum':num[1]
+            })
+        }
+        console.log(num);
+    },
 	oninit: function(){
 		var self = this;
-		
 		var userInfo = CommonService.getUserInfo();
 		userInfo.then(function(){
 			self.set('availableAmount', CC.user.availableAmount);
@@ -155,14 +171,15 @@ var ractive = new Ractive({
 		return v.toString().match(/^([0-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
 	}
 });
+ractive.parseDataNum();
 
-ractive.on('withdrawForm', function (e) {
-	e.original.preventDefault();
+
+ractive.on('withDrawSubmit', function () {
 	this.set('submitMessage', null);
 	var isAcess = false;
 	var amount = this.get('amount');
 	var pass = this.get('paymentPassword');
-
+	console.log();
 	if (amount === '') {
 		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));
 	}
@@ -192,27 +209,44 @@ ractive.on('withdrawForm', function (e) {
 			} else {
 				ractive.set('submitMessage', null);
 				if (ractive.confirm(amount)) {
-					console.log(111);
 					isAcess = true;
 				}
 				
 				if (isAcess) {
-					$('form').submit();
-					Confirm.create({
-						msg: '提现是否成功？',
-						okText: '提现成功',
-						cancelText: '提现失败',
-						ok: function() {
-							window.location.href = '/account/funds';
-						},
-						cancel: function() {
-							window.location.reload();
-						}
+					$.post('/lianlianpay/withdraw', 
+					{
+						paymentPassword : pass,
+						amount : amount
+
+					}, function (res) {
+						if (res.success) {
+                            CccOk.create({
+                                msg: '提现申请提交成功，等待审核中!',
+                                okText: '确定',
+                                // cancelText: '重新登录',
+                                ok: function () {
+                                    window.location.reload();
+                                },
+                                cancel: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        } else {
+                            CccOk.create({
+                                msg: '提现申请失败!',
+                                okText: '确定',
+                                // cancelText: '重新登录',
+                                ok: function () {
+                                    window.location.reload();
+                                },
+                                cancel: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        }
 					});
 				}
 			}
 		});
 	}
 });
-
-

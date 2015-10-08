@@ -3,6 +3,7 @@
 }
 #main-container{
     background: #f4fcff;
+    position: relative;
 }
 .account-wrapper {
 	width: 100%;
@@ -22,7 +23,7 @@
 	float: left;
 }
 .account-content-wrapper {
-	width: 928px;
+	width: 925px;
 	height: 100%;
 	float: left;
 	border-left: 1px #cccccc solid;
@@ -156,6 +157,12 @@
 .nav-li .nav-toggle-btn {
 	cursor: pointer;
 	width: 16px;
+/*	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;*/
+}
+.nav-li .nav-toggle-btn-up {
+	background: url(/ccc/newAccount/img/toggle-up.png) no-repeat center left;
+}
+.nav-li .nav-toggle-btn-down {
 	background: url(/ccc/newAccount/img/toggle.png) no-repeat center left;
 }
 .nav-li .nav-toggle-menu li a {
@@ -181,7 +188,7 @@
 }
 table thead tr {
 	height: 40px;
-	background: #eeeeee;
+	background: #f5f4f9;
 }
 table thead tr th {
 	border: 0!important;
@@ -199,7 +206,7 @@ table tbody tr td {
 }
 .ccc-paging {
 	text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .ccc-paging a {
 	padding: 8px 11px;
@@ -228,3 +235,97 @@ table tbody tr td {
 	color: #fff;
 	border: 1px #0096de solid;
 }
+.null {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/null.png) no-repeat center;
+}
+.nomsg {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/msg.png) no-repeat center;
+}
+.account-bg{
+    background:#4a4a4a;
+    opacity:0.7;
+    width: 100%;
+    height:100%;
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+}
+
+.box-main {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.bankcard-gray{
+
+	background-image: url(/ccc/newAccount/img/true-name.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	width: 350px;
+	height: 250px;
+	position: absolute;
+	z-index: 101;
+
+	left: 159px;
+	top: 21px;
+}
+.rightnow {
+	position: absolute;
+	right: -20px;
+	bottom: 0;
+
+}
+.bankcard-gray a{
+	display: block;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.password-png{
+	background-image: url(/ccc/newAccount/img/password.png);
+	left: 227px;
+
+}
+
+
+
+
+.backcard-png{
+	background-image: url(/ccc/newAccount/img/bankcard.png);
+
+	left: 291px;
+
+}
+
+.know{
+  background-color: #009ada;
+  color: white;
+  font-family: '微软雅黑';
+  border: none;
+  width: 90px;
+  height: 30px;
+  border-radius: 3px;
+  position: absolute;
+  right: 119px;
+  bottom: 0;
+}
+
+.know:hover{
+	background-color: #015989;
+}
+
+
+.hide {
+	display: none;
+}
+
+

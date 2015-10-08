@@ -26,11 +26,12 @@ var navRactive = new Ractive({
 				this.set('showAccountToggleMenu', true);
 			}
 		}
-		
 	}	
 });
 	
 navRactive.on('toggleMenu', function (event) {
 	var toggleMenu = event.node.getAttribute('data-toggle');
+
 	this.set(toggleMenu, !this.get(toggleMenu));
 });
+

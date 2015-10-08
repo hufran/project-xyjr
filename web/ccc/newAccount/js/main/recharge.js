@@ -24,13 +24,30 @@ var ractive = new Ractive({
             AMOUNT_NULL: false,
             AMOUNT_INVALID: false
         },
+        pointNum:null,
+        intNum:null,
         isNormal: false,
         banks: banks,
         corBanks: corBanks,
         isEnterpriseUser: CC.user.enterprise,
         amountValue: 10000000,
         action: '/lianlianpay/onlineBankDeposit',
-        showNum: 9
+        showNum: 9,
+        minAmount: 100
+    },
+    parseData:function(){
+        var self = this;
+        var availableAmount = self.get('availableAmount').toFixed(2)+'';
+        console.log(availableAmount);
+        var point = availableAmount.indexOf('.');
+        if(point !== -1){
+            var num = availableAmount.split('.');
+            self.set({
+                'intNum':num[0],
+                'pointNum':num[1]
+            })
+        }
+        console.log(num);
     },
     oncomplete: function () {
         var self = this;        
@@ -54,6 +71,10 @@ var ractive = new Ractive({
                 self.set('msg.AMOUNT_NULL', true);
                 return;
             }
+            if (value <100){
+                self.set('msg.AMOUNT_NOTENOUGH',true);
+                return;
+            }
 
             if (!self.get('msg.AMOUNT_MULL')) {
                 self.set('msg.AMOUNT_NULL', false);
@@ -68,6 +89,15 @@ var ractive = new Ractive({
 
         $(".bankwrap").delegate('.bankItem', 'click', function () {
            
+            var classMap = ['ICBC','CCB','ABC','CMB','BIC','BOC','CEB','CMBC','CITIC','CGB','SPDB','PAB','HXB','NB','DY','SH','BJ','NJ','PSBC'];
+            
+            var code = $(this).data('cc');
+            if ($.inArray(code,classMap) == -1) {
+                ractive.set('showamountInfo', false);
+            } else {
+                ractive.set('showamountInfo', true);
+                $("#" + code).show().siblings().hide();
+            }
             $('.bankwrap .bankItem')    
                 .removeClass('currentBank');
             $(this)
@@ -88,6 +118,7 @@ var ractive = new Ractive({
 		        ractive.set('action', '/lianlianpay/onlineBankDeposit');
 		    }
         });
+        
 
     },
 
@@ -97,13 +128,16 @@ var ractive = new Ractive({
 
 });
 
+ractive.parseData();
+
 ractive.on('recharge_submit', function (e){
     var amount = this.get('amount');
     this.set('msg', {
         BANK_NULL: false,
         AMOUNT_NULL: false,
         AMOUNT_INVALID: false,
-        BANKCODE_NULL: false
+        BANKCODE_NULL: false,
+        AMOUNT_NOTENOUGH : false,
     });
 
     if (amount === '') {
@@ -111,6 +145,11 @@ ractive.on('recharge_submit', function (e){
         e.original.preventDefault();
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
+        return false;
+    } else if (amount < 100 ) {
+        e.original.preventDefault();
+        this.set('msg.AMOUNT_NOTENOUGH', true);
+        this.$amount.focus();
         return false;
     } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
         e.original.preventDefault();

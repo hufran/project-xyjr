@@ -48,32 +48,32 @@
 
     <div class="s-header-info" id="nav-color" style="background:#eee">
         <div class="s-header-info-content u-pos-r-center">
-            <span class="nav-customer">客服热线：400-872-7676<img src="/ccc/global/img/navQQ.png" style="margin-bottom:3px;" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" onclick="clickQq()"/></span>
+            <span class="nav-customer" style="color:#999">客服热线：400-872-7676<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw" style="margin-top:-6px;margin-right:24px;"><img src="/ccc/global/img/navQQ.png"  onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'"/></a></span>
             <span class="nav-aboutus">关注我们：            <a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"  class="nav-weibo" style="margin-top:-5px;"><img src="/ccc/global/img/navWeibo.png"  onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'"/></a></span>
 
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
             <img class="erweima erweima-act2" src="/ccc/global/img/erweima.png"/>
             {{#if user}}
 
-             <a href="/help/aboutus" class="text account" style="color:#bcbcbc;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a> 
+             <a href="/help/aboutus" class="text account" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a> 
             {{#if user.loginName}}
             <a href="/newAccount/message">
-                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;"><span id='head-message-container' style="color:#f58220;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
+                <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
 				</div>
             </a>
             {{/if}}
-            <a href="/logout" class="text" style="color:#bcbcbc;margin-right:5px;">退出&nbsp;&nbsp;|</a>
+            <a href="/logout" class="text" style="color:#999;margin-right:5px;">退出&nbsp;&nbsp;|</a>
 			{{#if user.name}}
-            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div></a>
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div></a>
 			{{else}}
-            	<a href="/newAccount/settings/authentication"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div></a>
+            	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div></a>
 			{{/if}}
             {{else}}
-            <div class="nav-mobile">
+            <!-- <div class="nav-mobile">
 
                 <span>|</span> <a href="/help" id="mobileCustomer" class="text">手机客户端</a>
                 <img src="/ccc/global/img/navMobile.png" />
-            </div>
+            </div> -->
 
             <div class="nav-help">
                 <span>|</span><a href="/help/aboutus" id="nav-help" class="text">帮助中心</a>
@@ -149,21 +149,8 @@
         </div>
     </div>
 </div>
-<!-- 导航结束 -->
-<!--
-<div class="side" id="sideFixed">
-    <ul>
-        <li>
-            <span id="BizQQWPA2"><img src="/ccc/global/img/sqq.png" >QQ客服</span>
-        </li>
-        <li id="sideUp" class="up">
-            <a href="#"><img src="/ccc/global/img/stop.png"></a>
-        </li>
-    </ul>
-</div>
--->
 
-<div id="main-container"></div>
+<div id="main-container" style="padding-bottom:0"></div>
 
 <div id="mask-layer-wraper">
 </div>
@@ -186,7 +173,7 @@
             <div class="bottom-left">
                 <div class="bottom-right-service"><img src="/ccc/global/img/tel.png"><span style="color:#bcbcbc;">客服热线</span><span class="telNum">400-872-7676</span></div>
                     <p class="bottom-right-mail">服务时间：工作日 8:30 — 18:00</p>
-                    <p class="bottom-right-online">在线客服：<img src="/ccc/global/img/navQQ.png" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></p>
+                <p class="bottom-right-online">在线客服：<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/navQQ.png" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></a></p>
 				<div class="bottom-right-aboutus-box">
                     <P class="bottom-right-aboutus">关注我们：<a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"><img src="/ccc/global/img/navWeibo.png" onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'" /></a>
                         <img style="margin-left:8px;" class="weixin-icon weixin-icon-act" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'"/>
@@ -196,15 +183,15 @@
 				</div>
             </div>
             <div class="bottom-right">
-                <div class="bottom-rightApp">
-                    <img src="/ccc/global/img/app.png"/>
-                    <p class="text-p">奇乐融APP下载</p>
+
+                <div class="bottom-rightApp" style="margin-right:34px;">
+                    <img src="/ccc/global/img/dingyue.png"/>
+                    <p class="text-p">微信订阅号</p>
                 </div>
                 <div class="bottom-rightApp">
-                    <img src="/ccc/global/img/erweima.png"/>
-                    <p class="text-p">微信公众号</p>
+                    <img src="/ccc/global/img/fuwu.png"/>
+                    <p class="text-p">微信服务号</p>
                 </div>
-            
             </div>
 
             <dl class="footer-guide">
@@ -217,57 +204,40 @@
             <dl class="footer-guide">
                 <dt><img src="/ccc/global/img/help.png"/><a href="/help/aboutus">帮助中心</a></dt>
                 <dd><a href="/help/login">注册/登录</a></dd>
-                <dd class="footer-guide-style"><a href="/help/money">充值/提现</a></dd>
+                <dd class="footer-guide-style"><a href="/help/cash">充值/提现</a></dd>
                 <dd><a href="/help/money">如何投资</a></dd>
                 <dd><a href="/help/safety">风控安全</a></dd>
             </dl>
-              <dl class="footer-guide">
+              <!-- <dl class="footer-guide">
                 <dt><img src="/ccc/global/img/map.png"/><a href="">网站地图</a></dt>
-            </dl>
-
-              
-        
-            
-     
-
-
+            </dl> -->
         </div>
         </div>
     </div>
- 
     <div class="bottom-footer-box">
         <div class="bottom-footer">
             <div class="copyright">
-                版权所有©2015奇乐融  &nbsp;&nbsp;皖ICP备15013787号-1
+                版权所有©2015奇乐融<a href="/">www.qilerong.com</a>  &nbsp;&nbsp;皖ICP备15013787号-1
             </div>
             <div>
-                <img src="/ccc/global/img/footer-norton.png" />
-                            <a href="http://webscan.360.cn/index/checkwebsite/url/www.qilerong.com"><img border="0" src="http://img.webscan.360.cn/status/pai/hash/7844e0b4e28d3fad0c5dfcad17cbfdf4" class="footer-360"/></a>
-
-                <img src="/ccc/global/img/computer.png" />
+                <a href="https://trustsealinfo.websecurity.norton.com/splash?form_file=fdf/splash.fdf&dn=www.qilerong.com" target="_blank"><img src="/ccc/global/img/footer-norton.png" style="width:100px" /></a>
+                <a href="http://webscan.360.cn/index/checkwebsite/url/www.qilerong.com"><img border="0" src="http://img.webscan.360.cn/status/pai/hash/7844e0b4e28d3fad0c5dfcad17cbfdf4" class="footer-360"/></a>
+                <!-- <img src="/ccc/global/img/computer.png" /> -->
                 <a id='___szfw_logo___' href='https://credit.szfw.org/CX20150915011323560186.html' target='_blank'><img src='http://icon.szfw.org/cert.png' border='0' class="footer-360"/></a>
-                <img src="/ccc/global/img/cfca.png" />
-                <img src="/ccc/global/img/v.png" class="footer-360" />
+               <!--  <img src="/ccc/global/img/cfca.png" />
+                <img src="/ccc/global/img/v.png" class="footer-360" /> -->
             </div>
         </div>
     </div>
-
-
 </div>
 <!--    旁边导航条-->
 <div class="side-bar-box">
     <div class="side-bar">
-         <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=21486606&amp;site=qq&amp;menu=yes"><img src="/ccc/global/img/service.png" /></a>
+         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/service.png" /></a>
         <a href="javascript:;" class="calculator-create"><img src="/ccc/global/img/calculator.png" /></a>
         <a class="back-top" href=""><img src="/ccc/global/img/backTop.png" /></a>
     </div>
 </div>
-<!-- symantec证书的签章代码 -->
-<!-- <div id="symantecSeal" style="text-align:center;" title="单击即可验证 - 该站点选择 Symantec SSL 实现安全的电子商务和机密通信">
-    <script type="text/javascript" src="https://seal.verisign.com/getseal?host_name=www.jiuxinfinance.com&amp;size=S&amp;use_flash=YES&amp;use_transparent=NO&amp;lang=zh_cn"></script>
-</div>
- -->
-
 <script>
     //var _hmt = _hmt || [];
     (function () {
@@ -278,9 +248,10 @@
     })();
 	
 	//QQ
-	function clickQq(){
-		document.write('<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAxNDcwNF8zMTg5OTVfNDAwODcyNzY3Nl8"></"+"script>')
-	}
+//	function clickQq(){
+//		document.write('<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAxNDcwNF8zMTg5OTVfNDAwODcyNzY3Nl8"></"+"script>');
+//		window.location.reload();
+//	}
 (function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();
 		
 </script>

@@ -1,4 +1,4 @@
-<!--{{JSON.stringify(list)}}-->
+<!--{{JSON.stringify(list.titleLength)}}-->
       <table class="s-list-table">
             <tr>
                 <th style="width:280px;padding-left:38px;">名称</th>
@@ -14,12 +14,12 @@
 {{#list}}
 <div class="loanWrapper">
     <div class="event">
-		{{#if title.length>14}}
+		{{#if titleLength>20}}
 			<p>{{title}}</p>
 		{{/if}}
         <a href="loan/{{ id }}" class="invest-title">
-            {{#if title.length>14}}
-                {{title.substr(0,14)}}...
+            {{#if titleLength>20}}
+                {{title.substr(0,12)}}...
 				{{else}}
 				{{title}}
 				{{/if}}
@@ -44,7 +44,13 @@
             </a>
         {{/if}}
         {{#if status === 'SCHEDULED'}}
-            <div class="investbtn" data-id="{{id}}" data-open="{{ timeOpen }}" data-serv="{{ serverDate }}" style="background:#ff7200; color: #fff; width: 150px;text-align: left;">即将开始</div>
+
+        <a href="/loan/{{id}}" style="text-decoration:none">
+            <div class="investbtn investbtn-hover">即将开始</div>
+        </a>
+        <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
+        data-serv="{{ serverDate }}" style="margin-top:-46px;color: black;width: 180px;text-align: center;margin-left:-30px"></div>
+
         {{/if}}
         {{#if status === 'FINISHED'}}
             <a href="/loan/{{id}}" style="text-decoration:none">

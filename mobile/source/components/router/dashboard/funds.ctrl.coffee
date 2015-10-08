@@ -3,8 +3,8 @@ do (angular, window) ->
 
     angular.module('controller').controller 'FundsCtrl',
 
-        _.ai '            @data, @$scope, @$window, map_funds_summary', class
-            constructor: (@data, @$scope, @$window, map_funds_summary) ->
+        _.ai '            @data, @$scope, @$window, @$routeParams, map_funds_summary', class
+            constructor: (@data, @$scope, @$window, @$routeParams, map_funds_summary) ->
 
                 @$window.scrollTo 0, 0
 

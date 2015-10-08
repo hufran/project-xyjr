@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="/ccc/newAccount/css/coupon.css">
 
 <div class="account-wraper">
+    <div class="space-40"></div>
     <div class="account-container">
         <div class="account-nav"></div>
         <div class="account-content-wrapper">
@@ -13,10 +14,14 @@
 							<p class="selectTitle">红包类型:</p>
                             <ul class="ttabs">
 <!--                                <li class="active" data-type=""><a href="#">全部</a></li>-->
-                                <li class="active" data-type="CASH"><a href="#">现金券</a></li>
+                                <li data-type="REBATE" class="active"><a href="#">返现券</a></li>
                                 <li data-type="INTEREST"><a href="#">加息券</a></li>
-                                <li data-type="PRINCIPAL"><a href="#">增值券</a></li>      
-								<li data-type="REBATE"><a href="#">返现券</a></li>
+                                  <li  data-type="CASH"><a href="#">现金券</a></li>
+                                 <li data-type="PRINCIPAL"><a href="#">增值券</a></li> 
+                              
+                                
+                                    
+								
                             </ul>
                         </div>
 <!--
@@ -33,25 +38,29 @@
                     </div>
                 </div>
             </div>
-            <div class="space space-20"></div>
+<!--            <div class="space space-30"></div>-->
             <div class="ccc-container row coupon-content-detail">
                 <div class="col-md-12 ccc-loan-wrap">
                 	<div class="ccc-tab-panels">
-                		<div class="tab-panel panel-CASH active">
-                            <p class="loading">加载中...</p>
+                        <div class="tab-panel panel-REBATE active">
+                        <p class="loading">加载中...</p>
+                        </div>
+                        <div class="tab-panel panel-INTEREST"></div>
+                		<div class="tab-panel panel-CASH ">
+                            
                         </div>		
-                		<div class="tab-panel panel-INTEREST"></div>
+                		
                 		<div class="tab-panel panel-PRINCIPAL"></div>
-						<div class="tab-panel panel-REBATE"></div>
+						
                 		
                 	</div>
                 </div>
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="space space-50">&nbsp;</div>
     </div>
 </div>
+<div class="space space-50">&nbsp;</div>
 
 <script src="/ccc/newAccount/js/main/common.js"></script>
 <script src="/ccc/newAccount/js/main/coupon.js"></script>

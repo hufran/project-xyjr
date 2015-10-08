@@ -22,11 +22,19 @@ typeLists[0] = [{
 
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
-    typeLists[0].push({
+    if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
+      ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'){
+        typeLists[0].push({
         type: k,
         text: v
     });
+    }
 });
+typeLists[0].push({
+    type:'OFFLINE_DEPOSIT',
+    text:'线下充值'
+});
+//console.log(typeLists);
 
 typeLists[1] = [{
     type: true,
@@ -63,12 +71,12 @@ var ractive = new Ractive({
     template: template,
 
     data: {
+        user:CC.user,
         tabIndex: 0,
         selectedIndex: 0, // 类别的selectedIndex
-
+        
         typeLists: typeLists, // 切换类别
         list: [], // 数据,
-
         dateFrom: moment()
             .subtract(1, 'M') // 前1月
             .format('YYYY-MM-DD'),
@@ -105,12 +113,19 @@ $('.date-to-picker>input').change(function () {
 ractive.on('select-type', function (e) { // dropdown 选择类型的时候
     var selectedIndex = +(e.keypath.substring(e.keypath.lastIndexOf('.') +
         1));
-
-    this.set('selectedIndex', selectedIndex);
+    
+   this.set('selectedIndex', selectedIndex);
 
     $(this.find('.type-checker'))
         .removeClass('open');
-
+    var typea=typeLists[0][selectedIndex].type;
+    // console.log("======");
+  // console.log(typeLists[0][selectedIndex]);
+            typet=typea;
+              ractive.loadData({
+                    type: typea,
+                    preset: tab1Preset
+              });
     return false;
 });
 
@@ -192,12 +207,48 @@ ractive.loadData = function (obj) {
                 list.forEach(obj.preset);
             }
             // set first one data
-            pageOneData = list;
-            ractive.set('list', list);
+            pageOneData = parseList(list);
+            ractive.set('list', parseList(list));
             renderPage(res.totalSize, obj);
         });
 };
-
+var nameMap={
+    INVEST:'投标',
+    WITHDRAW:'提现',
+    DEPOSIT:'充值',
+    INVEST_REPAY:'回款',
+    FEE_WITHDRAW:'提现手续费',
+    TRANSFER:'平台奖励',
+    LOAN:'放款',
+    FEE_LOAN_SERVICE:'借款服务费',
+    LOAN_REPAY:'贷款还款',
+    DISBURSE:'垫付还款',
+    CREDIT_ASSIGN:'债权转让',
+    REWARD_REGISTER:'注册奖励',
+    REWARD_INVEST:'投标奖励',
+    REWARD_DEPOSIT:'充值奖励',
+    FEE_AUTHENTICATE:'身份验证手续费',
+    FEE_INVEST_INTEREST:'回款利息管理费',
+    FEE_LOAN_MANAGE:'借款管理费',
+    FEE_LOAN_INTEREST:'还款利息管理费',
+    FEE_LOAN_VISIT:'实地考察费',
+    FEE_LOAN_GUARANTEE:'担保费',
+    FEE_LOAN_RISK:'风险管理费',
+    FEE_LOAN_OVERDUE:'逾期管理费',
+    FEE_LOAN_PENALTY:'逾期罚息(给商户)',
+    FEE_LOAN_PENALTY_INVEST:'逾期罚息(给投资人)',
+    FEE_DEPOSIT:'充值手续费',
+    FEE_ADVANCE_REPAY:'提前还款违约金(给商户)',
+    FEE_ADVANCE_REPAY_INVEST:'提前还款违约金(给投资人)',
+    FSS:'生利宝',
+    OFFLINE_DEPOSIT:'线下充值'
+};
+function parseList(date){
+    for(var i=0;i<date.length;i++){
+        date[i].transactionType=nameMap[date[i].type];
+    }
+    return date;
+}
 
 // 先加载一遍数据
 loadInitData(0);
@@ -218,6 +269,7 @@ function tab1Preset(item) {
 
     // 交易类型
     typeLists[0].forEach(function (t) {
+        
         if (t.type === item.type) {
             if (t.operation) {
                 // 在typeList中规定了operation,需要两个都等
@@ -346,7 +398,7 @@ function renderPage(total, obj) {
 
                     o = {};
                 }
-                self.set('list', p > 1 ? o.results : pageOneData);
+                self.set('list', p > 1 ? parseList(o.results) : pageOneData);
             }
         });
 }
@@ -398,6 +450,9 @@ $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var longtime=$(this).text().substring(0,2);
+           if(longtime==='全部'){
+               longtime=0;
+           }
            $('.date-from-picker>input').val(moment().add('days',-longtime)
             .format('YYYY-MM-DD'));
              $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));

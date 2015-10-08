@@ -36,7 +36,7 @@ module.exports = function (router) {
             background: '股东背景',
             team: '团队介绍',
             partner: '合作机构',
-            things: '大事记',
+            things: '大 事 记',
             safety: '安全保障',
             contactus: '联系我们',
             recruitment: '招贤纳士',
@@ -86,8 +86,13 @@ module.exports = function (router) {
         var tabIndex;
         for (var index = 0, length = tabs.length; index < length; index++) {
             var tab = tabs[index];
+             console.log('=======');
+            console.log(tab);
             if (tab.text === indexMap[req.params.tab]) {
+                console.log('=======');
+                console.log(tab);
                 tabIndex = index;
+                 console.log(tabIndex);
                 break;
             }
         }

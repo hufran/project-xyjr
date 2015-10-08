@@ -1,3 +1,4 @@
+
 <table class="table table-hover has-padding">
     <thead>
         <tr>
@@ -7,11 +8,12 @@
             <th>还款日期</th>
         </tr>
     </thead>
+    {{#if list}}
     <tbody>
         {{#each list}}
         <tr>
             <td style="text-indent:20px;">
-                <a class="loan-tit" href="/loan/{{loanId}}"
+                <a class="loan-tit" href="/loan/{{repayment.invest.loanId}}"
                 target="_blank" style="color:#4a4a4a;text-decoration:none">{{loanTitle}}</a>
             </td>
             <td style="color:#4a4a4a">{{repayment.repayment.amount}}&nbsp;&nbsp;&nbsp;&nbsp;(本{{repayment.repayment.amountPrincipal}}，息{{repayment.repayment.amountInterest}})</td>
@@ -20,7 +22,12 @@
         </tr>
         {{/each}}
     </tbody>
+    {{/if}}
 </table>
+{{#if list}}
 <div class="space-10"></div>
 <div class="ccc-paging"></div>
 <div class="sapce-30"></div>
+{{else}}
+<div class="null"></div>
+{{/if}}

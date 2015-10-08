@@ -11,6 +11,7 @@
             <th class="p-op">操作</th>
         </tr>
     </thead>
+    {{#if list}}
     <tbody>
         {{#each list}}
         <tr>
@@ -30,6 +31,10 @@
         </tr>
         {{/each}}
     </tbody>
+    {{/if}}
 </table>
-
+{{#if list}}
 <div class="ccc-paging"></div>
+{{else}}
+<div class="null"></div>
+{{/if}}

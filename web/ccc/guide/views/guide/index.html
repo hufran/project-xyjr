@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/ccc/guide/css/style.css">
 
-<div class="guide-banner-box"><img class="guide-banner" src="/ccc/guide/img/banner.png"/></div>
+<div class="guide-banner-box"></div>
 <div class="guide-box">
     
      
@@ -55,10 +55,13 @@
             
         </div>
                  <img class="step-title model-title-second" src="/ccc/guide/img/forth.png"/>
-        <p class="model-title ">轻松四步，赚钱就是这么轻松</p>
+        <p class="model-title ">轻松四步，赚钱就是这么容易</p>
         <img class="steps-pic" src="/ccc/guide/img/for-steps.png"/>
-        
+          {{#if !user}}
           <div><a href="/register"><button class="guide-register-rightnow">注册领取红包</button></a></div>
+          {{else}}
+          <div><a href="/invest/list"><button class="guide-register-rightnow">马上投资</button></a></div>
+          {{/if}}
     </div>
         
 

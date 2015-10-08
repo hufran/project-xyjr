@@ -3,16 +3,17 @@
 <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
 <link rel="stylesheet" href="/ccc/loan/css/detail.css">
 
-<!--{{JSON.stringify(loans)}}-->
+<!--{{JSON.stringify(user)}}-->
 
 <div class="">
     <div class="current-container">
-        <p class="detailTitle"><a href="/index">首页</a> > <a href="/invest/list">投资列表 </a> > 标的详情</p>
+        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest/list">投资列表 </a> > 标的详情</p>
+		<div class="box-large">
         <div class="invest-data-wrapper">
             <div class="investContainer">
                 <div class="investTitle">
                      {{#if loans.status == "OPENED" }}
-                    <div class="time"><span>剩余时间：<i>{{loans.timeLeft.dd}}</i>日<i>{{loans.timeLeft.hh}}</i>小时<i>{{loans.timeLeft.mm}}</i>分<i>{{loans.timeLeft.ss}}</i>秒</span>
+					<div class="time">剩余时间：<span class="time-left">{{loans.timeLeft.dd}}日{{loans.timeLeft.hh}}小时{{loans.timeLeft.mm}}分{{loans.timeLeft.ss}}</span>
                     </div>
                     {{/if}}
                       {{#if loans.status == "SCHEDULED" || loans.status == "SETTLED" }}
@@ -43,47 +44,35 @@
                     </div>
                     <div class="innerBottom">
 
-                        <ul class="loanMethod">
-                            <li>
-                                <div class="itemt">
-                                    还款方式 : &nbsp;&nbsp;&nbsp;{{loans.method}}</div>
-                            </li>
-                            <li>
-                                <div class="itemt">
-                                    已投人数 : {{loans.bidNumber}}人<span class="leftAmount">剩余可投金额：<span>{{loans.leftAmount}}</span>{{loans.amountUnit}}</span></div>
-                            </li>
-                            <li>
-                                <p>
-                                   
-                                    <a class="protocol" target="_blank" href="/loan/loanRequest/{{loans.requestId}}/contract/template">《借款合同文本》</a>
-                                 
-                                </p>
-                            </li>
-
-                        </ul>                        
-                        
-                            <div class="itemt" style="float:left;margin-left:170px">
-                                <span class="processFont">项目进度</span>
+						 <div class="itemt pic">
+                                <span class="processFont">项目余额</span>
                                 <div class="process">
         <div class="rate-chart">
-            <div class="easy-pie-chart pie " data-percent="{{ loans.investPercent }}" style="top:9px">
-                <span class="percentageNum">{{ loans.investPercent }} </span>
+            <div class="easy-pie-chart pie " data-percent="{{ loans.investPercent }}" >
+                <span class="percentageNum"></span>
             </div>
         </div>
     </div>
                             </div> 
+						
+                        <ul class="loanMethod">
+							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>
+                            <li style="float:right;margin-right:38px;margin-left:125px;margin-top:10px;">还款方式：{{loans.method}}</li>
+							<div>
+								<a class="protocol" target="_blank" href="/loan/loanRequest/{{loans.requestId}}/contract/template">《借款合同文本》</a>
+							</div>
+                        </ul>
+						 
                     </div>
-                   
                 </div>
-                 
                 <div class="h20"></div>
-
             </div>
         </div>
 
         <div class="do-invest-wrapper">
 
         </div>
+		</div>
 
         <div class="clearfix"></div>
     </div>
@@ -92,30 +81,44 @@
 <div class="invest-detail-wrapper">
     <div class="current-container scontent">
         <ul class="nav nav-tabs">
-             <li role="presentation" class="active" data-step='4'><a href="###">项目信息</a>
+             <li role="presentation" class="active" data-step='0'><a href="javascript:;">项目信息</a>
             </li>
-            <li role="presentation"  data-step='2'><a href="###">企业信息</a>
+            <li role="presentation"  data-step='1'><a href="javascript:;">企业信息</a>
             </li>
-            <li role="presentation" data-step='0'><a href="###">风控信息</a>
+            <li role="presentation" data-step='2'><a href="javascript:;">风控信息</a>
             </li>
-            <li role="presentation" class="" data-step='1'><a href="###">投资记录</a>
+            <li role="presentation" class="" data-step='3'><a href="javascript:;">投资记录</a>
             </li>
-             <li role="presentation" class="" data-step='3'><a href="###">还款计划</a>
+             <li role="presentation" class="" data-step='4'><a href="javascript:;">还款计划</a>
             </li>
         </ul>
         <div class="clearfix"></div>
 
         <div class="tab-panels">
-              <div class="tab-panel">
-                     <div class="loanInfoWrapper">
+             <div class="tab-panel  active">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                        {{{loans.loanRequest.description}}}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-panel">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                       {{{loans.loanRequest.guaranteeInfo}}}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-panel">
+                <div class="loanInfoWrapper">
                     <div class="loanInfo">
                       {{{loans.loanRequest.riskInfo}}}
                     </div>
                 </div>
-                  
             </div>
           
             <div class="tab-panel">
+                {{#if user}}
                 <table class="table repay-plan repay-record">
                     <thead>
                         <th style="border-top-left-radius: 3px;">投标人</th>
@@ -131,20 +134,18 @@
                     </tr>
                     {{/invests}}
                 </table>
-            </div>
-            <div class="tab-panel">
-                <div class="loanInfoWrapper">
-                    <div class="loanInfo">
-                       
-                        
-                       {{{loans.loanRequest.guaranteeInfo}}}
-                    
-                    </div>
+                {{else}}
+                <div class="notLogin">
+                    <p>用户详情</p>
+                    <p>请 <a href="/login" style="color:#009ada;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
                 </div>
+                {{/if}}
             </div>
+        
             <div class="tab-panel">
-                               <table class="table repay-plan repay-record">
-                    {{#if user}}
+                {{#if user}}
+                <table class="table repay-plan repay-record">
+                   
                     <thead>
                         <th style="border-top-left-radius: 3px;">期次</th>
                         <th>预期还款时间</th>
@@ -163,20 +164,13 @@
                         <th>{{amountOutstanding}}</th>
                     </tr>
                     {{/replay}}
-                    {{else}}
-                    <div class="notLogin">
-                    <p>用户详情</p>
-                    <p>请 <a href="/login" style="color:#003690;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
-                        </div>
-                    {{/if}}
                 </table>
-            </div>
-             <div class="tab-panel  active">
-                <div class="loanInfoWrapper">
-                    <div class="loanInfo">
-                        {{{loans.loanRequest.description}}}
-                    </div>
+                {{else}}
+                <div class="notLogin">
+                    <p>用户详情</p>
+                    <p>请 <a href="/login" style="color:#009ada;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
                 </div>
+                {{/if}}
             </div>
         </div>
 

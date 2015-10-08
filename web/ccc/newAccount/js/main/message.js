@@ -48,7 +48,6 @@ function init (type) {
 			  self.set('total',o.totalSize);
 			  self.setData(o.results);
 			  self.bindAction.click();
-			  self.bindAction.mouseenter();
         });
       },
       getMessageData: function(callback) {
@@ -70,30 +69,29 @@ function init (type) {
       },
       bindAction : {
 		  'click':function () {
-			$('.ctr').click(function (){
-				if(type === 'NEW'){
-					$(this).addClass('activeContent');
-					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
-					$(this).css('color','#4a4a4a');
-					$(this).parent().siblings().css('color','#4a4a4a');
-					$(this).parent().parent().css('backgroundColor','#e7e7e7');
-					$(this).parent().parent().siblings().css('backgroundColor','#fff');
-				}else{
+			$('.ctr-box').click(function (){
+					$(this).children().addClass('activeContent');   
+					$(this).parent().siblings().children().children('.ctr').removeClass('activeContent');
+//					$(this).css('color','#4a4a4a');
+//					$(this).parent().siblings().css('color','#4a4a4a');
+//					$(this).parent().parent().css('backgroundColor','#fff');
+//					$(this).parent().parent().siblings().css('backgroundColor','#e7e7e7');
+//				}else{
 					
-					$(this).addClass('activeContent');
-					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
-					$(this).parent().parent().css('backgroundColor','#e7e7e7');
-					$(this).parent().parent().siblings().css('backgroundColor','#fff');
-					}
+//					$(this).addClass('activeContent');
+//					$(this).parent().parent().siblings().children().children('.ctr').removeClass('activeContent');
+//					$(this).parent().parent().css('backgroundColor','#fff');
+//					$(this).parent().parent().siblings().css('backgroundColor','#e7e7e7');
+					
 			});
 		  },
-		  'mouseenter':function(){
-			  $('.list-row').mouseenter(function(){
-				  $(this).siblings().css('backgroundColor','#e7e7e7');
-			  }).mouseleave(function(){
-				   $(this).siblings().css('backgroundColor','#fff');
-			  })
-		  }
+//		  'mouseenter':function(){
+//			  $('.list-row').mouseenter(function(){
+//				  $(this).siblings().css('backgroundColor','#fff');
+//			  }).mouseleave(function(){
+//				   $(this).siblings().css('backgroundColor','#e7e7e7');
+//			  })
+//		  }
 	},
       setData: function(o) {
         var self = this;
@@ -133,11 +131,8 @@ function init (type) {
   
   messageRactive.on({
 	  'showContent':function (event) {
-		  			
 					var id = event.node.getAttribute('data-id');
-		  			
 					var status = event.node.getAttribute('data-status');
-		  			
 					if (status == 'NEW') {
 					$.get('/api/v2/message/markAsRead/' + id);
 					}

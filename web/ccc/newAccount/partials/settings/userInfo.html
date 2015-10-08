@@ -25,7 +25,7 @@
                     </td>
                 </tr>
                 <tr>
-                    {{#if paymentPasswordHasSet}}
+                    {{#if !paymentPasswordHasSet}}
                     <td>
                         <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码：
                     </td>
@@ -40,10 +40,10 @@
                         <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
                     </td>
                     <td>
-                        <span class="status-no">未认证!</span>
+                        <span class="status-no">未设置!</span>
                     </td>
                     <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn">去认证</a>
+                        <a href="/newAccount/settings/password" class="btn">去设置</a>
                     </td>
                     {{/if}}
                 </tr>
@@ -115,10 +115,10 @@
                         <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
                     </td>
                     <td>
-                        <span class="status-no">未认证!</span>
+                        <span class="status-no">未设置!</span>
                     </td>
                     <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn">去认证</a>
+                        <a href="/newAccount/settings/password" class="btn">去设置</a>
                     </td>
                     {{/if}}
                 </tr>
@@ -301,7 +301,7 @@
                     </span>
                 </li>
             </ul>
-            <button class="modify btn" on-click="updateInfo">修改</button>
+            <button class="modify btn" on-click="updateInfo">编辑</button>
         </div>
         {{/if}}
     {{/if}}

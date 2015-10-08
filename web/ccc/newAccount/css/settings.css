@@ -25,7 +25,7 @@ label {
 }
 p.tips {
 	color: #999999;
-	padding: 3px 65px;
+/*	padding: 3px 65px;*/
 }
 .error-message {
 	text-align: center;
@@ -67,10 +67,10 @@ p.tips {
 	line-height: 30px;
 	color: #999999;
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 18px;
 }
 .PassTabActive {
-	color: #009ada;
+	color: #4a4a4a;
 	border-bottom: 2px #009ada solid;
 }
 .updateWra,.resetWra,.formwra {
@@ -78,6 +78,8 @@ p.tips {
 }
 .row {
 	margin-bottom: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .row .payInp {
 	width: 200px;
@@ -125,6 +127,8 @@ p.tips {
 .modify-password-wrapper {
 	width: 400px;
 	margin: 0 auto;
+  position: relative;
+  left: 60px;
 }
 .cap {
 	width: 70px;
@@ -171,6 +175,7 @@ p.tips {
 	width: 200px;
 	font-size: 16px;
   height: 30px;
+    font-weight: bold;
 }
 .ABC {
   background-image: url(/ccc/global/img/banks/ABC.png);
@@ -350,6 +355,8 @@ p.tips {
 .safety-wrapper .table .btn {
   background-color:#009ADA;
   color:white;
+    width: 80px;
+    height: 30px;
 }
 .rzz {
   width: 350px;
@@ -421,4 +428,12 @@ p.tips {
   color:white;
   width:80px;
   margin-left:210px;
+    height: 30px;
+}
+.descript p a{
+    color: #999;
+}
+.descript p a:hover{
+    color: #009ada;
+    text-decoration: none;
 }

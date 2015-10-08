@@ -139,7 +139,8 @@ module.exports = function (router) {
                 res.locals.user.paymentPasswordHasSet =
                     paymentPasswordHasSet;
                 res.render('newAccount/home', {
-                    title: '奇乐融'
+                    title: '奇乐融',
+                    isEnterprise: res.locals.user.enterprise
                 });
             });
     });

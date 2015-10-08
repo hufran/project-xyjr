@@ -40,6 +40,8 @@ passwordRactive.on('initialPassword', function () {
     var isAcess = false;
     if (pwd === '') {
         showError('交易密码不能为空');
+    } else if (pwd.length < 6) {
+        showError('交易密码长度最少为6位');
     } else if (rePwd === '') {
         showError('交易密码不能为空');
     } else if (pwd !== rePwd) {
@@ -52,11 +54,11 @@ passwordRactive.on('initialPassword', function () {
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
                 CccOk.create({
-                    msg: '交易密码初始化成功！',
-                    okText: '确定',
-                    // cancelText: '重新登录',
+                    msg: '交易密码初始化成功，请继续绑定银行卡!',
+                    okText: '现在绑定',
+                    cancelText: '稍后再说',
                     ok: function () {
-                        window.location.reload();
+                        window.location.href = '/newAccount/settings/bankCards';
                     },
                     cancel: function () {
                         window.location.reload();
@@ -73,7 +75,9 @@ passwordRactive.on('updatePassword', function () {
     var newPwd = this.get('newPassword');
     var reNewPwd = this.get('reNewPassword');
     var isAcess = false;
-    if (oldpwd === '') {
+    if (oldpwd.length < 6 || newPwd.length < 6) {
+        showError('交易密码长度最少为6位');
+    } if (oldpwd === '') {
         showError('原密码不能为空');
     } else if (newPwd === '' || reNewPwd === '') {
         showError('交易密码不能为空');
@@ -102,7 +106,7 @@ passwordRactive.on('updatePassword', function () {
                     okText: '确定',
                     // cancelText: '重新登录',
                     ok: function () {
-                        window.location.reload();
+                        window.location.href = "/newAccount/home";
                     },
                     cancel: function () {
                         window.location.reload();

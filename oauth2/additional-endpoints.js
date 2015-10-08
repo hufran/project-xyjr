@@ -22,7 +22,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/user/:userId/paymentPasswordHasSet', auth.user());
     router.get('/api/v2/user/:userId/validatePaymentPassword', auth.user());
     router.get('/api/v2/user/:userId/certificates/proofs', auth.pass());
-    
+    router.get('/api/v2/user/:userId/membership', auth.user());
+
     router.post('/api/v2/loanIntent/addNew', auth.pass());
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user()); 
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());

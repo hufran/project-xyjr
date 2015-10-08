@@ -41,6 +41,7 @@
 .dec-li li {
 	color: #999999;
 	font-size: 14px;
+  text-align: left;
 }
 .check {
 	z-index: 99;
@@ -49,7 +50,7 @@
 	left: -1px;
 	width: 19px;
 	height: 22px;
-	background: url(/ccc/newAccount/img/checka.png) no-repeat center #fff;
+	background: url(/ccc/newAccount/img/checka.png) no-repeat center;
 	top: -1px;
 }
 .more {
@@ -215,4 +216,30 @@
 
 .cBJ {
   background: url(/ccc/account/img/nBanks/BJ.jpg) no-repeat center #fff;
+}
+table.tinfo {
+  width: 850px;
+  margin: 0 auto;
+  border-color: #cccccc;
+}
+table.tinfo td,th {
+  border: 1px;
+  border-style: solid;
+  border-color: #cccccc;
+  color: #999999;
+}
+table.tinfo th,tr,td,div {
+  border-color: #cccccc;
+  color: #999999;
+}
+table.tinfo div {
+  height: 25px;
+  line-height: 25px;
+  border-bottom: 1px #cccccc solid;
+}
+th,td {
+  text-align: center;
+}
+table.tinfo tbody tr {
+  display: none;
 }
