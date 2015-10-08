@@ -10,6 +10,13 @@ require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/cccPaging');
 
 var template = require('ccc/newAccount/partials/fund/fund.html');
+
+//var template = {
+//	 fund:require('ccc/newAccount/partials/fund/fund.html'),
+//	invest: require('ccc/newAccount/partials/fund/invest.html')
+//};
+
+
 var utils = require('ccc/global/js/lib/utils');
 
 var typeLists = [];

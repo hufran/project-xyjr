@@ -6,6 +6,7 @@ var navRactive = new Ractive({
 	data: {
 		showInvestToggleMenu : false,
 		showAccountToggleMenu : false,
+        showFundToggleMenu:false,
 		isEnterprise: CC.user.enterprise
 	},
 	oninit: function () {
@@ -22,7 +23,10 @@ var navRactive = new Ractive({
 				this.set('showInvestToggleMenu', true);
 			} else if (tab === 'loanRequest') {
 				this.set('showLoanToggleMenu', true);
-			} else {
+			}else if (tab === 'fund') {
+				this.set('showFundToggleMenu', true);
+            }
+            else {
 				this.set('showAccountToggleMenu', true);
 			}
 		}
