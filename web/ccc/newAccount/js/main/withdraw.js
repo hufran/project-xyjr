@@ -179,7 +179,6 @@ ractive.on('withDrawSubmit', function () {
 	var isAcess = false;
 	var amount = this.get('amount');
 	var pass = this.get('paymentPassword');
-	console.log();
 	if (amount === '') {
 		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));
 	}
