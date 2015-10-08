@@ -1,5 +1,5 @@
 
-do (angular, moment, Math) ->
+do (_, angular, moment, Math) ->
 
     angular.module('filter').filter 'moment', ->
 
@@ -81,7 +81,7 @@ do (angular, moment, Math) ->
 
 
 
-do (angular) ->
+do (_, angular) ->
 
     angular.module('directive').directive 'gyroIncludeBackfire', ->
 
@@ -148,7 +148,7 @@ do (angular) ->
 
 
 
-do (angular) ->
+do (_, angular) ->
 
     angular.module('factory')
 
@@ -200,3 +200,17 @@ do (angular) ->
                 # does not has ability to set `path`, therefor it has to be
                 # written in bare hand as below. (v1.4.0-beta.6 has it covered tho)
                 $document[0].cookie = "#{ name }=#{ value }; path=/"
+
+
+
+        .factory 'checkChinaID', ->
+
+            mask = '10X98765432'.split ''
+            factor = '68947310526894731'.split('').map (n) -> ~~n + 1
+            reduce = (func) -> factor.reduce func, 0
+
+            (id) ->
+                [list..., mark] = ('' + id).match(/\d|X/g) or []
+
+                return false unless !!mark and list.length is factor.length
+                return mark is mask[reduce((s, n, i) -> s + n * parseInt(list[i])) % mask.length]
