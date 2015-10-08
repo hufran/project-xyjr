@@ -474,6 +474,10 @@ $('.investInput')
 
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
+		
+		
+		console.log("=======");
+		console.log(r2);
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",
