@@ -20,13 +20,13 @@
 <!--要绑定银行卡-->
 {{#if status === 0}}
 <div class="bind-card-wrapper"> 
-    <form action="/lianlianpay/bindCard" method="POST" on-submit="bind-card-submit" target="_blank">
+    <form action="" method="POST" on-submit="bind-card-submit">
         <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">
             <div class="space space-30"></div>
             
             <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户银行：</div>
-                <select name="bankName" class="select">
+                <select name="bankName" class="select" value="{{bankName}}">
                     {{#each banks}}
                         <option value="{{name}}">{{name}}</option>
                     {{/each}}
@@ -64,7 +64,7 @@
                         <option value="{{key}}">{{key}}</option>
                     {{/each}}
                 </select>
-                <select name="city" style="width:90px;font-size:16px;">
+                <select name="city" style="width:90px;font-size:16px;" value="{{myCity}}">
                     {{#each city}}
                         <option value="{{key}}">{{key}}</option>
                     {{/each}}
@@ -119,11 +119,15 @@
         {{#if ifDel}}
         <div class="row">
             <span class="tipss">交易密码</span>
-            <input type="password" name="paymentPassword" class="payInp">
+            <input type="password" name="paymentPassword" class="payInp" value="{{password}}">
             <button type="submit" class="btn btn-sm btn-success btn-change-card" style="padding:5px 20px;margin:0;width:100px;">确定</button>
         </div>
         {{else}}
+            {{#if !isAuditing}}       
             <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">删除银行卡</button>
+            {{else}}
+            <button type="button" class="btn btn-sm btn-success btn-change-card disabled" style="background:#999;border-color:#999">审核中</button>
+            {{/if}}
         {{/if}}
     </form>
     

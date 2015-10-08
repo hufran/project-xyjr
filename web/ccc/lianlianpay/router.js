@@ -26,13 +26,9 @@ module.exports = function (router) {
                             var data = {
                                 success: r.body.success,
                             };
-                            res.render('lianlianpay/return', {
-                                data: data
-                            });
+                            res.json(data);
                         } else {
-                            res.render('lianlianpay/return', {
-                                data: r.body
-                            });
+                            res.json(r.body);
                         }
                     });
             });
