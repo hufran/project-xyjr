@@ -4,6 +4,7 @@ var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var i18n = require('@ds/i18n')['zh-cn'];
 
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
@@ -480,6 +481,14 @@ $('.investInput')
 
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
+		console.log(r2);
+//		var proofTypeArr = r2.proofs.CAREER;
+//		console.log(proofTypeArr.length);
+//		for (var i=0;i<proofTypeArr.length,i++) {
+//			proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proofType];
+//		};
+//		var r2.proofs.CAREER.proofType = i18n.enums.ProofType[career.proofType][0];
+		console.log(r2.proofs.CAREER);
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",
@@ -490,10 +499,13 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
                 career: r2.proofs.CAREER,
                 currentIndex: 0,
                 selectorsMarginLeft: 0,
-                stageLen: 5
+                stageLen: 5,
+				
             }
         });
-
+		
+//		relateDataRactive.parseData(relateDataRactive.get('career'));
+		
         relateDataRactive.on('begin-big-pic-career', function (e) {
             var index = Number(e.keypath.substr(5));
             var options = {
@@ -504,6 +516,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
                 imgLen: r2.proofs.CAREER.length
             };
             popupBigPic.show(options);
+			console.log(r2);
             return false;
 
         });
@@ -523,6 +536,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
         });
     });
 });
+
 
 $('.nav-tabs > li')
     .click(function () {
