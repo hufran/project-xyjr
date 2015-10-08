@@ -84,6 +84,9 @@ var v = $("#loanForm").validate({
             maxlength: 9,
             amount: true
         },
+        loanPurpos:{
+           required:true 
+        },
         guaranteeType: {
             required: true
         },
@@ -116,20 +119,23 @@ var v = $("#loanForm").validate({
             required: "输入联系人姓名"
         },
         mobilePhone: {
-            required: "输入联络手机号",
+            required: "输入手机号",
             minlength: "手机号码为11位",
             maxlength: "手机号码为11位"
         },
         companyAddress: {
-            required: "请输入您的公司地址"
+            required: "请输入您的地址"
         },        
         emailAddress: {
-            required: "请输入您的邮箱地址"
+            required: "请输入您的电子邮箱"
         },
         loanMoney: {
             required: "请输入借款金额",
             minlength: "借款金额不能为0",
             maxlength: "借款金额不能超过1亿"
+        },
+        loanPurpos:{
+            required:"请输入借款用途"
         },
         guaranteeType: {
             required: "请选择担保方式"
@@ -192,7 +198,8 @@ $('#sendApplyloan').click(function () {
     loan.mobile = parseInt($("#mobilePhone").val().trim());
     loan.amount = parseInt($("#loanMoney").val().trim());
     loan.loanType = $("#loanType").find("option:selected").val();
-    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
+//    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
+    loan.loanPurpos = $("#loanPurpos").val().trim();
     var months = parseInt($("#months").val().trim());
     loan.months = months % 12;
     loan.year = parseInt(months / 12);

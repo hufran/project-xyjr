@@ -14,8 +14,11 @@
 				<div class="couponWrapper-right">
                     <div class="couponWrapper-left">
 					{{displayName}}
-				    </div>					
-						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>					
+				    </div>
+					
+						
+						<div class="couponTitle-right">有效期至：{{timeExpire}}</div>		
+					
 				</div>	
                 	<div class="couponDescription couponDescription-invest" style="float:left;">
 						<p class="descriptionLeft">最低投资{{couponPackage.minimumInvest}}元，</p>
@@ -40,7 +43,11 @@
 							{{/if}}
 						</div>
                      </div>
-					</div>			
+					</div>
+<!--					<div class="valueText">￥<span class="big">{{displayValue}}</span>元</div>-->
+
+
+			
 			{{/if}}
 			{{#if type==='INTEREST'}}
 			<div class="INTEREST">
