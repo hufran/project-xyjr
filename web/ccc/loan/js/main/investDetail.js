@@ -480,21 +480,30 @@ $('.investInput')
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
 		console.log(r2);
-//		var proofTypeArr = r2.proofs.CAREER;
-//		console.log(proofTypeArr.length);
-//		for (var i=0;i<proofTypeArr.length,i++) {
-//			proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proofType];
-//		};
-//		var r2.proofs.CAREER.proofType = i18n.enums.ProofType[career.proofType][0];
-		console.log(r2.proofs.CAREER);
+		console.log(r1);
+		for (var j=0;j<r1.length;j++){
+			if(r1[j].proof.proofType !== ''){
+				r1[j].proofType = i18n.enums.ProofType[r1[j].proof.proofType][0];
+			}else{
+				r1[j].proofType = '暂无认证信息';
+			}
+		}
+		var proofTypeArr = r2.proofs.CAREER;
+		for(var i=0;i<proofTypeArr.length;i++){
+			if(proofTypeArr[i].proof.proofType !== ''){
+				proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proof.proofType][0];
+			}else{
+				proofTypeArr[i].proofType = '暂无认证信息';
+			}
+		};
+//		console.log(proofTypeArr);
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",
             template: require('ccc/loan/partials/relateDataOnDetail.html'),
-
             data: {
                 loanPurpose: r1,
-                career: r2.proofs.CAREER,
+                career: proofTypeArr,
                 currentIndex: 0,
                 selectorsMarginLeft: 0,
                 stageLen: 5,
