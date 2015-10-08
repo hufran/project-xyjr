@@ -6,14 +6,11 @@
 			{{#if type==='CASH'}}
 			<div class="CASH">
                 <div class="valueText">￥<span class="big">{{displayValue}}</span></div>
-<!--					{{#if !EXPIRED}}-->
 						{{#if canuse}}
 						<div class="couponDescription" style="float:right;margin-right:20px;">
 						 <span class="exchange" data-id="{{ id }}" onclick="redeemCoupon(this);" style="margin-left:10px;">兑现奖卷</span>
 						</div>
-						{{/if}}
-<!--					{{/if}}	-->
-				
+						{{/if}}				
 				<div class="couponWrapper-right">
                     <div class="couponWrapper-left">
 					{{displayName}}

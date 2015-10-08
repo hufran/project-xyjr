@@ -49,6 +49,7 @@ var ractive = new Ractive({
     oncomplete: function () {
         accountService.getProvince(function (res) {
             ractive.set('province', changeToList(res));
+            ractive.set('myProvince','安徽省');
             var fProvince = ractive.get('myProvince') || '安徽省';
             accountService.getCity(fProvince, function (res) {
                 ractive.set('city', changeToList(res));
