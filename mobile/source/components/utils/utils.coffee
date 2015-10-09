@@ -210,7 +210,7 @@ do (_, angular) ->
             reduce = (func) -> factor.reduce func, 0
 
             (id) ->
-                [list..., mark] = ('' + id).match(/\d|X/g) or []
+                id_str = "#{ id ? '' }"
+                mark = id_str[factor.length] or '-'
 
-                return false unless !!mark and list.length is factor.length
-                return mark is mask[reduce((s, n, i) -> s + n * parseInt(list[i])) % mask.length]
+                return mark is mask[reduce((s, n, i) -> s + n * parseInt(id_str[i])) % mask.length]
