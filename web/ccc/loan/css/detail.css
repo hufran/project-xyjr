@@ -66,13 +66,12 @@
 	float: left;
 	background: #fff;
 	border-radius: 3px;
-	
 }
 
 .invest-data-wrapper .investContainer {
 	width: 730px;
 	height: 315px;
-/*	border: 1px solid #eee;*/
+	/*	border: 1px solid #eee;*/
 	/*  margin: 0 25px;*/
 }
 
@@ -94,7 +93,8 @@
 	
 	color: #009ada;
 	float: left;
-/*	width: 500px;*/
+	/*	width: 500px;*/
+	
 	word-break: break-all;
 }
 
@@ -224,11 +224,12 @@
 
 .invest-data-wrapper .investContainer .content .innerBottom {
 	/*  margin-top: 25px;*/
+	
 	overflow: hidden;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .process {
-/*	float: right;*/
+	/*	float: right;*/
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom ul {
@@ -240,7 +241,7 @@
 	margin-top: 30px;
 }
 
-.invest-data-wrapper .investContainer .content .innerBottom ul div{
+.invest-data-wrapper .investContainer .content .innerBottom ul div {
 	position: absolute;
 	right: 35px;
 	bottom: 0;
@@ -248,7 +249,7 @@
 	font-family: '微软雅黑';
 }
 
-.invest-data-wrapper .investContainer .content .innerBottom ul li{
+.invest-data-wrapper .investContainer .content .innerBottom ul li {
 	float: left;
 	font-family: '微软雅黑';
 	color: #999;
@@ -259,7 +260,7 @@
 	color: #999;
 }
 
-.invest-data-wrapper .investContainer .content .innerBottom .pic{
+.invest-data-wrapper .investContainer .content .innerBottom .pic {
 	width: 130px;
 	height: 130px;
 	float: left;
@@ -427,15 +428,18 @@
 }
 
 .do-invest-wrapper {
-/*	position: relative;*/
+	/*	position: relative;*/
+	
 	float: right;
 	width: 350px;
-/*	height: 315px;*/
+	/*	height: 315px;*/
+	
 	background-color: #fff;
 	border-radius: 3px;
 	text-align: center;
 	border-left: solid #eee 1px;
 	/*background-image: url(/assets/img/box_bj.jpg);*/
+	
 	min-height: 350px;
 }
 
@@ -554,22 +558,24 @@
 	margin-bottom: 5px;
 	border-bottom: 1px solid #eee;
 	text-align: left;
-/*	padding-left: 10px;*/
+	/*	padding-left: 10px;*/
+	
 	overflow: hidden;
-    margin-left: 15px;
-    margin-right: 15px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 .do-invest-wrapper .status .leftMoney h1 {
 	display: inline;
-    font-size: 16px;
-    color: #4b4b4b;
+	font-size: 16px;
+	color: #4b4b4b;
 	line-height: 50px;
 	font-family: '微软雅黑';
 }
-.do-invest-wrapper .status .leftMoney h1 .left-money{
-    font-size: 20px;
-    color: #ff7200;	
+
+.do-invest-wrapper .status .leftMoney h1 .left-money {
+	font-size: 20px;
+	color: #ff7200;
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney-open {
@@ -587,9 +593,9 @@
 	font-family: '微软雅黑';
 }
 
-.do-invest-wrapper .status .userBlock .leftMoney-open .recharge{
+.do-invest-wrapper .status .userBlock .leftMoney-open .recharge {
 	float: right;
-	display:block;
+	display: block;
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney .red {
@@ -632,7 +638,6 @@
 	font-size: 16px;
 	line-height: 30px;
 	letter-spacing: 5px;
-	
 }
 
 .do-invest-wrapper .status .userBlock .open-button:hover {
@@ -671,9 +676,7 @@
 	width: 318px;
 	border: none;
 	line-height: 20px;
-	
 	text-indent: 8px;
-	
 	border: 1px solid #ccc;
 }
 
@@ -717,8 +720,7 @@
 	font-family: '微软雅黑';
 }
 
-
-.do-invest-wrapper .status .userBlock .login-see{
+.do-invest-wrapper .status .userBlock .login-see {
 	margin-left: 15px;
 	margin-right: 15px;
 	padding-left: 0;
@@ -732,14 +734,14 @@
 	line-height: 30px;
 }
 
-.do-invest-wrapper .status .userBlock .one-time-max{
+.do-invest-wrapper .status .userBlock .one-time-max {
 	color: #999;
 	text-align: left;
 	font-size: 12px;
 	font-family: '微软雅黑';
 	line-height: 30px;
 	margin-left: 15px;
-} 
+}
 
 .do-invest-wrapper .status .userBlock .agree-error {
 	font-size: 12px;
@@ -749,7 +751,6 @@
 	background-position: left center;
 	padding-left: 20px;
 	visibility: hidden;
-
 	text-align: left;
 	height: 20px;
 	line-height: 20px;
@@ -758,18 +759,17 @@
 }
 
 .do-invest-wrapper .status .userBlock .agree-box {
-/*	width: 212px;*/
-/*	display: inline-block;*/
-/*	margin: auto;*/
+	/*	width: 212px;*/
+	/*	display: inline-block;*/
+	/*	margin: auto;*/
 }
 
 .do-invest-wrapper .status .userBlock .agree-box span,
 .do-invest-wrapper .status .userBlock .agree-box span a {
 	font-size: 12px;
-	
 }
 
-.do-invest-wrapper .status .userBlock .agree-box span a{
+.do-invest-wrapper .status .userBlock .agree-box span a {
 	color: #009ada;
 }
 
@@ -1016,7 +1016,8 @@
 }
 
 .do-invest-wrapper .invest-button-wrapper {
-/*	margin: 20px auto 0;*/
+	/*	margin: 20px auto 0;*/
+	
 	text-align: center;
 }
 
@@ -1098,7 +1099,6 @@
 	margin-top: 20px;
 	margin-left: 70px;
 }
-
 
 .invest-info-wrapper .insurance-info .insurance-wrapper .insurance {
 	height: 190px;
@@ -1184,7 +1184,8 @@
 .invest-detail-wrapper .scontent {
 	min-height: 800px;
 	background: #fff;
-/*	margin-top: 20px;*/
+	/*	margin-top: 20px;*/
+	
 	width: 749px;
 	margin-left: 0;
 	float: left;
@@ -1193,7 +1194,8 @@
 }
 
 .invest-detail-wrapper .nav-tabs {
-/*	border: solid 1px #eee;*/
+	/*	border: solid 1px #eee;*/
+	
 	border-left: none;
 	border-right: none;
 	margin: 0 5px 0 5px;
@@ -1204,13 +1206,13 @@
 	width: 1100px;
 	margin: auto;
 	overflow: hidden;
-	border:1px solid #ccc;
+	border: 1px solid #ccc;
 	margin-top: 15px;
-    background-color: #fff;
+	background-color: #fff;
 }
 
 .invest-detail-wrapper .nav-tabs li {
-/*	border-right: 1px solid #eee;*/
+	/*	border-right: 1px solid #eee;*/
 }
 
 .invest-detail-wrapper .nav-tabs li a {
@@ -1303,7 +1305,7 @@
 
 .invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfoImg .insurance-wrapper {
 	width: 300px;
-/*	margin-top: 20px;*/
+	/*	margin-top: 20px;*/
 	/*margin-left: 70px;*/
 }
 
@@ -1422,7 +1424,6 @@
 	left: 0;
 	width: 100%;
 }
-
 /*
 .big-pic-wrapper .img-wrapper {
 	    margin: 60px auto 0;
@@ -1438,7 +1439,6 @@
 	margin-left: -300px;
 }
 */
-
 /*
 .big-pic-wrapper .img-wrapper img {
 	width: 600px;
@@ -1446,16 +1446,26 @@
 }
 */
 
-.big-pic-wrapper .img-wrapper{position: fixed;left: 0;top: 0;width: 100%;height: 100%;text-align: center;display: table;}
-.big-pic-wrapper .img-wrapper .big-pic-box{width: 100%;height: 100%;display: table-cell;vertical-align: middle;}
-.big-pic-wrapper .img-wrapper .big-pic-box img {max-height: 100%;max-width: 100%;}
+.big-pic-wrapper .img-wrapper {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: table;
+}
 
+.big-pic-wrapper .img-wrapper .big-pic-box {
+	width: 50%;
+	display: table-cell;
+	vertical-align: middle;
+}
 
-
-
-
-
-
+.big-pic-wrapper .img-wrapper .big-pic-box img {
+	max-height: 100%;
+	max-width: 100%;
+}
 
 .big-pic-wrapper .close {
 	height: 31px;
@@ -1464,7 +1474,7 @@
 	top: 15px;
 	right: 50px;
 	background: url(/ccc/global/img/main/close.png);
-	z-index: 100px;
+	z-index: 100;
 }
 
 .big-pic-wrapper .control {
@@ -1619,10 +1629,11 @@
 #userBlock .calculatorBox {
 	overflow: hidden;
 	margin-top: 20px;
-/*
+	/*
 	padding-left: 30px;
 	padding-right: 30px;
 */
+	
 	margin-left: 15px;
 	margin-right: 15px;
 }
@@ -1631,9 +1642,9 @@
 	margin-bottom: 5px;
 	overflow: hidden;
 	margin-top: 20px;
-/*	margin-left: 10px;*/
-/*	padding-right: 40px;*/
-/*	padding-left: 0px;*/
+	/*	margin-left: 10px;*/
+	/*	padding-right: 40px;*/
+	/*	padding-left: 0px;*/
 }
 
 #userBlock .totalInterest {
@@ -1647,13 +1658,15 @@
 .percentageNum {
 	color: #009ada;
 	position: absolute;
-/*	margin: 10px 0 0 40px;*/
+	/*	margin: 10px 0 0 40px;*/
+	
 	top: 20px;
 }
 
 .itemt .processFont {
 	position: absolute;
-/*	margin: 25px 0 0 20px;*/
+	/*	margin: 25px 0 0 20px;*/
+	
 	color: #4a4a4a;
 	left: 50%;
 	margin-left: -28px;
@@ -1743,13 +1756,13 @@
 	color: white;
 	border: none;
 	font-size: 18px;
-    border-radius: 4px;
+	border-radius: 4px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	letter-spacing: 5px;
 }
 
-.finished-btn:hover{
+.finished-btn:hover {
 	background-color: #015989;
 }
 
@@ -1771,25 +1784,24 @@
 	width: 190px;
 }
 
-.calculatorBox .password-box{
+.calculatorBox .password-box {
 	overflow: hidden;
 	margin-top: 20px;
 }
 
-.calculatorBox .password-box p{
+.calculatorBox .password-box p {
 	float: right;
 	line-height: 40px;
 }
 
-.calculatorBox .password-box p a{
+.calculatorBox .password-box p a {
 	color: #009ada;
 }
 
-.calculatorBox .password{
+.calculatorBox .password {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	height: 40px;
-	
 	width: 200px;
 	overflow: hidden;
 	float: left;
@@ -1823,28 +1835,33 @@
 	color: #007ec5;
 }
 
-.time-left{
+.time-left {
 	color: #f58220;
 }
 
-.box-large{
+.box-large {
 	border: 1px solid #cccccc;
 	overflow: hidden;
 	background-color: white;
 }
 
-.item-pic{
+.item-pic {
 	height: 250px;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: contain;
 }
 
-.easy-pie-chart{
+.easy-pie-chart {
 	position: relative;
 }
-.no-pics{
-    color:#ccc;
-    font-size: 14px;
-    text-align:center
+
+.no-pics {
+	color: #ccc;
+	font-size: 14px;
+	text-align: center
+}
+
+.proof{
+	margin-top: 15px;
 }
