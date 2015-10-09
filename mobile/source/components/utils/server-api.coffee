@@ -355,11 +355,22 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_bind_card: (bankName, cardNo, cardPhone, city, province) ->
+            payment_pool_bind_card_sent_captcha:  ->
+
+                @$http
+                    .post '/api/v2/smsCaptcha/MYSELF',
+                        @param {smsType: 'CREDITMARKET_CAPTCHA'}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_bind_card: (bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha) ->
 
                 @$http
                     .post '/api/v2/lianlianpay/bindCard/MYSELF',
-                        @param {bankName, cardNo, cardPhone, city, province}
+                        @param {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA
