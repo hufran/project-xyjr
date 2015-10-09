@@ -51,15 +51,15 @@
                            ng-model="id_number"
                            minlength="18"
                            maxlength="18"
-                           pattern="\d{17}."
                            placeholder="身份证号"
                            required
+                           x-id-number
                     >
                     <div class="help-block"
                          ng-show="form.id_number.$invalid && form.id_number.$dirty"
                     >
                         <span ng-show="form.id_number.$error.required">必须填写</span>
-                        <span ng-show="form.id_number.$error.pattern">18 位身份证号</span>
+                        <span ng-show="form.id_number.$viewValue && form.id_number.$error.id_number">请填写正确的 18 位身份证号码</span>
                     </div>
                 </div>
             </div>

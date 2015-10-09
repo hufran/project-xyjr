@@ -252,4 +252,8 @@ module.exports = function (router) {
                 }
             });        
     });
+    router.get('/newAccount/fund/:name',function(req,res,next){
+        res.render('/newAccount/fund',{urlname:req.params.name});
+        
+    });
 }
