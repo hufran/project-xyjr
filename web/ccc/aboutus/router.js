@@ -24,7 +24,7 @@ module.exports = function (router) {
             things: '大事记',
             safety: '安全保障',
             contactus: '联系我们',
-            recruitment: '招贤纳士',
+            recruitment: '保障机构',
             action: '行业新闻',
             media: '媒体报道',
             notice: '最新公告',
@@ -39,7 +39,7 @@ module.exports = function (router) {
             things: '大 事 记',
             safety: '安全保障',
             contactus: '联系我们',
-            recruitment: '招贤纳士',
+            recruitment: '保障机构',
             action: '公司动态',
             media: '媒体报道',
             notice: '平台公告',
@@ -65,12 +65,13 @@ module.exports = function (router) {
             text: '安全保障',
             url: '/aboutus/safety',
         }, {
+            text: '保障机构',
+            url: '/aboutus/recruitment'
+        }, {
             text: '联系我们',
             url: '/aboutus/contactus',
         }, {
-            text: '招贤纳士',
-            url: '/aboutus/recruitment'
-        }, {
+    
             text: '公司动态',
             url: '/aboutus/action'
         }, {

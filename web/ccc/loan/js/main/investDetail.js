@@ -4,6 +4,7 @@ var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var i18n = require('@ds/i18n')['zh-cn'];
 
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
@@ -36,11 +37,9 @@ new Ractive({
     template: template,
     data: {
         timeOpen: moment(CC.loan.timeOpen).format('YY.MM.DD HH:mm'),
-        timeFinished: moment(CC.loan.timeFinished).format('YY.MM.DD HH:mm')
+        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YY.MM.DD HH:mm')
     }
 });
-
-
 
 
 
@@ -74,7 +73,7 @@ function initailEasyPieChart() {
 
 			var width = $(this).find("span.percentageNum").width();
 			$(this).find("span.percentageNum").css({'left':'50%','margin-left':-width/2});
-			console.log(width);
+//			console.log(width);
 			
         });
 
@@ -480,26 +479,78 @@ $('.investInput')
 
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
-		
-		
-		console.log("=======");
-		console.log(r2);
+//		console.log(r2);
+//		console.log(r1);
+		for (var j=0;j<r1.length;j++){
+			if(r1[j].proof.proofType !== ''){
+				r1[j].proofType = i18n.enums.ProofType[r1[j].proof.proofType][0];
+			}else{
+				r1[j].proofType = '暂无认证信息';
+			}
+		}
+//		console.log(r1);
+		var proofTypeArr = r2.proofs.CAREER;
+		for(var i=0;i<proofTypeArr.length;i++){
+			if(proofTypeArr[i].proof.proofType !== ''){
+				proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proof.proofType][0];
+			}else{
+				proofTypeArr[i].proofType = '暂无认证信息';
+			}
+		};
+//		console.log(proofTypeArr);
+
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",
             template: require('ccc/loan/partials/relateDataOnDetail.html'),
-
             data: {
                 loanPurpose: r1,
-                career: r2.proofs.CAREER,
+                career: proofTypeArr,
                 currentIndex: 0,
+				currentIndexB:0,
                 selectorsMarginLeft: 0,
-                stageLen: 5
+                stageLen: 5,
+				
             }
         });
-
+		
+		relateDataRactive.on("prev-pic next-pic", function (e) {
+			var self = this;
+            console.log(self.get("currentIndex"));
+			if(e.name === 'prev-pic'){
+				self.set("currentIndex", self.get("currentIndex") - 1);
+			 if (self.get('currentIndex') < 0) {
+					self.set('currentIndex',self.get('career').length - 1);
+			 	} 
+			}else {
+                self.set("currentIndex", self.get("currentIndex") + 1);
+				if(self.get('currentIndex') >= self.get('career').length){
+					self.set('currentIndex',0);
+				}
+            }
+			
+		});
+            
+        relateDataRactive.on("prev-picB next-picB", function (e) {
+			var self = this;
+            console.log(self.get("currentIndexB"));
+			if(e.name === 'prev-picB'){
+				self.set("currentIndexB", self.get("currentIndexB") - 1);
+			 if (self.get('currentIndexB') < 0) {
+					self.set('currentIndexB',self.get('loanPurpose').length - 1);
+			 	} 
+			}else {
+                self.set("currentIndexB", self.get("currentIndexB") + 1);
+				if(self.get('currentIndexB') >= self.get('loanPurpose').length){
+					self.set('currentIndexB',0);
+				}
+            }
+			
+		});
+		
         relateDataRactive.on('begin-big-pic-career', function (e) {
-            var index = Number(e.keypath.substr(5));
+			console.log(e);
+            var index = Number(e.keypath.substr(-1));
             var options = {
                 imgs: r2.proofs.CAREER,
                 currentIndex: index,
@@ -508,12 +559,16 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
                 imgLen: r2.proofs.CAREER.length
             };
             popupBigPic.show(options);
+//			console.log(r2);
             return false;
 
         });
         
         relateDataRactive.on('begin-big-pic-loan', function (e) {
-            var index = Number(e.keypath.substr(5));
+			console.log(e);
+            var index = Number(e.keypath.substr(-1));
+			console.log('*********');
+			console.log(index);
             var options = {
                 imgs: r1,
                 currentIndex: index,
@@ -527,6 +582,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
         });
     });
 });
+
 
 $('.nav-tabs > li')
     .click(function () {

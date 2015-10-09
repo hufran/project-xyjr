@@ -75,9 +75,9 @@ passwordRactive.on('updatePassword', function () {
     var newPwd = this.get('newPassword');
     var reNewPwd = this.get('reNewPassword');
     var isAcess = false;
-    if (oldpwd.length < 6 || newPwd.length < 6) {
+    if (newPwd.length < 6) {
         showError('交易密码长度最少为6位');
-    } if (oldpwd === '') {
+    }else if (oldpwd === '') {
         showError('原密码不能为空');
     } else if (newPwd === '' || reNewPwd === '') {
         showError('交易密码不能为空');
@@ -170,7 +170,7 @@ $("#newPassword").keyup(function(){
     if(newPassword.indexOf(' ')>-1){
         showError("含有非法字符:空格");
     }else{
-        ractive.set({
+        passwordRactive.set({
            showErrorMessage: false 
         });
     }
@@ -214,6 +214,9 @@ passwordRactive.on("submit-modify-password", function (event) {
     var newPassword = this.get("newPassword");
     var passwordConfirm = this.get("passwordConfirm");
     var captcha = this.get("captcha.captcha");
+     console.log("=====");
+    console.log(newPassword);
+     console.log(newPassword.length);
     if (!currentPassword) {
         // 没填就密码
         return showError("还未填写原密码");

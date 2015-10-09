@@ -1,7 +1,7 @@
           <div class="fund-nav-view">
                     <ul class="sRate">
                         <p class="selectTitle">交易类型:</p>
-                        {{#if !user.enterprise}}
+                        {{#if urlname==='touzi'}}
                         <li class="selected s__is-selected personal" data-min-rate="0" data-max-rate="100" data-type="ALL">全部</li>
                         <li data-min-rate="0" data-max-rate="8" data-type="INVEST" class="personal">投标</li>
                         <li data-min-rate="8" data-max-rate="10" data-type="WITHDRAW" class="personal">提现</li>
@@ -46,8 +46,7 @@
 
                             <span class="spliter pull-left">-</span>
 
-                            <div class="input-group date-to-picker pull-left">
-                                
+                            <div class="input-group date-to-picker pull-left">           
                                 <input class="form-control" value="{{dateTo}}" readonly />
                                 <span class="input-group-addon icon-calendar"></span>
                             </div>
@@ -82,6 +81,7 @@
                         <th>备注</th>
                     </tr>
                 </thead>
+<!--                {{JSON.stringify(list)}}-->
                 {{#if list}}
                 <tbody>
                     {{#each list}}
@@ -96,7 +96,11 @@
                         <td>{{operationName}}</td>
                         <td>{{ status }}</td>
                         <!-- summary -->
-                        <td style="width:100px;">{{ description }}</td>
+                        <td style="width:100px;">{{ description }}
+                             {{#if type=='INVEST'}}
+                            {{hint}}
+                            {{/if}}
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>

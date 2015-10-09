@@ -2,13 +2,13 @@
 	font-family: '微软雅黑';
 }
 #main-container{
-    background: #f4fcff;
+    background: #f6f8fc;
     position: relative;
 }
 .account-wrapper {
 	width: 100%;
 	height: 100%;
-	background-color: #f4fcff;
+	background-color: #f6f8fc;
 	border-top: 1px #d5dcdf solid;
 }
 .account-container {
@@ -75,7 +75,10 @@
 .nav-li .icon-invest {
 	width: 52px;
 	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-invest.png) no-repeat center right;
+	background: url(/ccc/newAccount/img/invest.png) no-repeat center right;
+}
+.nav-li .icon-my-invest {
+	background: url(/ccc/newAccount/img/my-invest.png) no-repeat center right;
 }
 .nav-li .icon-fund {
 	width: 52px;
@@ -119,7 +122,10 @@
 .nav-li .icon-invest-active {
 	width: 52px;
 	margin-right: 8px;
-	background: url(/ccc/newAccount/img/icon-invest-active.png) no-repeat center right;
+	background: url(/ccc/newAccount/img/invest_active.png) no-repeat center right;
+}
+.nav-li .icon-my-invest-active {
+	background: url(/ccc/newAccount/img/icon-my-invest-active.png) no-repeat center right;
 }
 .nav-li .icon-fund-active {
 	width: 52px;

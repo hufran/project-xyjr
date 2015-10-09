@@ -173,11 +173,15 @@ module.exports = function (router) {
                 req.uest(
                     '/api/v2/user/MYSELF/paymentPasswordHasSet')
                 .get('body'),
-                function (authenticates, paymentPasswordHasSet) {
+                req.uest('/api/v2/user/MYSELF/fundaccountsMap')
+                .get('body'),
+                function (authenticates, paymentPasswordHasSet, fundaccountsMap) {
                     res.locals.user.authenticates =
                         authenticates;
                     res.locals.user.paymentPasswordHasSet =
                         paymentPasswordHasSet;
+                    res.locals.user.fundaccountsMap =
+                        fundaccountsMap;
                     res.render('newAccount/settings', {
                         tabName: tabName,
                         title: '奇乐融'
@@ -247,5 +251,9 @@ module.exports = function (router) {
                     next();
                 }
             });        
+    });
+    router.get('/newAccount/fund/:name',function(req,res,next){
+        res.render('/newAccount/fund',{urlname:req.params.name});
+        
     });
 }

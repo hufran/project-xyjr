@@ -1,6 +1,5 @@
 #main-container{
-    background: #f4fcff;
-/*	margin-top: 7px;*/
+    background: #f6f8fc;
 }
 .nav-shadow{
     background-image: url(/ccc/aboutus/img/shadow_repeat.png);
@@ -313,7 +312,7 @@
  }
 /*安全保障*/
  .brand-box{
-     background:#f4fcff;
+/*     background:#f4fcff;*/
      height: 288px;
  }
  .safety-box{

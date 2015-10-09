@@ -34,9 +34,9 @@
 	{{else}}
 		<li class="nav-li">
 		{{#if invest}}
-			<span class="icon-invest-active"></span>
+			<span class="icon-invest-active icon-my-invest-active"></span>
 		{{else}}
-			<span class="icon-invest"></span>
+			<span class="icon-invest icon-my-invest"></span>
 		{{/if}}
 		<span class="nav-text {{#if invest}}nav-text-active{{/if}}"><a href="/newAccount/invest/HOLDING">我的投资</a></span>
 		<span class='nav-toggle-btn {{showInvestToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showInvestToggleMenu" on-click="toggleMenu"></span>
@@ -75,7 +75,15 @@
 		{{else}}
 			<span class="icon-fund"></span>
 		{{/if}}
-		<span class="nav-text {{#if fund}}nav-text-active{{/if}}"><a href="/newAccount/fund">交易记录</a></span>
+		<span class="nav-text {{#if fund}}nav-text-active{{/if}}"><a href="/newAccount/fund/touzi">交易记录</a></span>
+        <span class='nav-toggle-btn {{showFundToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showFundToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showFundToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if touzi}}active{{/if}}"><a href="/newAccount/fund/touzi ">投资交易</a></li>
+				<li class="{{#if jiekuan}}active{{/if}}"><a href="/newAccount/fund/jiekuan ">借款交易</a></li>
+			</ul>
+		{{/if}}
 	</li>
 	<li class="nav-li">
 		{{#if settings}}

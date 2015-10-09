@@ -10,6 +10,13 @@ require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/cccPaging');
 
 var template = require('ccc/newAccount/partials/fund/fund.html');
+
+//var template = {
+//	 fund:require('ccc/newAccount/partials/fund/fund.html'),
+//	invest: require('ccc/newAccount/partials/fund/invest.html')
+//};
+
+
 var utils = require('ccc/global/js/lib/utils');
 
 var typeLists = [];
@@ -18,7 +25,6 @@ typeLists[0] = [{
     type: 'ALL',
     text: '全部'
 }];
-
 
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
@@ -71,6 +77,7 @@ var ractive = new Ractive({
     template: template,
 
     data: {
+        urlname:CC.loanl.urlname,
         user:CC.user,
         tabIndex: 0,
         selectedIndex: 0, // 类别的selectedIndex
@@ -439,6 +446,7 @@ $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var typea=$(this).data('type');
+            console.log(typea);
             typet=typea;
               ractive.loadData({
                     type: typea,
@@ -450,12 +458,13 @@ $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var longtime=$(this).text().substring(0,2);
+            console.log(longtime);
            if(longtime==='全部'){
                longtime=0;
            }
-           $('.date-from-picker>input').val(moment().add('days',-longtime)
-            .format('YYYY-MM-DD'));
-             $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));
+//           $('.date-from-picker>input').val(moment().add('days',-longtime)
+//            .format('YYYY-MM-DD'));
+//             $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));
              ractive.loadData({
                  type: typet,
                  preset: tab1Preset

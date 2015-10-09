@@ -39,16 +39,18 @@ var ractive = new Ractive({
         ifDel: false,
         mobile: CC.user.mobile,
         realName: CC.user.name,
+        isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false,
         authenticated: CC.user.authenticates.idauthenticated || false
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
-            this.set('realName', o.user.name);
+            ractive.set('realName', o.user.name);
         });
     },
     oncomplete: function () {
         accountService.getProvince(function (res) {
             ractive.set('province', changeToList(res));
+            ractive.set('myProvince','安徽省');
             var fProvince = ractive.get('myProvince') || '安徽省';
             accountService.getCity(fProvince, function (res) {
                 ractive.set('city', changeToList(res));
@@ -102,50 +104,60 @@ ractive.on("validatePhoneNo", function () {
 ractive.on('doDel', function () {
     this.set('ifDel',true);
 });
-ractive.on("bind-card-submit", function () {
+ractive.on("bind-card-submit", function (e) {
+    e.original.preventDefault();
     var cardNoError = this.get("cardNoError");
     var phoneNoError = this.get("phoneNoError");
     var SMS_NULL = this.get('SMS_NULL');
     if (cardNoError || phoneNoError || SMS_NULL) {
         return false;
     }
-    var bankr= _.filter(CC.user.bankCards, function (r) {
-    return r.deleted === false;
-    });
-    if(bankr){
-         CccOk.create({
-             msg: '绑卡成功', 
-             okText: '确定',
-             ok: function () {
-                  window.location.reload();
-             },
-              cancel: function () {
-                  window.location.reload();
-              }
-         });
-    }else{
-        CccOk.create({
-             msg: '绑卡失败', 
-             okText: '确定',
-             ok: function () {
-                  window.location.reload();
-             },
-              cancel: function () {
-                  window.location.reload();
-              }
-         }); 
+    // var bankr= _.filter(CC.user.bankCards, function (r) {
+    // return r.deleted === false;
+    // });
+    var bankName = this.get('bankName');
+    var cardNo = this.get('cardNo');
+    var cardPhone = this.get('mobile');
+    var province = this.get('myProvince');
+    var city = this.get('myCity');
+    var branchName = this.get('branchName');
+    var smsCaptcha = this.get('smsCaptcha');
+
+    var sendObj = {
+        bankName: bankName,
+        cardNo: cardNo,
+        cardPhone: cardPhone,
+        province: province,
+        city: city,
+        branchName: branchName,
+        smsCaptcha: smsCaptcha
     }
-//    Confirm.create({
-//        msg: '绑卡是否成功？',
-//        okText: '绑卡成功',
-//        cancelText: '绑卡失败',
-//        ok: function () {
-//            window.location.reload();
-//        },
-//        cancel: function () {
-//            window.location.reload();
-//        }
-//    });
+
+    $.post('/lianlianpay/bindCard', sendObj, function (r) {
+        if(r.success) {
+            CccOk.create({
+                msg: '绑卡成功', 
+                okText: '确定',
+                ok: function () {
+                    window.location.reload();
+                },
+                cancel: function () {
+                    window.location.reload();
+                }
+            });
+        } else {
+            CccOk.create({
+                msg: '绑卡失败，' + r.error[0].message, 
+                okText: '确定',
+                ok: function () {
+                    window.location.reload();
+                },
+                cancel: function () {
+                    window.location.reload();
+                }
+            }); 
+        }
+    });
 });
 
 ractive.on("delete-card-submit", function (e) {
@@ -156,18 +168,35 @@ ractive.on("delete-card-submit", function (e) {
         cancelText: '取消解绑',
         ok: function () {
             $('.btn-confirm-cancel').trigger('click');
-            Confirm.create({
-                msg: '删卡是否成功？',
-                okText: '删卡成功',
-                cancelText: '删卡失败',
-                ok: function () {
-                    window.location.reload();
-                },
-                cancel: function () {
-                    window.location.reload();
+            $.post('/lianlianpay/deleteCard', {
+                cardNo : ractive.get('bankAccount[0].account.account'),
+                paymentPassword : ractive.get('password')
+            }, function (r) {
+                if(r.success) {
+                    CccOk.create({
+                        msg: '删卡申请成功，请等待审核!', 
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        },
+                        cancel: function () {
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    CccOk.create({
+                        msg: '删卡失败，' + r.error[0].message, 
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        },
+                        cancel: function () {
+                            window.location.reload();
+                        }
+                    }); 
                 }
+
             });
-            $('form').submit();
         },
         cancel: function () {
         }

@@ -22,8 +22,7 @@ var Tab = {
 	},
 	// 已结清 (BREACH)
 	CLEARED: {
-		ractive: null,
-		
+		ractive: null,	
 		api: '/api/v2/user/MYSELF/invest/list/$page/$size?status=CLEARED',
 		template: require('ccc/account/partials/invest/cleared.html')
 	}
