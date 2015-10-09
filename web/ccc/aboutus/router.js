@@ -97,7 +97,11 @@ module.exports = function (router) {
                 break;
             }
         }
-
+        if (req.params.tab === 'action' || req.params.tab === 'media' || req.params.tab === 'notice' || req.params.tab === 'manage') {
+            var isList = true;
+        } else {
+            var isList = false;
+        };
         console.log("success");
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab]) + '?sort' + 'PUBDATE').end().then(function (r) {
             if (r.body.length > 1) {
@@ -107,7 +111,6 @@ module.exports = function (router) {
                     .then(function (r) {
                         formatNews(r.body.results);
                         var contents = r.body.results.length > 0 ? r.body.results : null;
-
                         res.render('aboutus/index', {
                             totalPage: createList(
                                 Math
@@ -129,7 +132,8 @@ module.exports = function (router) {
                                     req.params
                                     .tab]
                             },
-                            contents: contents
+                            contents: contents,
+                            isList: isList
                         });
                     });
 
@@ -152,7 +156,8 @@ module.exports = function (router) {
                             req.params
                             .tab]
                     },
-                    contents: contents
+                    contents: contents,
+                    isList: isList
                 });
             }
         });
