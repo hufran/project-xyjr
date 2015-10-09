@@ -26,7 +26,6 @@ typeLists[0] = [{
     text: '全部'
 }];
 
-
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
     if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
@@ -78,6 +77,7 @@ var ractive = new Ractive({
     template: template,
 
     data: {
+        urlname:CC.loanl.urlname,
         user:CC.user,
         tabIndex: 0,
         selectedIndex: 0, // 类别的selectedIndex
