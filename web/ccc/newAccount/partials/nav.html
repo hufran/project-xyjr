@@ -75,13 +75,13 @@
 		{{else}}
 			<span class="icon-fund"></span>
 		{{/if}}
-		<span class="nav-text {{#if fund}}nav-text-active{{/if}}"><a href="/newAccount/fund/touzi">交易记录</a></span>
+		<span class="nav-text {{#if fund}}nav-text-active{{/if}}"><a href="/newAccount/fund/loanDeal">交易记录</a></span>
         <span class='nav-toggle-btn {{showFundToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showFundToggleMenu" on-click="toggleMenu"></span>
 		<div class="clearfix"></div>
 		{{#if showFundToggleMenu}}
 			<ul class="nav-toggle-menu">
-				<li class="{{#if touzi}}active{{/if}}"><a href="/newAccount/fund/touzi ">投资交易</a></li>
-				<li class="{{#if jiekuan}}active{{/if}}"><a href="/newAccount/fund/jiekuan ">借款交易</a></li>
+				<li class="{{#if loanDeal}}active{{/if}}"><a href="/newAccount/fund/loanDeal ">投资交易</a></li>
+				<li class="{{#if investDeal}}active{{/if}}"><a href="/newAccount/fund/investDeal ">借款交易</a></li>
 			</ul>
 		{{/if}}
 	</li>
