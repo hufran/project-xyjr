@@ -291,7 +291,7 @@ do (_, angular, moment, Array) ->
             check_mobile: (mobile) ->
 
                 @$http
-                    .post '/api/v2/users/check/mobile',
+                    .post '/api/v2/register/check_mobile',
                         @param {mobile}
                         headers: WWW_FORM_HEADER
 
@@ -507,12 +507,11 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            reset_password: (loginName, mobile, captcha, captcha_token) ->
+            reset_password: (mobile, captcha, newPassword) ->
 
                 @$http
-                    .post '/api/v2/auth/reset_password',
-                        @param {loginName, mobile, captcha}
-                        params: {captcha_token, captcha_answer: captcha}
+                    .post '/api/v2/auth/reset_password/password',
+                        @param _.compact {mobile, captcha, newPassword}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA
@@ -528,3 +527,12 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
+
+            send_captcha_for_reset_password: (mobile) ->
+
+                @$http
+                    .get '/api/v2/users/smsCaptcha/changePwd',
+                        params: {mobile}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
