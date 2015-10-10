@@ -842,7 +842,10 @@ a {
 
         a {
             color: @color-gray;
-            display: block;
+
+            &:first-child {
+                .flex(1);
+            }
         }
     }
 }
