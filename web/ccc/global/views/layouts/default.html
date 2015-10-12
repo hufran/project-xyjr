@@ -140,7 +140,7 @@
                 {{/if}}
                 <li>
 					{{#if user}}
-						{{#if user.name}}
+						{{#if user.name || user.enterprise}}
 						<a id="safety" href="/newAccount/home">我的账户</a>
 						{{else}}
 						<a id="safety" href="/newAccount/settings/authentication">我的账户</a>
