@@ -1,6 +1,7 @@
 .guide-banner-box{
-    height: 160px;
-    background:url('/ccc/guide/img/banner.png') center top no-repeat;
+    height: 200px;
+    background:url('/ccc/guide/img/banner.png') center center no-repeat;
+	background-size: cover;
 }
 .guide-box{
     background: #fff;
@@ -9,6 +10,7 @@
 .guide-model{
     width:1000px;
     margin: 0px auto 40px;
+	text-align: center;
 }
 .guide-model *{
 	font-family: '微软雅黑';
@@ -25,6 +27,8 @@
 }
 .model-title-second{
     margin-top: 80px;
+	display: block;
+	margin: auto;
 }
 .model-content{
     color:#999;
@@ -127,12 +131,14 @@
     margin-bottom: 70px;
 }
 .step-title{
-    margin-left: 202px;
+	margin: auto;
     margin-top: 30px;
+	margin-bottom: 68px;
+	text-align: center;
 }
 .steps-pic{
-    margin-left: 89px;
-    margin-bottom: 100px;
+   
+    margin-bottom: 40px;
 }
 .process-pic{
     margin-left: 10px;
@@ -176,11 +182,13 @@
     font-size: 18px;
     text-align: center;
     line-height: 45px;
+	font-family: '微软雅黑';
 }
 .for-parents-content{
     font-size: 14px;
-    color: #999;
+    color: #4A4A4A;
     line-height: 18px;
+	font-family: '微软雅黑';
 }
 .for-parents{
     width:184px;
@@ -203,9 +211,112 @@
     color: white;
     font-size: 24px;
     border-radius: 5px;
-    margin-left: 318px;
+   
 }
 
 .guide-register-rightnow:hover{
 	background-color: #df6502;
+}
+
+.title-first{
+	text-align: center;
+	background-color: #f4fcff;
+	min-height: 352px;
+}
+
+.model-content {
+	width: 1010px;
+	margin: auto;
+	line-height: 40px;
+	font-family: "微软雅黑";
+	color: #4a4a4a;
+	text-align: left;
+	background-image: url(/ccc/guide/img/logo-bg.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	min-height: 140px;
+	font-size: 16px;
+}
+
+.model-content b{
+	color: #009ada;
+	font-size: 26px;
+	font-family: '微软雅黑';
+}
+
+.step-second{
+	background-color: white;
+}
+
+.step-tried{
+	background-color: #f4fcff;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 40px;
+}
+
+.family-bg{
+	overflow: hidden;
+	background-color: #f4fcff;
+	display: inline-block;
+}
+
+.product-bg{
+	height: 745px;
+	width: 422px;
+	background-image: url(/ccc/guide/img/bao-flow.png);
+	float: left;
+	background-repeat: no-repeat;
+	background-position: center center;
+	overflow: hidden;
+	
+}
+
+.product>div:last-child{
+	background-image: url(/ccc/guide/img/ying.png);
+	float: right;
+}
+
+.product{
+	overflow: hidden;
+	margin: auto;
+	width: 930px;
+}
+
+.product>div:last-child div{
+	background-image: url(/ccc/guide/img/icon-ying.png);
+}
+
+.product-bg>div{
+	text-align: center;
+	display: inline-block;
+	width: 90px;
+	height: 130px;
+	color: white;
+	font-size: 26px;
+	background-image: url(/ccc/guide/img/icon-bao.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	overflow: hidden;
+	line-height: 220px;
+	float: left;
+	margin: 15px 0 0 20px;
+	font-family: '微软雅黑';
+}
+
+.product-bg>p{
+	text-align:left;
+	display: inline-block;
+	width: 260px;
+	float: right;
+	color: white;
+	font-family: '微软雅黑';
+	line-height: 22px;
+	font-size: 16px;
+	margin: 35px 20px 0 0;
+}
+
+.stet-four {
+	text-align: center;
+	padding-bottom:60px;
 }
