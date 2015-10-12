@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolBindCardCtrl',
 
-        _.ai '            banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams', class
-            constructor: (banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams) ->
+        _.ai '            banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$interval, @$routeParams', class
+            constructor: (banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$interval, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
@@ -20,9 +20,26 @@ do (_, angular) ->
                 @submit_sending = false
 
                 @error = {timer: null, timeout: 4000, message: '', on: false}
+                @captcha = {timer: null, count: 55, count_default: 55, has_sent: false, buffering: false}
 
                 @api.get_province_list().then (data) =>
                     @$scope.province = data
+
+
+            send_mobile_captcha: ->
+
+                do @api.payment_pool_bind_card_sent_captcha
+
+                @captcha.timer = @$interval =>
+                    @captcha.count -= 1
+
+                    if @captcha.count < 1
+                        @$interval.cancel @captcha.timer
+                        @captcha.count = @captcha.count_default
+                        @captcha.buffering = false
+                , 1000
+
+                @captcha.has_sent = @captcha.buffering = true
 
 
             fetch_city: (province) ->
@@ -31,11 +48,11 @@ do (_, angular) ->
                     @$scope.city = data
 
 
-            bind_card: ({bankName, cardNo, cardPhone, city, province} = store) ->
+            bind_card: ({bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha} = store) ->
 
                 @submit_sending = true
 
-                (@api.payment_pool_bind_card(bankName, cardNo, cardPhone, city, province)
+                (@api.payment_pool_bind_card(bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha)
 
                     .then (data) =>
                         return @$q.reject(data) unless data.success is true

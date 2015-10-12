@@ -842,7 +842,10 @@ a {
 
         a {
             color: @color-gray;
-            display: block;
+
+            &:first-child {
+                .flex(1);
+            }
         }
     }
 }
@@ -853,17 +856,10 @@ a {
 
 #password {
 
-    .page-content {
-        #login > .page-content;
+    #register;
 
-        .input-group-btn {
-            padding-right: 10px;
-            background-color: #FFF;
-
-            .captcha-img {
-                border: 1px solid #bbbbbb;
-            }
-        }
+    .page-nav {
+        margin-bottom: 10px;
     }
 
 }
@@ -1794,6 +1790,10 @@ a {
             font-size: 14px;
             color: #333;
         }
+    }
+
+    .form-group.mobile-captcha {
+        #register .form .form-group.mobile-captcha;
     }
 
     .alert {
