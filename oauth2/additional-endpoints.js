@@ -46,5 +46,5 @@ module.exports = function (router, auth) {
     router.get('/api/v2/users/:userId/groupMedal', auth.user());
     router.get('/api/v2/reward/getReferralUsers/:uid', auth.user());
 
-    router.get('/api/v2/coupon/MYSELF/coupons/byStatus', auth.user());
+    router.get('/api/v2/coupon/:userId/coupons/byStatus', auth.user());
 };
