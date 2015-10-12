@@ -35,7 +35,7 @@ module.exports = function (router) {
             aboutus: '平台简介',
             background: '股东背景',
             team: '团队介绍',
-            partner: '合作机构',
+            partner: '合作伙伴',
             things: '大 事 记',
             safety: '安全保障',
             contactus: '联系我们',
