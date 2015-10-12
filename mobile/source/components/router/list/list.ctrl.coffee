@@ -50,7 +50,7 @@ do (_, angular, moment) ->
 
             has_more: (list) ->
 
-                list.remain?.length > 0
+                list?.remain?.length > 0
 
 
             add_more: (list) ->
