@@ -56,7 +56,7 @@ module.exports = function (router) {
             text: '团队介绍',
             url: '/aboutus/team'
         }, {
-            text: '合作机构',
+            text: '合作伙伴',
             url: '/aboutus/partner',
         }, {
             text: '大 事 记',
