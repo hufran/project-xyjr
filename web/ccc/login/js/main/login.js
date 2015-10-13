@@ -65,7 +65,7 @@ $('#loginForm').submit(function (e) {
                 return;
             }
             if (CC.user.enterprise) {
-                location.pathname = "/account";
+                location.pathname = "/newAccount/home";
             } else {
                 location.href = (r.redirect) ? r.redirect : '/';
             }
