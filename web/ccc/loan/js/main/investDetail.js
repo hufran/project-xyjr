@@ -217,6 +217,7 @@ setTimeout((function () {
        var minNum=Math.min(CC.user.availableAmount,CC.loan.rule.max,lmount);
      
         investRactive.set('inputNum', Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
+        showSelect(Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
     });
 
 
