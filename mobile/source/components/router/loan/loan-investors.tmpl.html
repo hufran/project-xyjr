@@ -14,7 +14,7 @@
     <section class="c-list-panel investors-list">
         <div class="item" ng-repeat="item in investors">
             <div class="clearfix">
-                <div class="name pull-left">{{ item.userLoginName | string_mask: 2 }}</div>
+                <div class="name pull-left">{{ item.name }}</div>
                 购买
                 <div class="amount pull-right">{{ item.amount | number }} 元</div>
             </div>
