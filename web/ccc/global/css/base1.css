@@ -567,6 +567,7 @@ input[type=button]{
    background-color: #f58220;
     border-color:#f58220;
     font-size: 14px;
+    width: 80px;
 }
 .btn-confirm-cancel{
     background: #d3d3d3;
