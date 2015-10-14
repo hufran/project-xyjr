@@ -54,29 +54,6 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/注册')).end().then(func
     });
 });
 
-//var referral = getUrlVal("refm");
-//if (referral != null) {
-    //$("input[name=refm]").val(referral);
-//}
-
-//function getUrlVal(key) {
-    //var search = location.search;
-    //if (search == null) return null;
-    //var i = search.indexOf(key);
-    //if (i == -1) {
-        //return null;
-    //} else {
-        //i += key.length;
-        //i++;
-        //var j = search.indexOf('=', i);
-        //if (j == -1) {
-            //return search.substring(i);
-        //} else {
-            //return search.substring(i, j);
-        //}
-    //}
-//}
-
 if (CC.registerRel) {
-    registerRactive.set('refm.data.value', CC.registerRel);
+    registerRactive.set('inviteCode.data.value', CC.registerRel);
 }
