@@ -53,7 +53,6 @@ function CccConfirm(options) {
 		
 		// before init
 		before();
-		console.log(config);
 		new Box({
 			title: config.title,
 			value: config.tpl,

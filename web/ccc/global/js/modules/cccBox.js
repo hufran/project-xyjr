@@ -275,7 +275,6 @@ function Dialog(content, options) {
                 !! width && div.width(width); !! height && div.height(height);
             
                 div.html(c.value);
-                    console.log(div.html());
                 break;
             }
         } else {
