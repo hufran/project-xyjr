@@ -2,65 +2,63 @@
     background:url('/ccc/activity/img/bg.png')center top no-repeat;
     width:auto;
     margin: 0px auto;
-    height: 4266px;
+    height: 3800px;
 }
 .top{
-    height:650px;
-}
-.box-container{
-/*    width:1100px;*/
-/*    margin: 0px auto;*/
+    height:490px;
 }
 .family-len-box{
     font-size: 30px;
     color: #009ada;
     text-align: center;
     float: left;
-    margin-left: 60px;
-    margin-right: 40px;
-    margin-top: 216px;
+    margin-left: 100px;
+/*    margin-right: 40px;*/
+    margin-top: 170px;
 }
 .family-pic{
     width: 980px;
     margin: 0px auto;
 }
-.trigle{
-    margin-left: 50px;
-    margin-right: 16px;
-}
 .media-box{
-    width: 834px;
+    width: 640px;
     margin: 0 auto;
 }
 .vedio-box{
-    background:url('/ccc/activity/img/vedio-bottom.png')center 204px no-repeat;
-    height: 390px;
+    background:url('/ccc/activity/img/vedio-bottom.png')center 310px no-repeat;
+    height: 430px;
 }
 .family-box{
     background:url('/ccc/activity/img/family.png')center top no-repeat;
-    height: 688px;
-    margin-top: 100px;
+    height: 601px;
+    margin-top: 48px;
 }
 .family-word{
     font-size: 16px;
     color: #4a4a4a;
     line-height: 40px;
+    width: 900px;
+    margin: 0 auto;
+    clear: both;
 }
 .family-len-box p{
     line-height: 100px;
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 26px;
 }
 .internet-box{
     background:url('/ccc/activity/img/internet1.png')center top no-repeat;
-    height: 1010px;
-    margin-top: 70px;
+    height: 931px;
+    margin-top: 54px;
 }
 .bee{
      width: 1000px;
      margin: 0 auto;
 }
 .bee img{
-    margin-top: 150px;
-    margin-left: 76px;
+    margin-top: 104px;
+    margin-left: 106px;
 }
 .bee-word{
     width:880px;
@@ -68,22 +66,23 @@
     font-size: 16px;
     color:#4a4a4a;
     line-height: 30px;
-    margin-top: 40px;
+    margin-top: 64px;
+    text-indent: 2em;
 }
 .p2p-word{
-    margin-top: 70px;
+    margin-top: 62px;
 }
 .p2p-box{
     background:url('/ccc/activity/img/p2p.png')center top no-repeat;
-    height: 723px;
-    margin-top: 66px;
+    height: 649px;
+    margin-top: 50px;
 }
 .p2p{
      width: 1000px;
      margin: 0 auto;
 }
 .p2p img{
-    margin-top: 150px;
+    margin-top: 106px;
 }
 .tips-box{
     background:url('/ccc/activity/img/tips.png')center top no-repeat;
