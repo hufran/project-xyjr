@@ -273,6 +273,7 @@ function Dialog(content, options) {
                 break;
             default:
                 !! width && div.width(width); !! height && div.height(height);
+            
                 div.html(c.value);
                 break;
             }
