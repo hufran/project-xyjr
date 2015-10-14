@@ -62,7 +62,6 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
-
                 <RInput field="refm">
                     <div class="rinput">
                         <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐人:</label>
@@ -71,7 +70,15 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
-
+               <RInput field="inviteCode">
+                    <div class="rinput">
+                        <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
+                        <input id="{{rinputId}}" name="inviteCode" value="{{value}}" placeholder="请输入推荐码，可不填">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+                
                 <RInput field="agreement" valueStableDuration=100>
                     <div class="rinput agreement-div">
                          {{#if stepLoading}}

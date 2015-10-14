@@ -29,6 +29,9 @@ new Ractive({
         record:true,
         reward:false
     },
+    oninit: function () {
+        this.getFmobile();
+    },
     onrender: function () {
         var self = this;
         this.api = '/api/v2/user/MYSELF/invite';
@@ -46,13 +49,24 @@ new Ractive({
          self.set('rewardlist', self.parseRewardListData(o));
         });
     },
-    oncomplete: function () {
-        this.bindActions();
+    getFmobile: function(){
+        var self = this;
+        this.api = '/api/v2/user/MYSELF/inviteCode';
+        
+        $.get(this.api, function(r) {
+             if (r.success) {
+                self.set('Fmobile', r.data);
+            }
+            self.bindActions();  
+        }).error(function(){
+            self.bindActions();
+        });   
+        
     },
     buildImgUrl: function(){
         var self = this;
         //var logo = 'http://' + location.host + $('#er-img-url').attr('src');
-        var text = 'http://' + location.host + '/register?refm=' + CC.user.mobile;
+        var text = 'http://' + location.host + '/register?refm=' + self.get('Fmobile');
         return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
     },
     parseData: function (r) {
@@ -64,7 +78,7 @@ new Ractive({
             r.results[i].user.registerDate = new Date(r.results[i].user.registerDate);
             r.results[i].user.registerDate = moment(r.results[i].user.registerDate).format('YYYY-MM-DD');
             r.results[i].user.loginName = format.mask(o.user.loginName);
-            r.results[i].Fmobile = format.mask(o.user.mobile, 3, 4);
+            r.results[i].FOmobile = format.mask(o.user.mobile, 3, 4);
         }
         return r.results;
     },
