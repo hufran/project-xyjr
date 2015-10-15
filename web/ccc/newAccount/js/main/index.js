@@ -132,7 +132,7 @@ var endTime = Date.UTC(currentYear,currentMonth,1,-8,0,0);
 var investRactive = new Ractive({
     el:'.ccc-myinvest-wrap',
     template: require('ccc/newAccount/partials/home/invest.html'),
-    api: '/api/v2/user/MYSELF/investRepayments/$page/$pageSize?to='+endTime+'&from='+startTime,
+    api: '/api/v2/user/MYSELF/investRepayments/$page/$pageSize?to='+endTime+'&from='+startTime+'&status=UNDUE',
     data:{
         totalSize:0,
         list:[]
