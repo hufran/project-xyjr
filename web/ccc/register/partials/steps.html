@@ -62,6 +62,7 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
+                {{#HIDE}}
                 <RInput field="refm">
                     <div class="rinput">
                         <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐人:</label>
@@ -70,6 +71,7 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
+                {{/HIDE}}
                <RInput field="inviteCode">
                     <div class="rinput">
                         <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
