@@ -25,7 +25,7 @@ do (_ ,angular, moment, Math, Date) ->
     angular.module('directive').directive 'loanSummary', ->
 
         restrict: 'AE'
-        templateUrl: 'components/templates/ngt-loan-summary.tmpl.html'
+        templateUrl: 'components/templates/ngt-loan-summary.tmpl.html?t={ts}'
 
         scope:
             loan: '='
