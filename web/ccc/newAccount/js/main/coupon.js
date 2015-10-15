@@ -55,7 +55,7 @@ function init (type) {
 			status: {
 	            'INITIATED': '未使用',
 	            'PLACED': '未使用',
-	            'USED': '打款中',
+	            'USED': '审核中',
 	            'CANCELLED': '已作废',
 	            'EXPIRED': '已过期',
 	            'REDEEMED': '已使用'
@@ -126,7 +126,7 @@ function init (type) {
 	                    o[i].displayStatus = '未使用';
 	                } else if (o[i].status === 'USED') {
 	                	o[i].USED = true;
-	                    o[i].displayStatus = '已使用';
+	                    o[i].displayStatus = '审核中';
 	                } else if (o[i].status === 'REDEEMED') {
 	                	o[i].REDEEMED = true;
 	                    o[i].displayStatus = '已兑换';
