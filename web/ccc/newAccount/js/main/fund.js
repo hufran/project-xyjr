@@ -26,6 +26,8 @@ typeLists[0] = [{
     text: '全部'
 }];
 
+var fundinvest =   'INVEST&type=WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT';
+var fundloan = 'INVEST&type=WITHDRAW&type=DEPOSIT&type=INVEST_REPAY&type=FEE_WITHDRAW&type=TRANSFER';
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
     if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
@@ -40,7 +42,6 @@ typeLists[0].push({
     type:'OFFLINE_DEPOSIT',
     text:'线下充值'
 });
-//console.log(typeLists);
 
 typeLists[1] = [{
     type: true,
@@ -126,8 +127,10 @@ ractive.on('select-type', function (e) { // dropdown 选择类型的时候
     $(this.find('.type-checker'))
         .removeClass('open');
     var typea=typeLists[0][selectedIndex].type;
-    // console.log("======");
-  // console.log(typeLists[0][selectedIndex]);
+    
+    if (typea === 'ALL') {
+        typea = fundinvest;
+    }
             typet=typea;
               ractive.loadData({
                     type: typea,
@@ -183,11 +186,11 @@ ractive.loadData = function (obj) {
     if (this.get('loading')) {
         return;
     }
+    
     this.set('loading', true);
     size = obj.pageSize || size;
-    request.get('/api/v2/user/MYSELF/funds')
+    request.get('/api/v2/user/MYSELF/funds/query?type=' + obj.type)
         .query({
-            type: obj.type || 'ALL',
             allStatus: obj.status || false,
             allOperation: true,
             startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
@@ -340,10 +343,18 @@ function tab3Preset(item) {
 }
 
 function loadInitData(index) {
+    var allType;
+    if (index == 0) {
+        if (CC.loanl.urlname === 'investDeal') {
+            allType = fundinvest
+        } else {
+            allType = fundloan;
+        }
+    }
     switch (index) {
     case 0:
         ractive.loadData({
-            type: 'ALL',
+            type: allType,
             preset: tab1Preset
         });
         break;
@@ -367,7 +378,7 @@ function loadInitData(index) {
 function renderPage(total, obj) {
     var self = ractive;
     var params = {
-        type: obj.type || 'ALL',
+//        type: obj.type || 'ALL',
         allStatus: obj.status || false,
         allOperation: true,
         startDate: 1111122222000,
@@ -375,7 +386,7 @@ function renderPage(total, obj) {
             .unix() * 1000,
         pageSize: size
     };
-    var api = '/api/v2/user/MYSELF/funds?page=$page' + jsonToParams(params);
+    var api = '/api/v2/user/MYSELF/funds/query?page=$page&type=' + obj.type + jsonToParams(params);
     $(".ccc-paging")
         .cccPaging({
             total: total,
@@ -441,24 +452,31 @@ function isNumber(t) {
     var e = new RegExp('^[0-9]*$');
     return e.test(t) ? !0 : !1;
 }
-  var typet='';
+var typet;
+if (CC.loanl.urlname === 'investDeal') {
+    typet = fundinvest;
+} else {
+    typet = fundloan;    
+}
 $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var typea=$(this).data('type');
-            console.log(typea);
+            if (typea === 'ALL') {
+                typea = fundloan;
+            }
             typet=typea;
-              ractive.loadData({
-                    type: typea,
-                    preset: tab1Preset
-              });
+            
+          ractive.loadData({
+                type: typea,
+                preset: tab1Preset
+          });
         }
     });
     $('.sDuration li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var longtime=$(this).text().substring(0,2);
-            console.log(longtime);
            if(longtime==='全部'){
                longtime=0;
            }

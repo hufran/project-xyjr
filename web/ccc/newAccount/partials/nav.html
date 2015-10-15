@@ -81,9 +81,10 @@
 		{{#if showFundToggleMenu}}
 			<ul class="nav-toggle-menu">
 				{{#if !isEnterprise}}
-				    <li class="active"><a href="/newAccount/fund/loanDeal">投资记录</a></li>
+				    <li class="{{#if loanDeal}}active{{/if}}"><a href="/newAccount/fund/loanDeal">投资记录</a></li>
+				    <li class="{{#if investDeal}}active{{/if}}"><a href="/newAccount/fund/investDeal">借款记录</a></li>
 				{{else}}
-				    <li class="active"><a href="/newAccount/fund/investDeal">借款记录</a></li>
+				    <li class="{{#if investDeal}}active{{/if}}"><a href="/newAccount/fund/investDeal">借款记录</a></li>
 				{{/if}}
 			</ul>
 		{{/if}}
