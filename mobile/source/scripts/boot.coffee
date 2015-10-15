@@ -10,7 +10,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/', {
                         controller: 'HomepageCtrl as self'
-                        templateUrl: 'components/router/homepage/homepage.tmpl.html'
+                        templateUrl: 'components/router/homepage/homepage.tmpl.html?t={ts}'
                         # redirectTo: '/list'
                     }
 
@@ -445,6 +445,14 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                     .hashPrefix '!'
 
 
+        .config _.ai '$provide, build_timestamp', ($provide, build_timestamp) ->
+            return unless build_timestamp
+
+            $provide.decorator '$templateRequest', _.ai '$delegate', ($delegate) ->
+                (tpl, ignoreRequestError) ->
+                    $delegate tpl.replace('{ts}', build_timestamp), ignoreRequestError
+
+
         .run _.ai 'api, cookie2root', (api, cookie2root) ->
             cookie2root 'return_url', '', ''
             do api.fetch_current_user
@@ -452,6 +460,8 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
         .constant 'baseURI', document.baseURI
 
+        .constant 'build_timestamp', do (src = document.getElementById('main-script')?.src) ->
+            +(src.match(/t=([^&]+)/)?[1] or '0')
 
 
     angular.element(document).ready ->
