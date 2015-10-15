@@ -54,6 +54,11 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/password/password.tmpl.html'
                     }
 
+                    .when '/activity', {
+                        controller: 'ActivityCtrl as self'
+                        templateUrl: 'components/router/activity/activity.tmpl.html'
+                    }
+
                     .when '/announcement', {
                         controller: 'AnnouncementCtrl as self'
                         templateUrl: 'components/router/announcement/announcement.tmpl.html'
