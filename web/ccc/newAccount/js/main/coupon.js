@@ -42,6 +42,7 @@ function init (type) {
 			el: '.panel-' + type,
 			template: couponTpl,
 			size: pagesize,
+            perpage:self.size,
 			page: page,
 			totalPage: totalPage,
 			//api: '/api/v2/coupon/MYSELF/coupons',
@@ -66,6 +67,7 @@ function init (type) {
 	            'PRINCIPAL': '增值券',
 	            'REBATE': '返现券'
 	        },
+            
 			onrender: function() {
 				var self = this;
 				self.getCouponData(function (o){
@@ -153,6 +155,16 @@ function init (type) {
 	                } else {
 	                	o[i].timeExpire = (new Date(o[i].couponPackage.timeExpire)).Format("yyyy-MM-dd");
 	                }
+                    if(o[i].timeExpire != "永不过期"){
+						if(o[i].displayStatus === '未使用'){
+							if(o[i].couponPackage.timeExpire<new Date()){
+								o[i].notUse = false;
+                                o[i].EXPIRED = true;
+	                    		o[i].displayStatus = '已过期';
+							}
+						}
+						
+					}
 	                if (o[i].description === "") {
 	                    o[i].description = "暂无描述";
 	                }
