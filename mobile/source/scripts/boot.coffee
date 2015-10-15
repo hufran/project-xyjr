@@ -16,12 +16,12 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/list/:type?', {
                         controller: 'ListCtrl as self'
-                        templateUrl: 'components/router/list/list.tmpl.html'
+                        templateUrl: 'components/router/list/list.tmpl.html?t={ts}'
                     }
 
                     .when '/login', {
                         controller: 'LoginCtrl as self'
-                        templateUrl: 'components/router/login/login.tmpl.html'
+                        templateUrl: 'components/router/login/login.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -36,7 +36,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/register', {
                         controller: 'RegisterCtrl as self'
-                        templateUrl: 'components/router/register/register.tmpl.html'
+                        templateUrl: 'components/router/register/register.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -51,17 +51,17 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/password', {
                         controller: 'PasswordCtrl as self'
-                        templateUrl: 'components/router/password/password.tmpl.html'
+                        templateUrl: 'components/router/password/password.tmpl.html?t={ts}'
                     }
 
                     .when '/activity', {
                         controller: 'ActivityCtrl as self'
-                        templateUrl: 'components/router/activity/activity.tmpl.html'
+                        templateUrl: 'components/router/activity/activity.tmpl.html?t={ts}'
                     }
 
                     .when '/announcement', {
                         controller: 'AnnouncementCtrl as self'
-                        templateUrl: 'components/router/announcement/announcement.tmpl.html'
+                        templateUrl: 'components/router/announcement/announcement.tmpl.html?t={ts}'
                         resolve:
                             data: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -72,7 +72,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard', {
                         controller: 'DashboardCtrl as self'
-                        templateUrl: 'components/router/dashboard/home.tmpl.html'
+                        templateUrl: 'components/router/dashboard/home.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -104,7 +104,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/bank-card', {
                         controller: 'BankCardCtrl as self'
-                        templateUrl: 'components/router/dashboard/bank-card.tmpl.html'
+                        templateUrl: 'components/router/dashboard/bank-card.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -118,7 +118,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/total-assets', {
                         controller: 'TotalAssetsCtrl as self'
-                        templateUrl: 'components/router/dashboard/total-assets.tmpl.html'
+                        templateUrl: 'components/router/dashboard/total-assets.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -132,7 +132,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/coupon', {
                         controller: 'CouponCtrl as self'
-                        templateUrl: 'components/router/dashboard/coupon.tmpl.html'
+                        templateUrl: 'components/router/dashboard/coupon.tmpl.html?t={ts}'
                         resolve:
                             data: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -146,7 +146,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/payment/register', {
                         controller: 'PaymentPoolRegisterCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-register.tmpl.html'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-register.tmpl.html?t={ts}'
                         _resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -160,7 +160,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/payment/password', {
                         controller: 'PaymentPoolPasswordCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password.tmpl.html'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password.tmpl.html?t={ts}'
                         _resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -174,7 +174,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/payment/agreement', {
                         controller: 'PaymentUmpAgreementCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/ump/payment-ump-agreement.tmpl.html'
+                        templateUrl: 'components/router/dashboard/payment/ump/payment-ump-agreement.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -188,7 +188,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/payment/bind-card', {
                         controller: 'PaymentPoolBindCardCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-bind-card.tmpl.html'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-bind-card.tmpl.html?t={ts}'
                         resolve:
                             banks: _.ai 'api', (api) -> api.get_available_bank_list()
 
@@ -213,7 +213,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/invest', {
                         controller: 'InvestCtrl as self'
-                        templateUrl: 'components/router/dashboard/invest.tmpl.html'
+                        templateUrl: 'components/router/dashboard/invest.tmpl.html?t={ts}'
                         resolve:
                             data: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -224,12 +224,12 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/invest/:id', {
                         controller: 'InvestDetailCtrl as self'
-                        templateUrl: 'components/router/dashboard/invest-detail.tmpl.html'
+                        templateUrl: 'components/router/dashboard/invest-detail.tmpl.html?t={ts}'
                     }
 
                     .when '/dashboard/invest/:id/repayment', {
                         controller: 'RepaymentCtrl as self'
-                        templateUrl: 'components/router/dashboard/repayment.tmpl.html'
+                        templateUrl: 'components/router/dashboard/repayment.tmpl.html?t={ts}'
                         resolve:
                             data: _.ai 'api, $location, $route',
                                 (       api, $location, $route) ->
@@ -239,7 +239,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/funds', {
                         controller: 'FundsCtrl as self'
-                        templateUrl: 'components/router/dashboard/funds.tmpl.html'
+                        templateUrl: 'components/router/dashboard/funds.tmpl.html?t={ts}'
                         resolve:
                             data: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -250,7 +250,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/recharge', {
                         controller: 'RechargeCtrl as self'
-                        templateUrl: 'components/router/dashboard/recharge.tmpl.html'
+                        templateUrl: 'components/router/dashboard/recharge.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -290,7 +290,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/withdraw', {
                         controller: 'WithdrawCtrl as self'
-                        templateUrl: 'components/router/dashboard/withdraw.tmpl.html'
+                        templateUrl: 'components/router/dashboard/withdraw.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -330,7 +330,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/invite', {
                         controller: 'InviteCtrl as self'
-                        templateUrl: 'components/router/dashboard/invite.tmpl.html'
+                        templateUrl: 'components/router/dashboard/invite.tmpl.html?t={ts}'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -344,12 +344,12 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/dashboard/return-results', {
                         controller: 'ReturnResultsCtrl as self'
-                        templateUrl: 'components/router/dashboard/return-results.tmpl.html'
+                        templateUrl: 'components/router/dashboard/return-results.tmpl.html?t={ts}'
                     }
 
                     .when '/loan/:id', {
                         controller: 'LoanCtrl as self'
-                        templateUrl: 'components/router/loan/loan.tmpl.html'
+                        templateUrl: 'components/router/loan/loan.tmpl.html?t={ts}'
                         resolve:
                             loan: _.ai 'api, $location, $route',
                                 (       api, $location, $route) ->
@@ -359,7 +359,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/loan/:id/investors', {
                         controller: 'LoanInvestorsCtrl as self'
-                        templateUrl: 'components/router/loan/loan-investors.tmpl.html'
+                        templateUrl: 'components/router/loan/loan-investors.tmpl.html?t={ts}'
                         resolve:
                             investors: _.ai 'api, $location, $route',
                                 (       api, $location, $route) ->
@@ -369,7 +369,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/loan/:id/info', {
                         controller: 'LoanInfoCtrl as self'
-                        templateUrl: 'components/router/loan/loan-info.tmpl.html'
+                        templateUrl: 'components/router/loan/loan-info.tmpl.html?t={ts}'
                         resolve:
                             loan: _.ai 'api, $location, $route',
                                 (       api, $location, $route) ->
@@ -379,7 +379,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/loan/:id/invest', {
                         controller: 'LoanInvestCtrl as self'
-                        templateUrl: 'components/router/loan/loan-invest.tmpl.html'
+                        templateUrl: 'components/router/loan/loan-invest.tmpl.html?t={ts}'
                         resolve:
                             loan: _.ai 'api, $location, $route, $q',
                                 (       api, $location, $route, $q) ->
@@ -434,7 +434,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                     .when '/loan/:id/invest/return', {
                         controller: 'LoanInvestReturnCtrl as self'
-                        templateUrl: 'components/router/loan/loan-invest-return.tmpl.html'
+                        templateUrl: 'components/router/loan/loan-invest-return.tmpl.html?t={ts}'
                     }
 
                     .otherwise redirectTo: '/'
