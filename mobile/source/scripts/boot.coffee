@@ -474,4 +474,4 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
 
     angular.element(document).ready ->
-        angular.bootstrap document, [APP_NAME]
+        angular.bootstrap document, [APP_NAME], strictDi: true
