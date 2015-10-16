@@ -6,7 +6,7 @@ do (angular) ->
         restrict: 'AE'
         replace: true
         transclude: true
-        templateUrl: 'components/header/header.tmpl.html?t={ts}'
+        templateUrl: 'components/header/header.tmpl.html'
 
         scope:
             user: '='
@@ -30,7 +30,7 @@ do (angular) ->
         restrict: 'AE'
         replace: true
         transclude: true
-        templateUrl: 'components/templates/ngt-header-dropdown-menu.tmpl.html?t={ts}'
+        templateUrl: 'components/templates/ngt-header-dropdown-menu.tmpl.html'
 
         scope: {}
 
