@@ -1,0 +1,31 @@
+.big-container{
+    background:url('/ccc/activity/img/gift-bg.png')center top no-repeat;
+    width:auto;
+    margin: 0px auto;
+    height: 2832px;
+}
+.process{
+    margin:384px auto 0px auto;
+}
+.btn{
+     background:url('/ccc/activity/img/btn-bg.png')center top no-repeat;
+    width: 400px;
+    height: 76px;
+    color: #fff;
+    font-size: 30px;
+    margin-left: 264px;
+    margin-top: 30px;
+}
+.activity-rules p{
+    color: #2a4f64;
+    font-size: 20px;
+    line-height: 34px;
+}
+.activity-rules img{
+    margin-top: 96px;
+    margin-bottom: 10px;
+}
+.activity-rules{
+    width: 924px;
+    margin: 0px auto;
+}
