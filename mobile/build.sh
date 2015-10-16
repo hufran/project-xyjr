@@ -60,7 +60,7 @@ lessc --clean-css="--skip-advanced" $output/styles/main.less $output/styles/main
 perl -pi -e "s|stylesheet/less|stylesheet|g" $index
 perl -pi -e "s|main.less|main.css|g" $index
 perl -pi -e "s|<base href=\"/\">|<base href=\"/h5/\">|g" $index
-perl -pi -e "s|t={time}|t=`date +%s`|g" $index
+perl -pi -e "s|t={time}|t=`date +%s`000|g" $index
 
 
 (cd $output; [ -d h5 ] || ln -sf . h5)

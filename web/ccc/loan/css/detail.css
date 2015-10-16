@@ -2,7 +2,9 @@
 	margin-top: 7px;
 	background-color: #f6f8fc;
 }
-
+.nav-tabs > li.active > a {
+	pointer-events: none;
+}
 .current-container {
 	width: 1100px;
 	margin: 0 auto;
@@ -1752,7 +1754,7 @@
 .finished-btn {
 	width: 318px;
 	height: 44px;
-	background: #009ada;
+/*	background: #009ada;*/
 	color: white;
 	border: none;
 	font-size: 18px;
@@ -1760,11 +1762,14 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 	letter-spacing: 5px;
+    cursor:default;
 }
 
+/*
 .finished-btn:hover {
-	background-color: #015989;
+	background-color: gray;
 }
+*/
 
 .finished-money {
 	text-align: left;

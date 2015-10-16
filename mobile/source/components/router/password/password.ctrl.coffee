@@ -3,10 +3,10 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PasswordCtrl',
 
-        _.ai '            @api, @$scope, @$location, @$window, @$q', class
-            constructor: (@api, @$scope, @$location, @$window, @$q) ->
+        _.ai '            @api, @$scope, @$location, @$window, @$interval, @$q', class
+            constructor: (@api, @$scope, @$location, @$window, @$interval, @$q) ->
 
-                @new_password_sending = false
+                @captcha = {timer: null, count: 55, count_default: 55, has_sent: false, buffering: false}
 
                 @$scope.store = {}
 
@@ -18,20 +18,54 @@ do (_, angular) ->
                     @$scope.store.captcha = ''
 
 
-            send_password_reset: (store) ->
+            send_mobile_captcha: (mobile) ->
+
+                (@api.check_mobile(mobile)
+
+                    .then (data) =>
+                        return @$q.reject(data) if data.success is true
+                        return data
+
+                    .catch (data) =>
+                        @$q.reject error: [message: 'MOBILE_NOT_EXISTS']
+
+                    .then => @api.send_captcha_for_reset_password(mobile)
+
+                    .then (data) =>
+                        return @$q.reject(data) unless data.success is true
+                        return data
+
+                    .then =>
+                        @captcha.timer = @$interval =>
+                            @captcha.count -= 1
+
+                            if @captcha.count < 1
+                                @$interval.cancel @captcha.timer
+                                @captcha.count = @captcha.count_default
+                                @captcha.buffering = false
+                        , 1000
+
+                        @captcha.has_sent = @captcha.buffering = true
+
+                    .catch (data) =>
+                        error = _.get data, 'error[0].message', 'UNKNOWN'
+                        error = _.result @$scope.msg, error
+                        @$window.alert error
+                )
+
+
+            send_password_reset: ({mobile, captcha, password} = store) ->
 
                 @new_password_sending = true
 
-                {login_name, mobile, captcha} = store
-
-                (@api.reset_password(login_name, mobile, captcha, @captcha.token)
+                (@api.reset_password(mobile, captcha, password)
 
                     .then (data) =>
                         return @$q.reject data unless data.success is true
                         return data
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.success
+                        @$window.alert @$scope.msg.SUCCEED
                         @$location.path '/dashboard'
                         @$window.location.reload()
 

@@ -25,7 +25,7 @@ function CccConfirm(options) {
 		title: '信息提示',
 		tpl: tpl,
 		width: 400,
-		height: 180,
+		height: 150,
 		overlay: false,
 		msg: '确定要这么做？',
 		complete: function() {},
@@ -53,7 +53,6 @@ function CccConfirm(options) {
 		
 		// before init
 		before();
-		
 		new Box({
 			title: config.title,
 			value: config.tpl,

@@ -8,13 +8,13 @@
             <h4 class="title" style="border:0">以下是您的专属邀请链接及二维码 <span class="hint">（受邀人必须使用手机注册）</span></h4>
         </div>
         <form class="form-inline">
-            <p class="SHARE_URL hide">http://{{host}}/register?refm={{mobile}}</p>
-            <p class="SHARE_TEXT hide">邀请注册即有奖励，赶快行动吧~ http://{{host}}/register?refm={{mobile}}</p>
+            <p class="SHARE_URL hide">http://{{host}}/register?refm={{Fmobile}}</p>
+            <p class="SHARE_TEXT hide">邀请注册即有奖励，赶快行动吧~ http://{{host}}/register?refm={{Fmobile}}</p>
             <div class="form-group">
-                <input type="text" class="form-control" id="invite-link" value="http://{{host}}/register?refm={{mobile}}" style="min-width:420px;margin-left:20px;border:none">
+                <input type="text" class="form-control" id="invite-link" value="http://{{host}}/register?refm={{Fmobile}}" style="min-width:420px;margin-left:20px;border:none">
             </div>
             <button type="button" class="btn btn-default" id="btn-invite-copy" 
-                data-clipboard-text="http://{{host}}/register?refm={{mobile}}">
+                data-clipboard-text="http://{{host}}/register?refm={{Fmobile}}">
               复制链接
             </button>
         </form>
@@ -45,7 +45,7 @@
     </tr>
 {{#list}}
     <tr>
-        <td>{{Fmobile}}</td>
+        <td>{{FOmobile}}</td>
         <td>{{#if user.name}}{{user.name}}{{else}}未认证{{/if}}</td>
         <td>{{user.registerDate}}</td>
         <!-- <td>{{rewardAmount}}</td> -->

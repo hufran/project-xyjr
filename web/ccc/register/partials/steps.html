@@ -62,7 +62,7 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
-
+                {{#HIDE}}
                 <RInput field="refm">
                     <div class="rinput">
                         <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐人:</label>
@@ -71,7 +71,16 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
-
+                {{/HIDE}}
+               <RInput field="inviteCode">
+                    <div class="rinput">
+                        <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
+                        <input id="{{rinputId}}" name="inviteCode" value="{{value}}" placeholder="请输入推荐码，可不填">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+                
                 <RInput field="agreement" valueStableDuration=100>
                     <div class="rinput agreement-div">
                          {{#if stepLoading}}
@@ -100,8 +109,13 @@
 
     <Step>
         <div class="register-step-1">
-            <p class="success">已经注册成功！<span class="go-to-account"></span><a href="/newAccount/settings/authentication">去我的账户</a></p>
+            <div class="regist-left">
+            <p class="success"><img src="/ccc/register/img/right-icon.png"/>恭喜您，注册成功！<span class="go-to-account"></span></p>
+            <a href="/newAccount/settings/authentication"><button class="go-account">前往我的账户</button></a>
+            </div>
+            <img class="regist-right" src="/ccc/register/img/regist-success-banner.png"/>
         </div>
+        
     </Step>
 </div>
 

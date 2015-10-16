@@ -35,7 +35,7 @@ module.exports = function (router) {
             aboutus: '平台简介',
             background: '股东背景',
             team: '团队介绍',
-            partner: '合作机构',
+            partner: '合作伙伴',
             things: '大 事 记',
             safety: '安全保障',
             contactus: '联系我们',
@@ -56,7 +56,7 @@ module.exports = function (router) {
             text: '团队介绍',
             url: '/aboutus/team'
         }, {
-            text: '合作机构',
+            text: '合作伙伴',
             url: '/aboutus/partner',
         }, {
             text: '大 事 记',
@@ -97,23 +97,26 @@ module.exports = function (router) {
                 break;
             }
         }
-
+        if (req.params.tab === 'action' || req.params.tab === 'media' || req.params.tab === 'notice' || req.params.tab === 'manage') {
+            var isList = true;
+        } else {
+            var isList = false;
+        };
         console.log("success");
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab]) + '?sort' + 'PUBDATE').end().then(function (r) {
             if (r.body.length > 1) {
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
-                req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pageSize=10')
+                req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pageSize='+ pageSize)
                     .end()
                     .then(function (r) {
                         formatNews(r.body.results);
                         var contents = r.body.results.length > 0 ? r.body.results : null;
-
                         res.render('aboutus/index', {
                             totalPage: createList(
                                 Math
                                 .ceil(r.body
                                     .totalSize /
-                                    10)),
+                                    pageSize)),
                             current: parseInt(
                                 current,
                                 10),
@@ -129,7 +132,8 @@ module.exports = function (router) {
                                     req.params
                                     .tab]
                             },
-                            contents: contents
+                            contents: contents,
+                            isList: isList
                         });
                     });
 
@@ -152,7 +156,8 @@ module.exports = function (router) {
                             req.params
                             .tab]
                     },
-                    contents: contents
+                    contents: contents,
+                    isList: isList
                 });
             }
         });

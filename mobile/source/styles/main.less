@@ -842,7 +842,10 @@ a {
 
         a {
             color: @color-gray;
-            display: block;
+
+            &:first-child {
+                .flex(1);
+            }
         }
     }
 }
@@ -853,17 +856,10 @@ a {
 
 #password {
 
-    .page-content {
-        #login > .page-content;
+    #register;
 
-        .input-group-btn {
-            padding-right: 10px;
-            background-color: #FFF;
-
-            .captcha-img {
-                border: 1px solid #bbbbbb;
-            }
-        }
+    .page-nav {
+        margin-bottom: 10px;
     }
 
 }
@@ -1034,7 +1030,7 @@ a {
 
             .name {
                 padding-right: 5px;
-                min-width: 80px;
+                min-width: 120px;
             }
 
             .amount {
@@ -1796,6 +1792,10 @@ a {
         }
     }
 
+    .form-group.mobile-captcha {
+        #register .form .form-group.mobile-captcha;
+    }
+
     .alert {
         border-radius: 0;
     }
@@ -1875,10 +1875,6 @@ a {
         h5 {
             margin: 0 0 5px;
             font-size: 24px/2 + 2;
-
-            &:after {
-                content: ":";
-            }
         }
 
         p {
@@ -2072,6 +2068,17 @@ a {
             background-color: @color-gray-dark-double;
             padding: 1px 3px;
         }
+    }
+}
+
+/*=============================================================================
+                                                              [Router] Activity
+----*/
+
+#activity {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
 
