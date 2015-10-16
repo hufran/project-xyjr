@@ -3,8 +3,8 @@ do (_ ,angular, moment, Math, Date) ->
 
     angular.module('controller').controller 'LoanCtrl',
 
-        _.ai '            @user, @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams', class
-            constructor: (@user, @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams) ->
+        _.ai '            @user, @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout', class
+            constructor: (@user, @loan, @api, @$scope, @$window, map_loan_summary, @$routeParams, @$timeout) ->
 
                 @$window.scrollTo 0, 0
 
@@ -14,7 +14,18 @@ do (_ ,angular, moment, Math, Date) ->
                     investors: @api.get_loan_investors @loan.id
                 }
 
+                time_open_left = @loan.timeOpen - Date.now()
 
+                if time_open_left > 0
+
+                    @$timeout =>
+                        if @$routeParams.id is @loan.id
+                            @$window.location.reload()
+                    , time_open_left + 500, false
+
+                else if @loan.status is 'SCHEDULED'
+
+                    @$window.location.reload()
 
 
 
@@ -25,7 +36,7 @@ do (_ ,angular, moment, Math, Date) ->
     angular.module('directive').directive 'loanSummary', ->
 
         restrict: 'AE'
-        templateUrl: 'components/templates/ngt-loan-summary.tmpl.html?t={ts}'
+        templateUrl: 'components/templates/ngt-loan-summary.tmpl.html'
 
         scope:
             loan: '='
