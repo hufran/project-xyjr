@@ -448,9 +448,18 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
         .config _.ai '$provide, build_timestamp', ($provide, build_timestamp) ->
             return unless build_timestamp
 
+            HOLDER = '{ts}'
+
             $provide.decorator '$templateRequest', _.ai '$delegate', ($delegate) ->
+
                 (tpl, ignoreRequestError) ->
-                    $delegate tpl.replace('{ts}', build_timestamp), ignoreRequestError
+
+                    if /// ^/? ( components | static | assets ) ///.test tpl
+                        if not /// #{ HOLDER } ///.test tpl
+                            tpl += if /\?/.test(tpl) then '&' else '?'
+                            tpl += '_t=' + HOLDER
+
+                    $delegate tpl.replace(HOLDER, build_timestamp), ignoreRequestError
 
 
         .run _.ai 'api, cookie2root', (api, cookie2root) ->
