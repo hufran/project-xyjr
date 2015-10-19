@@ -247,6 +247,19 @@ table tbody tr td {
 	height: 250px;
 	background: url(/ccc/newAccount/img/null.png) no-repeat center;
 }
+.no-back-data {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/no-back-data.png) no-repeat center;
+}
+.no-fund-data {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	background: url(/ccc/newAccount/img/no-fund.png) no-repeat center;
+}
+
 .no-loan{
    	margin: 0 auto;
 	width: 250px;
@@ -339,5 +352,7 @@ table tbody tr td {
 .hide {
 	display: none;
 }
-
+.btn-success:hover{
+    font-size: 13px;
+}
 
