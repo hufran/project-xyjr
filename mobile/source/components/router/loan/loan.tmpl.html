@@ -13,9 +13,15 @@
 
     <section class="c-list-panel loan-summary">
         <div class="item subject">
-            <h4 class="title"
-                ng-class="'color-' + (loan.product_type | lowercase) + '-text'"
-            >{{ loan.title }}</h4>
+            <div class="clearfix">
+                <h4 class="pull-left title" ng-class="'color-' + (loan.product_type | lowercase) + '-text'">
+                    {{ loan.title }}
+                </h4>
+
+                <a class="pull-right" ng-href="loan/{{ loan.id }}/info">
+                    项目信息 &rsaquo;
+                </a>
+            </div>
 
             <div class="media amount">
                 <div class="media-left">
