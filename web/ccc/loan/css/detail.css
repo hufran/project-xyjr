@@ -1591,6 +1591,7 @@
 	color: #f58220;
 	background: #fff;
 	font-family: '微软雅黑';
+    cursor: default;
 }
 
 .topAmountActive {

@@ -72,7 +72,7 @@ var ractive = new Ractive({
                 ractive.set('isSave',true);
             }
             if (userinfo.personal) {
-                ractive.set('male', ''+userinfo.personal.male);
+                ractive.set('male', userinfo.personal.male);
             }
             if (userinfo.personal && userinfo.personal.education && userinfo.personal.education.educationLevel) {
                 ractive.set('educationLevel', userinfo.personal.education.educationLevel)

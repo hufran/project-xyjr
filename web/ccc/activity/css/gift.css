@@ -5,7 +5,13 @@
     height: 2832px;
 }
 .process{
-    margin:384px auto 0px auto;
+    margin-top:384px;
+    position: absolute;
+    left: 50%;
+    margin-left: -655px;
+}
+.process-box{
+    height:2410px;
 }
 .btn{
      background:url('/ccc/activity/img/btn-bg.png')center top no-repeat;
