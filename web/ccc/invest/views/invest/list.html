@@ -17,7 +17,7 @@
         <div class="investBox">
              <div class="no-warry-ul">
                  {{#products:num}}
-                 <div class="no-warry" data-product="{{data.productKey}}">
+                 <div class="no-warry" data-product="{{data.productKey}}" {{#if num===2}} style="margin-right:0px;"{{/if}}>
                      <div class="no-warry-left">
                           {{#if num===0}}<img src="/ccc/invest/img/nowarry.png"/>{{elseif num===1}}<img src="/ccc/invest/img/stock.png"/>{{else}}<img src="/ccc/invest/img/interest.png"/>{{/if}}
                            <p {{#if num===0}}style="color:#ffbc08;"{{elseif num===1}}style="color:#009ada;"{{else}}

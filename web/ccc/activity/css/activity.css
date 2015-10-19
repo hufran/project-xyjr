@@ -1,5 +1,6 @@
 .big-container{
-    background:url('/ccc/activity/img/bg.png')center top no-repeat;
+    background:url('/ccc/activity/img/bg_01.png')center top no-repeat,
+   url('/ccc/activity/img/bg_02.png')center 950px no-repeat,url('/ccc/activity/img/bg_03.png')center 1900px no-repeat,url('/ccc/activity/img/bg_04.png')center 2850px no-repeat;
     width:auto;
     margin: 0px auto;
     height: 3800px;

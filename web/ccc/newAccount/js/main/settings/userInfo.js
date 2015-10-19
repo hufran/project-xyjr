@@ -26,8 +26,6 @@ var ractive = new Ractive({
         var isEnterprise  = this.get('isEnterprise');
 
         accountService.getUserInfo(function (userinfo) {
-            console.log("======");
-            console.log(userinfo);
             //基本信息
             if (isEnterprise) {
                
