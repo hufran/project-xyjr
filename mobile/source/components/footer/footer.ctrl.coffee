@@ -6,7 +6,7 @@ do (angular) ->
         restrict: 'AE'
         replace: true
         transclude: true
-        templateUrl: 'components/footer/footer.tmpl.html?t={ts}'
+        templateUrl: 'components/footer/footer.tmpl.html'
 
         scope: {}
 
