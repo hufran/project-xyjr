@@ -266,10 +266,13 @@ loadInitData(0);
 // tab1,对ajax数据 set到ractive之前的操作
 function tab1Preset(item) {
     // 如果备注是数字，转换成第x期
+    
     if (item.description !== null && isNumber(item.description)) {
         item.description = '第' + item.description + '期';
     }
-
+    if (item.type == "DEPOSIT" && item.status == "PROCESSING") {
+        item.description = '';
+    }
     // 操作
     item.operationName = utils.i18n.FundRecordOperation[item.operation];
 
