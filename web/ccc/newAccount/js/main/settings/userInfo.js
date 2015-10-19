@@ -26,6 +26,8 @@ var ractive = new Ractive({
         var isEnterprise  = this.get('isEnterprise');
 
         accountService.getUserInfo(function (userinfo) {
+            console.log("======");
+            console.log(userinfo);
             //基本信息
             if (isEnterprise) {
                
@@ -72,7 +74,12 @@ var ractive = new Ractive({
                 ractive.set('isSave',true);
             }
             if (userinfo.personal) {
-                ractive.set('male', userinfo.personal.male);
+                if(userinfo.personal.male){
+                     ractive.set('male', '男');
+                }else{
+                    ractive.set('male','女');
+                }
+               
             }
             if (userinfo.personal && userinfo.personal.education && userinfo.personal.education.educationLevel) {
                 ractive.set('educationLevel', userinfo.personal.education.educationLevel)
@@ -89,6 +96,8 @@ var ractive = new Ractive({
         });   
     },
 });
+
+//ractive.init();
 
 ractive.on('changeTab', function (event) {
 	var tab = event.node.getAttribute('data-tab');
@@ -152,7 +161,7 @@ $(function (){
 });
 
 ractive.on('submit',function() {
-    var male = this.get('male');
+    var male = $('#male').val();
     var companyIndustry  = this.get('companyIndustry');
     var educationLevel = this.get('educationLevel');
     var salary = this.get('salary');
@@ -160,6 +169,7 @@ ractive.on('submit',function() {
     accountService.updatePersonalInfo(male,educationLevel,maritalStatus,function(r) {
         if (!r.error) {
             accountService.updateCareerInfo(companyIndustry,salary,function(r) {
+                console.log(r);
                 if (!r.error) {
                     alert('信息编辑成功');
                     window.location.reload();
