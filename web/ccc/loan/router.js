@@ -93,7 +93,7 @@ router.get('/loan/:id',
 
                     for (var i = 0, l = r.body.length; i < l; i++) {
                         r.body[i].submitTime = moment(r.body[i].submitTime)
-                            .format('YYYY-MM-DD HH:mm');
+                            .format('YYYY-MM-DD HH:mm:ss');
                         if (r.body[i].userLoginName.indexOf('手机用户') === 0) {
                             var _name = format.maskMobile(r.body[i].userLoginName.substring(4));
                         } else {

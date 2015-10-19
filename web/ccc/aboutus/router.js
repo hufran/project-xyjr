@@ -128,7 +128,7 @@ module.exports = function (router) {
                             tab: {
                                 name: req.params
                                     .tab,
-                                text: nameMap[
+                                text: indexMap[
                                     req.params
                                     .tab]
                             },
@@ -152,7 +152,7 @@ module.exports = function (router) {
                     tab: {
                         name: req.params
                             .tab,
-                        text: nameMap[
+                        text: indexMap[
                             req.params
                             .tab]
                     },
