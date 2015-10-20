@@ -499,6 +499,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 			}
 		};
 //		console.log(proofTypeArr);
+
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",

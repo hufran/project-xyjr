@@ -202,7 +202,7 @@ function init (type) {
 				}
 
 				$(".currentPage").text(self.page);
-				$(".totalPage").text(self.totalPage);
+				$(".totalPage").text("共 "+self.totalPage+" 页");
 			}
 		});		
 	}

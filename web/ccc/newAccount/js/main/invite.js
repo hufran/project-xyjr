@@ -154,10 +154,10 @@ new Ractive({
                 title: 'twitter',
                 click: 'twitter'
             }, {
-                title: '新浪微薄',
+                title: '新浪微博',
                 click: 'tsina'
             }, {
-                title: 'qq微博',
+                title: '腾讯微博',
                 click: 'tqq'
             }, {
                 title: '搜狐微博',
