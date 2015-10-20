@@ -16,6 +16,7 @@
         MOBILE_CAPTCHA_ALREADY_SENT: '手机验证码不匹配',
         LOGINNAME_EXISTS: '用户名已被占用',
         INVALID_CAPTCHA: '图形验证码不匹配',
+        USERINVITECODE_INVALID: '邀请码不正确',
 
         SUCCEED: '注册成功',
         UNKNOWN: '未知错误',
@@ -181,19 +182,13 @@
                  }"
             >
                 <input class="form-control input-lg"
-                       type="tel"
+                       type="text"
                        name="referral"
                        ng-model="store.referral"
-                       ng-pattern="/^1\d{10}$/"
-                       placeholder="请输入推荐人的手机号码，可不填"
+                       placeholder="请输入推荐码，可不填"
+                       minlength="8"
                        maxlength="11"
                 >
-
-                <div class="help-block"
-                     ng-show="form.referral.$invalid && form.referral.$dirty"
-                >
-                    <span ng-show="form.referral.$error.pattern">请输入正确的手机号码</span>
-                </div>
             </div>
 
             <div class="form-group agreement">

@@ -7,7 +7,8 @@ do (_, angular) ->
             constructor: (@api, @$scope, @$interval, @$location, @$routeParams, @$window, @$cookies, @$q, @$modal) ->
 
                 @$scope.store =
-                    referral: @$routeParams.ref or @$routeParams.rel or @$routeParams.referral
+                    referral: do ({ref, rel, refm, referral} = @$routeParams) ->
+                        _.first _.compact [ref, rel, refm, referral]
 
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
@@ -70,7 +71,14 @@ do (_, angular) ->
 
                 @submit_sending = true
 
-                optional = {referral}
+
+                optional = {}
+
+                do (optional, referral) ->
+                    if /^1\d{10}/.test referral
+                        optional.referral = referral
+                    else if referral?.length > 3
+                        optional.inviteCode = referral
 
                 do (optional, {bind_social_weixin} = @$routeParams) =>
                     if bind_social_weixin then _.merge optional, {
