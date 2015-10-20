@@ -53,19 +53,6 @@
 /*  left: 50%;*/
   margin-left: 150px;
     margin-top: 60px;
-/*  height: auto;*/
-/*  padding-top: 34px;*/
-/*  padding-left: 30px;*/
-/*
-  padding-right: 30px;
-  padding-bottom: 14px;
-*/
-/*  border-radius: 4px;*/
-/*
-  background: rgba(255, 255, 255, 0.38);
-  position: absolute;
-  margin-top: -169px;
-*/
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper {
   position: relative;
@@ -235,5 +222,8 @@ float:left;
     width:280px;
 	height: 44px;
 }
-
+.prompt{
+    clear: both;
+    margin-left: 40px;
+}
 
