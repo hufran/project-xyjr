@@ -10,7 +10,7 @@
 .account-info-row {
 	height: 70px;
 }
-label {
+#main-container .label {
 	height: 70px;
 	line-height: 70px;
 	
@@ -32,7 +32,7 @@ p.tips {
 	color: red;
 	padding: 10px 0;
 }
-.form-control {
+.form-control_set {
 	height: 45px;
 	line-height: 45px;
 	position: relative;
@@ -76,7 +76,7 @@ p.tips {
 .updateWra,.resetWra,.formwra {
 	text-align: center;
 }
-.row {
+#main-container .row {
 	margin-bottom: 15px;
     margin-left: 0px;
     margin-right: 0px;
@@ -415,6 +415,8 @@ p.tips {
 }
 #moreInfo ul li label {
   margin-right:30px;
+    	height: 70px;
+	line-height: 70px;
 }
 #moreInfo ul li select {
   min-width: 100px;
