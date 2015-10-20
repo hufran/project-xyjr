@@ -1,5 +1,5 @@
 "use strict";
-
+var xtend = require('xtend');
 var pathFn = require('path');
 
 module.exports = xtend(require('./oauth2'), {
