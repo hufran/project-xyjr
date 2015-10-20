@@ -437,3 +437,21 @@ p.tips {
     color: #009ada;
     text-decoration: none;
 }
+
+.border-block{
+    display: inline-block;
+    clear: both;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    background: #eee;
+}
+
+.payInp[name='captcha']{
+    border:none;
+    width: 122px;
+}
+
+.input-group-addon{
+    border:none;
+}
