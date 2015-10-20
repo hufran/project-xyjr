@@ -31,7 +31,7 @@
               ng-class="{ 'text-muted': loan.invest_percent_int == 0 }"
         >
             <span ng-switch-when="FINISHED">满</span>
-            <span ng-switch-when="SETTLED">还</span>
+            <!--<span ng-switch-when="SETTLED">还</span>-->
             <span ng-switch-when="CLEARED">结</span>
             <span ng-switch-default>
                 {{ loan.invest_percent_int }}%</span>

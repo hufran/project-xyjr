@@ -1,11 +1,18 @@
 .big-container{
-    background:url('/ccc/activity/img/gift-bg.png')center top no-repeat;
+    background:url('/ccc/activity/img/gift-bg_01.png')center top no-repeat,url('/ccc/activity/img/gift-bg_02.png')center 708px no-repeat,url('/ccc/activity/img/gift-bg_03.png')center 1416px no-repeat,url('/ccc/activity/img/gift-bg_04.png')center 2124px no-repeat;
     width:auto;
     margin: 0px auto;
     height: 2832px;
 }
 .process{
-    margin:384px auto 0px auto;
+    margin-top:384px;
+    position: absolute;
+    left: 50%;
+    margin-left: -655px;
+}
+
+.process-box{
+    height:2410px;
 }
 .btn{
      background:url('/ccc/activity/img/btn-bg.png')center top no-repeat;
