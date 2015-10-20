@@ -1,0 +1,112 @@
+.big-container{
+    background:url('/ccc/activity/img/special-bg_01.png')center top no-repeat,url('/ccc/activity/img/special-bg_02.png')center 622px no-repeat,url('/ccc/activity/img/special-bg_03.png')center 1244px no-repeat,url('/ccc/activity/img/special-bg_04.png')center 1866px no-repeat,url('/ccc/activity/img/special-bg_04.png')center 2488px no-repeat,url('/ccc/activity/img/special-bg_04.png')center 3110px no-repeat;
+    width:auto;
+    margin: 0px auto;
+    height: 3732px;
+}
+.ltb-box{
+    width: 1024px;
+    margin: 0 auto;
+    
+}
+.lxy-title{
+    margin-left: 250px;
+}
+.ltb-title{
+    margin-top: 620px;
+    margin-left: 250px;
+}
+.ltb-content{
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid #009ada;
+    padding: 22px 26px 22px 26px;
+    line-height: 30px;
+    text-indent: 2em;
+    margin-top: 40px;
+}
+.ltb-model-title{
+    background: url('/ccc/activity/img/ltb-model-title.png')center top no-repeat;
+    font-size: 26px;
+    color:#fff;
+    padding-left: 30px;
+    line-height: 61px;
+}
+.ltb-model-content{
+    font-size: 16px;
+    color: #fff;
+    line-height: 30px;
+    margin:23px 26px 0px 26px;
+    text-indent: 2em;
+}
+.ltb-model-process{
+    margin-left: 120px;
+    margin-top: 40px;
+}
+.ltb-special{
+   background: url('/ccc/activity/img/ltb-special-bg.png')left top no-repeat; 
+    height: 347px; 
+    margin-top: 40px;
+}
+.lxy-special{
+   background: url('/ccc/activity/img/lxy-special-bg.png')right top no-repeat; 
+    height: 303px; 
+    margin-top: 40px;
+}
+.ltb-special-title{
+    font-size: 26px;
+    color: #fff;
+    line-height: 60px;
+    padding-top: 14px;
+        padding-top: 14px;
+    padding-left: 56px;
+}
+.ltb-special-title{
+    float: right;
+    margin-right: 60px;
+}
+.ltb-content-line{
+   color: #fff;
+    float: right;
+    width: 490px;
+}
+.ltb-content-line-title{
+    font-size: 20px;
+    color: #fff;
+    float: left;
+    line-height: 20px;
+}
+.ltb-content-line-box{
+    width: 590px;
+    margin-top: 28px;
+    margin-left: 28px;
+    height: 42px;
+}
+.lxy-content-line-box{
+    float: right;
+    margin-right: 26px;
+}
+.lxy-content-line{
+    width: 450px;
+}
+.lxy-process{
+    margin-top: 40px;
+}
+.regist{
+    font-size: 32px;
+    color: #fff;
+   
+}
+.regist{
+
+    width: 336px;
+   background: none;
+    border: none;
+    line-height: 100px;
+}
+.regist-btn{
+     margin: 60px auto 0px auto;
+    width: 336px;
+       background: url('/ccc/activity/img/btn-spacial.png')center top no-repeat; 
+     height: 130px;
+}
