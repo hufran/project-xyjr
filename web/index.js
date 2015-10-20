@@ -1,4 +1,5 @@
 'use strict';
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 if (process.argv.indexOf('--run-by-gulp') > -1) {
     process.env.NODE_ENV = 'development'; }
 if ((process.env.HOSTNAME || '').match(/UAT$/)) {
@@ -8,8 +9,11 @@ GLOBAL.APP_ROOT = __dirname;
 require('@ds/nrequire').watchRequiredFilesToRestart = true;
 require('./touch_to_restart');
 require('@ds/common');
-console.log('config:', JSON.stringify(require('config'), null, '    '));
 var logger = require('bunyan-hub-logger');
+if (process.env.NODE_ENV !== 'development') {
+    logger.replaceConsole();
+}
+console.log('config:', JSON.stringify(require('config'), null, '    '));
 logger.replaceDebug();
 var assert = require('assert');
 var fs = require('fs');
@@ -22,8 +26,20 @@ var ds = require('@ds/base');
 var port = Number(process.env.PORT || config.port) || 4000;
 var app = exports = module.exports = require('express')();
 app.httpServer = require('http').createServer(app);
+if (config.startOAuthServer) {
+    console.log('plug oauth2 server');
+    var oauth2 = require('@cc/oauth2');
+    app.use(function (req, res, next) {
+        if ((req.url||'').match(/^\/api\//)) {
+            return oauth2(req, res);
+        }
+        next();
+    });
+    config.urlBackend = 'http://127.0.0.1:' + port + '/';
+} else {
+    ds.apiproxy(app, config.urlBackend);
+}
 ds.expose(app);
-ds.apiproxy(app, config.urlBackend);
 
 var proxy = require('simple-http-proxy');
 // 连连回调转发

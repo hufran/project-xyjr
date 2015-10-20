@@ -2,7 +2,7 @@
 
 var pathFn = require('path');
 
-module.exports = {
+module.exports = xtend(require('./oauth2'), {
     // project name 作为 log.io的 node name
     project_name: pathFn.basename(pathFn.join(__dirname, "..")),
     // port 用于开发调试，每个新项目 +1
@@ -166,4 +166,4 @@ module.exports = {
         }
     },
 
-};
+});
