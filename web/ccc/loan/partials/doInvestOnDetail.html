@@ -130,7 +130,7 @@
 
                     <div class="selectOption">
                         <select name="placementId" id="couponSelection" value="{{coupon}}">                          {{#if selectOption}}
-                           <option value="">暂不使用</option>
+                           <option value="">暂不使用券</option>
                             {{#each selectOption}}
                                 {{#if !hide&&!canuse}}
 							        <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}
