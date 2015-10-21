@@ -2,7 +2,8 @@
      background:#373737;  
 }
 .error-bg{
-/*    height: 1020px;*/
+    height: 100%;
+    width: 100%;
     background: #373737; 
 }
 .error-left{

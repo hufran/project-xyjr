@@ -2,16 +2,19 @@
 	margin: 40px auto 12px;
 	width: 960px;
 	padding: 0 15px;
+    
 }
 
 #main-container * {
 	font-family: '微软雅黑';
+  
 }
 
 #main-container {
 /*	margin-top: 6px;*/
 	padding-bottom: 0;
     background: #f6f8fc;
+      margin-top: 1px;
 }
 
 .after-header .project-list,

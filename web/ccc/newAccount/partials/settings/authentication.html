@@ -8,48 +8,29 @@
     </div>
 
     <div class="account-form-wrapper">
-        <form action="#" class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-6" style="margin-left:230px;">
-
+        <form action="#" class="form-horizontal" style="text-align:center;">
+            <div class="">
+                <div class="" style="height:40px">
                     {{#if showErrorMessage}}
                     <div class="error-message">
                         {{ errorMessage }}
                     </div>
                     {{/if}}
-
                 </div>
             </div>
-            <div class="form-group">
-                <label for="" class="isAu col-md-2 control-label">真实姓名</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control_set" name="name" value="{{ name }}"/>
-                </div>
+            <div class="trueName">
+                <label for="trueName" class="">真实姓名</label>
+                <input type="text" class="" name="name" id="trueName" value="{{ name }}" />
             </div>
 
-            <div class="form-group">
-                <label for="" class="isAu col-md-2 control-label">身份证号</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control_set" name="idNumber" value="{{idNumber}}"/>
-                </div>
+            <div class="userIdNumber">
+                <label for="userIdNumber" class="">身份证号</label>
+                 <input type="text" class="" id="userIdNumber" name="idNumber" value="{{idNumber}}" />
             </div>
-            <div class="space-20"></div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <!-- <div class="agreement-wrapper">
-                        <input type="checkbox" checked="{{ licenseAgreed }}" />我已阅读并同意
-                        <a href="#" on-click="maskDepositAgreement">《奇乐融实名认证协议》</a>
-                    </div> -->
-
-                    <div>
-                        <input type="button" value="立即认证" on-click="register-account-submit" class="btn btn-success" style="width:200px;height:40px;background:#009ada;border-color:#009ada;position:relative;left:205px;" 
-                        />
-                    </div>
-
-                </div>
-
+            <div class="account-submit">
+                <input type="button" value="立即认证" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
             </div>
-            <div style="background-color: #f4fcff;padding: 10px;width:700px;margin: 0 auto;">
+            <div style="background-color: #f4fcff;padding: 10px;width:700px;margin: 0 auto;text-align: left;margin-top: 50px;">
                 <p class="tips" style="color:#f58220">温馨提示：</p>
                 <p class="tips">1、 请正确输入您的身份证信息，一经绑定不可修改。</p>
             </div>
@@ -64,7 +45,7 @@
     </div>
 </div>
 <div class="space-20"></div>
-<div class="account-opened-wrapper">    
+<div class="account-opened-wrapper">
 
     <div class="account-info-row">
         <label for="" class="text">真实姓名：</label>
@@ -75,7 +56,7 @@
         <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
     </div>
 </div>
-<div class="space-30" ></div>
+<div class="space-30"></div>
 <div style="background-color: #f4fcff;padding: 10px; margin: 0 auto;">
     <p class="tips" style="color:#f58220">温馨提示：</p>
     <p class="tips">1、奇乐融用户须是年满18周岁的具有完全民事行为能力的自然人。</p>
