@@ -362,9 +362,20 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/loan/loan-investors.tmpl.html'
                         resolve:
                             investors: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
+                                (            api, $location, $route) ->
                                     api.get_loan_investors($route.current.params.id).$promise.catch ->
                                         $location.path '/'
+
+                            user: _.ai 'api, $location, $route',
+                                (       api, $location, $route) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search
+                                                back: "loan/#{ $route.current.params.id }"
+                                                next: "loan/#{ $route.current.params.id }/investors"
+                                        do $q.reject
                     }
 
                     .when '/loan/:id/info', {
