@@ -3,6 +3,9 @@
 	width: 1100px;
 	margin-top: 28px;
 }
+.account-wraper{
+    margin-top: 1px;
+}
 
 .coupon-content .coupon-nav-view {
 	position: relative;
