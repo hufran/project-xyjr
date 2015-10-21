@@ -34,7 +34,7 @@
 }
 #main-container .s-content .investBox{
     background: #f6f8fc;
-    height: 200px;
+    height: 214px;
 }
 #main-container .s-content .investBoxNew a{
     color:#007ec5;
@@ -58,6 +58,7 @@
     float: left;
         cursor: pointer;
     background: #fff;
+    margin-top: 30px;
 }
 .active{
     border: 2px solid #009ada;

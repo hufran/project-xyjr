@@ -3,6 +3,7 @@ module.exports = function (router) {
     var pageSize = 10;
 
     router.get('/aboutus/:tab', function (req, res) {
+
         var cateMap = {
             aboutus: 'INTRODUCTION',
             background: 'INTRODUCTION',
@@ -97,6 +98,40 @@ module.exports = function (router) {
                 break;
             }
         }
+                    var user = res.locals.user;
+        
+        if(tab.text=='平台简介'){
+    res.locals.description = '奇乐融是联想控股成员企业--正奇金融旗下互联网金融战略平台，奇乐融致力于为中小微企业及个人提供专业、透明、安心、稳盈的互联网金融服务。';}
+        else if(tab.text=='股东背景'){
+    res.locals.description = '奇乐融是联想控股成员企业--正奇金融旗下互联网金融战略平台';}
+        else if(tab.text=='团队介绍'){
+    res.locals.description = '奇乐融依托正奇金融强大的专业团队，高标准和高要求选拔标杆人才，注重企业文化和经验传承，倾力打造一支专业化程度高、责任心强的互联网金融专业人才团队。';}
+        else if(tab.text=='合作伙伴'){
+    res.locals.description = '奇乐融先后与兴业银行、中国科学技术大学、招商银行、大成律师事务所、连连支付、CFCA、普华永道、云信、通联支付、宇信科技达成战略合作';}
+        else if(tab.text=='大事记'){
+    res.locals.description = '奇乐融(http://www.qilerong.com/) - 联想控股成员企业--正奇金融旗下互联网金融战略平台，由安徽唯源金融信息服务有限公司运营。践行普惠金融，助力财富增值。奇乐融致力于为中小微企业及个人提供专业、透明、安心、稳盈的互联网金融服务。';}
+        else if(tab.text=='安全保障'){
+    res.locals.description = '奇乐融精挑类金融机构（小贷、担保、租赁、典当、保理等）或实力企业作为保障机构，细选保障机构推荐的项目';}
+        else if(tab.text=='保障机构'){
+    res.locals.description = '优质保障机构正奇租赁、创新担保、国正小贷、增益供应链、金丰典当齐聚奇乐融';}
+        else if(tab.text=='联系我们'){
+    res.locals.description = '奇乐融(http://www.qilerong.com/) - 联想控股成员企业--正奇金融旗下互联网金融战略平台，由安徽唯源金融信息服务有限公司运营。践行普惠金融，助力财富增值。奇乐融致力于为中小微企业及个人提供专业、透明、安心、稳盈的互联网金融服务。';}
+        else if(tab.text=='公司动态'){
+    res.locals.description = '奇乐融公司动态栏目为用户提供最新的奇乐融公司动态等信息。';}
+        else if(tab.text=='媒体报道'){
+    res.locals.description = '奇乐融媒体报道栏目为用户提供最新的奇乐融媒体报道、平台新闻等信息。';}
+        else if(tab.text=='平台公告'){
+    res.locals.description = '奇乐融平台公告为用户提供奇乐融最新动态及站内公告信息。';}
+        else{
+         res.locals.description = '奇乐融经营报告为用户提供奇乐融最新运营数据信息。';};
+               
+        if(tab.text=='平台简介'){
+            res.locals.keywords = '奇乐融投资理财|P2P网贷理财|互联网金融|';
+            res.locals.title = '关于我们_奇乐融_联想控股成员企业-正奇金融旗下互联网金融战略平台';
+ }else{
+            res.locals.keywords = '奇乐融'+tab.text;
+            res.locals.title = tab.text+'_奇乐融_联想控股成员企业-正奇金融旗下互联网金融战略平台';
+  };
         if (req.params.tab === 'action' || req.params.tab === 'media' || req.params.tab === 'notice' || req.params.tab === 'manage') {
             var isList = true;
         } else {

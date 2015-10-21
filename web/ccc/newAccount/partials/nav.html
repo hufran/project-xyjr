@@ -1,6 +1,6 @@
 <div class="nav-recharge">
 	<div class="space-30"></div>
-	<a href="/newAccount/recharge" style="text-decoration:none"><div class="nav-recharge-btn">充值</div></a>
+	<a href="/newAccount/recharge" style="text-decoration:none" rel="nofollow" ><div class="nav-recharge-btn">充值</div></a>
 </div>
 <ul class="nav-wrapper">
 	<li class="nav-li">
@@ -18,7 +18,7 @@
 		{{else}}
 			<span class="icon-invest"></span>
 		{{/if}}
-		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan">还款管理</a></span>
+		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan" rel="nofollow" >还款管理</a></span>
 		<span class='nav-toggle-btn {{showLoanToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
 		<div class="clearfix"></div>
 		{{#if showLoanToggleMenu}}

@@ -16,7 +16,7 @@
         {{#each list}}
         <tr>
             <td style="text-indent:20px;">
-                <a class="loan-tit" href="/loan/{{id}}" target="_blank" style="color:#4a4a4a;text-decoration:none">{{title}}</a>
+                <a class="loan-tit" href="/loan/{{id}}" target="_blank" style="color:#4a4a4a;text-decoration:none" rel="nofollow" >{{title}}</a>
             </td>
             <td >{{loanRequest.serial}}</td>
             <td style="color:#f58220">{{Famount}}</td>
@@ -26,7 +26,7 @@
             <td>{{Fstatus}}</td>
             <td>
                 <a class="btn btn-smaller btn-blue-light"
-                href="/account/loan/allContracts/{{id}}" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff">合同下载</a>
+                href="/account/loan/allContracts/{{id}}" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff" rel="nofollow" >合同下载</a>
             </td>
         </tr>
         {{/each}}

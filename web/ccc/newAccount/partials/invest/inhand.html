@@ -15,7 +15,7 @@
         {{#each list}}
         <tr>
             <td style="text-indent:20px;">
-                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none">{{loanTitle}}</a>
+                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none" rel="nofollow" >{{loanTitle}}</a>
             </td>
             <td style="color:#f58220">{{Frate}}%</td>
             <td style="color:#f58220">{{Fduration}}</td>
@@ -24,7 +24,7 @@
 			<td style="color:#999999">{{Fstatus}}</td>
             <td class="align-center">
                 {{#if hasContract}}
-				<a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light btn-contract" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff">查看合同</a>
+				<a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light btn-contract" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff" rel="nofollow" >查看合同</a>
 				{{else}}
 					{{#if status === 'CANCELED'}}
 					<i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i>

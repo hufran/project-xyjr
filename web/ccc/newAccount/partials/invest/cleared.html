@@ -14,7 +14,7 @@
         {{#each list}}
         <tr>
             <td style="text-indent:20px;">
-                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none">{{loanTitle}}</a>
+                <a class="loan-tit" href="/loan/{{loanId}}" target="_blank" style="color:#4a4a4a;text-decoration:none" rel="nofollow" >{{loanTitle}}</a>
                 <span>利率：{{Frate}}% &nbsp; 期限：{{Fduration}}</span>
             </td>
             <td style="color:#f58220">{{Famount}}</td>
@@ -23,7 +23,7 @@
 			<td style="color:#999999">{{Fstatus}}</td>
             <td class="align-center">
                 {{#if hasContract}}
-                <a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff">查看合同</a>
+                <a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff" rel="nofollow" >查看合同</a>
 				<button class="btn btn-smaller btn-blue-light" on-click="show-repayments"
 				data-id="{{id}}"
 				data-loanid="{{loanId}}" style="background-color: #fff;color: #009ada;border: 1px #009ada solid;">还款计划</button>
