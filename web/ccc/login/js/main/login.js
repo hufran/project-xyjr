@@ -81,12 +81,13 @@ $('#loginForm').submit(function (e) {
 request.get(encodeURI('/api/v2/cms/category/IMAGE/name/登录')).end().then(function (res) {
     var count = new Ractive({
         el: '.loginBanner',
-        template: '{{#each items}}<img src="{{content}}"/>{{/each}}',
+        template: '{{#each items}}<a href="{{url}}" target="_blank"><img src="{{content}}"/></a>{{/each}}',
         data: {
             items: res.body
         }
     });
 });
+
 
 
 
