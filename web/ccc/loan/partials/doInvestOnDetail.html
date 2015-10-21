@@ -127,19 +127,21 @@
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
                         <div class="clearfix"></div>
                         <p class="p-max">单笔最多可投：{{loan.rule.max}}元</p>
-                    {{#if selectOption}}
+
                     <div class="selectOption">
-                        <select name="placementId" id="couponSelection" value="{{coupon}}">
-<!--                            <option value="">使用奖券: 无</option>-->
+                        <select name="placementId" id="couponSelection" value="{{coupon}}">                          {{#if selectOption}}
+                           <option value="">暂不使用券</option>
                             {{#each selectOption}}
                                 {{#if !hide&&!canuse}}
 							        <option value="{{ id }}" {{#if canuse}}disabled{{/if}}>{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest }}
 							</option>
                                 {{/if}}
                             {{/each}}
+                        {{else}}
+                        <option value="">暂无可用券</option>
+                        {{/if}}
                         </select>
                     </div>
-                    {{/if}} 
 						<div class="password-box">
 					<div class="password">
                     	<input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword" value="{{paymentPassword}}" />

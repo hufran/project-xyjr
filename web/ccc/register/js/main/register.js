@@ -47,7 +47,7 @@ $(".form-group .inputtest-pic span").click(function () {
 request.get(encodeURI('/api/v2/cms/category/IMAGE/name/注册')).end().then(function (res) {
     var count = new Ractive({
         el: '.register-pic',
-        template: '{{#each items}}<img src="{{content}}"/>{{/each}}',
+        template: '{{#each items}}<a href="{{url}}" target="_blank"><img src="{{content}}"/></a>{{/each}}',
         data: {
             items: res.body
         }
