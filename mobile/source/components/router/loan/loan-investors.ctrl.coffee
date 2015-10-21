@@ -3,10 +3,12 @@ do (_ ,angular, decodeURI) ->
 
     angular.module('controller').controller 'LoanInvestorsCtrl',
 
-        _.ai '            @investors, @$scope, @$window', class
-            constructor: (@investors, @$scope, @$window) ->
+        _.ai '            @investors, @$scope, @$window, @$routeParams', class
+            constructor: (@investors, @$scope, @$window, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
+
+                @$scope.id = @$routeParams.id
 
                 @$scope.investors = @investors.map (item) ->
 
