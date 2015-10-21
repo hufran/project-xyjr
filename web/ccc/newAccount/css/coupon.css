@@ -131,14 +131,14 @@
 }
 
 .couponWrapper .PRINCIPAL {
-	background: url(/ccc/newAccount/img/coupon/orange-bg.png );
+	background: url(/ccc/newAccount/img/coupon/red-bg.png );
 	width: 310px;
 	height: 170px;
 	border-radius: 10px;
 }
 
 .couponWrapper .CASH {
-	background: url(/ccc/newAccount/img/coupon/red-bg.png );
+	background: url(/ccc/newAccount/img/coupon/orange-bg.png );
 	width: 310px;
 	height: 170px;
 /*	border-radius: 10px;*/
@@ -216,7 +216,7 @@
 	width: 80px;
 	height: 30px;
 	font-size: 14px;
-    background: #fc7667;
+    background: #FCB06F;
 
 	color: #fff;
 	line-height: 30px;
@@ -338,7 +338,7 @@
     bottom: 16px;
     right:0px;
 }
-.REBATE .couponTitle .incline .label-warning{
+.label-warning{
     background: none;
 }
 .CASH .needChange{
