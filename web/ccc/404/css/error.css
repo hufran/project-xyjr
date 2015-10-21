@@ -2,21 +2,22 @@
      background:#373737;  
 }
 .error-bg{
-    height: 1020px;
+/*    height: 1020px;*/
     background: #373737; 
 }
 .error-left{
   float: left;
-    margin-top: 290px;
+/*    margin-top: 290px;*/
 }
 .error-right{
     float: right;
     font-size: 30px;
     color: #fff;
-    margin-top: 464px;
-    text-shadow: 5px 100px 100px black;
+    margin-top: 174px;
+/*    text-shadow: 5px 100px 100px black;*/
 }
 .main-error{
     width: 910px;
     margin: 0 auto;
+    overflow: hidden;
 }

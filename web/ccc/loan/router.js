@@ -79,8 +79,18 @@ router.get('/loan/:id',
                    
                     var result = parseLoan(r.body);
                     result.userId = result.loanRequest.userId;
-                    result.requestId = result.loanRequest.id;    
-                    res.locals.title = '奇乐融';
+                    result.requestId = result.loanRequest.id;
+                    
+                    if(result.loanRequest.productKey=='LTB'){
+                    res.locals.title = '乐投保-'+result.loanRequest.title+'_我要投资_奇乐融';
+                    res.locals.keywords = '乐投保-'+result.loanRequest.title;}
+                    else if(result.loanRequest.productKey=='LXY'){
+                    res.locals.title = '乐享盈-'+result.loanRequest.title+'_我要投资_奇乐融';
+                    res.locals.keywords = '乐享盈-'+result.loanRequest.title;}
+                    else{
+                    res.locals.title =result.loanRequest.title+'_我要投资_奇乐融';
+                    res.locals.keywords = result.loanRequest.title;};
+                    
                     res.locals.description = result.loanRequest.description; 
                     return result;
                     
@@ -111,6 +121,7 @@ router.get('/loan/:id',
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         };
+   
 
         repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
@@ -119,7 +130,7 @@ router.get('/loan/:id',
                     return p + (r && r.amountInterest || 0);
                 }, 0)
             }));
-        })
+        });
     });
 
 router.get('/loan/loanRequest/:requestId/contract/template',function(req,res,next){
