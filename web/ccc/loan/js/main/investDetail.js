@@ -142,11 +142,13 @@ setTimeout((function () {
             },
             serverDate: CC.serverDate,
             isSend: false,
-            backUrl: CC.backUrl,
-            oninit: function () {
-                if (CC.user.availableAmount > CC.loan.rule.balance && CC.loan.rule.balance < CC.loan.rule.min) {
-                    this.set('inputNum', CC.loan.rule.balance);
-                }
+            backUrl: CC.backUrl
+        },
+        oninit: function () {
+                            console.log(CC.loan.rule.balance);
+            console.log(CC.loan.rule.min);
+            if (CC.loan.rule.balance < CC.loan.rule.min) {
+                this.set('inputNum', CC.loan.rule.balance);
             }
         }
     });
@@ -180,7 +182,7 @@ setTimeout((function () {
 
 
     investRactive.on('reduce', function (e) {
-         if (CC.user.availableAmount > CC.loan.rule.balance && CC.loan.rule.balance < CC.loan.rule.min) {
+         if (CC.loan.rule.balance < CC.loan.rule.min) {
             this.set('inputNum', CC.loan.rule.balance);
             showErrors('投资金额必须为标的剩余金额');
             return;
@@ -195,7 +197,7 @@ setTimeout((function () {
     });
 
     investRactive.on('add', function (e) {
-        if (CC.user.availableAmount > CC.loan.rule.balance && CC.loan.rule.balance < CC.loan.rule.min) {
+        if (CC.loan.rule.balance < CC.loan.rule.min) {
             this.set('inputNum', CC.loan.rule.balance);
             showErrors('投资金额必须为标的剩余金额');
             return;
@@ -215,7 +217,7 @@ setTimeout((function () {
 
 
     investRactive.on('maxNumber', function (e) {
-        if (CC.user.availableAmount > CC.loan.rule.balance && CC.loan.rule.balance < CC.loan.rule.min) {
+        if (CC.loan.rule.balance < CC.loan.rule.min) {
             this.set('inputNum', CC.loan.rule.balance);
             showErrors('投资金额必须为标的剩余金额');
              return;
@@ -254,10 +256,14 @@ setTimeout((function () {
             return false;
         }
         
-        if (CC.user.availableAmount > CC.loan.rule.balance && CC.loan.rule.balance < CC.loan.rule.min) {
-             this.set('inputNum', CC.loan.rule.balance);
-             showErrors('投资金额必须为标的剩余金额');
-             return false;
+        if (CC.loan.rule.balance < CC.loan.rule.min) {
+            if(this.get('inputNum') != CC.loan.rule.balance) {
+                 this.set('inputNum', CC.loan.rule.balance);
+                 showErrors('投资金额必须为标的剩余金额');
+                 return false;
+            } else {
+                 disableErrors();
+            }
         } else {
             if (num < CC.loan.rule.min) {
                 showErrors('单次投标金额不可少于' + CC.loan.rule

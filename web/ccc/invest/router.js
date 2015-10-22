@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function (router) {
-    router.get('/invest/list', function (req, res) {
+    router.get('/invest', function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
             delete user.idNumber;
