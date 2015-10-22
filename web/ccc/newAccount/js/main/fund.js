@@ -160,6 +160,7 @@ ractive.on('do-filter', function () { // 开始筛选数据
         operation = (typeLists[0][this.get('selectedIndex')])
             .operation;
     }
+    type = $(".sRate .s__is-selected").data('type');
 
     var preset;
     if (this.get('tabIndex') === 0) {
@@ -186,9 +187,16 @@ ractive.loadData = function (obj) {
     if (this.get('loading')) {
         return;
     }
-    
+    console.log(obj.type);
     this.set('loading', true);
     size = obj.pageSize || size;
+    if (obj.type === 'ALL') {
+        if (CC.loanl.urlname === 'investDeal') {
+            obj.type = fundinvest
+        } else {
+            obj.type = fundloan;
+        }
+    }
     request.get('/api/v2/user/MYSELF/funds/query?type=' + obj.type)
         .query({
             allStatus: obj.status || false,
@@ -347,12 +355,10 @@ function tab3Preset(item) {
 
 function loadInitData(index) {
     var allType;
-    if (index == 0) {
-        if (CC.loanl.urlname === 'investDeal') {
-            allType = fundinvest
-        } else {
-            allType = fundloan;
-        }
+    if (CC.loanl.urlname === 'investDeal') {
+        allType = fundinvest
+    } else {
+        allType = fundloan;
     }
     switch (index) {
     case 0:
