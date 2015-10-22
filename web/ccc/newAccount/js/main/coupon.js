@@ -193,21 +193,79 @@ function init (type) {
 					}
 				});
 			},
-			renderPager: function (){
-				var self = this;
-				var totalSize = self.get('total');
-				
-				if (totalSize != 0) {
-					self.totalPage = Math.ceil(totalSize / self.size);
-				}
+			renderPager: function () {
+                var self = this;
+                var totalSize = self.get('total');
 
-				$(".currentPage").text(self.page);
-				$(".totalPage").text("共 "+self.totalPage+" 页");
-			}
+                if (totalSize != 0) {
+                    self.totalPage = Math.ceil(totalSize / self.size);
+                }
+
+                var totalPage = [];
+                console.log("===>> totalPage = " + self.totalPage);
+                for (var i = 0; i < self.totalPage; i++) {
+                    totalPage.push(i+1);
+                }
+
+                renderPager(totalPage, self.page);
+            }
 		});		
+        
+        function renderPager(totalPage, current) {
+            console.log("===>render")
+            if (!current) {
+                current = 1;
+            }
+           var pagerRactive = new Ractive({
+               el: '#coupon-pager',
+               template: require('ccc/loan/partials/pager.html'),
+               data: {
+                   totalPage: totalPage,
+                   current: current
+               }
+           });
+
+            pagerRactive.on('previous', function (e) {
+                e.original.preventDefault();
+                var current = this.get('current');
+                if (current > 1) {
+                    current -= 1;
+                    this.set('current', current);
+                    couponRactive.page = current;
+                    couponRactive.onrender();
+
+                }
+            });
+
+            pagerRactive.on('page', function (e, page) {
+                e.original.preventDefault();
+                if (page) {
+                    current = page;
+                } else {
+                    current = e.context;
+                }
+                this.set('current', current);
+                couponRactive.page = current;
+                couponRactive.onrender();
+
+            });
+            pagerRactive.on('next', function (e) {
+                e.original.preventDefault();
+                var current = this.get('current');
+                if (current < this.get('totalPage')[this.get('totalPage')
+                        .length - 1]) {
+                    current += 1;
+                    this.set('current', current);
+                    couponRactive.page = current;
+                    couponRactive.onrender();
+
+                }
+            });
+        }
 	}
 }
 
+        
 //var ctype=['CASH','INTEREST','PRINCIPAL','REBATE'];
 init(getCurrentType());
 
