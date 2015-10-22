@@ -57,6 +57,7 @@ $('#loginForm').submit(function (e) {
     $postBtn.addClass('disabled').html('登录中...');
 
     request.post('/login/ajax').type('form').send($this.serialize()).end().get('body').then(function (r) {
+//        console.log(r);
         if (r.success) {
             $postBtn.text('登录成功');
             var url = /(loan)/;
