@@ -14,85 +14,94 @@
         </ul>
     </nav>
 
-    <section class="c-list-panel loan" ng-repeat="(type, data) in list">
-        <div class="item subject">
-            <a ng-href="list/{{type}}">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" width="29"
-                             ng-src="assets/image/{{ type | lowercase }}-icon.png"
-                        >
-                    </div>
-
-                    <div class="media-body" ng-switch="type">
-                        <div ng-switch-when="LTB">
-                            <h4 class="media-heading color-ltb-text">乐投保</h4>
-                            机构担保项目 年化收益率高达11%
+    <section>
+        <div class="c-list-panel loan"
+             ng-repeat="(type, data) in list"
+             ng-hide="loading"
+        >
+            <div class="item subject">
+                <a ng-href="list/{{type}}">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" width="29"
+                                 ng-src="assets/image/{{ type | lowercase }}-icon.png"
+                            >
                         </div>
-                        <div ng-switch-when="LXY">
-                            <h4 class="media-heading color-lxy-text">乐享盈</h4>
-                            机构资产转让项目 年化收益率高达9%
-                        </div>
-                    </div>
 
-                    <div class="media-right media-middle">
-                        <param class="glyphicon glyphicon-menu-right">
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="item">
-            <ul class="list-unstyled u-off-margin-bottom loan-list">
-                <li ng-repeat="loan in data | limitTo: 2">
-                    <a ng-href="loan/{{ loan.id }}?go_back={{ page_path }}">
-                        <h4 class="title"
-                            ng-class="'color-' + (type | lowercase) + '-text'"
-                        >{{ loan.title }}</h4>
-
-                        <div class="rate-term">
-                            <div class="rate">
-                                <span class="num">{{ loan.rate }}</span><!--
-                                --><span class="unit">%</span>
+                        <div class="media-body" ng-switch="type">
+                            <div ng-switch-when="LTB">
+                                <h4 class="media-heading color-ltb-text">乐投保</h4>
+                                机构担保项目 年化收益率高达11%
                             </div>
-                            <div class="term">
-                                <span class="num">{{ loan.total_months || loan.total_days }}</span><!--
-                                --><span class="unit" ng-if="loan.total_months">个月</span><!--
-                                --><span class="unit" ng-if="!loan.total_months">天</span>
+                            <div ng-switch-when="LXY">
+                                <h4 class="media-heading color-lxy-text">乐享盈</h4>
+                                机构资产转让项目 年化收益率高达9%
                             </div>
                         </div>
 
-                        <div class="balance">
-                            剩余 <span class="num">{{ loan.balance_myriad || loan.balance }}</span>
-                            <span class="unit" ng-if="loan.balance_myriad">万</span>
-                            <span class="unit" ng-if="!loan.balance_myriad">元</span>
+                        <div class="media-right media-middle">
+                            <param class="glyphicon glyphicon-menu-right">
                         </div>
+                    </div>
+                </a>
+            </div>
 
-                        <div class="status" ng-switch="loan.status">
-                            <span ng-switch-when="SCHEDULED"
-                                  class="btn btn-block btn-scheduled btn-sm"
-                            >即将开始</span>
+            <div class="item">
+                <ul class="list-unstyled u-off-margin-bottom loan-list">
+                    <li ng-repeat="loan in data | limitTo: 2">
+                        <a ng-href="loan/{{ loan.id }}?go_back={{ page_path }}">
+                            <h4 class="title"
+                                ng-class="'color-' + (type | lowercase) + '-text'"
+                            >{{ loan.title }}</h4>
 
-                            <span ng-switch-when="OPENED"
-                                  class="btn btn-block btn-theme btn-sm"
-                            >投标中</span>
+                            <div class="rate-term">
+                                <div class="rate">
+                                    <span class="num">{{ loan.rate }}</span><!--
+                                    --><span class="unit">%</span>
+                                </div>
+                                <div class="term">
+                                    <span class="num">{{ loan.total_months || loan.total_days }}</span><!--
+                                    --><span class="unit" ng-if="loan.total_months">个月</span><!--
+                                    --><span class="unit" ng-if="!loan.total_months">天</span>
+                                </div>
+                            </div>
 
-                            <span ng-switch-when="FINISHED"
-                                  class="btn btn-block btn-finished btn-sm"
-                            >已满标</span>
+                            <div class="balance">
+                                剩余 <span class="num">{{ loan.balance_myriad || loan.balance }}</span>
+                                <span class="unit" ng-if="loan.balance_myriad">万</span>
+                                <span class="unit" ng-if="!loan.balance_myriad">元</span>
+                            </div>
 
-                            <span ng-switch-when="SETTLED"
-                                  class="btn btn-block btn-settled btn-sm"
-                            >还款中</span>
+                            <div class="status" ng-switch="loan.status">
+                                <span ng-switch-when="SCHEDULED"
+                                      class="btn btn-block btn-scheduled btn-sm"
+                                >即将开始</span>
 
-                            <span ng-switch-when="CLEARED"
-                                  class="btn btn-block btn-cleared btn-sm"
-                            >还款结束</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+                                <span ng-switch-when="OPENED"
+                                      class="btn btn-block btn-theme btn-sm"
+                                >投标中</span>
+
+                                <span ng-switch-when="FINISHED"
+                                      class="btn btn-block btn-finished btn-sm"
+                                >已满标</span>
+
+                                <span ng-switch-when="SETTLED"
+                                      class="btn btn-block btn-settled btn-sm"
+                                >还款中</span>
+
+                                <span ng-switch-when="CLEARED"
+                                      class="btn btn-block btn-cleared btn-sm"
+                                >还款结束</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <p class="text-center" ng-show="loading">
+            <img src="assets/image/spinner.gif">
+        </p>
     </section>
 
 
