@@ -127,21 +127,21 @@
 }
 
 .couponWrapper .REBATE {
-	background: url(/ccc/newAccount/img/coupon/yellow-bg.png );
-	width: 310px;
-	height: 170px;
-	border-radius: 10px;
-}
-
-.couponWrapper .PRINCIPAL {
 	background: url(/ccc/newAccount/img/coupon/red-bg.png );
 	width: 310px;
 	height: 170px;
 	border-radius: 10px;
 }
 
-.couponWrapper .CASH {
+.couponWrapper .PRINCIPAL {
 	background: url(/ccc/newAccount/img/coupon/orange-bg.png );
+	width: 310px;
+	height: 170px;
+	border-radius: 10px;
+}
+
+.couponWrapper .CASH {
+	background: url(/ccc/newAccount/img/coupon/yellow-bg.png );
 	width: 310px;
 	height: 170px;
 /*	border-radius: 10px;*/
@@ -219,7 +219,7 @@
 	width: 80px;
 	height: 30px;
 	font-size: 14px;
-    background: #FCB06F;
+    background: #fcda65;
 
 	color: #fff;
 	line-height: 30px;

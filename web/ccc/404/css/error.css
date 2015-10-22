@@ -8,13 +8,13 @@
 }
 .error-left{
   float: left;
-/*    margin-top: 290px;*/
+    margin-top: 90px;
 }
 .error-right{
     float: right;
     font-size: 30px;
     color: #fff;
-    margin-top: 174px;
+    margin-top: 264px;
 /*    text-shadow: 5px 100px 100px black;*/
 }
 .main-error{
