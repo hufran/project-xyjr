@@ -8,32 +8,40 @@ do (_, angular, moment) ->
 
                 @$window.scrollTo 0, 0
 
-                @$scope.page_path = './'
+                angular.extend @$scope, {
+                    page_path: './'
+                    loading: true
+                }
 
-                (@api.get_loan_list().success (data) =>
+                (@api.get_loan_list()
 
-                    {open, scheduled, finished, settled} = data
+                    .success (data) =>
 
-                    scheduled.forEach (item) ->
-                        item.time_open = moment(item.timeOpen).fromNow()
-                        item.type = 'scheduled'
+                        {open, scheduled, finished, settled} = data
 
-                    all_loan =
-                        _([open, scheduled, finished, settled])
-                            .flatten()
-                            .compact()
-                            .map map_loan_summary
-                            .value()
+                        scheduled.forEach (item) ->
+                            item.time_open = moment(item.timeOpen).fromNow()
+                            item.type = 'scheduled'
 
-                    group_loan =
-                        _(all_loan)
-                            .filter (item) ->
-                                item.product_type isnt 'UNKNOW'
-                            .groupBy 'product_type'
-                            .pick _.split 'LTB LXY'
-                            .value()
+                        all_loan =
+                            _([open, scheduled, finished, settled])
+                                .flatten()
+                                .compact()
+                                .map map_loan_summary
+                                .value()
 
-                    @$scope.list = group_loan
+                        group_loan =
+                            _(all_loan)
+                                .filter (item) ->
+                                    item.product_type isnt 'UNKNOW'
+                                .groupBy 'product_type'
+                                .pick _.split 'LTB LXY'
+                                .value()
+
+                        @$scope.list = group_loan
+
+                    .finally =>
+                        @$scope.loading = false
                 )
 
 

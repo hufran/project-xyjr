@@ -8,14 +8,16 @@ do (_, angular, moment) ->
 
                 @$window.scrollTo 0, 0
 
-                @$scope.page_path = @$location.path()[1..]
-
                 filter_type = @$routeParams.type
 
-                @$scope.filter_type = filter_type
-                @$scope.loading = true
+                angular.extend @$scope, {
+                    filter_type: filter_type
+                    page_path: @$location.path()[1..]
+                    loading: true
+                }
 
                 (@api.get_loan_list()
+
                     .success (data) =>
 
                         {open, scheduled, finished, settled} = data
