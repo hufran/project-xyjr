@@ -143,6 +143,13 @@ setTimeout((function () {
             serverDate: CC.serverDate,
             isSend: false,
             backUrl: CC.backUrl
+        },
+        oninit: function () {
+                            console.log(CC.loan.rule.balance);
+            console.log(CC.loan.rule.min);
+            if (CC.loan.rule.balance < CC.loan.rule.min) {
+                this.set('inputNum', CC.loan.rule.balance);
+            }
         }
     });
     var serverDate = CC.serverDate;
@@ -175,6 +182,11 @@ setTimeout((function () {
 
 
     investRactive.on('reduce', function (e) {
+         if (CC.loan.rule.balance < CC.loan.rule.min) {
+            this.set('inputNum', CC.loan.rule.balance);
+            showErrors('投资金额必须为标的剩余金额');
+            return;
+        }
         var num = parseInt(this.get('inputNum'));
         num = num - parseInt(CC.loan.rule.step);
         if (num < CC.loan.rule.min) {
@@ -185,6 +197,11 @@ setTimeout((function () {
     });
 
     investRactive.on('add', function (e) {
+        if (CC.loan.rule.balance < CC.loan.rule.min) {
+            this.set('inputNum', CC.loan.rule.balance);
+            showErrors('投资金额必须为标的剩余金额');
+            return;
+        }
         var num = parseInt(this.get('inputNum'));
         if (num < CC.loan.rule.min) {
             num = CC.loan.rule.min;
@@ -200,16 +217,11 @@ setTimeout((function () {
 
 
     investRactive.on('maxNumber', function (e) {
-//        if (CC.user.availableAmount < CC.loan.rule.min) {
-//            investRactive.set('inputNum', CC.loan.rule.min);
-//        }
-//        if (CC.user.availableAmount > CC.loan.rule.max) {
-//            investRactive.set('inputNum', CC.loan.rule.max);
-//        } else if(CC.user.availableAmount>CC.loan.rule.leftAmount){
-//            investRactive.set('inputNum', Math.floor(CC.loan.rule.leftAmount));
-//        }else{
-//            investRactive.set('inputNum', Math.floor(CC.user.availableAmount));
-//        }
+        if (CC.loan.rule.balance < CC.loan.rule.min) {
+            this.set('inputNum', CC.loan.rule.balance);
+            showErrors('投资金额必须为标的剩余金额');
+             return;
+        }
       var lmount=CC.loan.rule.leftAmount;
         if(CC.loan.rule.dw==='万'){
             lmount=lmount*10000;
@@ -243,11 +255,27 @@ setTimeout((function () {
             showErrors('输入有误，请重新输入 ! ');
             return false;
         }
-
-        if (num < CC.loan.rule.min) {
-            showErrors('单次投标金额不可少于' + CC.loan.rule
-                .min + '元 !');
-            return false;
+        
+        if (CC.loan.rule.balance < CC.loan.rule.min) {
+            if(this.get('inputNum') != CC.loan.rule.balance) {
+                 this.set('inputNum', CC.loan.rule.balance);
+                 showErrors('投资金额必须为标的剩余金额');
+                 return false;
+            } else {
+                 disableErrors();
+            }
+        } else {
+            if (num < CC.loan.rule.min) {
+                showErrors('单次投标金额不可少于' + CC.loan.rule
+                    .min + '元 !');
+                return false;
+            }
+            
+            if (((num - CC.loan.rule.min) % CC.loan.rule.step) !==
+                0) {
+                showErrors('不符合投资规则!最少为' + CC.loan.rule.min + '元，且投资增量为' + CC.loan.rule.step + "元");
+                return false;
+            }
         }
         if (num > CC.loan.rule.balance) {
             showErrors('投标金额不可超过剩余额度 !');
@@ -260,11 +288,7 @@ setTimeout((function () {
                 '元!');
             return false;
         }
-        if (((num - CC.loan.rule.min) % CC.loan.rule.step) !==
-            0) {
-            showErrors('不符合投资规则!最少为' + CC.loan.rule.min + '元，且投资增量为' + CC.loan.rule.step + "元");
-            return false;
-        }
+        
         if (num > CC.user.availableAmount) {
             showErrors('账户余额不足，请先充值 !');
             return false;

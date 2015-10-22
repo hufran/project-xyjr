@@ -354,3 +354,22 @@
 	height: 250px;
 	background: url(/ccc/newAccount/img/no-coupon.png) no-repeat center;
 }
+.invest-pager li {
+    display: inline-block;
+    margin: 0 3px;
+}
+.invest-pager li a {
+    padding: 5px 11px;
+    border: 1px #eeeeee solid;
+    text-decoration: none;
+    background-color: #fefefe;
+    font-size: 14px;
+    color: #4a4a4a;
+    cursor: pointer;
+    display: inline-block;
+}
+.invest-pager .current-page a {
+    background-color: #0096de;
+    color: #fff;
+    border: 1px #0096de solid;
+}
