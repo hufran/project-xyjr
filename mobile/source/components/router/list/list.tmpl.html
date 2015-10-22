@@ -58,26 +58,32 @@
         </div>
     </section>
 
-    <section class="invest-list omit-margin" ng-hide="loading">
-        <div ng-if="!data.length" class="container">
-            <h4 class="alert alert-info text-center">暂无记录</h4>
+    <section class="invest-list omit-margin">
+        <div ng-hide="loading">
+            <div ng-if="!data.length" class="container">
+                <h4 class="alert alert-info text-center">暂无记录</h4>
+            </div>
+
+            <ul class="list list-unstyled u-off-margin-bottom">
+                <li class="item"
+                    ng-repeat="item in data"
+                >
+                    <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                    ></a>
+                </li>
+            </ul>
+
+            <p ng-if="data.length && self.has_more(data)" class="container">
+                <button class="load-more btn btn-default btn-block"
+                        ng-click="self.add_more(data)"
+                >点击查看更多</button>
+            </p>
         </div>
 
-        <ul class="list list-unstyled u-off-margin-bottom">
-            <li class="item"
-                ng-repeat="item in data"
-            >
-                <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
-                   x-loan-summary
-                   data-loan="item"
-                ></a>
-            </li>
-        </ul>
-
-        <p ng-if="data.length && self.has_more(data)" class="container">
-            <button class="load-more btn btn-default btn-block"
-                    ng-click="self.add_more(data)"
-            >点击查看更多</button>
+        <p class="text-center" ng-show="loading">
+            <img src="assets/image/spinner.gif">
         </p>
     </section>
 
