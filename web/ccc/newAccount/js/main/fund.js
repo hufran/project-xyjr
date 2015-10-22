@@ -160,8 +160,9 @@ ractive.on('do-filter', function () { // 开始筛选数据
         operation = (typeLists[0][this.get('selectedIndex')])
             .operation;
     }
-    type = $(".sRate .s__is-selected").data('type');
-
+    if (CC.loanl.urlname !== 'investDeal') {
+        type = $(".sRate .s__is-selected").data('type');
+    }
     var preset;
     if (this.get('tabIndex') === 0) {
         preset = tab1Preset;
