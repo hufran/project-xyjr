@@ -336,7 +336,7 @@ setTimeout((function () {
                             }, function (res) {
                                 if (res.success) {
                                     CccOk.create({
-                                        msg: '投资成功，<a href="/invest/list" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                        msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
                                         okText: '确定',
                                         // cancelText: '重新登录',
                                         ok: function () {
