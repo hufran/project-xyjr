@@ -6,7 +6,7 @@
     height: 3800px;
 }
 .top{
-    height:490px;
+    height:400px;
 }
 .family-len-box{
     font-size: 30px;
@@ -23,12 +23,12 @@
     margin: 0px auto;
 }
 .media-box{
-    width: 640px;
+    width: 770px;
     margin: 0 auto;
 }
 .vedio-box{
     background:url('/ccc/activity/img/vedio-bottom.png')center 310px no-repeat;
-    height: 432px;
+    height: 556px;
 }
 .family-box{
     background:url('/ccc/activity/img/family.png')center top no-repeat;
