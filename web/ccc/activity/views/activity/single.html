@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/ccc/activity/css/single.css">
+<div class="big-container">
+  <div class="waiting-you">
+       <img class="single-iphone" src="/ccc/activity/img/11-iphone.png"/>
+      <div class="waiting-you-btn-box">
+          {{#if user.name}}
+          <a href="/newAccount/invite"><button class="waiting-you-btn">马上邀请>></button></a>
+          {{else}}
+           <a href="/register"><button class="waiting-you-btn">立即注册>></button></a>
+          {{/if}}
+      </div>
+  </div>
+  <div class="waiting-you" >
+     <img src="/ccc/activity/img/11-cash.png"/>
+     <div class="waiting-you-bg">
+        <div class="relationship">
+            <p class="cash-word">活动期间，被邀请者首次投标金额达到5000元，邀请者即可获得<span>39元现金奖励。</span></p>
+            <img class="relationship-pic" src="/ccc/activity/img/11-relationship.png"/>
+        </div>
+         <div class="relationship">
+             <div class="relation-left">
+               <p>活动期间，评选出前4名“邀请之星”，<br>
+邀请好友数量最多的用户可获得<br>
+<span>iphone6s（16G）一台，</span>
+<br>其余三名可获得<br>
+<span>iPad mini2（16G）一台。</span></p>
+             </div>
+             <div class="relation-right">
+               <img src="/ccc/activity/img/11-ipad.png"/>
+             </div>
+         </div>
+         
+          <div class="waiting-you-btn-box">
+              {{#if user.name}}
+          <a href="/newAccount/invite"><button class="waiting-you-btn"  style="margin-top:40px;">马上邀请>></button></a>
+              {{else}}
+                        <a href="/register"><button class="waiting-you-btn"  style="margin-top:40px;">立即注册>></button></a>
+              {{/if}}
+         </div>
+     </div>
+      
+      <p class="rules">奖励发放规则</p>
+      <p class="rules-content">1、邀请的好友以完成注册并实名认证为准。</p>
+      <p class="rules-content">2、邀请注册好友最低达到50名，且邀请数量最多的用户，将获得iPhone 6s一部；邀请注册好友最低达到20名，且邀请数量排名2、3、4名的用户，将分别获得iPad mini2一部。</p>
+      <p class="rules-content">3、同等条件下，邀请好友数相同的用户，按照所有好友的累计投资总额作为参考条件进行评选。</p>
+      
+  </div>
+</div>
