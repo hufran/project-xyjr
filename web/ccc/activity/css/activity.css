@@ -27,7 +27,7 @@
     margin: 0 auto;
 }
 .vedio-box{
-    background:url('/ccc/activity/img/vedio-bottom.png')center 310px no-repeat;
+    background:url('/ccc/activity/img/vedio-bottom.png')center 436px no-repeat;
     height: 556px;
 }
 .family-box{
@@ -121,5 +121,5 @@
 .regist-box{
     margin:0 auto;
     width: 320px;
-    margin-top: 68px;
+    margin-top: 50px;
 }
