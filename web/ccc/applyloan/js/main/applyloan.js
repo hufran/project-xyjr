@@ -194,17 +194,17 @@ $('#sendApplyloan').click(function () {
     }
     var loan = {};
 
-    loan.name = $("#companyName").val().trim();
+    loan.coporationName = $("#companyName").val().trim();
     loan.mobile = parseInt($("#mobilePhone").val().trim());
     loan.amount = parseInt($("#loanMoney").val().trim());
     loan.loanType = $("#loanType").find("option:selected").val();
 //    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
-    loan.loanPurpos = $("#loanPurpos").val().trim();
+    loan.loanPurpose = $("#loanPurpos").val().trim();
     var months = parseInt($("#months").val().trim());
     loan.months = months % 12;
     loan.year = parseInt(months / 12);
-    loan.coporationName = $("#personName").val();
-    loan.address = $("#contactAddress").val();
+    loan.name = $("#personName").val();
+    loan.address = $("#companyAddress").val();
     loan.status = 'PROPOSED';
 
 
