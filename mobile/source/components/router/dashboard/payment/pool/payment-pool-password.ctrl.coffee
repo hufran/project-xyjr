@@ -10,14 +10,31 @@ do (_, angular) ->
 
                 @next_path = @$routeParams.next or 'dashboard'
 
+                @captcha = {timer: null, count: 55, count_default: 55, has_sent: false, buffering: false}
                 @submit_sending = false
 
 
-            set_password: (password) ->
+            send_mobile_captcha: ->
+
+                do @api.payment_pool_set_password_send_captcha
+
+                @captcha.timer = @$interval =>
+                    @captcha.count -= 1
+
+                    if @captcha.count < 1
+                        @$interval.cancel @captcha.timer
+                        @captcha.count = @captcha.count_default
+                        @captcha.buffering = false
+                , 1000
+
+                @captcha.has_sent = @captcha.buffering = true
+
+
+            set_password: (password, mobile_captcha) ->
 
                 @submit_sending = true
 
-                (@api.payment_pool_set_password(password)
+                (@api.payment_pool_set_password(password, mobile_captcha)
 
                     .then (data) =>
                         return @$q.reject(data) unless data.success is true
