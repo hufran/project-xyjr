@@ -199,7 +199,7 @@ $('#sendApplyloan').click(function () {
     loan.amount = parseInt($("#loanMoney").val().trim());
     loan.loanType = $("#loanType").find("option:selected").val();
 //    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
-    loan.loanPurpose = $("#loanPurpos").val().trim();
+    loan.loanPurposeCustomized = $("#loanPurpos").val().trim();
     var months = parseInt($("#months").val().trim());
     loan.months = months % 12;
     loan.year = parseInt(months / 12);
@@ -214,7 +214,7 @@ $('#sendApplyloan').click(function () {
             $(".loan-content").css('opacity', '0.5');
         } else {
             alert("申请借款失败");
-        }s
+        }
     });
 
 });
