@@ -344,11 +344,22 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_set_password: (password) ->
+            payment_pool_set_password_send_captcha: ->
+
+                @$http
+                    .post '/api/v2/smsCaptcha/MYSELF',
+                        @param {smsType: 'CREDITMARKET_RESET_PAYMENTPASSWORD'}
+                        headers: WWW_FORM_HEADER
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_set_password: (password, smsCaptcha) ->
 
                 @$http
                     .post '/api/v2/user/MYSELF/resetPaymentPassword',
-                        @param {password}
+                        @param {password, smsCaptcha}
                         headers: WWW_FORM_HEADER
 
                     .then (response) -> success: response.data is true
