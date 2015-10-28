@@ -41,15 +41,14 @@ module.exports = function (router) {
 	        function (req, res, next) {
 	            req.body.userId = res.locals.user.id;
 	            var data = qs.stringify(req.body);
-	            req.body = data.replace(/%5B\d+%5D/g, '');
-                console.log(req.body);
+	            req.bodyStr = data.replace(/%5B\d+%5D/g, '');
+                console.log(req.bodyStr);
 	            next();
 	        },
 	        function (req, res) {
-				
-	            req.uest.post('/api/v2/invest' + api + '/MYSELF')
+	            req.uest.post('/api/v2/invest/tender/MYSELF/loan/'+ req.body.loanId)
 	                .type('form')
-	                .send(req.body)
+	                .send(req.bodyStr)
 	                .end()
 	                .then(function (r) {
                         res.json(r.body);

@@ -347,8 +347,12 @@ setTimeout((function () {
                                         }
                                     });
                                 } else {
+                                    var errType = res.error && res.error[0] && res.error[0].message || '';
+                                    var errMsg = {
+                                        TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                    }[errType] || errType;
                                     CccOk.create({
-                                        msg: '投资失败，' + res.error[0].message,
+                                        msg: '投资失败，' + errMsg,
                                         okText: '确定',
                                         // cancelText: '重新登录',
                                         ok: function () {
