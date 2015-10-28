@@ -457,21 +457,23 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
 
         .config _.ai '$provide, build_timestamp', ($provide, build_timestamp) ->
-            return # seems to affect animation related mechanism, disable for now
             return unless build_timestamp
 
             HOLDER = '{ts}'
+            TPR = 'totalPendingRequests'
 
             $provide.decorator '$templateRequest', _.ai '$delegate', ($delegate) ->
 
-                (tpl, ignoreRequestError) ->
+                wrapper = (tpl, ignoreRequestError) ->
 
                     if /// ^/? ( components | static | assets ) ///.test tpl
                         if not /// #{ HOLDER } ///.test tpl
                             tpl += if /\?/.test(tpl) then '&' else '?'
                             tpl += '_t=' + HOLDER
 
-                    $delegate tpl.replace(HOLDER, build_timestamp), ignoreRequestError
+                    return $delegate tpl.replace(HOLDER, build_timestamp), ignoreRequestError
+
+                return {}.constructor.defineProperty wrapper, TPR, get: -> $delegate[TPR]
 
 
         .run _.ai 'api, cookie2root', (api, cookie2root) ->
