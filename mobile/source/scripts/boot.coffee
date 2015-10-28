@@ -457,6 +457,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
 
         .config _.ai '$provide, build_timestamp', ($provide, build_timestamp) ->
+            return # seems to affect animation related mechanism, disable for now
             return unless build_timestamp
 
             HOLDER = '{ts}'
