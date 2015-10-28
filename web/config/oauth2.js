@@ -43,10 +43,10 @@ module.exports = {
     },
     */
 
-    investorLimit: 1000, // 在调用 tenderNoPwd 接口投标时限流，在一秒钟内超过这个数，则不会请求到后端，直接返回 TOO_CROWD 错误
+    investorLimit: 50, // 在调用 tenderNoPwd 接口投标时限流，在一秒钟内超过这个数，则不会请求到后端，直接返回 TOO_CROWD 错误
     // 各项的缓存的开关
     cache: {
-        tender: false, // 投标的预先判断优化，与 investorLimit 结合使用
+        tender: true, // 投标的预先判断优化，与 investorLimit 结合使用
         context: false,
         project: false,
         user: false,
