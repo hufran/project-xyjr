@@ -415,7 +415,7 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            get_city_list_by_province: (province) ->
+            get_city_list_by_province: (province) =>
 
                 @$http.get '/api/v2/lianlianpay/provinceCityCodes/' + province, cache: true
 
