@@ -142,7 +142,7 @@
         <p class="container invest-btn-wrap">
             <button type="submit"
                     class="btn btn-theme btn-lg btn-block"
-                    ng-disabled="form.$invalid || (!!argument_name && !agreement)"
+                    ng-disabled="form.$invalid || (!!argument_name && !agreement) || self.submit_sending"
             >确认投资</button>
         </p>
 

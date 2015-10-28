@@ -121,6 +121,8 @@ do (_, angular, Math) ->
 
                 return unless good_to_go
 
+                @submit_sending = true
+
                 (@api.payment_pool_tender(@loan.id, @$scope.password, amount, @$scope.store.coupon?.id)
 
                     .then (data) =>
@@ -140,7 +142,7 @@ do (_, angular, Math) ->
                         @$window.alert message
 
                     .finally =>
-                        # pass
+                        @submit_sending = false
                 )
 
 
