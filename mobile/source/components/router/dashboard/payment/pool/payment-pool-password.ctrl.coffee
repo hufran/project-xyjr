@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolPasswordCtrl',
 
-        _.ai '            @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams', class
-            constructor: (@user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams) ->
+        _.ai '            @user, @api, @$scope, @$window, @$q, @$location, @$interval, @$routeParams', class
+            constructor: (@user, @api, @$scope, @$window, @$q, @$location, @$interval, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
