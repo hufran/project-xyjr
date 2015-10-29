@@ -639,7 +639,7 @@ var recordRactive = new Ractive({
     el: '.invest-record',
     template: require('ccc/loan/partials/record.html'),
     page: 0,
-    pageSize: 10,
+    pageSize: 40,
     api:'/api/v2/loan/'+ CC.loan.id + '/invests/',
     data: {
         loading: true,
