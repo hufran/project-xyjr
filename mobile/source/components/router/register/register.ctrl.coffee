@@ -86,7 +86,9 @@ do (_, angular) ->
                         socialId: bind_social_weixin
                     }
 
-                (@api.register(password, mobile, mobile_captcha, optional)
+                loginName ?= '手机用户' + mobile
+
+                (@api.register(loginName, password, mobile, mobile_captcha, optional)
 
                     .then (data) =>
                         unless data.success is true
