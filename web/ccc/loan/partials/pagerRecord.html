@@ -6,7 +6,7 @@
     <li class="page-prev"><a href="#" on-click="previous">上一页</a>
     </li>
     {{#each totalPage}}    
-        <li class="{{#if current == totalPage[@key]}} current-page {{/if}}"><a href="#"  on-click="page:{{this-1}}">{{totalPage[@key]}}</a></li>        
+        <li class="{{#if current == totalPage[@key]}} current-page {{/if}}"><a href="#"  on-click="page:{{this}}">{{totalPage[@key]}}</a></li>        
     {{/each}}
     <li class="page-next"><a href="#" on-click="next">下一页</a>
     </li>
