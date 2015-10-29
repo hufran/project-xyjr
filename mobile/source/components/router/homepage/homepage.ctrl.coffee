@@ -33,7 +33,7 @@ do (_, angular, moment) ->
                         group_loan =
                             _(all_loan)
                                 .filter (item) ->
-                                    item.product_type isnt 'UNKNOW'
+                                    item.product_type isnt 'UNKNOWN'
                                 .groupBy 'product_type'
                                 .pick _.split 'LTB LXY'
                                 .value()
