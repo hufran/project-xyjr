@@ -1249,19 +1249,19 @@
 	margin-top: 60px;
 }
 
-.invest-detail-wrapper .tab-panels .tab-panel .repay-plan {
+.invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-plan {
 	width: 670px;
 	margin: 0px auto;
 }
 
-.invest-detail-wrapper .tab-panels .tab-panel .repay-plan thead tr {
+.invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-plan thead tr {
 	line-height: 25px;
 	color: #232d4f;
 	font-size: 14px;
 	background-color: #e8e8e8;
 }
 
-.invest-detail-wrapper .tab-panels .tab-panel .repay-record thead th {
+.invest-detail-wrapper .tab-panels .tab-panel .invest-record .repay-record thead th {
 	width: 16%;
 	color: #777777;
 	height: 40px;
@@ -1415,10 +1415,27 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.invest-detail-wrapper .table > tbody > tr > th.col-current-period {
+.invest-record .table > tbody > tr > th.col-current-period {
 	color: #437193;
 }
 
+.invest-record .table > thead > tr > th {
+	color: #000;
+	text-align: center;
+	font-size: 13px;
+}
+
+.invest-record .table > tbody > tr > th {
+	text-align: center;
+	font-size: 14px;
+	line-height: 60px;
+	color: #666;
+	border-bottom: 1px solid #ddd;
+}
+
+.invest-detail-wrapper .table > tbody > tr > th.col-current-period {
+	color: #437193;
+}
 .big-pic-wrapper {
 	z-index: 10000;
 	position: absolute;
@@ -1870,4 +1887,23 @@
 
 .proof{
 	margin-top: 15px;
+}
+.invest-pager li {
+    display: inline-block;
+    margin: 0 3px;
+}
+.invest-pager li a {
+    padding: 5px 11px;
+    border: 1px #eeeeee solid;
+    text-decoration: none;
+    background-color: #fefefe;
+    font-size: 14px;
+    color: #4a4a4a;
+    cursor: pointer;
+    display: inline-block;
+}
+.invest-pager .current-page a {
+    background-color: #0096de;
+    color: #fff;
+    border: 1px #0096de solid;
 }
