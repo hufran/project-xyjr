@@ -47,4 +47,5 @@ module.exports = function (router, auth) {
     router.get('/api/v2/reward/getReferralUsers/:uid', auth.user());
 
     router.get('/api/v2/coupon/:userId/coupons/byStatus', auth.user());
+    router.get('/api/v2/loan/:id/invests/:page/:pageSize', auth.pass());
 };
