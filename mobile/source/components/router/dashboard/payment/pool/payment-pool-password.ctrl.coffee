@@ -42,9 +42,10 @@ do (_, angular) ->
 
                     .then (data) =>
                         @user.has_payment_password = true
+                        @$window.alert @$scope.msg.SUCCEED
                         @$location.path @next_path
 
                     .catch (data) =>
                         @submit_sending = false
-                        @$window.alert _.get data, 'error[0].message', 'something happened...'
+                        @$window.alert _.get data, 'error[0].message',  @$scope.msg.FAILURE
                 )
