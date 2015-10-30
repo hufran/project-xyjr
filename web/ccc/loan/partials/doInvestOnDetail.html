@@ -121,7 +121,7 @@
                         <div class="calculator">
                             <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                             <input type="hidden" name="loanId" value="{{loan.id}}">
-                            <input placeholder="{{loan.rule.min}}"  name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon" />
+                            <input placeholder="{{loan.rule.min}}"  name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon" autocomplete="off"/>
                             <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                         </div>
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
