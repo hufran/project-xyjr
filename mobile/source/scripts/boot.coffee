@@ -366,8 +366,8 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                     api.get_loan_investors($route.current.params.id).$promise.catch ->
                                         $location.path '/'
 
-                            user: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
+                            user: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
                                     api.fetch_current_user().catch ->
                                         $location
                                             .replace()
