@@ -97,6 +97,10 @@
         margin: 0 5px;
     cursor: pointer;
 }
+.invest-pager .index-page:hover,.invest-pager li:hover,.invest-pager li a:hover{
+    color: #fff;
+    background: #0096de;
+}
 
 .invest-pager li a {
 	color: #4a4a4a;
@@ -132,7 +136,7 @@
 .invest-pager .index-page:hover,
 .invest-pager .page-last:hover,
 .invest-pager .page-next:hover {
-	background-color: #eee;
+/*	background-color: #eee;*/
 }
 
 #invest-pager {

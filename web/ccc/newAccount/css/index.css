@@ -62,6 +62,9 @@
 	background-color: #f58220;
 	border: 1px #f58220 solid;
 }
+.home-recharge-btn:hover{
+    background:#df6502;
+}
 .home-withdraw-btn {
 	float: right;
 	margin-right: 30px;
@@ -75,6 +78,10 @@
 	font-size: 16px;
 	border: 1px #f58220 solid;
 	background-color: #fff;
+}
+.home-withdraw-btn:hover{
+    background: #f58220;
+    color: #fff;
 }
 .home-invest-top-wrapper {
 	height: 36px;
