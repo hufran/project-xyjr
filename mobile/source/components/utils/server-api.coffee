@@ -348,7 +348,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/smsCaptcha/MYSELF',
-                        @param {smsType: 'CREDITMARKET_RESET_PAYMENTPASSWORD'}
+                        @param {smsType: 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD'}
                         headers: WWW_FORM_HEADER
 
                     .then TAKE_RESPONSE_DATA
