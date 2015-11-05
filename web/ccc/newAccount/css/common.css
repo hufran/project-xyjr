@@ -62,6 +62,9 @@
 	font-size: 20px;
 	font-family: '微软雅黑';
 }
+.nav-recharge .nav-recharge-btn:hover{
+    background:#df6502;
+}
 .nav-li span {
 	display: block;
 	float: left;
@@ -224,6 +227,11 @@ table tbody tr td {
 	margin: 0 5px;
 	cursor: pointer;
 }
+.ccc-paging a:hover{
+    background: #0096de;
+    color: #fff;
+    border: 1px #0096de solid;
+ }
 .ccc-paging span {
 	display: inline-block;
 	width: 31px;

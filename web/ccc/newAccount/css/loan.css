@@ -44,3 +44,10 @@
   padding-top: 10px;
   padding-bottom: 15px;
 }
+.ccc-tab-panels .tab-panel .table .btn-blue-light{
+    background:#009ada;color: #fff;border: 1px #009ada solid;
+}
+.ccc-tab-panels .tab-panel .table .btn-blue-light:hover{
+    background: #0287be;
+    color: #fff;
+}
