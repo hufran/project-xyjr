@@ -441,6 +441,9 @@ p.tips {
   margin-left:210px;
     height: 30px;
 }
+#moreInfo .modify:hover{
+    background-color: #015989;
+}
 .descript p a{
     color: #999;
 }
@@ -488,7 +491,10 @@ p.tips {
 }
 
 
-.info-submit:hover{
+.btn-success:hover,.info-submit:hover{
     background-color: #015989 !important;
+    
 }
-
+.btn-success:hover{
+    font-size: 16px;
+}
