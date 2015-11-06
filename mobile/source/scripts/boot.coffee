@@ -366,8 +366,8 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                     api.get_loan_investors($route.current.params.id).$promise.catch ->
                                         $location.path '/'
 
-                            user: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
+                            user: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
                                     api.fetch_current_user().catch ->
                                         $location
                                             .replace()
@@ -460,17 +460,20 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
             return unless build_timestamp
 
             HOLDER = '{ts}'
+            TPR = 'totalPendingRequests'
 
             $provide.decorator '$templateRequest', _.ai '$delegate', ($delegate) ->
 
-                (tpl, ignoreRequestError) ->
+                wrapper = (tpl, ignoreRequestError) ->
 
                     if /// ^/? ( components | static | assets ) ///.test tpl
                         if not /// #{ HOLDER } ///.test tpl
                             tpl += if /\?/.test(tpl) then '&' else '?'
                             tpl += '_t=' + HOLDER
 
-                    $delegate tpl.replace(HOLDER, build_timestamp), ignoreRequestError
+                    return $delegate tpl.replace(HOLDER, build_timestamp), ignoreRequestError
+
+                return {}.constructor.defineProperty wrapper, TPR, get: -> $delegate[TPR]
 
 
         .run _.ai 'api, cookie2root', (api, cookie2root) ->

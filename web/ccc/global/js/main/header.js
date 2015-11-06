@@ -82,7 +82,7 @@ if (new RegExp("^/$")
     $(".u-nolist-ul li a#index")
         .addClass("navactive");
 
-} else if (new RegExp("^/invest/list")
+} else if (new RegExp("^/invest")
     .test(path)) {
     $(".u-nolist-ul li a#touzi")
         .addClass("navactive");

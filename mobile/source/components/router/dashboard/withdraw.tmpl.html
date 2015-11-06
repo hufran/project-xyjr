@@ -35,11 +35,10 @@
                     <input name="withdraw"
                            id="withdraw"
                            ng-model="amount"
-                           ng-init="amount = 0"
                            type="number"
                            class="form-control input-sm"
-                           min="0.01"
-                           placeholder="请输入提现金额"
+                           min="2"
+                           placeholder="手续费 2 元"
                            required
                     >
                 </div>
@@ -82,7 +81,7 @@
             <button class="btn btn-theme btn-lg btn-block"
                     type="submit"
                     ng-if="self.user.has_payment_account && self.user.has_bank_card"
-                    ng-disabled="form.$invalid || amount <= 0 || amount > available_amount"
+                    ng-disabled="form.$invalid || amount <= 2 || amount > available_amount"
             >
                 <span ng-if="!(amount > available_amount)">确定提现</span>
                 <span ng-if="amount > available_amount">余额不足</span>

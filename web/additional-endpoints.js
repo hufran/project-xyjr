@@ -16,7 +16,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lianlianpay/authenticateUser/:userId', auth.user());
     router.post('/api/v2/lianlianpay/withdrawReturn', auth.pass());
     router.post('/api/v2/lianlianpay/deleteCard/:userId', auth.user());
-    router.post('/api/v2//user/:userId/setPaymentPassword', auth.user());
+    router.post('/api/v2/user/:userId/setPaymentPassword', auth.user());
     router.post('/api/v2/user/:userId/updatePaymentPassword', auth.user());
     router.post('/api/v2/user/:userId/resetPaymentPassword', auth.user());
     router.get('/api/v2/user/:userId/paymentPasswordHasSet', auth.user());
@@ -47,4 +47,5 @@ module.exports = function (router, auth) {
     router.get('/api/v2/reward/getReferralUsers/:uid', auth.user());
 
     router.get('/api/v2/coupon/:userId/coupons/byStatus', auth.user());
+    router.get('/api/v2/loan/:id/invests/:page/:pageSize', auth.pass());
 };

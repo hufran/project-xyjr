@@ -118,21 +118,9 @@
           
             <div class="tab-panel">
                 {{#if user}}
-                <table class="table repay-plan repay-record">
-                    <thead>
-                        <th style="border-top-left-radius: 3px;">投标人</th>
-                        <th>投标金额(元)</th>
-                        <th style="border-top-right-radius: 3px;">投标时间</th>
-                    </thead>
-                    {{#invests}}
-                    <tr>
-                        <th>{{userLoginName}}</th>
-                        <th>{{amount}}</th>
-                        <th>{{submitTime}}</th>
-
-                    </tr>
-                    {{/invests}}
-                </table>
+                <div class="invest-record"></div>
+                <div style="height:50px;"></div>
+                <div class="" id="record-pager" style="text-align:center"></div>
                 {{else}}
                 <div class="notLogin">
 <!--                    <p>用户详情</p>-->

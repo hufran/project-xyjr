@@ -116,6 +116,7 @@ p.tips {
 }
 .btn-update:hover {
 	color: #fff;
+    background: #0287be;
 }
 .tabwra .tab li {
 	cursor: pointer;
@@ -164,6 +165,10 @@ p.tips {
 	width: 150px;
 	background-color: #009ada;
 	border-color: #009ada;
+    font-size: 16px;
+}
+.btn-change-card:hover{
+    background-color: #0287be;
 }
 .descript p {
 	color: #999999;
@@ -347,7 +352,7 @@ p.tips {
   text-align: center;
 }
 .safety-wrapper .table .status {
-  color:dodgerblue;
+  color:#009ada;
 }
 .safety-wrapper .table .status-no {
   color:firebrick;
@@ -357,6 +362,10 @@ p.tips {
   color:white;
     width: 80px;
     height: 30px;
+    line-height: 18px;
+}
+.safety-wrapper .table .btn:hover{
+    background: #0287be;
 }
 .rzz {
   width: 350px;
@@ -474,7 +483,7 @@ p.tips {
     margin-left: 10px;
     font-size: 12px;
     width: 200px;
-    color: #ccc;
+    color: black;
     padding-left: 10px;
 }
 

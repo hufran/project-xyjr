@@ -12,8 +12,13 @@ do (_ ,angular, decodeURI) ->
 
                 @$scope.investors = @investors.map (item) ->
 
+                    item.userLoginName = item.userLoginName.trim()
+
                     prefix = new RegExp decodeURI '^%E6%89%8B%E6%9C%BA%E7%94%A8%E6%88%B7'
-                    name = item.userLoginName.trim().replace prefix, ''
+                    name = item.userLoginName.replace prefix, ''
+
+                    prefix = /^[a-zA-Z]{4}_/
+                    name = name.replace prefix, ''
 
                     if name isnt item.userLoginName
                         item.name = name.replace /(\d{3})(\d+)(\d{4})$/, '$1****$3'

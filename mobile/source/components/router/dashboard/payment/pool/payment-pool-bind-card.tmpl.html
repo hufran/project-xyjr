@@ -50,7 +50,7 @@
                     <select name="city" class="form-control input-sm"
                             id="city"
                             ng-model="store.city"
-                            ng-options="name as name for (name, code) in city"
+                            ng-options="code as name for (name, code) in city"
                     >
                         <option value="">...市</option>
                     </select>

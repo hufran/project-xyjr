@@ -5,6 +5,7 @@ var accountService = require('ccc/account/js/main/service/account').accountServi
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var i18n = require('@ds/i18n')['zh-cn'];
+var format = require('@ds/format')
 
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
@@ -347,8 +348,12 @@ setTimeout((function () {
                                         }
                                     });
                                 } else {
+                                    var errType = res.error && res.error[0] && res.error[0].message || '';
+                                    var errMsg = {
+                                        TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                    }[errType] || errType;
                                     CccOk.create({
-                                        msg: '投资失败，' + res.error[0].message,
+                                        msg: '投资失败，' + errMsg,
                                         okText: '确定',
                                         // cancelText: '重新登录',
                                         ok: function () {
@@ -628,4 +633,149 @@ function add() {
     if (getNum > 0) {
         document.getElementById("calculatorText").value = getNum + 100;
     } else {}
+}
+
+var recordRactive = new Ractive({
+    el: '.invest-record',
+    template: require('ccc/loan/partials/record.html'),
+    page: 1,
+    pageSize: 40,
+    api:'/api/v2/loan/'+ CC.loan.id + '/invests/',
+    data: {
+        loading: true,
+        list: [],
+        totalSize: 0
+    },
+    oninit: function () {
+        this.getRecord();
+    },
+    getRecord: function () {
+        var self = this;
+        var api = self.api + self.page + '/' + self.pageSize;
+        console.log(api);
+        request(api)
+            .get('body')
+            .then(function (r) {
+                self.setData(r);
+            });
+    },
+    setData: function (r) {
+        var self = this;
+        console.log(r);
+        self.set('loading', false);
+        self.set('list', self.parseData(r.results));
+        self.set('totalSize', r.totalSize);
+        self.renderPager();
+    },
+    parseData: function (list) {
+        for (var i = 0, l = list.length; i < l; i++) {
+            list[i].submitTime = moment(list[i].submitTime)
+                .format('YYYY-MM-DD HH:mm:ss');
+
+            if (/^ZQJR_/.test(list[i].userLoginName)) {
+                list[i].userLoginName = list.userLoginName.replace('ZQJR_', '手机用户');
+            } else if (list[i].userLoginName.indexOf('手机用户') === 0) {
+                var _name = list[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
+            } else {
+                if (list[i].userLoginName.length === 2) {
+                    var _name = mask(list[i].userLoginName, 1);
+                } else {
+                    var _name = mask(list[i].userLoginName, 2);
+                }
+            }
+
+            list[i].userLoginName = _name;	
+        }
+        return list;
+    },
+    renderPager: function () {
+        var self = this;
+        var totalSize = self.get('totalSize');
+
+        if (totalSize != 0) {
+            self.totalPage = Math.ceil(totalSize / self.pageSize);
+        }
+
+        var totalPage = [];
+        console.log("===>> totalPage = " + self.totalPage);
+        for (var i = 0; i < self.totalPage; i++) {
+            totalPage.push(i+1);
+        }
+
+        renderPager(totalPage, self.page);
+    }
+});
+
+function renderPager(totalPage, current) {
+    console.log("===>render")
+    if (!current) {
+        current = 1;
+    }
+   var pagerRactive = new Ractive({
+       el: '#record-pager',
+       template: require('ccc/loan/partials/pagerRecord.html'),
+       data: {
+           totalPage: totalPage,
+           current: current
+       }
+   });
+
+    pagerRactive.on('previous', function (e) {
+        e.original.preventDefault();
+        var current = this.get('current');
+        if (current > 1) {
+            current -= 1;
+            this.set('current', current);
+            recordRactive.page = current;
+            recordRactive.getRecord();
+
+        }
+    });
+
+    pagerRactive.on('page', function (e, page) {
+        e.original.preventDefault();
+        if (page) {
+            current = page;
+        } else {
+            current = e.context;
+        }
+        this.set('current', current);
+        recordRactive.page = current;
+        recordRactive.getRecord();
+
+    });
+    pagerRactive.on('next', function (e) {
+        e.original.preventDefault();
+        var current = this.get('current');
+        if (current < this.get('totalPage')[this.get('totalPage')
+                .length - 1]) {
+            current += 1;
+            this.set('current', current);
+            recordRactive.page = current;
+            recordRactive.getRecord();
+        }
+    });
+}
+
+function mask (str, s, l) {
+	if (!str) {
+		return '';
+	}
+	var len = str.length;
+	if (!len) {
+		return '';
+	}
+	if (!l || l < 0) {
+		l = len === 2 ? 1 : len - 2;
+	} else if (l > len - 1) {
+		l = len - 1;
+		s = !! s ? 1 : 0;
+	}
+	if (s > len) {
+		s = len - 1;
+	}
+	str = str.substring(0, s) + (new Array(l + 1))
+		.join('*') + str.substring(s + l);
+	str = str.substring(0, len);
+	return str;
 }

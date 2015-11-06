@@ -10,3 +10,16 @@
 	border: 1px #0096de solid!important;
 	border-radius: 5px!important;
 }
+.btn.btn-light:hover{
+    background: #0287be;
+}
+.btn.btn-light{
+    background:#009ada;border:1px #009ada solid;color:#fff;
+}
+.ccc-tab-panels .tab-panel .table .btn-blue-light{
+    background-color: #fff;color: #009ada;border: 1px #009ada solid;
+}
+.ccc-tab-panels .tab-panel .table .btn-blue-light:hover{
+    background:#009ada;
+    color: #fff;
+}

@@ -573,9 +573,10 @@ a {
 }
 
 #newsBg {
-	background-color: inherit;
+	background-color: #fff;
 	width: 100%;
 	overflow: hidden;
+    margin-top: 35px;
 }
 
 .s-split-view .s-right-view {
@@ -649,8 +650,9 @@ a {
 }
 
 .firendLinkBox {
-	background-color: inherit;
+	background-color:#fff;
 	width: 100%;
+    padding-bottom: 50px;
 /*	overflow: hidden;*/
 }
 
