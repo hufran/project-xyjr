@@ -576,6 +576,7 @@ a {
 	background-color: #fff;
 	width: 100%;
 	overflow: hidden;
+    margin-top: 35px;
 }
 
 .s-split-view .s-right-view {
