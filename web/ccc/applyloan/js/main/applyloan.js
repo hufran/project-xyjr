@@ -201,7 +201,7 @@ $('#sendApplyloan').click(function () {
 //    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
     loan.loanPurposeCustomized = $("#loanPurpos").val().trim();
     var months = parseInt($("#months").val().trim());
-    loan.months = months % 12;
+    loan.months = months;
     loan.year = parseInt(months / 12);
     loan.name = $("#personName").val();
     loan.address = $("#companyAddress").val();
