@@ -662,15 +662,16 @@ a {
         margin-top: 20px;
 
         .form-group {
-            -webkit-flex-direction: column;
-                    flex-direction: column;
 
             input.form-control {
                 margin-left: 15px;
             }
 
             .help-block {
+                .flex(1 1 100%);
+
                 margin: 0;
+                margin-right: 8px;
                 text-align: right;
                 padding: 2px 6px;
             }
@@ -787,6 +788,9 @@ a {
 
         .form-group.merge {
             .flex-display();
+
+            -webkit-flex-wrap: wrap;
+                    flex-wrap: wrap;
 
             position: relative;
             margin-bottom: 0;
