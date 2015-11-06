@@ -125,6 +125,10 @@ if (tab.ractive === null) {
 					}
 				},
 				onSelect: function(p, o) {
+                    
+                    $('.repay-btn').each(function () {
+                        $(this).parents("tr").next().hide();
+                    });
 					self.set('list', p > 0 ? self.parseData(o).results : self.get('pageOne'));
 					self.tooltip();
 				}

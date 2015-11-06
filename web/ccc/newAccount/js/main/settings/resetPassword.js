@@ -63,7 +63,7 @@ resetPasswordRactive.on('sendCode', function (){
 
     if (!this.get('isSend')) {
         this.set('isSend', true);
-        var smsType = 'CREDITMARKET_RESET_PAYMENTPASSWORD';
+        var smsType = 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD';
         CommonService.getMessage(smsType, function (r) {
             if (r.success) {
                 countDown();
