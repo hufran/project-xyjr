@@ -67,7 +67,7 @@ new Ractive({
         var self = this;
         //var logo = 'http://' + location.host + $('#er-img-url').attr('src');
         var text = 'https://' + location.host + '/register?refm=' + self.get('Fmobile');
-        return 'https://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
+        return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
     },
     parseData: function (r) {
         r.results.sort(function(a,b){
