@@ -5,6 +5,7 @@ require('ccc/global/js/lib/ZeroClipboard');
 require("ccc/global/js/lib/share");
 var format = require('@ds/format');
 var Tips = require('ccc/global/js/modules/cccTips');
+var qr = require('qr-element');
 
 CC.imgUrlS = $('#imgurls').attr('src');
 CC.imgUrl = $('#imgurl').attr('src');
@@ -65,9 +66,9 @@ new Ractive({
     },
     buildImgUrl: function(){
         var self = this;
-        //var logo = 'http://' + location.host + $('#er-img-url').attr('src');
-        var text = 'https://' + location.host + '/register?refm=' + self.get('Fmobile');
-        return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
+        var url = 'https://' + location.host + '/register?refm=' + self.get('Fmobile');
+        //return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
+        return url;
     },
     parseData: function (r) {
         r.results.sort(function(a,b){
@@ -99,7 +100,13 @@ new Ractive({
     bindActions: function () {
         var self = this;
         // 初始化二维码
-        $('#er-img').replaceWith('<img style="width:150px;height:150px;" src="'+ this.buildImgUrl() +'">');
+        //$('#er-img').replaceWith('<img style="width:150px;height:150px;" src="'+ this.buildImgUrl() +'">');
+        var qrcode = qr(this.buildImgUrl(), {
+            render: !!window.CanvasRenderingContext2D ? 'canvas' : 'table',
+            width:120,
+            height:120
+        });
+        $('#inviteCodeImg').append(qrcode);
         
         $(this.el).find("#btn-invite-copy").mouseover(function () {
             $("#invite-link").select();
