@@ -51,3 +51,7 @@
     background: #0287be;
     color: #fff;
 }
+.ccc-tab-panels .tab-panel .table .btn-success {background:#009ada;border:1px #009ada solid;color:#fff;width:66px;line-height:20px;}
+.ccc-tab-panels .tab-panel .table .btn-success:hover{
+     background: #0287be;
+}
