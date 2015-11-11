@@ -634,6 +634,7 @@ function add() {
         document.getElementById("calculatorText").value = getNum + 100;
     } else {}
 }
+<<<<<<< HEAD
 
 var recordRactive = new Ractive({
     el: '.invest-record',
@@ -779,3 +780,5 @@ function mask (str, s, l) {
 	str = str.substring(0, len);
 	return str;
 }
+=======
+>>>>>>> tmp/dev
