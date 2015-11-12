@@ -63,7 +63,7 @@ exports.accountService = {
             });
     },
     getCity: function (provinceName, next) {
-        request('GET', '/api/v2/lianlianpay/provinceCityCodes/' + provinceName)
+        request('GET', encodeURI('/api/v2/lianlianpay/provinceCityCodes/' + provinceName))
             .end()
             .then(function (r) {
                 next(r.body);
