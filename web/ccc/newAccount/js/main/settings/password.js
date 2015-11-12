@@ -4,7 +4,9 @@ var utils = require('ccc/global/js/lib/utils');
 var CccOk = require('ccc/global/js/modules/cccOk');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common.js').CommonService;
-
+var banksabled = _.filter(CC.user.bankCards, function (r) {
+    return r.deleted === false;
+});
 var passwordRactive = new Ractive({
 	el: '#ractive-container',
 	template: require('ccc/newAccount/partials/settings/password.html'),
@@ -16,6 +18,7 @@ var passwordRactive = new Ractive({
 		validateCode: {
             canGet: true
         },
+        bank: banksabled.length?true:false,
         user: null,
         captcha: {
             img: '',
@@ -49,16 +52,29 @@ passwordRactive.on('initialPassword', function () {
     } else {
         isAcess = true;
     }
-
+    
+    var msg,link;
+    if (this.get('bank') && this.get('paymentPasswordHasSet')) {
+        msg = "恭喜您，认证成功！";
+    } else if (!this.get('bank') && this.get('paymentPasswordHasSet')) {
+        msg = "认证成功，请绑定银行卡！";
+        link = '/newAccount/settings/bankCards';
+    } else {
+        msg = "认证成功，请开通交易密码";
+        link = '/newAccount/settings/password';
+    }
     if(isAcess) {
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
                 CccOk.create({
-                    msg: '交易密码初始化成功，请继续绑定银行卡!',
+                    msg: msg,
                     okText: '现在绑定',
                     cancelText: '稍后再说',
                     ok: function () {
-                        window.location.href = '/newAccount/settings/bankCards';
+                        if (link) {
+                            window.location.href = link;
+                        }
+                        window.location.reload();
                     },
                     cancel: function () {
                         window.location.reload();
