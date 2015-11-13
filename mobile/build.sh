@@ -51,6 +51,7 @@ perl -i -ne "/x-pick-main/ or print" $index
 
 
 perl -pi -e "s|<script data-src|<script src|g" $index
+perl -pi -e 's|<script type="text/tracking">|<script>|g' $index
 
 
 
