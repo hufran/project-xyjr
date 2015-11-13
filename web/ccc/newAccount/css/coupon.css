@@ -17,6 +17,8 @@
 .coupon-content .coupon-nav-view ul {
 /*	padding: 10px 0;*/
 	overflow: hidden;
+        width: 750px;
+    float: left;
 }
 
 .coupon-content .coupon-nav-view .selectTitle {
@@ -376,4 +378,13 @@
     background-color: #0096de;
     color: #fff;
     border: 1px #0096de solid;
+}
+.coupon-rule{
+    color:#0096de;
+    font-size: 14px;
+    line-height: 40px;
+}
+.coupon-rule img{
+    margin-left: 8px;
+        margin-top: -4px;
 }
