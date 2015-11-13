@@ -25,7 +25,6 @@
 }
 p.tips {
 	color: #999999;
-/*	padding: 3px 65px;*/
 }
 .error-message {
 	text-align: center;
@@ -489,9 +488,8 @@ p.tips {
     color: black;
     padding-left: 10px;
 }
-
-
-.btn-success:hover,.info-submit:hover{
+/*.btn-success:hover,*/
+.info-submit:hover{
     background-color: #015989 !important;
     
 }
