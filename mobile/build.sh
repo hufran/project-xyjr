@@ -64,3 +64,7 @@ perl -pi -e "s|t={time}|t=`date +%s`000|g" $index
 
 
 (cd $output; [ -d h5 ] || ln -sf . h5)
+
+
+echo $'\360\237\215\273' '<3 BUILD SUCCESS'
+
