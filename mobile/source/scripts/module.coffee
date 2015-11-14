@@ -28,4 +28,7 @@ do (angular) ->
         timer
         easypiechart
 
+        angulartics
+        angulartics.baidu
+
     '.split ' '
