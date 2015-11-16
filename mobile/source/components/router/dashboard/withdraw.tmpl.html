@@ -26,6 +26,9 @@
     <form class="form-horizontal"
           name="form"
           ng-submit="self.submit(amount, password)"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
           novalidate
     >
         <div class="container withdraw-form">
@@ -38,7 +41,11 @@
                            type="number"
                            class="form-control input-sm"
                            min="2"
+                           max="{{ available_amount }}"
                            placeholder="手续费 2 元"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
                            required
                     >
                 </div>
