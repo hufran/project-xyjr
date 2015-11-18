@@ -56,7 +56,7 @@ function initailEasyPieChart() {
             var percentage = $(this).data("percent");
 			var percentageNum = CC.loan.rule.leftAmount;
             // 100%进度条颜色显示为背景色
-            var color = percentage === 100 ? "#f58220" : '#009ada';
+            var color = percentage === 100 ? "#f58220" : '#f58220';
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
