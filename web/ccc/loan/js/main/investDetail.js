@@ -23,7 +23,7 @@ var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
 var statusMap = {
     SCHEDULED: '开标时间:{{timeOpen}}',
-    SETTLED: '结标时间:{{timeFinished}}',
+    SETTLED: '结标时间:{{timeSettled}}',
     OPENED: '',
     FINISHED: '',
     CLEARED: ''
@@ -38,7 +38,8 @@ new Ractive({
     template: template,
     data: {
         timeOpen: moment(CC.loan.timeOpen).format('YYYY-MM-DD HH:mm'),
-        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YYYY-MM-DD HH:mm')
+//        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YYYY-MM-DD HH:mm')
+        timeSettled:CC.loan.timeSettled
     }
 });
 
