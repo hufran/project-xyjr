@@ -66,7 +66,7 @@
                 </select>
                 <select name="city" style="width:90px;font-size:16px;" value="{{myCity}}">
                     {{#each city}}
-                        <option value="{{key}}">{{key}}</option>
+                        <option value="{{val}}">{{key}}</option>
                     {{/each}}
                 </select>
                 <div class="clearfix"></div>
@@ -120,11 +120,11 @@
         <div class="row">
             <span class="tipss">交易密码</span>
             <input type="password" name="paymentPassword" class="payInp" value="{{password}}">
-            <button type="submit" class="btn btn-sm btn-success btn-change-card" style="padding:5px 20px;margin:0;width:100px;">确定</button>
+            <button type="submit" class="btn btn-sm btn-success btn-change-card" style="margin:0;width:100px;line-height:28px;">确定</button>
         </div>
         {{else}}
             {{#if !isAuditing}}       
-            <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">删除银行卡</button>
+            <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">更换银行卡</button>
             {{else}}
             <button type="button" class="btn btn-sm btn-success btn-change-card disabled" style="background:#999;border-color:#999">审核中</button>
             {{/if}}

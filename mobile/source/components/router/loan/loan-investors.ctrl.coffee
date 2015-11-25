@@ -21,7 +21,7 @@ do (_ ,angular, decodeURI) ->
                     name = name.replace prefix, ''
 
                     if name isnt item.userLoginName
-                        item.name = name.replace /(\d{3})(\d+)(\d{4})$/, '$1****$3'
+                        item.name = name.replace /(\d{2})(\d+)(\d{2})$/, '$1*******$3'
                     else
                         [empty, head, tail] = name.split /^(..)/
 

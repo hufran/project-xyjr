@@ -23,7 +23,7 @@ var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
 var statusMap = {
     SCHEDULED: '开标时间:{{timeOpen}}',
-    SETTLED: '结标时间:{{timeFinished}}',
+    SETTLED: '结标时间:{{timeSettled}}',
     OPENED: '',
     FINISHED: '',
     CLEARED: ''
@@ -38,7 +38,8 @@ new Ractive({
     template: template,
     data: {
         timeOpen: moment(CC.loan.timeOpen).format('YYYY-MM-DD HH:mm'),
-        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YYYY-MM-DD HH:mm')
+//        timeFinished: moment(new Date(parseInt(CC.loan.timeFinished))).format('YYYY-MM-DD HH:mm')
+        timeSettled:CC.loan.timeSettled
     }
 });
 
@@ -54,9 +55,15 @@ function initailEasyPieChart() {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
+            var status=$(this).data("status");
 			var percentageNum = CC.loan.rule.leftAmount;
             // 100%进度条颜色显示为背景色
-            var color = percentage === 100 ? "#f58220" : '#009ada';
+
+            //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
+             var color = (status==='OPENED') ? '#009ada' : "#f58220";
+
+//            var color = percentage === 100 ? "#f58220" : '#f58220';
+
             $(this).easyPieChart({
                 barColor: color,
                 trackColor: '#ddd',
@@ -779,3 +786,4 @@ function mask (str, s, l) {
 	str = str.substring(0, len);
 	return str;
 }
+

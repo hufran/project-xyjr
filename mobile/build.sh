@@ -51,6 +51,7 @@ perl -i -ne "/x-pick-main/ or print" $index
 
 
 perl -pi -e "s|<script data-src|<script src|g" $index
+perl -pi -e 's|<script type="text/tracking">|<script>|g' $index
 
 
 
@@ -64,3 +65,7 @@ perl -pi -e "s|t={time}|t=`date +%s`000|g" $index
 
 
 (cd $output; [ -d h5 ] || ln -sf . h5)
+
+
+echo $'\360\237\215\273' '<3 BUILD SUCCESS'
+
