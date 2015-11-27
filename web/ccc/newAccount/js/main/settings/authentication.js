@@ -43,6 +43,7 @@ ractive.on('maskDepositAgreement', function (e) {
 ractive.on("register-account-submit", function () {
     var name = this.get("name");
     var idNumber = this.get("idNumber");
+    var that=this;
     utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -65,9 +66,9 @@ ractive.on("register-account-submit", function () {
                     idNumber: $.trim(idNumber)
                 };
                 var msg,link;
-                if (this.get('bank') && this.get('paymentPasswordHasSet')) {
+                if (that.get('bank') && that.get('paymentPasswordHasSet')) {
                     msg = "恭喜您，认证成功！";
-                } else if (!this.get('bank') && this.get('paymentPasswordHasSet')) {
+                } else if (!that.get('bank') && that.get('paymentPasswordHasSet')) {
                     msg = "认证成功，请绑定银行卡！";
                     link = '/newAccount/settings/bankCards';
                 } else {
