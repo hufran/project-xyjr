@@ -88,13 +88,10 @@ module.exports = function (router) {
         var tabIndex;
         for (var index = 0, length = tabs.length; index < length; index++) {
             var tab = tabs[index];
-             console.log('=======');
-            console.log(tab);
+            
             if (tab.text === indexMap[req.params.tab]) {
-                console.log('=======');
-                console.log(tab);
+              
                 tabIndex = index;
-                 console.log(tabIndex);
                 break;
             }
         }
@@ -137,9 +134,9 @@ module.exports = function (router) {
         } else {
             var isList = false;
         };
-        console.log("success");
+//        console.log("success");
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab]) + '?sort' + 'PUBDATE').end().then(function (r) {
-            if (r.body.length > 1) {
+            if (r.body.length >= 1) {
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                 req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pageSize='+ pageSize)
                     .end()
@@ -174,7 +171,6 @@ module.exports = function (router) {
 
 
             } else {
-
                 formatNews(r);
                 var contents = r.body.length >
                     0 ? r.body : null;
@@ -206,8 +202,8 @@ module.exports = function (router) {
         for (var i = 0; i < news.length; i++) {
             news[i].pubDate = moment(news[i].pubDate)
                 .format('YYYY-MM-DD');
+
         }
-        //                        console.log(news);
         return news;
     }
 

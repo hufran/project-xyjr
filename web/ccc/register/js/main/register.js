@@ -2,7 +2,13 @@
 var RegisterRactive = require('@ccc/register').RegisterRactive;
 var registerRactive = new RegisterRactive({
     el: '#register-container',
-    template: require('ccc/register/partials/steps.html')
+    template: require('ccc/register/partials/steps.html'),
+    computed: {
+        whatTheRefFuck: function () {
+ 	           var value = registerRactive.get('reftf.data.value');
+ 	         return value === CC.registerRel ? 'inviteCode' : 'referral';
+ 	     }
+   },
 });
 
 baconflux.store('register', 'success').onValue(function (data) {
@@ -55,5 +61,5 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/注册')).end().then(func
 });
 
 if (CC.registerRel) {
-    registerRactive.set('inviteCode.data.value', CC.registerRel);
+    registerRactive.set('reftf.data.value', CC.registerRel);
 }
