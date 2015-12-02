@@ -30,6 +30,7 @@ cat $index \
     | sed "s|^|$output/|" \
     | xargs cat > "$output/libs/package.min.js"
 
+perl -i -ne "/sourceMappingURL=/ or print" $output/libs/package.min.js
 perl -i -ne "/x-pick-lib/ or print" $index
 
 
