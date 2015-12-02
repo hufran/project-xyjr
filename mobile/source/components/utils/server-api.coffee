@@ -153,6 +153,26 @@ do (_, angular, moment, Array) ->
                 @$http.get('/api/v2/loans/summary', cache: false)
 
 
+            get_loan_list_with_type: (product, size = 20, cache = true) ->
+
+                query_set = {
+                    status: 'SCHEDULED'
+                    minDuration: 0
+                    maxDuration: 100
+                    minRate: 0
+                    maxRate: 100
+                    pageSize: size
+                    currentPage: 1
+                }
+
+                @$http
+                    .get '/api/v2/loans/getLoanWithPage',
+                        params: _.compact _.merge {product}, query_set
+                        cache: cache
+
+                    .then TAKE_RESPONSE_DATA
+
+
             get_loan_detail: (id, cache = false) ->
 
                 @$http.get('/api/v2/loan/' + id, {cache})
