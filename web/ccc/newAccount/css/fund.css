@@ -12,7 +12,7 @@
 .fund-content .fund-nav-view {
     position: relative;
     height: auto;
-    width: 840px;
+    width: 886px;
     padding-left: 16px;
     padding-right: 16px;
     border-bottom: 1px solid #ccc;
@@ -33,10 +33,10 @@
     cursor: pointer;
     display: block;
     float: left;
-    margin-right: 35px;
+    margin-right: 32px;
 }
 .fund-content .fund-nav-view .sRate .personal-big{
-    width: 100px;
+    width: 90px;
 }
 .fund-content .fund-nav-view ul .selectTitle{
 	width: 100px;
