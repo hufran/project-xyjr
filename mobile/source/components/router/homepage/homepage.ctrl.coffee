@@ -3,8 +3,8 @@ do (_, angular, moment) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @user, @$scope, @$window, map_loan_summary', class
-            constructor: (@api, @user, @$scope, @$window, map_loan_summary) ->
+        _.ai '            @api, @user, @$scope, @$window, map_loan_summary, @$q', class
+            constructor: (@api, @user, @$scope, @$window, map_loan_summary, @$q) ->
 
                 @$window.scrollTo 0, 0
 
@@ -13,21 +13,25 @@ do (_, angular, moment) ->
                     loading: true
                 }
 
-                (@api.get_loan_list()
+                (@$q
+                    .all [
+                        @api.get_loan_list_with_type 'LTB', 4
+                        @api.get_loan_list_with_type 'LXY', 4
+                    ]
 
-                    .success (data) =>
-
-                        {open, scheduled, finished, settled} = data
-
-                        scheduled.forEach (item) ->
-                            item.time_open = moment(item.timeOpen).fromNow()
-                            item.type = 'scheduled'
+                    .then (list) =>
 
                         all_loan =
-                            _([open, scheduled, finished, settled])
+                            _(list)
+                                .pluck 'results'
                                 .flatten()
                                 .compact()
                                 .map map_loan_summary
+                                .map (item) ->
+                                    if item.status is 'SCHEDULED'
+                                        item.time_open = moment(item.timeOpen).fromNow()
+
+                                    return item
                                 .value()
 
                         group_loan =
