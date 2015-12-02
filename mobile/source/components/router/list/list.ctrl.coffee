@@ -16,26 +16,19 @@ do (_, angular, moment) ->
                     loading: true
                 }
 
-                (@api.get_loan_list()
+                (@api.get_loan_list_with_type(filter_type, 20)
 
-                    .success (data) =>
-
-                        {open, scheduled, finished, settled} = data
-
-                        scheduled.forEach (item) ->
-                            item.time_open = moment(item.timeOpen).fromNow()
-                            item.type = 'scheduled'
+                    .then ({results}) =>
 
                         filter_loan =
-                            _([scheduled, open, finished, settled])
-                                .flatten()
+                            _(results)
                                 .compact()
                                 .map map_loan_summary
-                                .filter (item) ->
-                                    if filter_type
-                                        return item.product_type is filter_type
-                                    else
-                                        return item.product_type in _.split 'LTB LXY QT'
+                                .map (item) ->
+                                    if item.status is 'SCHEDULED'
+                                        item.time_open = moment(item.timeOpen).fromNow()
+
+                                    return item
                                 .value()
 
                         filter_loan.remain = _.clone filter_loan
