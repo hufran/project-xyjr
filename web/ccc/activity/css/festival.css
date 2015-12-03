@@ -17,7 +17,8 @@
 
 .title {
     padding-top: 60px;
-    margin-left: 80px;
+   margin: auto;
+  width: 826px;
 }
 
 .list {
@@ -120,6 +121,16 @@
      font-size: 20px;
   color: #fff;
   margin-left: 100px;
-  padding-top: 112px;
-    line-height: 30px;
+  padding-top: 104px;
+    width: 820px;
+}
+.rule_list li{
+    overflow: hidden;
+}
+.rule_list_num{
+    float: left;
+}
+.rule_list_word{
+    float: left;
+    width: 780px;
 }
