@@ -47,7 +47,8 @@ function init (type) {
 			data: {
 				loading: true,
 				list: [],
-				total: 0
+				total: 0,
+                type: ''
 			}, 
 			bindTime:0,
 			status: {
@@ -93,6 +94,7 @@ function init (type) {
 				var self = this;
 				self.set('loading', false);
 				self.set('list', o);
+                self.set('type', type);
 				self.renderPager();
 			},
 			parseData: function(o) {
