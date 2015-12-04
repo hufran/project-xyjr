@@ -27,11 +27,11 @@ typeLists[0] = [{
 }];
 
 var fundinvest =   'INVEST&type=WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT&type=FEE_ADVANCE_REPAY_INVEST';
-var fundloan = 'INVEST&type=WITHDRAW&type=DEPOSIT&type=INVEST_REPAY&type=FEE_WITHDRAW&type=TRANSFER';
+var fundloan = 'INVEST&type=WITHDRAW&type=DEPOSIT&type=INVEST_REPAY&type=FEE_WITHDRAW&type=TRANSFER&type=OFFLINE_DEPOSIT';
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
     if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
-      ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'){
+      ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'||k === 'OFFLINE_DEPOSIT'){
         typeLists[0].push({
         type: k,
         text: v

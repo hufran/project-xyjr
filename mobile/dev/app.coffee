@@ -47,6 +47,9 @@ catch
 
 app.use express.static static_path
 
+app.get '*.min.js.map$', (req, res) ->
+    res.status(204).end()
+
 app.get '/*', (req, res) ->
     res.sendFile 'index.html', root: static_path
 

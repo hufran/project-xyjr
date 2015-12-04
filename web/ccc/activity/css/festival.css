@@ -1,0 +1,136 @@
+.banner {
+    background: url(/ccc/activity/img/festival/banner.jpg) no-repeat center top;
+    height: 480px;
+}
+
+.main_content {
+    background: url(/ccc/activity/img/festival/main_bg.jpg) no-repeat center top;
+    height: 1155px;
+}
+
+.detail {
+    background: url(/ccc/activity/img/festival/detail_box.png) no-repeat center top;
+    height: 1085px;
+    width: 1032px;
+    margin: auto;
+}
+
+.title {
+    padding-top: 60px;
+   margin: auto;
+  width: 826px;
+}
+
+.list {
+    margin-left: 80px;
+    position: relative;
+}
+
+.time {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    color: #db3c39;
+    font-size: 30px;
+}
+
+.title_content {
+    margin-top: 50px;
+}
+
+.list_detail {
+    background: url(/ccc/activity/img/festival/content_bg.png) no-repeat center top;
+    height: 515px;
+    margin-top: -51px;
+    margin-left: 125px;
+    width: 585px;
+    color: #dc3539;
+    line-height: 19px;
+}
+
+.list_detail img {
+    float: left;
+}
+
+.right_content {
+    margin-left: 40px;
+    font-size: 16px;
+}
+
+.list_detail_1 {
+    padding-top: 62px;
+    padding-left: 47px;
+    width: 495px;
+}
+
+.list_detail_2 {
+    padding-top: 13px;
+    padding-left: 47px;
+    width: 495px;
+}
+
+.list_detail_common_title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.space10 {
+    padding-top: 8px;
+}
+
+.bigger {
+    font-size: 18px;
+}
+
+.list_detail_box {
+    background: url(/ccc/activity/img/festival/form_bg.png) no-repeat center top;
+    height: 176px;
+}
+
+.button {
+    width: 235px;
+    margin: auto;
+    position: relative;
+}
+
+.button .invest_word {
+    position: absolute;
+    top: 47px;
+    left: 56px;
+    color: #fff;
+    font-size: 22px;
+    letter-spacing: 8px;
+    cursor: pointer;
+}
+
+.button img {
+    margin-top: 30px;
+}
+
+.rule {
+    background: url(/ccc/activity/img/festival/rule_bg.jpg) no-repeat center top;
+    height: 525px;
+}
+.rule_detail{
+     background: url(/ccc/activity/img/festival/rule_box.png) no-repeat center top;
+    height: 293px;
+    width: 1032px;
+    margin: auto;
+}
+.rule_list{
+     font-size: 20px;
+  color: #fff;
+  margin-left: 100px;
+  padding-top: 104px;
+    width: 820px;
+}
+.rule_list li{
+    overflow: hidden;
+}
+.rule_list_num{
+    float: left;
+}
+.rule_list_word{
+    float: left;
+    width: 780px;
+}

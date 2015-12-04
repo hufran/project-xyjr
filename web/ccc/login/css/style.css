@@ -30,7 +30,7 @@
 /*  height: 100%;*/
 /*  z-index: 1;*/
 /*  margin-left: -499px;*/
-    height: 450px;
+    height: 460px;
     background: #fff;
     border: 1px solid #eeeeee;
     margin: 0px auto;
@@ -224,6 +224,12 @@ float:left;
 }
 .prompt{
     clear: both;
-    margin-left: 40px;
+    margin-left: -84px;
+    width: 480px;
+    background-color: #f4fcff;
+        padding: 8px;
 }
-
+.prompt span{
+    color:#f58220;
+    font-size: 14px;
+}
