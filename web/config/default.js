@@ -6,7 +6,7 @@ module.exports = xtend(require('./oauth2'), {
     // project name 作为 log.io的 node name
     project_name: pathFn.basename(pathFn.join(__dirname, "..")),
     // port 用于开发调试，每个新项目 +1
-    port: 4007,
+    port: 4001,
     domain: 'zqjr.uats.cc',
 
     commonjs: [ // 最常被引用的库写到这里，开发环境加速
