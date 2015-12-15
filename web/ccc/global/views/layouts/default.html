@@ -65,11 +65,16 @@ var _hmt = _hmt || [];
 
     <div class="s-header-info" id="nav-color" style="background:#eee">
         <div class="s-header-info-content u-pos-r-center">
-            <span class="nav-customer" style="color:#999">客服热线：400-872-7676<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw" style="margin-top:-6px;margin-right:24px;"><img src="/ccc/global/img/navQQ.png"  onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'"/></a></span>
+            <span class="nav-phone"><img src="/ccc/global/img/phone.png"/></span>
+            <span class="nav-customer" style="color:#999">客服电话：400-818-9696</span>
+<!--
+            <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw" style="margin-top:-6px;margin-right:24px;"><img src="/ccc/global/img/navQQ.png"  onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'"/></a>
+            </span>
             <span class="nav-aboutus">关注我们：            <a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"  class="nav-weibo" style="margin-top:-5px;"><img src="/ccc/global/img/navWeibo.png"  onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'"/></a></span>
 
             <img class="weixin-icon" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'" />
             <img class="erweima erweima-act2" src="/ccc/global/img/erweima.png"/>
+-->
             {{#if user}}
 
              <a href="/help/aboutus" class="text account" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a> 
@@ -86,15 +91,11 @@ var _hmt = _hmt || [];
             	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#f58220;position:relative;bottom:1px;" class="text"></div></a>
 			{{/if}}
             {{else}}
-            <!-- <div class="nav-mobile">
+             <div class="nav-mobile">
 
-                <span>|</span> <a href="/help" id="mobileCustomer" class="text">手机客户端</a>
-                <img src="/ccc/global/img/navMobile.png" />
-            </div> -->
-
-            <div class="nav-help">
-                <span>|</span><a href="/help/aboutus" id="nav-help" class="text">帮助中心</a>
-            </div>
+                <span>|</span> <a href="" id="mobileCustomer" class="text"><img src="/ccc/global/img/mobile.png" /></a>
+                
+            </div> 
 
             <div class="nav-fastregister">
                 <span>|</span><a href="/register" id="dingbuzhuce" class="text">注册</a>
@@ -111,10 +112,11 @@ var _hmt = _hmt || [];
     </div>
     <div class="s-header-menu" id="menu">
         <div class="s-header-menu-content u-pos-r-center">
-            <a href="/" style="float: left;" alt="奇乐融" title="奇乐融">
-                <img class="s-icon" style="margin-top:26px;width:300px;" src="/ccc/global/img/navLogo.png">
+            <a href="/" style="float: left;" alt="新毅" title="新毅">
+                <img class="s-icon" style="margin-width:300px;" src="/ccc/global/img/navLogo.png">
             </a>
 
+<!--
             <div id="family" onmouseover="this.style.cursor='pointer'"   onmouseout="this.style.cursor='normal'">
                 <p style="background: url(/ccc/global/img/slide.png) no-repeat;text-align:left;"  >联想控股大家庭</p>
                             <ul style="display: none;">
@@ -140,12 +142,17 @@ var _hmt = _hmt || [];
                            
             </ul>
             </div>
+-->
 
             <ul class="u-nolist-ul">
-                {{#if !user.enterprise}}
-                    <li><a id="index" href="/">首页</a></li>
-                    <li><a id="touzi" href="/invest">我要投资</a></li>
-                    <li><a id="jiekuan" href="/applyloan">我要借款</a></li>
+<!--                {{#if !user.enterprise}}-->
+                    <li><a id="index" href="">首页</a></li>
+                    <li><a id="production" href="">理财产品</a></li>
+                    <li><a id="invest" href="">股权投资</a></li>
+                    <li><a id="crowdfund" href="">回报众筹</a></li>
+                    <li><a id="information" href="">用户须知</a></li>
+                    <li><a id="myplace" href="">我的地盘</a></li>
+<!--
                 {{/if}}
                 <li>
 					{{#if user}}
@@ -161,6 +168,7 @@ var _hmt = _hmt || [];
 
                 <li><a id="help" href="/guide">新手引导</a></li>
                 <li style="margin-left:24px;"><a id="aboutus" href="/aboutus/aboutus" >关于我们</a></li>
+-->
             </ul>
 
         </div>
@@ -187,23 +195,36 @@ var _hmt = _hmt || [];
     <div class="footerBox">
     <div class="s-footer-nav" id="footer-color">
         <div style="width:1100px;" class="s-footer-nav-content u-pos-r-center">
-            <div class="bottom-left">
-                <div class="bottom-right-service"><img src="/ccc/global/img/tel.png"><span style="color:#bcbcbc;">客服热线</span><span class="telNum">400-872-7676</span></div>
-                    <p class="bottom-right-mail">服务时间：工作日 8:30 — 18:00</p>
-                <p class="bottom-right-online">在线客服：<a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/navQQ.png" onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'" /></a></p>
-				<div class="bottom-right-aboutus-box">
-                    <P class="bottom-right-aboutus">关注我们：<a href="http://weibo.com/5623474415/profile?rightmod=1&wvr=6&mod=personinfo/" target="_blank"><img src="/ccc/global/img/navWeibo.png" onmouseover="this.src='/ccc/global/img/yellow-weibo.png'" onmouseout="this.src='/ccc/global/img/navWeibo.png'" /></a>
-                        <img style="margin-left:8px;" class="weixin-icon weixin-icon-act" src="/ccc/global/img/navWeixin.png" onmouseover="this.src='/ccc/global/img/green-weixin.png'" onmouseout="this.src='/ccc/global/img/navWeixin.png'"/>
-                                    
-                </P>
-				<img class="erweima erweima-act" src="/ccc/global/img/erweima.png"/>
-				</div>
-            </div>
-            <div class="bottom-right">
+            <dl class="footer-guide">
+                <dt><a href="/aboutus/aboutus">关于我们</a></dt>
+                <dd><a href="/aboutus/introduction">平台简介</a></dd>
+                <dd class="footer-guide-style"><a href="/aboutus/background">平台背景</a></dd>
+                <dd><a href="/aboutus/consultant">权威顾问</a></dd>
+                <dd><a href="/aboutus/partner">合作伙伴</a></dd>
+            </dl>
+            <dl class="footer-guide">
+                <dt><a href="">帮助中心</a></dt>
+                <dd><a href="">新手引导</a></dd>
+                <dd class="footer-guide-style"><a href="">常见问题</a></dd>
+                <dd><a href="">名词解释</a></dd>
+                <dd><a href="">服务规则</a></dd>
+            </dl>
+             <dl class="footer-guide">
+                <dt><a href="">安全保障</a></dt>
+                <dd><a href="">项目来源</a></dd>
+                <dd class="footer-guide-style"><a href="">风控措施</a></dd>
+                <dd><a href="">系统安全</a></dd>
+                <dd><a href="">律所护航</a></dd>
+            </dl>
+              <!-- <dl class="footer-guide">
+                <dt><img src="/ccc/global/img/map.png"/><a href="">网站地图</a></dt>
+            </dl> -->
+            
+             <div class="bottom-left">
 
                 <div class="bottom-rightApp" style="margin-right:34px;">
                     <img src="/ccc/global/img/dingyue.png"/>
-                    <p class="text-p">微信订阅号</p>
+                    <p class="text-p">公众服务号</p>
                 </div>
 <!--
                 <div class="bottom-rightApp">
@@ -212,40 +233,12 @@ var _hmt = _hmt || [];
                 </div>
 -->
             </div>
-
-            <dl class="footer-guide">
-                <dt><img src="/ccc/global/img/aboutus.png"/><a href="/aboutus/aboutus">关于我们</a></dt>
-                <dd><a href="/aboutus/aboutus">奇乐融简介</a></dd>
-                <dd class="footer-guide-style"><a href="/aboutus/background">股东背景</a></dd>
-                <dd><a href="/aboutus/team">团队介绍</a></dd>
-                <dd><a href="/aboutus/partner">合作伙伴</a></dd>
-            </dl>
-            <dl class="footer-guide">
-                <dt><img src="/ccc/global/img/help.png"/><a href="/help/aboutus">帮助中心</a></dt>
-                <dd><a href="/help/login">注册/登录</a></dd>
-                <dd class="footer-guide-style"><a href="/help/cash">充值/提现</a></dd>
-                <dd><a href="/help/money">如何投资</a></dd>
-                <dd><a href="/help/safety">风控安全</a></dd>
-            </dl>
-              <!-- <dl class="footer-guide">
-                <dt><img src="/ccc/global/img/map.png"/><a href="">网站地图</a></dt>
-            </dl> -->
-        </div>
-        </div>
-    </div>
-    <div class="bottom-footer-box">
-        <div class="bottom-footer">
-            <div class="copyright">
-                版权所有©2015奇乐融<a href="/">www.qilerong.com</a>  &nbsp;&nbsp;皖ICP备15013787号-1
+            <div class="bottom-right">
+                <div class="bottom-right-service"><span style="color:#bcbcbc;">客服电话：（工作时间：9：00-18：00）</span></div>
+                    <p class="bottom-right-mail"><span class="telNum">400-872-7676</span></p>
+                    <p class="bottom-right-copy">Rights&nbsp;Reserved&nbsp;新毅金融研发中心 &nbsp;&nbsp;京ICP备15059004号</p>       
             </div>
-            <div>
-                <a href="https://trustsealinfo.websecurity.norton.com/splash?form_file=fdf/splash.fdf&dn=www.qilerong.com" target="_blank"><img src="/ccc/global/img/footer-norton.png" style="width:100px" /></a>
-                <a href="http://webscan.360.cn/index/checkwebsite/url/www.qilerong.com"><img border="0" src="/ccc/global/img/footer-360.png" class="footer-360"/></a>
-                <!-- <img src="/ccc/global/img/computer.png" /> -->
-                <a id='___szfw_logo___' href='https://credit.szfw.org/CX20150915011323560186.html' target='_blank'><img src='/ccc/global/img/footer-chengxin.png' border='0' class="footer-360"/></a>
-               <!--  <img src="/ccc/global/img/cfca.png" />
-                <img src="/ccc/global/img/v.png" class="footer-360" /> -->
-            </div>
+        </div>
         </div>
     </div>
 </div>
