@@ -12,7 +12,7 @@ module.exports = {
 //       urlBackend: "http://ysjr.uats.cc:4100",
 //    urlBackend: "http://zrzx.uats.cc:4100",
 
-urlBackend: "http://zqjr.uats.cc:8000",
+urlBackend: "http://xyjr.uats.cc:8000",
 //    oauth2client: {
 //        id: "client-id-for-node-dev",
 //        secret: "client-secret-for-node-dev"

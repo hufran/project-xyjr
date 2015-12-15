@@ -49,7 +49,7 @@
 #help-left .aboutus-title{
     width: 200px;
     height:60px;
-    background: #009ada;
+    background: #123456;
     color: #fff;
     margin-left: 0px;
 }
@@ -68,7 +68,7 @@
 }
 #help-left .active{
 /*    background-color: #24b2e7;*/
-    background-image: url(/ccc/aboutus/img/blue.png);
+    background-image: url(/ccc/aboutus/img/leftbar.png);
     background-repeat: no-repeat;
 }
 #help-left a{
@@ -148,7 +148,15 @@
     font-family: MicrosoftYaHei ;
     margin-top: 40px;
     margin-bottom: 0;
+    margin-left: 60px;
 /*    border-bottom: 1px dashed #cbcbcb;*/
+}
+#help-right .line{
+    width: auto;
+    height: 3px;
+    margin-left: 65px;
+    margin-top: 14px;
+    background: url(../img/line.png) no-repeat;
 }
 
 #help-right p{
@@ -399,7 +407,7 @@
 
 #help-right .news-box{
     line-height: 50px;
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 1px solid #eee;*/
     height: 50px;
     font-size: 14px;
     color:#4a4a4a;
