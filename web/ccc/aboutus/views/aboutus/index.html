@@ -7,55 +7,32 @@
 
         {{>list}}
     </div>
-<!--{{JSON.stringify(contents)}} -->
-    {{#if tab.text!='安全保障'}}
-	{{#if !isList && contents.length === 1}}
-        
-        <div id="help-right" class="pull-right">
-            <div class="invest-container">
-                <div class="invest-wrapper">
-                    <div class="help-title">
-                    </div>
-                    <div class="invest-wrapper">
-                        {{{contents[0].content}}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{else}}
+
 
     <div id="help-right" class="pull-right">
         <div class="invest-container">
             <div class="invest-wrapper">
                 <div class="help-title">
+                <h1>{{tab.text}}</h1>
+                <div class="line"></div>
                 </div>
                 {{#if tab.text!='帮助中心'}}
                 <div class="invest-wrapper">
                     {{#each contents}}
                     <div class="news-box">
-                        <div class="news-brame"><a href="/cms/p/{{this.id}}">{{#if title.length > 40}}
+                        <div class="news-brame">
+                        <!-- <a href="/cms/p/{{this.id}}">
+                        {{#if title.length > 40}}
                                 {{title.substr(0,40)}}...
                             {{else}}
                                 {{title}}
-                            {{/if}}</a>
+                            {{/if}}</a> -->
+                            {{{content}}}
                         </div>
-                        <div class="news-pubdate">{{pubDate}}</div>
+                        <!-- <div class="news-pubdate">{{pubDate}}</div> -->
                     </div>
                     {{/each}}
 
-                    <div class="page">
-                        <ul>
-                            {{#totalPage}}
-                            <li class="item {{#if current == parseInt(@key) + 1}} active-page {{/if}}">
-                                <a href="/aboutus/{{tab.name}}?page={{parseInt(@key) + 1}}">
-                                    <span class="current">
-                                        {{parseInt(@key) + 1}}
-                                    </span>
-                                </a>
-                            </li>
-                            {{/totalPage}} 
-                        </ul>
-                    </div>
                         </div>
                          {{else}}
                             <div class="invest-wrapper">
@@ -70,21 +47,7 @@
                             {{/each}}
                                 
                                 
-                            <div class="page">
-                                <ul>
-
-                                    {{#totalPage}}
-                                    <li class="item {{#if current == parseInt(@key) + 1}} active-page {{/if}}">
-                                        <a href="/aboutus/{{tab.name}}?page={{parseInt(@key) + 1}}">
-                                            <span class="current">
-                                                {{parseInt(@key) + 1}}
-                                            </span>
-                                        </a>
-                                    </li>
-                                    {{/totalPage}} 
-
-                                </ul>
-                            </div>
+                          
                                 
                         </div>
                         {{/if}} 
@@ -93,81 +56,7 @@
             </div>
              
 
-        {{/if}}
-        {{else}}
-        <div id="help-right" class="pull-right">
-        <div class="invest-container">
-            <div class="invest-wrapper">
-                <div class="brand-box">
-                    <div class="brand-left">
-                        <img src="/ccc/aboutus/img/heart-control.png" />
-                    </div>
-                    <div class="brand-right">
-                       <div class="brand-right-content">
-                            <p><img src="/ccc/safety/img/word-control.png"/></p>
-                            <h3>奇乐融精挑类金融机构（小贷、担保、租赁、典当、保理等）或实力企业作为保障机构，细选保障机构推荐的项目。平台所有标的项目由保障机构承担本息保障责任，若项目出现逾期，保障机构将在规定期限内履行本息兑付义务。奇乐融拥有专业的风控团队，执行严谨的风控流程，严格把关每一道审核程序。</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="safety-box">
-                 
-                    <div class="safety-left">
-                        <div class="brand-right-content">
-                            <p><img src="/ccc/safety/img/word-safety.png"/></p>
-                            <h3>由第三方机构对奇乐融资金进行分账管理，按照《关于促进互联网金融健康发展的指导意见》要求实行资金存管，奇乐融不触碰用户资金，规避资金挪用的风险。由连连支付作为第三方支付平台，搭建便捷的投融资通道。</h3>
-                        </div>
-                    </div>
-                       <div class="safety-right">
-                        <img src="/ccc/aboutus/img/heart-pay.png" />
-                    </div>
-                </div>
-
-
-                <div class="brand-box">
-                    <div class="brand-left">
-                        <img src="/ccc/aboutus/img/heart-system.png" />
-                    </div>
-                    <div class="brand-right">
-                        <div class="brand-right-content">
-                            <p><img src="/ccc/safety/img/word-system.png"/></p>
-                            <h3>奇乐融按照金融级安全架构，采用企业级JAVAEE开发和Node.js前端技术，数据库与WEB页面剥离，限定IP地址访问，并通过128位密钥的SSL技术加密，拒绝明文密码保存，以防止数据中途被窃取，维护数据的完整性。
-            病毒防护方面，奇乐融系统无原生的SQL脚本拼装，防止SQL注入，定时或不定时经过IBM AppScan及HP Fortify等安全权威工具多次全面扫描验证，保证系统可靠；
-            用户投资方面，所有交易同卡进出，并采用CFCA（中国金融认证中心）数字签章，后台双岗复核，为每一笔投资安全上锁。</h3>
-                        </div>
-
-                    </div>
-                </div>
-                  <div class="safety-box">
-                 
-                    <div class="safety-left">
-                        <div class="brand-right-content">
-                            <p><img src="/ccc/safety/img/word-law.png"/></p>
-                            <h3>奇乐融作为互联网金融信息中介平台，根据《合同法》提供居间
-服务。投资人与借款人缔结的《借款合同》受法律保护。聘请大
-成律师事务所对合同进行专业的审核，为平台提供专业法律服务
-和保障。</h3>
-                        </div>
-                    </div>
-                       <div class="safety-right">
-                        <img src="/ccc/aboutus/img/heart-law.png" />
-                    </div>
-                </div>
-                   <div class="brand-box">
-                    <div class="brand-left">
-                        <img src="/ccc/aboutus/img/heart-privacy.png" />
-                    </div>
-                    <div class="brand-right">
-                       <div class="brand-right-content">
-                            <p><img src="/ccc/safety/img/word-privacy.png"/></p>
-                            <h3>奇乐融执行严格的用户信息操作规范，确保用户隐私不被泄露。与第
-三方机构合作时，要求其遵守相关保密协议，保证用户隐私不受侵犯。</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{/if}}
+      
     <div class="clear_left"></div>
 </div>
 
