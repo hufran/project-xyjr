@@ -8677,10 +8677,8 @@ li a {
   margin-right: 25px;
 }
 .u-nolist-ul li a:hover {
-  /*background: #ededed;*/
-  height: 75px;
-  border-bottom: 3px solid #b5a16b;
-  color: #232d4e;
+  background: #5b9dff;
+  color: #fff;
   text-decoration: none;
 }
 .ssfooter.u-nolist-ul li {
@@ -10294,11 +10292,11 @@ body {
   line-height: 75px;
 }
 .s-header-menu-content .u-nolist-ul li {
-  margin-left: 33px;
+/*  margin-left: 33px;*/
   cursor: pointer;
 }
 .s-header-menu-content .u-nolist-ul li:last-child {
-  margin-left: 25px;
+/*  margin-left: 25px;*/
 }
 .s-header-menu-content .u-nolist-ul li.s__is-selected a {
   /*background: #ededed;*/
@@ -10318,7 +10316,7 @@ body {
 .s-footer {
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 190px;
   background-color: #676770;
   color: #C7C7C8;
   font-size: 0.8em;
