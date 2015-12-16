@@ -6,7 +6,7 @@ module.exports = function (router) {
 
         var cateMap = {
             aboutus: 'INTRODUCTION',
-            introduction: '',
+            introduction: 'INTRODUCTION',
             background: 'INTRODUCTION',
             // team: 'INTRODUCTION',
             partner: 'INTRODUCTION',
@@ -178,7 +178,7 @@ module.exports = function (router) {
                                 name: req.params
                                     .tab,
                                 text: indexMap[
-                                    req.params
+                                    req.param
                                     .tab]
                             },
                             contents: contents,

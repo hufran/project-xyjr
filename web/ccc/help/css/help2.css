@@ -44,7 +44,7 @@
 #help-left .aboutus-title{
     width: 200px;
     height:60px;
-    background: #123456;
+    background: #007ec5;
     color: #fff;
     margin-left: 0px;
 }
@@ -158,6 +158,33 @@
     font-size: 14px;
     line-height: 30px;
     color: #4a4a4a;
+}
+#help-right .ar-title-wp p{
+    font-size:18px;
+}
+#help-right .ar-content-wp{
+    display: none;
+    background: #f8f8f8;
+    margin-left: 40px;
+    margin-right: 80px;
+    line-height: 20px;
+}
+#help-right .article-wp{
+    margin-left: 64px;
+    margin-top: 56px;
+}
+#help-right .article-wp .icon{
+    display: inline-block;
+    float: left;
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+}
+#help-right .article-wp .show{
+    background: url(../img/open.png) no-repeat;
+}
+#help-right .article-wp .close{
+    background: url(../img/close.png) no-repeat;
 }
 #help-right .invest-wrapper .article-content p{
     margin-left: 28px;
@@ -293,6 +320,7 @@
 /*     margin-top:22px;*/
      border:1px solid #e9e9e9;
      background: #ffffff;
+     padding-bottom: 80px;
 /*     padding-top: 38px;*/
  }
  .invest-wrapper  .invest-wrapper{
