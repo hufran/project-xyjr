@@ -34,6 +34,7 @@ $("#getSms").on('click', function () {
     console.log('sdfsdf');
 });
 
+$("[name = checkbox]").attr("checked", true);
 
 //验证码的图片切换
 $("#refresh-captcha").click(function (event) {

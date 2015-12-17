@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="/ccc/global/css/base1.css">
 
 <div id="main-container" style="background-color:#f6f8fc;padding:0">
-    <p class="navTitle"><!-- <a href="/">首页</a> > 用户登录 --></p>
+    <p class="navTitle"> <a href="/">首页</a> > 用户登录 </p>
 <!--    <img src="/ccc/login/img/bg-log-2.jpg"/>-->
-    <div style="height:30px;"></div>
+<!--    <div style="height:30px;"></div>-->
     <div class="s-login-view">
         <div class="s-login-window">
             <form id="loginForm" action="/login" method="POST">
@@ -25,8 +25,8 @@
                 </div>
                 <div class="rememberPassword">
                    <div class="banner_right_bluetick pull-left">
-                            <input type="checkbox" id="chkRememberPwd" class="checkbox">
-                            <span class="remember">记住用户名</span>
+                            <input type="checkbox" name="checkbox" id="chkRememberPwd" class="checkbox">
+                            <span class="remember">记住账号</span>
                     </div> 
                     <div class="pull-right">
                         <a href="/forgot" class="u-float-right">找回密码</a>
@@ -35,8 +35,10 @@
                 <button type="submit"  class="do-login cursor-pointer" onclick="SetPwdAndChk()"  id="login_button">立即登录</button>
 <!--                <button onclick="location.href='/register'">注册</button>-->
                 <p class="needRegister"><img style="margin-right:6px;" src="/ccc/login/img/login-line.png"/>没有账号？立即<a href="/register">注册</a><img style="margin-left:6px;" src="/ccc/login/img/login-line.png"/></p>
+<!--
                         <p class="prompt"><span>温馨提示：</span><br/>登录密码当天输入错误次数超出5次将被锁定，次日01:00后系统将会自动解除账户锁定；
 如有紧急情况，请联系客服400-872-7676.</p>
+-->
             </form>
         </div>
         <div class="loginBanner"></div>

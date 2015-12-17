@@ -4,13 +4,14 @@
             <div class="register-frame">
                 <RInput field="mobile">
                     <div class="rinput">
-                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>手机号码:</label>
-                        <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="输入手机号码">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号:</label>
+                        <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="请输入手机号">
                         <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}  
                         </span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
                     </div>
                 </RInput>
+<!--
                 <RInput field="imgCaptcha">
                     <div class="rinput picnum">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码:</label>
@@ -25,10 +26,11 @@
                         {{#errMsg}}{{errMsg}}{{/errMsg}}
                     </div>
                 </RInput>
+-->
                 <RInput field="smsCaptcha">
                     <div class="rinput message-confirm bring-in">
-                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码:</label>
-                        <input id="{{rinputId}}" value="{{value}}" placeholder="短信验证码" class="message-brame"> 
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">验证码:</label>
+                        <input id="{{rinputId}}" value="{{value}}" placeholder="请输入短信验证码" class="message-brame"> 
                         {{#if !smsCaptchaReady}}
                             <button on-click='sendSmsCaptcha' id="get-message">
                                 获取短信验证码
@@ -46,14 +48,15 @@
 
                 <RInput field="password" valueStableDuration=200>
                     <div class="rinput">
-                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>密码:</label>
-                        <input class="password" id="{{rinputId}}" type="password" value="{{value}}" placeholder="输入密码，6-16位字符" maxlength="16">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">密码:</label>
+                        <input class="password" id="{{rinputId}}" type="password" value="{{value}}" placeholder="请输入密码" maxlength="16">
                         <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">
         {{#errMsg}}{{errMsg}}{{/errMsg}}
     </span>
                     </div>
                 </RInput>
+<!--
                 <RInput field="repassword" valueStableDuration=200>
                     <div class="rinput">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>确认密码:</label>
@@ -62,6 +65,7 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
+-->
                 {{#HIDE}}
                 <RInput field="refm">
                     <div class="rinput">
@@ -74,28 +78,27 @@
                 {{/HIDE}}
                <RInput field="reftf">
                     <div class="rinput">
-                        <label style="padding-top: 10px;" for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
                         <input id="{{rinputId}}" name="reftf" value="{{value}}" placeholder="请输入推荐码或手机号，可不填">
                         <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
                 
-<!--                <RInput field="agreement" valueStableDuration=100>-->
+                <RInput field="agreement" valueStableDuration=100>
                     <div class="rinput agreement-div">
                          {{#if stepLoading}}
                         <input class="next-step" type="button" value="请稍等" disabled /> {{else}}
                         <input on-click='nextStep' class="next-step" type="button" value="立即注册" /> {{/if}}
                         <label class="agree-register-protocol">
-                             <span>点击“立即注册”按钮即表示已阅读并同意<span class="i-agree"><a href="/agreement/mobile/regist" target="_blank" class="ccc-agreement">《奇乐融用户注册协议》</a></span></span>
-<!--                            <input type="checkbox" id="{{rinputId}}" checked="{{value}}" />-->
-                            
+                            <input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}" />
+                             <span>我同意<span class="i-agree"><a href="/agreement/mobile/regist" target="_blank" class="ccc-agreement">《新毅金融用户注册协议》</a></span></span>                          
                             <br>
 
-<!--                            <span class="tip" style="left:22px;top:20px;line-height:normal;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>-->
+                            <span class="tip" style="left:22px;top:20px;line-height:normal;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                         </label>
                     </div>
-<!--                </RInput>-->
+                </RInput>
                 
             </div>
             <div class="register-banner">
