@@ -15,12 +15,12 @@ $('.ar-title-wp').on('click', function () {
     var $arrow = $wp.find('span');
     var klass = 'opened';
     var right = 'show';
-    var down = 'close';
+    var down = 'closed';
 
 
-     $('.article-wp').removeClass(klass);
+//     $('.article-wp').removeClass(klass);
     
-     $wp.addClass(klass);
+//     $wp.addClass(klass);
      if($arrow.hasClass(right)){
             $content.css('display','block'); 
             $arrow.removeClass(right).addClass(down);

@@ -24,7 +24,7 @@
 }
 #nav-color .s-header-info-content{
     margin: auto;
-    width: 1100px;
+    width: 1000px;
 }
 #nav-color .s-header-info-content .nav-customer{
     text-align: left;
@@ -44,14 +44,15 @@
     font-size: 12px;
 }
 #nav-color .s-header-info-content .nav-mobile img{
- margin-right: 10px;
+    margin-right: 10px;
+    margin-top: -3px;
 }
 #nav-color .s-header-info-content .nav-weibo{
     margin-right: 10px;
     margin-top: -8px;
 }
 #nav-color .s-header-info-content .nav-customer img{
- margin-left: 10px;
+    margin-left: 10px;
 }
 
 .s-header-info-content .nav-aboutus{
@@ -115,13 +116,13 @@
 }
 
 #footer-color-box .footerBox{
-    width: 1100px;
+    width: 1000px;
     margin: auto;
 }
 
 
 #footer-color a{
-    color: #bcbcbc;
+    color: #abb2ba;
 }
 .ssfooter{
     margin-top:25px;
@@ -129,11 +130,15 @@
 }
 .footer-guide dd{
 /*    margin-top: 14px;*/
-    color:#777;
+    color:#abb2ba;
+    font-family: "微软雅黑";
     font-size: 14px;
     line-height: 24px;
-    margin-left: 42px;
+    margin-left: 4px;
     
+}
+#footer-color dt a{
+    color: #e1e1e1;
 }
 .bottom-bg{
     float:left;
@@ -143,13 +148,14 @@
 .footer-guide{
     float: left;
     margin-right:102px;
-    margin-top:12px;
+/*    margin-top:12px;*/
     margin-bottom: 90px;
 }
 .footer-guide dt{
-      font-size: 18px;
-    color:#4a4a4a;
-    line-height: 18px;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    color:#e1e1e1;
+    line-height: 16px;
     margin-bottom: 20px;
     
 }
@@ -160,9 +166,9 @@
 }
 
 .s-footer #footer-color{
-    height:220px;
-    width: 1100px;
-    margin: 0;
+    height:190px;
+    width: 1000px;
+/*    margin-top: 25px;*/
     border: none;
     overflow: hidden;
 	background-color: #6c6c6c;
@@ -171,10 +177,11 @@
 .bottom-left{
     float:left;
     margin-right:0px;
-    margin-right: 102px;
+/*    margin-right: 20px;*/
 }
 .bottom-right-service{
-    font-size: 18px;
+    float: right;
+    font-size: 14px;
     color:#4a4a4a;
 /*    line-height: 14px;*/
 /*    margin-top: 5px;*/
@@ -184,14 +191,8 @@
     margin-right: 10px;
 }
 
-.bottom-right-service .telNum{
-    color: #bcbcbc;
-    font-size: 26px;
-    margin-left: 20px;
-}
-
 .bottom-right-tel{
-     font-size: 30px;
+    font-size: 30px;
     color:#ff6e00;
     line-height: 30px;
     margin-top: 30px;
@@ -201,13 +202,20 @@
     color:#666666;
     margin-left: 14px;
 }
-.bottom-right-mail{
-/*    float: left;*/
+.bottom-right-mail .telNum{
+    float: right;
+    color:#62b9ff;
+    font-size: 33px;
+    margin-top: 18px;
+    margin-left: 46px;
+/*    margin-bottom: 48px;*/
+}
+.bottom-right-copy{
+    float: right;
     color:#bcbcbc;
     font-size: 14px;
-      line-height: 14px;
-    margin-top: 20px;
-    margin-left: 46px;
+    margin-top: 30px;
+/*    margin-left: 46px;*/
 }
 
 .bottom-right-aboutus{
@@ -256,7 +264,7 @@
     margin-right:14px;
 }
 .bottom-footer{
-    width:1100px;
+    width:1000px;
     margin: auto;
 }
 .bottom-footer{
@@ -288,13 +296,15 @@
     margin-right:24px;
     margin-top: 32px;
 }
+/*
 #menu .u-nolist-ul li:hover a {
-  /*background: #ededed;*/
+  background: #ededed;
   height: 74px;
   border-bottom: 3px solid #009ada;
   color: #009ada;
   text-decoration: none;
 }
+*/
 #menu{
     font-size: 18px;
     height: 100px
@@ -305,7 +315,7 @@
    
 }
 #menu .s-header-menu-content{
-    width: 1100px;
+    width: 1000px;
 }
 
 
@@ -405,10 +415,9 @@
 }
 
 #menu .navactive{
-  height: 74px;
-  border-bottom: 3px solid #009ada! important;
-  color: #009ada;
-  text-decoration: none;
+    color: #fff;
+    background: #5b9dff;
+    text-decoration: none;
 }
 .bottom-right{
     float: right;
@@ -512,14 +521,24 @@ li a {
 	text-decoration: none !important;
 }
 .s-header-menu-content .u-nolist-ul li {
-    margin-left: 24px;
+/*    margin-left: 24px;*/
     cursor: pointer;
+}
+.s-header-menu-content .u-nolist-ul li a{
+    padding: 0 24px;
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    text-align: center;
 }
 
 
 .text-p{
 	text-align: center;	
 	color: #bcbcbc;
+    margin-top:17px;
+    font-size: 14px;
+    font-family: "微软雅黑";
 }
 
 .s-footer-nav *{

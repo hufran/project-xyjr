@@ -8,6 +8,7 @@ module.exports = function (router) {
             aboutus: 'INTRODUCTION',
             introduction: 'INTRODUCTION',
             background: 'INTRODUCTION',
+            consultant: 'INTRODUCTION',
             // team: 'INTRODUCTION',
             partner: 'INTRODUCTION',
             // things: 'INTRODUCTION',
@@ -103,39 +104,24 @@ module.exports = function (router) {
         var tabIndex;
         for (var index = 0, length = tabs.length; index < length; index++) {
             var tab = tabs[index];
-            
-            if (tab.text === indexMap[req.params.tab]) {
-              
+            if (tab.text === indexMap[req.params.tab]) {  
                 tabIndex = index;
                 break;
             }
         }
-                    var user = res.locals.user;
         
-        if(tab.text=='平台介绍'){
-    res.locals.description = '';}
-        else if(tab.text=='平台背景'){
-    res.locals.description = '';}
-        else if(tab.text=='权威顾问'){
-    res.locals.description = '';}
-    //     else if(tab.text=='团队介绍'){
-    // res.locals.description = '';}
-        else if(tab.text=='合作伙伴'){
-    res.locals.description = '';}
-    //     else if(tab.text=='大事记'){
-    // res.locals.description = '';}
-    //     else if(tab.text=='安全保障'){
-    // res.locals.description = '';}
-    //     else if(tab.text=='保障机构'){
-    // res.locals.description = '';}
-    //     else if(tab.text=='联系我们'){
-    // res.locals.description = '';}
-    //     else if(tab.text=='公司动态'){
-    // res.locals.description = '';}
-    //     else if(tab.text=='媒体报道'){
-    // res.locals.description = '';}
-    //     else if(tab.text=='平台公告'){
-    // res.locals.description = '';}
+        var user = res.locals.user;
+        
+//        if(tab.text=='平台介绍'){
+//    res.locals.description = '';}
+//        else if(tab.text=='平台背景'){
+//    res.locals.description = '';}
+//        else if(tab.text=='权威顾问'){
+//    res.locals.description = '';}
+//    //     else if(tab.text=='团队介绍'){
+//    // res.locals.description = '';}
+//        else if(tab.text=='合作伙伴'){
+//    res.locals.description = '';}
         // else{
         //  res.locals.description = '奇乐融经营报告为用户提供奇乐融最新运营数据信息。';};
                
@@ -177,9 +163,7 @@ module.exports = function (router) {
                             tab: {
                                 name: req.params
                                     .tab,
-                                text: indexMap[
-                                    req.param
-                                    .tab]
+                                text: indexMap[req.params.tab]
                             },
                             contents: contents,
                             // isList: isList
