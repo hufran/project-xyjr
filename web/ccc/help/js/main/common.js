@@ -5,36 +5,30 @@ require('bootstrap/js/tab');
 
 
 
-$('.arrow').on('click', function () {
-    $(this).children("i").toggleClass('glyphicon-chevron-right');
-    $(this).children("i").toggleClass('glyphicon-chevron-down');  
-    $('.content').toggle(); 
-});
 
 
 var $preArrow = null;
-$('.question-title').on('click', function () {
-
+$('.ar-title-wp').on('click', function () {
     var $this = $(this);
-    var $wp = $this.parents("div.each-question");
+    var $wp = $this.parents("div.article-wp");
+    var $content = $this.parents("div.article-wp").children("div.ar-content-wp");
     var $arrow = $wp.find('span');
     var klass = 'opened';
-    var right = 'glyphicon-menu-right';
-    var down = 'glyphicon-menu-down';
+    var right = 'show';
+    var down = 'closed';
 
-    if ($preArrow) {
-        $preArrow.removeClass(down).addClass(right);
-    }
-    $preArrow = $arrow;
 
-    if ($wp.hasClass(klass)) {
-        $wp.removeClass(klass);
-        $arrow.removeClass(down).addClass(right);
-    } else {
-        $('.each-question').removeClass(klass);
-        $wp.addClass(klass);
-        $arrow.removeClass(right).addClass(down);
-    }
+//     $('.article-wp').removeClass(klass);
+    
+//     $wp.addClass(klass);
+     if($arrow.hasClass(right)){
+            $content.css('display','block'); 
+            $arrow.removeClass(right).addClass(down);
+        }else{
+            $content.css('display','none'); 
+            $arrow.removeClass(down).addClass(right);
+        }
+
 });
 
 var hash = location.hash;

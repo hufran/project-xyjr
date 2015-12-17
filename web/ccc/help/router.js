@@ -3,7 +3,7 @@ module.exports = function (router) {
     var pageSize = 10;
     router.get('/help/:tab', function (req, res) {
         var cateMap = {
-            invest: ''
+            invest: 'HELP'
             // aboutus: 'HELP',
             // product: 'HELP',
             // safety: 'HELP',
@@ -45,34 +45,6 @@ module.exports = function (router) {
              text: '我要投资',
              url: '/help/invest'
          }
-        // {
-        //     text: '关于奇乐融',
-        //     url: '/help/aboutus'
-        // }, {
-        //         text: '产品介绍',
-        //         url: '/help/product'
-        // }, {
-        //         text: '风控安全',
-        //         url: '/help/safety'
-        // }, {
-        //         text: '注册/登录',
-        //         url: '/help/login',
-        // }, {
-        //         text: '充值/提现',
-        //         url: '/help/cash',
-        // }, {
-        //         text:'会员/积分',
-        //         url:'/help/member',
-        // },{
-        //         text: '投资理财',
-        //         url: '/help/money',
-        // }, {
-        //         text: '名词解释',
-        //         url: '/help/explain',
-        // }, {
-        //         text: '法律安全',
-        //         url: '/help/law'
-        // }
         ];
 
             var tabIndex;
@@ -100,11 +72,11 @@ module.exports = function (router) {
         
 
             req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab])).end().then(function (r) {
-              
                 if (r.body.length > 1) {
                     var current = (req.query.page === undefined) ? 1 : req.query.page;
                     req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pagesize=10').end()
                         .then(function (r) {
+                        console.log('=======',nameMap[req.param.tab]);
                             formatNews(r.body.results);
                             var contents = r.body.results.length >
                                 0 ? r.body.results : null;

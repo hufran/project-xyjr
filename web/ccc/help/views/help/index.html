@@ -13,13 +13,22 @@
     <div id="help-right" class="pull-right">
         <div class="invest-container">
             <div class="invest-wrapper invest-wrapper-box">
+<!--            zys-->
                 <div class="help-title">
                 <h1>{{tab.text}}</h1>
                 <div class="line"></div>
                 </div>
-                <div class="invest-wrapper">
-                    {{{contents[0].content}}}
+                {{#each contents}}
+                <div class="article-wp">
+                    <div class="ar-title-wp">
+<!--                        <h2 class="ar-title">{{title}}</h2>-->
+                       <span  class="ticon show"></span>
+                        <p>{{title}}</p>
+                    </div>
+                    <div class="ar-content-wp">{{& content}}</div>
                 </div>
+                {{/each}}
+<!--           zys-->
             </div>
         </div>
     </div>
