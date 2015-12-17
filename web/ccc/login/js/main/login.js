@@ -11,7 +11,7 @@ $('.change-captcha').on('click', function (e) {
     getCaptCha();
 });
 
-$("[name = checkbox]").attr("checked", true);
+//$("[name = checkbox]").attr("checked", true);
 
 function getCaptCha() {
     CommonService.getCaptcha(function (data) {
