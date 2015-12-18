@@ -342,7 +342,25 @@
     margin-top: 46px;
     margin-bottom: 24px;
 }
-
+.broadcast-wrapper{
+    border-bottom: 1px #ccc solid;
+}
+.broadcast{
+    width: 1100px;
+    height: 60px;
+    margin: 0 auto;
+    line-height: 60px;
+    font-size: 14px;
+}
+.broadcast em{
+    color: #ef8721;
+}
+.broadcast .broXY{
+    float: left;
+}
+.broadcast .broUser{
+    float: right;
+}
 .strengthProtectBox{
     width: 1100px;
     margin: auto;
@@ -362,9 +380,9 @@
     height: 140px;
 }
 
-.strengthProtect h2{
-   color:#4a4a4a;
-    font-size: 24px;
+.strengthProtect h3{
+   color:#5b9dff;
+    font-size: 16px;
     line-height: 42px;
 }
 .strengthProtect p{
