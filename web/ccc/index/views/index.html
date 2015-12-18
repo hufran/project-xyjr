@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
 <!--<script language="javascript" type="text/javascript" src="/ccc/index/js/main/ss.js"></script>-->
 <!-- 轮播组件 -->
-<!--<title>奇乐融_网络贷款_P2P网贷_P2P理财_联想控股成员企业</title>-->
 <div class="carousel-wrapper">
     <!-- 在carousel上的 按钮 等 -->
     <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
@@ -28,7 +27,7 @@
             {{#carousel}}
             <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
                 <a href="{{this.link}}" target="_blank">
-                    <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center;height: 350px;">
+                    <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center;height: 498px;">
                     </div>
                 </a>    
             </div>
@@ -37,9 +36,9 @@
         <div class="middle-box"></div>
                             <div class="banner-account－box">
                         <div class="banner-account">
-                            <p class="banner-account1">预期年化最高可达<span class="banner-account-2">11</span><span class="banner-account4">%</span>
+                            <p class="banner-account1">预期年化收益&nbsp;&nbsp;<span class="banner-account-3">6%-18%</span>
                             </p>
-                            <p class="banner-account2"><span class="banner-account-2">30</span>倍活期存款收益</p>
+                            <p class="banner-account2">活期收益的&nbsp;&nbsp;<span class="banner-account-2">34倍</span></p>
                             <div class="free-register">
                             {{#if user}}
 								{{#if user.name}}
@@ -48,7 +47,7 @@
 								<a href="/newAccount/settings/authentication"><button class="btn-index">我的账户</button></a>
 								{{/if}}
                             {{else}}
-                            <a href="/register"><button class="btn-index">免费注册</button></a>
+                            <a href="/register"><button class="btn-index">注册领红包</button></a>
                             {{/if}}
                             </div> 
                              {{#if user}}
@@ -105,12 +104,22 @@
     </div>
 </div>
 
-<!--奇乐融产品-->
+<!--新手专区-->
 <div class="productBg">
     <div class="productBox">
         <div class="productBoxTitle">
-            <p class="titleLeft"><img src="/ccc/index/img/indexList.png" />奇乐融产品</p>
-            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看全部投资项目 >></a>
+            <p class="titleLeft">新手专区</p>
+            <img style="margin-left:248px;" src="/ccc/index/img/property.png" alt="">
+            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
+            </p>
+        </div>
+        <div class="productList">
+
+        </div>
+        <div class="productBoxTitle">
+            <p class="titleLeft">活动专区</p>
+            <img style="margin-left:248px;" src="/ccc/index/img/present.png" alt="">
+            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
             </p>
         </div>
         <div class="productList">

@@ -18,15 +18,16 @@
 }
 
 .carousel-wrapper .carousel .carousel-indicators li {
-	width: 12px;
-	height: 12px;
+	width: 70px;
+	height: 10px;
 	margin: 5px;
-	border: none;
-	background: #bcbcbc;
+	border: 1px #fff solid;
+	background: transparent;
+    border-radius: 0px;
 }
 
 .carousel-wrapper .carousel .carousel-indicators .active {
-	background-color: #009ada;
+	background-color: #fff;
 	margin: 5px;
 }
 
