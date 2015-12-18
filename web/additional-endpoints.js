@@ -48,4 +48,8 @@ module.exports = function (router, auth) {
 
     router.get('/api/v2/coupon/:userId/coupons/byStatus', auth.user());
     router.get('/api/v2/loan/:id/invests/:page/:pageSize', auth.pass());
+    
+     //导航
+    router.get('/navigation/listPlayPanes', auth.pass());
+    router.get('/api/v2/navigation/listPlayPanes', auth.pass());
 };
