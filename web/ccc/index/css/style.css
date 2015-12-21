@@ -558,7 +558,6 @@ a {
 
 .s-split-view {
 	overflow: hidden;
-	padding-top: 17px;
 	margin-bottom: 30px;
 	cursor: pointer;
 	width: 1100px;
@@ -575,17 +574,17 @@ a {
 
 #newsBg {
 	background-color: #fff;
-	width: 100%;
+	width: 1100px;
 	overflow: hidden;
     margin-top: 35px;
 }
 
 .s-split-view .s-right-view {
-	width: 366px;
+	width: 610px;
+    height: 235px;
 	float: left;
-/*
-	margin-right: 24px;	
-*/
+    margin-top: 20px;
+	border-right: 1px solid #ccc;	
 }
 
 .s-split-view .s-right-view ul{
@@ -594,10 +593,10 @@ a {
 }
 
 .s-split-view .s-left-view {
-	width: 366px;
+	width: 374px;
 	float: left;
-/*	margin-right: 24px;*/
-	
+	margin-top: 20px;
+	margin-left: 60px;
 }
 
 
@@ -607,10 +606,11 @@ a {
 /*  background-color: #354473;*/
 /*  line-height: 1;*/
   color: #4a4a4a;
-  font-size: 20px;
-    line-height: 25px;
-    border-bottom: 2px solid #009ada;
-    line-height: 46px;
+  font-size: 16px;
+    line-height: 16px;
+/*    border-bottom: 2px solid #009ada;*/
+    margin-left:20px;
+    margin-bottom: 20px;
 }
 
 .s-split-view h4 img {
@@ -618,16 +618,14 @@ a {
 }
 
 .s-split-view ul {
-	/*  margin-left: 40px;*/
-	
+	margin-left: 0px;
+	float:left;
 	font-size: 14px;
 	color: #666666;
 	line-height: 32px;
-	width: 366px;
-	height: 160px;
-	border-bottom: 1px solid #eeeeee;
-	border-left: 1px solid #eee;
-	border-right: 1px solid #eee;
+	width: 300px;
+/*	height: 160px;*/
+/*	border-left: 1px solid #eee;*/
 	background-color: white;
 }
 
@@ -889,4 +887,27 @@ a {
 }
 .strengthProtectBox p:hover{
     color: #009ada;
+}
+.container{
+    width: 100%;
+    padding-bottom: 60px;
+    margin-top: 30px;
+    background: #fff;
+}
+.container h4{
+    font-size: 16px;
+    font-family: "黑体";
+    line-height: 50px;
+}
+.container .partner{
+    width: 1100px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.container .icon-single{
+    float: left;
+    padding: 10px 2px;
 }

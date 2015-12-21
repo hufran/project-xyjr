@@ -132,6 +132,7 @@
 
 <div class="s-content u-pos-r-center wide" id="newsBg">
     <div class="s-split-view">
+<!--
            <div class="s-left-view">
             <a href="/aboutus/action" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
@@ -150,12 +151,14 @@
                 {{/each}}
             </ul>
         </div>
+-->
         
         <div class="s-right-view">
             <a href="/aboutus/media" target="_blank">
-                <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
+                <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
-            <h4><img src="/ccc/index/img/video.png"/>媒体报道</h4>
+            <h4>新闻资讯</h4>
+            <a href=""><img style="float: left;" src="/ccc/index/img/news.png" alt=""></a>
             <ul>
                 {{#each latestNews:num}}
                 {{#if num+1<6 }}
@@ -171,10 +174,30 @@
         </div>
         <div class="s-left-view" style="margin-right:0;">
             <a href="/aboutus/notice" target="_blank">
-                <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
+                <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
-            <h4><img src="/ccc/index/img/voice.png"/>平台公告</h4>
-            <ul>
+            <h4>平台公告</h4>
+            <ul style="margin-left: 20px;">
+                {{#each latestOne:num}}
+                {{#if num+1<6 }}
+                <li><a href="/cms/p/{{this.id}}" class="news"
+					   
+					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
+                                {{title.substr(0,22)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}</a>
+                </li>
+            {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="s-left-view" style="margin-right:0;">
+            <a href="/aboutus/notice" target="_blank">
+                <p class="u-float-right">更多&nbsp;</p>
+            </a>
+            <h4>到期公告</h4>
+            <ul style="margin-left: 20px;">
                 {{#each latestOne:num}}
                 {{#if num+1<6 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
@@ -192,13 +215,23 @@
     </div>
 </div>
 
+<!--合作伙伴-->
+<div class="container">
+   <div class="partner">
+        <h4>合作伙伴</h4>
+        <div class="icon-grounp">
+        </div>
+    </div>
+</div>
 <!--友情链接-->
+<!--
 <div class="firendLinkBox">
    <div class="firendLink">
 
    </div>
-<!--	{{JSON.stringify(items)}}-->
+	{{JSON.stringify(items)}}
 </div>
+-->
 
 </div>
 <!--<div class="index-partner－box">-->
