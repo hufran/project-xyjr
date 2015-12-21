@@ -33,7 +33,7 @@ var ractive = new Ractive({
 		submitMessage: null,
 		error: false,
 		isEnterpriseUser: CC.user.enterprise,
-        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
+    paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
 	},
 	oninit: function(){
 		var self = this;
@@ -50,13 +50,13 @@ var ractive = new Ractive({
 		this.$form = $(this.el).find('form[name=withdrawForm]');
 		this.$pass = $(this.el).find('[name=paymentPassword]');
 		this.$amount.focus();
-		
+
 		// set form action
 		this.set('active', '/lianlianpay/withdraw');
-		
+
 		this.on('changeValue', function(e){
 			var amount = $.trim($(e.node).val());
-			
+
 			if (amount === '') {
 				self.set('submitMessage', null);
 				self.set('error', false);
@@ -90,13 +90,13 @@ var ractive = new Ractive({
 			}
 		});
 	},
-	
+
 	parseData: function(datas) {
 		// 依据UMPBANKS的code来分组
 		var BANKS =  _.groupBy(UMPBANKS, function(b) {
 			return b.code;
 		});
-		
+
 		// format data
 		for (var i=0; i < datas.length; i++) {
 			var o = datas[i];
@@ -105,17 +105,17 @@ var ractive = new Ractive({
 		}
 		return datas;
 	},
-	
+
 	confirm: function(amount) {
 		var self = this;
-		
+
 		if (this.$form.find('.post-btn').hasClass('disabled')) {
 			return false;
 		}
-		
+
 		this.set('submitText', '操作中...');
 		this.set('disabled', true);
-		
+
 		var _FEE = null;
 		var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
 		$.ajax({
@@ -134,23 +134,23 @@ var ractive = new Ractive({
 				self.set('disabled', false);
 			}
 		});
-		
+
 		if (_FEE === null) {
 			return false;
 		}
-		
+
 		// 实际到账<=0的情况
 		if (_FEE.withdrawAmount <= 0) {
 			var text = '实际到账金额为'+_FEE.withdrawAmount+'元，请调整取现金额';
 			self.set('submitMessage', text);
 			return false;
 		}
-		
+
 		return confirm(
 			'实际到账' + _FEE.withdrawAmount + '元 (收取' + _FEE.totalFee + '元提现手续费)\n确认提现吗？'
 		);
 	},
-	
+
 	match: function(v){
 		return v.toString().match(/^([0-9][\d]{0,7}|0)(\.[\d]{1,2})?$/);
 	}
@@ -180,24 +180,24 @@ ractive.on('withdrawForm', function (e) {
 	if (amount === '') {
 		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));
 	}
-	
+
 	else if (!this.match(amount)) {
 		this.set('submitMessage', this.get('msg.AMOUNT_INVALID'));
 		this.$amount.focus();
 	}
-	
+
 	else if (parseFloat(amount) > CC.user.availableAmount) {
 		this.set('submitMessage', this.get('msg.AMOUNT_POOR'));
 		this.$amount.focus();
 	}
-	
+
 	else if (this.get('error')) {
 		this.set('submitMessage', this.get('msg.ERROR'));
 	}
-	
+
 	else if (pass === '') {
 		this.set('submitMessage', '请输入交易密码');
-	} 
+	}
 
 	else if (pass !== '') {
 		accountService.checkPassword(pass, function (r) {
@@ -209,7 +209,7 @@ ractive.on('withdrawForm', function (e) {
 					console.log(111);
 					isAcess = true;
 				}
-				
+
 				if (isAcess) {
 					$('form').submit();
 					Confirm.create({
