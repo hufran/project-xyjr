@@ -15,7 +15,7 @@
 			</a>
 -->
 
-            <a href="/loan/{{ id }}" class="invest-title" {{#if loanRequest.productKey==="LTB"}}style="color:#4a4a4a"{{elseif loanRequest.productKey==="LXY"}}style="color:#4a4a4a"{{else}}style="color:#4a4a4a"{{/if}}>
+            <a href="/loan/{{ id }}" class="invest-title">
 				{{#if titleLength>20}}
                 {{title.substr(0,12)}}...
 				{{else}}
@@ -28,8 +28,10 @@
         <div class="loanRepayMethod">{{ RepaymentMethod[method][0] }}</div>
 -->
     </div>
+<!--
     <div class="amount">{{ amount }}<span>{{ amountUnit }}</span>
     </div>
+-->
     <div class="loanRate">{{ rate }}<i>%</i>
     </div>
     <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span>
@@ -46,7 +48,7 @@
     <div class="investBtn">
         {{#if status === 'OPENED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
-            <div class="investbtn">立即投资</div>
+            <div class="investbtn">立即抢购</div>
         </a>
         {{/if}} 
         {{#if status === 'SCHEDULED'}}

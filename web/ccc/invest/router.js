@@ -11,12 +11,13 @@ module.exports = function (router) {
         res.locals.keywords = '网络投资|P2P理财|个人理财|奇乐融投资理财|';
         res.locals.description =
             '奇乐融投资理财提供优质的P2P网贷投资理财项目。投资理财用户通过奇乐融平台进行投标、理财计划等方式进行投资获得高收益。';
-        var productKey = ['LTB', 'LXY', 'QT'];
+        var productKey = ['XSZX', 'HDZX', 'LCZQ'];
         res.locals.products = [];
         req.uest('/api/v2/loan/getLoanProduct/productKey/' +
                 productKey[0])
             .end()
             .then(function (r) {
+                console.log("r.body======");
                 console.log(r.body);
                 res.locals.products.push(r.body);
                 req.uest(
