@@ -32,6 +32,9 @@ app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
 
 app.use(require('cookie-parser')());
+if (config.startOAuthServer) {
+    config.urlBackend = 'http://127.0.0.1:' + port + '/';
+}
 ds.request(app, config.urlBackend);
 var Data = require('@ds/data');
 app.use(function(req,res,next){
@@ -49,7 +52,6 @@ if (config.startOAuthServer) {
         }
         next();
     });
-    config.urlBackend = 'http://127.0.0.1:' + port + '/';
 } else {
     ds.apiproxy(app, config.urlBackend);
 }
