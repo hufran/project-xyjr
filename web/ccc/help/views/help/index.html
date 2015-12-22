@@ -1,3 +1,4 @@
+<dsBody layout={{dsLayoutPath}}>
 <link rel="stylesheet" href="/ccc/help/css/help2.css">
 <!--<link rel="stylesheet" href="/ccc/aboutus/css/help2.css">-->
 
@@ -18,16 +19,24 @@
                 <h1>{{tab.text}}</h1>
                 <div class="line"></div>
                 </div>
-                {{#each contents}}
-                <div class="article-wp">
-                    <div class="ar-title-wp">
-<!--                        <h2 class="ar-title">{{title}}</h2>-->
-                       <span  class="ticon show"></span>
-                        <p>{{title}}</p>
+                {{#if tab.text != '名词解释'}}
+                    <div class="invest-wrapper">
+                    {{#each contents}}
+                       {{{content}}}
+                    {{/each}}
                     </div>
-                    <div class="ar-content-wp">{{& content}}</div>
-                </div>
-                {{/each}}
+                {{else}}
+                    {{#each contents}}
+                    <div class="article-wp">
+                        <div class="ar-title-wp">
+    <!--                        <h2 class="ar-title">{{title}}</h2>-->
+                           <span  class="ticon show"></span>
+                            <p>{{title}}</p>
+                        </div>
+                        <div class="ar-content-wp">{{& content}}</div>
+                    </div>
+                    {{/each}}
+                 {{/if}}
 <!--           zys-->
             </div>
         </div>
@@ -41,3 +50,4 @@
 
 
 <script src="/ccc/help/js/main/common.js"></script>
+</dsBody>

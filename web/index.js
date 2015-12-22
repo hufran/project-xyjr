@@ -30,16 +30,13 @@ var app = exports = module.exports = require('express')();
 app.httpServer = require('http').createServer(app);
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
-app.locals.title = '国美金融';
-app.locals.keywords = '国美金融';
-app.locals.description = '国美金融';
-var Data = require('@ds/data');
+
 app.use(require('cookie-parser')());
 ds.request(app, config.urlBackend);
-app.use(function(req,res,next){
-    req.data=new Data(req);
-    next();
-});
+//app.use(function(req,res,next){
+//    req.data=new Data(req);
+//    next();
+//});
 app.use('/api/web', ds.loader('api'));
 
 if (config.startOAuthServer) {
@@ -100,35 +97,40 @@ require('ds-assets').augmentApp(app);
 
 require('@ccc/inspect/middleware')(app);
 app.use(function (req, res, next) {
-    res.locals.headerNavLinks = [
-        {
-            name: '首页',
-            href: '/',
-        },
-        {
-            name: '我要投资',
-            href: '/loan',
-        },
-        /* {
-            name: '债权转让',
-            href: '/assign',
-        }, */
-        {
-            name: '我的账户',
-            href: '/account',
-        },
-        {
-            name: '安全保障',
-            href: '/safety',
-        },
-        {
-            name: '新手指南',
-            href: '/guide',
-        },
-    ];
+//    res.locals.headerNavLinks = [
+//        {
+//            name: '首页',
+//            href: '/',
+//        },
+//        {
+//            name: '我要投资',
+//            href: '/loan',
+//        },
+//        /* {
+//            name: '债权转让',
+//            href: '/assign',
+//        }, */
+//        {
+//            name: '我的账户',
+//            href: '/account',
+//        },
+//        {
+//            name: '安全保障',
+//            href: '/safety',
+//        },
+//        {
+//            name: '新手指南',
+//            href: '/guide',
+//        },
+//    ];
+    req.uest.get('/api/v2/navigation/listPlayPanes').get('body').then(function (r) {
+        console.log('====sdfsdf====',r);
+          next();
+        });
+
     res.expose(Date.now(), 'serverDate');
     // res.layout = 'ccc/global/views/layouts/default.html';
-    res.locals.title = config.appName; // 设置html标题
+//    res.locals.title = config.appName; // 设置html标题
     var ua = userAgent.parse(req.headers['user-agent']);
     if (ua.family === 'IE' && ua.major < 9) {
         res.locals.noMediaQueries = true;
@@ -139,6 +141,7 @@ app.use(function (req, res, next) {
         res.expose({}, 'user');
         return next();
     }
+        
 
     req.uest.get('/api/v2/whoamiplz').then(function (r) {
         var user = r.body.user;

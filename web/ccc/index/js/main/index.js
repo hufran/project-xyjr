@@ -23,21 +23,34 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
-
+     var listXSZX = [],listHDZX = [];
      for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
 		list[i].titleLength = replaceStr(list[i].title);
 //		 console.log(list[i].titleLength);
+         if(list[i].loanRequest.productKey == 'XSZX'){
+            listXSZX.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'HDZX'){
+             listHDZX.push(list[i]);
+         }
     }
     var investRactive = new Ractive({
-        el: ".productList",
+        el: ".XSZXproductList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: list,
+            list: listXSZX,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
-
+    
+    var investRactive = new Ractive({
+        el: ".HDZXproductList",
+        template: require('ccc/global/partials/singleInvest.html'),
+        data: {
+            list: listHDZX,
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
     initailEasyPieChart();
     ininconut();
 
@@ -210,9 +223,18 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
     .then(function (res) {
         var count = new Ractive({
             el: '.partner .icon-grounp',
-            template: '{{#each cooperation}} <div class="icon-single"><a href="{{author}}"><img class="company-pic" src="{{url}}" /></a></div>{{/each}}',
-            data: {
-                cooperation: res.body
+            template: require('ccc/index/partials/partner.html'),
+//            template: '{{#each cooperation}} <div class="icon-single"><a href="{{author}}"><img class="company-pic" src="{{url}}" /></a></div>{{/each}}',
+//            data: {
+//                cooperation: res.body
+//            },
+            onrender: function(){
+                if(res.body.length <= 24){
+                    this.set('cooperation',res.body);
+                }else{
+                    this.set('cooperation',res.body.slice(0,24));
+                    this.set('cooperationNext',res.body.slice(24));
+                }
             }
         });
     });
@@ -221,14 +243,13 @@ request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .end()
     .then(function (res) {
         var count = new Ractive({
-        el: '.firendLink',
-        template: '<span class="friend-left" style="margin-right:16px;">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
-        data: {
-            items: res.body
-        }
+            el: '.firendLink',
+            template: '<span class="friend-left" style="margin-right:16px;">友情链接</span><span class="friend-right">{{#each items}}<a href="http://{{url}}" target="_blank">{{{title}}}</a>{{/each}}</span>',
+            data: {
+                items: res.body
+            }
+        });
     });
-    });
-
 
 //底部鼠标滑过显示公司链接
 $('.icon-grounp .company-intro').hide();
