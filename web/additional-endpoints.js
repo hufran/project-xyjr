@@ -29,6 +29,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user()); 
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
     
+router.get('/api/v2/loans/getLoanWithProduct',auth.pass());
+    
     router.get('/api/v2/message/markAsRead/:messageId', auth.user());
     router.get('/api/v2/message/user/:userId/listByStatus', auth.user());
     router.get('/api/v2/loans/getLoanWithProduct', auth.pass());

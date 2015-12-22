@@ -211,8 +211,8 @@
 }
 .banner-account{
     width:300px;
-    height:270px;
-	padding-top: 32px;
+    height:360px;
+	padding-top: 80px;
     background-image: url(/ccc/index/img/bannerBg.png);
 }
 .qr-code img{
@@ -240,33 +240,34 @@
 }
 .banner-account-2{
     font-size: 36px;
-    color:#ff7200;
+    color:#1ccccb;
      line-height: 36px;  
 }
 .banner-account-3{
-    font-size: 24px;
+    font-size: 20px;
     color:#ff6c08;
     line-height: 35px;
 }
 .banner-account1{
      margin-bottom: 26px;
-    font-size: 20px;
+    font-size: 16px;
     color:#fff;
     height: 36px;
 }
 .banner-account2{
      margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 16px;
     color:#fff;
 	font-weight: normal;
 }
 .bannerLogin{
     color:#fff;
 /*    margin-left: 154px;*/
-    font-size: 14px;
+    font-size: 16px;
     line-height: 34px;
     text-align: right;
-    margin-right: 24px;
+    margin-right: 80px;
+    margin-top: 20px;
 }
 
 .bannerLogin .underline{
@@ -300,7 +301,7 @@
 .banner-account－box{
     position: absolute;
     top:50%;
-	margin-top: -135px;
+	margin-top: -200px;
     left:50%;
     margin-left:251px;
 }
@@ -342,7 +343,25 @@
     margin-top: 46px;
     margin-bottom: 24px;
 }
-
+.broadcast-wrapper{
+    border-bottom: 1px #ccc solid;
+}
+.broadcast{
+    width: 1100px;
+    height: 60px;
+    margin: 0 auto;
+    line-height: 60px;
+    font-size: 14px;
+}
+.broadcast em{
+    color: #ef8721;
+}
+.broadcast .broXY{
+    float: left;
+}
+.broadcast .broUser{
+    float: right;
+}
 .strengthProtectBox{
     width: 1100px;
     margin: auto;
@@ -362,9 +381,9 @@
     height: 140px;
 }
 
-.strengthProtect h2{
-   color:#4a4a4a;
-    font-size: 24px;
+.strengthProtect h3{
+   color:#5b9dff;
+    font-size: 16px;
     line-height: 42px;
 }
 .strengthProtect p{
@@ -388,28 +407,21 @@
 
 .productBoxTitle{
     overflow: hidden;
-     border-bottom: 2px solid #009ada;
 }
 .productBoxTitle .titleLeft{
-     float: left;
-    font-size: 20px;
-    color: #4a4a4a;
+/*     float: left;*/
+    font-size: 24px;
+    color: #41ccb4;
     line-height: 48px;
-	padding-top: 16px;
+    text-align: center;
 }
 
-.productBoxTitle .titleLeft img{
-    margin-right: 10px;
-    margin-bottom: 5px;
-}
 .productBoxTitle .titleRight{
     float: right;
     font-size: 14px;
-    color: #4a4a4a;
-
+    color: #767c7f;
     line-height: 48px;
-    padding-top: 16px;
-
+    margin-top: -12px;
 }
 
 .productBoxTitle .titleRight a:hover{
@@ -439,7 +451,7 @@
     line-height: 50px;
 }
 .productBg{
-    background: #f6f8fc;
+    background: #f2f4f5;
 /*    height:500px;*/
     overflow: hidden;
     clear: both;

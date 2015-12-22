@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
 <!--<script language="javascript" type="text/javascript" src="/ccc/index/js/main/ss.js"></script>-->
 <!-- 轮播组件 -->
-<!--<title>奇乐融_网络贷款_P2P网贷_P2P理财_联想控股成员企业</title>-->
 <div class="carousel-wrapper">
     <!-- 在carousel上的 按钮 等 -->
     <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
@@ -28,7 +27,7 @@
             {{#carousel}}
             <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
                 <a href="{{this.link}}" target="_blank">
-                    <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center;height: 350px;">
+                    <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center;height: 498px;">
                     </div>
                 </a>    
             </div>
@@ -37,9 +36,9 @@
         <div class="middle-box"></div>
                             <div class="banner-account－box">
                         <div class="banner-account">
-                            <p class="banner-account1">预期年化最高可达<span class="banner-account-2">11</span><span class="banner-account4">%</span>
+                            <p class="banner-account1">预期年化收益&nbsp;&nbsp;<span class="banner-account-3">6%-18%</span>
                             </p>
-                            <p class="banner-account2"><span class="banner-account-2">30</span>倍活期存款收益</p>
+                            <p class="banner-account2">活期收益的&nbsp;&nbsp;<span class="banner-account-2">34倍</span></p>
                             <div class="free-register">
                             {{#if user}}
 								{{#if user.name}}
@@ -48,7 +47,7 @@
 								<a href="/newAccount/settings/authentication"><button class="btn-index">我的账户</button></a>
 								{{/if}}
                             {{else}}
-                            <a href="/register"><button class="btn-index">免费注册</button></a>
+                            <a href="/register"><button class="btn-index">注册领红包</button></a>
                             {{/if}}
                             </div> 
                              {{#if user}}
@@ -61,52 +60,66 @@
     </div>
 </div>
 
+<!--新毅实况-->
+<div class="broadcast-wrapper">
+    <div class="broadcast">
+        <p class="broXY"><img src="/ccc/index/img/broadcast.png" style="margin-right:3px;"><em>新毅实况：</em>双十二新毅<span><em>红包</em></span>大放送</p>
+        <p class="broUser"><img src="/ccc/index/img/broadcast.png" style="margin-right:5px;"><span>12:30</span>&nbsp;&nbsp;<span>132****6953</span>&nbsp;&nbsp成功注册领取了&nbsp;&nbsp<span><em>2000元红包</em></span></p>
+    </div>
+</div>
+
 
 <!--实力保障-->
 <div class="strengthProtectBg">
     <div class="strengthProtectBox">
            
         <div class="strengthProtect">
-            <a href="/safety/profession"><img src="/ccc/index/img/specialty.png" /></a>
+            <a href="/safety/profession"><img src="/ccc/index/img/advantage.png" /></a>
             <div class="strengthProtect-content" style="width:144px;">
-                <h2>专业</h2>
-                <p>项目源于专业金融机构<br/>
-               接入央行征信系统</p>
+                <h3>品牌优势</h3>
+                <p>互联网信用AA级企业</p>
             </div>
         </div>
         <div class="strengthProtect">
-            <a href="/safety/transparent"><img src="/ccc/index/img/transparent.png" /></a>
-            <div class="strengthProtect-content">
-                <h2>透明</h2>
-                <p>信息披露完善<br/>
-                世界顶级会计事务所审计</p>
+            <a href="/safety/transparent"><img src="/ccc/index/img/profit.png" /></a>
+            <div class="strengthProtect-content" style="width:200px;">
+                <h3>收益稳健</h3>
+                <p>预期年化收益6.67% - 13.69%</p>
             </div>
         </div>
          <div class="strengthProtect">
-             <a href="/safety/heart"><img src="/ccc/index/img/heart.png" /></a>
-            <div class="strengthProtect-content">
-                <h2>安心</h2>
-                <p>多重安全保障<br/>
-                资金由银行全程存管</p>
+             <a href="/safety/heart"><img src="/ccc/index/img/various.png" /></a>
+            <div class="strengthProtect-content" style="width:130px;">
+                <h3>产品多样</h3>
+                <p>活期、定期多样选择</p>
             </div>
         </div>
           <div class="strengthProtect" style="margin-right:0px;">
-              <a href="/safety/earn"><img src="/ccc/index/img/earn.png" /></a>
-            <div class="strengthProtect-content" style="width:126px;">
-                <h2>稳盈</h2>
-                <p>明星企业优质项目<br/>
-                年化收益高达11%</p>
+              <a href="/safety/earn"><img src="/ccc/index/img/safety.png" /></a>
+            <div class="strengthProtect-content" style="width:150px;">
+                <h3>资金安全</h3>
+                <p>6重安全暴涨，本息安全</p>
             </div>
         </div>
     </div>
 </div>
 
-<!--奇乐融产品-->
+<!--新手专区-->
 <div class="productBg">
     <div class="productBox">
         <div class="productBoxTitle">
-            <p class="titleLeft"><img src="/ccc/index/img/indexList.png" />奇乐融产品</p>
-            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看全部投资项目 >></a>
+            <p class="titleLeft">新手专区</p>
+            <img style="margin-left:248px;" src="/ccc/index/img/property.png" alt="">
+            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
+            </p>
+        </div>
+        <div class="productList">
+
+        </div>
+        <div class="productBoxTitle">
+            <p class="titleLeft">活动专区</p>
+            <img style="margin-left:248px;" src="/ccc/index/img/present.png" alt="">
+            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
             </p>
         </div>
         <div class="productList">
@@ -119,6 +132,7 @@
 
 <div class="s-content u-pos-r-center wide" id="newsBg">
     <div class="s-split-view">
+<!--
            <div class="s-left-view">
             <a href="/aboutus/action" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
@@ -137,12 +151,14 @@
                 {{/each}}
             </ul>
         </div>
+-->
         
         <div class="s-right-view">
             <a href="/aboutus/media" target="_blank">
-                <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
+                <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
-            <h4><img src="/ccc/index/img/video.png"/>媒体报道</h4>
+            <h4>新闻资讯</h4>
+            <a href=""><img style="float: left;" src="/ccc/index/img/news.png" alt=""></a>
             <ul>
                 {{#each latestNews:num}}
                 {{#if num+1<6 }}
@@ -158,10 +174,30 @@
         </div>
         <div class="s-left-view" style="margin-right:0;">
             <a href="/aboutus/notice" target="_blank">
-                <p class="u-float-right">更多&nbsp;&gt;&gt;</p>
+                <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
-            <h4><img src="/ccc/index/img/voice.png"/>平台公告</h4>
-            <ul>
+            <h4>平台公告</h4>
+            <ul style="margin-left: 20px;">
+                {{#each latestOne:num}}
+                {{#if num+1<6 }}
+                <li><a href="/cms/p/{{this.id}}" class="news"
+					   
+					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
+                                {{title.substr(0,22)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}</a>
+                </li>
+            {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="s-left-view" style="margin-right:0;">
+            <a href="/aboutus/notice" target="_blank">
+                <p class="u-float-right">更多&nbsp;</p>
+            </a>
+            <h4>到期公告</h4>
+            <ul style="margin-left: 20px;">
                 {{#each latestOne:num}}
                 {{#if num+1<6 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
@@ -179,13 +215,23 @@
     </div>
 </div>
 
+<!--合作伙伴-->
+<div class="container">
+   <div class="partner">
+        <h4>合作伙伴</h4>
+        <div class="icon-grounp">
+        </div>
+    </div>
+</div>
 <!--友情链接-->
+<!--
 <div class="firendLinkBox">
    <div class="firendLink">
 
    </div>
-<!--	{{JSON.stringify(items)}}-->
+	{{JSON.stringify(items)}}
 </div>
+-->
 
 </div>
 <!--<div class="index-partner－box">-->

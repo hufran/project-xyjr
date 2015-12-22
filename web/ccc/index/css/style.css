@@ -18,15 +18,16 @@
 }
 
 .carousel-wrapper .carousel .carousel-indicators li {
-	width: 12px;
-	height: 12px;
+	width: 70px;
+	height: 10px;
 	margin: 5px;
-	border: none;
-	background: #bcbcbc;
+	border: 1px #fff solid;
+	background: transparent;
+    border-radius: 0px;
 }
 
 .carousel-wrapper .carousel .carousel-indicators .active {
-	background-color: #009ada;
+	background-color: #fff;
 	margin: 5px;
 }
 
@@ -557,7 +558,6 @@ a {
 
 .s-split-view {
 	overflow: hidden;
-	padding-top: 17px;
 	margin-bottom: 30px;
 	cursor: pointer;
 	width: 1100px;
@@ -574,17 +574,17 @@ a {
 
 #newsBg {
 	background-color: #fff;
-	width: 100%;
+	width: 1100px;
 	overflow: hidden;
     margin-top: 35px;
 }
 
 .s-split-view .s-right-view {
-	width: 366px;
+	width: 610px;
+    height: 235px;
 	float: left;
-/*
-	margin-right: 24px;	
-*/
+    margin-top: 20px;
+	border-right: 1px solid #ccc;	
 }
 
 .s-split-view .s-right-view ul{
@@ -593,10 +593,10 @@ a {
 }
 
 .s-split-view .s-left-view {
-	width: 366px;
+	width: 374px;
 	float: left;
-/*	margin-right: 24px;*/
-	
+	margin-top: 20px;
+	margin-left: 60px;
 }
 
 
@@ -606,10 +606,11 @@ a {
 /*  background-color: #354473;*/
 /*  line-height: 1;*/
   color: #4a4a4a;
-  font-size: 20px;
-    line-height: 25px;
-    border-bottom: 2px solid #009ada;
-    line-height: 46px;
+  font-size: 16px;
+    line-height: 16px;
+/*    border-bottom: 2px solid #009ada;*/
+    margin-left:20px;
+    margin-bottom: 20px;
 }
 
 .s-split-view h4 img {
@@ -617,16 +618,14 @@ a {
 }
 
 .s-split-view ul {
-	/*  margin-left: 40px;*/
-	
+	margin-left: 0px;
+	float:left;
 	font-size: 14px;
 	color: #666666;
 	line-height: 32px;
-	width: 366px;
-	height: 160px;
-	border-bottom: 1px solid #eeeeee;
-	border-left: 1px solid #eee;
-	border-right: 1px solid #eee;
+	width: 300px;
+/*	height: 160px;*/
+/*	border-left: 1px solid #eee;*/
 	background-color: white;
 }
 
@@ -671,7 +670,7 @@ a {
 .loanWrapper {
 	width: 1100px;
 	display: table;
-	height: 72px;
+	height: 270px;
 	padding-left: 40px;
 	border-bottom: 1px #ccc solid;
 	background: #ffffff;
@@ -683,10 +682,22 @@ a {
 	
 }
 
+.loanWrapper .imgwrapper{
+    float: left;
+    width: 210px;
+    height:270px;
+}
+
+.loanWrapper .contentwraper{
+    float: left;
+    width: 790px;
+    margin-left: 210px;
+    padding-left: 30px;
+}
 .loanWrapper > div {
 	float: left;
-	height: 72px;
-	line-height: 72px;
+/*	height: 72px;*/
+/*	line-height: 72px;*/
 	text-align: left;
 	/*
 
@@ -695,13 +706,30 @@ a {
   vertical-align: top;
 */
 }
-
+.loanWrapper table{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.loanWrapper table td{
+/*    width: 200px;*/
+    height: 20px;
+    font-size: 14px;
+}
+.loanWrapper .percentage-bar{
+    display: inline-block;
+    width: 556px;
+    height: 7px;
+    border-radius: 2px;
+    background: #ccc;
+    margin-right: 15px;
+}
 .loanWrapper .event {
-	width: 223px;
+/*	width: 223px;*/
 	color: #6e6e6e;
-	/*  padding-left: 40px;*/
-	
-	font-size: 16px;
+    font-size: 18px;
+    margin-top:50px;
+    padding-bottom: 20px;
+	border-bottom: 1px solid #e4e4e4;
 }
 
 .loanWrapper .event a {
@@ -803,12 +831,12 @@ a {
 }
 
 .loanWrapper .opre .investbtn {
-	width: 80px;
-	height: 30px;
+	width: 102px;
+	height: 36px;
 	text-align: center;
 	line-height: 30px;
 	color: #fff;
-	background-color: #f58220;
+	background-color: #2866c2;
 	border: none;
 	font-size: 14px;
 	display: inline-block;
@@ -859,4 +887,27 @@ a {
 }
 .strengthProtectBox p:hover{
     color: #009ada;
+}
+.container{
+    width: 100%;
+    padding-bottom: 60px;
+    margin-top: 30px;
+    background: #fff;
+}
+.container h4{
+    font-size: 16px;
+    font-family: "黑体";
+    line-height: 50px;
+}
+.container .partner{
+    width: 1100px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.container .icon-single{
+    float: left;
+    padding: 10px 2px;
 }
