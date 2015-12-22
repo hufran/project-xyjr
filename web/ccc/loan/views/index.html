@@ -8,7 +8,7 @@
 
 <div class="">
     <div class="current-container">
-        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">投资列表 </a> > 标的详情</p>
+        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">理财产品列表 </a><a href=""> > xx列表</a> > xx产品详情</p>
 		<div class="box-large">
         <div class="invest-data-wrapper">
             <div class="investContainer">
@@ -22,29 +22,30 @@
                         开标时间:{{loans.timeOpen}}
                     </div>
                     {{/if}}
-                    <div class="title" style="height:52px;line-height:52px;"><img src="/ccc/loan/img/money.png" />{{loans.title}}</div>
+                    <div class="title" style="height:50px;line-height:50px;"><img src="/ccc/loan/img/money.png" />{{loans.title}}</div>
 
                 </div>
                 <div class="content">
                     <div class="inner">
                         <div class="item itemSecond">
-                            <div class="name"><img src="/ccc/loan/img/limit.png" />投资期限:</div>
-                            <div class="value">{{loans.fduration}}<span>{{loans.fdurunit}}</span>
+                              <div class="name"><img src="/ccc/loan/img/detailRate.png" />预期年化收益率:</div>
+                            <div class="value">{{loans.rate}}<span style="color:#ff7200;">%</span>
                             </div>
                         </div>
                         <div class="item itemThird" style="border-right:none">
-                            <div class="name"><img src="/ccc/loan/img/loanAmount.png" />标的金额:</div>
-                            <div class="value">{{loans.amount}}<span>{{loans.aUnit}}</span>
+                               <div class="name"><img src="/ccc/loan/img/limit.png" />投资期限:</div>
+                            <div class="value">{{loans.fduration}}<span>{{loans.fdurunit}}</span>
                             </div>
                         </div>
                         <div class="item itemFirst">
-                            <div class="name"><img src="/ccc/loan/img/detailRate.png" />年化收益率:</div>
-                            <div class="value">{{loans.rate}}<span style="color:#ff7200;">%</span>
+                             <div class="name"><img src="/ccc/loan/img/loanAmount.png" />可投金额:</div>
+                            <div class="value">{{loans.leftAmount}}<span>{{loans.amountUnit}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="innerBottom">
 
+<!--
 						 <div class="itemt pic">
                                 <span class="processFont">项目余额</span>
                                 <div class="process">
@@ -55,16 +56,31 @@
         </div>
     </div>
                             </div> 
-						
-                        <ul class="loanMethod">
-							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>
-                            <li style="float:right;margin-right:38px;margin-left:125px;margin-top:10px;">还款方式：{{loans.method}}</li>
-							<div>
-								<a class="protocol" target="_blank" href="/loan/loanRequest/{{loans.requestId}}/contract/template">合同范本</a>
-							</div>
+-->
+				       <ul class="loanMethod interestMethod">
+<!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
+                            <li>计息方式：</li>
+                            <li>起投金额：</li>
                         </ul>
-						 
+                        <ul class="loanMethod">
+<!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
+                            <li>还款方式：{{loans.method}}</li>
+                            <li>投资限额：</li>
+                        </ul> 
                     </div>
+                                          <div class="progress-wp">
+                                <div class="progress-num">
+                                </div>
+                                <div class="progress-line">
+                                   <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-danger" style="width:{{ loans.investPercent }}%;"></div>
+                                    </div>
+                                      <span>{{ loans.investPercent }}%</span>
+                                </div>
+                            </div>
+                    												<div>
+								<a class="protocol" target="_blank" href="/loan/loanRequest/{{loans.requestId}}/contract/template">协议范本</a>
+							</div>	
                 </div>
                 <div class="h20"></div>
             </div>

@@ -33,10 +33,13 @@ app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 app.locals.title = '国美金融';
 app.locals.keywords = '国美金融';
 app.locals.description = '国美金融';
-
+var Data=require('@ds/data');
 app.use(require('cookie-parser')());
 ds.request(app, config.urlBackend);
-
+app.use(function(req,res,next){
+    req.data=Data(req);
+    next();
+});
 app.use('/api/web', ds.loader('api'));
 
 if (config.startOAuthServer) {
