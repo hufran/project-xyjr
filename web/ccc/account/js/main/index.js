@@ -69,6 +69,10 @@ var dueInAmount = CC.user.dueInAmount || 0;
 
 // 冻结金额
 var frozenAmount = CC.user.frozenAmount || 0;
+if (CC.investStatistics.currentMonthRepay){
+var currentMonthInterest = parseFloat(CC.investStatistics.currentMonthRepay.interest).toFixed(2);
+var currentMonthPrinipal = parseFloat(CC.investStatistics.currentMonthRepay.principal).toFixed(2);
+}
 
 // 总资产
 var totalAmount = avaAmount + dueInAmount + frozenAmount;

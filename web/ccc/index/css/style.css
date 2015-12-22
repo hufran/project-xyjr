@@ -678,7 +678,7 @@ a {
 }
 
 .loanWrapper:hover{
-	background-color: #F5F4F9;
+/*	background-color: #F5F4F9;*/
 	
 }
 
@@ -849,7 +849,7 @@ a {
 
 
 .loanWrapper .opre .investbtn:hover {
-	background-color: #df6502;
+	background-color: #346ec4;
     color:#fff;
 }
 

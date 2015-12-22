@@ -1,10 +1,9 @@
 'use strict';
-GLOBAL.APP_ROOT = __dirname;
+var path = require('path');
+var assert = require('assert');
 var config = require('config');
-var port = parseInt(process.env.PORT, 10) || config.port || 4000;
-require('@ds/build')(require('gulp'), {
-    appRoot: APP_ROOT,
-    port: port,
-    commonjs: []
-});
+assert(config.dsAppRoot);
 
+var port = parseInt(process.env.PORT, 10) || config.port || 4000;
+
+require('ds-build')(require('gulp'));

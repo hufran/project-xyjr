@@ -203,13 +203,6 @@
 	        });
 	        isVer = false;
 	        return false;
-	    } else if (re.test(user.newPassword)) {
-	        rePassword.set('errors', {
-	            visible: true,
-	            msg: '密码不能带有空格'
-	        });
-	        isVer = false;
-	        return false;
 	    }
 
 	    if (isVer) {
