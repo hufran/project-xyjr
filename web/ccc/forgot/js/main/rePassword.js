@@ -215,19 +215,19 @@
 	                rePassword.set('step2', false);
 	                rePassword.set('step3', true);
 	                var time = 3;
-	                rePassword.set('timeLeft', 3);
-	                setInterval(function () {
-	                    if (time > 0) {
-	                        rePassword.set('timeLeft', --time);
-	                    } else {
-	                        rePassword.set('timeLeft', 0);
-	                        time = 1;
-	                    }
-	                    if (time === 1) {
-	                        clearInterval();
-	                        window.location.href = '/';
-	                    }
-	                }, 1000);
+//	                rePassword.set('timeLeft', 3);
+//	                setInterval(function () {
+//	                    if (time > 0) {
+//	                        rePassword.set('timeLeft', --time);
+//	                    } else {
+//	                        rePassword.set('timeLeft', 0);
+//	                        time = 1;
+//	                    }
+//	                    if (time === 1) {
+//	                        clearInterval();
+//	                        window.location.href = '/';
+//	                    }
+//	                }, 1000);
 	            }
 	        });
 	    }

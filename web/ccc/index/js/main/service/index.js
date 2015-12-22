@@ -7,8 +7,18 @@
 
 exports.IndexService = {
     getSummaryData: function (next) {
-        request
-            .get('/api/v2/loans/summary')
+//         request.get('/api/v2/loans/getLoanWithProduct', {
+//    }).send({
+//            product: 'XSZX,HDZX,LCZQ',
+//            currentShow: 3,
+//            status: 'OPENED,SCHEDULED,FINISHED,SETTLED',
+//            minDuration: 0,
+//            maxDuration: 100,
+//            minRate: 0,
+//            maxRate: 100,
+//            asc: 'true',
+//        })
+         request.get('/api/v2/loans/summary')
             .end()
             .then(function (res) {
                 next(res.body);

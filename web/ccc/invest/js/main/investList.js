@@ -161,7 +161,21 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         }
     });    
     
+    $('.sRate li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var minRate = $(this)
+                .data('min-rate');
+            var maxRate = $(this)
+                .data('max-rate');
 
+            params.currentPage = 1;
+            params.minRate = minRate;
+            params.maxRate = maxRate;
+            render(params);
+        }
+    });
+    
     $('.sDuration li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
@@ -177,15 +191,6 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         }
     });
 
-    $('.sStatus li').click(function(){
-        if (!$(this).hasClass("selectTitle")) {
-            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-            var status = $(this).data("status");
-            params.status = status;
-            params.currentPage = 1;
-            render(params);
-        }
-    });
 
     function render(params) {
         InvestListService.getLoanListWithCondition(jsonToParams(params),

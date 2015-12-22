@@ -1,73 +1,71 @@
 <!--{{JSON.stringify(list.titleLength)}}-->
-      <table class="s-list-table">
-            <tr>
-                <th style="width:280px;padding-left:38px;">名称</th>
-                <th style="width:160px;">标的金额</th>
-                <th style="width:140px;">年化收益</th>
-                <th style="width:154px;">投资期限</th>
-                <th style="width:190px;">还款方式</th>
-                <th style="width:190px;">进度</th>
-                
-                <th style="width:126px;">状态</th>
-            </tr>
-        </table>
+
 {{#list}}
 <div class="loanWrapper">
+<div class="imgwrapper"></div>
+<div class="contentwrapper">
     <div class="event">
-		{{#if titleLength>20}}
-			<p>{{title}}</p>
-		{{/if}}
+        {{#if titleLength>20}}
+            <p>{{title}}</p>
+        {{/if}}
         <a href="loan/{{ id }}" class="invest-title">
             {{#if titleLength>20}}
                 {{title.substr(0,12)}}...
-				{{else}}
-				{{title}}
-				{{/if}}
+                {{else}}
+                {{title}}
+                {{/if}}
         </a>
     </div>
-    <div class="amount">{{ amount }}<span>{{ amountUnit }}</span></div>
-    <div class="rate">{{ rate }}<i>%</i></div>
-    <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span></div>
+    <table>
+            <tr>
+                <td rowspan="2" style="width:252px; font-size:16px;">年化收益{{ rate }}<i>%</i></td>
+                <td style="width: 200px;">投资期限:{{fduration}}</td>
+                <td style="width: 200px;">可投金额:{{amount}}</td>
+                <td>
+                    <div class="opre">
+                        {{#if status === 'OPENED'}}
+                            <a href="/loan/{{id}}" style="text-decoration:none">
+                                <div class="investbtn">立即投资</div>
+                            </a>
+                        {{/if}}
+                        {{#if status === 'SCHEDULED'}}
 
-    <div class="backMoney">{{ method }}</div>
-        <div class="process">
-        <div class="rate-chart">	 
-          <div class="easy-pie-chart pie" data-percent="{{ investPercent }}" data-status='{{status}}' style="left:33px;top:9px">
-            <span class="percentageNum">{{ investPercent }} </span>
-          </div>
-        </div>
+                        <a href="/loan/{{id}}" style="text-decoration:none">
+                            <div class="investbtn investbtn-hover">即将开始</div>
+                        </a>
+                        <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
+                        data-serv="{{ serverDate }}" style="margin-top:-46px;color: black;width: 180px;text-align: center;margin-left:-30px"></div>
+
+                        {{/if}}
+                        {{#if status === 'FINISHED'}}
+                            <a href="/loan/{{id}}" style="text-decoration:none">
+                                <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
+                            </a> 
+                        {{/if}}
+                        {{#if status === 'SETTLED'}}
+                            <a href="/loan/{{id}}" style="text-decoration:none">
+                                <div class="investbtn" style="background:lightgrey; color: #fff">还款中</div> 
+                            </a> 
+                        {{/if}}
+                        {{#if status === 'CLEARED'}}
+                            <a href="/loan/{{id}}" style="text-decoration:none">
+                                <div class="investbtn" style="background:lightgrey; color: #fff">还款结束</div> 
+                            </a> 
+                        {{/if}}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px;">起投金额</td>
+                <td style="width: 200px;">还款方式:{{ method }}</td>
+            </tr>
+    </table>
+    <div class="percentage">
+    <span class="percentage-bar"></span>
+    <span>{{ investPercent }}<i>%</i></span>
     </div>
-    <div class="opre">
-        {{#if status === 'OPENED'}}
-            <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn">立即投资</div>
-            </a>
-        {{/if}}
-        {{#if status === 'SCHEDULED'}}
+</div>
 
-        <a href="/loan/{{id}}" style="text-decoration:none">
-            <div class="investbtn investbtn-hover">即将开始</div>
-        </a>
-        <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
-        data-serv="{{ serverDate }}" style="margin-top:-46px;color: black;width: 180px;text-align: center;margin-left:-30px"></div>
-
-        {{/if}}
-        {{#if status === 'FINISHED'}}
-            <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
-            </a> 
-        {{/if}}
-        {{#if status === 'SETTLED'}}
-            <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #fff">还款中</div> 
-            </a> 
-        {{/if}}
-        {{#if status === 'CLEARED'}}
-            <a href="/loan/{{id}}" style="text-decoration:none">
-                <div class="investbtn" style="background:lightgrey; color: #fff">还款结束</div> 
-            </a> 
-        {{/if}}
-    </div>
 </div>
 <script type="text/javascript">
 	$('.event a').mouseenter(function(){

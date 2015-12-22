@@ -29,8 +29,11 @@ module.exports = function (router, auth) {
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user()); 
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
     
+router.get('/api/v2/loans/getLoanWithProduct',auth.pass());
+    
     router.get('/api/v2/message/markAsRead/:messageId', auth.user());
     router.get('/api/v2/message/user/:userId/listByStatus', auth.user());
+    router.get('/api/v2/loans/getLoanWithProduct', auth.pass());
     router.get('/api/v2/message/user/:userId/notifications', auth.user());
 
     router.post('/api/v2/user/authenticateEmail', auth.user());
@@ -65,4 +68,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/lianlianpay/bankBranches/:cityCode/:branchNameFilter/:cardNo', auth.pass());
     router.get('/api/v2/loans/getLoanWithProduct', auth.pass());
     router.get('/api/v2/user/:userId/userAuthenticate', auth.user());
+     //导航
+    router.get('/navigation/listPlayPanes', auth.pass());
+    router.get('/api/v2/navigation/listPlayPanes', auth.pass());
 };

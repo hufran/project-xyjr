@@ -16,11 +16,17 @@
 	font-size: 12px;
 }
 
-
-#main-container{
-	margin-top: 7px;
+#main-container .navTitle{
+    color:#4a4a4a;
+    font-size: 14px;
+    width:1100px;
+    margin: 0px auto;
+    line-height: 48px;
 }
-
+#main-container .navTitle a{
+       color:#4a4a4a;
+    font-size: 14px;
+}
 .main a {
 	text-decoration: none;
 }
@@ -45,7 +51,6 @@ body {
 	background-color: white;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 40px;
 	border: 1px solid #dddddd;
 	width: 1100px;
 	margin-bottom: 37px;
@@ -495,7 +500,7 @@ body {
 .main .way04 {
 	margin-left: 34%;
 	overflow: hidden;
-	margin-top: 86px;
+	margin-top: 130px;
 }
 
 .main .box_icon,
@@ -507,14 +512,22 @@ body {
 	margin-right: 30px;
 }
 
-.main .next02 h3 a {
-	text-align: center;
-	line-height: 40px;
-	text-decoration: none;
-	color: #0d7cd5;
-	font-size: 14px;
+.main .next02 h4 {
+	margin-left: 20px;
 }
-
+.main .step-login{
+    padding-left: 0;
+	display: block;
+	background: #007ec5;
+    width: 225px;
+    height: 46px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 46px;
+    margin-top: 120px;
+}
 .main .next02 h4 {
 	color: #666;
 	font-size: 18px;

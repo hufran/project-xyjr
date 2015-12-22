@@ -49,7 +49,7 @@
 #help-left .aboutus-title{
     width: 200px;
     height:60px;
-    background: #123456;
+    background: #007ec5;
     color: #fff;
     margin-left: 0px;
 }
@@ -68,7 +68,7 @@
 }
 #help-left .active{
 /*    background-color: #24b2e7;*/
-    background-image: url(/ccc/aboutus/img/leftbar.png);
+    background-image: url(/ccc/aboutus/img/blue.png);
     background-repeat: no-repeat;
 }
 #help-left a{
@@ -245,54 +245,7 @@
 .paragraph p{font-size: 14px; color: #666; line-height: 24px;font-family:MicrosoftYaHei;text-indent: 22px;margin-bottom: 35px;}
 
 #guanyuwomen .paragraph{margin-top: 30px;}
-/*
-.contact_service{
-    height:80px;
-    width:80px;
-    background-color:#e3e2e2;
-    border-radius: 5px;
-    padding-top:16px;
-    position: absolute;
-    right:0px;
-    bottom:124px;
-}
-.contact_service span a{
-    color:#24b2e7;
-    font-size:12px;
-    line-height:12px;
-    margin-top:10px;
-    text-align:center;
-    margin-left:10px;
-}
-.contact_service img{
-    margin-left:21px;
-    height:34px;
-    width:38px;
-}
-.back_top{
-    height:80px;
-    width:80px;
-    background-color:#24b2e7;
-    border-radius: 5px;
-    padding-top:16px;
-    position: absolute;
-    right:0px;
-    bottom:40px;
-}
-.back_top span a{
-    color:#ffffff;
-    font-size:12px;
-    line-height:12px;
-    margin-top:10px;
-    text-align:center;
-    margin-left:10px;
-}
-.back_top img{
-    margin-left:18px;
-    height:28px;
-    width:51px;
-}
-*/
+
 /* 右页面*/
  .invest-wrapper{
 /*     margin-top:22px;*/

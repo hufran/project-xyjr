@@ -5,10 +5,12 @@
     
 }
 
+/*
 #main-container * {
 	font-family: '微软雅黑';
   
 }
+*/
 
 #main-container {
 /*	margin-top: 6px;*/
@@ -70,17 +72,13 @@ hr {
 	margin: 0 auto;
 }
 
-.invest-pager-wrapper{
-	margin-top: 20px;
-}
-
 .invest-pager-wrapper ul{
 	margin: 0;
 }
 
 .invest-pager-wrapper .invest-pager {
 	text-align: center;
-	margin: 20px 0;
+	padding: 20px 0;
 }
 
 .invest-pager-wrapper .invest-pager li {
@@ -89,6 +87,8 @@ hr {
 	padding: 5px 10px;
 	border: 1px #e5e5e5 solid;
 	margin-right: 8px;
+    background: #eee;
+    border-radius: 5px;
 }
 
 .invest-pager-wrapper .invest-pager a {
@@ -119,13 +119,13 @@ hr {
 	background-color: white;
 	position: relative;
 	height: auto;
-	width: 1200px;
-	padding-left: 16px;
-	padding-right: 16px;
+	width: 1100px;
+	padding-left: 40px;
+    font-size: 18px;
+    margin-bottom: 60px;
 }
 
 .s-content .s-nav-view .u-nolist-ul {
-	border-bottom: 1px solid #ccc;
 	padding: 10px 0;
 	overflow: hidden;
 }
@@ -135,20 +135,19 @@ hr {
 }
 
 .s-content .s-nav-view .u-nolist-ul li {
-	width: 86px;
+	width: 95px;
 	padding-top: 4px;
 	padding-bottom: 4px;
-	text-align: center;
+/*	text-align: center;*/
 	color: #6d6c6c;
 	cursor: pointer;
 	display: block;
 	float: left;
-	margin-right: 35px;
+	margin-right: 20px;
 }
 
 .s-content .s-nav-view .u-nolist-ul li:hover {
-	background-color: #555f81;
-	color: white;
+	color: #ff7200;
 }
 
 .s-content .s-nav-view .u-nolist-ul li.selectTitle:hover {
@@ -157,8 +156,7 @@ hr {
 }
 
 .s-content .s-nav-view .u-nolist-ul li.s__is-selected {
-	background-color: #555f81;
-	color: white;
+	color: #ff7200;
 }
 
 .s-content p {
@@ -262,7 +260,7 @@ hr {
 	height: 72px;
 	width: 100%;
 	background: #fff;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #eee;
 	position: relative;
 }
 
@@ -272,7 +270,7 @@ hr {
 
 .loanItemWrapper .loanPartOne {
 	float: left;
-	width: 250px;
+	width: 280px;
 	height: 100%;
     text-indent: 20px;
 }
@@ -285,6 +283,7 @@ hr {
 	
 	font-size: 1em;
 	color: #324075;
+    padding-left: 20px;
 	
 }
 
@@ -294,7 +293,7 @@ hr {
 
 .loanItemWrapper .loanPartOne .loantitle a {
 	text-decoration: none;
-	color: #4a4a4a;
+	color: #007ec5;
 	font-size: 16px;
 }
 /*
@@ -326,9 +325,9 @@ hr {
 .loanItemWrapper .loanRate {
 	float: left;
 	height: 100%;
-	width: 120px;
+	width: 140px;
 	line-height: 72px;
-	text-align: left;
+	text-align: center;
 	font-size: 28px;
 	color: #ff7200;
 }
@@ -341,10 +340,11 @@ hr {
 	float: left;
 	height: 100%;
 	width: 125px;
-	text-align: left;
+/*	text-align: left;*/
 	line-height: 72px;
 	font-size: 20px;
 	color: #4a4a4a;
+    padding-left: 18px;
 }
 
 .loanItemWrapper .duration span {
@@ -365,10 +365,10 @@ hr {
 .loanItemWrapper .backmoney {
 	float: left;
 	height: 100%;
-	width: 178px;
-	text-align: left;
+	width: 190px;
+	text-align: center;
 	line-height: 72px;
-	font-size: 14px;
+	font-size: 16px;
 	color: #4a4a4a;
 }
 
@@ -378,9 +378,10 @@ hr {
 }
 
 .loanItemWrapper .process {
-	width: 138px;
+	width: 143px;
 	float: left;
 	position: relative;
+    text-align: center;
 }
 
 .loanItemWrapper .process .investPercent {
@@ -391,10 +392,9 @@ hr {
 
 .loanItemWrapper .investBtn {
 	float: left;
-	width: 126px;
+	width: 211px;
 	height: 100%;
 	text-align: center;
-	padding-right: 60px;
 }
 
 .loanItemWrapper .investBtn .investbtn-time{
@@ -428,7 +428,7 @@ hr {
 	height: 32px;
 	text-align: center;
 	line-height: 32px;
-	background-color: #f58220;
+	background-color: #007ec5;
 	color: #fff;
 	border-radius: 5px;
 	display: inline-block;

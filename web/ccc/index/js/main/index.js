@@ -204,6 +204,19 @@ $(document).keyup(function (e) {
     }
 });
 
+//合作伙伴
+request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
+    .end()
+    .then(function (res) {
+        var count = new Ractive({
+            el: '.partner .icon-grounp',
+            template: '{{#each cooperation}} <div class="icon-single"><a href="{{author}}"><img class="company-pic" src="{{url}}" /></a></div>{{/each}}',
+            data: {
+                cooperation: res.body
+            }
+        });
+    });
+//友情链接
 request.get(encodeURI('/api/v2/cms/category/LINK/name/友情链接'))
     .end()
     .then(function (res) {

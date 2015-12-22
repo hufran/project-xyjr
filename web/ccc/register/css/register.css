@@ -434,10 +434,11 @@ h3 {
 .agreement-div .next-step {
 	padding-left: 0;
 	display: block;
-	background-color: #f58200;
+	background-color: #007ec5;
 	margin-left: 120px;
+    margin-top: 80px;
 }
 
 .agreement-div .next-step:hover{
-	background-color: #df6502;
+	background-color: #1499e3;
 }

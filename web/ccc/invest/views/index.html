@@ -3,61 +3,52 @@
 <link rel="stylesheet" href="/ccc/global/css/modules/cccAnimate.css">
 <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
 <link rel="stylesheet" href="/ccc/invest/css/style.css">
-<!-- after header -->
-<!-- <div class="after-header">
-    <span class="project-list">项目列表</span>
-    <span class="benefit-calculator">收益计算器</span>
-</div> -->
-
 
 <div id="main-container">
-    
+    <p class="title"><a href="/">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;理财产品列表</p>
     <div class="s-content u-pos-r-center">
-<!--        <p class="title"><a href="/">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;我要投资</p>-->
+        
         <div class="investBox">
              <div class="no-warry-ul">
                  {{#products:num}}
                  <div class="no-warry" data-product="{{data.productKey}}" {{#if num===2}} style="margin-right:0px;"{{/if}}>
                      <div class="no-warry-left">
                           {{#if num===0}}<img src="/ccc/invest/img/nowarry.png"/>{{elseif num===1}}<img src="/ccc/invest/img/stock.png"/>{{else}}<img src="/ccc/invest/img/interest.png"/>{{/if}}
-                           <p {{#if num===0}}style="color:#ffbc08;"{{elseif num===1}}style="color:#009ada;"{{else}}
+                           <p {{#if num===0}}style="color:#ffbc08;"{{elseif num===1}}style="color:#007ec5;"{{else}}
                            style="color:#4a4a4a;"{{/if}}>{{data.name}}</p>
                      </div>
-                     {{#if num===0}}
-                     <div class="no-warry-right">
-                        <p>专业机构担保项目</p>
-                        <p>年化收益率高达11%</p>
-                        <p>期限以6-12个月为主</p>
-<!--                        <p>年化收益{{data.minRate}}%~{{data.maxRate}}%</p>-->
-<!--
-                        <p {{#if num===0}}style="color:#999;"{{elseif num===1}}style="color:#999;"{{else}}
-                           style="color:#999;"{{/if}}>{{data.description.substr(0,40)}}</p> 
--->
-                     </div>
-                      {{elseif num===1}}
-                    <div class="no-warry-right">
-                        <p>顶级机构资产转让项目</p>
-                        <p>年化收益率高达9%</p>
-                        <p>期限以3-6个月为主</p>
-                    </div>
-                     {{else}}
-                    <div class="no-warry-right">
-                        <p>随心理财</p>
-                        <p>随存随取</p>
-                        <p>敬请期待</p>
-                    </div>
-                     {{/if}}
                  </div>
                  {{/products}}
             </div>
         </div>
+        <div class="s-nav-view">
+            <ul class="u-nolist-ul sRate">
+                <li class="selectTitle">年化收益：</li>
+                <li class="s__is-selected" data-min-rate="0" data-max-rate="100">全部</li>
+                <li data-min-rate="0" data-max-rate="6">6%以下</li>
+                <li data-min-rate="6" data-max-rate="9">6%-9%</li>
+                <li data-min-rate="9" data-max-rate="11">9%－11%</li>
+                <li data-min-rate="11" data-max-rate="13">11%－13%</li>
+                <li data-min-rate="13" data-max-rate="100">13%以上</li>
+            </ul>
+            <ul class="u-nolist-ul sDuration">
+                <li class="selectTitle">期&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp限：</li>
+                <li class="s__is-selected"  data-min-duration="0" data-max-duration="100">全部</li>
+                <li data-min-duration="0" data-max-duration="1">0-1个月</li>
+                <li data-min-duration="1" data-max-duration="3">1-3个月</li>
+                <li data-min-duration="4" data-max-duration="6">4-6个月</li>
+                <li data-min-duration="7" data-max-duration="12">7-12个月</li>
+                <li data-min-duration="13" data-max-duration="24">13-24个月</li>
+                <li data-min-duration="25" data-max-duration="100">25个月以上</li>
+            </ul>
+        </div>
         <table>
             <tr>
-                <th style="width:280px;padding-left:38px;">名称</th>
-                <th style="width:160px;">标的金额</th>
-                <th style="width:140px;">年化收益</th>
+                <th style="width:280px;padding-left:40px;">名称</th>
+<!--                <th style="width:160px;">标的金额</th>-->
+                <th style="width:140px;padding-left:30px;">年化收益</th>
                 <th style="width:154px;">投资期限</th>
-                <th style="width:190px;">还款方式</th>
+                <th style="width:190px;padding-left:15px;">还款方式</th>
 
                 <th style="width:172px;">进度</th>
                 
@@ -69,10 +60,11 @@
         <div class="invest-list-wrapper">
             <p style="padding: 45px;">加载中...</p>
         </div>
+        <div class="invest-pager-wrapper" id="invest-pager"></div>
     </div>
 </div>
 <!--<hr />-->
-<div class="invest-pager-wrapper" id="invest-pager"></div>
+<!--<div class="invest-pager-wrapper" id="invest-pager"></div>-->
 <div class="space space-30"></div>
 <script>{{{state}}}</script>
 <script src="/ccc/invest/js/main/investList.js"></script>
