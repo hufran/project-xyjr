@@ -21,6 +21,7 @@ exports.IndexService = {
          request.get('/api/v2/loans/summary')
             .end()
             .then(function (res) {
+             console.log('-------',res.body);
                 next(res.body);
             });
     },
