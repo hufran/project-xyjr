@@ -23,7 +23,7 @@ GLOBAL.CONFIG = config;
 var userAgent = require('useragent');
 var ds = require('dysonshell');
 
-require('./global')
+require('./node-global')
 
 var port = Number(process.env.PORT || config.port) || 4000;
 var app = exports = module.exports = require('express')();
