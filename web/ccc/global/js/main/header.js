@@ -61,18 +61,6 @@ $(function(){
             sideUp.hide();
         }
         
-    }
-});
-
-
-//var Cal = require('ccc/global/js/modules/cccCalculator');
-//$('#calculator-create').on('click', function () {
-//    Cal.create();
-//});
-$(".back-top").click(function(){
-$('body,html').animate({scrollTop:0},200);
-return false;
-})
 
 //导航状态
 var path = window.location.pathname;
@@ -131,11 +119,12 @@ $('.weixin-icon').mouseenter(function () {
 
 //控股下拉菜单
     	
-		$("#family").hover(function(){
-			$(this).find("p").css("background","url(/ccc/global/img/slideOn.png) no-repeat");
-			$(this).find("ul").stop().slideDown();
-		},function(){
-			$(this).find("ul").stop().slideUp();
-			$(this).find("p").css("background","url(/ccc/global/img/slide.png) no-repeat");
-		});
+$("#family").hover(function(){
+	$(this).find("p").css("background","url(/ccc/global/img/slideOn.png) no-repeat");
+	$(this).find("ul").stop().slideDown();
+},function(){
+	$(this).find("ul").stop().slideUp();
+	$(this).find("p").css("background","url(/ccc/global/img/slide.png) no-repeat");
+});
 
+}})

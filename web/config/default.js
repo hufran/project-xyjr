@@ -1,10 +1,16 @@
 "use strict";
 var xtend = require('xtend');
-var pathFn = require('path');
+var path = require('path');
 
 module.exports = xtend(require('./oauth2'), {
+
+    dsAppRoot: path.resolve(__dirname, '..'),
+    dsComponentPrefix: 'ccc',
+    dsExpressStateNameSpace: 'CC',
+    dsRequestAllowCookie: ['ccat'],
+
     // project name 作为 log.io的 node name
-    project_name: pathFn.basename(pathFn.join(__dirname, "..")),
+    project_name: path.basename(path.join(__dirname, "..")),
     // port 用于开发调试，每个新项目 +1
     port: 4001,
     domain: 'zqjr.uats.cc',
@@ -108,7 +114,7 @@ module.exports = xtend(require('./oauth2'), {
     logio_level: "debug",
 
     // 存放xxx.log 的文件夹
-    logs_dir: pathFn.join(__dirname, "..", "logs"),
+    logs_dir: path.join(__dirname, "..", "logs"),
     urlLoanVerify: "http://172.30.0.216:8080/aimp/index",
     verifySystemCode: "QY0002",
     verifySystemMd5key: "QY0002",

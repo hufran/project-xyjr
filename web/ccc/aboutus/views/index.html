@@ -1,0 +1,66 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/aboutus/css/help2.css">
+<div class="nav-shadow"></div>
+<div class="page-guide">
+    
+    <p id="aboutus-title"><a href="/">首页</a> >关于我们>{{tab.text}}</p>
+    <div id="help-left" class="pull-left">
+
+        {{>list}}
+    </div>
+
+
+    <div id="help-right" class="pull-right">
+        <div class="invest-container">
+            <div class="invest-wrapper">
+                <div class="help-title">
+                <h1>{{tab.text}}</h1>
+                <div class="line"></div>
+                </div>
+                {{#if tab.text!='帮助中心'}}
+                <div class="invest-wrapper">
+                    {{#each contents}}
+                    <div class="news-box">
+                        <div class="news-brame">
+                        <!-- <a href="/cms/p/{{this.id}}">
+                        {{#if title.length > 40}}
+                                {{title.substr(0,40)}}...
+                            {{else}}
+                                {{title}}
+                            {{/if}}</a> -->
+                            {{{content}}}
+                        </div>
+                        <!-- <div class="news-pubdate">{{pubDate}}</div> -->
+                    </div>
+                    {{/each}}
+
+                        </div>
+                         {{else}}
+                            <div class="invest-wrapper">
+                                <p class="new-guide">新手指引</p>
+                                <img class="new-guide-pic" src="/ccc/aboutus/img/register-help.png"/>
+                                <p class="new-guide">常见问题</p>
+                            {{#each contents}}
+                              <div class="each-question">
+                              <div class="question-title"><img style="margin-right:10px;" src="/ccc/aboutus/img/question-icon.png"/>{{title}}</div>
+                              <div class="article-content">{{& content}}</div>
+                               </div>
+                            {{/each}}
+                                
+                                
+                          
+                                
+                        </div>
+                        {{/if}} 
+                    </div>
+                </div>
+            </div>
+             
+
+      
+    <div class="clear_left"></div>
+</div>
+
+
+<script src="/ccc/aboutus/js/main/common.js"></script>
+</dsBody>

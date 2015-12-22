@@ -23,7 +23,7 @@
 <!--[if lt IE 10]>
 <script src="/ccc/global/js/ie8fix.js"></script>
 <![endif]-->
-<script src="/ccc/global.js" async></script>
+<script src="/ccc/global-common.js" async></script>
 <link rel="stylesheet" href="/ccc/global/css/base.css" />
 <link rel="stylesheet" href="/ccc/global/css/base1.css" />
 <!--[if IE 8]><link rel="stylesheet" href="/ccc/global/css/ie8.css" /><![endif]-->
@@ -32,10 +32,10 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
 <title>{{title}}</title>
 <script>
-    window.CC = {};{{{ state }}}
+    {{{ state }}};
     window.global = window.global || window;
     window.process = window.process || CC.process;
-    if(process.env.NODE_ENV === 'development'){document.write('<script src="/ccc/template-watch/js/getRactiveTemplate.js"></'+'script>');}
+    if(process.env.NODE_ENV === 'development'){document.write('<script src="/ccc/template-watch/js/dist/getRactiveTemplate.js"></'+'script>');}
     if(process.env.NODE_ENV === 'development' || process.env.NODE_APP_INSTANCE === 'uat'){document.write('<script src="/ccc/inspect/js/main/inspect.js"></'+'script>');}
 </script>
 <script>
@@ -147,7 +147,7 @@ var _hmt = _hmt || [];
     </div>
 </div>
 
-<div id="main-container" style="padding-bottom:0"></div>
+<div id="main-container" style="padding-bottom:0">{{>content}}</div>
 
 <div id="mask-layer-wraper">
 </div>
