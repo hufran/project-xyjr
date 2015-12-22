@@ -51,7 +51,23 @@ router.get('/api/v2/loans/getLoanWithProduct',auth.pass());
 
     router.get('/api/v2/coupon/:userId/coupons/byStatus', auth.user());
     router.get('/api/v2/loan/:id/invests/:page/:pageSize', auth.pass());
-    
+
+    //银盈通
+    router.post('/api/v2/yinyingtong/onlineBankDeposit/:userId', auth.pass());
+    router.post('/api/v2/yinyingtong/depositReturn', auth.pass());
+    router.post('/api/v2/yinyingtong/getBankInfo', auth.pass());
+
+    //0元购
+    router.get('/api/v2/invest/shouldInvest', auth.user());
+    router.post('/api/v2/invest/user/:userId/forOffline', auth.user());
+
+    router.get('/api/v2/loans/products/list', auth.pass());
+
+    router.post('/api/v2/users/achieve/userShare/check', auth.pass());
+    router.post('/api/v2/users/achieve/userShare', auth.pass());
+    router.get('/api/v2/lianlianpay/bankBranches/:cityCode/:branchNameFilter/:cardNo', auth.pass());
+    router.get('/api/v2/loans/getLoanWithProduct', auth.pass());
+    router.get('/api/v2/user/:userId/userAuthenticate', auth.user());
      //导航
     router.get('/navigation/listPlayPanes', auth.pass());
     router.get('/api/v2/navigation/listPlayPanes', auth.pass());

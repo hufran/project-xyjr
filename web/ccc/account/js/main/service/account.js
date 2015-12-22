@@ -148,8 +148,33 @@ exports.accountService = {
     getNewMessageNum: function (next) {
         request('GET', '/api/v2/message/countNewNotifications/MYSELF')
             .end()
-            .then(function (r) {
-                next(r.body);
-            });
+            .then(function(res){
+                next(res.body);
+        });
+    },
+    getBranchName: function (params,next) {
+        request('GET', encodeURI('/api/v2/lianlianpay/bankBranches/' + params))
+          .end()
+          .get('body')
+          .then(function (r) {
+              next(r);
+          });
+    },
+    getAuthentication: function (next) {
+        request('GET', '/api/v2/user/MYSELF/userAuthenticate')
+          .get('body')
+          .then(function (r) {
+              if (r.success) {
+                  next({
+                    serviceError: false,
+                    data: r.data,
+                  });
+              } else {
+                  next({
+                    serviceError: true,
+                    error: r.error[0].message || 'SERVER ERROR'
+                  })
+              }
+          });
     }
 };
