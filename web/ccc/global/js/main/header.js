@@ -67,8 +67,8 @@ var path = window.location.pathname;
 
 if (new RegExp("^/$")
     .test(path)) {
-    $(".u-nolist-ul li a#index")
-        .addClass("navactive");
+//    $(".u-nolist-ul li a#index")
+//        .addClass("navactive");
 
 } else if (new RegExp("^/invest")
     .test(path)) {

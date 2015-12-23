@@ -21,6 +21,7 @@ router.get('/', function (req, res, next) {
         .then( function(data){
        
 //            var data = parseCMStitle(data.slice(0,1));
+        var data = data.sort(compare('pubDate'));
             return data;
         });
        res.locals.expireOne = req.uest(
@@ -30,6 +31,7 @@ router.get('/', function (req, res, next) {
         .then( function(data){
        
 //            var data = parseCMStitle(data.slice(0,1));
+           var data = data.sort(compare('pubDate'));
             return data;
         });
     res.locals.latestPublication = req.uest(
@@ -39,6 +41,7 @@ router.get('/', function (req, res, next) {
         .then( function(data) {
 //            var data = parseCMStitle(data.slice(0,5));
 //            var data = data.slice(0,5);
+        var data = data.sort(compare('pubDate'));
             return data;
         });
       res.locals.latestImgPublication = req.uest(
@@ -46,6 +49,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
+          var data = data.sort(compare('pubDate'));
             return data;
         });       
     res.locals.latestNews = req.uest(
@@ -55,6 +59,7 @@ router.get('/', function (req, res, next) {
         .then( function(data) {
 //            var data = parseCMStitle(data.slice(0,5));
 //            var data = data.slice(0,5);
+        var data = data.sort(compare('pubDate'));
             return data;
         });
 //     res.locals.friendsLinks = req.uest(
@@ -98,6 +103,20 @@ function parseCMStitle(data) {
         }
     }
     return data;
+}
+    
+function compare(propertyName){
+	return function(object1,object2){
+		var value1 = object1[propertyName];
+		var value2 = object2[propertyName];
+		if(value2 < value1){
+			return 1;
+		}else if(value2 > value1){
+			return -1;
+		}else{
+			return 0;
+		}
+	}
 }
    
 }

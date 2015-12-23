@@ -159,11 +159,47 @@
                 <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
             <h4>新闻资讯</h4>
+<!--            图片新闻轮播start-->
+<div class="imgnews-carousel-wrapper">
+    <!-- 在carousel上的 按钮 等 -->
+    <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
+    <div class="current-container info-wrapper">
+    </div>
+
+    <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            {{#carousel}}
+
+            <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
+            </li>
+
+            {{/}}
+        </ol>
+
+        
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            {{#each latestImgPublication:num}}
+            <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
+                <a href="{{this.link}}" target="_blank">
+                    <div style="background-image:url({{author}}); background-repeat:no-repeat; background-position:center; width:292px;height: 181px;">
+                    </div>
+                </a>    
+            </div>
+            {{/each latestImgPublication:num}}
+        </div>
+    </div>
+</div>
+<!--
             {{#each latestImgPublication:num}}
                 {{#if num+1<6 }}
             <a href=""><img style="float: left; width:292px; height:181px;" src="{{author}}" alt=""></a>
                 {{/if}}
             {{/each}}
+-->
+            
+<!--            图片新闻轮播end-->
             <ul>
                 {{#each latestPublication:num}}
                 {{#if num+1<6 }}

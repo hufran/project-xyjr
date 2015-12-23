@@ -33,10 +33,10 @@ app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
 app.use(require('cookie-parser')());
 ds.request(app, config.urlBackend);
-app.use(function(req,res,next){
-    req.data=new Data(req);
-    next();
-});
+//app.use(function(req,res,next){
+//    req.data=new Data(req);
+//    next();
+//});
 app.use('/api/web', ds.loader('api'));
 
 if (config.startOAuthServer) {
@@ -123,11 +123,11 @@ app.use(function (req, res, next) {
 //            href: '/guide',
 //        },
 //    ];
-    req.uest.get('/navigation/listPlayPanes').get('body').then(function (r) {
-        console.log('========',r);
+    req.uest.get('/api/v2/navigation/listPlayPanes').get('body').then(function (r) {
+        console.log('====sdfsdf====',r);
           next();
         });
-    
+
     res.expose(Date.now(), 'serverDate');
     // res.layout = 'ccc/global/views/layouts/default.html';
 //    res.locals.title = config.appName; // 设置html标题

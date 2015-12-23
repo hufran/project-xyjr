@@ -124,6 +124,9 @@
 #footer-color a{
     color: #abb2ba;
 }
+#footer-color a{
+    color: #abb2ba;
+}
 .ssfooter{
     margin-top:25px;
   
@@ -426,14 +429,14 @@
     background-image: none;
 }
 .carousel-control.left img{
-/*    margin-left: -70px;*/
+    margin-left: -70px;
     position: absolute;
 }
 .carousel-control.right{
     background-image: none;
 }
 .carousel-control.right img{
-    margin-left: -42px;
+    margin-left: 50px;
      position: absolute;
 }
 

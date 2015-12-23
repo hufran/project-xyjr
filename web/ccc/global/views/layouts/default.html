@@ -120,6 +120,8 @@ var _hmt = _hmt || [];
 
             <ul class="u-nolist-ul">
 <!--                {{#if !user.enterprise}}-->
+<!--                   动态导航数据开始-->
+<!--
                     <li class="u-nolist-ul-li"><a class="u-nolist-a" id="index" href="">首页</a></li>
                     <li class="u-nolist-ul-li">
                         <a class="u-nolist-a" id="production" href="">理财产品</a>
@@ -129,7 +131,7 @@ var _hmt = _hmt || [];
                             <li><a href="">理财专区</a></li>
                         </ul>
                     </li>
-<!--                    <li><a id="invest" href="">股权投资</a></li>-->
+                    <li><a id="invest" href="">股权投资</a></li>
                     <li class="u-nolist-ul-li">
                         <a class="u-nolist-a" id="crowdfund" href="">回报众筹</a>
                         <ul class="u-seclist-ul">
@@ -140,7 +142,22 @@ var _hmt = _hmt || [];
                     </li>
                     <li class="u-nolist-a" class="u-nolist-ul-li"><a class="u-nolist-a" id="information" href="/userKnow">用户须知</a></li>
                     <li class="u-nolist-a" class="u-nolist-ul-li"><a class="u-nolist-a" id="myplace" href="">我的地盘</a></li>
-
+-->
+{{#each headerNavLinks}}
+    {{#if level === 1}}
+        <li class="u-nolist-ul-li">
+            <a class="u-nolist-a" href="{{redirectUrl}}">{{name}}</a>
+        {{#if childrenLink != []}}
+            <ul class="u-seclist-ul">
+               {{#each childrenLink}}
+                <li><a href="">{{name}}</a></li>
+                {{/each}}
+            </ul>
+       {{/if}}
+       </li>
+    {{/if}}
+{{/each}}
+<!--                   动态导航数据结束-->
 <!--
                 {{/if}}
                 <li>
@@ -185,7 +202,7 @@ var _hmt = _hmt || [];
     <div class="s-footer-nav" id="footer-color">
         <div style="width:1100px;" class="s-footer-nav-content u-pos-r-center">
             <dl class="footer-guide">
-                <dt><a href="/aboutus/team">团队介绍</a></dt>
+                <dt><a href="/aboutus/team">关于我们</a></dt>
                 <dd><a href="/aboutus/introduction">平台介绍</a></dd>
                 <dd class="footer-guide-style"><a href="/aboutus/recruitment">保障机构</a></dd>
                 <dd><a href="/aboutus/partner">合作伙伴</a></dd>
@@ -193,14 +210,14 @@ var _hmt = _hmt || [];
                 <dd><a href="/aboutus/contactus">联系我们</a></dd>
             </dl>
             <dl class="footer-guide">
-                <dt><a href="/help/invest">帮助中心</a></dt>
-                <dd><a href="">新手引导</a></dd>
+                <dt><a href="/help/login">帮助中心</a></dt>
+                <dd><a href="/userKnow">新手引导</a></dd>
                 <dd class="footer-guide-style"><a href="">常见问题</a></dd>
-                <dd><a href="">名词解释</a></dd>
+                <dd><a href="/help/explain">名词解释</a></dd>
                 <dd><a href="">服务规则</a></dd>
             </dl>
              <dl class="footer-guide">
-                <dt><a href="">安全保障</a></dt>
+                <dt><a href="/aboutus/safety">安全保障</a></dt>
                 <dd><a href="">项目来源</a></dd>
                 <dd class="footer-guide-style"><a href="">风控措施</a></dd>
                 <dd><a href="">系统安全</a></dd>
@@ -235,8 +252,10 @@ var _hmt = _hmt || [];
 <!--    旁边导航条-->
 <div class="side-bar-box">
     <div class="side-bar">
-         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/service.png" /></a>
-        <a href="javascript:;" class="calculator-create"><img src="/ccc/global/img/calculator.png" /></a>
+<!--         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/service.png" /></a>-->
+        <a href="javascript:;" class="calculator-create"><img src="/ccc/global/img/mobile-sidebar.png" /></a>
+        <a href="javascript:;" class="calculator-create"><img src="/ccc/global/img/weixin.png" /></a>
+        <a class="back-top" href=""><img src="/ccc/global/img/qq.png" /></a>
         <a class="back-top" href=""><img src="/ccc/global/img/backTop.png" /></a>
     </div>
 </div>
