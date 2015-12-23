@@ -159,9 +159,13 @@
                 <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
             <h4>新闻资讯</h4>
-            <a href=""><img style="float: left;" src="/ccc/index/img/news.png" alt=""></a>
+            {{#each latestImgPublication:num}}
+                {{#if num+1<6 }}
+            <a href=""><img style="float: left; width:292px; height:181px;" src="{{author}}" alt=""></a>
+                {{/if}}
+            {{/each}}
             <ul>
-                {{#each latestNews:num}}
+                {{#each latestPublication:num}}
                 {{#if num+1<6 }}
                 <li><a href="/cms/p/{{this.id}}" class="news" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
                                 {{title.substr(0,22)}}...
@@ -199,7 +203,7 @@
             </a>
             <h4>到期公告</h4>
             <ul style="margin-left: 20px;">
-                {{#each latestOne:num}}
+                {{#each expireOne:num}}
                 {{#if num+1<6 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
 					   

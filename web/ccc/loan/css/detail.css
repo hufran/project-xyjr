@@ -1,6 +1,6 @@
 #main-container {
 	margin-top: 7px;
-	background-color: #f6f8fc;
+	background-color: #f8f8f8;
 }
 .nav-tabs > li.active > a {
 	pointer-events: none;
@@ -68,6 +68,7 @@
 	float: left;
 	background: #fff;
 	border-radius: 3px;
+    border: 1px solid #eee;
 }
 
 .invest-data-wrapper .investContainer {
@@ -90,13 +91,9 @@
 }
 
 .invest-data-wrapper .investContainer .investTitle .title {
-	font-size: 20px;
-	/*  font-weight: bold;*/
-	
-	color: #009ada;
+	font-size: 18px;
+	color: #4a4a4a;
 	float: left;
-	/*	width: 500px;*/
-	
 	word-break: break-all;
 }
 
@@ -184,7 +181,7 @@
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond .value {
 	margin-left: 66px;
-	color: #4a4a4a;
+	color: #fe8008;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemThird {
@@ -237,10 +234,11 @@
 .invest-data-wrapper .investContainer .content .innerBottom ul {
 	display: inline-block;
 	overflow: hidden;
-	float: right;
+	float: left;
 	position: relative;
-	height: 80px;
-	margin-top: 30px;
+/*	height: 80px;*/
+	margin-top: 16px;
+    margin-left: 180px;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom ul div {
@@ -252,9 +250,9 @@
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom ul li {
-	float: left;
+/*	float: left;*/
 	font-family: '微软雅黑';
-	color: #999;
+	color: #4a4a4a;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .itemt {
@@ -1574,8 +1572,7 @@
 }
 
 .detailTitle {
-	padding-top: 30px;
-	padding-bottom: 10px;
+    line-height: 50px;
 }
 
 .detailBanner {
@@ -1864,9 +1861,8 @@
 }
 
 .box-large {
-	border: 1px solid #cccccc;
 	overflow: hidden;
-	background-color: white;
+	background-color:#f8f8f8;
 }
 
 .item-pic {
@@ -1908,4 +1904,18 @@
     color: #fff;
     border: 1px #0096de solid;
 }
-
+.invest-data-wrapper .investContainer .content .innerBottom .interestMethod{
+    margin-left: 50px;
+}
+.progress-striped{
+    width: 565px;
+    height: 6px;
+    margin: 0px 0px 0px 50px;
+    float: left;
+}
+.progress-line span{
+    margin: 0px 0px 0px 20px;
+}
+.progress-line{
+    margin-top: 20px;
+}

@@ -2,9 +2,9 @@
 module.exports = function (router) {
 router.get('/', function (req, res, next) {
     var user = res.locals.user;
-    res.locals.title = '新毅金融';
-    res.locals.keywords = '新毅|P2P网贷|P2P理财|网络理财|个人理财|投资理财|互联网金融|投资理财|';
-    res.locals.description = '';
+    res.locals.title = '首页_718bank理财平台';
+    res.locals.keywords = '理财、投资、财富、理财投资、个人理财、理财产品、理财平台、金融理财、个人投资、普惠金融';
+    res.locals.description = '718bank理财平台是新毅网络旗下，致力于为投资者提供专业、绿色、智能、透明、安全的理财服务，是新型的互联网理财服务交易平台。';
     if (user && user.idNumber) {
         delete user.idNumber;
     }
@@ -14,8 +14,18 @@ router.get('/', function (req, res, next) {
         '/api/v2/cms/carousel_detail')
         .end()
         .get('body');
+    
     res.locals.latestOne = req.uest(
-        '/api/v2/cms/category/PUBLICATION/name/' + encodeURIComponent('最新公告'))
+        '/api/v2/cms/category/PUBLICATION/name/' + encodeURIComponent('平台公告'))
+        .end()
+        .get('body')
+        .then( function(data){
+       
+//            var data = parseCMStitle(data.slice(0,1));
+            return data;
+        });
+    res.locals.expireOne = req.uest(
+        '/api/v2/cms/category/PUBLICATION/name/' + encodeURIComponent('到期公告'))
         .end()
         .get('body')
         .then( function(data){
@@ -24,12 +34,20 @@ router.get('/', function (req, res, next) {
             return data;
         });
     res.locals.latestPublication = req.uest(
-        '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('行业新闻'))
+        '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('新闻资讯'))
         .end()
         .get('body')
         .then( function(data) {
 //            var data = parseCMStitle(data.slice(0,5));
 //            var data = data.slice(0,5);
+            return data;
+        });
+        res.locals.latestImgPublication = req.uest(
+        '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('图片新闻资讯'))
+        .end()
+        .get('body')
+        .then( function(data) {
+            console.log('====',data);
             return data;
         });
             
