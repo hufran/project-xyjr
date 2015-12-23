@@ -30,9 +30,19 @@ var app = exports = module.exports = require('express')();
 app.httpServer = require('http').createServer(app);
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
+<<<<<<< HEAD
+=======
+app.locals.title = '国美金融';
+app.locals.keywords = '国美金融';
+app.locals.description = '国美金融';
+var Data = require('@ds/data');
+>>>>>>> 42cc344a19657defbadee12cb9fc8846bc6f7f23
 app.use(require('cookie-parser')());
 ds.request(app, config.urlBackend);
-
+app.use(function(req,res,next){
+    req.data=new Data(req);
+    next();
+});
 app.use('/api/web', ds.loader('api'));
 
 if (config.startOAuthServer) {
