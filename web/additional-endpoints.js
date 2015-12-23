@@ -70,5 +70,4 @@ router.get('/api/v2/loans/getLoanWithProduct',auth.pass());
     router.get('/api/v2/user/:userId/userAuthenticate', auth.user());
      //导航
     router.get('/navigation/listPlayPanes', auth.pass());
-    router.get('/api/v2/navigation/listPlayPanes', auth.pass());
 };
