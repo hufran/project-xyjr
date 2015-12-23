@@ -110,6 +110,8 @@ var _hmt = _hmt || [];
         </div>
       
     </div>
+
+    
     <div class="s-header-menu" id="menu">
         <div class="s-header-menu-content u-pos-r-center">
             <a href="/" style="float: left;" alt="新毅" title="新毅">
@@ -118,12 +120,26 @@ var _hmt = _hmt || [];
 
             <ul class="u-nolist-ul">
 <!--                {{#if !user.enterprise}}-->
-                    <li><a id="index" href="">首页</a></li>
-                    <li><a id="production" href="">理财产品</a></li>
+                    <li class="u-nolist-ul-li"><a class="u-nolist-a" id="index" href="">首页</a></li>
+                    <li class="u-nolist-ul-li">
+                        <a class="u-nolist-a" id="production" href="">理财产品</a>
+                        <ul class="u-seclist-ul">
+                            <li><a href="">新手专享</a></li>
+                            <li><a href="">活动专享</a></li>
+                            <li><a href="">理财专区</a></li>
+                        </ul>
+                    </li>
 <!--                    <li><a id="invest" href="">股权投资</a></li>-->
-                    <li><a id="crowdfund" href="">回报众筹</a></li>
-                    <li><a id="information" href="/userKnow">用户须知</a></li>
-                    <li><a id="myplace" href="">我的地盘</a></li>
+                    <li class="u-nolist-ul-li">
+                        <a class="u-nolist-a" id="crowdfund" href="">回报众筹</a>
+                        <ul class="u-seclist-ul">
+                            <li><a href="">活动专享</a></li>
+                            <li><a href="">用户须知</a></li>
+                            <li><a href="">理财专区</a></li>
+                        </ul>
+                    </li>
+                    <li class="u-nolist-a" class="u-nolist-ul-li"><a class="u-nolist-a" id="information" href="/userKnow">用户须知</a></li>
+                    <li class="u-nolist-a" class="u-nolist-ul-li"><a class="u-nolist-a" id="myplace" href="">我的地盘</a></li>
 <!--
                 {{/if}}
                 <li>

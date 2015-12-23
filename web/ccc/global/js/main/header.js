@@ -8,13 +8,13 @@ var accountService = require('ccc/account/js/main/service/account').accountServi
 
 var utils = require('ccc/global/js/lib/utils');
 
-$('.s__top15').mouseover(function() {
-    $(this).next().css('display', '');
+$('.u-nolist-ul-li').mouseover(function() {
+    $(this).find('.u-nolist-a').css({'background':'#5b9dff','color':'#fff'});
+    $(this).find('.u-seclist-ul').css('display', 'block');
 }).mouseout(function() {
-    $(this).next().css('display', 'none');
+    $(this).find('.u-nolist-a').css({'background':'#fff','color':''});
+    $(this).find('.u-seclist-ul').css('display', 'none');
 });
-
-
 
 if(CC.user){
 

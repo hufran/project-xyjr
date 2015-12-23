@@ -10288,8 +10288,10 @@ body {
 }
 .s-header-menu-content .u-nolist-ul {
   float: right;
+/*
   height: 75px;
   line-height: 75px;
+*/
 }
 .s-header-menu-content .u-nolist-ul li {
 /*  margin-left: 33px;*/
