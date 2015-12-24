@@ -23,21 +23,34 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
-
+     var listXSZX = [],listHDZX = [];
      for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
 		list[i].titleLength = replaceStr(list[i].title);
 //		 console.log(list[i].titleLength);
+         if(list[i].loanRequest.productKey == 'XSZX'){
+            listXSZX.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'HDZX'){
+             listHDZX.push(list[i]);
+         }
     }
     var investRactive = new Ractive({
-        el: ".productList",
+        el: ".XSZXproductList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: list,
+            list: listXSZX,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
-
+    
+    var investRactive = new Ractive({
+        el: ".HDZXproductList",
+        template: require('ccc/global/partials/singleInvest.html'),
+        data: {
+            list: listHDZX,
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
     initailEasyPieChart();
     ininconut();
 
