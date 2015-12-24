@@ -5,9 +5,9 @@ if (process.argv.indexOf('--run-by-gulp') > -1) {
 if ((process.env.HOSTNAME || '').match(/UAT$/)) {
     process.env.NODE_APP_INSTANCE = 'uat';
 }
-GLOBAL.APP_ROOT = __dirname;
+require('ds-require');
 var config = require('config');
-require('ds-nrequire').watchRequiredFilesToRestart = true;
+GLOBAL.APP_ROOT = config.dsAppRoot;
 require('./touch_to_restart');
 // require('@ds/common');
 var logger = require('bunyan-hub-logger');
@@ -26,6 +26,8 @@ var ds = require('dysonshell');
 require('./node-global')
 
 var port = Number(process.env.PORT || config.port) || 4000;
+
+require('coexpress');
 var app = exports = module.exports = require('express')();
 app.httpServer = require('http').createServer(app);
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
@@ -85,10 +87,10 @@ _.each({
     }));
 });
 
-ds.prodrev(app);
+//ds.prodrev(app);
 //require('@ds/data').augmentReqProto(app.request);
 
-app.use(require('express-favicon')(path.join(__dirname, '..', '/favicon.ico')));
+app.use(require('express-favicon')(path.join(__dirname, 'favicon.ico')));
 
 app.disable('etag');
 if (app.get('env') !== 'development') {
@@ -246,11 +248,18 @@ app.all('/logout', function (req, res) {
         res.redirect('/');
     }
 });
-require('ds-render').augmentApp(app);
 if (app.get('env') === 'production') {
-    app.use(require('ecstatic')({root: path.join(__dirname, '/dist')}));
-    app.use('/ccc', require('ecstatic')({root: path.join(__dirname, '/ccc')}));
+    var ecstatic = require('ecstatic')({root: __dirname});
+    console.log('/' + config.dsComponentPrefix);
+    app.use('/' + config.dsComponentPrefix, function (req, res, next) {
+        if (req.url.match(/^\/[^\/]+\/(css|img|js)|^\/(global-)?common-[^\/]+\.js$/)) {
+            ecstatic(req, res, next);
+        } else {
+            next();
+        }
+    });
 }
+require('ds-render').augmentApp(app);
 
 app.httpServer.listen(port, '0.0.0.0', function () {
     console.log("server listening at http://127.0.0.1:%d",

@@ -301,6 +301,25 @@ function ininconut () {
 };
 
 
+var sayHello = function () {
+    console.log(`Hello, ${this.name}!`);
+};
+({ name: 'ES7' })::sayHello();
+es6();
+function es6(){
+    let sym = Symbol('asd');
+    let o = {
+        log: x => console.log(x)
+    } 
+    let str = `ccc`;
+    let arr = [1,2,3,4,5,6];
+    let a = (...aaa) => {
+        console.log(aaa.join(''));
+    }
+    console.log(a(1,2,3,4,5))
+    o.log(typeof sym);
+}
+
 //require('ccc/index/js/main/ss.js')
 //
 //$(".loanWrapper").hover(function(){$(this).css("border-color","#A0C0EB");},function(){$(this).css("border-color","#d8d8d8")});

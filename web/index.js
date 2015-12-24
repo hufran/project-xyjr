@@ -1,3 +1,4 @@
 'use strict';
 
-module.exports = require('./ccc/app');
+var env = process.env.NODE_ENV || 'development';
+module.exports = require(env === 'production' ? './dist/ccc/' : './ccc/');
