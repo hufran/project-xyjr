@@ -1,4 +1,21 @@
 <!--{{JSON.stringify(loan)}}-->
+      <div class="invest-process-box">
+               <img src="/ccc/loan/img/login-process.png"/>
+               <ul class="invest-process">
+                   <li>
+                       <p>2015-12-01</p>
+                       <p>确认投资</p>
+                   </li>
+                    <li>
+                       <p>2015-12-01</p>
+                       <p>开始计息</p>
+                   </li>
+                    <li>
+                       <p>2015-12-01</p>
+                       <p>到期赎回</p>
+                   </li>
+               </ul>
+            </div>
 {{timeOpen}} {{#if loan.status == "FINISHED"||loan.status == "SETTLED"||loan.status == "CLEARED"}}
 <div class="firstLine">
     <div class="tip">投资金额 </div>
@@ -64,7 +81,7 @@
 					 <span class="topAmount" on-click="maxNumber">最大可投金额</span>
                 </div>
 <!--                <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>-->
-				<p class="rule-max">单笔最多可投：{{loan.rule.max}}元</p>
+<!--				<p class="rule-max">单笔最多可投：{{loan.rule.max}}元</p>-->
                 {{#if user}}
                
                     <input type="submit" class="finished-btn" value="即将开始" />
@@ -102,14 +119,14 @@
                         </div>
 				 <span class="topAmount" on-click="maxNumber">最大可投金额</span>
 			</div>
-			<p class="one-time-max">单笔最多可投：{{loan.rule.max}}元</p>
+<!--			<p class="one-time-max">单笔最多可投：{{loan.rule.max}}元</p>-->
                        
                         <div class="clearfix"></div>
             <div class="prompt-open-3rdpay">
                 <p class="shiming">您的账户尚未实名认证，认证后可投资</p>
             </div>
             <div class="invest-button-wrapper">
-                <a class="btn btn-warning open-button"  href="/newAccount/settings/authentication">立即认证</a>
+                <a class="btn btn-warning open-button loginBtn"  href="/newAccount/settings/authentication">立即认证</a>
             </div>
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
 
@@ -180,8 +197,14 @@
 
             {{/if}} {{else}}
 			
+<!--
 			<p class="left-money login-see">
                 账户余额：<a href="/login" style="color:#009ada;">登录</a> 后可见
+            </p>
+-->
+      
+            <p class="login-see">
+            您尚未登录，账户余额<a href="/login" style="color:#007ec5;">登录</a>后可见
             </p>
             <div class="firstLine" style="padding:0px;">
 <!--
@@ -199,9 +222,11 @@
                 </div>
                 <span class="topAmount" on-click="">最大可投金额</span>
             </div>
-			<p class="one-time-max">单笔最多可投：{{loan.rule.max}}元</p>
-<!--            <p class="totalInterest">预估总收益 {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}元</p>-->
-
+<!--			<p class="one-time-max">单笔最多可投：{{loan.rule.max}}元</p>-->
+            <p class="totalInterest">预估总收益<span> {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}</span>元</p>
+            <div class="use-coupon">
+             <input type=checkbox /><span>使用红包</span>
+            </div>
             <a href="/login?url={{backUrl}}" class="loginBtn">
                             立即登录
                         </a> {{/if}}
