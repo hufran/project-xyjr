@@ -3,14 +3,14 @@ module.exports = function (router) {
 
     var ccBody = require('cc-body');
 	
-	router.get('/newAccount', function (req, res, next) {
-        req.url = '/newAccount/';
-        next();
-
-    });
+//	router.get('/', function (req, res, next) {
+//        req.url = '/newAccount/';
+//        next();
+//
+//    });
 
 	// 未登录访问account下的页面,跳转到 /
-    router.get('/newAccount/*', function (req, res, next) {
+    router.get('/*', function (req, res, next) {
         if (!req.cookies.ccat) {
             res.redirect('/login');
             return;
@@ -19,8 +19,9 @@ module.exports = function (router) {
     });
 
     // topNav 需要的东西
-    router.get('/newAccount/*', function (req, res, next) {
-
+    router.get('/*', function (req, res, next) {
+        console.log('1111111111');
+        console.log(req);
         // assign user数据
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -131,7 +132,7 @@ module.exports = function (router) {
 	
 	// 特定页面的
 
-    router.get('/newAccount/home', function (req, res) {
+    router.get('/home', function (req, res) {
         Promise.join(
             req.uest('/api/v2/user/MYSELF/statistics/invest')
             .get('body'),
@@ -150,13 +151,13 @@ module.exports = function (router) {
             });
     });
 
-    router.get('/newAccount/invest/*', function (req, res) {
+    router.get('/invest/*', function (req, res) {
     	res.render('newAccount/invest', {
     		title: '奇乐融'
     	});
     });
 
-    router.get('/newAccount/loanRequest/*', function (req, res) {
+    router.get('/loanRequest/*', function (req, res) {
         res.render('newAccount/loan', {
             title: '奇乐融'
         });
@@ -169,7 +170,7 @@ module.exports = function (router) {
         "resetPassword",
         "userInfo"
     ].forEach(function (tabName) {
-        router.get('/newAccount/settings/' + tabName, function (req, res) {
+        router.get('/settings/' + tabName, function (req, res) {
             Promise.join(
                 req.uest(
                     '/api/v2/user/MYSELF/authenticates'
@@ -196,7 +197,7 @@ module.exports = function (router) {
     });
 
     // 修改密码
-    router.post("/newAccount/change_password", ccBody, function (req,
+    router.post("/change_password", ccBody, function (req,
         res) {
 
         /*
@@ -224,7 +225,7 @@ module.exports = function (router) {
     });
 
     // 对提现进行限制,如果是企业用户,显示企业充值
-    router.get('/newAccount/recharge', function (req, res, next) {
+    router.get('/recharge', function (req, res, next) {
 
         var enterprise = res.locals.user.enterprise;
         var banks = _.filter(res.locals.user.bankCards, function (r) {
@@ -238,7 +239,7 @@ module.exports = function (router) {
     });
 
     // 对体现进行限制
-    router.get('/newAccount/withdraw', function (req, res, next) {
+    router.get('/withdraw', function (req, res, next) {
 
         var enterprise = res.locals.user.enterprise;
         Promise.join(req.uest(
