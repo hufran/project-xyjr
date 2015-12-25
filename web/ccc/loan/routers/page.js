@@ -124,7 +124,7 @@ router.get('/:id',
 
         repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
-            res.render('loan/detail', _.assign(locals, {
+            res.render('loan/detail', _.assign(res.locals, {
                 totalInterest: repayments.reduce(function (p, r) {
                     return p + (r && r.amountInterest || 0);
                 }, 0)

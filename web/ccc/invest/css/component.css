@@ -15,8 +15,8 @@
 #main-container {
 /*	margin-top: 6px;*/
 	padding-bottom: 0;
-    background: #f6f8fc;
-      margin-top: 1px;
+    background: #f8f8f8;
+/*      margin-top: -14px;*/
 }
 
 .after-header .project-list,
@@ -443,6 +443,7 @@ hr {
 .easyPieChart {
 	position: relative;
 	text-align: center;
+        margin-left: 50px;
 }
 
 .easyPieChart canvas {
