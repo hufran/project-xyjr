@@ -19,9 +19,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-       
-//            var data = parseCMStitle(data.slice(0,1));
-        var data = data.sort(compare('pubDate'));
+            data = (data || []).sort(compare('pubDate'));
             return data;
         });
        res.locals.expireOne = req.uest(
@@ -29,9 +27,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-       
-//            var data = parseCMStitle(data.slice(0,1));
-           var data = data.sort(compare('pubDate'));
+            data = (data || []).sort(compare('pubDate'));
             return data;
         });
     res.locals.latestPublication = req.uest(
@@ -39,9 +35,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
-//            var data = parseCMStitle(data.slice(0,5));
-//            var data = data.slice(0,5);
-        var data = data.sort(compare('pubDate'));
+            data = (data || []).sort(compare('pubDate'));
             return data;
         });
       res.locals.latestImgPublication = req.uest(
@@ -49,7 +43,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
-          var data = data.sort(compare('pubDate'));
+            data = (data || []).sort(compare('pubDate'));
             return data;
         });       
     res.locals.latestNews = req.uest(
@@ -57,9 +51,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
-//            var data = parseCMStitle(data.slice(0,5));
-//            var data = data.slice(0,5);
-        var data = data.sort(compare('pubDate'));
+            data = (data || []).sort(compare('pubDate'));
             return data;
         });
 //     res.locals.friendsLinks = req.uest(
