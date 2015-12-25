@@ -33,10 +33,11 @@ app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
 app.use(require('cookie-parser')());
 ds.request(app, config.urlBackend);
-//app.use(function(req,res,next){
-//    req.data=new Data(req);
-//    next();
-//});
+var Data = require('@ds/data');
+app.use(function(req,res,next){
+    req.data = new Data(req);
+    next();
+});
 app.use('/api/web', ds.loader('api'));
 
 if (config.startOAuthServer) {
