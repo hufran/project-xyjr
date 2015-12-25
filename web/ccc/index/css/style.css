@@ -671,7 +671,7 @@ a {
 	width: 1100px;
 	display: table;
 	height: 270px;
-	padding-left: 40px;
+/*	padding-left: 40px;*/
 	border-bottom: 1px #ccc solid;
 	background: #ffffff;
 	position: relative;
@@ -885,9 +885,11 @@ a {
 	margin-left: -30px;
 	margin-top: 5px;
 }
+/*
 .strengthProtectBox p:hover{
     color: #009ada;
 }
+*/
 .container{
     width: 100%;
     padding-bottom: 60px;

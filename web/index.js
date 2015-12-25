@@ -100,37 +100,44 @@ require('ds-assets').augmentApp(app);
 
 require('@ccc/inspect/middleware')(app);
 app.use(function (req, res, next) {
-//    res.locals.headerNavLinks = [
-//        {
-//            name: '首页',
-//            href: '/',
-//        },
-//        {
-//            name: '我要投资',
-//            href: '/loan',
-//        },
-//        /* {
-//            name: '债权转让',
-//            href: '/assign',
-//        }, */
-//        {
-//            name: '我的账户',
-//            href: '/account',
-//        },
-//        {
-//            name: '安全保障',
-//            href: '/safety',
-//        },
-//        {
-//            name: '新手指南',
-//            href: '/guide',
-//        },
-//    ];
-    req.uest.get('/api/v2/navigation/listPlayPanes').get('body').then(function (r) {
-        console.log('====sdfsdf====',r);
-          next();
-        });
+        req.uest.get('/api/v2/navigation/listPlayPanes').get('body').then(function (r) {
+          var headerLinks = r;
+         for(var i=0;i< headerLinks.length; i++){
+             headerLinks[i].childrenLink = [];
+             for(var j=1;j<headerLinks.length; j++){
+                 if(headerLinks[i].id == headerLinks[j].parentId){
+                     headerLinks[i].childrenLink.push(headerLinks[j]);
+                    }
+                 }
+             }
+             for(var i=0;i<headerLinks.length;i++){
+                 if(headerLinks[i].parentId != ''){
+                     headerLinks.splice(i,1);
+                     i=-1;
+                 }
+             }
+              function compare(propertyName){
+                return function(object1,object2){
+                    var value1 = object1[propertyName];
+                    var value2 = object2[propertyName];
+                    if(value2 < value1){
+                        return 1;
+                    }else if(value2 > value1){
+                        return -1;
+                    }else{
+                        return 0;
+                    }
+                }
+            }
 
+            for(var i=0; i<headerLinks.length; i++){
+                if(headerLinks[i].childrenLink != [] && headerLinks[i].childrenLink.length >= 1)
+                headerLinks[i].childrenLink = headerLinks[i].childrenLink.sort(compare('ordinal'));
+            }
+
+            var resultLink = headerLinks.sort(compare('ordinal'));
+            res.locals.headerNavLinks = resultLink;
+        });
     res.expose(Date.now(), 'serverDate');
     // res.layout = 'ccc/global/views/layouts/default.html';
 //    res.locals.title = config.appName; // 设置html标题

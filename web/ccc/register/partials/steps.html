@@ -11,10 +11,9 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
                     </div>
                 </RInput>
-<!--
                 <RInput field="imgCaptcha">
                     <div class="rinput picnum">
-                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}"><em>*</em>验证码:</label>
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">验证码:</label>
                         <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
                         <span on-click='changeImgCaptcha'>
                             <img src="{{imgCaptchaBase64}}" alt="">
@@ -22,14 +21,13 @@
                         <span id="cannot-see">看不清?</span>
                         <span on-click='changeImgCaptcha' id="refresh-captcha">换一张</span>
                     </div>
-                    <div class="tip01" id="password-pic" style="margin-top: -30px;margin-bottom: 10px;float:left">
+                    <div class="tip01" id="password-pic" style="margin-top: -25px;float:left">
                         {{#errMsg}}{{errMsg}}{{/errMsg}}
                     </div>
                 </RInput>
--->
                 <RInput field="smsCaptcha">
                     <div class="rinput message-confirm bring-in">
-                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">验证码:</label>
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码:</label>
                         <input id="{{rinputId}}" value="{{value}}" placeholder="请输入短信验证码" class="message-brame"> 
                         {{#if !smsCaptchaReady}}
                             <button on-click='sendSmsCaptcha' id="get-message">

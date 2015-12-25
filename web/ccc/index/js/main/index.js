@@ -23,7 +23,7 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
-     var listXSZX = [],listHDZX = [];
+     var listXSZX = [],listHDZX = [],listLXZQ = [];
      for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
 		list[i].titleLength = replaceStr(list[i].title);
@@ -32,6 +32,8 @@ IndexService.getLoanSummary(function (list) {
             listXSZX.push(list[i]);
          }else if(list[i].loanRequest.productKey == 'HDZX'){
              listHDZX.push(list[i]);
+         }else{
+             listLXZQ.push(list[i]);
          }
     }
     var investRactive = new Ractive({
@@ -48,6 +50,15 @@ IndexService.getLoanSummary(function (list) {
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
             list: listHDZX,
+            RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
+        }
+    });
+    
+    var investRactive = new Ractive({
+        el: ".LCZQproductList",
+        template: require('ccc/global/partials/singleInvest.html'),
+        data: {
+            list: listLXZQ,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -229,11 +240,11 @@ request.get(encodeURI('/api/v2/cms/category/COOPERATION/name/合作伙伴'))
 //                cooperation: res.body
 //            },
             onrender: function(){
-                if(res.body.length <= 24){
+                if(res.body.length <= 12){
                     this.set('cooperation',res.body);
                 }else{
-                    this.set('cooperation',res.body.slice(0,24));
-                    this.set('cooperationNext',res.body.slice(24));
+                    this.set('cooperation',res.body.slice(0,12));
+                    this.set('cooperationNext',res.body.slice(12));
                 }
             }
         });
@@ -259,10 +270,10 @@ $(' .icon-group1').mouseenter(function(){
     $(this).children('.company-intro').hide(200);
 });
 
-$('.strengthProtect').click(function(){
-    var url=$(this).find('a').attr('href');
-    location.href=url;
-});
+//$('.strengthProtect').click(function(){
+//    var url=$(this).find('a').attr('href');
+//    location.href=url;
+//});
 
 function ininconut () {
     $(".opre > .investbtn-time").each(function () {
