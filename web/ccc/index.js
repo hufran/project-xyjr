@@ -27,7 +27,7 @@ require('./node-global')
 
 var port = Number(process.env.PORT || config.port) || 4000;
 
-require('coexpress');
+require('coexpress')(require('express'));
 var app = exports = module.exports = require('express')();
 app.httpServer = require('http').createServer(app);
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
@@ -93,11 +93,12 @@ _.each({
 app.use(require('express-favicon')(path.join(__dirname, 'favicon.ico')));
 
 app.disable('etag');
-if (app.get('env') !== 'development') {
+if (app.get('env') === 'development') {
+    require('ds-pack').watchify(app, port);
+} else {
     app.enable('view cache');
 }
 
-require('ds-watchify/augment-app')(app, port);
 require('ds-assets').augmentApp(app);
 
 require('@ccc/inspect/middleware')(app);
