@@ -69,5 +69,5 @@ module.exports = function (router, auth) {
      //导航
     router.get('/api/v2/navigation/listPlayPanes', auth.pass());
 //    实名认证
-    router.get('/api/v2/guozhengtong/authenticateUser/:userId', auth.user());
+    router.get('/api/v2/guozhengtong/authenticateUser/:userId', auth.owner());
 };
