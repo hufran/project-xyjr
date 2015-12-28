@@ -2,7 +2,7 @@
 module.exports = function (router) {
     var pageSize = 10;
 
-    router.get('/aboutus/:tab', function (req, res) {
+    router.get('/:tab', function (req, res) {
 
         var cateMap = {
             team: 'INTRODUCTION',
