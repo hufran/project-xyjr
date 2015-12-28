@@ -684,8 +684,7 @@ a {
 
 .loanWrapper .imgwrapper{
     float: left;
-    width: 210px;
-    height:270px;
+    margin-right: 40px;
 }
 
 .loanWrapper .contentwraper{

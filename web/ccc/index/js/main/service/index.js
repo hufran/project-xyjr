@@ -10,6 +10,24 @@ exports.IndexService = {
          request.get('/api/v2/loans/summary')
             .end()
             .then(function (res) {
+             console.log('list------',res.body);
+             _.forEach(res.body.open,function(one){
+                request.get('/api/v2/loan/'+one.id+'/detail')
+                    .end()
+                    .then(function(r){
+                        one.proofs = r.body.data.proofs;
+                    })
+                    
+             })
+             _.forIn(res.body.scheduled,function(one){
+                 request.get('/api/v2/loan/'+one.id+'/detail')
+                    .end()
+                    .then(function(r){
+                        one.proofs = r.body.data.proofs;
+                    })
+                    
+             })
+                console.log('res.body',res.body.open[4]);
                 next(res.body);
             });
     },
@@ -125,6 +143,7 @@ function parseLoanList(loans) {
         }
         return item;
     }
+    console.log('=-=-=-=::1', loanList)
     return loanList;
 }
 
