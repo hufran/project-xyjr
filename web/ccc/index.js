@@ -115,7 +115,7 @@ app.use(function (req, res, next) {
              for(var i=0;i<headerLinks.length;i++){
                  if(headerLinks[i].parentId != ''){
                      headerLinks.splice(i,1);
-                     i=-1;
+                     i-=1;
                  }
              }
               function compare(propertyName){

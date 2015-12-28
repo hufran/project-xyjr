@@ -24,10 +24,6 @@ function replaceStr(str){
 
 IndexService.getLoanSummary(function (list) {
      var listXSZX = [],listHDZX = [],listLXZQ = [];
-    console.log('=========sdf', list[4].proofs);
-//    _.forEach(list, function (one, key){
-//        console.log(key + ' proofs:' , one.proofs)
-//    })
      for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
 		list[i].titleLength = replaceStr(list[i].title);
@@ -70,6 +66,8 @@ IndexService.getLoanSummary(function (list) {
     ininconut();
 
 });
+
+request('/api/xxx')
 
 //借款计划
 IndexService.getLoanSummary(function (list) {

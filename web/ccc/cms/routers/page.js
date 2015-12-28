@@ -41,7 +41,7 @@ router.get('/:channelName', function (req, res) {
         });
 });
 
-router.get('/cms/p/:id', function (req, res) {
+router.get('/p/:id', function (req, res) {
     var user = res.locals.user;
     if (user && user.idNumber) {
         delete user.idNumber;
@@ -52,9 +52,9 @@ router.get('/cms/p/:id', function (req, res) {
         '/api/v2/cms/article/' + req.params.id)
         .end()
         .then(function (r) {
-            res.locals.title = '奇乐融';
+            res.locals.title = '新毅金融';
             res.locals.description = r.body.content.replace(/<\/?[^>]*>/g, '').slice(0,100);
-            res.render('news/detail', {
+            res.render('detail', {
                 detail: formatDetail(r.body)
             });
         });

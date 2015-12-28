@@ -12,23 +12,41 @@
 
     <div id="help-right" class="pull-right">
         <div class="invest-container">
-            <div class="invest-wrapper">
-                <div class="help-title">
-                <h1>{{tab.text}}</h1>
-                <div class="line"></div>
+{{#if contents.length===1}}
+            <div id="help-right" class="pull-right">
+                <div class="invest-container">
+                    <div class="invest-wrapper">
+                        <div class="help-title">
+                            <h1>{{tab.text}}</h1>
+                            <div class="line"></div>
+                        </div>
+                        <div class="invest-wrapper">
+                            {{{contents[0].content}}}
+                        </div>
+                    </div>
                 </div>
-                {{#if tab.text!='帮助中心'}}
-                <div class="invest-wrapper">
-                    {{#each contents}}
-                        <!-- <a href="/cms/p/{{this.id}}">
-                        {{#if title.length > 40}}
-                                {{title.substr(0,40)}}...
-                            {{else}}
-                                {{title}}
-                            {{/if}}</a> -->
-                            {{{content}}}
-                    {{/each}}
-
+            </div>
+            {{else}}
+              
+             <div id="help-right" class="pull-right">
+                <div class="invest-container">
+                    <div class="invest-wrapper">
+                        {{#if tab.text!='帮助中心'}}
+<!--                        <div class="invest-wrapper">-->
+                             <div class="help-title">
+                                 <h1>{{tab.text}}</h1>
+                                 <div class="line"></div>
+                             </div>
+<!--                            {{JSON.stringify(contents)}} -->
+                           <div class="invest-wrapper">
+                            {{#each contents}}
+                            <div class="news-box">
+                              <div class="news-brame"><a href="/cms/p/{{this.id}}">{{title}}</a> 
+                            </div>
+                            <div class="news-pubdate">{{pubDate}}</div>
+                                </div>
+<!--                              <div class="article-content">{{& content}}</div>-->
+                            {{/each}}
                         </div>
                          {{else}}
                             <div class="invest-wrapper">
@@ -41,13 +59,14 @@
                               <div class="article-content">{{& content}}</div>
                                </div>
                             {{/each}}
-                                
-                                
-                          
-                                
                         </div>
-                        {{/if}} 
+                        {{/if}}
                     </div>
+                </div>
+            </div>
+             
+
+        {{/if}}
                 </div>
             </div>
              
