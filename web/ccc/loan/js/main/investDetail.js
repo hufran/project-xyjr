@@ -28,9 +28,6 @@ var statusMap = {
     FINISHED: '',
     CLEARED: ''
 };
-
-
-
 var template = statusMap[CC.loan.status];
 
 new Ractive({
@@ -131,6 +128,7 @@ setTimeout((function () {
             }
         };
     }
+    
 
     var investRactive = new Ractive({
         el: ".do-invest-wrapper",
@@ -148,18 +146,27 @@ setTimeout((function () {
                 visible: false,
                 msg: ''
             },
-            serverDate: CC.serverDate,
+            timeOpen: moment(CC.loan.timeOpen).format('YYYY-MM-DD'),
+            serverDate: moment(CC.serverDate).format('YYYY-MM-DD'),
             isSend: false,
-            backUrl: CC.backUrl
+            backUrl: CC.backUrl,
+            dueDate:CC.repayments[0].dueDate,
+            timeSettled:nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
-                            console.log(CC.loan.rule.balance);
-            console.log(CC.loan.rule.min);
+//                            console.log(CC.loan.rule.balance);
+//            console.log(CC.loan.rule.min);
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
         }
     });
+      function nextDate(timestr){
+            var date=new Date(timestr.replace('/-/g','\/'));
+            var timeunix=Math.round((date.getTime()+1000*60*60*24)/1000);
+            var time=moment(timeunix*1000).format('YYYY-MM-DD');
+            return time;
+        }      
     var serverDate = CC.serverDate;
     var openTime = CC.loan.timeOpen;
     serverDate += 1000;

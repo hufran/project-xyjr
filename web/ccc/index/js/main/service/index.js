@@ -7,21 +7,9 @@
 
 exports.IndexService = {
     getSummaryData: function (next) {
-//         request.get('/api/v2/loans/getLoanWithProduct', {
-//    }).send({
-//            product: 'XSZX,HDZX,LCZQ',
-//            currentShow: 3,
-//            status: 'OPENED,SCHEDULED,FINISHED,SETTLED',
-//            minDuration: 0,
-//            maxDuration: 100,
-//            minRate: 0,
-//            maxRate: 100,
-//            asc: 'true',
-//        })
          request.get('/api/v2/loans/summary')
             .end()
             .then(function (res) {
-             console.log('-------',res.body);
                 next(res.body);
             });
     },
@@ -88,6 +76,8 @@ function parseLoanList(loans) {
 
     function formatItem(item) {
         item.rate = item.rate / 100;
+        item.deductionRate = item.loanRequest.deductionRate / 100;
+        item.basicRate = item.rate - item.deductionRate;
         item.investPercent = parseInt(item.investPercent * 100, 10);
         //格式化期限
         if (item.duration.days > 0) {
@@ -106,6 +96,13 @@ function parseLoanList(loans) {
             item.amount = (item.amount / 10000);
         } else {
             item.amountUnit = '元';
+        }
+        if (item.loanRequest.investRule.minAmount >= 10000) {
+            item.minAmountUnit = '万';
+            item.minAmount = (item.loanRequest.investRule.minAmount / 10000);
+        } else {
+            item.minAmount = item.loanRequest.investRule.minAmount;
+            item.minAmountUnit = '元';
         }
         if (item.status === "OPENED") {
             item.leftTime = formateLeftTime(item.timeLeft);

@@ -104,7 +104,7 @@
 .rinput label {
     color: #3c3c3c;
     float: left;
-    height: 54px;
+    height: 45px;
     font-weight: normal;
 }
 
@@ -431,7 +431,7 @@
 }
 
 .picnum {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 .go-account{
     background: #f68121;

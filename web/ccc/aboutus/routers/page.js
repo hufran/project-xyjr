@@ -1,78 +1,75 @@
 'use strict';
 module.exports = function (router) {
     var pageSize = 10;
-
+//    router.get('/team',function(req, res){
+//        console.log('team------');
+//    });
     router.get('/:tab', function (req, res) {
-
         var cateMap = {
-            team: 'INTRODUCTION',
-//            aboutus: 'INTRODUCTION',
             introduction: 'INTRODUCTION',
-            recruitment: 'INTRODUCTION',
-//            background: 'INTRODUCTION',
-//            consultant: 'INTRODUCTION',
-            partner: 'INTRODUCTION',
             safety: 'INTRODUCTION',
+            recruitment: 'INTRODUCTION',
+            team: 'INTRODUCTION',
+            partner: 'INTRODUCTION',
+            contactus: 'INTRODUCTION',
+            // background: 'INTRODUCTION',
+            // consultant: 'INTRODUCTION',
             // things: 'INTRODUCTION',
-             contactus: 'INTRODUCTION',
-
+            // aboutus: 'INTRODUCTION',
             // manage:'PUBLICATION',
             // media:'COVERAGE',
             // action:'NEWS',
-            // notice:'PUBLICATION'
         };
         var nameMap = {
-            team: '团队介绍',
-//            aboutus: '关于我们',
             introduction: '平台介绍',
+            safety: '安全保障',
             recruitment: '保障机构',
-//            background: '平台背景',
-//            consultant: '权威顾问',
+            team: '团队介绍',
             partner: '合作伙伴',
+            contactus: '联系我们',
             // things: '大事记',
-             safety: '安全保障',
-             contactus: '联系我们',
-             
+            // aboutus: '关于我们',
+            // background: '平台背景',
+            // consultant: '权威顾问',
             // action: '行业新闻',
             // media: '媒体报道',
             // notice: '最新公告',
-            // manage: '经营报告'
+            // manage: '经营报告’
         };
 
         var indexMap = {
-              team: '团队介绍',
-//            aboutus: '关于我们',
             introduction: '平台介绍',
+            safety: '安全保障',
             recruitment: '保障机构',
-//            background: '平台背景',
-//            consultant: '权威顾问',
+            team: '团队介绍',
             partner: '合作伙伴',
-            // things: '大 事 记',
-             safety: '安全保障',
-             contactus: '联系我们',
-            
-            // action: '公司动态',
+            contactus: '联系我们',
+            // things: '大事记',
+            // aboutus: '关于我们',
+            // background: '平台背景',
+            // consultant: '权威顾问',
+            // action: '行业新闻',
             // media: '媒体报道',
-            // notice: '平台公告',
-            // manage: '经营报告'
+            // notice: '最新公告',
+            // manage: '经营报告’
         };
 
         var tabs = [{
-             text: ' 团队介绍',
-             url: '/aboutus/team',
-         }, {
             text: '平台介绍',
             url: '/aboutus/introduction'
          }, {
-             text: '保障机构',
-             url: '/aboutus/recruitment'
-         }, {
-            text: '合作伙伴',
-            url: '/aboutus/partner',
-         }, {
              text: '安全保障',
              url: '/aboutus/safety',
-         }, {
+         },{
+             text: '保障机构',
+             url: '/aboutus/recruitment'
+         },{
+             text: ' 团队介绍',
+             url: '/aboutus/team',
+         },  {
+            text: '合作伙伴',
+            url: '/aboutus/partner',
+         },  {
              text: '联系我们',
              url: '/aboutus/contactus',
          },
@@ -130,7 +127,6 @@ module.exports = function (router) {
  //        };
 //        console.log("success");
         req.uest('/api/v2/cms/category/' + cateMap[req.params.tab] + '/name/' + encodeURIComponent(nameMap[req.params.tab]) + '?sort' + 'PUBDATE').end().then(function (r) {
-            console.log('-=-=-=--', r)
             if (r.body.length >= 1) {
                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                 req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pageSize='+ pageSize)

@@ -372,9 +372,11 @@
     margin-right: 27px;
     margin-top: 30px;
 }
+/*
 .strengthProtect:hover{
     cursor: pointer;
 }
+*/
 .strengthProtectBg{
 /*    overflow: hidden;*/
     color: #ffffff;
@@ -491,4 +493,22 @@
      color:#009ada
 }
 
+/*图片资讯轮播*/
+#newsBg .carousel-indicators{
+    margin: 0 auto;
+    margin-left: -35px;
+}
+#newsBg .carousel-indicators li{
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+    float: left;
+    position: relative;
+    margin-right: 10px;
+    background: #eee;
+}
 
+#newsBg  .imgnews-carousel-wrapper{
+    float: left;
+    width: 292px;
+}

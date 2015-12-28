@@ -37,7 +37,7 @@ var captchaRequired = conext(function *(req, res, next) {
 });
 
 module.exports = function (router) {
-    router.get('/register', function(req,res,next) {
+    router.get('/', function(req,res,next) {
             var user = res.locals.user;
     res.expose(user, 'user');
     res.locals.title = '注册_奇乐融_联想控股成员企业-正奇金融旗下互联网金融战略平台';

@@ -65,7 +65,7 @@
 <div class="broadcast-wrapper">
     <div class="broadcast">
         <p class="broXY"><img src="/ccc/index/img/broadcast.png" style="margin-right:3px;"><em>新毅实况：</em>双十二新毅<span><em>红包</em></span>大放送</p>
-        <p class="broUser"><img src="/ccc/index/img/broadcast.png" style="margin-right:5px;"><span>12:30</span>&nbsp;&nbsp;<span>132****6953</span>&nbsp;&nbsp成功注册领取了&nbsp;&nbsp<span><em>2000元红包</em></span></p>
+        <p class="broUser"><img src="/ccc/index/img/clock.png" style="margin-right:5px;"><span>12:30</span>&nbsp;&nbsp;<span>132****6953</span>&nbsp;&nbsp成功注册领取了&nbsp;&nbsp<span><em>2000元红包</em></span></p>
     </div>
 </div>
 
@@ -75,28 +75,28 @@
     <div class="strengthProtectBox">
            
         <div class="strengthProtect">
-            <a href="/safety/profession"><img src="/ccc/index/img/advantage.png" /></a>
+            <img src="/ccc/index/img/advantage.png" />
             <div class="strengthProtect-content" style="width:144px;">
                 <h3>品牌优势</h3>
                 <p>互联网信用AA级企业</p>
             </div>
         </div>
         <div class="strengthProtect">
-            <a href="/safety/transparent"><img src="/ccc/index/img/profit.png" /></a>
+            <img src="/ccc/index/img/profit.png" />
             <div class="strengthProtect-content" style="width:200px;">
                 <h3>收益稳健</h3>
                 <p>预期年化收益6.67% - 13.69%</p>
             </div>
         </div>
          <div class="strengthProtect">
-             <a href="/safety/heart"><img src="/ccc/index/img/various.png" /></a>
+             <img src="/ccc/index/img/various.png" />
             <div class="strengthProtect-content" style="width:130px;">
                 <h3>产品多样</h3>
                 <p>活期、定期多样选择</p>
             </div>
         </div>
           <div class="strengthProtect" style="margin-right:0px;">
-              <a href="/safety/earn"><img src="/ccc/index/img/safety.png" /></a>
+              <img src="/ccc/index/img/safety.png" />
             <div class="strengthProtect-content" style="width:150px;">
                 <h3>资金安全</h3>
                 <p>6重安全暴涨，本息安全</p>
@@ -114,7 +114,7 @@
             <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
             </p>
         </div>
-        <div class="productList">
+        <div class="XSZXproductList">
 
         </div>
         <div class="productBoxTitle">
@@ -123,7 +123,16 @@
             <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
             </p>
         </div>
-        <div class="productList">
+        <div class="HDZXproductList">
+
+        </div>
+        <div class="productBoxTitle">
+            <p class="titleLeft">理财专区</p>
+            <img style="margin-left:248px;" src="/ccc/index/img/property.png" alt="">
+            <p class="titleRight"><a href="/invest" style="text-decoration:none">查看更多 ></a>
+            </p>
+        </div>
+        <div class="LCZQproductList">
 
         </div>
     </div>
@@ -159,11 +168,47 @@
                 <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
             <h4>新闻资讯</h4>
+<!--            图片新闻轮播start-->
+<div class="imgnews-carousel-wrapper">
+    <!-- 在carousel上的 按钮 等 -->
+    <!-- server端渲染 ， 做不到 只在第二张图上显示 -->
+    <div class="current-container info-wrapper">
+    </div>
+
+    <div id="my-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            {{#carousel}}
+
+            <li data-target="#my-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
+            </li>
+
+            {{/}}
+        </ol>
+
+        
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            {{#each latestImgPublication:num}}
+            <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
+                <a href="{{this.link}}" target="_blank">
+                    <div style="background-image:url({{author}}); background-repeat:no-repeat; background-position:center; width:292px;height: 181px;">
+                    </div>
+                </a>    
+            </div>
+            {{/each latestImgPublication:num}}
+        </div>
+    </div>
+</div>
+<!--
             {{#each latestImgPublication:num}}
                 {{#if num+1<6 }}
             <a href=""><img style="float: left; width:292px; height:181px;" src="{{author}}" alt=""></a>
                 {{/if}}
             {{/each}}
+-->
+            
+<!--            图片新闻轮播end-->
             <ul>
                 {{#each latestPublication:num}}
                 {{#if num+1<6 }}

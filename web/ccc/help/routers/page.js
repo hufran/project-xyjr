@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (router) {
     var pageSize = 10;
-    router.get('/help/:tab', function (req, res) {
+    router.get('/:tab', function (req, res) {
         var cateMap = {
 //            invest: 'HELP',
 
@@ -81,7 +81,6 @@ module.exports = function (router) {
                     var current = (req.query.page === undefined) ? 1 : req.query.page;
                     req.uest('/api/v2/cms/channel/' + r.body[0].channelId + '?page=' + current + '&pagesize=10').end()
                         .then(function (r) {
-                        console.log('=======',nameMap[req.param.tab]);
                             formatNews(r.body.results);
                             var contents = r.body.results.length >
                                 0 ? r.body.results : null;
