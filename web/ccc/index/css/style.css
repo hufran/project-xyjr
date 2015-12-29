@@ -566,7 +566,7 @@ a {
 }
 
 .s-split-view .u-float-right {
-	line-height: 48px;
+/*	line-height: 48px;*/
 	/*  padding-right: 36px;*/
 	margin-right: 20px;
 	color: #4a4a4a;
@@ -584,7 +584,7 @@ a {
     height: 235px;
 	float: left;
     margin-top: 20px;
-	border-right: 1px solid #ccc;	
+/*	border-right: 1px solid #ccc;	*/
 }
 
 .s-split-view .s-right-view ul{
@@ -595,7 +595,13 @@ a {
 .s-split-view .s-left-view {
 	width: 374px;
 	float: left;
-	margin-top: 20px;
+    margin-top: 20px;
+    border-left: 1px solid #ccc;
+}
+.s-split-view .s-left-view-in {
+	width: 374px;
+	float: left;
+	margin-bottom: 20px;
 	margin-left: 60px;
 }
 
@@ -715,6 +721,14 @@ a {
     height: 20px;
     font-size: 14px;
 }
+/*
+.loanWrapper table td:hover{
+    padding-left:3px;
+}
+.loanWrapper table td:hover .opre{
+    margin-left:-3px;
+} 
+*/
 .loanWrapper .percentage-bar{
     display: inline-block;
     width: 556px;
@@ -738,6 +752,9 @@ a {
 	line-height: 18px;
 	color: #4a4a4a;
 	font-family: '微软雅黑';
+}
+.loanWrapper .contentwrapper:hover{
+    margin-left: 3px;
 }
 
 .loanWrapper .year {

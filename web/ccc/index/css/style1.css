@@ -395,6 +395,13 @@
 .strengthProtect img{
    float: left;
 }
+.strengthProtect img:hover{
+    float: left;
+    transform: scale(1.2);
+    transition: all 1s ease 0s;
+    -webkit-transform: scale(1.2);
+    -webkit-transform: all 1s ease 0s;
+}
 .strengthProtect-content{
    float: left;
     width: 154px;
@@ -433,11 +440,11 @@
 
 .s-split-view ul li .news{
 	font-size: 14px;
-	color: #4a4a4a;
+	color: #7e7e7e;
 }
 
 .s-split-view ul li .news:hover{
-	color: #009ada;
+	color: #f06f2e;
 }
 
 /*表格样式*/

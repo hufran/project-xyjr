@@ -190,13 +190,13 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             {{#each latestImgPublication:num}}
-            <div class="item {{#if @index === 0}}active{{/if}}" style="background: {{this.bgc}}">
-                <a href="{{this.link}}" target="_blank">
-                    <div style="background-image:url({{author}}); background-repeat:no-repeat; background-position:center; width:292px;height: 181px;">
+            <div class="item {{#if @index === 0}}active{{/if}}">
+                <a href="/cms/p/{{this.id}}" target="_blank">
+                    <div style="background-image:url({{url}}); background-repeat:no-repeat; background-position:center; width:292px;height: 181px;">
                     </div>
                 </a>    
             </div>
-            {{/each latestImgPublication:num}}
+            {{/each}}
         </div>
     </div>
 </div>
@@ -222,14 +222,15 @@
                 {{/each}}
             </ul>
         </div>
-        <div class="s-left-view" style="margin-right:0;">
+        <div class="s-left-view">
+            <div class="s-left-view-in" style="margin-right:0;">
             <a href="/aboutus/announcement" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
             <h4>平台公告</h4>
             <ul style="margin-left: 20px;">
                 {{#each latestOne:num}}
-                {{#if num+1<6 }}
+                {{#if num<6 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
 					   
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
@@ -242,14 +243,14 @@
                 {{/each}}
             </ul>
         </div>
-        <div class="s-left-view" style="margin-right:0;">
+            <div class="s-left-view-in" style="margin-right:0;">
             <a href="/aboutus/timeoutann" target="_blank">
-                <p class="u-float-right">更多&nbsp;</p>
+                <p class="u-float-right">更多&nbsp;&gt;</p>
             </a>
             <h4>到期公告</h4>
             <ul style="margin-left: 20px;">
                 {{#each expireOne:num}}
-                {{#if num+1<6 }}
+                {{#if num<6 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
 					   
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
@@ -262,6 +263,8 @@
                 {{/each}}
             </ul>
         </div>
+        </div>
+
     </div>
 </div>
 
