@@ -73,7 +73,7 @@
 
 .invest-data-wrapper .investContainer {
 	width: 730px;
-	height: 315px;
+	height: 344px;
 	/*	border: 1px solid #eee;*/
 	/*  margin: 0 25px;*/
 }
@@ -433,7 +433,7 @@
 	border: 1px solid #eee;
 	float: right;
 	width: 350px;
-		height: 315px;
+		height: 346px;
 	
 	background-color: #fff;
 	border-radius: 3px;
@@ -492,7 +492,7 @@
 
 .firstLine .tip {
 	float: left;
-	line-height: 50px;
+	line-height: 30px;
 	font-size: 18px;
 	color: #4a4a4a;
 	/*    margin-left: 30px;*/
@@ -580,18 +580,17 @@
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney-open {
-	font-size: 16px;
-	color: #4b4b4b;
-	text-align: left;
-	margin-bottom: 5px;
-	/*    text-indent: 15px;*/
-	
-	padding-top: 10px;
-/*	border-bottom: 1px solid #eee;*/
-	padding-bottom: 14px;
-	margin-left: 30px;
-	margin-right: 30px;
-	font-family: '微软雅黑';
+    font-size: 16px;
+    color: #4b4b4b;
+    text-align: left;
+    /* margin-bottom: 5px; */
+    /* text-indent: 15px; */
+    padding-top: 6px;
+    /* border-bottom: 1px solid #eee; */
+    padding-bottom: 6px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: '微软雅黑';
 }
 
 .do-invest-wrapper .status .userBlock .leftMoney-open .recharge {
@@ -674,7 +673,7 @@
 	height: 40px;
 	color: #6b6b6b;
 	font-size: 14px;
-	width: 318px;
+	width: 288px;
 	border: none;
 	line-height: 20px;
 	text-indent: 8px;
@@ -688,7 +687,7 @@
 
 .do-invest-wrapper .status .userBlock .input .invest-button {
 	height: 44px;
-	width: 319px;
+	width: 288px;
 	color: #fff;
 	background-color: #009ada;
 	font-size: 18px;
@@ -696,7 +695,7 @@
 	/*    padding: 1px;*/
 	
 	border: none;
-	margin-top: 20px;
+/*	margin-top: 20px;*/
 	font-family: '微软雅黑';
 	letter-spacing: 5px;
 }
@@ -729,11 +728,11 @@
 }
 
 .do-invest-wrapper .status .userBlock .p-max {
-	color: #999;
-	text-align: left;
-	font-size: 14px;
-	font-family: '微软雅黑';
-	line-height: 30px;
+	    color: #999;
+    text-align: left;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    line-height: 18px;
 }
 
 .do-invest-wrapper .status .userBlock .one-time-max {
@@ -1640,7 +1639,7 @@
 
 #userBlock .calculatorBox {
     overflow: hidden;
-    margin-top: 30px;
+/*    margin-top: 30px;*/
     clear: both;
     margin-left: 30px;
     margin-right: 30px;
@@ -1656,7 +1655,7 @@
 }
 
 #userBlock .totalInterest {
-	margin: 10px 0px 0px 30px;
+	margin: 0px 0px 0px 30px;
     font-size: 14px;
     color: #4a4a4a;
         text-align: left;
@@ -1788,7 +1787,7 @@
 	text-align: left;
 	margin-left: 30px;
 	font-size: 16px;
-	line-height: 38px;
+	line-height: 30px;
 	width: 350px;
 	float: left;
 }
@@ -1805,23 +1804,24 @@
 
 .calculatorBox .password-box {
 	overflow: hidden;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .calculatorBox .password-box p {
 	float: right;
-	line-height: 40px;
+	line-height: 24px;
 }
 
 .calculatorBox .password-box p a {
 	color: #009ada;
+        line-height: 50px;
 }
 
 .calculatorBox .password {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	height: 40px;
-	width: 200px;
+	width: 174px;
 	overflow: hidden;
 	float: left;
 }

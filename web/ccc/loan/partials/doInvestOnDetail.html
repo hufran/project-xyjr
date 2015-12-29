@@ -1,6 +1,14 @@
 <!--{{JSON.stringify(loan)}}-->
       <div class="invest-process-box">
+          {{#if loan.status == "OPENED"}}
                <img src="/ccc/loan/img/login-process.png"/>
+          {{/if}}
+          {{#if loan.status == "FINISHED"||loan.status == "SETTLED"}}
+              <img src="/ccc/loan/img/login-process2.png"/>
+          {{/if}}
+          {{#if loan.status == "CLEARED"}}
+              <img src="/ccc/loan/img/login-process3.png"/>
+          {{/if}}
                <ul class="invest-process">
                    <li>
                        <p>{{timeOpen}}</p>
@@ -144,8 +152,8 @@
                         </div>
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
                         <div class="clearfix"></div>
-                        <p class="p-max">单笔最多可投：{{loan.rule.max}}元</p>
-
+<!--                        <p class="p-max">单笔最多可投：{{loan.rule.max}}元</p>-->
+            <p class="totalInterest">预估总收益<span> {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}</span>元</p>
                     <div class="selectOption">
                         <select name="placementId" id="couponSelection" value="{{coupon}}">                       
                             {{#if selectOption}}
