@@ -23,24 +23,42 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
-     var listXSZX = [],listHDZX = [],listLXZQ = [];
-     for(var i=0;i<list.length;i++){
+    var listXSZX = [],listHDZX = [],listXJB = [],listXNB = [],listFB = [],listLCZQ = [];
+    for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
-		list[i].titleLength = replaceStr(list[i].title);
-//		 console.log(list[i].titleLength);
-         if(list[i].loanRequest.productKey == 'XSZX'){
-            listXSZX.push(list[i]);
+        list[i].titleLength = replaceStr(list[i].title);
+        //		 console.log(list[i].titleLength);
+        if(list[i].loanRequest.productKey == 'XSZX'){
+             listXSZX.push(list[i]);
          }else if(list[i].loanRequest.productKey == 'HDZX'){
              listHDZX.push(list[i]);
-         }else{
-             listLXZQ.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'XJB'){
+             listXJB.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'XNB'){
+             listXNB.push(list[i]);
+         }else if(list[i].loanRequest.productKey == 'FB'){
+             listFB.push(list[i]);
          }
-    }
+     }
+        listXSZX = listXSZX.sort(compare('timeopen'));
+        listHDZX = listHDZX.sort(compare('timeopen'));
+        listXJB = listXJB.sort(compare('timeopen'));
+        listXNB = listXNB.sort(compare('timeopen'));
+        listFB = listFB.sort(compare('timeopen'));
+        listLCZQ = [listXJB[0],listXNB[0],listFB[0],[]];
+
+        for(var i=0; i<listLCZQ.length; i++){
+            if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
+                listLCZQ.splice(i,1);
+                i-=1;
+            }
+        }
+    
     var investRactive = new Ractive({
         el: ".XSZXproductList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: listXSZX,
+            list: listXSZX[0],
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -49,7 +67,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".HDZXproductList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: listHDZX,
+            list: listHDZX[0],
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -58,7 +76,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".LCZQproductList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: listLXZQ,
+            list: listLCZQ,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -155,11 +173,23 @@ function initailEasyPieChart() {
 
     });
 };
-
+function compare(propertyName){
+	return function(object1,object2){
+        var value1 = object1[propertyName];
+        var value2 = object2[propertyName];
+        if(value2 < value1){
+            return 1;
+        }else if(value2 > value1){
+            return -1;
+        }else{
+            return 0;
+        }
+	}
+}
 
 function showError(message){
     var errorMaps = {
-        USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-872-7676解锁。',
+        USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-818-9696解锁。',
         FAILED: '手机号/用户名或密码错误'
     };
     var $error = $(".error");

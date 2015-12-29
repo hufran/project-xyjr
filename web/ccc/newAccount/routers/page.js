@@ -28,9 +28,9 @@ module.exports = function (router) {
             delete user.idNumber;
         }
         
-            res.locals.title = '我的账户_奇乐融_联想控股成员企业-正奇金融旗下互联网金融战略平台';
-    res.locals.keywords = '奇乐融|乐投宝|乐享盈|P2P网贷|P2P理财|网络理财|个人理财|投资理财|互联网金融|投资理财|';
-    res.locals.description = '奇乐融(http://www.qilerong.com/) - 联想控股成员企业--正奇金融旗下互联网金融战略平台，由安徽唯源金融信息服务有限公司运营。践行普惠金融，助力财富增值。奇乐融致力于为中小微企业及个人提供专业、透明、安心、稳盈的互联网金融服务。';
+        res.locals.title = '新毅金融';
+        res.locals.keywords = '新毅金融';
+        res.locals.description = '新毅金融';
         res.expose(user, 'user');
         // 检测用户是否登录
         if (!user) {
@@ -145,7 +145,7 @@ module.exports = function (router) {
                 res.locals.user.paymentPasswordHasSet =
                     paymentPasswordHasSet;
                 res.render('newAccount/home', {
-                    title: '奇乐融',
+                    title: '新毅金融',
                     isEnterprise: res.locals.user.enterprise
                 });
             });
@@ -153,13 +153,13 @@ module.exports = function (router) {
 
     router.get('/invest/*', function (req, res) {
     	res.render('newAccount/invest', {
-    		title: '奇乐融'
+    		title: '新毅金融'
     	});
     });
 
     router.get('/loanRequest/*', function (req, res) {
         res.render('newAccount/loan', {
-            title: '奇乐融'
+            title: '新毅金融'
         });
     });
 
@@ -190,7 +190,7 @@ module.exports = function (router) {
                         fundaccountsMap;
                     res.render('newAccount/settings', {
                         tabName: tabName,
-                        title: '奇乐融'
+                        title: '新毅金融'
                     });
                 });
         });
