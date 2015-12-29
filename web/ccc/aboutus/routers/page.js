@@ -1,9 +1,6 @@
 'use strict';
 module.exports = function (router) {
     var pageSize = 10;
-//    router.get('/team',function(req, res){
-//        console.log('team------');
-//    });
     router.get('/:tab', function (req, res) {
         var cateMap = {
             introduction: 'INTRODUCTION',
@@ -18,7 +15,10 @@ module.exports = function (router) {
             // aboutus: 'INTRODUCTION',
             // manage:'PUBLICATION',
             // media:'COVERAGE',
-            // action:'NEWS',
+            announcement:'PUBLICATION',
+            timeoutann:'PUBLICATION',
+            action:'NEWS',
+            imgaction:'NEWS',
         };
         var nameMap = {
             introduction: '平台介绍',
@@ -31,10 +31,13 @@ module.exports = function (router) {
             // aboutus: '关于我们',
             // background: '平台背景',
             // consultant: '权威顾问',
-            // action: '行业新闻',
             // media: '媒体报道',
             // notice: '最新公告',
             // manage: '经营报告’
+            announcement:'平台公告',
+            timeoutann:'到期公告',
+            action: '新闻资讯',
+            imgaction:'图片新闻资讯',
         };
 
         var indexMap = {
@@ -44,14 +47,10 @@ module.exports = function (router) {
             team: '团队介绍',
             partner: '合作伙伴',
             contactus: '联系我们',
-            // things: '大事记',
-            // aboutus: '关于我们',
-            // background: '平台背景',
-            // consultant: '权威顾问',
-            // action: '行业新闻',
-            // media: '媒体报道',
-            // notice: '最新公告',
-            // manage: '经营报告’
+            announcement:'平台公告',
+            timeoutann:'到期公告',
+            action: '新闻资讯',
+            imgaction:'图片新闻资讯',
         };
 
         var tabs = [{
@@ -72,11 +71,20 @@ module.exports = function (router) {
          },  {
              text: '联系我们',
              url: '/aboutus/contactus',
+         },{
+            text: '平台公告',
+            url: '/aboutus/announcement',
+        }, {
+            text: '到期公告',
+            url: '/aboutus/timeoutann',
+        }, {
+             text: '新闻资讯',
+             url: '/aboutus/action'
+         }, {
+             text: '图片新闻资讯',
+             url: '/aboutus/imgaction'
          },
-//           {
-        //     text: '公司动态',
-        //     url: '/aboutus/action'
-        // }, {
+//          {
         //     text: '媒体报道',
         //     url: '/aboutus/media'
         // }, {

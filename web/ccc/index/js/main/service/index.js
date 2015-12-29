@@ -7,11 +7,9 @@
 
 exports.IndexService = {
     getSummaryData: function (next) {
-         request.get('/api/v2/loans/summary')
-            .end()
-            .then(function (res) {
-                next(res.body);
-            });
+         request.get('/api/web/index/loans').then(function (res) {
+            next(res.body);
+        });
     },
     getLoanSummary: function (next) {
         this.getSummaryData(function (res) {

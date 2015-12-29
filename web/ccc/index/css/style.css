@@ -576,7 +576,7 @@ a {
 	background-color: #fff;
 	width: 1100px;
 	overflow: hidden;
-    margin-top: 35px;
+    margin-top: 15px;
 }
 
 .s-split-view .s-right-view {
@@ -672,6 +672,7 @@ a {
 	display: table;
 	height: 270px;
 /*	padding-left: 40px;*/
+    margin-bottom: 20px;
 	border-bottom: 1px #ccc solid;
 	background: #ffffff;
 	position: relative;
@@ -684,8 +685,7 @@ a {
 
 .loanWrapper .imgwrapper{
     float: left;
-    width: 210px;
-    height:270px;
+    margin-right: 40px;
 }
 
 .loanWrapper .contentwraper{
