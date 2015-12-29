@@ -6,7 +6,7 @@ module.exports = xtend(require('./oauth2'), {
 
     dsAppRoot: path.resolve(__dirname, '..'),
     dsComponentPrefix: 'ccc',
-    dsSearchPrefix: ['ccc/', 'node_modules/@ccc'],
+    dsComponentFallbackPrefix: ['node_modules/@ccc'],
     dsExpressStateNameSpace: 'CC',
     dsRequestAllowCookie: ['ccat'],
     dsSupportIE8: true,
