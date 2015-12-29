@@ -67,8 +67,6 @@ IndexService.getLoanSummary(function (list) {
 
 });
 
-request('/api/xxx')
-
 //借款计划
 IndexService.getLoanSummary(function (list) {
     

@@ -3,8 +3,6 @@ module.exports = function (router) {
     router.get('/loans', async function (req, res, next) {
         
         var loans = await req.uest.get('/api/v2/loans/summary').get('body');
-        console.log(loans);
-        
         
         for (let i = 0; i < loans.open.length; i++) {
             var proofs = (await req.uest.get(
