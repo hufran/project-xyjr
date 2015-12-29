@@ -47,22 +47,22 @@ router.get('/:id',
                   }
               });
 
-        var repayments = req.uest(
-                '/api/v2/loan/' + req.params.id +
-                '/repayments')
-                .end()
-                .then(function (r) {
-
-                    if (Array.isArray(r.body.data)) {
-                        var repayments = [];
-                        for (var i = 0; i < r.body.data.length; i++) {
-                            repayments.push(r.body.data[i].repayment);
-                        }
-                        return repayments;
-                    } else {
-                        return r.body.data.repayments;
-                    }
-                })
+//        var repayments = req.uest(
+//                '/api/v2/loan/' + req.params.id +
+//                '/repayments')
+//                .end()
+//                .then(function (r) {
+//
+//                    if (Array.isArray(r.body.data)) {
+//                        var repayments = [];
+//                        for (var i = 0; i < r.body.data.length; i++) {
+//                            repayments.push(r.body.data[i].repayment);
+//                        }
+//                        return repayments;
+//                    } else {
+//                        return r.body.data.repayments;
+//                    }
+//                })
         if (user && user.idNumber) {
             delete user.idNumber;
         }

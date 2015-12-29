@@ -40,7 +40,7 @@ exports.accountService = {
             });
     },
     authenticateUser: function(user, next) {
-        request('GET', '/api/v2/guozhengtong/authenticateUser/'+CC.user.id)
+        request('POST', '/api/v2/guozhengtong/authenticateUser/'+CC.user.id)
             .type('form')
             .send(user)
             .end()
