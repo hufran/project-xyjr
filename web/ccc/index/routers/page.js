@@ -54,18 +54,26 @@ router.get('/', function (req, res, next) {
             data = (data || []).sort(compare('pubDate'));
             return data;
         });
+    res.locals.advertisement = req.uest(
+        '/api/v2/cms/category/OTHER/name/' + encodeURIComponent('广告'))
+        .end()
+        .get('body')
+        .then( function(data){
+            data = (data || []).sort(compare('pubDate'));
+            return data;
+        });
 //     res.locals.friendsLinks = req.uest(
 //         '/api/v2/cms/category/LINK/name/' + encodeURIComponent('友情链接'))
 //         .end()
 //         .get('body').then( function(data) {
 //            return data;
 //        });
-     res.locals.cooperation = req.uest(
-         '/api/v2/cms/category/COOPERATION/name/' + encodeURIComponent('合作伙伴'))
-         .end()
-         .get('body').then( function(data) {
-            return data;
-        });
+//     res.locals.cooperation = req.uest(
+//         '/api/v2/cms/category/COOPERATION/name/' + encodeURIComponent('合作伙伴'))
+//         .end()
+//         .get('body').then( function(data) {
+//            return data;
+//        });
     res.locals.userInfo = req.uest(
          '/api/v2/user/MYSELF/userinfo')
          .end()

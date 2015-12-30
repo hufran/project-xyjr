@@ -63,8 +63,13 @@
             </tr>
     </table>
     <div class="percentage">
-    <span class="percentage-bar"></span>
-    <span>{{ investPercent }}<i>%</i></span>
+        <div class="progress" id="yellow-progress">
+
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ investPercent }}%;">
+
+            </div>
+            <p class="progress-bar-word">{{ investPercent }}%</p>
+        </div>
     </div>
 </div>
 

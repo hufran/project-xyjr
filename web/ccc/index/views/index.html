@@ -64,8 +64,21 @@
 <!--新毅实况-->
 <div class="broadcast-wrapper">
     <div class="broadcast">
-        <p class="broXY"><img src="/ccc/index/img/broadcast.png" style="margin-right:3px;"><em>新毅实况：</em>双十二新毅<span><em>红包</em></span>大放送</p>
-        <p class="broUser"><img src="/ccc/index/img/clock.png" style="margin-right:5px;"><span>12:30</span>&nbsp;&nbsp;<span>132****6953</span>&nbsp;&nbsp成功注册领取了&nbsp;&nbsp<span><em>2000元红包</em></span></p>
+        <div class="broXY">
+            <img src="/ccc/index/img/broadcast.png" style="margin-right:3px;">
+            <em>新毅实况：</em>
+            <span id="scrollWrap">
+                <ul id="scrollMsg">
+                {{#latestOne}}
+                    <li><a target="_blank" href="/cms/p/{{this.id}}" style="text-decoration:none">{{{title}}}</a>
+                    </li>
+                {{/latestOne}}
+                </ul>
+            </span>
+        </div>
+        <div class="broUser">
+            <img src="/ccc/index/img/clock.png" style="margin-right:5px;"><span>12:30</span>&nbsp;&nbsp;<span>132****6953</span>&nbsp;&nbsp;成功注册领取了&nbsp;&nbsp;<span><em>2000元红包</em></span>
+        </div>
     </div>
 </div>
 
@@ -117,6 +130,13 @@
         <div class="XSZXproductList">
 
         </div>
+    </div>
+    <div class="advertisement" style="text-align:center">
+       {{#each advertisement:num}}
+        <p><a href="/cms/p/{{this.id}}"><img src="{{url}}" style="height:144px;"></a></p>
+        {{/each}}
+    </div>
+    <div class="productBox">
         <div class="productBoxTitle">
             <p class="titleLeft">活动专区</p>
             <img style="margin-left:248px;" src="/ccc/index/img/present.png" alt="">
@@ -126,6 +146,8 @@
         <div class="HDZXproductList">
 
         </div>
+    </div>
+    <div class="productBox">
         <div class="productBoxTitle">
             <p class="titleLeft">理财专区</p>
             <img style="margin-left:248px;" src="/ccc/index/img/property.png" alt="">
@@ -324,4 +346,47 @@
 
 <!--<div class="space space-50">&nbsp;</div>-->
 <script src="/ccc/index/js/main/index.js"></script>
+<script type="text/javascript">
+    try {
+        var isStoped = false;
+        var oScroll = document.getElementById("scrollWrap");
+        with(oScroll) {
+            noWrap = true;
+        }
+        oScroll.onmouseover = new Function('isStoped = true');
+        oScroll.onmouseout = new Function('isStoped = false');
+        var preTop = 0;
+        var curTop = 0;
+        var stopTime = 0;
+        var oScrollMsg = document.getElementById("scrollMsg");
+        oScroll.appendChild(oScrollMsg.cloneNode(true));
+        init_srolltext();
+    } catch (e) {}
+
+    function init_srolltext() {
+        oScroll.scrollTop = 0;
+        setInterval('scrollUp()', 15);
+    }
+
+    function scrollUp() {
+        if (isStoped)
+            return;
+        curTop += 1;
+        if (curTop == 19) {
+            stopTime += 1;
+            curTop -= 1;
+            if (stopTime == 180) {
+                curTop = 0;
+                stopTime = 0;
+            }
+        } else {
+            preTop = oScroll.scrollTop;
+            oScroll.scrollTop += 1;
+            if (preTop == oScroll.scrollTop) {
+                oScroll.scrollTop = 0;
+                oScroll.scrollTop += 1;
+            }
+        }
+    }
+</script>
 </dsBody>
