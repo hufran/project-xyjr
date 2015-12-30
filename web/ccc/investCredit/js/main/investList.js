@@ -9,12 +9,12 @@ var InvestListService = require('ccc/investCredit/js/main/service/list')
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
-// 收益计算器
-var Cal = require('ccc/global/js/modules/cccCalculator');
-$('.benefit-calculator')
-    .on('click', function () {
-        Cal.create();
-    });
+//// 收益计算器
+//var Cal = require('ccc/global/js/modules/cccCalculator');
+//$('.benefit-calculator')
+//    .on('click', function () {
+//        Cal.create();
+//    });
 
 var params = {
     pageSize: 10,
@@ -25,7 +25,6 @@ var params = {
     maxRate: 100,
     currentPage: 1
 };
-
 
 function jsonToParams(params) {
     var str = '';
@@ -133,7 +132,7 @@ function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
 	
-InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
+InvestListService.getCreditassignData(jsonToParams(params), function (res) {
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
         template: require('ccc/global/partials/singleInvestList.html'),

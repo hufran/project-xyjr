@@ -29,6 +29,9 @@ exports.InvestListService = {
                 results: []
             });
         }
+    },
+     getCreditassignData: function(next) {
+        request('/api/v2/creditassign/list').get('body').then(next);
     }
 //    getProductKey:function(next,params){
 //         request
