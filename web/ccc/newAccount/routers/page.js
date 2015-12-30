@@ -150,6 +150,16 @@ module.exports = function (router) {
                 });
             });
     });
+       router.get('/coupon', function (req, res) {
+                res.render('newAccount/coupon', {
+                    title: '新毅金融'
+                });
+    });
+          router.get('/autobid', function (req, res) {
+                res.render('newAccount/autobid', {
+                    title: '新毅金融'
+                });
+    });
 
     router.get('/invest/*', function (req, res) {
     	res.render('newAccount/invest', {

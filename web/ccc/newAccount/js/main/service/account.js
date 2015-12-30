@@ -93,11 +93,20 @@ exports.accountService = {
             });
         
     },
-    saveAutoBidConfig: function(params, next){
-        $.post('/api/v2/user/MYSELF/save_autobid_config', params, function(r){
-            next(r);
-            return r;
-        });
+//    saveAutoBidConfig: function(params, next){
+//        $.post('/api/v2/user/MYSELF/save_autobid_config', params, function(r){
+//            next(r);
+//            return r;
+//        });
+//    },
+        saveAutoBidConfig: function(params, next) {
+        request('POST', '/api/v2/user/MYSELF/save_autobid_config')
+            .type('form')
+            .send(params)
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     },
     getTotalInters:function(next){
          request('GET', '/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
