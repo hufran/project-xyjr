@@ -359,6 +359,31 @@
 .broadcast .broXY{
     float: left;
 }
+/*
+#scrollMsg {
+    float:left;
+    margin-left:90px;
+}
+*/
+#scrollWrap{
+    float: right;
+    height: 18px;
+    overflow: hidden;
+    width: 400px;
+    margin-top: 22px;
+}
+
+#scrollWrap #scrollMsg li{
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+}
+#scrollWrap #scrollMsg li a{
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
 .broadcast .broUser{
     float: right;
 }

@@ -729,14 +729,6 @@ a {
     margin-left:-3px;
 } 
 */
-.loanWrapper .percentage-bar{
-    display: inline-block;
-    width: 556px;
-    height: 7px;
-    border-radius: 2px;
-    background: #ccc;
-    margin-right: 15px;
-}
 .loanWrapper .event {
 /*	width: 223px;*/
 	color: #6e6e6e;
