@@ -33,7 +33,7 @@
     "dev-null": "^0.1.1",
     "ds-assets": "^1.0.0",
     "ds-pack": "^1.0.1",
-    "ds-render": "^2.0.0",
+    "ds-render": "^2.1.0",
     "ds-require": "^1.0.1",
     "ds-rewriter": "^1.0.3",
     "dysonshell": "^1.0.0",
