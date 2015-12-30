@@ -36,3 +36,4 @@ tmp/
 .tmp/
 config/local.js
 ccc/global/img/fonts/*
+running-service.json
