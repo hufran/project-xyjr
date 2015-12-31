@@ -89,63 +89,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/help/help.tmpl.html'
                     }
 
-                    .when '/lyg', {
-                        controller: 'LYGWrapperCtrl as self'
-                        templateUrl: 'components/router/lyg/lyg-wrapper.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'lyg'
-                                        return $q.reject()
-
-                            _payment_account: _.ai 'api, $location, $route, $q',
-                                (                   api, $location, $route, $q) ->
-                                    api.fetch_current_user()
-
-                                        .then (user) ->
-                                            return user if user.has_payment_account and user.has_payment_password
-                                            return $q.reject(user)
-
-                                        .catch (user) ->
-                                            return unless user
-
-                                            switch
-                                                when user.has_payment_account isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/register'
-                                                        .search
-                                                            back: '/'
-                                                            next: 'lyg'
-
-                                                when user.has_payment_password isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/password'
-                                                        .search
-                                                            back: '/'
-                                                            next: 'lyg'
-
-                                            return $q.reject()
-                    }
-
-                    .when '/lyg-order/:id', {
-                        controller: 'LYGOrderCtrl as self'
-                        templateUrl: 'components/router/lyg/lyg-order.tmpl.html'
-                        resolve:
-                            order: _.ai 'api, $location, $q, $rootScope, $route',
-                                (        api, $location, $q, $rootScope, $route) ->
-                                    order = _.find $rootScope.invest_list,
-                                                   id: $route.current.params.id
-
-                                    return $q.reject() unless order
-                                    return order
-                    }
-
                     .when '/share-coupon/:id', {
                         controller: 'ShareCouponCtrl as self'
                         templateUrl: 'components/router/share-coupon/share-coupon.tmpl.html'
@@ -163,19 +106,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         deferred.resolve {}
 
                                     return deferred.promise
-
-                        __: _.ai '$location, $route, $q, $window, $rootScope',
-                            (     $location, $route, $q, $window, $rootScope) ->
-
-                                if 'reload' of $route.current.params
-                                    return $q.resolve {}
-
-                                $location.replace().search reload: true
-
-                                $rootScope.$on '$locationChangeStart', ->
-                                    $window.location.reload()
-
-                                return $q.reject()
                     }
 
                     .when '/dashboard', {
@@ -547,19 +477,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         deferred.resolve {}
 
                                     return deferred.promise
-
-                        __: _.ai '$location, $route, $q, $window, $rootScope',
-                            (     $location, $route, $q, $window, $rootScope) ->
-
-                                if 'reload' of $route.current.params
-                                    return $q.resolve {}
-
-                                $location.replace().search reload: true
-
-                                $rootScope.$on '$locationChangeStart', ->
-                                    $window.location.reload()
-
-                                return $q.reject()
                     }
 
                     .when '/dashboard/invite-registered', {
