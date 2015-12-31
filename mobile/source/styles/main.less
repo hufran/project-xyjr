@@ -1089,8 +1089,8 @@ a {
         .inputs {
             overflow: hidden;
             margin-bottom: 15px;
-            border-top: 1px solid transparent;
-            border-bottom: 1px solid transparent;
+            border-top: 1px solid @color-gray-light-double;
+            border-bottom: 1px solid  @color-gray-light-double;
 
             .form-group {
                 &:not(:first-child) {
@@ -1128,18 +1128,17 @@ a {
     }
 
     .links {
+        .flex-display(center; space-between);
+
         margin-top: 28px;
         color: @color-theme-link;
-        font-size: 12px + 2;
 
         a {
             color: inherit;
+        }
 
-            &:not(:first-child) {
-                margin-left: 20px;
-                border-left: 1px solid #CCC;
-                padding-left: 23px;
-            }
+        .left {
+            .flex(1);
         }
     }
 }
