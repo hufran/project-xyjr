@@ -1,0 +1,87 @@
+
+<div id="dashboard-recharge" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.back_path || self.next_path || 'dashboard' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">充值</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg.success" ng-init="msg.success = '充值成功'">
+    </div>
+
+    <section class="text-center balance">
+        <div class="title">账户余额</div>
+        <div class="num">{{ available_amount | number: 2 }}</div>
+    </section>
+
+    <section class="form-wrapper">
+        <form class="form-horizontal form-flatten"
+              name="form"
+              action="/lianlianpay/deposit"
+              method="post"
+              target="_self"
+              ng-submit="self.submit(amount)"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              novalidate
+        >
+            <div class="inputs container">
+                <div class="multi-line-container-item" x-gyro-comment>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label title">充值卡号</label>
+                        <div class="col-xs-8 row">
+                            <input class="form-control input-sm"
+                                   type="text"
+                                   value="{{ bank_account.account | string_mask }}"
+                                   ng-disabled="true"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group merge">
+                    <label>{{ bank_account.bank }}</label>
+                    <input class="form-control input-target input-lg blank"
+                           type="text"
+                           value="{{ bank_account.mask }}"
+                           disabled
+                    >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="amount">充值金额</label>
+                    <input class="form-control input-target input-lg"
+                           type="number"
+                           id="amount"
+                           name="amount"
+                           ng-model="amount"
+                           max="1000000"
+                           minlength="1"
+                           placeholder="输入充值金额"
+                           required
+                    >
+                </div>
+            </div>
+
+            <input type="hidden" name="isWAP" value="true">
+            <input type="hidden" name="retUrl" value="{{ return_url }}">
+
+            <p class="text-center">
+                充值限额：单笔{{ bank_limit_amount.singleLimit }}，单日{{ bank_limit_amount.dayLimit }}，单月{{ bank_limit_amount.monthLimit }}
+            </p>
+
+            <p class="container">
+                <button class="btn btn-theme btn-block"
+                        type="submit"
+                        ng-if="self.user.has_payment_account"
+                        ng-disabled="form.$invalid || self.submit_sending"
+                >确认</button>
+            </p>
+    </form>
+    </section>
+</div>

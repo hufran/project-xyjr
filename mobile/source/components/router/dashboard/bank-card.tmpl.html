@@ -1,0 +1,56 @@
+
+<div id="dashboard-bank-card">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard/settings"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">我的银行卡</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div class="page-content" ng-if="self.user.has_bank_card">
+        <section>
+            <div class="clip">
+                <div class="info">
+                    <div class="name" ng-switch="bank_account.bank">
+                        <span ng-switch-when="ICBC">中国工商银行</span>
+                        <span ng-switch-when="ABC">中国农业银行</span>
+                        <span ng-switch-when="CCB">中国建设银行</span>
+                        <span ng-switch-when="BOC">中国银行</span>
+                        <span ng-switch-when="CMB">招商银行</span>
+                        <span ng-switch-when="CEB">光大银行</span>
+                        <span ng-switch-when="CIB">兴业银行</span>
+                        <span ng-switch-when="HXB">华夏银行</span>
+                        <span ng-switch-when="COMM">交通银行</span>
+                        <span ng-switch-when="GDB">广发银行</span>
+                        <span ng-switch-when="CITIC">中信银行</span>
+                        <span ng-switch-when="SPAB">平安银行</span>
+                        <span ng-switch-when="PSBC">邮储银行</span>
+                        <span ng-switch-when="SPDB">浦东发展银行</span>
+                        <span ng-switch-when="CMBC">中国民生银行</span>
+                        <span ng-switch-default>{{ bank_account.bank }}</span>
+                    </div>
+
+                    <div class="card">{{ bank_account.mask }}</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="note">
+            为保障您的资金安全，国美金融仅会由您已绑定的银行卡完成充值、提现操作，如需变更银行卡请致电
+            <a href="tel:4008133233">4008-133-233</a>。
+        </section>
+    </div>
+
+
+
+    <div class="page-content" ng-if="!self.user.has_bank_card">
+        <section>
+            <a href="dashboard/payment/bind-card" class="bind-card">
+                <param class="glyphicon glyphicon-plus"> 添加银行卡
+            </a>
+        </section>
+    </div>
+
+</div>

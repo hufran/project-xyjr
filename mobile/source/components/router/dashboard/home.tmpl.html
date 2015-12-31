@@ -1,0 +1,73 @@
+
+<div id="dashboard">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <span class="col-xs-3">&nbsp;</span>
+        <span class="col-xs-6 title">我的账户</span>
+        <a class="col-xs-3 actions"
+           href="dashboard/settings"
+           style="padding-top: 12px; padding-bottom: 12px;"
+        >
+            <img ng-src="assets/image/user-icon.png" width="20">
+        </a>
+    </div>
+    </nav>
+
+    <div class="padding"></div>
+
+    <section class="info">
+        <div class="head">
+            <div class="title">昨日收益</div>
+            <div class="num">{{ fund.daily | number: 2 }}</div>
+        </div>
+
+        <div class="sub">
+            <div class="row">
+            <div class="col-xs-4 item">
+                <div class="title">总资产</div>
+                <div class="num">{{ fund.total | number: 2 }}</div>
+            </div>
+            <div class="col-xs-4 item">
+                <div class="title">可用余额</div>
+                <div class="num">{{ fund.available | number: 2 }}</div>
+            </div>
+            <div class="col-xs-4 item">
+                <div class="title">累计收益</div>
+                <div class="num">{{ fund.total_interest | number: 2 }}</div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="list-group-flat list-section u-off-margin-top">
+        <a class="list-group-item rsaquo" href="dashboard/recharge">
+            <img width="22" height="22" ng-src="assets/image/dashboard-icons/recharge.png">
+            充值
+        </a>
+        <a class="list-group-item rsaquo" href="dashboard/withdraw">
+            <img width="22" height="22" ng-src="assets/image/dashboard-icons/withdraw.png">
+            提现
+        </a>
+    </section>
+
+    <section class="list-group-flat list-section">
+        <a class="list-group-item rsaquo" href="dashboard/total-assets">
+            <img width="22" height="22" ng-src="assets/image/dashboard-icons/funds.png">
+            资金总览
+        </a>
+        <a class="list-group-item rsaquo" href="dashboard/invest">
+            <img width="22" height="22" ng-src="assets/image/dashboard-icons/investment.png">
+            投资管理
+        </a>
+        <a class="list-group-item rsaquo" href="dashboard/coupon">
+            <img width="22" height="22" ng-src="assets/image/dashboard-icons/coupon.png">
+            我的红包 <span class="dot" ng-if="available_coupon_length > 0"></span>
+        </a>
+        <a class="list-group-item rsaquo" href="dashboard/notification">
+            <img width="22" height="22" ng-src="assets/image/dashboard-icons/notification.png">
+            我的消息 <span class="dot" ng-if="new_notification_length > 0"></span>
+        </a>
+    </section>
+
+</div>

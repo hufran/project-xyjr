@@ -1,0 +1,144 @@
+
+<div id="loan-invest">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-2 back" ng-href="loan/{{loan.id}}"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-8 title">{{ loan.title }}</span>
+        <a class="col-xs-2 actions" href="#"
+           ng-init="type_agreement_map = {
+               YGB: '员工专享协议',
+               XSB: '新手专享协议',
+               XFD: '债权转让协议',
+               QYD: '债权转让协议',
+               BL:  '债权转让协议',
+           }"
+           ng-click="self.agreement(type_agreement_map[loan.product_type])"
+        ><small>协议</small></a>
+    </div>
+    </nav>
+
+    <section class="omit-margin loan-summary"
+             x-loan-summary
+             data-loan="loan"
+             data-layout="'chart-left'"
+    ></section>
+
+    <form class="form-horizontal form-invest"
+          name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          ng-submit="self.submit($event)"
+    >
+        <section class="coupon" ng-class="{ rsaquo: coupon_list.length }">
+            <select name="placementId" class="form-control"
+                    id="coupon"
+                    ng-model="store.coupon"
+                    ng-options="
+                        coupon.display
+                        for coupon in coupon_list
+                        track by coupon.id
+                    "
+                    ng-click="self.pick_up_coupon($event, store.amount)"
+                    ng-if="coupon_list.length"
+            >
+                <option value="">{{ coupon_list.length }}个红包可用</option>
+            </select>
+
+            <div class="coupon-tip" ng-if="!coupon_list.length">暂无红包可用</div>
+        </section>
+
+        <div class="multi-line-container">
+            <div class="multi-line-container-item">
+                <span class="available-amount">
+                    余额: {{ self.user.fund.availableAmount | number }}
+                </span>
+                <a ng-href="dashboard/recharge?next={{ self.page_path }}">充值</a>
+                <button type="button"
+                        class="btn btn-sm btn-invest pull-right"
+                        ng-click="store.amount = self.amount_polishing(self.user.fund.availableAmount); self.fetch_analyse(store.amount)"
+                        x-gyro-comment
+                >全投</button>
+            </div>
+
+            <div class="multi-line-container-item">
+                <div class="amount-earning">
+                    <span class="input-wrap">
+                        <input class="form-control" type="number"
+                               name="amount"
+                               ng-model="store.amount"
+                               placeholder="输入投资金额，{{ loan.raw.loanRequest.investRule.minAmount | number }}起投"
+                               required
+                        >
+                    </span>
+
+                    <span class="earning" ng-show="form.amount.$valid" x-gyro-comment>
+                        到期收益 {{ earning | number: 2 }}元
+                    </span>
+                </div>
+            </div>
+
+            <div class="multi-line-container-item">
+                <div class="amount-earning">
+                    <input class="form-control" type="password"
+                           name="password"
+                           ng-model="store.password"
+                           placeholder="请输入交易密码"
+                           required
+                    >
+                </div>
+            </div>
+        </div>
+
+        <p class="container action">
+            <button type="submit" class="btn btn-theme btn-lg btn-block"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >立即投资</button>
+        </p>
+    </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="ngt-invest-agreement.tmpl">
+    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-block btn-theme" ng-click="$close()">
+            已阅读此协议
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ngt-loan-invest-short-of-balance.tmpl">
+    <div class="modal-header text-center">
+        <h3 class="modal-title">账户余额不足</h3>
+    </div>
+
+    <div class="modal-body text-center">
+        当前账户余额{{ balance | number }}元，最小投资额{{ minimum | number }}元
+    </div>
+
+    <div class="modal-footer container">
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-default" ng-click="$close()">
+                    调整金额
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-theme" ng-click="$dismiss('dashboard/recharge')">
+                    快速充值
+                </button>
+            </div>
+        </div>
+    </div>
+</script>

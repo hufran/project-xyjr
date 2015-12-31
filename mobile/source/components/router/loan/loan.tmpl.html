@@ -1,0 +1,161 @@
+
+<div id="loan">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-2 back" ng-href="{{ go_back_path || 'list' }}">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-8 title">{{ loan.title }}</span>
+        <span class="col-xs-2">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="omit-margin loan-summary"
+             x-loan-summary
+             data-loan="loan"
+             data-layout="'chart-left'"
+    ></section>
+
+    <section class="omit-margin loan-detail">
+        <uib-tabset class="invest-tab flex inline list" justified="true">
+            <uib-tab heading="产品介绍">
+                <div class="content">
+                    <div class="alert alert-info alert-cleared text-center" ng-if="loan.status === 'CLEARED'">
+                        本项目已完成回款，为保护隐私，项目详情不再开放
+                    </div>
+
+                    <div class="info-list" ng-if="loan.status !== 'CLEARED'">
+                        <div class="item">
+                            <span class="name">理财类型</span>
+                            <span class="value">固收理财</span>
+                        </div>
+                        <div class="item">
+                            <span class="name">产品名称</span>
+                            <span class="value">{{ loan.title }}</span>
+                        </div>
+                        <div class="item">
+                            <span class="name">项目期限</span>
+                            <span class="value">
+                                <span ng-if="loan.raw.duration.days">
+                                    {{ loan.total_days }}天
+                                </span>
+                                <span ng-if="!loan.raw.duration.days">
+                                    {{ loan.total_months }}个月
+                                </span>
+                            </span>
+                        </div>
+                        <div class="item">
+                            <span class="name">计息日期</span>
+                            <span class="value">
+                                <span ng-if="loan.value_date">{{ loan.value_date | date: 'yyyy-MM-dd' }}</span>
+                                <span ng-if="!loan.value_date">满标审核次日开始计息</span>
+                            </span>
+                        </div>
+                        <div class="item">
+                            <span class="name">回款日期</span>
+                            <span class="value">到期后1-3个工作日回款</span>
+                        </div>
+                        <div class="item">
+                            <span class="name">回款方式</span>
+                            <span class="value">
+                                <span ng-switch="loan.method">
+                                    <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                                    <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                                    <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                                    <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                                    <span ng-switch-when="EqualInterest">月平息</span>
+                                    <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="item">
+                            <span class="name">用户协议</span>
+                            <span class="value">
+                                <a href="#"
+                                   ng-init="type_agreement_map = {
+                                       YGB: '员工专享协议',
+                                       XSB: '新手专享协议',
+                                       XFD: '债权转让协议',
+                                       QYD: '债权转让协议',
+                                       BL:  '债权转让协议',
+                                   }"
+                                   ng-click="self.agreement(type_agreement_map[loan.product_type])"
+                                >《查看用户协议》</a>
+                            </span>
+                        </div>
+                        <div class="item">
+                            <span class="name">购买时间</span>
+                            <span class="value">{{ loan.time_open | date: 'yyyy-MM-dd' }} 至 {{ loan.time_close | date: 'yyyy-MM-dd' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+
+            <uib-tab heading="投资记录">
+                <div class="content">
+                    <table class="table u-off-margin-bottom">
+                        <tbody>
+                            <tr ng-repeat="item in investors">
+                                <td class="mobile">{{ item.userMobile }}</td>
+                                <td class="amount">{{ item.amount | number: 2 }}</td>
+                                <td class="date text-right">{{ item.submitTime | date: 'MM.dd HH:mm' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </uib-tab>
+
+            <uib-tab heading="常见问题">
+                <div class="content">
+                    <div class="faq">
+                        <h4>Q1：如何购买理财产品？</h4>
+                        <p>您需要先注册成为美易理财用户，进行实名认证并绑定银行卡。在美易理财选择相应理财产品，既可购买。</p>
+
+                        <h4>Q2：理财产品可购买金额是多少元？</h4>
+                        <p>不同产品的购买金额不同，请保证您的银行卡余额高于您要购买的理财产品金额。</p>
+
+                        <h4>Q3：产品购买成功后哪里可以看到购买的金额？</h4>
+                        <p>您可以在您的个人账户中查看您购买产品的金额、收益等相关信息。</p>
+
+                        <h4>Q4：理财产品到期，预期收益和实际收益会一致吗？</h4>
+                        <p>到期收益以实际收益为准。</p>
+
+                        <h4>Q5：到期后本金跟收益会回到哪里？</h4>
+                        <p>产品到期后，您投资的本金及收益将返还至您的个人账户中。</p>
+
+                        <h4>Q6：本金和收益何时能收回？</h4>
+                        <p>产品到期后，本金和收益将会自动返还至您的个人账户中。</p>
+
+                        <h4>Q7：定期产品可以提前赎回吗？</h4>
+                        <p>不可以。</p>
+
+                        <h4>Q8：购买理财产品会产生其他费用吗？</h4>
+                        <p>购买理财产品不收取任何费用，请您放心购买。</p>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </section>
+
+    <section class="omit-margin loan-status text-center"
+             ng-if="loan.status === 'OPENED'"
+    >
+        <a class="btn btn-action"
+           ng-href="loan/{{ loan.id }}/invest"
+        >立即投资</a>
+    </section>
+
+</div>
+
+
+
+<script type="text/ng-template" id="ngt-invest-agreement.tmpl">
+    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-block btn-theme" ng-click="$close()">
+            已阅读此协议
+        </button>
+    </div>
+</script>

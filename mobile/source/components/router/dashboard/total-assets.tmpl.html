@@ -1,0 +1,99 @@
+
+<div id="dashboard-total-assets">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">资金总览</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+
+    <section class="assets">
+        <div class="inner">
+            <div class="info-col">
+                <div class="info">
+                    <div class="name">可用余额</div>
+                    <div class="value">{{ fund.available | number: 2 }}</div>
+                </div>
+
+                <div class="info">
+                    <div class="name">待收本金</div>
+                    <div class="value">{{ fund.outstanding_principal | number: 2 }}</div>
+                </div>
+            </div>
+
+            <div class="info-col round-wrap">
+                <div class="info round">
+                    <div class="name">资产总额</div>
+                    <div class="value">{{ fund.total | number: 2 }}</div>
+                </div>
+            </div>
+
+            <div class="info-col">
+                <div class="info">
+                    <div class="name">冻结金额</div>
+                    <div class="value">{{ fund.frozen | number: 2 }}</div>
+                </div>
+
+                <div class="info">
+                    <div class="name">待收利息</div>
+                    <div class="value">{{ fund.outstanding_interest | number: 2 }}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="funds">
+        <h4 class="title text-center">资金记录</h4>
+        <div class="detail" ng-hide="loading">
+            <table class="table u-off-margin-bottom" ng-if="list.length">
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td>
+                            <div>
+                                <span class="type">{{ item.type | fund_type_cn }}</span>
+                                <span class="status"
+                                      ng-switch="item.status"
+                                >
+                                    <span ng-switch-when="INITIALIZED">初始</span>
+                                    <span ng-switch-when="PROCESSING">处理中</span>
+                                    <span ng-switch-when="AUDITING">审核中</span>
+                                    <span ng-switch-when="PAY_PENDING">支付结果待查</span>
+                                    <span ng-switch-when="CUT_PENDING">代扣结果待查</span>
+                                    <span ng-switch-when="SUCCESSFUL">成功</span>
+                                    <span ng-switch-when="FAILED">失败</span>
+                                    <span ng-switch-when="REJECTED">拒绝</span>
+                                    <span ng-switch-when="CANCELED">取消</span>
+                                </span>
+                            </div>
+                            <div class="date text-muted">{{ item.date | date: "yyyy.MM.dd" }}</div>
+                        </td>
+                        <td class="text-right">
+                            <div class="amount u-color-main">{{ item.sign }}{{ item.amount | number: 2 }}</div>
+                            <div class="operation text-muted"
+                                 ng-switch="item.operation"
+                            >
+                                <span ng-switch-when="FREEZE">冻结</span>
+                                <span ng-switch-when="RELEASE">解冻</span>
+                                <span ng-switch-when="IN">资金转入</span>
+                                <span ng-switch-when="OUT">资金转出</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div ng-if="!list.length">
+                <h4 class="alert alert-info text-center">暂无记录</h4>
+            </div>
+        </div>
+
+        <p class="text-center" ng-show="loading">
+            <img src="assets/image/spinner.gif">
+        </p>
+    </section>
+
+</div>

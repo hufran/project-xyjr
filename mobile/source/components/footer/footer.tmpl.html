@@ -1,0 +1,40 @@
+
+<div ng-show="state">
+<footer id="page-footer" class="container text-center" x-gyro-comment>
+    <div class="copyright">
+        版权所有 &copy; 2015奇乐融www.qilerong.com<br />皖ICP备15013787号-1
+    </div>
+
+    <div class="contact">
+        客服热线 <a class="hotline" href="tel:4008727676">400-872-7676</a>
+    </div>
+</footer>
+
+<div style="margin-bottom: 68px;"></div>
+<nav id="page-tab-nav">
+    <div class="container">
+    <ul class="row list-unstyled u-off-margin-bottom">
+        <li class="col-xs-4" ng-class="{ active: state === 'landing' }">
+            <a href="./">
+                <param class="icon icon-logo">
+                首页
+            </a>
+        </li>
+
+        <li class="col-xs-4" ng-class="{ active: state === 'list' }">
+            <a href="list">
+                <param class="icon icon-money">
+                投资
+            </a>
+        </li>
+
+        <li class="col-xs-4" ng-class="{ active: state === 'dashboard' }">
+            <a href="dashboard">
+                <param class="icon icon-user">
+                我的
+            </a>
+        </li>
+    </ul>
+    </div>
+</nav>
+</div>

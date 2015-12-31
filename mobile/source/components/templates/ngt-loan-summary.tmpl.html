@@ -1,0 +1,191 @@
+
+<div class="without-chart" ng-if="layout === 'without-chart'">
+    <div class="header container">
+        <h4 class="title">{{ ::loan.title }}</h4>
+        <span class="rule">
+            {{ ::loan.raw.loanRequest.investRule.minAmount | number }}起投，
+            <span ng-init="::max_amount = loan.raw.loanRequest.investRule.maxAmount">
+                <span ng-if="::max_amount >= 10000">
+                    限额{{ ::max_amount / 10000 | number }}万
+                </span>
+                <span ng-if="::max_amount < 10000">
+                    限额{{ ::max_amount | number }}元
+                </span>
+            </span>
+        </span>
+    </div>
+
+    <div class="body">
+        <div class="rate">
+            <div class="name">年化收益</div>
+            <div class="value">{{ ::loan.rate }}<small>%</small></div>
+        </div>
+
+        <div class="duration">
+            <div class="name">项目期限</div>
+            <div class="value">
+                <span ng-if="::loan.raw.duration.days">
+                    {{ ::loan.total_days }}<small>天</small>
+                </span>
+                <span ng-if="::!loan.raw.duration.days">
+                    {{ ::loan.total_months }}<small>个月</small>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer container" ng-switch="::loan.status">
+        <span ng-switch-when="OPENED"
+              class="btn btn-block btn-invest"
+        >立即投资</span>
+        <span ng-switch-when="SCHEDULED"
+              class="btn btn-block btn-disabled"
+        >即将开始</span>
+        <span ng-switch-when="FINISHED"
+              class="btn btn-block btn-disabled"
+        >已满标</span>
+        <span ng-switch-when="SETTLED"
+              class="btn btn-block btn-disabled"
+        >回款中</span>
+        <span ng-switch-when="CLEARED"
+              class="btn btn-block btn-disabled"
+        >已结清</span>
+    </div>
+</div>
+
+
+
+
+<div class="inner" ng-if="layout === 'chart-right'">
+    <div class="inner-left">
+        <h4 class="title">
+            {{ ::loan.title }}
+            <span class="type"
+                  ng-class="::'type-' + (loan.product_type | lowercase)"
+                  ng-switch="::loan.product_type"
+            >
+                <span ng-switch-when="XFD">分期</span>
+                <span ng-switch-when="QYD">企业</span>
+                <span ng-switch-when="BL">保理</span>
+                <span ng-switch-when="LYG">保理</span>
+            </span>
+        </h4>
+
+        <div class="info-row">
+            <span class="info rate">{{ ::loan.rate | number: 1 | number }}<small>%</small></span>
+
+            <span class="info duration">
+                <span ng-if="::loan.raw.duration.days">
+                    {{ ::loan.total_days }}<small>天</small>
+                </span>
+                <span ng-if="::!loan.raw.duration.days">
+                    {{ ::loan.total_months }}<small>个月</small>
+                </span>
+            </span>
+        </div>
+
+        <div class="info-row">
+            <span class="info amount">
+                <span ng-if="::loan.amount >= 10000">
+                    {{ ::loan.amount / 10000 | number }}万
+                </span>
+                <span ng-if="::loan.amount < 10000">
+                    {{ ::loan.amount | number }}元
+                </span>
+            </span>
+
+            <span class="info method" ng-switch="::loan.method">
+                <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                <span ng-switch-when="EqualInterest">月平息</span>
+                <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="inner-right">
+        <div class="percent">
+            <span x-easypiechart class="chart"
+                  percent="::loan.status == 'OPENED' ? loan.invest_percent_int : '0'"
+                  options="::loan.chart_options"
+            ></span>
+
+            <span class="status text-muted" ng-switch="::loan.status">
+                <span ng-switch-when="FINISHED">满</span>
+                <span ng-switch-when="SETTLED">还</span>
+                <span ng-switch-when="CLEARED">完</span>
+                <span ng-switch-default class="u-color-main">
+                    {{ ::loan.invest_percent_int }}<small>%</small>
+                </span>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="inner" ng-if="layout === 'chart-left'">
+    <div class="inner-left">
+        <div class="percent">
+            <span x-easypiechart class="chart"
+                  percent="::loan.status == 'OPENED' ? loan.invest_percent_int : '0'"
+                  options="::loan.chart_options"
+            ></span>
+
+            <span class="status text-muted" ng-switch="::loan.status">
+                <span ng-switch-when="FINISHED">满</span>
+                <span ng-switch-when="SETTLED">还</span>
+                <span ng-switch-when="CLEARED">完</span>
+                <span ng-switch-default class="u-color-main">
+                    {{ ::loan.invest_percent_int }}<small>%</small>
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="inner-right">
+        <div class="subject">
+            <span class="balance">
+                <span ng-if="::loan.balance !== 0">
+                    {{ ::loan.balance | number: 2 }}可投
+                </span>
+                <span ng-if="::loan.balance === 0">已满</span>
+            </span>
+            <span class="amount">/
+                <span ng-if="::loan.amount >= 10000">
+                    {{ ::loan.amount / 10000 | number }}万
+                </span>
+                <span ng-if="::loan.amount < 10000">
+                    {{ ::loan.amount | number }}元
+                </span>
+            </span>
+        </div>
+
+        <div class="info-row">
+            <span class="info rate">{{ ::loan.rate | number: 1 | number }}<small>%</small></span>
+
+            <span class="info duration">
+                <span ng-if="::loan.raw.duration.days">
+                    {{ ::loan.total_days }}<small>天</small>
+                </span>
+                <span ng-if="::!loan.raw.duration.days">
+                    {{ ::loan.total_months }}<small>个月</small>
+                </span>
+            </span>
+        </div>
+
+        <div class="info-row">
+            <span class="info method" ng-switch="::loan.method">
+                <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
+                <span ng-switch-when="EqualInstallment">按月等额本息</span>
+                <span ng-switch-when="EqualPrincipal">按月等额本金</span>
+                <span ng-switch-when="BulletRepayment">一次性还本付息</span>
+                <span ng-switch-when="EqualInterest">月平息</span>
+                <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+            </span>
+        </div>
+    </div>
+</div>

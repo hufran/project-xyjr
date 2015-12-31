@@ -1,0 +1,90 @@
+
+<div id="dashboard-withdraw" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">提现</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+
+            SUCCEED: '提现申请已经提交，请等待审核',
+            UNKNOWN: '提现失败',
+        }">
+    </div>
+
+    <section class="text-center balance">
+        <div class="title">可提现余额</div>
+        <div class="num">{{ available_amount | number: 2 }}</div>
+    </section>
+
+    <section class="form-wrapper">
+        <form class="form-horizontal form-flatten"
+              name="form"
+              ng-submit="self.submit(amount, password)"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              novalidate
+        >
+            <div class="inputs container">
+
+                <div class="form-group merge">
+                    <label>{{ bank_account.bank }}</label>
+                    <input class="form-control input-target input-lg blank"
+                           type="text"
+                           value="{{ bank_account.mask }}"
+                           disabled
+                    >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="withdraw">提现金额</label>
+                    <input name="withdraw"
+                           id="withdraw"
+                           ng-model="amount"
+                           type="number"
+                           class="form-control input-target input-lg"
+                           min="0.01"
+                           max="{{ available_amount }}"
+                           placeholder="请输入提现金额"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
+                           required
+                    >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="password">交易密码</label>
+                    <input name="password"
+                           id="password"
+                           ng-model="password"
+                           type="password"
+                           class="form-control input-target input-lg"
+                           placeholder="请输入交易密码"
+                           required
+                    >
+                </div>
+            </div>
+
+            <p class="container"
+               ng-init="invalid = available_amount <= 2 || amount > available_amount"
+            >
+                <button class="btn btn-theme btn-block"
+                        type="submit"
+                        ng-if="self.user.has_payment_account && self.user.has_bank_card"
+                        ng-disabled="form.$invalid || invalid || self.submit_sending"
+                >
+                    <span ng-if="!invalid">确认</span>
+                    <span ng-if="invalid">余额不足</span>
+                </button>
+            </p>
+        </form>
+    </section>
+</div>

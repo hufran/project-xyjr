@@ -1,0 +1,46 @@
+
+<div id="privilege-certification" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.back_path }}"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">特权认证</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+    <form class="form-flatten form-horizontal"
+              name="form"
+              ng-submit="self.send_gm_code(store.inner_user_code)"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              novalidate
+        >
+        <div class="privilege">
+            <div class="provilege-bac"></div>
+            <h3>
+                <input class="form-control input-target input-lg" type="text"
+                           id="inner_user_code"
+                           name="inner_user_code"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
+                           ng-model="store.inner_user_code"
+                           placeholder="请输入国美集团员工工号或特权码"
+                           required
+                 >
+                 <div class="help-block"
+                           ng-show="form.inner_user_code.$invalid && form.inner_user_code.$dirty">
+                           <span ng-show="form.id_ninner_user_codeumber.$error.required">必须填写</span>
+                           <span ng-show="form.inner_user_code.$viewValue">请填写正确的员工工号或特权码</span>
+                </div>
+            </h3>
+
+            <div class="form-group container">
+                <button type="submit" class="btn btn-theme btn-block"
+                        ng-disabled="form.$invalid || self.submit_sending"
+                >完成</button>
+            </div>
+        </div>
+    </form>
+</div>

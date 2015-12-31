@@ -1,0 +1,37 @@
+
+<div id="dashboard-funds">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" ng-href="{{ self.$routeParams.back || 'dashboard' }}">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </a>
+        <span class="col-xs-6 title">资金记录</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <section class="funds-list">
+        <table class="table" ng-if="list.length">
+            <thead>
+                <tr>
+                    <th width="140">时间</th>
+                    <th>状态</th>
+                    <th>金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list">
+                    <td class="date">{{ item.date | date: "yyyy.MM.dd H:mm" }}</td>
+                    <td class="type">{{ item.type | fund_type_cn }}</td>
+                    <td class="amount">{{ item.amount | number }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div ng-if="!list.length" class="container">
+            <h4 class="alert alert-info text-center">暂无记录</h4>
+        </div>
+    </section>
+
+</div>
