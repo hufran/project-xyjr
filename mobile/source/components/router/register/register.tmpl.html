@@ -1,17 +1,13 @@
 
 <div id="register">
 
-    <nav class="omit-margin container page-nav" ng-if="!has_referral">
+    <nav class="container page-nav">
     <div class="row">
         <a class="col-xs-3 back" href="login"><span class="glyphicon glyphicon-menu-left"></span></a>
         <span class="col-xs-6 title">注册</span>
         <a class="col-xs-3 text-right actions text-muted hidden" href="login">登录</a>
     </div>
     </nav>
-
-    <a class="head-image" href="./" ng-if="has_referral">
-        <img class="img-responsive" src="static/register-coupon/logo.png">
-    </a>
 
     <div>
       <param ng-model="msg" ng-init="msg = {
@@ -33,17 +29,7 @@
 
     <div class="page-content">
 
-    <div class="icon-doll" ng-if="has_referral">
-        <img width="320" ng-src="assets/image/register-share-icon-invite.png">
-    </div>
-
-    <div class="register-coupon" ng-if="has_referral">
-        <div class="amount">180<small class="unit">元</small></div>
-        <div class="type">现金红包</div>
-    </div>
-
     <form class="form form-flatten form-horizontal" name="form"
-          ng-class="{container: has_referral}"
           autocapitalize="none"
           autocomplete="off"
           autocorrect="off"
@@ -77,7 +63,7 @@
                     'has-error': form.mobile.$invalid && form.mobile.$dirty,
                  }"
             >
-                <label for="mobile">手机号</label>
+                <label for="mobile"></label>
                 <div class="form-control-wrap">
                     <input class="form-control input-target input-lg cell" type="tel"
                            id="mobile"
@@ -98,41 +84,19 @@
                 </div>
             </div>
 
-            <div class="form-group merge"
-                 ng-class="{
-                    'has-error': form.referral.$invalid && form.referral.$dirty,
-                 }"
-                 x-gyro-comment
-            >
-                <input class="form-control input-target input-lg cell" type="tel"
-                       name="referral"
-                       ng-model="store.referral"
-                       ng-pattern="/^1\d{10}$/"
-                       placeholder="请输入推荐人手机号（选填）"
-                       maxlength="11"
-                       ng-readonly="has_referral"
-                >
-
-                <div class="help-block"
-                     ng-show="form.referral.$invalid && form.referral.$dirty"
-                >
-                    <span ng-show="form.referral.$error.pattern">填写中国大陆正确的 11 位手机号</span>
-                </div>
-            </div>
-
             <div class="form-group merge captcha"
                  ng-show="self.captcha.token"
                  ng-class="{
                     'has-error': form.captcha.$invalid && form.captcha.$dirty
                  }"
+                 x-gyro-comment
             >
-                <label for="captcha">图形码</label>
+                <label for="captcha"></label>
                 <div class="form-control-wrap">
                     <input class="form-control input-target input-lg captcha" type="text"
                            id="captcha"
                            name="captcha"
                            ng-model="store.captcha"
-                           ng-init="self.fetch_new_captcha()"
                            ng-pattern="/^[A-Za-z0-9]+$/"
                            autocapitalize="none"
                            autocomplete="off"
@@ -167,7 +131,7 @@
                     init: !self.mobile_verification_code_has_sent,
                  }"
             >
-                <label for="mobile_captcha">验证码</label>
+                <label for="mobile_captcha"></label>
                 <div class="form-control-wrap">
                     <input class="form-control input-target input-lg captcha" type="tel"
                            id="mobile_captcha"
@@ -205,7 +169,7 @@
             <div class="form-group merge"
                  ng-class="{'has-error': form.password.$invalid && form.password.$dirty}"
             >
-                <label for="password">密码</label>
+                <label for="password"></label>
                 <div class="form-control-wrap">
                     <input class="form-control input-target input-lg" type="password"
                            id="password"
@@ -228,7 +192,7 @@
                  ng-class="{'has-error': form.password_confirm.$invalid && form.password_confirm.$dirty}"
                  x-gyro-comment
             >
-                <label for="password_confirm">确认密码</label>
+                <label for="password_confirm"></label>
                 <div class="form-control-wrap">
                     <input class="form-control input-target input-lg" type="password"
                            id="password_confirm"
@@ -248,44 +212,34 @@
                 </div>
             </div>
 
-            <div class="form-group merge" x-gyro-comment>
-                <input class="form-control input-lg"
-                       type="text"
-                       name="referral"
-                       ng-model="store.referral"
-                       placeholder="推荐人手机号码或财富经理唯一号（选填）"
-                >
+            <div class="form-group merge">
+                <label for="referral"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-lg"
+                           type="text"
+                           name="referral"
+                           ng-model="store.referral"
+                           placeholder="推荐人手机号码或推荐码（选填）"
+                    >
+                </div>
             </div>
         </div>
 
-        <div class="container agreement" x-gyro-comment>
+        <div class="container agreement">
             <label>
-                <input type="checkbox" ng-init="agreement = false" ng-model="agreement" required>
-                同意 <a href="#" ng-click="self.agreement('注册服务协议')">《恒普金融平台服务协议》</a>
+                <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
+                我阅读并同意 <a href="#" ng-click="self.agreement('新毅金融用户注册协议')">《新毅金服务注册服务协议》</a>
             </label>
         </div>
 
         <p class="container">
-            <button type="button" class="btn btn-theme btn-block"
+            <button type="button" class="btn btn-theme btn-block btn-lg"
                     ng-click="self.signup(store)"
-                    ng-disabled="form.$invalid || self.submit_sending"
+                    ng-disabled="form.$invalid || !agreement || self.submit_sending"
             >注册</button>
-        </p>
-
-        <p class="agreement">点击注册即表示阅读并同意 <a href="#" ng-click="self.agreement('用户注册协议')">《用户注册协议》</a>
         </p>
     </form>
     </div>
-
-    <footer class="container" ng-if="has_referral">
-        <div class="title">邀请活动规则：</div>
-        <ol class="list">
-            <li>此活动面向所有未在国美金融注册的用户，其他用户不得参与。
-            <li>实名认证成功后，红包发放到您的账户。
-            <li>每个手机号只能领取一次新人红包，不得转让。
-            <li>在法律允许的范围内，国美金融拥有最终解释权。
-        </ol>
-    </footer>
 </div>
 
 
