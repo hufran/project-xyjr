@@ -102,103 +102,59 @@ if (app.get('env') === 'development') {
 require('ds-assets').augmentApp(app);
 
 require('@ccc/inspect/middleware')(app);
-app.use(function (req, res, next) {
-        req.uest.get('/api/v2/navigation/listPlayPanes').get('body').then(function (r) {
-          var headerLinks = r;
-         for(var i=0;i< headerLinks.length; i++){
-             headerLinks[i].childrenLink = [];
-             for(var j=1;j<headerLinks.length; j++){
-                 if(headerLinks[i].id == headerLinks[j].parentId){
-                     headerLinks[i].childrenLink.push(headerLinks[j]);
-                    }
-                 }
-             }
-             for(var i=0;i<headerLinks.length;i++){
-                 if(headerLinks[i].parentId != ''){
-                     headerLinks.splice(i,1);
-                     i-=1;
-                 }
-             }
-              function compare(propertyName){
-                return function(object1,object2){
-                    var value1 = object1[propertyName];
-                    var value2 = object2[propertyName];
-                    if(value2 < value1){
-                        return 1;
-                    }else if(value2 > value1){
-                        return -1;
-                    }else{
-                        return 0;
-                    }
-                }
+app.use(async function (req, res, next) {
+    var headerLinks = await req.uest.get('/api/v2/navigation/listPlayPanes').get('body');
+    for(var i=0;i< headerLinks.length; i++){
+        headerLinks[i].childrenLink = [];
+        for(var j=1;j<headerLinks.length; j++){
+            if(headerLinks[i].id == headerLinks[j].parentId){
+                headerLinks[i].childrenLink.push(headerLinks[j]);
             }
+        }
+    }
+    for(var i=0;i<headerLinks.length;i++){
+        if(headerLinks[i].parentId != ''){
+            headerLinks.splice(i,1);
+            i-=1;
+        }
+    }
 
-            for(var i=0; i<headerLinks.length; i++){
-                if(headerLinks[i].childrenLink != [] && headerLinks[i].childrenLink.length >= 1)
-                headerLinks[i].childrenLink = headerLinks[i].childrenLink.sort(compare('ordinal'));
-            }
+    for(var i=0; i<headerLinks.length; i++){
+        if(headerLinks[i].childrenLink != [] && headerLinks[i].childrenLink.length >= 1) {
+            headerLinks[i].childrenLink = _.sortBy(headerLinks[i].childrenLink, 'ordinal');
+        }
+    }
 
-            var resultLink = headerLinks.sort(compare('ordinal'));
-            res.locals.headerNavLinks = resultLink;
-        });
+    var resultLink = _.sortBy(headerLinks, 'ordinal');
+    res.locals.headerNavLinks = resultLink;
+
     res.expose(Date.now(), 'serverDate');
     // res.layout = 'ccc/global/views/layouts/default.html';
 //    res.locals.title = config.appName; // 设置html标题
-    var ua = userAgent.parse(req.headers['user-agent']);
-    if (ua.family === 'IE' && ua.major < 9) {
-        res.locals.noMediaQueries = true;
-    }
 
     // global user
     if (!req.cookies.ccat) {
         res.expose({}, 'user');
         return next();
     }
-        
 
-    req.uest.get('/api/v2/whoamiplz').then(function (r) {
-        var user = r.body.user;
-//        if (user) {
-//            user.logined = true;
-//            if (user.email === 'notavailable@creditcloud.com') {
-//                user.email = '';
-//            }
-//            res.locals.user = res.locals.user || {};
-//            if (!user.accountId) {
-//                return expUser(user);
-//            }
-//            req.uest.get('/api/v2/user/MYSELF/agreement').get('body').then(function (body) {
-//                user.agreement = body || {};
-//                expUser(user);
-//            });
-//        } else {
-//            res.expose({}, 'user');
+    var user = ((await req.uest.get('/api/v2/whoamiplz').get('body')) || {}).user;
 
-         res.locals.user = res.locals.user || {};
-        if (!user) {
-            expUser({});
-            return next();
-        }
-//        next();
+    res.expose(user || {}, 'user');
+    if (!user) {
+        return next();
+    }
+    res.locals.user = user;
 
-        user.logined = true;
-        if (user.email === 'notavailable@creditcloud.com') {
-          user.email = '';
-       }
-      if (!user.accountId) {
-          expUser(user);
-           return next();
-      }
-        req.uest.get('/api/v2/user/MYSELF/agreement').get('body').then(function (body) {
-           user.agreement = body || {};
-           expUser(user);
-          next();
-        });
-        function expUser(user) {
-            _.assign(res.locals.user, user);
-            res.expose(res.locals.user, 'user');
-        }
-    });
+    user.logined = true;
+    if (user.email === 'notavailable@creditcloud.com') {
+        user.email = '';
+    }
+    if (!user.accountId) {
+        return next();
+    }
+    user.agreement = (await req.uest.get('/api/v2/user/MYSELF/agreement').get('body') || {});
+    next();
 });
 
 _.each([
