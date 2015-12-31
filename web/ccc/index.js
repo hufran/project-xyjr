@@ -120,8 +120,9 @@ app.use(async function (req, res, next) {
     }
 
     for(var i=0; i<headerLinks.length; i++){
-        if(headerLinks[i].childrenLink != [] && headerLinks[i].childrenLink.length >= 1)
-    headerLinks[i].childrenLink = _.sortBy(headerLinks[i].childrenLink, 'ordinal');
+        if(headerLinks[i].childrenLink != [] && headerLinks[i].childrenLink.length >= 1) {
+            headerLinks[i].childrenLink = _.sortBy(headerLinks[i].childrenLink, 'ordinal');
+        }
     }
 
     var resultLink = _.sortBy(headerLinks, 'ordinal');
