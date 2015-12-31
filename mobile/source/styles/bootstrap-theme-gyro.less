@@ -11,18 +11,8 @@
 .btn {
     border-radius: 2px;
 
-    &-red, &-theme {
-        .button-variant(@color-theme-main; #FFF; transparent);
-
-        &:disabled {
-            background-color: #CCCCCC;
-            color: #FFF;
-
-            &:hover {
-                background-color: #CCCCCC;
-                color: #FFF;
-            }
-        }
+    &-theme {
+        .button-variant(#FFF; @color-theme-main; transparent);
     }
 }
 

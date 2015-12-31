@@ -19,8 +19,8 @@
 @color-theme-danger: #EE6754;
 @color-theme-info: #31B0D5;
 
-@color-theme-emphasize: #EE6754;
-@color-theme-main: #F94141;
+@color-theme-emphasize: #2866C2;
+@color-theme-main: #2866C2;
 @color-theme-link: #0574E6;
 
 
@@ -306,7 +306,7 @@ a {
     line-height: 1;
     background-color: #FFF;
     color: @color-theme-main;
-    border-bottom: 1px solid @color-theme-main;
+    border-bottom: 1px solid @color-gray-light-double;
 
     a {
         &, &:hover, &:visited {
@@ -336,13 +336,17 @@ a {
         height: 44px;
     }
 
+    &:not(.omit-margin) + *:before {
+        margin-bottom: 20px;
+    }
+
     &.margin-down {
         margin-bottom: 20px;
     }
 
     *[class*="col-"] {
         padding: 12px 0;
-        font-size: 16px;
+        font-size: 18px;
 
         &:first-child {
             padding-left: 15px;
@@ -1043,7 +1047,6 @@ a {
     }
 
     .form-flatten {
-        margin-top:24px;
 
         input.form-control {
             padding-left: 8px;
@@ -1075,7 +1078,7 @@ a {
                 margin: 0;
                 line-height: 1;
                 color: @color-gray-dark-double;
-                min-width: 5em;
+                min-width: 3em;
 
                 &:empty {
                     min-width: auto;
