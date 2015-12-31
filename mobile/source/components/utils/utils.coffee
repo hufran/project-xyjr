@@ -207,32 +207,10 @@ do (_, angular) ->
                 return mark is mask[reduce((s, n, i) -> s + n * parseInt(id_str[i])) % mask.length]
 
 
-        .factory 'mg_alert', _.ai '$uibModal', ($uibModal) ->
 
-            (alt_mesg) ->
+        .factory 'mg_alert', _.ai '$window, $q', ($window, $q) ->
 
-                $uibModal.open {
-                    size: 'lg'
-                    backdrop: 'static'
-                    windowClass: 'center modal-alert'
-                    animation: true
-                    template: '''
-                                <div class="modal-body" style="max-height: 300px; overflow-y: auto;">
-                                    <span class="alert-title">{{ content }}</span>
-                                </div>
+            (message) ->
 
-                                <div class="modal-footer">
-                                    <button class="btn btn-block btn-theme" ng-click="$close()">
-                                        确定
-                                    </button>
-                                </div>
-                                '''
-                    resolve: {
-                        content: ->
-                            alt_mesg
-                    }
-
-                    controller: _.ai '$scope, content',
-                        (             $scope, content) ->
-                            angular.extend $scope, {content}
-                }
+                $window.alert message
+                return result: $q.resolve()
