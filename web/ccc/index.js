@@ -1,39 +1,28 @@
 'use strict';
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-if (process.argv.indexOf('--run-by-gulp') > -1) {
-    process.env.NODE_ENV = 'development'; }
 if ((process.env.HOSTNAME || '').match(/UAT$/)) {
     process.env.NODE_APP_INSTANCE = 'uat';
 }
-require('ds-require');
+var path = require('path');
 var config = require('config');
-GLOBAL.APP_ROOT = config.dsAppRoot;
-require('./touch_to_restart');
-// require('@ds/common');
+require('ds-require');
+var ds = require('dysonshell');
 var logger = require('bunyan-hub-logger');
-if (process.env.NODE_ENV !== 'development') {
+if ((process.env.NODE_ENV || 'development') !== 'development') {
     logger.replaceConsole();
 }
 console.log('config:', JSON.stringify(require('config'), null, '    '));
 logger.replaceDebug();
-var assert = require('assert');
-var fs = require('fs');
-var path = require('path');
 GLOBAL.CONFIG = config;
 var userAgent = require('useragent');
-var ds = require('dysonshell');
 
 require('./node-global')
 
 var port = Number(process.env.PORT || config.port) || 4000;
 
-require('coexpress')(require('express'));
-var app = exports = module.exports = require('express')();
-app.httpServer = require('http').createServer(app);
+import {app, server} from 'dysonshell/instance';
+
 app.locals.dsLayoutPath = 'ccc/global/views/layouts/default';
 
-
-app.use(require('cookie-parser')());
 if (config.startOAuthServer) {
     config.urlBackend = 'http://127.0.0.1:' + port + '/';
 }
@@ -57,7 +46,6 @@ if (config.startOAuthServer) {
 } else {
     ds.apiproxy(app, config.urlBackend);
 }
-ds.expose(app);
 
 var proxy = require('simple-http-proxy');
 // 连连回调转发
@@ -90,16 +78,7 @@ _.each({
 //ds.prodrev(app);
 //require('@ds/data').augmentReqProto(app.request);
 
-app.use(require('express-favicon')(path.join(__dirname, 'favicon.ico')));
 
-app.disable('etag');
-if (app.get('env') === 'development') {
-    require('ds-pack').watchify(app, port);
-} else {
-    app.enable('view cache');
-}
-
-require('ds-assets').augmentApp(app);
 
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
@@ -205,20 +184,8 @@ app.all('/logout', function (req, res) {
         res.redirect('/');
     }
 });
-if (app.get('env') === 'production') {
-    var ecstatic = require('ecstatic')({root: __dirname});
-    console.log('/' + config.dsComponentPrefix);
-    app.use('/' + config.dsComponentPrefix, function (req, res, next) {
-        if (req.url.match(/^\/[^\/]+\/(css|img|js)|^\/(global-)?common-[^\/]+\.js$/)) {
-            ecstatic(req, res, next);
-        } else {
-            next();
-        }
-    });
-}
-require('ds-render').augmentApp(app);
 
-app.httpServer.listen(port, '0.0.0.0', function () {
+server.listen(port, '0.0.0.0', function () {
     console.log("server listening at http://127.0.0.1:%d",
         this.address()
         .port);
