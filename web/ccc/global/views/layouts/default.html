@@ -6,22 +6,8 @@
 <!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
 <meta name="renderer" content="webkit"  keyword="">
 <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
-<script>(function(global) {
-  'use strict';
-  global.console = global.console || {};
-  var con = global.console;
-  var prop, method;
-  var empty = {};
-  var dummy = function() {};
-  var properties = 'memory'.split(',');
-  var methods = ('assert,clear,count,debug,dir,dirxml,error,exception,group,' +
-     'groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,' +
-     'show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn').split(',');
-  while (prop = properties.pop()) if (!con[prop]) con[prop] = empty;
-  while (method = methods.pop()) if (!con[method]) con[method] = dummy;
-  })(typeof window === 'undefined' ? this : window);</script>
 <!--[if lt IE 10]>
-<script src="/ccc/global/js/ie8fix.js"></script>
+<script src="/ccc/ie8fix/js/console-html5-es5shim-excanvas.js"></script>
 <![endif]-->
 <script src="/ccc/global-common.js" async></script>
 <link rel="stylesheet" href="/ccc/global/css/base.css" />

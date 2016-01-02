@@ -324,7 +324,7 @@ var sayHello = function () {
 ({ name: 'ES7' })::sayHello();
 es6();
 function es6(){
-    let sym = Symbol('asd');
+    //let sym = Symbol('asd');
     let o = {
         log: x => console.log(x)
     } 
@@ -334,7 +334,7 @@ function es6(){
         console.log(aaa.join(''));
     }
     console.log(a(1,2,3,4,5))
-    o.log(typeof sym);
+    //o.log(typeof sym);
 }
 
 //require('ccc/index/js/main/ss.js')
