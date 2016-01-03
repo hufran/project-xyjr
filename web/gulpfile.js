@@ -6,4 +6,4 @@ assert(config.dsAppRoot);
 
 var port = parseInt(process.env.PORT, 10) || config.port || 4000;
 
-require('ds-pack').build(require('gulp'));
+require('dysonshell').build(require('gulp'));
