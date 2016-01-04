@@ -1,6 +1,7 @@
 'use strict';
+require("babel-core/register");
 module.exports = function (router) {
-    router.get('/', function (req, res) {
+    router.get('/',async function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
             delete user.idNumber;
@@ -14,33 +15,12 @@ module.exports = function (router) {
 
         var productKey = ['XSZX', 'HDZX', 'LCZQ'];
         res.locals.products = [];
-        req.uest('/api/v2/loan/getLoanProduct/productKey/' +
-                productKey[0])
-            .end()
-            .then(function (r) {
-                console.log("r.body======");
-                console.log(r.body);
-                res.locals.products.push(r.body);
-                req.uest(
-                        '/api/v2/loan/getLoanProduct/productKey/' +
-                        productKey[1])
-                    .end()
-                    .then(function (r) {
-                        console.log(r.body);
-                        res.locals.products.push(r.body);
-                        req.uest(
-                                '/api/v2/loan/getLoanProduct/productKey/' +
-                                productKey[2])
-                            .end()
-                            .then(function (r) {
-                                console.log(r.body);
-                                res.locals.products.push(
-                                    r.body);
-                                res.render(
-                                    'invest/list');
-                            });
-                    });
-            });
+        var productKeyXSZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).get('body');
+        var productKeyHDZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).get('body');
+        var productKeyLCZQ=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).get('body');
+        res.locals.products.push(productKeyXSZX);
+        res.locals.products.push(productKeyHDZX);
+        res.locals.products.push(productKeyLCZQ);
         res.render();
     });
 }
