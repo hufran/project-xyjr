@@ -150,7 +150,7 @@ setTimeout((function () {
             serverDate: moment(CC.serverDate).format('YYYY-MM-DD'),
             isSend: false,
             backUrl: CC.backUrl,
-//            dueDate:CC.repayments[0].dueDate,
+            dueDate:CC.repayments[0].dueDate,
             timeSettled:nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
