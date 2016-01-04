@@ -1,7 +1,6 @@
 /*jshint multistr: true */
 
 "use strict";
-
 var i18n = require('@ds/i18n')['zh-cn'];
 
 var InvestListService = require('ccc/investCredit/js/main/service/list')
@@ -76,18 +75,18 @@ function formatItem(item) {
     } else {
       item.investPercent = parseInt(item.investPercent * 100, 10);
     };
-    if (item.duration.days > 0) {
-        if (typeof item.duration.totalDays === "undefined") {
-            item.fduration = item.duration.days;                            
-        } else {
-            item.fduration = item.duration.totalDays;                            
-        }
-        item.fdurunit = "天";
-    } else {                        
-        item.fduration = item.duration.totalMonths;
-        item.fdurunit = "个月";
-    }
-    
+//    if (item.duration.days > 0) {
+//        if (typeof item.duration.totalDays === "undefined") {
+//            item.fduration = item.duration.days;                            
+//        } else {
+//            item.fduration = item.duration.totalDays;                            
+//        }
+//        item.fdurunit = "天";
+//    } else {                        
+//        item.fduration = item.duration.totalMonths;
+//        item.fdurunit = "个月";
+//    }
+//    
     if (item.amount >= 10000) {
         item.amountUnit = '万';
         item.amount = (item.amount / 10000);
@@ -121,8 +120,8 @@ function parseLoanList(list) {
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
         var method = list[i].method;
-        var methodFmt = i18n.enums.RepaymentMethod[method][0];
-        list[i].methodFmt = methodFmt;
+       // var methodFmt = i18n.enums.RepaymentMethod[method][0];
+        //list[i].methodFmt = methodFmt;
 		list[i].titleLength = replaceStr(list[i].title);
     }
     return list;
@@ -132,10 +131,10 @@ function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
 	
-InvestListService.getCreditassignData(jsonToParams(params), function (res) {
+InvestListService.getCreditassignData(function (res) {
     var investRactive = new Ractive({
-        el: ".invest-list-wrapper",
-        template: require('ccc/global/partials/singleInvestList.html'),
+        el:".invest-list-wrapper",
+        template: require('ccc/investCredit/partials/singleInvest.html'),
         data: {
             list: parseLoanList(res.results),
             RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式

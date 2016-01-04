@@ -76,7 +76,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/guozhengtong/authenticateUser/:userId', auth.owner());
     
     //债转相关
- router.post('/api/v2/creditassign/create/:userId/:investId/:creditDealRate', auth.user());
+    router.post('/api/v2/creditassign/create/:userId/:investId/:creditDealRate', auth.user());
 	router.get('/api/v2/creditassign/listForCreditAssign/:userId', auth.user())
 	router.get('/api/v2/creditassign/list', auth.pass())
 	router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass())
