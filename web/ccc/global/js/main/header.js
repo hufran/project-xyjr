@@ -60,7 +60,10 @@ $(function(){
         }else{
             sideUp.hide();
         }
-        
+$(".back-top").click(function(){
+    $('body,html').animate({scrollTop:0},1000);
+    return false;
+})     
 
 //导航状态
 var path = window.location.pathname;
