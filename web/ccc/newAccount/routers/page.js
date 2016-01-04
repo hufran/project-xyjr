@@ -9,7 +9,9 @@ module.exports = function (router) {
 //        next();
 //
 //    });
-
+    router.get('/setpassword',function (req,res,next){
+        res.render('/newAccount/setpassword');
+    });
 	// 未登录访问account下的页面,跳转到 /
     router.get('/*', function (req, res, next) {
         if (!req.cookies.ccat) {
