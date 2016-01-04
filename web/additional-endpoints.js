@@ -68,10 +68,15 @@ module.exports = function (router, auth) {
     router.get('/api/v2/user/:userId/userAuthenticate', auth.user());
      //导航
     router.get('/api/v2/navigation/listPlayPanes', auth.pass());
-//    实名认证
+    
+     //用户注册动态
+    router.get('/api/v2/users/getLastRisterUser', auth.pass());
+    
+    //实名认证
     router.post('/api/v2/guozhengtong/authenticateUser/:userId', auth.owner());
-//    债转相关
-    router.post('/api/v2/creditassign/create/:userId/:investId/:creditDealRate', auth.user());
+    
+    //债转相关
+ router.post('/api/v2/creditassign/create/:userId/:investId/:creditDealRate', auth.user());
 	router.get('/api/v2/creditassign/listForCreditAssign/:userId', auth.user())
 	router.get('/api/v2/creditassign/list', auth.pass())
 	router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass())
