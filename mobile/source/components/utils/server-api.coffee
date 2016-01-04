@@ -187,11 +187,9 @@ do (_, angular, moment, Array) ->
                     currentPage: 1
                 }
 
-                query_set.asc = true if product is 'XSB'
-
                 @$http
                     .get "/api/v2/loans/getLoanWithPage",
-                        params: _.merge {product}, query_set
+                        params: _.compact _.merge {product}, query_set
                         cache: cache
 
                     .then TAKE_RESPONSE_DATA

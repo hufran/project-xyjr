@@ -444,134 +444,126 @@ a {
 ----*/
 
 #homepage {
-    section:not(.omit-margin) {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .page-nav {
-        .logo {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        & + *:before {
-            height: 44px;
-        }
-    }
-
-    .banner {
-        .carousel-control {
-            display: none;
-        }
-
-        .carousel, .carousel-inner {
-            height: 100%;
-
-            .carousel-indicators {
-                bottom: -4px;
-
-                li {
-                    width: 8px;
-                    height: 8px;
-                    margin: 0 6px;
-                }
-            }
-        }
-    }
-
-    > .invest {
-        padding: 50px 0;
-        overflow: hidden;
+    .nav-page {
+        padding-top: 14px;
+        padding-bottom: 14px;
         background-color: #FFF;
 
-        .carousel {
-            padding: 0 50px;
+        &-list {
+            .flex-display(flex-start; space-between);
 
-            &-inner {
-                overflow: visible;
-            }
+            > li {
+                .flex(1);
 
-            &-control {
-                background-image: none;
-                background-color: #FFF;
-                filter: none;
-                color: #CCC;
-                text-shadow: none;
-
-                .opacity(1);
-
-                .glyphicon {
-                    top: 35%;
+                a {
+                    font-size: 24px/2 + 2;
+                    color: #777;
                 }
-            }
 
-            &-indicators {
-                display: none;
+                .icon {
+                    display: block;
+                    margin: 0 auto 5px;
+                    background: #0190DF url("@{path-image}/nav-icons.png") no-repeat;
+                    background-size: 288px/2 72px/2;
+                    width: 72px/2;
+                    height: 72px/2;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    &-user {
+                        background-position: 0 0;
+                    }
+
+                    &-usd {
+                        background-position: -72px/2 0;
+                    }
+
+                    &-gift {
+                        background-position: -144px/2 0;
+                    }
+
+                    &-volume-up {
+                        background-position: -216px/2 0;
+                    }
+                }
             }
         }
+    }
 
-        .round {
-            position: relative;
-            margin-bottom: 16px;
+    .list-loan {
+        background-color: #FFF;
 
-            .chart {
-                canvas {
-                    vertical-align: middle;
-                }
+        > .item {
+            margin-left: 10px;
+            margin-right: 10px;
+
+            a {
+                color: inherit;
             }
 
-            .type-icon {
-                position: absolute;
-                left: 50%;
-                top: 0;
-                margin-left: 65px;
+            .subject {
+                border-top: 1px solid #EFEFEF;
+                padding: 10px 0;
+                -webkit-box-shadow: 0 -1px #F6F6F6;
+                        box-shadow: 0 -1px #F6F6F6;
 
-                .transform(translateY(-100%));
+                .media-left {
+                    padding-right: 5px;
+                }
+
+                .media-heading {
+                    margin: 0;
+                    font-size: 24px/2 + 2;
+                }
             }
 
             .detail {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                white-space: nowrap;
-
-                .transform(translateX(-50%) translateY(-50%));
+                border-top: 1px solid #F5F5F5;
+                padding-top: 10px;
+                padding-bottom: 20px;
             }
-        }
 
-        .rate {
-            margin-bottom: 10px;
-            border-bottom: 1px solid #FEE2DD;
-            font-size: 45px;
-
-            small {
-                font-size: 40%;
+            .title {
+                margin: 0 0 15px;
+                padding-left: 10px;
+                font-size: 28px/2 + 2;
+                color: #7A7A7A;
             }
-        }
 
-        .duration {
-        }
+            .info-list {
+                .flex-display(center; space-between);
 
-        .min-amount {
-        }
+                > .item {
+                    text-align: center;
 
-        .method {
-            margin-top: 4px;
-            white-space: nowrap;
-        }
+                    .flex(1);
 
-        .balance {
-            margin-bottom: 6px;
-        }
+                    .value {
+                        margin-bottom: 4px;
+                        font-size: 36px/2 + 2;
+                    }
 
-        .status {
-            .btn {
-                #list .btn;
+                    &.rate {
+                        .value {
+                            color: #FF7200;
+                        }
+                    }
 
-                padding-left: 50px;
-                padding-right: 50px;
-                font-size: 16px;
+                    &.duration {
+                    }
+
+                    &.status {
+                        .btn {
+                            &-invest {
+                                .button-variant(#0090E0; #FFF; #0190DF);
+                            }
+
+                            &-disabled {
+                                .button-variant(#FFF; #BEBEBE; #BEBEBE);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
