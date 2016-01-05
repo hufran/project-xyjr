@@ -338,7 +338,7 @@ do (_, angular, moment, Array) ->
             login: (loginName, password) ->
 
                 @$http
-                    .post '/login/ajax', {loginName, password, source: 'mobile'}
+                    .post '/api/web/login', {loginName, password, source: 'mobile'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
