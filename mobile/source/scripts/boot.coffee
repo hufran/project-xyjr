@@ -484,40 +484,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/dashboard/invite-registered.tmpl.html'
                     }
 
-                    .when '/dashboard/privilege-certification', {
-                        controller: 'privilegeCertificationCtrl as self'
-                        templateUrl: 'components/router/dashboard/privilege-certification.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/privilege-certification'
-                                        do $q.reject
-
-                            _payment_account: _.ai 'api, $location, $route, $q',
-                                (                   api, $location, $route, $q) ->
-                                    api.fetch_current_user()
-                                        .then (user) ->
-                                            return user if user.has_payment_account
-                                            return $q.reject(user)
-                                        .catch (user) ->
-                                            return unless user
-
-                                            switch
-                                                when user.has_payment_account isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/register'
-                                                        .search
-                                                            back: 'dashboard/settings'
-                                                            next: 'dashboard/privilege-certification'
-
-                                            return $q.reject()
-                    }
-
                     .when '/dashboard/return-results', {
                         controller: 'ReturnResultsCtrl as self'
                         templateUrl: 'components/router/dashboard/return-results.tmpl.html'

@@ -500,20 +500,6 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
-            privilege_gm_innerUserCode: (innerUserCode) ->
-
-                @$http
-                    .post '/api/v2/lianlianpay/innerUserAuthenticate/MYSELF', {innerUserCode}
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
-
-            chec_gm_innerUserCode: ->
-
-                @$http.get "api/v2/user/MYSELF/userAuthenticate"
-
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
 
             payment_ump_register: (userName, idCode) ->
 
