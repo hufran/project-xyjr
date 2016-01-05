@@ -62,7 +62,7 @@
                                updateOn: 'blur default',
                                debounce: {blur: 0, default: 300},
                            }"
-                           ng-change="self.fetch_branch(city[store.city], store.cardNo); self.replace(store)"
+                           ng-change="self.fetch_branch(city[store.city], store.cardNo)"
                            placeholder="填写银行卡号"
                            required
                     >
@@ -104,13 +104,12 @@
 
                 <div class="form-group merge" ng-show="self.need_location()">
                     <label for="branch-name">开户支行</label>
-                    <select name="branch-name" class="form-control input-sm"
-                            id="branch-name"
-                            ng-model="store.branchName"
-                            ng-options="name as name for (name, code) in branchs"
+                    <input id="branch-name" class="form-control input-target input-lg" type="tel"
+                           name="branch-name"
+                           ng-model="store.branchName"
+                           placeholder="开户行（如：招商银行肥西路支行）"
+                           required
                     >
-                        <option value="">请选择开户支行</option>
-                    </select>
                 </div>
 
                 <div class="form-group merge hidden">
@@ -159,7 +158,7 @@
 
             <div class="container">
                 <div class="form-group container">
-                    <button type="submit" class="btn btn-theme btn-block"
+                    <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="self.submit_sending"
                     >完成</button>
                 </div>

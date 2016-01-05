@@ -41,11 +41,6 @@ do (_, angular) ->
 
                 @captcha.has_sent = @captcha.buffering = true
 
-            replace: (store) ->
-
-                if store.cardNo and store.cardNo.length > 0
-                    store.cardNo = store.cardNo.replace /(\d{4})(?=\d)/g, '$1 '
-
 
             fetch_city: (province) ->
 
@@ -54,6 +49,8 @@ do (_, angular) ->
 
 
             fetch_branch: (cityCode, cardNo) ->
+
+                return # remove this in case branch list should being fetched from remote API
 
                 unless !!cityCode and !!cardNo
                     @$scope.branchs = []
@@ -65,7 +62,6 @@ do (_, angular) ->
 
             need_location: ->
 
-                return false # no longer need location info
                 @$scope.store.bankName and @$scope.store.bankName not in @$scope.direct_paid_banks
 
 
@@ -78,8 +74,6 @@ do (_, angular) ->
 
 
             bind_card: ({bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha}) ->
-
-                cardNo = cardNo.replace /\s/g, ''
 
                 @submit_sending = true
 
