@@ -14,7 +14,27 @@ do (_ ,angular, moment, Math, Date) ->
                 }
 
                 @api.get_loan_investors(@loan.id).then (data) =>
-                    @$scope.investors = _.get data, 'results'
+
+                    @$scope.investors = data.map (item) ->
+
+                        item.userLoginName = item.userLoginName.trim()
+
+                        prefix = new RegExp decodeURI '^%E6%89%8B%E6%9C%BA%E7%94%A8%E6%88%B7'
+                        name = item.userLoginName.replace prefix, ''
+
+                        prefix = /^[a-zA-Z]{4}_/
+                        name = name.replace prefix, ''
+
+                        if name isnt item.userLoginName
+                            item.name = name.replace /(\d{2})(\d+)(\d{2})$/, '$1*******$3'
+                        else
+                            [empty, head, tail] = name.split /^(..)/
+
+                            item.name = head + tail.replace /./g, '*'
+                            item.name = "#{ head[0] }*" if name.length < 3
+
+                        return item
+
 
                 time_open_left = @loan.timeOpen - Date.now()
 
