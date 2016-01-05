@@ -1,4 +1,5 @@
 'use strict';
+var Promise=require('bluebird');
 module.exports = function (router) {
 
     var ccBody = require('cc-body');
@@ -8,7 +9,9 @@ module.exports = function (router) {
 //        next();
 //
 //    });
-
+    router.get('/setpassword',function (req,res,next){
+        res.render('/newAccount/setpassword');
+    });
 	// 未登录访问account下的页面,跳转到 /
     router.get('/*', function (req, res, next) {
         if (!req.cookies.ccat) {
@@ -20,8 +23,7 @@ module.exports = function (router) {
 
     // topNav 需要的东西
     router.get('/*', function (req, res, next) {
-        console.log('1111111111');
-        console.log(req);
+        
         // assign user数据
         var user = res.locals.user;
         if (user && user.idNumber) {
@@ -150,6 +152,16 @@ module.exports = function (router) {
                 });
             });
     });
+       router.get('/coupon', function (req, res) {
+                res.render('newAccount/coupon', {
+                    title: '新毅金融'
+                });
+    });
+          router.get('/autobid', function (req, res) {
+                res.render('newAccount/autobid', {
+                    title: '新毅金融'
+                });
+    });
 
     router.get('/invest/*', function (req, res) {
     	res.render('newAccount/invest', {
@@ -258,7 +270,7 @@ module.exports = function (router) {
                 }
             });        
     });
-    router.get('/newAccount/fund/:name',function(req,res,next){
+    router.get('/fund/:name',function(req,res,next){
         res.render('/newAccount/fund',{urlname:req.params.name});
         
     });

@@ -688,7 +688,22 @@ a {
 /*	background-color: #F5F4F9;*/
 	
 }
-
+.trangle{
+    width: 120px; 
+    height: 70px;; 
+    position: absolute;
+    top: 0;
+    right: -2px;
+    background:url(../img/immediately.png) no-repeat;
+}
+.trangle span{
+    display: block;
+    width:100px;
+    height:30px;
+    margin-top: 24px;
+    margin-left: 44px;
+    transform:rotate(30deg)
+}
 .loanWrapper .imgwrapper{
     float: left;
     margin-right: 40px;
@@ -700,18 +715,7 @@ a {
     margin-left: 210px;
     padding-left: 30px;
 }
-.loanWrapper > div {
-	float: left;
-/*	height: 72px;*/
-/*	line-height: 72px;*/
-	text-align: left;
-	/*
 
-  
-  color: #666666;
-  vertical-align: top;
-*/
-}
 .loanWrapper table{
     margin-top: 20px;
     margin-bottom: 20px;

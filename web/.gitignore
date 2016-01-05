@@ -34,6 +34,7 @@ web/config/local.js
 dist/
 tmp/
 .tmp/
+/dev
 config/local.js
 ccc/global/img/fonts/*
 running-service.json
