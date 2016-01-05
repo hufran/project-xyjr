@@ -3,25 +3,23 @@ do (_, angular) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @user, @$scope, @$rootScope, @$window, @$q, map_loan_summary, @$location', class
-            constructor: (@api, @user, @$scope, @$rootScope, @$window, @$q, map_loan_summary, @$location) ->
+        _.ai '            @api, @user, @$scope, @$window, @$q, map_loan_summary, @$location, CATEGORY_MAP', class
+            constructor: (@api, @user, @$scope, @$window, @$q, map_loan_summary, @$location, CATEGORY_MAP) ->
 
                 @$window.scrollTo 0, 0
 
-                @$rootScope.state = 'landing'
-
                 angular.extend @$scope, {
-                    page_path: @$location.absUrl()
+                    page_path: './'
                     loading: true
                     carousel_height: do (width = @$window.document.body.clientWidth) ->
-                        width * 300 / 640 # aspect ratio of banner image
+                        # width * 300 / 640 # aspect ratio of banner image
                 }
 
-                product_list = _.split 'XSB XFD QYD BL'
+                product_list = _.values CATEGORY_MAP
 
                 (@$q
                     .all product_list.map (product) =>
-                        @api.get_loan_list_by_config product, 1
+                        @api.get_loan_list_by_config product, 1, false
 
                     .then (response) =>
 
@@ -31,13 +29,10 @@ do (_, angular) ->
                                 .compact()
                                 .map map_loan_summary
                                 .each (item) =>
-                                    item.chart_options = {
-                                        size: 176
-                                        lineWidth: 4
-                                        scaleColor: false
-                                        barColor: '#F03644'
-                                        trackColor: '#F1F1F1'
-                                    }
+                                    item.category =
+                                        _.findKey CATEGORY_MAP, (product) ->
+                                            product == item.product_type
+
                                 .value()
 
                     .finally =>
@@ -53,3 +48,20 @@ do (_, angular) ->
                     amount: amount
                     myriad: if is_myriad then (amount / 10000) | 0 else null
                 }
+
+
+
+
+
+
+
+
+
+    angular.module('controller').constant 'CATEGORY_MAP', {
+        XSB: 'XSB'
+        HDB: 'HDB'
+        XNB: 'XNB'
+        XDB: 'XDB'
+        XJB: 'XJB'
+    }
+

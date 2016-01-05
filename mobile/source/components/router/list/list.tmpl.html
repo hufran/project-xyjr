@@ -3,63 +3,95 @@
 
     <nav class="omit-margin container page-nav">
     <div class="row">
-        <span class="col-xs-3">&nbsp;</span>
-        <span class="col-xs-6 title">我要投资</span>
-        <span class="col-xs-3 actions"><span x-header-dropdown-menu></span></span>
+        <a class="col-xs-3 back" href="./">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title" ng-switch="category">
+            <span ng-switch-when="XSB">新手专享</span>
+            <span ng-switch-when="HDB">活动专享</span>
+            <span ng-switch-when="XNB">新能宝</span>
+            <span ng-switch-when="XDB">新抵保</span>
+            <span ng-switch-when="XJB">薪金宝</span>
+            <span ng-switch-default>投资理财</span>
+        </span>
+        <span class="col-xs-3 text-right">
+            <span class="dropdown dropdown-filter" x-uib-dropdown>
+                <small x-uib-dropdown-toggle>筛选</small>
+
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="list/XSB"><img width="24" src="assets/image/loan-icons/xsb.png">新手专享</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/HDB"><img width="24" src="assets/image/loan-icons/hdb.png">活动专享</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/XNB"><img width="24" src="assets/image/loan-icons/xnb.png">新能宝</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/XDB"><img width="24" src="assets/image/loan-icons/xdb.png">新抵保</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="list/XJB"><img width="24" src="assets/image/loan-icons/xjb.png">薪金宝</a>
+                    </li>
+                </ul>
+            </span>
+        </span>
     </div>
     </nav>
 
-    <section class="omit-margin invest-list" x-gyro-disable-animation>
-        <div ng-hide="loading">
-            <uib-tabset class="invest-tab flex inline list" justified="true">
-                <uib-tab ng-repeat="data in tabs"
-                         heading="{{ {XSZX: '新手专享', LYG: '0元购', DQLC: '定期理财'}[data.key] }}"
-                         active="data.active"
-                         select="self.on_tab(data.key)"
+    <section class="subject" ng-if="category">
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" width="24"
+                     ng-src="assets/image/loan-icons/{{ category | lowercase }}.png"
                 >
-                    <div ng-switch="data.key">
-                        <div ng-switch-when="XSZX">
-                            <ul class="list list-unstyled u-off-margin-bottom">
-                                <li class="item"
-                                    ng-repeat="item in ::data track by $index"
-                                >
-                                    <a ng-href="loan/{{ ::item.id }}?go_back={{ ::page_path }}"
-                                       x-loan-summary
-                                       data-loan="item"
-                                       data-layout="'without-chart'"
-                                    ></a>
-                                </li>
-                            </ul>
+            </div>
 
-                            <div ng-if="!data.length" class="container">
-                                <h4 class="alert alert-info text-center">暂无数据</h4>
-                            </div>
-                        </div>
+            <div class="media-body" ng-switch="category">
+                <div ng-switch-when="XSB">
+                    <h4 class="media-heading">新手专享</h4>
+                </div>
+                <div ng-switch-when="HDB">
+                    <h4 class="media-heading">活动专享</h4>
+                </div>
+                <div ng-switch-when="XNB">
+                    <h4 class="media-heading">新能宝</h4>
+                    机构担保项目 年化收益11%
+                </div>
+                <div ng-switch-when="XDB">
+                    <h4 class="media-heading">新抵保</h4>
+                </div>
+                <div ng-switch-when="XJB">
+                    <h4 class="media-heading">薪金宝</h4>
+                </div>
+                <div ng-switch-default>
+                    <h4 class="media-heading">投资理财</h4>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <div ng-switch-when="LYG">
-                            <param x-lyg-directive class="embed" x-gyro-comment>
-                        </div>
+    <section class="loan omit-margin">
+        <div ng-hide="loading">
+            <ul class="list-unstyled u-off-margin-bottom list-loan">
+                <li class="item"
+                    ng-repeat="item in list"
+                >
+                    <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                    ></a>
+                </li>
+            </ul>
 
-                        <div ng-switch-when="DQLC">
-                            <ul class="list list-unstyled u-off-margin-bottom">
-                                <li class="item"
-                                    ng-repeat="item in ::data track by $index"
-                                >
-                                    <a ng-href="loan/{{ ::item.id }}?go_back={{ ::page_path }}"
-                                       x-loan-summary
-                                       data-loan="item"
-                                       data-layout="'chart-right'"
-                                    ></a>
-                                </li>
-                            </ul>
-
-                            <div ng-if="!data.length" class="container">
-                                <h4 class="alert alert-info text-center">暂无数据</h4>
-                            </div>
-                        </div>
-                    </div>
-                </uib-tab>
-            </uib-tabset>
+            <div ng-if="!list.length" class="container">
+                <h4 class="alert alert-info text-center">暂无数据</h4>
+            </div>
         </div>
 
         <p class="text-center" ng-show="loading">

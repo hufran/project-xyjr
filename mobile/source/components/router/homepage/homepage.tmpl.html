@@ -1,15 +1,7 @@
 
+<header x-gyro-header data-user="self.user"></header>
+
 <div id="homepage">
-
-    <nav class="omit-margin container page-nav">
-    <div class="row">
-        <span class="col-xs-3">&nbsp;</span>
-        <span class="col-xs-6 logo text-center"><img width="83" src="assets/image/nav-logo.png"></span>
-        <span class="col-xs-3 actions"><span x-header-dropdown-menu></span></span>
-    </div>
-    </nav>
-
-    <div></div>
 
     <div class="banner"
          x-carousel-banner
@@ -17,70 +9,49 @@
          ng-style="{ height: carousel_height + 'px' }"
     ></div>
 
-    <section class="omit-margin invest">
-        <uib-carousel>
-            <uib-slide ng-repeat="item in list" active="item.active">
-                <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}">
-                    <div class="round text-center">
-                        <div x-easypiechart class="chart"
-                             percent="item.status == 'OPENED' ? item.invest_percent_int : '0'"
-                             options="item.chart_options"
-                        ></div>
+    <nav class="nav-page container text-center">
+        <ul class="list-unstyled u-off-margin-bottom nav-page-list">
+            <li><a href="dashboard"><param class="icon icon-user">我的账户</a></li>
+            <li><a href="list"><param class="icon icon-usd">投资理财</a></li>
+            <li><a href="/activityh5"><param class="icon icon-gift">精彩活动</a></li>
+            <li><a href="announcement"><param class="icon icon-volume-up">公告中心</a></li>
+        </ul>
+    </nav>
 
-                        <img class="type-icon" width="47"
-                             ng-src="assets/image/homepage-icons/{{ item.product_type | lowercase }}.png"
-                        >
-
-                        <div class="detail">
-                            <div class="rate">{{ item.rate }}<small>%</small></div>
-
-                            <div class="method" ng-switch="item.method">
-                                <span ng-switch-when="MonthlyInterest">按月付息到期还本</span>
-                                <span ng-switch-when="EqualInstallment">按月等额本息</span>
-                                <span ng-switch-when="EqualPrincipal">按月等额本金</span>
-                                <span ng-switch-when="BulletRepayment">一次性还本付息</span>
-                                <span ng-switch-when="EqualInterest">月平息</span>
-                                <span ng-switch-when="YearlyInterest">按年付息到期还本</span>
+    <section class="loan">
+        <div ng-hide="loading">
+            <ul class="list-unstyled u-off-margin-bottom list-loan">
+                <li class="item"
+                    ng-repeat="item in list"
+                    ng-class="'item-' + (item.category | lowercase)"
+                >
+                    <a ng-href="list/{{ item.category }}">
+                        <div class="media subject">
+                            <div class="media-left">
+                                <img class="media-object" width="30"
+                                     ng-src="assets/image/loan-icons/{{ item.category | lowercase }}.png"
+                                >
                             </div>
 
-                            <div class="min-amount">
-                                {{ item.raw.loanRequest.investRule.minAmount | number }}元起投
-                            </div>
-
-                            <div class="duration">
-                                <span ng-if="item.raw.duration.days">
-                                    {{ item.total_days }}天
-                                </span>
-                                <span ng-if="!item.raw.duration.days">
-                                    {{ item.total_months }}个月
-                                </span>
+                            <div class="media-body media-middle">
+                                <h4 class="media-heading" ng-switch="item.category">
+                                    <span ng-switch-when="XSB">新手专享</span>
+                                    <span ng-switch-when="HDB">活动专享</span>
+                                    <span ng-switch-when="XNB">新能宝</span>
+                                    <span ng-switch-when="XDB">新抵保</span>
+                                    <span ng-switch-when="XJB">薪金宝</span>
+                                </h4>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="balance">{{ item.balance | number }}元可投</div>
-                </a>
-
-                <div ng-switch="item.status" class="container status text-center">
-                    <a ng-switch-when="OPENED"
-                       class="btn btn-invest"
-                       ng-href="loan/{{ item.id }}/invest"
-                    >立即投资</a>
-                    <span ng-switch-when="SCHEDULED"
-                          class="btn btn-disabled"
-                    >即将开始</span>
-                    <span ng-switch-when="FINISHED"
-                          class="btn btn-disabled"
-                    >已满标</span>
-                    <span ng-switch-when="SETTLED"
-                          class="btn btn-disabled"
-                    >回款中</span>
-                    <span ng-switch-when="CLEARED"
-                          class="btn btn-disabled"
-                    >已结清</span>
-                </div>
-            </uib-slide>
-        </uib-carousel>
+                    <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                    ></a>
+                </li>
+            </ul>
+        </div>
 
         <p class="text-center" ng-show="loading">
             <img src="assets/image/spinner.gif">
