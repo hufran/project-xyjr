@@ -309,10 +309,10 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
-            get_loan_investors: (id, size = 99) ->
+            get_loan_investors: (id) ->
 
                 @$http
-                    .get "/api/v2/loan/#{ id }/invests/1/#{ size }"
+                    .get "/api/v2/loan/#{ id }/invests"
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR

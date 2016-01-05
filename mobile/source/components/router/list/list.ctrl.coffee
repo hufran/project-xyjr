@@ -3,24 +3,20 @@ do (_, angular) ->
 
     angular.module('controller').controller 'ListCtrl',
 
-        _.ai '            @api, @user, @$scope, @$location, @$window, map_loan_summary, @$routeParams, CATEGORY_MAP', class
-            constructor: (@api, @user, @$scope, @$location, @$window, map_loan_summary, @$routeParams, CATEGORY_MAP) ->
+        _.ai '            @api, @user, @$scope, @$location, @$window, map_loan_summary, @$routeParams', class
+            constructor: (@api, @user, @$scope, @$location, @$window, map_loan_summary, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
-                category = @$routeParams.category
+                filter_type = @$routeParams.type
 
                 angular.extend @$scope, {
-                    category: category
+                    filter_type
                     page_path: @$location.path()[1..]
                     loading: true
                 }
 
-                product = _.get CATEGORY_MAP, category
-
-                @$location.path 'list' unless product
-
-                (@api.get_loan_list_by_config(product, 20, false)
+                (@api.get_loan_list_by_config(filter_type, 20, false)
 
                     .then ({results}) =>
 

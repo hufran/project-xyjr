@@ -490,6 +490,80 @@ a {
         }
     }
 
+    > .loan {
+        background-color: #FFF;
+    }
+
+    .list-loan-row {
+        .flex-display();
+
+        margin-left: 10px;
+        margin-right: 10px;
+        border-top: 1px solid #EFEFEF;
+        padding: 15px 0;
+        -webkit-box-shadow: 0 -1px #F6F6F6;
+                box-shadow: 0 -1px #F6F6F6;
+
+        > .item {
+            .flex(1);
+
+            + .item {
+                margin-left: 20px;
+                border-left: 1px solid #CFCFCF;
+                padding-left: 20px;
+            }
+
+            a {
+                color: inherit;
+            }
+
+            .subject {
+                .media-heading {
+                    margin: 0;
+                    font-size: 24px/2 + 2;
+                }
+            }
+
+            .rate-duration {
+                .flex-display(flex-end; space-between);
+
+                -webkit-box-align: end;
+                margin-top: 10px;
+                margin-bottom: 15px;
+
+                .rate {
+                    .flex(1);
+
+                    font-size: 46px/2 + 2;
+                    color: #FF7200;
+                    line-height: 1;
+
+                    small {
+                        font-size: 30px/2 + 2;
+                    }
+                }
+
+                .duration {
+                    .flex(none);
+                }
+            }
+
+            .status {
+                text-align: center;
+
+                .btn {
+                    &-invest {
+                        .button-variant(#FFF; #0190DF; #0190DF);
+                    }
+
+                    &-disabled {
+                        .button-variant(#FFF; #BEBEBE; #BEBEBE);
+                    }
+                }
+            }
+        }
+    }
+
     .list-loan {
         background-color: #FFF;
 
@@ -506,10 +580,6 @@ a {
                 padding: 10px 0;
                 -webkit-box-shadow: 0 -1px #F6F6F6;
                         box-shadow: 0 -1px #F6F6F6;
-
-                .media-left {
-                    padding-right: 5px;
-                }
 
                 .media-heading {
                     margin: 0;
@@ -540,12 +610,18 @@ a {
 
                     .value {
                         margin-bottom: 4px;
-                        font-size: 36px/2 + 2;
+                        font-size: 30px/2 + 2;
                     }
 
                     &.rate {
                         .value {
+                            font-size: 46px/2 + 2;
                             color: #FF7200;
+                            line-height: 1;
+
+                            small {
+                                font-size: 30px/2 + 2;
+                            }
                         }
                     }
 
@@ -582,7 +658,7 @@ a {
 
                 img {
                     margin-top: -3px;
-                    margin-right: 15px;
+                    margin-right: 10px;
                 }
             }
 
@@ -599,10 +675,6 @@ a {
         .media {
             font-size: 24px/2 + 1;
             color: #7A7A7A;
-
-            &-left {
-                padding-right: 40px/2;
-            }
 
             &-heading {
                 font-size: 24px/2 + 2;
@@ -924,160 +996,191 @@ a {
     }
 
     .loan-summary {
-        padding: 60px/2 40px/2;
+        padding-top: 6px;
+        padding-bottom: 6px;
         background-color: #FFF;
-        color: #333;
 
-        .inner {
-            .flex-display(center; space-between);
+        .rate-duration {
+            .flex-display(flex-end; space-between);
 
-            &-left {
-                .flex(none);
+            -webkit-box-align: end;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #E2E2E2;
+            padding-top: 22px;
+            padding-bottom: 22px;
+            text-align: center;
 
-                margin-right: 30px/2;
+            .value {
+                margin-bottom: 4px;
+                line-height: 1;
             }
 
-            &-right {
+            .name {
+                color: #808080;
+            }
+
+            .rate {
                 .flex(1);
+
+                .value {
+                    font-size: 46px/2 + 2;
+                    color: #FF7200;
+
+                    small {
+                        font-size: 36px/2 + 2;
+                    }
+                }
             }
-        }
 
-        .percent {
-            // #list .invest-list .list > .item .inner .percent;
-        }
+            .duration {
+                .flex(1);
 
-        .info-row {
-            .flex-display();
+                border-left: 1px solid #BEBEBE;
 
-            .info {
-                .flex(none);
+                .value {
+                    font-size: 40px/2 + 2;
 
-                &:not(:first-child) {
-                    .flex(1);
-
-                    margin-left: 30px/2;
+                    small {
+                        font-size: 22px/2 + 2;
+                    }
                 }
             }
         }
 
-        .subject {
-            border-bottom: 1px solid #E0DFDF;
-            padding-bottom: 4px;
+        .progress-wrap {
+            .num {
+                margin-left: 7px;
+                color: #B1B1B1;
+            }
+
+            .progress {
+                margin-top: 10px;
+                margin-bottom: 0;
+                height: 2px;
+                background-color: #B1B1B1;
+                border-radius: 0;
+                -webkit-box-shadow: none;
+                        box-shadow: none;
+
+                &-bar {
+                    background-color: #0090E0;
+                }
+            }
         }
 
         .balance {
-            font-size: 34px/2 + 2;
-        }
-
-        .rate, .duration {
-            font-size: 76px/2 + 2;
-            color: #F8464B;
-
-            small {
-                font-size: 40%;
-                color: #333;
+            .name {
+                color: #808080;
             }
         }
 
-        .amount, .method {
-            font-size: 24px/2 + 2;
+        .time-close {
+            margin-top: 3px;
+            margin-bottom: 3px;
+            color: #808080;
+
+            .num {
+                color: #0082B8;
+            }
         }
     }
 
-    .loan {
-        &-detail {
-            .inline > .nav-tabs.nav-justified {
-                // #list .invest-list .inline > .nav-tabs.nav-justified;
+    section.loan-status {
+        margin-bottom: 15px;
+
+        .btn {
+            &-invest {
+                .button-variant(#FFF; #0190DF; #0190DF);
             }
 
-            .content {
-                padding: 40px/2 30px/2 80px;
-                background-color: #FFF;
-                font-size: 24px/2 + 2;
-                color: #333;
+            &-disabled {
+                .button-variant(#FFF; #BEBEBE; #BEBEBE);
+            }
+        }
+    }
 
-                a {
-                    &, &:hover, &:visited {
-                        color: #0574E6;
-                    }
-                }
+    .loan-detail {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #FFF;
+
+        > .item {
+            .flex-display();
+
+            font-size: 28px/2 + 2;
+
+            + .item {
+                margin-top: 10px;
             }
 
-            .alert-cleared {
-                margin: 30px 10px;
+            .name {
+                .flex(none);
+
+                color: #808080;
+            }
+
+            .value {
+                .flex(1);
+
+                text-align: right;
+            }
+        }
+    }
+
+    .loan-info {
+        background-color: #FFF;
+
+        .content {
+            padding: 15px;
+            text-align: justify;
+            word-break: break-word;
+            color: #4A4A4A;
+
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            .investors-list {
                 border: 0;
-                padding: 100px/2 50px/2;
-                color: #777;
-                background-color: #F7F7F7;
-            }
-
-            .info-list {
-                margin-left: 20px/2;
-                margin-right: 20px/2;
 
                 > .item {
-                    .flex-display();
-
-                    margin-bottom: 20px/2;
+                    margin: 0;
+                    padding-right: 0;
+                    font-size: 28px/2 + 2;
+                    color: #4A4A4A;
 
                     .name {
-                        .flex(none);
-
-                        margin-right: 50px/2;
-                        min-width: 4em;
+                        padding-right: 5px;
+                        min-width: 120px;
                     }
 
-                    .value {
-                        .flex(1);
+                    .amount {
+                    }
 
-                        word-break: break-all;
+                    .date {
+                        margin-top: 8px;
+                        font-size: 24px/2 + 2;
+                        color: #999;
                     }
                 }
-            }
-
-            .table > tbody > tr > td {
-                border: 0;
-            }
-
-            .faq {
-                margin-left: 20px/2;
-                margin-right: 20px/2;
-
-                h4 {
-                    font-size: inherit;
-                }
-
-                p {
-                    margin-bottom: 50px/2;
-                    font-size: 20px/2 + 2;
-                }
-            }
-        }
-
-        &-status {
-            position: fixed;
-            z-index: 11;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 38px/2 0;
-            background-color: #FFF;
-
-            .btn-action {
-                border-radius: 999px;
-                padding-left: 50px;
-                padding-right: 50px;
-                font-size: 16px;
-
-                .button-variant(#F03644; #FFF; #F03644);
             }
         }
     }
-}
 
-.ngt-invest-agreement {
-    table {
-        width: auto !important;
+    .inline > .nav-tabs.nav-justified > li {
+        > a {
+            border-left: none !important;
+            color: #808080;
+        }
+
+        &.active {
+            border-bottom: 2px solid #FE8008 !important;
+
+            > a {
+                color: #FE8008;
+            }
+        }
     }
 }
 
@@ -1247,7 +1350,7 @@ a {
     }
 
     .loan-summary {
-        #loan .loan-summary;
+        // #loan .loan-summary;
     }
 
     .form-invest {
