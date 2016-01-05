@@ -71,12 +71,8 @@
             <input type="hidden" name="isWAP" value="true">
             <input type="hidden" name="retUrl" value="{{ return_url }}">
 
-            <p class="text-center">
-                充值限额：单笔{{ bank_limit_amount.singleLimit }}，单日{{ bank_limit_amount.dayLimit }}，单月{{ bank_limit_amount.monthLimit }}
-            </p>
-
             <p class="container">
-                <button class="btn btn-theme btn-block"
+                <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
                         ng-if="self.user.has_payment_account"
                         ng-disabled="form.$invalid || self.submit_sending"

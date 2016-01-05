@@ -12,7 +12,6 @@ do (angular) ->
                 @next_path = @$routeParams.next
 
                 @$scope.bank_account = @user.bank_account
-                @$scope.bank_limit_amount = _(@user.bank_account_list).pluck('bankLimitAmount').first()
 
                 angular.extend @$scope, {
                     bank_account: _.clone @user.bank_account
