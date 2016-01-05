@@ -1,12 +1,10 @@
 'use strict';
-require("babel-core/register");
 module.exports = function (router) {
     router.get('/',async function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
             delete user.idNumber;
         }
-
         res.expose(user, 'user');
         res.locals.title = '理财产品_718bank理财平台';
         res.locals.keywords = '网络投资|P2P理财|个人理财|奇乐融投资理财|';
