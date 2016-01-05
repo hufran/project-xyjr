@@ -1,5 +1,5 @@
 
-do (_, angular, moment, Math) ->
+do (_, angular, Math) ->
 
     angular.module('filter')
         .filter 'parseFloat', ->

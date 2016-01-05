@@ -18,7 +18,7 @@
                 购买
                 <div class="amount pull-right">{{ item.amount | number }} 元</div>
             </div>
-            <div class="date">{{ item.submitTime | moment: 'YYYY-MM-DD HH:mm:ss' }}</div>
+            <div class="date">{{ item.submitTime | date: 'yyyy-MM-dd hh:mm:ss' }}</div>
         </div>
 
         <div ng-if="!investors.length" class="container">

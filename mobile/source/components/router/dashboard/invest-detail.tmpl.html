@@ -59,13 +59,13 @@
         <div class="item info">
             <div class="info-row">
                 <div class="name word-5">计息开始日</div>
-                <div ng-if="item.value_date" class="value">{{ item.value_date | moment: 'YYYY-MM-DD' }}</div>
+                <div ng-if="item.value_date" class="value">{{ item.value_date | date: 'yyyy-MM-dd' }}</div>
                 <div ng-if="!item.value_date" class="value">-</div>
             </div>
 
             <div class="info-row">
                 <div class="name word-5">计息到期日</div>
-                <div ng-if="item.end_date" class="value">{{ item.end_date | moment: 'YYYY-MM-DD' }}</div>
+                <div ng-if="item.end_date" class="value">{{ item.end_date | date: 'yyyy-MM-dd' }}</div>
                 <div ng-if="!item.end_date" class="value">-</div>
             </div>
 
@@ -136,16 +136,16 @@
         </div>
         <div class="item">
             <div class="name">下单时间</div>
-            <div class="value">{{ item.submit_time | moment: 'YYYY-MM-DD HH:mm:ss' }}</div>
+            <div class="value">{{ item.submit_time | date: 'yyyy-MM-dd hh:mm:ss' }}</div>
         </div>
         <div class="item">
             <div class="name">起息日</div>
-            <div class="value" ng-if="item.loan.value_date">{{ item.loan.value_date | moment: 'YYYY-MM-DD' }}</div>
+            <div class="value" ng-if="item.loan.value_date">{{ item.loan.value_date | date: 'yyyy-MM-dd' }}</div>
             <div class="value" ng-if="!item.loan.value_date">结标后第二天</div>
         </div>
         <div class="item">
             <div class="name">到期日</div>
-            <div class="value" ng-if="item.end_date">{{ item.end_date | moment: 'YYYY-MM-DD' }}</div>
+            <div class="value" ng-if="item.end_date">{{ item.end_date | date: 'yyyy-MM-dd' }}</div>
             <div class="value" ng-if="!item.end_date">-</div>
         </div>
     </section>
