@@ -11,7 +11,7 @@ exports.popupBigPic = {
 
         this.popupBigPicRactive = new Ractive({
             el: '#big-pic-container',
-            template: require('ccc/loanCredit/partials/bigPic.html'),            
+            template: require('ccc/loan/partials/bigPic.html'),            
             data: {
                 visible: false,
                 imgs: [],
