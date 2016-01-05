@@ -77,9 +77,12 @@ module.exports = function (router, auth) {
     
     //债转相关
     router.post('/api/v2/creditassign/create/:userId/:investId/:creditDealRate', auth.user());
-	router.get('/api/v2/creditassign/listForCreditAssign/:userId', auth.user())
-	router.get('/api/v2/creditassign/list', auth.pass())
-	router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass())
-	router.post('/api/v2/creditassign/cancel/:creditAssignId', auth.user())
-	router.post('/api/v2/creditassign/autoAssign/:userId', auth.user())
+	router.get('/api/v2/creditassign/listForCreditAssign/:userId', auth.user());
+	router.get('/api/v2/creditassign/list', auth.pass());
+	router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass());
+	router.post('/api/v2/creditassign/cancel/:creditAssignId', auth.user());
+	router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
+    
+    //自动投标
+    router.post('/api/v2/:userId/save_autobid_config',auth.user());
 };
