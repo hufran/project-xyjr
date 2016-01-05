@@ -37,7 +37,7 @@
                     </a>
 
                     <div ng-repeat="item in list.XSZX">
-                        <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}">
+                        <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
                             <div class="rate-duration">
                                 <div class="rate">
                                     <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
@@ -90,7 +90,7 @@
                     </a>
 
                     <div ng-repeat="item in list.HDZX">
-                        <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}">
+                        <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
                             <div class="rate-duration">
                                 <div class="rate">
                                     <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
@@ -145,7 +145,7 @@
                     </a>
 
                     <div ng-repeat="item in list.XNB">
-                        <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
+                        <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                            x-loan-summary
                            data-loan="item"
                         ></a>
@@ -168,7 +168,7 @@
                     </a>
 
                     <div ng-repeat="item in list.FB">
-                        <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
+                        <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                            x-loan-summary
                            data-loan="item"
                         ></a>
@@ -191,7 +191,7 @@
                     </a>
 
                     <div ng-repeat="item in list.XJB">
-                        <a ng-href="loan/{{ item.id }}?go_back={{ page_path }}"
+                        <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
                            x-loan-summary
                            data-loan="item"
                         ></a>

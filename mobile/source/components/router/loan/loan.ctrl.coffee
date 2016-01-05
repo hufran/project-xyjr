@@ -9,7 +9,7 @@ do (_ ,angular, moment, Math, Date) ->
                 @$window.scrollTo 0, 0
 
                 angular.extend @$scope, {
-                    go_back_path: @$routeParams.go_back
+                    back_path: @$routeParams.back
                     loan: map_loan_summary @loan
                 }
 
