@@ -490,6 +490,80 @@ a {
         }
     }
 
+    > .loan {
+        background-color: #FFF;
+    }
+
+    .list-loan-row {
+        .flex-display();
+
+        margin-left: 10px;
+        margin-right: 10px;
+        border-top: 1px solid #EFEFEF;
+        padding: 15px 0;
+        -webkit-box-shadow: 0 -1px #F6F6F6;
+                box-shadow: 0 -1px #F6F6F6;
+
+        > .item {
+            .flex(1);
+
+            + .item {
+                margin-left: 20px;
+                border-left: 1px solid #CFCFCF;
+                padding-left: 20px;
+            }
+
+            a {
+                color: inherit;
+            }
+
+            .subject {
+                .media-heading {
+                    margin: 0;
+                    font-size: 24px/2 + 2;
+                }
+            }
+
+            .rate-duration {
+                .flex-display(flex-end; space-between);
+
+                -webkit-box-align: end;
+                margin-top: 10px;
+                margin-bottom: 15px;
+
+                .rate {
+                    .flex(1);
+
+                    font-size: 46px/2 + 2;
+                    color: #FF7200;
+                    line-height: 1;
+
+                    small {
+                        font-size: 30px/2 + 2;
+                    }
+                }
+
+                .duration {
+                    .flex(none);
+                }
+            }
+
+            .status {
+                text-align: center;
+
+                .btn {
+                    &-invest {
+                        .button-variant(#FFF; #0190DF; #0190DF);
+                    }
+
+                    &-disabled {
+                        .button-variant(#FFF; #BEBEBE; #BEBEBE);
+                    }
+                }
+            }
+        }
+    }
+
     .list-loan {
         background-color: #FFF;
 
@@ -506,10 +580,6 @@ a {
                 padding: 10px 0;
                 -webkit-box-shadow: 0 -1px #F6F6F6;
                         box-shadow: 0 -1px #F6F6F6;
-
-                .media-left {
-                    padding-right: 5px;
-                }
 
                 .media-heading {
                     margin: 0;
@@ -540,12 +610,18 @@ a {
 
                     .value {
                         margin-bottom: 4px;
-                        font-size: 36px/2 + 2;
+                        font-size: 30px/2 + 2;
                     }
 
                     &.rate {
                         .value {
+                            font-size: 46px/2 + 2;
                             color: #FF7200;
+                            line-height: 1;
+
+                            small {
+                                font-size: 30px/2 + 2;
+                            }
                         }
                     }
 

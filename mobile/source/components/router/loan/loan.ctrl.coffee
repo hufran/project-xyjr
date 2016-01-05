@@ -92,6 +92,8 @@ do (_ ,angular, moment, Math, Date) ->
         loanRequest = item.loanRequest
 
         rate = parseFloat (item.rate / 100).toFixed(2)
+        deduction_rate = parseFloat (loanRequest.deductionRate / 100).toFixed(2)
+        basic_rate = rate - deduction_rate
 
         invest_percent_int = Math.max 1, (item.investPercent * 100) | 0
         invest_percent_int = 0 if item.investPercent is 0
@@ -124,6 +126,8 @@ do (_ ,angular, moment, Math, Date) ->
             raw: item
 
             rate
+            basic_rate
+            deduction_rate
             invest_percent_int
             finished_date
 

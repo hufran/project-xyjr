@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @user, @$scope, @$window, @$q, map_loan_summary, @$location, CATEGORY_MAP', class
-            constructor: (@api, @user, @$scope, @$window, @$q, map_loan_summary, @$location, CATEGORY_MAP) ->
+        _.ai '            @api, @user, @$scope, @$window, @$q, map_loan_summary, @$location', class
+            constructor: (@api, @user, @$scope, @$window, @$q, map_loan_summary, @$location) ->
 
                 @$window.scrollTo 0, 0
 
@@ -15,7 +15,7 @@ do (_, angular) ->
                         # width * 300 / 640 # aspect ratio of banner image
                 }
 
-                product_list = _.values CATEGORY_MAP
+                product_list = _.split 'XSZX HDZX XNB FB XJB'
 
                 (@$q
                     .all product_list.map (product) =>
@@ -28,11 +28,7 @@ do (_, angular) ->
                                 .flatten()
                                 .compact()
                                 .map map_loan_summary
-                                .each (item) =>
-                                    item.category =
-                                        _.findKey CATEGORY_MAP, (product) ->
-                                            product == item.product_type
-
+                                .groupBy 'product_type'
                                 .value()
 
                     .finally =>
@@ -48,20 +44,4 @@ do (_, angular) ->
                     amount: amount
                     myriad: if is_myriad then (amount / 10000) | 0 else null
                 }
-
-
-
-
-
-
-
-
-
-    angular.module('controller').constant 'CATEGORY_MAP', {
-        XSB: 'XSB'
-        HDB: 'HDB'
-        XNB: 'XNB'
-        XDB: 'XDB'
-        XJB: 'XJB'
-    }
 
