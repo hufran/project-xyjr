@@ -9,6 +9,8 @@ var template = require('ccc/newAccount/partials/autobid/autobid.html');
 
 
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+      console.log("88");
+        console.log(CC.user.autobidConfig);
 var ractive = new Ractive({
     el: ".autobid-ractive-container",
     template:template,
@@ -16,7 +18,7 @@ var ractive = new Ractive({
 //        isActive: CC.user.autobidConfig.active || false,
 //        autoBidAmount : CC.user.autobidConfig.singleAmount ,
 //        autoBidRemainAmount: CC.user.autobidConfig.reservedAmount,
-//        annualRateFrom: CC.user.autobidConfig.range.minRate / 100,
+//        //annualRateFrom: CC.user.autobidConfig.range.minRate / 100,
 //        annualRateTo: CC.user.autobidConfig.range.maxRate / 100,
 //        durationFrom: CC.user.autobidConfig.range.minDuration,
 //        durationTo: CC.user.autobidConfig.range.maxDuration,
@@ -45,7 +47,7 @@ var ractive = new Ractive({
         this.set('rp', _arr);
     }
 });
-var maxRate = CC.user.autobidConfig.range.maxRate / 100,
+var //maxRate = CC.user.autobidConfig.range.maxRate / 100,
     minRate = 0,
     minDuration = 1,
     maxDuration = 48,
