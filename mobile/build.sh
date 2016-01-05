@@ -8,8 +8,8 @@ output=./dist
 index=$output/index.html
 
 
-(cd $dev && npm run init)
-PATH="$dev/node_modules/.bin:$PATH"
+npm_bin=$(cd $dev && npm run -s init > /dev/null 2>&1 && npm bin)
+PATH="$npm_bin:$PATH"
 
 
 rm -rf $output
@@ -69,5 +69,7 @@ perl -pi -e "s|t={time}|t=`date +%s`|g" $index
 (cd $output; [ -d h5 ] || ln -sf . h5)
 
 
-echo $'\360\237\215\273' '<3 BUILD SUCCESS'
+echo ' '
+echo $'\360\237\215\273' '<3 MOBILE BUILD SUCCESS'
+echo ' '
 

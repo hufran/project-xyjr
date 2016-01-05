@@ -10,12 +10,15 @@
     "less": "2.5.3",
     "less-plugin-clean-css": "^1.5.1",
     "lodash": "^3.10.1",
+    "ncp": "^2.0.0",
     "optimist": "^0.6.1",
     "request": "^2.65.0",
     "uglify-js": "^2.5.0"
   },
   "scripts": {
-    "init": "npm i -q -reg https://registry.npm.taobao.org",
+    "init": "npm run preinit && npm run cp-config",
+    "preinit": "npm i -s -reg https://registry.npm.taobao.org",
+    "cp-config": "node -e \"require('ncp').ncp('router.coffee.sample', 'router.coffee', {clobber: false}, function(){})\"",
     "start": "coffee app.coffee"
   },
   "private": true
