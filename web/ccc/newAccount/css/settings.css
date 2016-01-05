@@ -496,3 +496,9 @@ p.tips {
 .btn-success:hover{
     font-size: 16px;
 }
+.account-password-set {
+  margin-left: 200px;
+}
+.account-password-set .tipss-set{
+  width: 80px;
+}

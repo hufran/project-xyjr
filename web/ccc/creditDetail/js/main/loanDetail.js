@@ -10,7 +10,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 
 var investRactive = new Ractive({
     el: ".do-invest-wrapper",
-    template: require('ccc/loanCredit/partials/doInvestOnDetail.html'),
+    template: require('ccc/loan/partials/doInvestOnDetail.html'),
     data: {
         name: '',
         user: CC.user,
@@ -311,7 +311,7 @@ var coutDown = function () {
         var timeLeft  = CC.loan.countDownTime;
         var countDownRactive = new Ractive({
             el: '.countDown',
-            template:require('ccc/loanCredit/partials/countDown.html'),
+            template:require('ccc/loan/partials/countDown.html'),
             data:{
                 countDown:{
                     days:timeLeft.dd,
@@ -349,7 +349,7 @@ setTimeout(coutDown,500);
 
 var recordRactive = new Ractive({
     el: '.invest-record',
-    template: require('ccc/loanCredit/partials/record.html'),
+    template: require('ccc/loan/partials/record.html'),
     page: 1,
     pageSize: 40,
     api:'/api/v2/loan/'+ CC.loan.id + '/invests/',

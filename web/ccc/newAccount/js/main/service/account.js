@@ -26,6 +26,7 @@ exports.accountService = {
         
     },
     
+    
     getLoanCount: function(status,next){         
         var api = '/api/v2/user/MYSELF/loan/count';
         api = api+status;
@@ -93,21 +94,21 @@ exports.accountService = {
             });
         
     },
-//    saveAutoBidConfig: function(params, next){
-//        $.post('/api/v2/user/MYSELF/save_autobid_config', params, function(r){
-//            next(r);
-//            return r;
-//        });
-//    },
-        saveAutoBidConfig: function(params, next) {
-        request('POST', '/api/v2/user/MYSELF/save_autobid_config')
-            .type('form')
-            .send(params)
-            .end()
-            .then(function (r) {
-                next(r.body);
-            });
+        saveAutoBidConfig: function(params, next){
+        $.post('/api/v2/'+CC.user.id+'/save_autobid_config', params, function(r){
+            next(r);
+            return r;
+        });
     },
+//        saveAutoBidConfig: function(params, next) {
+//        request('POST', '/api/v2/'+CC.user.id+'/save_autobid_config')
+//            .type('form')
+//            .send(params)
+//            .end()
+//            .then(function (r) {
+//                next(r.body);
+//            });
+//    },
     getTotalInters:function(next){
          request('GET', '/api/v2/points/user/'+CC.user.id+'/getTotalPoints')
             .end()
@@ -205,5 +206,31 @@ exports.accountService = {
             .then(function(res){
                 next(res.body);
         });
+    },
+    	createCreditAssign: function (investId, creditDealRate, creditAssignTitle, next) {
+        var url = "/api/v2/creditassign/create/MYSELF/$investId/$creditDealRate";
+        url = url.replace("$investId", investId);
+        url = url.replace("$creditDealRate", creditDealRate);
+
+        request('POST', url)
+            .type('form')
+            .send({
+                'creditAssignTitle': creditAssignTitle
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
+    cancelCreditassign: function (creditassignId, next) {
+        var url = '/api/v2/creditassign/cancel/$creditassignId';
+        url = url.replace("$creditassignId", creditassignId);
+        request('POST', url)
+            .type('form')
+            .send()
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
     }
 };

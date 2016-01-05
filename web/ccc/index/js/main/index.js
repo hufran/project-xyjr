@@ -40,19 +40,19 @@ IndexService.getLoanSummary(function (list) {
              listFB.push(list[i]);
          }
      }
-        listXSZX = listXSZX.sort(compare('timeopen'));
-        listHDZX = listHDZX.sort(compare('timeopen'));
-        listXJB = listXJB.sort(compare('timeopen'));
-        listXNB = listXNB.sort(compare('timeopen'));
-        listFB = listFB.sort(compare('timeopen'));
-        listLCZQ = [listXJB[0],listXNB[0],listFB[0],[]];
+    listXSZX = _.sortBy(listXSZX,'timeopen');
+    listHDZX = _.sortBy(listHDZX,'timeopen');
+    listXJB = _.sortBy(listXJB,'timeopen');
+    listXNB = _.sortBy(listXNB,'timeopen');
+    listLCZQ = _.sortBy(listLCZQ,'timeopen');
+    listLCZQ = [listXJB[0],listXNB[0],listFB[0],[]];
 
-        for(var i=0; i<listLCZQ.length; i++){
-            if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
-                listLCZQ.splice(i,1);
-                i-=1;
-            }
+    for(var i=0; i<listLCZQ.length; i++){
+        if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
+            listLCZQ.splice(i,1);
+            i-=1;
         }
+    }
     
     var investRactive = new Ractive({
         el: ".XSZXproductList",
@@ -173,19 +173,6 @@ function initailEasyPieChart() {
 
     });
 };
-function compare(propertyName){
-	return function(object1,object2){
-        var value1 = object1[propertyName];
-        var value2 = object2[propertyName];
-        if(value2 < value1){
-            return 1;
-        }else if(value2 > value1){
-            return -1;
-        }else{
-            return 0;
-        }
-	}
-}
 
 function showError(message){
     var errorMaps = {
@@ -337,7 +324,7 @@ var sayHello = function () {
 ({ name: 'ES7' })::sayHello();
 es6();
 function es6(){
-    let sym = Symbol('asd');
+    //let sym = Symbol('asd');
     let o = {
         log: x => console.log(x)
     } 
@@ -347,7 +334,7 @@ function es6(){
         console.log(aaa.join(''));
     }
     console.log(a(1,2,3,4,5))
-    o.log(typeof sym);
+    //o.log(typeof sym);
 }
 
 //require('ccc/index/js/main/ss.js')

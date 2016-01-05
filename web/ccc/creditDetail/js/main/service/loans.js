@@ -5,16 +5,21 @@
 
 'use strict';
 
+function showError(error) {
+    alert(error);
+}  
+
 exports.loanService = {
-    getLoanProof: function(requestId,next) {
+    getLoanProof: function (requestId, next) {
         request
-            .get('/api/v2/loan/request/'+ requestId + '/proofs')
+//            .get('/loan/' + requestId + '/proof')
+			.get('/api/v2/loan/request/'+requestId+'/proofs')
             .end()
             .then(function (res) {
                 next(res.body);
             });
     },
-    getCareerProof: function (userId, next) {
+	getCareerProof: function (userId, next) {
         request
             .get('/api/v2/user/' + userId + '/certificates/proofs')
             .end()
@@ -22,7 +27,7 @@ exports.loanService = {
                 next(res.body);
             });
     },
-        creditPay:function(userId,creditAssignId,principalAmount){
+    creditPay:function(userId,creditAssignId,principalAmount){
             request.post("/api/v2/creditassign/autoAssign/MYSELF")
                 .type("form")
                 .send({
@@ -62,5 +67,5 @@ exports.loanService = {
             .then(function (r){
                 next(r.body);
             })
-        }
+    }
 };

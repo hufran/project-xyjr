@@ -19,7 +19,7 @@ var Cal = require('ccc/global/js/modules/cccCalculator');
 // cccConfirm
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 
-var popupBigPic = require('ccc/loanCredit/js/main/bigPic')
+var popupBigPic = require('ccc/loan/js/main/bigPic')
     .popupBigPic;
 var statusMap = {
     SCHEDULED: '开标时间:{{timeOpen}}',
@@ -132,7 +132,7 @@ setTimeout((function () {
 
     var investRactive = new Ractive({
         el: ".do-invest-wrapper",
-        template: require('ccc/loanCredit/partials/doInvestOnDetail.html'),
+        template: require('ccc/loan/partials/doInvestOnDetail.html'),
         data: {
             name: '',
             user: CC.user,
@@ -403,7 +403,7 @@ setTimeout((function () {
         if (leftTime) {
             var countDownRactive = new Ractive({
                 el: ".next-time",
-                template: require('ccc/loanCredit/partials/countDown.html'),
+                template: require('ccc/loan/partials/countDown.html'),
                 data: {
                     countDown: {
                         days: leftTime.day,
@@ -546,7 +546,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",
-            template: require('ccc/loanCredit/partials/relateDataOnDetail.html'),
+            template: require('ccc/loan/partials/relateDataOnDetail.html'),
             data: {
                 loanPurpose: r1,
                 career: proofTypeArr,
@@ -651,7 +651,7 @@ function add() {
 
 var recordRactive = new Ractive({
     el: '.invest-record',
-    template: require('ccc/loanCredit/partials/record.html'),
+    template: require('ccc/loan/partials/record.html'),
     page: 1,
     pageSize: 40,
     api:'/api/v2/loan/'+ CC.loan.id + '/invests/',
@@ -727,7 +727,7 @@ function renderPager(totalPage, current) {
     }
    var pagerRactive = new Ractive({
        el: '#record-pager',
-       template: require('ccc/loanCredit/partials/pagerRecord.html'),
+       template: require('ccc/loan/partials/pagerRecord.html'),
        data: {
            totalPage: totalPage,
            current: current

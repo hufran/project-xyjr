@@ -1,7 +1,6 @@
 /*jshint multistr: true */
 
 "use strict";
-
 var i18n = require('@ds/i18n')['zh-cn'];
 
 var InvestListService = require('ccc/investCredit/js/main/service/list')
@@ -36,73 +35,73 @@ function jsonToParams(params) {
     return str;
 }
 
-function formateLeftTime(leftTime){
-    var diffmin = leftTime / 1000 / 60;
-    var str = "";
-    if (diffmin > 0) {
-        var _day = Math.ceil(diffmin / 60 / 24);
-        if( _day > 1){
-            str = _day+"天";
-        }else{
-            var _hour = Math.ceil(diffmin / 60);
-            if(_hour > 1){
-                str = _hour+"小时";
-            }else{
-                str = Math.ceil(diffmin)+"分";
-            }
-        }
-    }else {
-        var sec = Math.ceil(leftTime / 1000);
-        str = sec+"秒";
-    }
-    return str;
-}
+//function formateLeftTime(leftTime){
+//    var diffmin = leftTime / 1000 / 60;
+//    var str = "";
+//    if (diffmin > 0) {
+//        var _day = Math.ceil(diffmin / 60 / 24);
+//        if( _day > 1){
+//            str = _day+"天";
+//        }else{
+//            var _hour = Math.ceil(diffmin / 60);
+//            if(_hour > 1){
+//                str = _hour+"小时";
+//            }else{
+//                str = Math.ceil(diffmin)+"分";
+//            }
+//        }
+//    }else {
+//        var sec = Math.ceil(leftTime / 1000);
+//        str = sec+"秒";
+//    }
+//    return str;
+//}
 
 function formatItem(item) {
-    var purposeMap = {
-        "SHORTTERM" : "短期周转",
-        "PERSONAL" : "个人信贷",
-        "INVESTMENT" : "投资创业",
-        "CAR" : "车辆融资",
-        "HOUSE" : "房产融资",
-        "CORPORATION" : "企业融资",
-        "OTHER" : "其它借款"
-    };
+//    var purposeMap = {
+//        "SHORTTERM" : "短期周转",
+//        "PERSONAL" : "个人信贷",
+//        "INVESTMENT" : "投资创业",
+//        "CAR" : "车辆融资",
+//        "HOUSE" : "房产融资",
+//        "CORPORATION" : "企业融资",
+//        "OTHER" : "其它借款"
+//    };
         
-    item.rate = item.rate / 100;
-    item.purpose = purposeMap[item.purpose];
-    if (item.investPercent* 100 > 0 && item.investPercent * 100 < 1) {
-        item.investPercent = 1;
-    } else {
-      item.investPercent = parseInt(item.investPercent * 100, 10);
-    };
-    if (item.duration.days > 0) {
-        if (typeof item.duration.totalDays === "undefined") {
-            item.fduration = item.duration.days;                            
-        } else {
-            item.fduration = item.duration.totalDays;                            
-        }
-        item.fdurunit = "天";
-    } else {                        
-        item.fduration = item.duration.totalMonths;
-        item.fdurunit = "个月";
-    }
+//    item.rate = item.rate / 100;
+//    item.purpose = purposeMap[item.purpose];
+//    if (item.investPercent* 100 > 0 && item.investPercent * 100 < 1) {
+//        item.investPercent = 1;
+//    } else {
+//      item.investPercent = parseInt(item.investPercent * 100, 10);
+//    };
+//    if (item.duration.days > 0) {
+//        if (typeof item.duration.totalDays === "undefined") {
+//            item.fduration = item.duration.days;                            
+//        } else {
+//            item.fduration = item.duration.totalDays;                            
+//        }
+//        item.fdurunit = "天";
+//    } else {                        
+//        item.fduration = item.duration.totalMonths;
+//        item.fdurunit = "个月";
+//    }
+//    
+//    if (item.amount >= 10000) {
+//        item.amountUnit = '万';
+//        item.amount = (item.amount / 10000);
+//    } else {
+//        item.amountUnit = '元';
+//    }
     
-    if (item.amount >= 10000) {
-        item.amountUnit = '万';
-        item.amount = (item.amount / 10000);
-    } else {
-        item.amountUnit = '元';
-    }
-    
-    if (item.status == "OPENED") {
-        item.leftTime = formateLeftTime(item.timeLeft);
-        item.open = true;
-    } else if (item.status == "SCHEDULED"){
-        item.scheduled = true;
-    } else {
-        item.finished = true;
-    }
+//    if (item.status == "OPENED") {
+//        item.leftTime = formateLeftTime(item.timeLeft);
+//        item.open = true;
+//    } else if (item.status == "SCHEDULED"){
+//        item.scheduled = true;
+//    } else {
+//        item.finished = true;
+//    }
     //格式化序列号
     if( item.providerProjectCode ){
         if( item.providerProjectCode.indexOf('#') > 0 ){
@@ -121,8 +120,8 @@ function parseLoanList(list) {
     for (var i = 0; i < list.length; i++) {
         list[i] = formatItem(list[i]);
         var method = list[i].method;
-        var methodFmt = i18n.enums.RepaymentMethod[method][0];
-        list[i].methodFmt = methodFmt;
+       // var methodFmt = i18n.enums.RepaymentMethod[method][0];
+        //list[i].methodFmt = methodFmt;
 		list[i].titleLength = replaceStr(list[i].title);
     }
     return list;
@@ -132,23 +131,23 @@ function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
 	
-InvestListService.getCreditassignData(jsonToParams(params), function (res) {
+InvestListService.getCreditassignData(function (res) {
     var investRactive = new Ractive({
-        el: ".invest-list-wrapper",
-        template: require('ccc/global/partials/singleInvestList.html'),
+        el:".invest-list-wrapper",
+        template: require('ccc/investCredit/partials/singleInvest.html'),
         data: {
             list: parseLoanList(res.results),
-            RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
+           // RepaymentMethod: i18n.enums.RepaymentMethod, // 还款方式
             user:CC.user
         }
     });
-    initailEasyPieChart();
-    ininconut();
+//    initailEasyPieChart();
+//    ininconut();
     renderPager(res);
-    investRactive.on("mouseover mouseleave", function (e) {
-        var hovering = e.name === "mouseover";
-        this.set(e.keypath + ".hovering", hovering);
-    });
+//    investRactive.on("mouseover mouseleave", function (e) {
+//        var hovering = e.name === "mouseover";
+//        this.set(e.keypath + ".hovering", hovering);
+//    });
 //	
 //    $('.no-warry-ul .no-warry').click(function(){
 //        if (!$(this).hasClass("selected active")) {
@@ -265,30 +264,30 @@ function createList(len, current) {
     return arr;
 };
 
-function ininconut () {
-    $(".investBtn > .investbtn-time").each(function () {
-        var t = $(this);
-        if(t.data("status") === 'SCHEDULED'){
-            var id = t.data("id");  
-            var openTime = t.data("open");  
-            var serverDate = t.data("serv");
-            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day +'天' : '';
-            var interval = setInterval((function () {
-                serverDate += 1000;
-                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-                var textDay = leftTime.day ? leftTime.day +'天' : '';
-                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-                    clearInterval(interval);
-					t.prev().hide();
-                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-                }else {
-                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
-                }
-            }), 1000);
-        }
-    });
-};
+//function ininconut () {
+//    $(".investBtn > .investbtn-time").each(function () {
+//        var t = $(this);
+//        if(t.data("status") === 'SCHEDULED'){
+//            var id = t.data("id");  
+//            var openTime = t.data("open");  
+//            var serverDate = t.data("serv");
+//            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+//            var textDay = leftTime.day ? leftTime.day +'天' : '';
+//            var interval = setInterval((function () {
+//                serverDate += 1000;
+//                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+//                var textDay = leftTime.day ? leftTime.day +'天' : '';
+//                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+//                    clearInterval(interval);
+//					t.prev().hide();
+//                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
+//                }else {
+//                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
+//                }
+//            }), 1000);
+//        }
+//    });
+//};
 
 
 
@@ -296,39 +295,36 @@ function ininconut () {
 
 
 
-
-function initailEasyPieChart() {
-    ///////////////////////////////////////////////////////////
-    // 初始化饼状图
-    ///////////////////////////////////////////////////////////
-    $(function () {
-        var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
-        $(".easy-pie-chart").each(function () {
-            var percentage = $(this).data("percent");
-             var status=$(this).data("status");
-            // 100%进度条颜色显示为背景色
-
-            //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-            var color = (status==='OPENED') ? '#009ada' : "#f58220";
-
-//            var color = percentage === 100 ? "#f58220" : '#f58220';
-            $(this).easyPieChart({
-                barColor: color,
-                trackColor: '#ddd',
-                scaleColor: false,
-                lineCap: 'butt',
-                lineWidth: 4,
-                animate: oldie ? false : 1000,
-                size: 45,
-                onStep: function (from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
-            $(this).find("span.percentageNum").html(percentage+"%");
-        });
-
-    });
-};
+//
+//function initailEasyPieChart() {
+//    $(function () {
+//        var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
+//        $(".easy-pie-chart").each(function () {
+//            var percentage = $(this).data("percent");
+//             var status=$(this).data("status");
+//            // 100%进度条颜色显示为背景色
+//
+//            //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
+//            var color = (status==='OPENED') ? '#009ada' : "#f58220";
+//
+////            var color = percentage === 100 ? "#f58220" : '#f58220';
+//            $(this).easyPieChart({
+//                barColor: color,
+//                trackColor: '#ddd',
+//                scaleColor: false,
+//                lineCap: 'butt',
+//                lineWidth: 4,
+//                animate: oldie ? false : 1000,
+//                size: 45,
+//                onStep: function (from, to, percent) {
+//                    $(this.el).find('.percent').text(Math.round(percent));
+//                }
+//            });
+//            $(this).find("span.percentageNum").html(percentage+"%");
+//        });
+//
+//    });
+//};
 
 // banenr动效
 //$(".no-warry").mouseenter(function(){
