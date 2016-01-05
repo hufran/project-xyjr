@@ -74,9 +74,9 @@
             </div>
 
             <p class="container"
-               ng-init="invalid = available_amount <= 2 || amount > available_amount"
+               ng-init="invalid = available_amount <= 0.01 || amount > available_amount"
             >
-                <button class="btn btn-theme btn-block"
+                <button class="btn btn-theme btn-block btn-lg"
                         type="submit"
                         ng-if="self.user.has_payment_account && self.user.has_bank_card"
                         ng-disabled="form.$invalid || invalid || self.submit_sending"
