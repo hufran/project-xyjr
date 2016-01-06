@@ -1528,111 +1528,60 @@ a {
 ----*/
 
 #dashboard-total-assets {
-    > .assets {
-        margin-bottom: 5px;
-        padding: 18px 20px 17px;
-        background-color: #FFF;
-        text-align: center;
-
-        > .inner {
-            .flex-display(stretch; space-between);
-        }
-
-        .info-col {
-            &:not(.round-wrap) {
-                padding-top: 10px;
-            }
-
-            &.round-wrap {
-                padding-left: 9px;
-                padding-right: 9px;
-
-                .flex(1);
-            }
-
-            .info {
-                padding-top: 11px;
-                padding-bottom: 11px;
-
-                .name {
-                }
-
-                .value {
-                }
-
-                &:not(:first-child) {
-                    border-top: 1px solid #E3E3E3;
-                }
-
-                &.round {
-                    margin-left: auto;
-                    margin-right: auto;
-                    border-radius: 50%;
-                    padding-top: 35px;
-                    width: 142px;
-                    height: 142px;
-                    background-color: #F7F7F7;
-
-                    .name {
-                    }
-
-                    .value {
-                        font-size: 24px;
-                        color: @color-theme-main;
-                    }
-                }
-            }
-        }
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    > .funds {
-        padding: 0 20px 20px;
+    > section.detail {
+        margin-bottom: 100px;
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        padding: 0 15px;
         background-color: #FFF;
 
-        .title {
-            margin: 0 0 5px;
-            border-bottom: 1px solid #F9F9F9;
-            padding: 12px;
-            font-size: 26px/2 + 2;
-        }
+        .info {
+            .flex-display(center; space-between);
 
-        .detail {
-            .table > tbody > tr > td {
-                border: 0;
-                border-bottom: 1px solid #F7F7F7;
-                padding-left: 0;
-                padding-right: 0;
+            padding: 8px 35px;
+            font-size: 30px/2 + 1;
+            line-height: 1.4;
 
-                .type {
-                    font-size: 26px/2 + 2;
-                }
+            .name {
+                .flex(none);
 
-                .status {
-                    margin-left: 3px;
-                    font-size: 22px/2 + 2;
+                margin-right: 10px;
+                color: #777;
+            }
 
-                    > span {
-                        &:before {
-                            content: "(";
-                        }
+            .value {
+                .flex(1);
 
-                        &:after {
-                            content: ")";
-                        }
+                text-align: right;
+                color: #FF7200;
+            }
+
+            &.total {
+                padding-top: 14px;
+                padding-bottom: 20px;
+            }
+
+            &-list {
+                border-bottom: 1px solid #E6E6E6;
+                padding: 13px 0 3px;
+
+                > :last-child {
+                    position: relative;
+
+                    &:before {
+                        content: "+";
+                        position: absolute;
+                        left: 0;
+                        top: 2px;
+                        font-size: 28px;
+                        line-height: 1;
+                        color: #D9D9D9;
                     }
-                }
-
-                .date {
-                    margin-top: 3px;
-                    font-size: 24px/2 + 2;
-                }
-
-                .amount {
-                    font-size: 30px/2 + 2;
-                }
-
-                .operation {
-                    font-size: 24px/2 + 2;
                 }
             }
         }
