@@ -142,7 +142,7 @@ do (_, angular, moment, Array) ->
 
             get_announcement: ->
 
-                encode_name_value = '%E6%9C%80%E6%96%B0%E5%85%AC%E5%91%8A'
+                encode_name_value = '%E5%B9%B3%E5%8F%B0%E5%85%AC%E5%91%8A'
 
                 (@$http
                     .get "/api/v2/cms/category/PUBLICATION/name/#{ encode_name_value }", cache: true
