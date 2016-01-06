@@ -2385,43 +2385,80 @@ a {
 
 #dashboard-funds {
     > .funds-list {
-        .table {
-            th {
-                border: 0;
-                background-color: #E52D2D;
-                text-align: center;
-                font-weight: normal;
-                color: #FFF;
-            }
+        background-color: #FFF;
 
-            td {
-                border: 0;
-                background-color: #FFF;
-                text-align: center;
-                color: #000;
+        > .list {
+            margin: 0;
+            margin-left: 10px;
+            border-top: 0;
+            border-color: #D8D8D8;
+            padding: 0;
+        }
 
-                &.amount {
-                    text-align: right;
-                    padding-right: 30px;
+        > .list > .item {
+            border-left: 0;
+            border-right: 0;
+            padding: 14px 10px 14px 5px;
+
+            .info {
+                .operation > * {
+                    position: absolute;
+                    left: -6px;
+                    top: -2px;
+                    line-height: 1;
+                    color: #FFF;
+                    border-radius: 999px;
+                    padding: 6px;
+                    font-size: 18px;
+
+                    &.red {
+                        background-color: @color-theme-main;
+                    }
+                    &.orange {
+                        background-color: #FF7200;
+                    }
+                    &.green {
+                        background-color: #7EC741;
+                    }
+                    &.blue {
+                        background-color: #70B1DF;
+                    }
                 }
             }
 
-            thead tr:last-child th,
-            tbody tr:last-child td  {
-                border-bottom: 1px solid #BEBEBE;
+            .type {
+                margin-bottom: 8px;
+                font-size: 28px/2 + 2;
+                color: #000;
             }
-        }
 
-        .list {
-            > .item {
-                margin: 22px/2 12px/2;
-                padding: 30px/2 20px/2;
-                background-color: #FFF;
-                -webkit-box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.4);
-                        box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.4);
+            .date {
+                font-size: 24px/2 + 2;
+                color: #BBB;
+            }
 
-                .labels {
-                    color: @color-gray;
+            .amount {
+                margin-bottom: 5px;
+                font-size: 30px/2 + 2;
+
+                &.red {
+                    color: #E70012;
+                }
+                &.green {
+                    color: #79CB3C;
+                }
+                &.gray {
+                    color: #333;
+                }
+            }
+
+            .description {
+                font-size: 24px/2 + 2;
+                color: #A3A3A3;
+
+                em {
+                    color: @color-gray-light;
+                    font-style: normal;
                 }
             }
         }
