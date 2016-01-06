@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'TotalAssetsCtrl',
 
-        _.ai '            @api, @user, @$scope, @$window, map_funds_summary', class
-            constructor: (@api, @user, @$scope, @$window, map_funds_summary) ->
+        _.ai '            @user, @$scope, @$window', class
+            constructor: (@user, @$scope, @$window) ->
 
                 @$window.scrollTo 0, 0
 
@@ -19,7 +19,7 @@ do (_, angular) ->
                 invest_frozen = @user.fund.investFrozenAmount
                 withdraw_frozen = frozen - invest_frozen
 
-                @$scope.fund = {
+                @$scope.fund = _.rearg(_.mapValues, 1, 0) _.fixed_in_2, {
                     available
                     total
 
@@ -27,17 +27,4 @@ do (_, angular) ->
                     outstanding_interest
                     invest_frozen
                     withdraw_frozen
-                    frozen
                 }
-
-                @$scope.loading = true
-
-                @api.get_user_funds()
-
-                    .then (data) =>
-                        @$scope.list = data.results.map map_funds_summary
-
-                    .finally =>
-                        @$scope.loading = false
-
-

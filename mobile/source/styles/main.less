@@ -1352,88 +1352,84 @@ a {
     }
 
     .loan-summary {
-        // #loan .loan-summary;
+        #loan .loan-summary;
+
+        .rate-duration {
+            border-bottom: 0;
+
+            .duration {
+                border-left: 0;
+            }
+        }
     }
 
     .form-invest {
-        .coupon {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            padding: 3px 13px;
-            background-color: #FFF;
+        margin-top: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #FFF;
 
-            .form-control {
-                border: none;
-                color: @color-theme-main;
-                -webkit-appearance: none;
-                -webkit-box-shadow: none;
-                        box-shadow: none;
+        .form-group {
+            label {
+                margin-top: 5px;
+                padding-right: 0;
+                font-weight: normal;
             }
 
-            &-tip {
-                padding: 10px 12px;
-                color: #CCC;
+            .omit-padding {
+                padding: 0;
             }
 
-            &.rsaquo {
-                position: relative;
-
-                &:after {
-                    position: absolute;
-                    right: 17px;
-                    top: 50%;
-                    font-family: "Glyphicons Halflings";
-                    content: "\e258";
-                    color: #CCC;
-
-                    .transform(translateY(-50%));
-                }
-            }
-        }
-
-        .multi-line-container-item {
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-
-        .available-amount {
-            margin-left: 12px;
-            margin-right: 12px;
-
-            ~ .btn-invest {
-                .button-variant(#F03644; #FFF; #F03644);
-                .button-size(3px; 8px; 14px; 1; 2px);
-
-                margin-top: -4px;
-            }
-        }
-
-        .amount-earning {
-            margin-top: -6px;
-            margin-bottom: -6px;
-
-            .flex-display(center; space-between);
-
-            .input-wrap {
-                .flex(1);
-
-                .form-control {
-                    height: 34px;
-
-                    &::-webkit-outer-spin-button,
-                    &::-webkit-inner-spin-button {
-                        -webkit-appearance: none;
-                    }
-                }
+            .available-amount {
+                margin-top: 5px;
             }
 
             .earning {
-                .flex(none);
+                margin-top: 5px;
+                padding-left: 3px;
+                color: #C0C0C0;
+            }
+
+            &.rule {
+                margin-top: -5px;
+                margin-bottom: 10px;
+                color: #C0C0C0;
+            }
+
+            .num {
+                color: #FE8008;
+            }
+
+            .coupon-tip {
+                margin-top: 5px;
+                color: #C0C0C0;
             }
         }
 
-        .action {
-            margin-top: 15px;
+        .agreement {
+            padding: 5px;
+
+            label {
+                font-weight: normal;
+            }
+        }
+
+        .btn {
+            &-polish {
+                .button-variant(#FE8008; #FFF; #FE8008);
+            }
+
+            &-recharge {
+                .button-variant(#0090E0; #FFF; #0190DF);
+            }
+
+            &-invest {
+                .button-variant(#FFF; #FE8008; #FE8008);
+            }
+
+            + .btn {
+                margin-left: 5px;
+            }
         }
     }
 }
@@ -1537,111 +1533,60 @@ a {
 ----*/
 
 #dashboard-total-assets {
-    > .assets {
-        margin-bottom: 5px;
-        padding: 18px 20px 17px;
-        background-color: #FFF;
-        text-align: center;
-
-        > .inner {
-            .flex-display(stretch; space-between);
-        }
-
-        .info-col {
-            &:not(.round-wrap) {
-                padding-top: 10px;
-            }
-
-            &.round-wrap {
-                padding-left: 9px;
-                padding-right: 9px;
-
-                .flex(1);
-            }
-
-            .info {
-                padding-top: 11px;
-                padding-bottom: 11px;
-
-                .name {
-                }
-
-                .value {
-                }
-
-                &:not(:first-child) {
-                    border-top: 1px solid #E3E3E3;
-                }
-
-                &.round {
-                    margin-left: auto;
-                    margin-right: auto;
-                    border-radius: 50%;
-                    padding-top: 35px;
-                    width: 142px;
-                    height: 142px;
-                    background-color: #F7F7F7;
-
-                    .name {
-                    }
-
-                    .value {
-                        font-size: 24px;
-                        color: @color-theme-main;
-                    }
-                }
-            }
-        }
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    > .funds {
-        padding: 0 20px 20px;
+    > section.detail {
+        margin-bottom: 100px;
+        border-top: 1px solid #D9D9D9;
+        border-bottom: 1px solid #D9D9D9;
+        padding: 0 15px;
         background-color: #FFF;
 
-        .title {
-            margin: 0 0 5px;
-            border-bottom: 1px solid #F9F9F9;
-            padding: 12px;
-            font-size: 26px/2 + 2;
-        }
+        .info {
+            .flex-display(center; space-between);
 
-        .detail {
-            .table > tbody > tr > td {
-                border: 0;
-                border-bottom: 1px solid #F7F7F7;
-                padding-left: 0;
-                padding-right: 0;
+            padding: 8px 35px;
+            font-size: 30px/2 + 1;
+            line-height: 1.4;
 
-                .type {
-                    font-size: 26px/2 + 2;
-                }
+            .name {
+                .flex(none);
 
-                .status {
-                    margin-left: 3px;
-                    font-size: 22px/2 + 2;
+                margin-right: 10px;
+                color: #777;
+            }
 
-                    > span {
-                        &:before {
-                            content: "(";
-                        }
+            .value {
+                .flex(1);
 
-                        &:after {
-                            content: ")";
-                        }
+                text-align: right;
+                color: #FF7200;
+            }
+
+            &.total {
+                padding-top: 14px;
+                padding-bottom: 20px;
+            }
+
+            &-list {
+                border-bottom: 1px solid #E6E6E6;
+                padding: 13px 0 3px;
+
+                > :last-child {
+                    position: relative;
+
+                    &:before {
+                        content: "+";
+                        position: absolute;
+                        left: 0;
+                        top: 2px;
+                        font-size: 28px;
+                        line-height: 1;
+                        color: #D9D9D9;
                     }
-                }
-
-                .date {
-                    margin-top: 3px;
-                    font-size: 24px/2 + 2;
-                }
-
-                .amount {
-                    font-size: 30px/2 + 2;
-                }
-
-                .operation {
-                    font-size: 24px/2 + 2;
                 }
             }
         }
@@ -1708,160 +1653,109 @@ a {
 ----*/
 
 #dashboard-coupon {
-    .coupons {
-        margin-top: 21px;
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-        .list-coupon {
-            > .item {
-                position: relative;
-                margin-left: 20px;
-                margin-right: 20px;
-                margin-bottom: 8px;
-                padding: 15px 15px 15px 23px;
-                height: 230px/2;
-                border-radius: 5px;
-                background-color: #FFF;
-                font-size: 12px;
+    .page-nav {
+        small {
+            font-size: 70%;
+        }
+    }
 
-                .inner {
-                    .flex-display();
+    .coupon-list {
+        > .item {
+            margin-bottom: 10px;
+            border-top: 1px solid #D9D9D9;
+            border-bottom: 1px solid #D9D9D9;
+            padding: 15px 12px;
+            background-color: #FFF;
+            font-size: 24px/2 + 1;
+            color: #4A4A4A;
 
-                    &-left {
-                        .flex(4);
-                    }
-
-                    &-right {
-                        .flex(3);
-
-                        margin-left: 15px;
-                        border-left: 1px solid #F3F3F3;
-                        padding-left: 15px;
-                    }
+            .media {
+                &-left {
+                    padding-right: 23px;
                 }
 
-                .type {
-                    margin: 0 0 5px;
-                    border-bottom: 1px solid #F1F1F1;
-                    padding-bottom: 5px;
-                    font-size: 14px;
+                &-body {
+                    padding-top: 5px;
+                    position: relative;
                 }
 
-                .expire {
+                &-object {
+                    display: inline-block;
+                    vertical-align: middle;
+                    background: url("@{path-image}/coupon-icons.png") no-repeat;
+                    background-size: cover;
+                    background-position: 0 0;
+                    width: 124px/2;
+                    height: 156px/2;
+                    overflow: hidden;
+                }
+            }
+
+            .status {
+                height: 22px;
+                line-height: 22px;
+                color: #FF4D4D;
+            }
+
+            .value {
+                height: 55px;
+                line-height: 55px;
+                color: #FFF;
+
+                .num {
+                    font-size: 34px/2 + 1;
+                }
+            }
+
+            .type {
+                display: inline-block;
+                vertical-align: middle;
+                margin-bottom: 6px;
+                border: 1px solid #FF4D4D;
+                padding-left: 4px;
+                padding-right: 4px;
+                color: #FF4D4D;
+            }
+
+            .expire {
+                margin-bottom: 10px;
+            }
+
+            .desc {
+                color: #999;
+            }
+
+            .redeem {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &-status-redeemed,
+            &-status-expired,
+            &-status-cancelled {
+                background-color: #E5E5E5;
+
+                .media-object {
+                    background-position: 0 -156px/2;
                 }
 
                 .status {
-                    margin-top: 25px;
+                    color: #999;
                 }
 
-                .value {
-                    margin-right: -15px;
-                    margin-bottom: 15px;
-                    font-size: 42px/2 + 2;
-                    line-height: 1;
-
-                    small {
-                        font-size: 40%;
-                    }
-
-                    .interest {
-                        font-size: 76px/2;
-                        line-height: 1;
-                    }
+                .type {
+                    border: 1px solid #999;
+                    color: #999;
                 }
 
-                .rule {
-                    margin-right: -15px;
-                }
-
-                .btn-redeem {
-                    margin-top: 3px;
-                    border-radius: 999px;
-
-                    .button-variant(#F03644; #FFF; #F03644);
-                }
-
-                &:before {
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    content: "";
-                    overflow: hidden;
-                    width: 14px/2;
-                    height: 236px/2;
-                    background: url("@{path-image}/coupon-border.png") no-repeat;
-                    background-size: 14px/2 472px/2;
-                    background-position: 0 0;
-
-                    .transform(translateY(-50%));
-                }
-
-                &-status-initiated,
-                &-status-placed,
-                &-status-used {
-                    .status {
-                        color: #F8464B;
-                    }
-
-                    .value {
-                        color: #F8464B;
-
-                        small {
-                            color: #333;
-                        }
-                    }
-
-                    &:before {
-                        background-position: 0 0;
-                    }
-                }
-
-                &-status-redeemed,
-                &-status-expired,
-                &-status-cancelled,
-                &-status-disabled,
-                {
-                    color: #A6A6A6;
-
-                    &:before {
-                        background-position: 0 -236px/2;
-                    }
-                }
-
-                &-type-cash {
-                    .value {
-                        font-size: 76px/2;
-                    }
-                }
-
-                &-status-initiated,
-                &-status-placed {
-                    background: url("@{path-image}/status/placed.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-redeemed {
-                    background: url("@{path-image}/status/redeemed.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-expired {
-                    background: url("@{path-image}/status/expired.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-cancelled {
-                    background: url("@{path-image}/status/cancelled.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-used {
-                    background: url("@{path-image}/status/used.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
+                .expire {
+                    color: #999;
                 }
             }
         }
@@ -2506,43 +2400,80 @@ a {
 
 #dashboard-funds {
     > .funds-list {
-        .table {
-            th {
-                border: 0;
-                background-color: #E52D2D;
-                text-align: center;
-                font-weight: normal;
-                color: #FFF;
-            }
+        background-color: #FFF;
 
-            td {
-                border: 0;
-                background-color: #FFF;
-                text-align: center;
-                color: #000;
+        > .list {
+            margin: 0;
+            margin-left: 10px;
+            border-top: 0;
+            border-color: #D8D8D8;
+            padding: 0;
+        }
 
-                &.amount {
-                    text-align: right;
-                    padding-right: 30px;
+        > .list > .item {
+            border-left: 0;
+            border-right: 0;
+            padding: 14px 10px 14px 5px;
+
+            .info {
+                .operation > * {
+                    position: absolute;
+                    left: -6px;
+                    top: -2px;
+                    line-height: 1;
+                    color: #FFF;
+                    border-radius: 999px;
+                    padding: 6px;
+                    font-size: 18px;
+
+                    &.red {
+                        background-color: @color-theme-main;
+                    }
+                    &.orange {
+                        background-color: #FF7200;
+                    }
+                    &.green {
+                        background-color: #7EC741;
+                    }
+                    &.blue {
+                        background-color: #70B1DF;
+                    }
                 }
             }
 
-            thead tr:last-child th,
-            tbody tr:last-child td  {
-                border-bottom: 1px solid #BEBEBE;
+            .type {
+                margin-bottom: 8px;
+                font-size: 28px/2 + 2;
+                color: #000;
             }
-        }
 
-        .list {
-            > .item {
-                margin: 22px/2 12px/2;
-                padding: 30px/2 20px/2;
-                background-color: #FFF;
-                -webkit-box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.4);
-                        box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.4);
+            .date {
+                font-size: 24px/2 + 2;
+                color: #BBB;
+            }
 
-                .labels {
-                    color: @color-gray;
+            .amount {
+                margin-bottom: 5px;
+                font-size: 30px/2 + 2;
+
+                &.red {
+                    color: #E70012;
+                }
+                &.green {
+                    color: #79CB3C;
+                }
+                &.gray {
+                    color: #333;
+                }
+            }
+
+            .description {
+                font-size: 24px/2 + 2;
+                color: #A3A3A3;
+
+                em {
+                    color: @color-gray-light;
+                    font-style: normal;
                 }
             }
         }
