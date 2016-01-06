@@ -1348,88 +1348,79 @@ a {
     }
 
     .loan-summary {
-        // #loan .loan-summary;
+        #loan .loan-summary;
+
+        .rate-duration {
+            border-bottom: 0;
+
+            .duration {
+                border-left: 0;
+            }
+        }
     }
 
     .form-invest {
-        .coupon {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            padding: 3px 13px;
-            background-color: #FFF;
+        margin-top: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #FFF;
 
-            .form-control {
-                border: none;
-                color: @color-theme-main;
-                -webkit-appearance: none;
-                -webkit-box-shadow: none;
-                        box-shadow: none;
+        .form-group {
+            label {
+                margin-top: 5px;
+                padding-right: 0;
+                font-weight: normal;
             }
 
-            &-tip {
-                padding: 10px 12px;
-                color: #CCC;
+            .omit-padding {
+                padding: 0;
             }
 
-            &.rsaquo {
-                position: relative;
-
-                &:after {
-                    position: absolute;
-                    right: 17px;
-                    top: 50%;
-                    font-family: "Glyphicons Halflings";
-                    content: "\e258";
-                    color: #CCC;
-
-                    .transform(translateY(-50%));
-                }
-            }
-        }
-
-        .multi-line-container-item {
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-
-        .available-amount {
-            margin-left: 12px;
-            margin-right: 12px;
-
-            ~ .btn-invest {
-                .button-variant(#F03644; #FFF; #F03644);
-                .button-size(3px; 8px; 14px; 1; 2px);
-
-                margin-top: -4px;
-            }
-        }
-
-        .amount-earning {
-            margin-top: -6px;
-            margin-bottom: -6px;
-
-            .flex-display(center; space-between);
-
-            .input-wrap {
-                .flex(1);
-
-                .form-control {
-                    height: 34px;
-
-                    &::-webkit-outer-spin-button,
-                    &::-webkit-inner-spin-button {
-                        -webkit-appearance: none;
-                    }
-                }
+            .available-amount {
+                margin-top: 5px;
             }
 
             .earning {
-                .flex(none);
+                margin-top: 5px;
+                padding-left: 3px;
+                color: #C0C0C0;
+            }
+
+            &.rule {
+                margin-top: -5px;
+                margin-bottom: 10px;
+                color: #C0C0C0;
+            }
+
+            .num {
+                color: #FE8008;
             }
         }
 
-        .action {
-            margin-top: 15px;
+        .agreement {
+            padding: 5px;
+
+            label {
+                font-weight: normal;
+            }
+        }
+
+        .btn {
+            &-polish {
+                .button-variant(#FE8008; #FFF; #FE8008);
+            }
+
+            &-recharge {
+                .button-variant(#0090E0; #FFF; #0190DF);
+            }
+
+            &-invest {
+                .button-variant(#FFF; #FE8008; #FE8008);
+            }
+
+            + .btn {
+                margin-left: 5px;
+            }
         }
     }
 }

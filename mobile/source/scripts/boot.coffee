@@ -479,8 +479,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'LoanCtrl as self'
                         templateUrl: 'components/router/loan/loan.tmpl.html'
                         resolve:
-                            loan: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
                                     api.get_loan_detail($route.current.params.id, false).catch ->
                                         $location.path '/'
                                         do $q.reject
