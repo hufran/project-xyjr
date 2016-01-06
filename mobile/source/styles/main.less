@@ -1441,71 +1441,95 @@ a {
 ----*/
 
 #dashboard {
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
+    .c-list-panel {
+        > .item {
+            img {
+                margin-right: 7px;
 
-    > section {
+                &.user-icon {
+                    margin-left: 2px;
+                    margin-right: 8px;
+                }
 
-        &.info {
-            text-align: center;
-            border-bottom: 1px solid @color-gray-light-double;
-            background-color: #FFF;
-            overflow: hidden;
-
-            .head, .sub {
-                margin: 50px/2 auto;
+                &.coupon-icon {
+                    margin-left: 2px;
+                }
             }
 
-            .head {
-                .title {
-                    font-size: 26px/2 + 2;
-                    color: @color-gray-light;
-                }
+            .name {
+                display: inline-block;
+                vertical-align: -2px;
+                margin-right: 2px;
+                min-width: 5em;
+                font-size: 28px/2 + 2;
+                color: #777;
+            }
+
+            .value {
+                vertical-align: middle;
+                font-size: 24px/2 + 2;
+                color: #999;
+
                 .num {
-                    font-size: 65px/2 + 2;
-                    color: @color-theme-main;
+                    color: #FF7200;
                 }
             }
 
-            .sub {
-                .item {
-                    &:not(:first-child) {
-                        border-left: 1px solid @color-gray-light-double;
-                    }
+            .glyphicon {
+                color: #999;
+            }
 
-                    .title {
-                        font-size: 26px/2 + 2;
-                        color: @color-gray-light;
-                    }
-                    .num {
-                        font-size: 30px/2 + 2;
-                        color: @color-gray-dark-double;
-                    }
+            .btn {
+                margin-top: -4px;
+                padding-left: 20px;
+                padding-right: 20px;
+                border-radius: 999px;
+                font-size: 24px/2 + 2;
+                line-height: 1;
+            }
+
+            &.password {
+                .icon {
+                    color: #2D94CF;
+                    padding-right: 9px;
+                    vertical-align: text-bottom;
                 }
             }
         }
 
-        &.list-section {
-            border: none;
+        > a {
+            display: block;
+            color: #777;
+        }
+    }
 
-            .list-group-item {
-                color: @color-gray-dark-double;
+    .info-list {
+    }
 
-                img {
-                    top: -1px;
-                    position: relative;
-                }
+    .links {
+    }
 
-                .dot {
-                    border-radius: 999px;
-                    border: 4px solid @color-theme-main;
-                    display: inline-block;
-                }
+    section.action {
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
 
-                &.rsaquo:after {
-                    top: 5px;
-                    position: relative;
-                }
-            }
+    .btn {
+        &-withdraw {
+            .button-variant(#FF7200; #FFF; #FF7200);
+        }
+
+        &-recharge {
+            .button-variant(@color-theme-main; #FFF; @color-theme-main);
+        }
+
+        &-logout {
+            .button-variant(#FFF; #FF7200; #FF7200);
         }
     }
 }

@@ -63,4 +63,3 @@ do (_, angular) ->
                     @$location.path '/'
                     @$scope.$on '$locationChangeSuccess', =>
                         @$window.location.reload()
-
