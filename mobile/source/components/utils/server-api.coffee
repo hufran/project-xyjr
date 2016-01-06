@@ -2,7 +2,9 @@
 do (_, angular, moment, Array) ->
 
     WWW_FORM_HEADER = 'Content-Type': 'application/x-www-form-urlencoded'
+
     TAKE_RESPONSE_DATA = (response) -> response.data
+    TAKE_RESPONSE_ERROR = (q, response) -> q.reject response.data
 
     ARRAY_JOIN = _.partialRight Array::join, ''
 
@@ -15,10 +17,13 @@ do (_, angular, moment, Array) ->
                 @access_token = 'cookie'
                 @user_fetching_promise = null
 
-                @param_traditional = _.partialRight @param, true
+                TAKE_RESPONSE_ERROR = _.partial TAKE_RESPONSE_ERROR, @$q
+
+                @TAKE_RESPONSE_ERROR = TAKE_RESPONSE_ERROR
+                @TAKE_RESPONSE_DATA = TAKE_RESPONSE_DATA
 
                 @process_response = (data) =>
-                    return @$q.reject(data) unless data.success is true
+                    return @$q.reject(data) unless data?.success is true
                     return data
 
 
@@ -52,21 +57,28 @@ do (_, angular, moment, Array) ->
                             paymentPasswordHasSet
                         '
 
-                        @$q.all api_list.map (path) =>
+                        api_list = api_list.map (path) =>
                             @$http.get "/api/v2/user/#{ @user.info.id }/#{ path }"
+
+                        api_list.push @$http.get '/api/v2/user/MYSELF/inviteCode'
+
+                        return @$q.all api_list
 
                     .then (response) =>
                         [
-                            statistics
+                            @user.statistics
                             @user.fund
                             @user.payment
                             @user.fund_accounts
                             @user.authenticates
                             @user.has_payment_password
+                            invite_code
 
                         ] = _.pluck response, 'data'
 
-                        _.extend @user.fund, _.pick statistics, _.split '
+                        @user.info.invite_code = invite_code.data
+
+                        _.extend @user.fund, _.pick @user.statistics, _.split '
                             investInterestAmount
                             investingPrincipalAmount
                             investingInterestAmount
@@ -84,11 +96,15 @@ do (_, angular, moment, Array) ->
 
             get_user_investments: (size = 99, cache = true) ->
 
-                query_set = @param_traditional {
+                query_set = {
                     status: _.split 'SETTLED OVERDUE BREACH FINISHED PROPOSED FROZEN CLEARED'
                 }
 
-                @$http.get("/api/v2/user/MYSELF/invest/list/0/#{ size }?#{ query_set }", {cache})
+                @$http
+                    .get "/api/v2/user/MYSELF/invest/list/0/#{ size }",
+                        params: query_set
+                        cache: cache
+
                     .then (response) ->
                         response.data?.results or []
 
@@ -99,19 +115,19 @@ do (_, angular, moment, Array) ->
                     moment(date.format 'YYYY-MM-DD').unix() * 1000
 
                 query_set = {
-                    type: 'ALL'
+                    type: _.split 'INVEST WITHDRAW DEPOSIT INVEST_REPAY FEE_WITHDRAW TRANSFER'
                     allStatus: false
                     allOperation: true
                     startDate: convert_to_day moment().subtract 1, 'y'
                     endDate: convert_to_day moment().add 1, 'd'
                     page: 1
-                    pageSize: 40
+                    pageSize: 99
                 }
 
                 @$http
-                    .get '/api/v2/user/MYSELF/funds',
+                    .get '/api/v2/user/MYSELF/funds/query',
                         params: query_set
-                        cache: true
+                        cache: false
 
                     .then TAKE_RESPONSE_DATA
 
@@ -126,7 +142,7 @@ do (_, angular, moment, Array) ->
 
             get_announcement: ->
 
-                encode_name_value = '%E6%9C%80%E6%96%B0%E5%85%AC%E5%91%8A'
+                encode_name_value = '%E5%B9%B3%E5%8F%B0%E5%85%AC%E5%91%8A'
 
                 (@$http
                     .get "/api/v2/cms/category/PUBLICATION/name/#{ encode_name_value }", cache: true
@@ -150,10 +166,14 @@ do (_, angular, moment, Array) ->
 
             get_loan_list: ->
 
-                @$http.get('/api/v2/loans/summary', cache: false)
+                @$http
+                    .get('/api/v2/loans/summary', cache: false)
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
 
 
-            get_loan_list_with_type: (product, size = 20, cache = true) ->
+            get_loan_list_by_config: (product, size = 10, cache = true) ->
 
                 query_set = {
                     status: 'SCHEDULED'
@@ -161,12 +181,14 @@ do (_, angular, moment, Array) ->
                     maxDuration: 100
                     minRate: 0
                     maxRate: 100
+                    minAmount: 1
+                    maxAmount: 100000000
                     pageSize: size
                     currentPage: 1
                 }
 
                 @$http
-                    .get '/api/v2/loans/getLoanWithPage',
+                    .get "/api/v2/loans/getLoanWithPage",
                         params: _.compact _.merge {product}, query_set
                         cache: cache
 
@@ -179,13 +201,20 @@ do (_, angular, moment, Array) ->
                       .then TAKE_RESPONSE_DATA
 
 
+            get_repayment_detail: (id, cache = false) ->
+
+                @$http
+                    .get "/api/v2/loan/invest/#{ id }/repayments", {cache}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             fetch_invest_analyse: ({amountValue, dueDay, dueMonth, dueYear, annualRate, paymentMethod}) ->
                 store =            {amountValue, dueDay, dueMonth, dueYear, annualRate, paymentMethod}
 
                 @$http
-                    .post '/api/v2/loan/request/analyse',
-                        @param store
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/loan/request/analyse', store
 
 
             get_invest_contract: (id, deferred = @$q.defer()) ->
@@ -219,9 +248,7 @@ do (_, angular, moment, Array) ->
                     .all api_type_list.map (type) =>
 
                         @$http
-                            .post '/api/v2/coupon/MYSELF/coupons',
-                                @param {type, page: 1, size: 40}
-                                headers: WWW_FORM_HEADER
+                            .post '/api/v2/coupon/MYSELF/coupons', {type, page: 1, size: 40}
 
                     .then (response) =>
 
@@ -244,31 +271,51 @@ do (_, angular, moment, Array) ->
                 return deferred.promise
 
 
-            fetch_coupon_list: (amount, months) ->
+            fetch_coupon_list: (amount, months, loanId) ->
 
                 @$http
-                    .post '/api/v2/coupon/MYSELF/listCoupon',
-                        @param {months, amount}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/coupon/MYSELF/listCoupon', {months, amount, loanId}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             redeem_coupon: (placementId) ->
 
                 @$http
-                    .post '/api/v2/coupon/MYSELF/redeemCoupon',
-                        @param {placementId}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/coupon/MYSELF/redeemCoupon', {placementId}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
+            fetch_user_notifications: ->
+
+                @$http
+                    .get '/api/v2/message/user/MYSELF/notifications',
+                        params: {page: 1, pageSize: 99}
+                        cache: false
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            mark_as_read_notification: (id) ->
+
+                @$http
+                    .get "/api/v2/message/markAsRead/#{ id }"
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             get_loan_investors: (id) ->
 
-                @$resource('/api/v2/loan/:id/invests', {id}).query()
+                @$http
+                    .get "/api/v2/loan/#{ id }/invests"
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             send_to_non_pasword_tender: (id, amount, coupon) ->
@@ -282,9 +329,7 @@ do (_, angular, moment, Array) ->
                 ]
 
                 @$http
-                    .post path,
-                        @param {placementId: coupon or ''}
-                        headers: WWW_FORM_HEADER
+                    .post path, _.compact {placementId: coupon or ''}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -293,9 +338,7 @@ do (_, angular, moment, Array) ->
             login: (loginName, password) ->
 
                 @$http
-                    .post '/login/ajax',
-                        @param {loginName, password, source: 'mobile'}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/web/login', {loginName, password, source: 'mobile'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -311,9 +354,16 @@ do (_, angular, moment, Array) ->
             check_mobile: (mobile) ->
 
                 @$http
-                    .post '/api/v2/register/check_mobile',
-                        @param {mobile}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/register/check_mobile', {mobile}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            check_invite_code: (inviteCode) ->
+
+                @$http
+                    .post '/api/v2/users/check/inviteCode', {inviteCode}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -322,31 +372,26 @@ do (_, angular, moment, Array) ->
             bind_social: (socialType, socialId) ->
 
                 @$http
-                    .post '/api/v2/user/MYSELF/bind_social',
-                        @param {socialType, socialId}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/user/MYSELF/bind_social', {socialType, socialId}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_register: (name, idNumber) ->
+            payment_pool_register: (name, idNumber, innerUserCode = '') ->
 
                 @$http
                     .post '/api/v2/lianlianpay/authenticateUser/MYSELF',
-                        @param {name, idNumber}
-                        headers: WWW_FORM_HEADER
+                        _.compact {name, idNumber, type: 'UDCREDIT', innerUserCode}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_withdraw: (amount, paymentPassword) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/withdraw/MYSELF',
-                        @param {amount, paymentPassword}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/lianlianpay/withdraw/MYSELF', {amount, paymentPassword}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -368,30 +413,26 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/smsCaptcha/MYSELF',
-                        @param {smsType: 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD'}
-                        headers: WWW_FORM_HEADER
+                        {smsType: 'CONFIRM_CREDITMARKET_RESET_PAYMENTPASSWORD'}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_set_password: (password, smsCaptcha) ->
 
                 @$http
                     .post '/api/v2/user/MYSELF/resetPaymentPassword',
-                        @param {password, smsCaptcha}
-                        headers: WWW_FORM_HEADER
+                        {password, smsCaptcha}
 
                     .then (response) -> success: response.data is true
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_bind_card_sent_captcha:  ->
 
                 @$http
-                    .post '/api/v2/smsCaptcha/MYSELF',
-                        @param {smsType: 'CREDITMARKET_CAPTCHA'}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/smsCaptcha/MYSELF', {smsType: 'CREDITMARKET_CAPTCHA'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -401,8 +442,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/lianlianpay/bindCard/MYSELF',
-                        @param {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha}
-                        headers: WWW_FORM_HEADER
+                        _.compact {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -411,9 +451,7 @@ do (_, angular, moment, Array) ->
             payment_pool_unbind_card: (cardNo, paymentPassword) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/deleteCard/MYSELF',
-                        @param {cardNo, paymentPassword}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/lianlianpay/deleteCard/MYSELF', {cardNo, paymentPassword}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -423,8 +461,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/invest/tender/MYSELF',
-                        @param {loanId, paymentPassword, amount, placementId}
-                        headers: WWW_FORM_HEADER
+                        _.compact {loanId, paymentPassword, amount, placementId}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -446,7 +483,7 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            get_city_list_by_province: (province) =>
+            get_city_list_by_province: (province) ->
 
                 @$http.get '/api/v2/lianlianpay/provinceCityCodes/' + province, cache: true
 
@@ -454,12 +491,20 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
+            get_bank_branch_name: (cityCode, cardNo) ->
+
+                path = [cityCode, '%E9%93%B6%E8%A1%8C', cardNo].join '/'
+
+                @$http.get "/api/v2/lianlianpay/bankBranches/#{ path }", cache: true
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             payment_ump_register: (userName, idCode) ->
 
                 @$http
-                    .post '/api/v2/upayment/register/MYSELF',
-                        @param {userName, idCode}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/upayment/register/MYSELF', {userName, idCode}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -468,9 +513,7 @@ do (_, angular, moment, Array) ->
             payment_ump_non_password_bind_card: (cardId) ->
 
                 @$http
-                    .post '/api/v2/upayment/bindCardNoPwd/MYSELF',
-                        @param {cardId}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/upayment/bindCardNoPwd/MYSELF', {cardId}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -479,9 +522,7 @@ do (_, angular, moment, Array) ->
             payment_ump_non_password_recharge: (amount) ->
 
                 @$http
-                    .post '/api/v2/upayment/netSaveNoPwd/MYSELF',
-                        @param {amount}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/upayment/netSaveNoPwd/MYSELF', {amount}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -490,22 +531,19 @@ do (_, angular, moment, Array) ->
             payment_ump_non_password_withdraw: (withdraw) ->
 
                 @$http
-                    .post '/api/v2/upayment/withdrawNoPwd/MYSELF',
-                        @param {withdraw}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/upayment/withdrawNoPwd/MYSELF', {withdraw}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
-            register: (loginName, password, mobile, mobile_captcha, optional = {}) ->
+            register: (password, mobile, mobile_captcha, optional = {}) ->
 
                 optional = _.compact optional
 
                 @$http
-                    .post '/api/v2/register',
-                        @param _.merge optional, {loginName, password, mobile, mobile_captcha}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/web/register/submit',
+                        _.merge optional, {password, mobile, mobile_captcha}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -514,9 +552,7 @@ do (_, angular, moment, Array) ->
             mobile_encrypt: (mobile) ->
 
                 @$http
-                    .post '/api/v2/users/mobile/encrypt',
-                        @param {mobile}
-                        headers: WWW_FORM_HEADER
+                    .post '/api/v2/users/mobile/encrypt', {mobile}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -542,21 +578,30 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/auth/reset_password/password',
-                        @param _.compact {mobile, captcha, newPassword}
-                        headers: WWW_FORM_HEADER
+                        _.compact {mobile, captcha, newPassword}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
+
+
+            change_password: (mobile, currentPassword, newPassword) ->
+
+                @$http
+                    .post '/api/v2/user/MYSELF/change_password',
+                        _.compact {mobile, currentPassword, newPassword}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             send_verification_code: (mobile, captcha_answer, captcha_token) ->
 
                 @$http
-                    .get '/register/ajax/smsCaptcha',
-                        params: {mobile, captcha_answer, captcha_token}
+                    .get '/api/v2/users/smsCaptcha',
+                        params: _.compact {mobile, captcha_answer, captcha_token}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             send_captcha_for_reset_password: (mobile) ->
@@ -567,3 +612,57 @@ do (_, angular, moment, Array) ->
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
+
+
+            exchange_wechat_signature: (data) ->
+
+                @$http
+                    .post '/wx/signature', data, {skip_json_to_form: true}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+
+
+
+
+
+
+
+    angular.module('factory').factory 'update_user_funds',
+
+        _.ai 'user, api, $http, $q',
+            ( user, api, $http, $q) -> ->
+
+                $http.get '/api/v2/user/MYSELF/userfund'
+
+                    .then api.TAKE_RESPONSE_DATA
+                    .then (data) ->
+                        _.assign user.fund, data
+
+
+
+
+
+
+
+
+
+    angular.module('service').config _.ai '$httpProvider', ($httpProvider) ->
+
+        $httpProvider.interceptors.push [].concat [],
+
+            _.ai '$httpParamSerializerJQLike', ($httpParamSerializerJQLike) ->
+
+                request: (config) ->
+
+                    {skip_json_to_form, method, headers, data} = config
+
+                    if skip_json_to_form or method isnt 'POST' or not angular.isObject data
+                        return config
+
+                    _.set headers, 'Content-Type', 'application/x-www-form-urlencoded'
+                    _.set config,  'data',         $httpParamSerializerJQLike data
+
+                    return config

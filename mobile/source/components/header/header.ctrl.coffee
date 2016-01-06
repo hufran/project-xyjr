@@ -32,10 +32,12 @@ do (angular) ->
         transclude: true
         templateUrl: 'components/templates/ngt-header-dropdown-menu.tmpl.html'
 
-        scope: {}
+        scope:
+            state: '='
 
-        controller: _.ai '@user', class
-            constructor: (@user) ->
-                42
+        controller: _.ai '@user, @$scope, @$cookies, @$location, @$window', class
+            constructor: (@user, @$scope, @$cookies, @$location, @$window) ->
+                @$scope.page_path = @$window.encodeURIComponent @$location.absUrl()
+                @$cookies.put 'invite_back_path', @$scope.page_path
 
         controllerAs: 'self'

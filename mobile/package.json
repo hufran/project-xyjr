@@ -1,5 +1,5 @@
 {
-    "name": "zqjr-mobile",
+    "name": "xyjr-mobile",
     "scripts": {
         "start": "cd dist/ && ecstatic",
         "build": "./build.sh",

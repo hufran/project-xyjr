@@ -19,6 +19,14 @@
             transform: @property;
 }
 
+.filter (@property) {
+    -webkit-filter: @property;
+       -moz-filter: @property;
+        -ms-filter: @property;
+         -o-filter: @property;
+            filter: @property;
+}
+
 .opacity (@opacity) {
     opacity: @opacity;
     @opacity-ie: (@opacity * 100);
@@ -47,5 +55,6 @@
 
     -webkit-box-pack: @justify;
     -webkit-justify-content: @justify;
+    -ms-justify-content: @justify;
     justify-content: @justify;
 }

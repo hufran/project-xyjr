@@ -3,12 +3,13 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @cookie2root, @$scope, @$q, @$location, @$window, map_loan_summary, @$modal', class
-            constructor: (@api, @user, @loan, @coupon, @cookie2root, @$scope, @$q, @$location, @$window, map_loan_summary, @$modal) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
                 @page_path = @$location.path()[1..]
+                @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
 
                 angular.extend @$scope, {
                     store: {}
@@ -19,7 +20,7 @@ do (_, angular, Math) ->
                         _(@coupon.data)
                             .filter (item) -> item.disabled is false
                             .pluck 'placement'
-                            .filter (item) -> item.couponPackage.type isnt 'CASH'
+                            #.filter (item) -> item.couponPackage.type isnt 'CASH'
                             .map (item) ->
                                 info = item.couponPackage
 
@@ -31,10 +32,10 @@ do (_, angular, Math) ->
                                         INTEREST = 'INTEREST'
 
                                         type_cn = {
-                                            CASH: '现金红包'
+                                            CASH: '现金券'
                                             INTEREST: '加息券'
                                             PRINCIPAL: '增值券'
-                                            REBATE: '投资红包'
+                                            REBATE: '返现券'
                                         }[info.type]
 
                                         value = info.parValue
@@ -50,10 +51,13 @@ do (_, angular, Math) ->
                         @$scope.store.amount >= item.minimum
                 }
 
+                do ({amount, coupon} = @$routeParams) =>
 
-            open_payment_account: ($event) ->
+                    if coupon
+                        @$scope.store.coupon = _.find @$scope.coupon_list, id: coupon
 
-                @cookie2root 'return_url', @page_path
+                    if +amount
+                        @$scope.store.amount = +amount
 
 
             amount_polishing: (amount) ->
@@ -85,52 +89,82 @@ do (_, angular, Math) ->
                     @$scope.earning = +response.data?.interest
 
 
+            pick_up_coupon: (event, input_amount = 0) ->
+
+                do event.preventDefault
+
+                new_path = ARRAY_JOIN_SLASH.call [
+                    'dashboard/coupon'
+                    @$scope.loan.balance
+                    @$scope.loan.raw.duration.totalMonths
+                    @$scope.loan.id
+                    input_amount
+                ]
+
+                @$location
+                    .path new_path
+                    .search back: ARRAY_JOIN_SLASH.call [@page_path_origin, input_amount]
+
+
             submit: (event) ->
 
                 good_to_go = true
+                do event.preventDefault  # submitting via AJAX
 
+                loan = @$scope.loan
+
+                {password} = @$scope.store
+                coupon = @$scope.store?.coupon
                 amount = @$scope.store.amount or 0
-                loan_minimum = @loan.loanRequest.investRule.minAmount
-                loan_maximum = @loan.loanRequest.investRule.maxAmount
-                loan_step = @loan.loanRequest.investRule.stepAmount
-                loan_available = @loan.balance
+                loan_minimum = loan.raw.loanRequest.investRule.minAmount
+                loan_maximum = loan.raw.loanRequest.investRule.maxAmount
+                loan_available = loan.balance
+                loan_step = loan.raw.loanRequest.investRule.stepAmount
                 user_available = @user.fund.availableAmount
                 coupon_minimum = @$scope.store.coupon?.minimum
 
-                (if user_available <= 0 or amount > user_available
+                (if amount > loan_available
                     good_to_go = false
-                    # do @prompt_short_of_balance
-                    @alert '余额不足，请前去充值'
+                    @mg_alert "当前剩余可投#{ loan_available }元"
 
                 else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
                     good_to_go = false
-                    @alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
+                    @mg_alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
 
-                else if amount > loan_available
+                else if amount > loan_maximum and loan_maximum != 0
                     good_to_go = false
-                    @alert "当前可投 #{ loan_available }元"
+                    @mg_alert "单笔最多可投 #{ loan_maximum }元"
 
-                else if amount > loan_maximum
+                else if user_available <= 0 or amount > user_available
                     good_to_go = false
-                    @alert "单笔最多可投 #{ loan_maximum }元"
+                    do @prompt_short_of_balance
 
                 else if coupon_minimum and amount < coupon_minimum
                     good_to_go = false
-                    @alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
+                    @mg_alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
                 )
 
                 return unless good_to_go
 
                 @submit_sending = true
 
-                (@api.payment_pool_tender(@loan.id, @$scope.password, amount, @$scope.store.coupon?.id)
+                (@api.payment_pool_tender(loan.id, password, amount, coupon?.id)
 
-                    .then (data) =>
-                        return @$q.reject(data) unless data.success is true
-                        return data
+                    .then @api.process_response
+                    .then @api.TAKE_RESPONSE_DATA
 
-                    .then (data) =>
-                        @$window.alert '投标成功'
+                    .then ({userShare, tenderResult}) =>
+                        return true unless userShare?.id
+
+                        @prompt_coupon_sharing(userShare.id).catch =>
+                            @$q.resolve false
+
+                    .then (alert_success) =>
+
+                        if alert_success
+                            @mg_alert '投标成功'
+                                .result.finally =>
+                                    @$location.path "/loan/#{ @loan.id }"
 
                         @$location.path "/loan/#{ @loan.id }"
 
@@ -138,42 +172,42 @@ do (_, angular, Math) ->
                             @$window.location.reload()
 
                     .catch (data) =>
-                        message = _.get data, 'error[0].message', 'something happened...'
-                        @$window.alert message
+                        message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
+                        @mg_alert message
 
                     .finally =>
                         @submit_sending = false
                 )
 
 
-                return # skip out code down from here
+            prompt_coupon_sharing: (id) ->
 
+                prompt = @$uibModal.open {
+                    size: 'sm'
+                    keyboard: false
+                    backdrop: 'static'
+                    windowClass: 'center ngt-share-coupon'
+                    animation: true
+                    templateUrl: 'components/templates/ngt-share-coupon.tmpl.html'
 
-                if amount > user_available
-                    good_to_go = false
-                    recharge_amount = (amount - user_available + 0.5) | 0
+                    controller: _.ai '$scope', ($scope) =>
+                        angular.extend $scope, {id}
+                }
 
-                    if @$window.confirm "余额不足，前去充值 #{ recharge_amount }元？"
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
 
-                        @$location
-                            .path "/dashboard/recharge/#{ recharge_amount }"
-                            .search auto: true, disabled: true
-
-                if coupon_minimum and amount < coupon_minimum
-                    @$window.alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
-                    good_to_go = false
-
-                unless good_to_go
-                    return event.preventDefault()
+                return prompt.result
 
 
             prompt_short_of_balance: ->
 
-                prompt = @$modal.open {
+                prompt = @$uibModal.open {
                     size: 'sm'
                     keyboard: false
                     backdrop: 'static'
-                    windowClass: 'center modal-confirm'
+                    windowClass: 'center'
                     animation: true
                     templateUrl: 'ngt-loan-invest-short-of-balance.tmpl'
 
@@ -191,31 +225,14 @@ do (_, angular, Math) ->
                         .search next: @page_path
 
 
-            alert: (content) ->
-
-                @$modal.open {
-                    size: 'sm'
-                    keyboard: false
-                    backdrop: 'static'
-                    windowClass: 'center modal-confirm'
-                    animation: true
-                    templateUrl: 'ngt-loan-invest-alert.tmpl'
-
-                    controller: _.ai '$scope', ($scope) =>
-                        angular.extend $scope, {
-                            content: content
-                        }
-                }
-
-
             agreement: (name) ->
 
                 api_path = '/api/v2/cms/category/DECLARATION/name/' + name
 
-                @$modal.open {
+                @$uibModal.open {
                     size: 'lg'
                     backdrop: 'static'
-                    windowClass: 'center'
+                    windowClass: 'center ngt-invest-agreement'
                     animation: true
                     templateUrl: 'ngt-invest-agreement.tmpl'
 
@@ -232,3 +249,11 @@ do (_, angular, Math) ->
                 }
 
 
+
+
+
+
+
+
+
+    ARRAY_JOIN_SLASH = _.partialRight Array::join, '/'
