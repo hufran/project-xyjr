@@ -125,20 +125,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
-                    .when '/dashboard/settings', {
-                        controller: 'SettingsCtrl as self'
-                        templateUrl: 'components/router/dashboard/settings.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/settings'
-                                        do $q.reject
-                    }
-
                     .when '/dashboard/bank-card', {
                         controller: 'BankCardCtrl as self'
                         templateUrl: 'components/router/dashboard/bank-card.tmpl.html'
