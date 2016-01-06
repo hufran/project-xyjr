@@ -10,6 +10,7 @@ do (_, angular) ->
 
                 @$scope.bank_account = _.clone @user.bank_account
 
+                return unless @$scope.bank_account
                 @api.get_available_bank_list().then (data) =>
                     @$scope.bank_account.bank_code = @$scope.bank_account.bank
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
