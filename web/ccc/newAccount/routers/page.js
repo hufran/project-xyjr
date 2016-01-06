@@ -159,7 +159,9 @@ module.exports = function (router) {
     });
           router.get('/autobid', function (req, res) {
                  var user = res.locals.user;
-                req.uest('/api/v2/'+user.id+'/save_autobid_config')
+              console.log('====');
+              console.log('/api/v2/'+user.id+'/autobid_config');
+                req.uest('/api/v2/'+user.id+'/autobid_config')
                   .end()
                    .then(function (r) {
                          user.autobidConfig = r.body;
@@ -172,6 +174,16 @@ module.exports = function (router) {
     });
            router.get('/assign', function (req, res) {
                 res.render('newAccount/assign', {
+                    title: '新毅金融'
+                });
+    });
+               router.get('/invite', function (req, res) {
+                res.render('newAccount/invite', {
+                    title: '新毅金融'
+                });
+    });
+                   router.get('/message', function (req, res) {
+                res.render('newAccount/message', {
                     title: '新毅金融'
                 });
     });
