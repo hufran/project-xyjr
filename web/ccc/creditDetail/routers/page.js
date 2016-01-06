@@ -20,12 +20,19 @@ function Fpercent(percent, offset) {
 };
 
 module.exports = function (router) {
-    router.get('/:id/:loanId', function (req,res) {
+    router.get('/:id/:loanId',async function (req,res) {
         var creditassignId = req.params.id;
         var loanId = req.params.loanId;
        var serverDate = moment(new Date()).format('YYYY-MM-DD');
-    
-        var creditassign = req.data.get('/api/v2/creditassign/creditAssignDetail/' + creditassignId)
+     var assignStatus = {
+            "PROPOSED": "已申请",
+            "SCHEDULED": "已安排",
+            "FINISHED": "转让已满",
+            "OPEN": "转让中",
+            "FAILED": "转让未满",
+            "CANCELED": "已取消"
+        };
+        var creditassign =await req.data.get('/api/v2/creditassign/creditAssignDetail/' + creditassignId)
             .then(function (r) {
                 if (r.creditassign.timeOpen) {
                     r.creditassign.timeOpen = moment(r.creditassign.timeOpen).format('YYYY-MM-DD');
@@ -34,14 +41,7 @@ module.exports = function (router) {
                 r.investPercent = Math.round(r.creditassign.bidAmount / r.creditassign.creditAmount * 100);
                 return r;
             });
-        var assignStatus = {
-            "PROPOSED": "已申请",
-            "SCHEDULED": "已安排",
-            "FINISHED": "转让已满",
-            "OPEN": "转让中",
-            "FAILED": "转让未满",
-            "CANCELED": "已取消"
-        };
+       
         var methodZh = {
             'MonthlyInterest': '按月付息到期还本',
             'EqualInstallment': '按月等额本息',
@@ -58,10 +58,10 @@ module.exports = function (router) {
             'CORPORATION': '企业融资',
             'OTHER': '其它借款'
         };
-        res.expose('serverDate', serverDate);
-        res.expose('user', res.locals.user);
-        res.expose('backUrl', req.data.path());
-        res.expose('creditassign', creditassign);
+        res.expose(serverDate,'serverDate');
+        res.expose(res.locals.user,'user');
+        res.expose(req.data.path(),'backUrl');
+        res.expose(creditassign,'creditassign');
 
         var LOAN = req.data.loan(loanId);
         _.assign(res.locals, {
@@ -133,7 +133,7 @@ module.exports = function (router) {
             repayments: req.data.repayments(loanId)
         });
 
-        loanParam=LOAN.then(function (loan) {
+        var loanParam=await LOAN.then(function (loan) {
             return {
                 rule: {
                     min: loan.loanRequest.investRule.minAmount,
@@ -162,7 +162,7 @@ module.exports = function (router) {
                 percent: Fpercent(((loan.amount - loan.balance) / loan.amount) * 100, 1)
             };
         });
-        res.expose('loan',loanParam);
+        res.expose(loanParam,'loan');
 
          res.render('creditDetail/detail');
     });    

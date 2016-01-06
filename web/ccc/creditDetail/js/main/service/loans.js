@@ -21,7 +21,7 @@ exports.loanService = {
     },
 	getCareerProof: function (userId, next) {
         request
-            .get('/api/v2/user/' + userId + '/certificates/proofs')
+            .get('/api/v2/user/' + CC.user.id + '/certificates/proofs')
             .end()
             .then(function (res) {
                 next(res.body);
