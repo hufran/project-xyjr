@@ -1699,160 +1699,109 @@ a {
 ----*/
 
 #dashboard-coupon {
-    .coupons {
-        margin-top: 21px;
+    section:not(.omit-margin) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-        .list-coupon {
-            > .item {
-                position: relative;
-                margin-left: 20px;
-                margin-right: 20px;
-                margin-bottom: 8px;
-                padding: 15px 15px 15px 23px;
-                height: 230px/2;
-                border-radius: 5px;
-                background-color: #FFF;
-                font-size: 12px;
+    .page-nav {
+        small {
+            font-size: 70%;
+        }
+    }
 
-                .inner {
-                    .flex-display();
+    .coupon-list {
+        > .item {
+            margin-bottom: 10px;
+            border-top: 1px solid #D9D9D9;
+            border-bottom: 1px solid #D9D9D9;
+            padding: 15px 12px;
+            background-color: #FFF;
+            font-size: 24px/2 + 1;
+            color: #4A4A4A;
 
-                    &-left {
-                        .flex(4);
-                    }
-
-                    &-right {
-                        .flex(3);
-
-                        margin-left: 15px;
-                        border-left: 1px solid #F3F3F3;
-                        padding-left: 15px;
-                    }
+            .media {
+                &-left {
+                    padding-right: 23px;
                 }
 
-                .type {
-                    margin: 0 0 5px;
-                    border-bottom: 1px solid #F1F1F1;
-                    padding-bottom: 5px;
-                    font-size: 14px;
+                &-body {
+                    padding-top: 5px;
+                    position: relative;
                 }
 
-                .expire {
+                &-object {
+                    display: inline-block;
+                    vertical-align: middle;
+                    background: url("@{path-image}/coupon-icons.png") no-repeat;
+                    background-size: cover;
+                    background-position: 0 0;
+                    width: 124px/2;
+                    height: 156px/2;
+                    overflow: hidden;
+                }
+            }
+
+            .status {
+                height: 22px;
+                line-height: 22px;
+                color: #FF4D4D;
+            }
+
+            .value {
+                height: 55px;
+                line-height: 55px;
+                color: #FFF;
+
+                .num {
+                    font-size: 34px/2 + 1;
+                }
+            }
+
+            .type {
+                display: inline-block;
+                vertical-align: middle;
+                margin-bottom: 6px;
+                border: 1px solid #FF4D4D;
+                padding-left: 4px;
+                padding-right: 4px;
+                color: #FF4D4D;
+            }
+
+            .expire {
+                margin-bottom: 10px;
+            }
+
+            .desc {
+                color: #999;
+            }
+
+            .redeem {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &-status-redeemed,
+            &-status-expired,
+            &-status-cancelled {
+                background-color: #E5E5E5;
+
+                .media-object {
+                    background-position: 0 -156px/2;
                 }
 
                 .status {
-                    margin-top: 25px;
+                    color: #999;
                 }
 
-                .value {
-                    margin-right: -15px;
-                    margin-bottom: 15px;
-                    font-size: 42px/2 + 2;
-                    line-height: 1;
-
-                    small {
-                        font-size: 40%;
-                    }
-
-                    .interest {
-                        font-size: 76px/2;
-                        line-height: 1;
-                    }
+                .type {
+                    border: 1px solid #999;
+                    color: #999;
                 }
 
-                .rule {
-                    margin-right: -15px;
-                }
-
-                .btn-redeem {
-                    margin-top: 3px;
-                    border-radius: 999px;
-
-                    .button-variant(#F03644; #FFF; #F03644);
-                }
-
-                &:before {
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    content: "";
-                    overflow: hidden;
-                    width: 14px/2;
-                    height: 236px/2;
-                    background: url("@{path-image}/coupon-border.png") no-repeat;
-                    background-size: 14px/2 472px/2;
-                    background-position: 0 0;
-
-                    .transform(translateY(-50%));
-                }
-
-                &-status-initiated,
-                &-status-placed,
-                &-status-used {
-                    .status {
-                        color: #F8464B;
-                    }
-
-                    .value {
-                        color: #F8464B;
-
-                        small {
-                            color: #333;
-                        }
-                    }
-
-                    &:before {
-                        background-position: 0 0;
-                    }
-                }
-
-                &-status-redeemed,
-                &-status-expired,
-                &-status-cancelled,
-                &-status-disabled,
-                {
-                    color: #A6A6A6;
-
-                    &:before {
-                        background-position: 0 -236px/2;
-                    }
-                }
-
-                &-type-cash {
-                    .value {
-                        font-size: 76px/2;
-                    }
-                }
-
-                &-status-initiated,
-                &-status-placed {
-                    background: url("@{path-image}/status/placed.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-redeemed {
-                    background: url("@{path-image}/status/redeemed.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-expired {
-                    background: url("@{path-image}/status/expired.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-cancelled {
-                    background: url("@{path-image}/status/cancelled.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
-                }
-
-                &-status-used {
-                    background: url("@{path-image}/status/used.png") no-repeat #FFF;
-                    background-size: 85px/2 85px/2;
-                    background-position: top right;
+                .expire {
+                    color: #999;
                 }
             }
         }
