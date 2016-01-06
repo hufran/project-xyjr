@@ -55,12 +55,12 @@ passwordRactive.on('initialPassword', function () {
     
     var msg,link;
     if (this.get('bank') && this.get('paymentPasswordHasSet')) {
-        msg = "恭喜您，认证成功！";
+        msg = "恭喜您，设置成功！";
     } else if (!this.get('bank') && this.get('paymentPasswordHasSet')) {
-        msg = "认证成功，请绑定银行卡！";
+        msg = "设置成功，请绑定银行卡！";
         link = '/newAccount/settings/bankCards';
     } else {
-        msg = "恭喜您，认证成功！";
+        msg = "恭喜您，设置成功！";
         link = '/newAccount/settings/password';
     }
     if(isAcess) {
