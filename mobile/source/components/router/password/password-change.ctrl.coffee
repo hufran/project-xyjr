@@ -28,7 +28,7 @@ do (_, angular) ->
                     .then => @api.login(mobile, password)
 
                     .then =>
-                        @$location.path 'dashboard/settings'
+                        @$location.path 'dashboard'
 
                     .catch (data) =>
                         error = _.get data, 'error[0].message'
