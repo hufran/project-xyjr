@@ -11,7 +11,7 @@ do (angular) ->
                 @back_path = @$routeParams.back
                 @next_path = @$routeParams.next
 
-                @$scope.bank_account = @user.bank_account
+                @$scope.bank_account = _.clone @user.bank_account
 
                 angular.extend @$scope, {
                     bank_account: _.clone @user.bank_account
