@@ -1,29 +1,26 @@
 
-do (angular) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'RechargeCtrl',
 
-        _.ai '            @user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams', class
-            constructor: (@user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams) ->
+        _.ai '            @user, @api, @baseURI, @$location, @$scope, @$window, @mg_alert, @$routeParams', class
+            constructor: (@user, @api, @baseURI, @$location, @$scope, @$window, @mg_alert, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
 
                 @next_path = @$routeParams.next
 
-                @$scope.bank_account = @user.bank_account
-
                 angular.extend @$scope, {
-                    available_amount: @user.fund.availableAmount
-                    total_amount: @user.fund.availableAmount + @user.fund.frozenAmount
                     bank_account: @user.bank_account
-                    return_url: @baseURI + 'dashboard'
+                    available_amount: @user.fund.availableAmount
                 }
 
+                @submit_sending = false
+
+
             submit: (amount) ->
-                return
 
-                @cookie2root 'return_url', 'dashboard/funds'
-
+                @submit_sending = true
 
                 (@api.payment_ump_non_password_recharge(amount)
 
@@ -32,7 +29,7 @@ do (angular) ->
                             @$q.reject data
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.success
+                        @mg_alert @$scope.msg.success
 
                         if @next_path
                             @$location
@@ -41,14 +38,16 @@ do (angular) ->
                         else
                             @$location.path '/dashboard/funds'
 
-                        @$window.location.reload()
+                        @$scope.$on '$locationChangeSuccess', =>
+                            @$window.location.reload()
 
                     .catch (data) =>
                         message = _.get data, 'error[0].message'
 
                         if message
-                            @$window.alert message
-                            @$location.path '/dashboard'
+                            @mg_alert message
+                                .result.finally =>
+                                    @$location.path '/dashboard'
                         else
                             # something wrong on server side
 

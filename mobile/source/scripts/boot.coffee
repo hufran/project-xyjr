@@ -1,5 +1,5 @@
 
-do (_, document, angular, modules, APP_NAME = 'Gyro') ->
+do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
     angular.module APP_NAME, modules
 
@@ -29,7 +29,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                                         .then ->
                                             $location.path '/'
-                                            do $q.reject
+                                            return $q.reject()
 
                                         .catch $q.resolve
                     }
@@ -44,14 +44,28 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
 
                                         .then ->
                                             $location.path '/'
-                                            do $q.reject
+                                            return $q.reject()
 
                                         .catch $q.resolve
                     }
 
-                    .when '/password', {
-                        controller: 'PasswordCtrl as self'
-                        templateUrl: 'components/router/password/password.tmpl.html'
+                    .when '/password/forgot', {
+                        controller: 'PasswordForgotCtrl as self'
+                        templateUrl: 'components/router/password/password-forgot.tmpl.html'
+                    }
+
+                    .when '/password/change', {
+                        controller: 'PasswordChangeCtrl as self'
+                        templateUrl: 'components/router/password/password-change.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'password/change'
+                                        do $q.reject
                     }
 
                     .when '/activity', {
@@ -67,7 +81,31 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                 (       api, $location, $q) ->
                                     api.get_announcement().catch ->
                                         $location.path '/'
-                                        do $q.reject
+                                        return $q.reject()
+                    }
+
+                    .when '/help', {
+                        controller: 'HelpCtrl as self'
+                        templateUrl: 'components/router/help/help.tmpl.html'
+                    }
+
+                    .when '/share-coupon/:id', {
+                        controller: 'ShareCouponCtrl as self'
+                        templateUrl: 'components/router/share-coupon/share-coupon.tmpl.html'
+                        resolve:
+                            wx: _.ai 'api, $location, $route, $q, $window',
+                                (     api, $location, $route, $q, $window) ->
+                                    deferred = do $q.defer
+
+                                    is_wechat = /MicroMessenger/.test $window.navigator.userAgent
+
+                                    if is_wechat
+                                        $script '//res.wx.qq.com/open/js/jweixin-1.0.0.js', ->
+                                            deferred.resolve $window.wx or {}
+                                    else
+                                        deferred.resolve {}
+
+                                    return deferred.promise
                     }
 
                     .when '/dashboard', {
@@ -81,25 +119,10 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard'
-                                        do $q.reject
+                                        return $q.reject()
 
-                            _payment_account: _.ai 'api, $location, $route, $q',
-                                (                   api, $location, $route, $q) ->
-                                    api.fetch_current_user()
-                                        .then (user) ->
-                                            return user if user.has_payment_account
-                                            return $q.reject(user)
-                                        .catch (user) ->
-                                            return unless user
-
-                                            switch
-                                                when user.has_payment_account isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/register'
-                                                        .search
-                                                            back: '/'
-                                                            next: 'dashboard'
+                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
+                                return update_user_funds()
                     }
 
                     .when '/dashboard/bank-card', {
@@ -127,27 +150,59 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard/total-assets'
-                                        do $q.reject
+                                        return $q.reject()
+
+                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
+                                return update_user_funds()
                     }
 
-                    .when '/dashboard/coupon', {
+                    .when '/dashboard/coupon/:amount?/:months?/:loan_id?/:input?', {
                         controller: 'CouponCtrl as self'
                         templateUrl: 'components/router/dashboard/coupon.tmpl.html'
                         resolve:
-                            data: _.ai 'api, $location, $q',
+                            data: _.ai 'api, $location, $q, $route',
+                                (       api, $location, $q, $route) ->
+                                    {amount, months, loan_id} = $route.current.params
+
+                                    if !!amount and !!months and !!loan_id
+                                        api.fetch_coupon_list(amount, months, loan_id)
+                                            .then api.TAKE_RESPONSE_DATA
+                                            .then (list) ->
+                                                _(list)
+                                                    .filter disabled: false
+                                                    .pluck 'placement'
+                                                    .value()
+                                    else
+                                        api.fetch_user_coupons()
+
+                            user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
-                                    api.fetch_user_coupons().catch ->
+                                    api.fetch_current_user().catch ->
                                         $location
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard/coupon'
-                                        do $q.reject
+                                        return $q.reject()
+                    }
+
+                    .when '/dashboard/notification', {
+                        controller: 'NotificationCtrl as self'
+                        templateUrl: 'components/router/dashboard/notification.tmpl.html'
+                        resolve:
+                            data: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_user_notifications().catch ->
+                                        $location
+                                            .replace()
+                                            .path 'login'
+                                            .search next: 'dashboard/notification'
+                                        return $q.reject()
                     }
 
                     .when '/dashboard/payment/register', {
                         controller: 'PaymentPoolRegisterCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-register.tmpl.html'
-                        _resolve:
+                        resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
                                     api.fetch_current_user().catch ->
@@ -155,21 +210,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard/payment/register'
-                                        do $q.reject
-                    }
-
-                    .when '/dashboard/payment/password', {
-                        controller: 'PaymentPoolPasswordCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password.tmpl.html'
-                        _resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/payment/password'
-                                        do $q.reject
+                                        return $q.reject()
                     }
 
                     .when '/dashboard/payment/agreement', {
@@ -183,13 +224,22 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard/payment/agreement'
-                                        do $q.reject
+                                        return $q.reject()
                     }
 
                     .when '/dashboard/payment/bind-card', {
                         controller: 'PaymentPoolBindCardCtrl as self'
                         templateUrl: 'components/router/dashboard/payment/pool/payment-pool-bind-card.tmpl.html'
                         resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/payment/bind-card'
+                                        do $q.reject
+
                             banks: _.ai 'api', (api) -> api.get_available_bank_list()
 
                             _payment_bank_account: _.ai 'api, $location, $route, $q',
@@ -209,6 +259,39 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                                         .search
                                                             back: 'dashboard'
                                                             next: 'dashboard/payment/bind-card'
+
+                                            return $q.reject()
+                    }
+
+                    .when '/dashboard/payment/password/:type?', {
+                        controller: 'PaymentPoolPasswordCtrl as self'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q, $route',
+                                (       api, $location, $q, $route) ->
+                                    {type, back, next} = $route.current.params
+
+                                    api.fetch_current_user()
+                                        .then (user) ->
+                                            return user if type in _.split 'set change reset'
+
+                                            type = if user.has_payment_password then 'change' else 'set'
+
+                                            $location
+                                                .replace()
+                                                .path "/dashboard/payment/password/#{ type }"
+                                                .search {back, next}
+
+                                            return $q.reject(user)
+
+                                        .catch (user) ->
+                                            unless user
+                                                $location
+                                                    .replace()
+                                                    .path '/login'
+                                                    .search next: 'dashboard/payment/password'
+
+                                            return $q.reject()
                     }
 
                     .when '/dashboard/invest', {
@@ -219,7 +302,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                 (       api, $location, $q) ->
                                     api.get_user_investments().catch ->
                                         $location.path '/dashboard'
-                                        do $q.reject
+                                        return $q.reject()
                     }
 
                     .when '/dashboard/invest/:id', {
@@ -235,6 +318,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                 (       api, $location, $route) ->
                                     api.get_repayment_detail($route.current.params.id).catch ->
                                         $location.path '/dashboard'
+                                        return $q.reject()
                     }
 
                     .when '/dashboard/funds', {
@@ -245,12 +329,15 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                 (       api, $location, $q) ->
                                     api.get_user_funds().catch ->
                                         $location.path '/dashboard'
-                                        do $q.reject
+                                        return $q.reject()
+
+                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
+                                return update_user_funds()
                     }
 
                     .when '/dashboard/recharge', {
                         controller: 'RechargeCtrl as self'
-                        templateUrl: 'components/router/dashboard/recharge.tmpl.html'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-recharge.tmpl.html'
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
@@ -259,46 +346,6 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard/recharge'
-                                        do $q.reject
-
-                            _payment_bank_account: _.ai 'api, $location, $route, $q',
-                                (                        api, $location, $route, $q) ->
-                                    api.fetch_current_user()
-                                        .then (user) ->
-                                            return user if user.has_payment_account and user.has_bank_card
-                                            return $q.reject(user)
-                                        .catch (user) ->
-                                            return unless user
-
-                                            switch
-                                                when user.has_payment_account isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/register'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/recharge'
-
-                                                when user.has_bank_card isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/bind-card'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/recharge'
-                    }
-
-                    .when '/dashboard/withdraw', {
-                        controller: 'WithdrawCtrl as self'
-                        templateUrl: 'components/router/dashboard/withdraw.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/withdraw'
                                         do $q.reject
 
                             _payment_account: _.ai 'api, $location, $route, $q',
@@ -317,6 +364,63 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                                         .path 'dashboard/payment/register'
                                                         .search
                                                             back: 'dashboard'
+                                                            next: 'dashboard/recharge'
+
+                                                when user.has_bank_card isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/bind-card'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/recharge'
+
+                                            return $q.reject()
+
+                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
+                                return update_user_funds()
+                    }
+
+                    .when '/dashboard/withdraw', {
+                        controller: 'WithdrawCtrl as self'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-withdraw.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user().catch ->
+                                        $location
+                                            .replace()
+                                            .path '/login'
+                                            .search next: 'dashboard/withdraw'
+                                        return $q.reject()
+
+                            _payment_account: _.ai 'api, $location, $route, $q',
+                                (                   api, $location, $route, $q) ->
+                                    api.fetch_current_user()
+                                        .then (user) ->
+                                            return user if user.has_payment_account   and
+                                                           user.has_payment_password  and
+                                                           user.has_bank_card
+
+                                            return $q.reject(user)
+
+                                        .catch (user) ->
+                                            return unless user
+
+                                            switch
+                                                when user.has_payment_account isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/withdraw'
+
+                                                when user.has_payment_password isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/password'
+                                                        .search
+                                                            back: 'dashboard'
                                                             next: 'dashboard/withdraw'
 
                                                 when user.has_bank_card isnt true
@@ -326,20 +430,44 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                                         .search
                                                             back: 'dashboard'
                                                             next: 'dashboard/withdraw'
+
+                                            return $q.reject()
+
+                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
+                                return update_user_funds()
                     }
 
                     .when '/dashboard/invite', {
                         controller: 'InviteCtrl as self'
                         templateUrl: 'components/router/dashboard/invite.tmpl.html'
                         resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
+                            user: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
                                     api.fetch_current_user().catch ->
                                         $location
                                             .replace()
                                             .path '/login'
                                             .search next: 'dashboard/invite'
-                                        do $q.reject
+                                        return $q.reject()
+
+                            wx: _.ai 'api, $location, $route, $q, $window',
+                                (     api, $location, $route, $q, $window) ->
+                                    deferred = do $q.defer
+
+                                    is_wechat = /MicroMessenger/.test $window.navigator.userAgent
+
+                                    if is_wechat
+                                        $script '//res.wx.qq.com/open/js/jweixin-1.0.0.js', ->
+                                            deferred.resolve $window.wx or {}
+                                    else
+                                        deferred.resolve {}
+
+                                    return deferred.promise
+                    }
+
+                    .when '/dashboard/invite-registered', {
+                        controller: 'InviteRegisteredCtrl as self'
+                        templateUrl: 'components/router/dashboard/invite-registered.tmpl.html'
                     }
 
                     .when '/dashboard/return-results', {
@@ -351,10 +479,11 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         controller: 'LoanCtrl as self'
                         templateUrl: 'components/router/loan/loan.tmpl.html'
                         resolve:
-                            loan: _.ai 'api, $location, $route',
-                                (       api, $location, $route) ->
-                                    api.get_loan_detail($route.current.params.id, true).catch ->
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.get_loan_detail($route.current.params.id, false).catch ->
                                         $location.path '/'
+                                        do $q.reject
                     }
 
                     .when '/loan/:id/investors', {
@@ -362,20 +491,9 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/loan/loan-investors.tmpl.html'
                         resolve:
                             investors: _.ai 'api, $location, $route',
-                                (            api, $location, $route) ->
+                                (       api, $location, $route) ->
                                     api.get_loan_investors($route.current.params.id).$promise.catch ->
                                         $location.path '/'
-
-                            user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search
-                                                back: "loan/#{ $route.current.params.id }"
-                                                next: "loan/#{ $route.current.params.id }/investors"
-                                        do $q.reject
                     }
 
                     .when '/loan/:id/info', {
@@ -388,7 +506,7 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                         $location.path '/'
                     }
 
-                    .when '/loan/:id/invest', {
+                    .when '/loan/:id/invest/:amount?/:coupon?', {
                         controller: 'LoanInvestCtrl as self'
                         templateUrl: 'components/router/loan/loan-invest.tmpl.html'
                         resolve:
@@ -401,24 +519,28 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                                 .replace()
                                                 .path '/login'
                                                 .search next: "loan/#{ $route.current.params.id }/invest"
-                                            do $q.reject
+                                            return $q.reject()
 
                             coupon: _.ai 'api, $location, $route, $q',
                                 (         api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then -> api.get_loan_detail($route.current.params.id, true)
                                         .then (data) ->
-                                            amount = 999999999
+                                            amount = data.balance
                                             months = _.get data, 'duration.totalMonths'
+                                            loan_id = data.id
 
-                                            return api.fetch_coupon_list amount, months
+                                            return api.fetch_coupon_list amount, months, loan_id
 
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->
                                     (api.fetch_current_user()
 
                                         .then (user) ->
-                                            return user if user.has_payment_account and user.has_payment_password
+                                            return user if user.has_payment_account   and
+                                                           user.has_payment_password  and
+                                                           user.has_bank_card
+
                                             return $q.reject(user)
 
                                         .catch (user) ->
@@ -438,14 +560,22 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                                                         .replace()
                                                         .path 'dashboard/payment/password'
                                                         .search
-                                                            back: 'dashboard'
+                                                            back: "loan/#{ $route.current.params.id }"
                                                             next: "loan/#{ $route.current.params.id }/invest"
-                                    )
-                    }
 
-                    .when '/loan/:id/invest/return', {
-                        controller: 'LoanInvestReturnCtrl as self'
-                        templateUrl: 'components/router/loan/loan-invest-return.tmpl.html'
+                                                when user.has_bank_card isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/bind-card'
+                                                        .search
+                                                            back: "loan/#{ $route.current.params.id }"
+                                                            next: "loan/#{ $route.current.params.id }/invest"
+
+                                            return $q.reject()
+                                    )
+
+                            _fund: _.ai 'update_user_funds', (update_user_funds) ->
+                                return update_user_funds()
                     }
 
                     .otherwise redirectTo: '/'
@@ -454,6 +584,31 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                 $locationProvider
                     .html5Mode true
                     .hashPrefix '!'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         .config _.ai '$provide, build_timestamp', ($provide, build_timestamp) ->
@@ -476,15 +631,32 @@ do (_, document, angular, modules, APP_NAME = 'Gyro') ->
                 return {}.constructor.defineProperty wrapper, TPR, get: -> $delegate[TPR]
 
 
-        .run _.ai 'api, cookie2root', (api, cookie2root) ->
-            cookie2root 'return_url', '', ''
+        .config _.ai '$compileProvider', ($compileProvider) ->
+
+            func = $compileProvider.imgSrcSanitizationWhitelist.bind $compileProvider
+            list = func().source.split '|'
+
+            list_to_append = [///
+                ( wxLocalResource          # WeChat on iOS
+                | weixin                   # WeChat on Android
+                | chrome-extension         # Google Chrome Extensions
+                | app                      # NW.js (former node-webkit)
+                ):
+            ///.source, list.pop()]
+
+            func /// #{ list.concat(list_to_append).join '|' } ///i
+
+
+        .run _.ai 'api, $cookies', (api, $cookies) ->
+            $cookies.remove 'return_url', path: '/'
+
             do api.fetch_current_user
 
 
         .constant 'baseURI', document.baseURI
 
         .constant 'build_timestamp', do (src = document.getElementById('main-script')?.src) ->
-            +(src.match(/t=([^&]+)/)?[1] or '0')
+            1000 * (src?.match(/t=([^&]+)/)?[1] or '0')
 
 
     angular.element(document).ready ->

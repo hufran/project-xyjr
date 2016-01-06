@@ -1,5 +1,5 @@
 
-<div id="dashboard-funds" class="">
+<div id="dashboard-funds">
 
     <nav class="omit-margin container page-nav">
     <div class="row">
@@ -12,9 +12,9 @@
     </nav>
 
     <section class="funds-list">
-        <ul class="list list-group list-group-flat u-off-margin-bottom">
-            <li class="container" ng-if="!list.length"><p>暂时没有资金纪录</p></li>
-
+        <ul class="list list-group no-label list-group-flat u-off-margin-bottom"
+            ng-if="list.length"
+        >
             <li class="item list-group-item"
                 ng-repeat="item in list"
             >
@@ -28,7 +28,7 @@
 
                     <div class="pull-left">
                         <div class="type">{{ item.type | fund_type_cn }}</div>
-                        <div class="date">{{ item.date | moment:"YYYY-MM-DD HH:mm:ss" }}</div>
+                        <div class="date">{{ item.date | date :"yyyy-MM-dd HH:mm:ss" }}</div>
                     </div>
 
                     <div class="pull-right text-right">
@@ -46,6 +46,10 @@
                 </div>
             </li>
         </ul>
+
+        <div ng-if="!list.length" class="container">
+            <h4 class="alert alert-info text-center">暂时没有资金纪录</h4>
+        </div>
     </section>
 
 </div>

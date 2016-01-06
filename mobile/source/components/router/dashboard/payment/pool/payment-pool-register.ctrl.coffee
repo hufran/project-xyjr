@@ -16,13 +16,13 @@ do (_, angular) ->
                 @error = {timer: null, timeout: 2000, message: '', on: false}
 
 
-            open_payment_account: (user_name, id_number) ->
+            open_payment_account: (user_name, id_number, inner_user_code) ->
 
                 return unless !!user_name and !!id_number
 
                 @submit_sending = true
 
-                (@api.payment_pool_register(user_name, id_number)
+                (@api.payment_pool_register(user_name, id_number, inner_user_code)
 
                     .then (data) =>
                         return @$q.reject(data) unless data.success is true
@@ -30,6 +30,7 @@ do (_, angular) ->
 
                     .then (data) =>
                         @user.info.name = user_name
+                        @user.info.idNumber = id_number
                         @user.has_payment_account = true
 
                         @$location.path @next_path
@@ -39,7 +40,7 @@ do (_, angular) ->
                         @$timeout.cancel @error.timer
 
                         @error.on = true
-                        @error.message = _.get data, 'error[0].message', 'something happened...'
+                        @error.message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
 
                         @error.timer = @$timeout =>
                             @error.on = false

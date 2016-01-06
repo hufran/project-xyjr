@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'LoginCtrl',
 
-        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @$http', class
-            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @$q, @$http) ->
+        _.ai '            @api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http', class
+            constructor: (@api, @$scope, @$rootScope, @$window, @$timeout, @$location, @$routeParams, @mg_alert, @$q, @$http) ->
 
                 @next_path = @$routeParams.next
                 @page_path = @$location.path()
@@ -12,7 +12,8 @@ do (_, angular) ->
                 @submit_sending = false
                 @flashing_error_message = false
 
-                do @get_banner
+                @bind_weixin = !!@$routeParams.bind_social_weixin and
+                               /MicroMessenger/.test @$window.navigator.userAgent
 
 
             error_message_flash: ->
@@ -22,13 +23,6 @@ do (_, angular) ->
                 @timer = @$timeout (=>
                     @flashing_error_message = false
                 ), 2000
-
-
-            get_banner: ->
-
-                @$http.get '/api/v2/cms/category/IMAGE/name/%E6%B3%A8%E5%86%8C', cache: true
-                    .then (response) =>
-                        @$scope.banner = src: _.get response, 'data[0].content'
 
 
             goto: (new_path) ->
@@ -52,15 +46,13 @@ do (_, angular) ->
                         return data
 
                     .then (data, {bind_social_weixin} = @$routeParams) =>
-                        if bind_social_weixin
+                        if @bind_weixin
                             @api.bind_social 'WEIXIN', bind_social_weixin
 
                         return data
 
                     .then (data) =>
                         @api.fetch_current_user().then =>
-                            return unless @page_path is @$location.path()
-
                             unless @next_path
                                 @$location.path '/'
                             else
@@ -68,13 +60,20 @@ do (_, angular) ->
                                     .path @next_path
                                     .search 'next', null
 
+                            @$scope.$on '$locationChangeStart', (event, new_path) =>
+                                event.preventDefault()
+                                @$window.location = new_path
+
                     .catch (data) =>
                         result = _.get data, 'error_description.result'
 
                         if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
-                            @$window.alert @$scope.msg.DISABLED
+                            @mg_alert @$scope.msg.DISABLED
                         else
                             do @error_message_flash
 
                         @submit_sending = false
                 )
+
+
+

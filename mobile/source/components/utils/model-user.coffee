@@ -8,6 +8,7 @@ do (_, angular) ->
 
                 @info = null
                 @fund = null
+                @statistics = null
                 @payment = null
                 @agreement = null
                 @fund_accounts = null
@@ -29,7 +30,7 @@ do (_, angular) ->
 
                 return unless status is true
 
-                _.split('info fund payment agreement fund_accounts authenticates').forEach (property) =>
+                _.split('info fund statistics payment agreement fund_accounts authenticates').forEach (property) =>
                     @[property] ?= {}
 
                 @has_logged_in = true

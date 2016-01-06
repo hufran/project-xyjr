@@ -3,7 +3,11 @@
 
 <div id="homepage">
 
-    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
+    <div class="banner"
+         x-carousel-banner
+         data-delay-in-seconds="4"
+         ng-style="{ height: carousel_height + 'px' }"
+    ></div>
 
     <nav class="nav-page container text-center">
         <ul class="list-unstyled u-off-margin-bottom nav-page-list">
@@ -14,153 +18,185 @@
         </ul>
     </nav>
 
-    <section>
-        <div class="c-list-panel loan"
-             ng-repeat="(type, data) in list"
-             ng-hide="loading"
-        >
-            <div class="item subject">
-                <a ng-href="list/{{type}}">
-                    <div class="media">
+    <section class="loan">
+        <ul class="list-unstyled u-off-margin-bottom list-loan-row">
+            <li class="item">
+                <a href="list/XSZX">
+                    <div class="media subject">
                         <div class="media-left">
-                            <img class="media-object" width="29"
-                                 ng-src="assets/image/{{ type | lowercase }}-icon.png"
+                            <img class="media-object" width="30"
+                                 ng-src="assets/image/loan-icons/xszx.png"
                             >
                         </div>
 
-                        <div class="media-body" ng-switch="type">
-                            <div ng-switch-when="LTB">
-                                <h4 class="media-heading color-ltb-text">乐投保</h4>
-                                机构担保项目 年化收益率高达11%
-                            </div>
-                            <div ng-switch-when="LXY">
-                                <h4 class="media-heading color-lxy-text">乐享盈</h4>
-                                机构资产转让项目 年化收益率高达9%
-                            </div>
-                        </div>
-
-                        <div class="media-right media-middle">
-                            <param class="glyphicon glyphicon-menu-right">
+                        <div class="media-body media-middle">
+                            <h4 class="media-heading">新手专享</h4>
                         </div>
                     </div>
                 </a>
-            </div>
 
-            <div class="item">
-                <ul class="list-unstyled u-off-margin-bottom loan-list">
-                    <li ng-repeat="loan in data | limitTo: 2">
-                        <a ng-href="loan/{{ loan.id }}?go_back={{ page_path }}">
-                            <h4 class="title"
-                                ng-class="'color-' + (type | lowercase) + '-text'"
-                            >{{ loan.title }}</h4>
-
-                            <div class="rate-term">
-                                <div class="rate">
-                                    <span class="num">{{ loan.rate }}</span><!--
-                                    --><span class="unit">%</span>
-                                </div>
-                                <div class="term">
-                                    <span class="num">{{ loan.total_months || loan.total_days }}</span><!--
-                                    --><span class="unit" ng-if="loan.total_months">个月</span><!--
-                                    --><span class="unit" ng-if="!loan.total_months">天</span>
-                                </div>
+                <div ng-repeat="item in list.XSZX">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
+                        <div class="rate-duration">
+                            <div class="rate">
+                                <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
                             </div>
 
-                            <div class="balance">
-                                剩余 <span class="num">{{ loan.balance_myriad || loan.balance }}</span>
-                                <span class="unit" ng-if="loan.balance_myriad">万</span>
-                                <span class="unit" ng-if="!loan.balance_myriad">元</span>
+                            <div class="duration">
+                                <span ng-if="item.raw.duration.days">
+                                    {{ item.total_days }}天
+                                </span>
+                                <span ng-if="!item.raw.duration.days">
+                                    {{ item.total_months }}个月
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="status" ng-switch="item.status">
+                            <span ng-switch-when="OPENED"
+                                  class="btn btn-sm btn-invest"
+                            >立即投资</span>
+                            <span ng-switch-when="SCHEDULED"
+                                  class="btn btn-sm btn-disabled"
+                            >即将开始</span>
+                            <span ng-switch-when="FINISHED"
+                                  class="btn btn-sm btn-disabled"
+                            >已满标</span>
+                            <span ng-switch-when="SETTLED"
+                                  class="btn btn-sm btn-disabled"
+                            >还款中</span>
+                            <span ng-switch-when="CLEARED"
+                                  class="btn btn-sm btn-disabled"
+                            >还款结束</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <li class="item">
+                <a href="list/HDZX">
+                    <div class="media subject">
+                        <div class="media-left">
+                            <img class="media-object" width="30"
+                                 ng-src="assets/image/loan-icons/hdzx.png"
+                            >
+                        </div>
+
+                        <div class="media-body media-middle">
+                            <h4 class="media-heading">活动专享</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <div ng-repeat="item in list.HDZX">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
+                        <div class="rate-duration">
+                            <div class="rate">
+                                <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
                             </div>
 
-                            <div class="status" ng-switch="loan.status">
-                                <span ng-switch-when="SCHEDULED"
-                                      class="btn btn-block btn-scheduled btn-sm"
-                                >即将开始</span>
-
-                                <span ng-switch-when="OPENED"
-                                      class="btn btn-block btn-theme btn-sm"
-                                >投标中</span>
-
-                                <span ng-switch-when="FINISHED"
-                                      class="btn btn-block btn-finished btn-sm"
-                                >已满标</span>
-
-                                <span ng-switch-when="SETTLED"
-                                      class="btn btn-block btn-settled btn-sm"
-                                >还款中</span>
-
-                                <span ng-switch-when="CLEARED"
-                                      class="btn btn-block btn-cleared btn-sm"
-                                >还款结束</span>
+                            <div class="duration">
+                                <span ng-if="item.raw.duration.days">
+                                    {{ item.total_days }}天
+                                </span>
+                                <span ng-if="!item.raw.duration.days">
+                                    {{ item.total_months }}个月
+                                </span>
                             </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                        </div>
 
-        <p class="text-center" ng-show="loading">
-            <img src="assets/image/spinner.gif">
-        </p>
-    </section>
-
-
-
-
-
-
-
-    <section x-gyro-comment class="loan container u-off-margin-bottom" ng-if="loan">
-
-        <p class="title">{{ loan.title }}</p>
-
-        <div class="progress-chart">
-            <span class="precent">{{ loan.invest_percent_int }}<small>%</small></span>
-
-            <div x-easypiechart class="chart"
-                  percent="loan.invest_percent_int"
-                  options="loan.chart_options"
-            ></div>
-        </div>
-
-        <div class="rate">年化收益 <em>{{ loan.rate }}%</em></div>
-
-        <ul class="info-table row list-unstyled u-off-margin-bottom">
-            <li class="item col-xs-3">
-                <span class="num">{{ loan.total_months || loan.total_days }}</span>
-                <span class="unit" ng-if="loan.total_months">月</span>
-                <span class="unit" ng-if="!loan.total_months">天</span>
-                <span class="labels">项目期限</span>
-            </li>
-
-            <li class="item col-xs-3" ng-init="num1 = self.num(loan.amount)">
-                <span class="num">{{ num1.myriad || num1.amount }}</span>
-                <span class="unit" ng-if="num1.myriad">万</span>
-                <span class="unit" ng-if="!num1.myriad">元</span>
-                <span class="labels">计划金额</span>
-            </li>
-
-            <li class="item col-xs-3" ng-init="num2 = self.num(loan.raw.loanRequest.investRule.minAmount)">
-                <span class="num">{{ num2.myriad || num2.amount }}</span>
-                <span class="unit" ng-if="num2.myriad">万</span>
-                <span class="unit" ng-if="!num2.myriad">元</span>
-                <span class="labels">起投金额</span>
-            </li>
-
-            <li class="item col-xs-3" ng-init="num3 = self.num(loan.balance)">
-                <span class="num">{{ num3.myriad || num3.amount }}</span>
-                <span class="unit" ng-if="num3.myriad">万</span>
-                <span class="unit" ng-if="!num3.myriad">元</span>
-                <span class="labels">剩余余额</span>
+                        <div class="status" ng-switch="item.status">
+                            <span ng-switch-when="OPENED"
+                                  class="btn btn-sm btn-invest"
+                            >立即投资</span>
+                            <span ng-switch-when="SCHEDULED"
+                                  class="btn btn-sm btn-disabled"
+                            >即将开始</span>
+                            <span ng-switch-when="FINISHED"
+                                  class="btn btn-sm btn-disabled"
+                            >已满标</span>
+                            <span ng-switch-when="SETTLED"
+                                  class="btn btn-sm btn-disabled"
+                            >还款中</span>
+                            <span ng-switch-when="CLEARED"
+                                  class="btn btn-sm btn-disabled"
+                            >还款结束</span>
+                        </div>
+                    </a>
+                </div>
             </li>
         </ul>
 
-        <div class="solen"><i class="glyphicon glyphicon-piggy-bank"></i> 稳定安全，本息保障</div>
+        <ul class="list-unstyled u-off-margin-bottom list-loan">
+            <li class="item">
+                <a href="list/XNB">
+                    <div class="media subject">
+                        <div class="media-left">
+                            <img class="media-object" width="30"
+                                 ng-src="assets/image/loan-icons/xnb.png"
+                            >
+                        </div>
 
-        <p class="container">
-            <a ng-href="loan/{{ loan.id }}" class="btn btn-theme btn-block btn-lg call-action">立即投资</a>
-        </p>
+                        <div class="media-body media-middle">
+                            <h4 class="media-heading">新能宝</h4>
+                        </div>
+                    </div>
+                </a>
 
+                <div ng-repeat="item in list.XNB">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                    ></a>
+                </div>
+            </li>
+
+            <li class="item">
+                <a href="list/FB">
+                    <div class="media subject">
+                        <div class="media-left">
+                            <img class="media-object" width="30"
+                                 ng-src="assets/image/loan-icons/fb.png"
+                            >
+                        </div>
+
+                        <div class="media-body media-middle">
+                            <h4 class="media-heading">房宝</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <div ng-repeat="item in list.FB">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                    ></a>
+                </div>
+            </li>
+
+            <li class="item">
+                <a href="list/XJB">
+                    <div class="media subject">
+                        <div class="media-left">
+                            <img class="media-object" width="30"
+                                 ng-src="assets/image/loan-icons/xjb.png"
+                            >
+                        </div>
+
+                        <div class="media-body media-middle">
+                            <h4 class="media-heading">薪金宝</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <div ng-repeat="item in list.XJB">
+                    <a ng-href="loan/{{ item.id }}?back={{ page_path }}"
+                       x-loan-summary
+                       data-loan="item"
+                    ></a>
+                </div>
+            </li>
+        </ul>
     </section>
 
 </div>

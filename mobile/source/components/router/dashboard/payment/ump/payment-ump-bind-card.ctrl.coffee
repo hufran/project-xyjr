@@ -3,10 +3,12 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentUmpBindCardCtrl',
 
-        _.ai             '@user, @baseURI, @cookie2root, @$scope, @$window', class
-            constructor: (@user, @baseURI, @cookie2root, @$scope, @$window) ->
+        _.ai             '@user, @baseURI, @$cookies, @$scope, @$window, @$routeParams', class
+            constructor: (@user, @baseURI, @$cookies, @$scope, @$window, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
+
+                @back_path = @$routeParams.back or 'dashboard'
 
                 angular.extend @$scope, {
                     agreement: @user.agreement
@@ -16,4 +18,4 @@ do (_, angular) ->
 
             submit: (event) ->
 
-                @cookie2root 'return_url', @baseURI + 'dashboard/recharge'
+                @$cookies.put 'return_url', @baseURI + 'dashboard/recharge', path: '/'
