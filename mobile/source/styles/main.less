@@ -1655,7 +1655,8 @@ a {
 #dashboard-bank-card {
 
     .page-content section {
-        margin: 25px;
+        margin-top: 16px;
+        margin-bottom: 20px;
     }
 
     .u-vb {
@@ -1663,28 +1664,15 @@ a {
     }
 
     .clip {
-        background-color: @color-theme-main;
+        background-color: #FFF;
         margin-bottom: 16px;
-        padding: 15px;
-        border-radius: 8px;
-        font-size: 43px/2;
-        color: #FFF;
-
-        .card {
-            margin-top: 40px;
-            text-align: right;
-        }
+        padding: 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        border: 1px solid @color-gray-light;
 
         .icon {
             margin-right: 20px;
-        }
-    }
-
-    .note {
-        font-size: 26px/2;
-
-        &, a {
-            color: @color-gray-dark;
         }
     }
 
@@ -1700,30 +1688,18 @@ a {
 
     .bind-card {
         display: block;
+        margin: 16px;
         border: 2px dashed;
-        border-radius: 4px;
-        color: @color-gray-light;
+        color: @color-gray;
         line-height: 1;
         text-align: center;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        font-size: 30px/2 + 2;
-        background-color: #FFF;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-size: 20px;
     }
 
-    .btn-unbind {
-        .button-variant(@color-gray-dark-double; transparent; @color-gray-dark-double);
-        .button-size(6px; 12px; 14px; 1.4; 8px);
-    }
-
-    .notes {
-        .lead {
-            color: @color-theme-main;
-        }
-
-        .list {
-            padding-left: 1em;
-        }
+    .notice {
+        #dashboard-recharge .notice;
     }
 }
 
