@@ -70,7 +70,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/navigation/listPlayPanes', auth.pass());
     
      //用户注册动态
-    router.get('/api/v2/users/getLastRisterUser', auth.pass());
+    router.get('/api/v2/users/getHomeDynamicData', auth.pass());
     
     //实名认证
     router.post('/api/v2/guozhengtong/authenticateUser/:userId', auth.owner());
