@@ -119,15 +119,15 @@ ractive.on('checkValue', function (event) {
 });
 
 ractive.on('saveConfig', function () {
+    var radio=$('input[type=radio]:checked').val();
     if (!$('input[name=type]:checked').length) {
         showError('repaymentMethod', '请选择还款方式');
     }else{
         clearError('repaymentMethod');
     }
-    
     if ( flag ) {        
         var params = {
-            'isActive': this.get('isActive'),
+            'isActive': radio,
             'autoBidAmount': parseFloat(this.get('autoBidAmount')),
             'autoBidRemainAmount': parseFloat(this.get('autoBidRemainAmount')),
             'annualRateFrom': parseInt(parseFloat(this.get('annualRateFrom') * 100),10),

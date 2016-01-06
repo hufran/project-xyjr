@@ -1824,9 +1824,10 @@
        border: 1px solid #ccc;
     border-radius: 4px;
     height: 30px;
-    width: 108px;
+    width: 100px;
     overflow: hidden;
     float: left;
+    margin-left: 5px;
 }
 
 #userBlock .leftMoney-open .recharge button {
