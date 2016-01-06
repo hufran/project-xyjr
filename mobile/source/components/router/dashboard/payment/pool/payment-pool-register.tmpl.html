@@ -19,10 +19,12 @@
         }">
     </div>
 
+    <div class="alert alert-info u-off-border-radius">
+        <param class="glyphicon glyphicon-exclamation-sign">
+        您尚未进行实名认证，未实名认证将无法进行，绑卡、充值、提现、投资等操作。
+    </div>
+
     <section>
-        <h2 class="mobile text-center">
-            {{ self.user.info.mobile | string_replace: '^(\\d{3})(.*)(\\d{4})$' : '$1****$3' }}
-        </h2>
 
         <form class="form-flatten form-horizontal"
               name="form"
@@ -97,7 +99,7 @@
 
             <div class="container">
                 <div class="form-group container">
-                    <button type="submit" class="btn btn-theme btn-block"
+                    <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="form.$invalid || self.submit_sending"
                     >立即认证</button>
                 </div>
@@ -111,6 +113,14 @@
                 </div>
             </div>
         </form>
+    </section>
+
+    <section class="container notice">
+        <h2 class="title">温馨提示：</h2>
+        <ol class="list">
+            <li><p>账户实名认证仅面向年满18岁的具有完全民事行为能力的自然人
+            <li><p>填写的姓名、身份证信息需与您用于提现的银行卡账户名一致。为了保证后续交易提现，请认真如实填写相关信息。
+        </ol>
     </section>
 
 </div>
