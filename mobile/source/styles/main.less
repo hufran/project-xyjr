@@ -19,8 +19,8 @@
 @color-theme-danger: #EE6754;
 @color-theme-info: #31B0D5;
 
-@color-theme-emphasize: #2866C2;
-@color-theme-main: #2866C2;
+@color-theme-emphasize: #F06F2E;
+@color-theme-main: #5B9DFF;
 @color-theme-link: #0574E6;
 
 
@@ -1523,15 +1523,11 @@ a {
 
     .btn {
         &-withdraw {
-            .button-variant(#FF7200; #FFF; #FF7200);
+            .button-variant(@color-theme-emphasize ; #FFF; @color-theme-emphasize);
         }
 
         &-recharge {
-            .button-variant(@color-theme-main; #FFF; @color-theme-main);
-        }
-
-        &-logout {
-            .button-variant(#FFF; #FF7200; #FF7200);
+            .button-variant(@color-theme-main ; #FFF; @color-theme-main);
         }
     }
 }
@@ -2677,7 +2673,7 @@ a {
 
                     .title {
                         font-size: 28px/2 + 2;
-                        color: @color-theme-main;
+                        color: @color-theme-emphasize;
                     }
 
                     .content {
