@@ -3,17 +3,32 @@ do (_, angular) ->
 
     angular.module('controller').controller 'CouponCtrl',
 
-        _.ai '            @data, @api, @$q, @$scope, @$window, @$modal', class
-            constructor: (@data, @api, @$q, @$scope, @$window, @$modal) ->
+        _.ai '            @data, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location', class
+            constructor: (@data, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location) ->
 
                 @$window.scrollTo 0, 0
 
+                input = +@$routeParams.input
+
+                @$scope.picking = 'amount' of @$routeParams
+
+                @back_path = @$routeParams.back
+
                 coupon_list = _.clone @data
 
-                status_list = _.split 'INITIATED PLACED USED REDEEMED EXPIRED CANCELLED'
+                status_list = _.split 'INITIATED PLACED USED REDEEMED EXPIRED CANCELLED DISABLED'
 
                 coupon_group_object_by_status =
                     _(coupon_list)
+                        .each (coupon) ->
+                            expire = coupon.couponPackage.timeExpire
+
+                            if expire and expire < Date.now() and coupon.status in _.split 'INITIATED PLACED USED'
+                                coupon.status = 'EXPIRED'
+
+                            if input > 0 and input < coupon.couponPackage.minimumInvest
+                                coupon.status = 'DISABLED'
+
                         .groupBy 'status'
                         .value()
 
@@ -34,6 +49,13 @@ do (_, angular) ->
                 @$scope.data = list
 
 
+            select: (id) ->
+
+                @$location
+                    .path @back_path + '/' + id
+                    .search back: null
+
+
             redeem: (id) ->
 
                 (@api.redeem_coupon(id)
@@ -42,10 +64,11 @@ do (_, angular) ->
                         do if data is true then @$q.resolve else @$q.reject
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED
+                        @mg_alert @$scope.msg.SUCCEED
+                            .result
 
                     .catch (data) =>
-                        @$window.alert @$scope.msg.FAILED
+                        @mg_alert @$scope.msg.FAILED
 
                     .finally =>
                         do @$window.location.reload
@@ -63,3 +86,5 @@ do (_, angular) ->
 
                 while list.remain.length and PAGE_SIZE--
                     list.push list.remain.shift()
+
+

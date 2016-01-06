@@ -14,19 +14,11 @@
 
         <div class="clip clearfix">
             <span class="icon pull-left">
-                <img width="42" ng-src="assets/image/bank-icons/{{ bank_account.bank | lowercase }}.png">
+                <img width="42" ng-src="assets/image/bank-icons/{{ bank_account.bank_code | lowercase }}.png">
             </span>
             <div class="info">
-                <div class="name" ng-switch="bank_account.bank">
-                    <span ng-switch-when="ICBC">工商银行</span>
-                    <span ng-switch-when="ABC">农业银行</span>
-                    <span ng-switch-when="CCB">建设银行</span>
-                    <span ng-switch-when="SDB">深圳发展银行</span>
-                    <span ng-switch-when="BOC">中国银行</span>
-                    <span ng-switch-when="CEB">光大银行</span>
-                    <span ng-switch-when="CIB">兴业银行</span>
-                    <span ng-switch-when="CMB">招商银行</span>
-                    <span ng-switch-default>{{ bank_account.bank }}</span>
+                <div class="name">
+                    {{ bank_account.bank }}
                 </div>
                 <div class="card">
                     {{ bank_account.mask }}
@@ -35,7 +27,7 @@
         </div>
 
         <p class="text-center" ng-show="clicked !== true">
-            <button class="btn btn-primary" ng-click="clicked = true">删除银行卡</button>
+            <button class="btn btn-theme" ng-click="clicked = true">删除银行卡</button>
         </p>
     </section>
 
@@ -70,13 +62,13 @@
         </a>
     </div>
 
-    <section class="container explain">
-        <h5>温馨提示：</h5>
-        <ol>
-            <li>为保障您的资金安全，绑卡前请先进行实名认证。</li>
-            <li>您所绑定的银行卡须是借记卡，奇乐融严禁利用信用卡套现。</li>
-            <li>奇乐融目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。</li>
-            <li>已绑定的银行卡如需更换，请联系客服：<a href="tel:4008727676">400-872-7676</a>。</li>
+    <section class="container notice">
+        <h2 class="title">温馨提示：</h2>
+        <ol class="list">
+            <li><p>为保障您的资金安全，绑卡前请先进行实名认证。
+            <li><p>您所绑定的银行卡须是借记卡，718bank理财严禁利用信用卡套现。
+            <li><p>718bank理财目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。
+            <li><p>已绑定的银行卡如需更换，请联系客服：<a href="tel:4008189696">400-818-9696</a>。
         </ol>
     </section>
 

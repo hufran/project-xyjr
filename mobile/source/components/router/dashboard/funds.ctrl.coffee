@@ -1,5 +1,5 @@
 
-do (angular, window) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'FundsCtrl',
 
@@ -9,8 +9,6 @@ do (angular, window) ->
                 @$window.scrollTo 0, 0
 
                 @$scope.list = @data.results.map map_funds_summary
-
-
 
 
 
@@ -28,6 +26,7 @@ do (angular, window) ->
             date: item.recordTime
             operation: item.operation
             description: item.description
+            status: item.status
 
             sign_css_class: switch sign
                 when '+' then 'green'

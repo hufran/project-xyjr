@@ -8,8 +8,8 @@ output=./dist
 index=$output/index.html
 
 
-(cd $dev && npm run init)
-PATH="$dev/node_modules/.bin:$PATH"
+npm_bin=$(cd $dev && npm run -s init > /dev/null 2>&1 && npm bin)
+PATH="$npm_bin:$PATH"
 
 
 rm -rf $output
@@ -44,6 +44,7 @@ main_script=$(cat $index \
     | sed "s|^|$output/|")
 
 
+coffee -c $output/static
 echo $main_script | xargs coffee -c
 echo $main_script | sed 's|\.coffee|\.js|g' | xargs uglifyjs -c warnings=false -m --wrap -o "$output/scripts/main.min.js"
 
@@ -62,11 +63,13 @@ lessc --clean-css="--skip-advanced" $output/styles/main.less $output/styles/main
 perl -pi -e "s|stylesheet/less|stylesheet|g" $index
 perl -pi -e "s|main.less|main.css|g" $index
 perl -pi -e "s|<base href=\"/\">|<base href=\"/h5/\">|g" $index
-perl -pi -e "s|t={time}|t=`date +%s`000|g" $index
+perl -pi -e "s|t={time}|t=`date +%s`|g" $index
 
 
 (cd $output; [ -d h5 ] || ln -sf . h5)
 
 
-echo $'\360\237\215\273' '<3 BUILD SUCCESS'
+echo ' '
+echo $'\360\237\215\273' '<3 MOBILE BUILD SUCCESS'
+echo ' '
 

@@ -42,7 +42,7 @@ do (_, angular) ->
 
                     .then (data) =>
                         @user.has_payment_password = true
-                        @$window.alert @$scope.msg.SUCCEED
+                        @$window.alert @$scope.msg.SUCCESS
                         @$location.path @next_path
 
                     .catch (data) =>

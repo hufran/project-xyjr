@@ -18,11 +18,18 @@ app = express()
 try
     require('./router').call app, '
 
+        /login
         /login/ajax
         /ajaxLogin
         /logout
 
+        /api/web/login
+        /api/web/register/submit
+
+        /wx/signature
+
         GET/register/ajax/smsCaptcha
+           /register/ajax/submit
 
         GET/mobile/regist
 
@@ -46,6 +53,7 @@ catch
     app.use router
 
 app.use express.static static_path
+
 
 app.get '*.min.js.map$', (req, res) ->
     res.status(204).end()

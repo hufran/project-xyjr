@@ -1,18 +1,5 @@
 
-do (_, angular, moment, Math) ->
-
-    angular.module('filter').filter 'moment', ->
-
-        (date, tmpl) ->
-            moment(date).format tmpl
-
-
-
-
-
-
-
-
+do (_, angular, Math) ->
 
     angular.module('filter')
         .filter 'parseFloat', ->
@@ -30,6 +17,9 @@ do (_, angular, moment, Math) ->
                 rest.length = fixed if fixed > 0
                 rest = _.repeat '*', rest.length
                 return a + rest + b
+
+        .filter 'string_replace', ->
+            (text, reg, new_text) -> text.replace /// #{ reg }///, new_text
 
         .filter 'fund_type_cn', ->
             table = {
@@ -68,6 +58,7 @@ do (_, angular, moment, Math) ->
                 'FEE_CREDIT_ASSIGN': '债权转让手续费'
                 'FEE_BIND_CARD': '用户绑卡手续费'
                 'FSS': '生利宝'
+                'OFFLINE_DEPOSIT': '线下充值'
             }
 
             (type) ->
@@ -81,7 +72,20 @@ do (_, angular, moment, Math) ->
 
 
 
-do (_, angular) ->
+do (_, angular, Holder) ->
+
+    do Holder.run
+
+    angular.module('directive').directive 'holder', ->
+
+        restrict: 'AC'
+
+        link: (scope, element, attrs) ->
+
+            attrs.$set('data-src', attrs.holder) if attrs.holder
+            scope.$evalAsync -> Holder.run images: element[0]
+
+
 
     angular.module('directive').directive 'gyroIncludeBackfire', ->
 
@@ -143,6 +147,19 @@ do (_, angular) ->
 
 
 
+    angular.module('directive').directive 'gyroDisableAnimation',
+
+        _.ai '$animate', ($animate) ->
+
+            restrict: 'A'
+
+            link: (scope, element) ->
+
+                $animate.enabled element, false
+
+
+
+
 
 
 
@@ -152,41 +169,15 @@ do (_, angular) ->
 
     angular.module('factory')
 
-        .factory 'param', ->
+        .factory 'param',
 
-            (obj, traditional) ->
-                escape = encodeURIComponent
-                class2type = {}
-                toString = class2type.toString
+            _.ai '$httpParamSerializer, $httpParamSerializerJQLike',
+                ( $httpParamSerializer, $httpParamSerializerJQLike) ->
 
-                for name in "Boolean Number String Function Array Date RegExp Object Error".split ' '
-                    class2type["[object #{name}]"] = name.toLowerCase()
+                    (obj, traditional) ->
 
-                getType = (obj = String obj) ->
-                    class2type[toString.call obj] or 'object'
-
-                serialize = (params, obj, traditional, scope) ->
-                    array = angular.isArray obj
-
-                    for key, value of obj
-                        type = getType value
-
-                        if scope
-                            key = if traditional then scope else "#{scope}[#{if array then '' else key}]"
-
-                        if !scope and array
-                            params.add value.name, value.value
-                        else if type is 'array' or (!traditional and type is 'object')
-                            serialize params, value, traditional, key
-                        else
-                            params.add key, value
-
-                params = []
-                params.add = (k, v) -> @push "#{escape(k)}=#{escape(v)}"
-
-                serialize params, obj, traditional
-
-                params.join('&').replace /%20/g, '+'
+                        return $httpParamSerializer(obj) if traditional
+                        return $httpParamSerializerJQLike(obj)
 
 
 
@@ -214,3 +205,12 @@ do (_, angular) ->
                 mark = id_str[factor.length] or '-'
 
                 return mark is mask[reduce((s, n, i) -> s + n * parseInt(id_str[i])) % mask.length]
+
+
+
+        .factory 'mg_alert', _.ai '$window, $q', ($window, $q) ->
+
+            (message) ->
+
+                $window.alert message
+                return result: $q.resolve()
