@@ -278,8 +278,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     }
 
                     .when '/dashboard/payment/password/:type?', {
-                        controller: 'PaymentPoolPasswordNewCtrl as self'
-                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password-new.tmpl.html'
+                        controller: 'PaymentPoolPasswordCtrl as self'
+                        templateUrl: 'components/router/dashboard/payment/pool/payment-pool-password.tmpl.html'
                         resolve:
                             user: _.ai 'api, $location, $q, $route',
                                 (       api, $location, $q, $route) ->
