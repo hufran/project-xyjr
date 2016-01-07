@@ -68,6 +68,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/user/:userId/userAuthenticate', auth.user());
      //导航
     router.get('/api/v2/navigation/listPlayPanes', auth.pass());
+    //首页标的
+    router.get('/api/v2/loans/home/summary', auth.pass());
     
      //用户注册动态
     router.get('/api/v2/users/getHomeDynamicData', auth.pass());
