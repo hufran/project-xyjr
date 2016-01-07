@@ -378,11 +378,11 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_register: (name, idNumber, innerUserCode = '') ->
+            payment_pool_register: (name, idNumber) ->
 
                 @$http
                     .post '/api/v2/lianlianpay/authenticateUser/MYSELF',
-                        _.compact {name, idNumber, type: 'UDCREDIT', innerUserCode}
+                        _.compact {name, idNumber}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
