@@ -9,16 +9,16 @@ router.get('/', function (req, res, next) {
     if (user && user.idNumber) {
         delete user.idNumber;
     }
-    res.locals.regUser = req.uest(
-        '/api/v2/users/getLastRisterUser')
-        .end()
-        .get('body')
-        .then(function(data){
-            _.forEach(data,  function (user){
-                user.registerDate = moment(user.registerDate).format('HH:mm');
-            })
-            return data;
-        });
+//    res.locals.regUser = req.uest(
+//        '/api/v2/users/getLastRisterUser')
+//        .end()
+//        .get('body')
+//        .then(function(data){
+//            _.forEach(data,  function (user){
+//                user.registerDate = moment(user.registerDate).format('HH:mm');
+//            })
+//            return data;
+//        });
     res.expose(user, 'user');
     res.locals.carousel = req.uest(
         '/api/v2/cms/carousel_detail')
