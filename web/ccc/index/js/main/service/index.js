@@ -39,29 +39,33 @@ exports.IndexService = {
 };
 
 function parseLoanList(loans) {
-    var max = 6;
+//    var max = 6;
     var loanList = [];
-    var openLoanLen = loans.open.length;
-    loans.open.sort(function compare(a, b) {
-            return b.timeOpen - a.timeOpen;
-        });
-    var scheduledLoanLen = loans.scheduled.length;
-    var finishedLoanLen = loans.finished.length;
-    
-    if (scheduledLoanLen >= max) {
-        addItem(loans.scheduled.slice(0, max));
-    } else {
-        addItem(loans.scheduled.slice(0, scheduledLoanLen));
-        if ((max - openLoanLen) <= scheduledLoanLen) {
-            addItem(loans.open.slice(0, max - scheduledLoanLen));
-        } else {
-            addItem(loans.open.slice(0, openLoanLen));
-            addItem(loans.finished.slice(0, max - openLoanLen -
-                scheduledLoanLen));
-            addItem(loans.settled.slice(0, max - openLoanLen -
-                scheduledLoanLen - finishedLoanLen));
-        }
-    }
+//    var openLoanLen = loans.open.length;
+//    loans.open.sort(function compare(a, b) {
+//            return b.timeOpen - a.timeOpen;
+//        });
+//    var scheduledLoanLen = loans.scheduled.length;
+//    var finishedLoanLen = loans.finished.length;
+//    
+//    if (scheduledLoanLen >= max) {
+//        addItem(loans.scheduled.slice(0, max));
+//    } else {
+//        addItem(loans.scheduled.slice(0, scheduledLoanLen));
+//        if ((max - openLoanLen) <= scheduledLoanLen) {
+//            addItem(loans.open.slice(0, max - scheduledLoanLen));
+//        } else {
+//            addItem(loans.open.slice(0, openLoanLen));
+//            addItem(loans.finished.slice(0, max - openLoanLen -
+//                scheduledLoanLen));
+//            addItem(loans.settled.slice(0, max - openLoanLen -
+//                scheduledLoanLen - finishedLoanLen));
+//        }
+//    }
+    addItem(loans.open);
+    addItem(loans.scheduled);
+    addItem(loans.settled);
+    addItem(loans.finished);
 
     function addItem(items) {
         if (!items.length) {
