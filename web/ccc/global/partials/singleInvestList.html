@@ -1,4 +1,3 @@
-<!--{{JSON.stringify(list)}}-->
 {{#list}}
 
 <div class="loanItemWrapper" {{#if status === 'SCHEDULED' }}{{/if}}>
@@ -44,20 +43,20 @@
             </div>
         </div>
     </div>
-    
+
     <div class="investBtn">
         {{#if status === 'OPENED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
-            <div class="investbtn">立即抢购</div>
+            <div class="investbtn">立即投资</div>
         </a>
-        {{/if}} 
+        {{/if}}
         {{#if status === 'SCHEDULED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn-hover" >即将开始</div>
         </a>
         <div class="investbtn-time" data-id="{{ id }}" data-status="{{ status }}" data-open="{{ timeOpen }}"
         data-serv="{{ serverDate }}" style="margin-top:5px;color: black;width: 180px;text-align: center;margin-left:-40px"></div>
-        {{/if}} 
+        {{/if}}
         {{#if status === 'FINISHED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #fff">已满标</div>
@@ -67,12 +66,12 @@
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #fff">流标</div>
         </a>
-        {{/if}} 
+        {{/if}}
         {{#if status === 'SETTLED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #ffffff">还款中</div>
         </a>
-        {{/if}} 
+        {{/if}}
         {{#if status === 'CLEARED'}}
         <a href="/loan/{{id}}" style="text-decoration:none">
             <div class="investbtn" style="background:lightgrey; color: #fff">还款结束</div>
@@ -86,6 +85,6 @@
 	}).mouseleave(function(){
 		$(this).siblings().fadeOut(100);
 	})
-	
+
 </script>
 {{/list}}

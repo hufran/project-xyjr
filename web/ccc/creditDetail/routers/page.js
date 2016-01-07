@@ -41,7 +41,7 @@ module.exports = function (router) {
                 r.investPercent = Math.round(r.creditassign.bidAmount / r.creditassign.creditAmount * 100);
                 return r;
             });
-       
+
         var methodZh = {
             'MonthlyInterest': '按月付息到期还本',
             'EqualInstallment': '按月等额本息',
@@ -165,5 +165,5 @@ module.exports = function (router) {
         res.expose(loanParam,'loan');
 
          res.render('creditDetail/detail');
-    });    
+    });
 }

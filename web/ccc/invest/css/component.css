@@ -2,15 +2,15 @@
 	margin: 40px auto 12px;
 	width: 960px;
 	padding: 0 15px;
-    
+
 }
 
-/*
+
 #main-container * {
 	font-family: '微软雅黑';
-  
+
 }
-*/
+
 
 #main-container {
 /*	margin-top: 6px;*/
@@ -280,11 +280,11 @@ hr {
 	height: 70px;
 	line-height: 70px;
 	/*  text-indent: 60px;*/
-	
+
 	font-size: 1em;
 	color: #324075;
     padding-left: 20px;
-	
+
 }
 
 .loanItemWrapper .loanPartOne .loantitle {
@@ -293,8 +293,8 @@ hr {
 
 .loanItemWrapper .loanPartOne .loantitle a {
 	text-decoration: none;
-	color: #007ec5;
-	font-size: 16px;
+    color: #6e6e6e;
+    font-size: 16px;
 }
 /*
 .loanItemWrapper .loanPartOne .loantitle{
@@ -364,12 +364,12 @@ hr {
 
 .loanItemWrapper .backmoney {
 	float: left;
-	height: 100%;
-	width: 190px;
-	text-align: center;
-	line-height: 72px;
-	font-size: 16px;
-	color: #4a4a4a;
+height: 100%;
+width: 190px;
+text-align: center;
+line-height: 72px;
+font-size: 14px;
+color: #666;
 }
 
 .loanItemWrapper .amount span {
@@ -424,13 +424,13 @@ hr {
 }
 
 .loanItemWrapper .investBtn .investbtn {
-	width: 80px;
-	height: 32px;
+	width: 102px;
+	height: 36px;
 	text-align: center;
-	line-height: 32px;
-	background-color: #007ec5;
+	line-height: 36px;
+	background-color: #2866c2;
 	color: #fff;
-	border-radius: 5px;
+	border-radius: 2px;
 	display: inline-block;
 	margin-top: 19px;
 }
