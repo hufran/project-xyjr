@@ -9,7 +9,7 @@
                             <th>开始时间</th>
                             <th>结束时间</th>
                             <th>状态</th>
-                            <th class="align-right action-th">操作</th>
+<!--                            <th class="align-right action-th">操作</th>-->
         </tr>
     </thead>
     <tbody>
@@ -23,17 +23,21 @@
             <td>{{ timeOpen }}</td>
             <td>{{ timeFinished }}</td>
             <td>{{ status }}</td>
+<!--
             <td class="align-center">
                 {{#if !cancel}}
                 <button class="cancel btn btn-smaller" data-creditassign="{{ id }}">取消</button>
                 {{/if}}
             </td>
+-->
         </tr>
+<!--
         <tr class="repay-plan-wp" id="invest-{{id}}">
             <td colspan="6">
                 <p class="loading">loading...</p>
             </td>
         </tr>
+-->
         {{/each}}
     </tbody>
 </table>

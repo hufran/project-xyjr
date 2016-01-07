@@ -8,7 +8,7 @@
 
 <div class="">
     <div class="current-container">
-        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">理财产品列表 </a>> {{creditassign.creditassign.title}}产品详情</p>
+        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">债转列表 </a>> {{creditassign.creditassign.title}}产品详情</p>
 		<div class="box-large">
         <div class="invest-data-wrapper">
             <div class="investContainer">
@@ -31,19 +31,18 @@
                 <div class="content">
                     <div class="inner">
                         <div class="item itemSecond">
-                              <div class="name"><img src="/ccc/loan/img/detailRate.png" />折价率:</div>
-                            <div class="value">{{creditassign.creditassign.creditDealRate*100}}<span style="color:#ff7200;">%</span>
-                            </div>
-                        </div>
-                        <div class="item itemThird" style="border-right:none">
-                               <div class="name"><img src="/ccc/loan/img/limit.png" />转让期限:</div>
-                            <div class="value">{{creditassign.creditassign.timeOut}}<span>小时</span>
-                            </div>
-                        </div>
-                        <div class="item itemFirst">
-                             <div class="name"><img src="/ccc/loan/img/loanAmount.png" />转让金额:</div>
                             <div class="value">{{creditassign.creditassign.creditAmount}}<span>元</span>
                             </div>
+                            <div class="name" style="margin-left: 70px;">转让价格</div>                
+                        </div>
+                        <div class="item itemThird" style="border-right:none">
+                            <div class="value">{{loan.rate}}%</div>
+                               <div class="name">年化收益率</div>                           
+                        </div>
+                        <div class="item itemFirst">
+                             <div class="value">{{creditassign.creditassign.timeOut}}<span>小时</span>
+                             </div>
+                             <div class="name">剩余期限</div>     
                         </div>
                     </div>
                     <div class="innerBottom">
@@ -62,13 +61,15 @@
 -->
 				       <ul class="loanMethod interestMethod">
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
-                            <li>计息日：放款后第二天计息</li>
-                            <li>起投金额：{{loan.loanRequest.investRule.minAmount}}元</li>
+                            <li>待收本金：{{creditassign.creditassign.creditAmount}}</li>
+                            <li>保障方式：本息保障</li>
+                             <li>起投金额：{{ loan.loanRequest.investRule.minAmount}}元</li>
                         </ul>
                         <ul class="loanMethod">
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
-                            <li>还款方式：{{loan.method}}</li>
+                            <li>转让折价率：{{loan.method}}</li>
                             <li>投资限额：{{loan.loanRequest.investRule.maxAmount}}元</li>
+                            <li>起息日期：满标日后的第1个工作日</li>
                         </ul> 
                     </div>
                                           <div class="progress-wp">
@@ -207,41 +208,41 @@
     {{{state}}}
 </script>
 <script>
-//    CC.loan = {
-//        rule: {
-//            min: {{loans.loanRequest.investRule.minAmount}},
-//            max: {{loans.loanRequest.investRule.maxAmount}},
-//            step: {{loans.loanRequest.investRule.stepAmount}},
-//            balance: {{loans.balance}},
-//            dw: '{{loans.amountUnit}}',
-//            leftAmount: {{loans.leftAmount}}
-//        },
-//        title: '{{loans.title}}',
-//        timeSettled:'{{loans.timeSettled}}',
-//        investPercent: {{loans.investPercent}},
-//        originalAmount: {{loans.originalAmount}},
-//        amount: {{loans.amount}},
-//        cAmount: '{{loans.amount}}{{loans.aUnit}}',
-//        investAmount: {{loans.investAmount}},
-//        timeLeft: '{{loans.timeLeft}}',
-//        status: '{{loans.status}}',
-//        id: '{{loans.id}}',
-//        requestId: '{{loans.loanRequest.id}}',
-//        timeElapsed: '{{loans.timeElapsed}}',
-//        duration: '{{loans.months}}',
-//        bidNumber: {{loans.bidNumber}},
-//        timeOpen: {{loans.timeOpen}},
-//        totalInterest: {{totalInterest || 0}},
-//        serverDate: {{loans.serverDate}},
-//        userId: '{{loans.userId}}',
-//        LuserId:'{{loans.loanRequest.userId}}',
-//        productKey:'{{loans.loanRequest.productKey}}',
-////        timeFinished:{{loans.timeFinished ? loans.timeFinished:''}}    
-//
-//    };
-//    if('{{loans.timeFinished}}'){
-//        CC.loan.timeFinished='{{loans.timeFinished}}';
-//    }
+    CC.loan = {
+        rule: {
+            min: {{loans.loanRequest.investRule.minAmount}},
+            max: {{loans.loanRequest.investRule.maxAmount}},
+            step: {{loans.loanRequest.investRule.stepAmount}},
+            balance: {{loans.balance}},
+            dw: '{{loans.amountUnit}}',
+            leftAmount: {{loans.leftAmount}}
+        },
+        title: '{{loans.title}}',
+        timeSettled:'{{loans.timeSettled}}',
+        investPercent: {{loans.investPercent}},
+        originalAmount: {{loans.originalAmount}},
+        amount: {{loans.amount}},
+        cAmount: '{{loans.amount}}{{loans.aUnit}}',
+        investAmount: {{loans.investAmount}},
+        timeLeft: '{{loans.timeLeft}}',
+        status: '{{loans.status}}',
+        id: '{{loans.id}}',
+        requestId: '{{loans.loanRequest.id}}',
+        timeElapsed: '{{loans.timeElapsed}}',
+        duration: '{{loans.months}}',
+        bidNumber: {{loans.bidNumber}},
+        timeOpen: {{loans.timeOpen}},
+        totalInterest: {{totalInterest || 0}},
+        serverDate: {{loans.serverDate}},
+        userId: '{{loans.userId}}',
+        LuserId:'{{loans.loanRequest.userId}}',
+        productKey:'{{loans.loanRequest.productKey}}',
+//        timeFinished:{{loans.timeFinished ? loans.timeFinished:''}}    
+
+    };
+    if('{{loans.timeFinished}}'){
+        CC.loan.timeFinished='{{loans.timeFinished}}';
+    }
 </script>
 <script src="/ccc/creditDetail/js/main/investDetail.js"></script>
 <script src="/ccc/creditDetail/js/main/img.js"></script>

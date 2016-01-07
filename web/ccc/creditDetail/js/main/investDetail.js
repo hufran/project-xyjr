@@ -15,11 +15,11 @@ require('bootstrap/js/transition');
 require('bootstrap/js/tooltip');
 
 var Cal = require('ccc/global/js/modules/cccCalculator');
-
+console.log(CC.serverDate);
 // cccConfirm
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 
-var popupBigPic = require('ccc/loan/js/main/bigPic')
+var popupBigPic = require('ccc/creditDetail/js/main/bigPic')
     .popupBigPic;
 var statusMap = {
     SCHEDULED: '开标时间:{{timeOpen}}',
@@ -29,7 +29,6 @@ var statusMap = {
     CLEARED: ''
 };
 var template = statusMap[CC.loan.status];
-
 new Ractive({
     el: ".openTime",
     template: template,
@@ -41,23 +40,18 @@ new Ractive({
 });
 
 
-
-
-
 function initailEasyPieChart() {
-    ///////////////////////////////////////////////////////////
     // 初始化饼状图
-    ///////////////////////////////////////////////////////////
     $(function () {
         var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
         $(".easy-pie-chart").each(function () {
             var percentage = $(this).data("percent");
-            var status=$(this).data("status");
+//            var status=$(this).data("status");
 			var percentageNum = CC.loan.rule.leftAmount;
             // 100%进度条颜色显示为背景色
 
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-             var color = (status==='OPENED') ? '#009ada' : "#f58220";
+//             var color = (status==='OPENED') ? '#009ada' : "#f58220";
 
 //            var color = percentage === 100 ? "#f58220" : '#f58220';
 
@@ -101,7 +95,7 @@ $("[data-toggle=tooltip]")
 setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
     console.log(CC.loan.timeElapsed);
-    CC.loan.timeLeft = JSON.parse(CC.loan.timeLeft);
+//    CC.loan.timeLeft = JSON.parse(CC.loan.timeLeft);
     var leftTime = CC.loan.timeLeft;
     var timeLeftToal = leftTime.ss + leftTime.mm * 60 + leftTime.hh * 60 * 60 + leftTime.dd * 60 * 60 * 24;
     setInterval(function () {
@@ -132,8 +126,9 @@ setTimeout((function () {
 
     var investRactive = new Ractive({
         el: ".do-invest-wrapper",
-        template: require('ccc/loan/partials/doInvestOnDetail.html'),
+        template: require('ccc/creditDetail/partials/doInvestOnDetail.html'),
         data: {
+            creditassign: CC.creditassign,
             name: '',
             user: CC.user,
             loan: CC.loan,
@@ -150,8 +145,8 @@ setTimeout((function () {
             serverDate: moment(CC.serverDate).format('YYYY-MM-DD'),
             isSend: false,
             backUrl: CC.backUrl,
-            dueDate:CC.repayments[0].dueDate,
-            timeSettled:nextDate(CC.loan.timeSettled),
+//            dueDate:CC.repayments[0].dueDate,
+//            timeSettled:nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
 //                            console.log(CC.loan.rule.balance);
@@ -161,26 +156,28 @@ setTimeout((function () {
             }
         }
     });
-      function nextDate(timestr){
-            var date=new Date(timestr.replace('/-/g','\/'));
-            var timeunix=Math.round((date.getTime()+1000*60*60*24)/1000);
-            var time=moment(timeunix*1000).format('YYYY-MM-DD');
-            return time;
-        }      
+//      function nextDate(timestr){
+//          console.log("77777");
+//          console.log(timestr);
+//            var date=new Date(timestr.replace('/-/g','\/'));
+//            var timeunix=Math.round((date.getTime()+1000*60*60*24)/1000);
+//            var time=moment(timeunix*1000).format('YYYY-MM-DD');
+//            return time;
+//        }      
     var serverDate = CC.serverDate;
     var openTime = CC.loan.timeOpen;
     serverDate += 1000;
-    if (CC.loan.status === 'SCHEDULED') {
-        var interval = setInterval((function () {
-            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day : '';
-            if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-                clearInterval(interval);
-            } else {
-                $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">'+ leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
-            }
-        }), 1000);
-    }
+//    if (CC.loan.status === 'SCHEDULED') {
+//        var interval = setInterval((function () {
+//            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
+//            var textDay = leftTime.day ? leftTime.day : '';
+//            if (!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
+//                clearInterval(interval);
+//            } else {
+//                $('.left-time-start').html('<span class="text">距离开标时间还有<span style="color:#009ada">' + textDay + '</span>天<span style="color:#009ada;">'+ leftTime.hour + '</span>时<span style="color:#009ada">' + leftTime.min + '</span>分<span style="color:#009ada">' + leftTime.sec + '</span>秒</span>')
+//            }
+//        }), 1000);
+//    }
 
 
 
@@ -403,7 +400,7 @@ setTimeout((function () {
         if (leftTime) {
             var countDownRactive = new Ractive({
                 el: ".next-time",
-                template: require('ccc/loan/partials/countDown.html'),
+                template: require('ccc/creditDetail/partials/countDown.html'),
                 data: {
                     countDown: {
                         days: leftTime.day,
@@ -462,10 +459,6 @@ setTimeout((function () {
         }
         return o;
     };
-
-
-
-
 
     function showErrors(error) {
         investRactive
@@ -651,7 +644,7 @@ function add() {
 
 var recordRactive = new Ractive({
     el: '.invest-record',
-    template: require('ccc/loan/partials/record.html'),
+    template: require('ccc/creditDetail/partials/record.html'),
     page: 1,
     pageSize: 40,
     api:'/api/v2/loan/'+ CC.loan.id + '/invests/',
@@ -727,7 +720,7 @@ function renderPager(totalPage, current) {
     }
    var pagerRactive = new Ractive({
        el: '#record-pager',
-       template: require('ccc/loan/partials/pagerRecord.html'),
+       template: require('ccc/creditDetail/partials/pagerRecord.html'),
        data: {
            totalPage: totalPage,
            current: current
