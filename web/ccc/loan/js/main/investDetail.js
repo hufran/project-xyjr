@@ -533,7 +533,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 			}
 		}
 //		console.log(r1);
-		var proofTypeArr = r2.proofs.CAREER;
+		var proofTypeArr = r2.proofs.GUARANTEE;
 		for(var i=0;i<proofTypeArr.length;i++){
 			if(proofTypeArr[i].proof.proofType !== ''){
 				proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proof.proofType][0];

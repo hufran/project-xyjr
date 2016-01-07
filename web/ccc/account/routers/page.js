@@ -187,20 +187,20 @@ module.exports = function (router) {
             .then(function (r) {
                 _.assign(res.locals.user, r.body);
                 res.render('account/index', {
-                    title: '奇乐融'
+                    title: '718bank理财'
                 });
             });
     });
 
     router.get('/account/invest', function (req, res) {
         res.render('account/invest', {
-            title: '奇乐融'
+            title: '718bank理财'
         });
     });
 
     router.get('/account/funds', function (req, res) {
         res.render('account/funds', {
-            title: '奇乐融'
+            title: '718bank理财'
         });
     });
 
@@ -236,7 +236,7 @@ module.exports = function (router) {
                         paymentPasswordHasSet;
                     res.render('account/settings', {
                         tabName: tabName,
-                        title: '奇乐融'
+                        title: '718bank理财'
                     });
         }
     });
@@ -253,7 +253,7 @@ module.exports = function (router) {
                 }
                 res.render('account/settings', {
                     tabName: 'agreement',
-                    title: '奇乐融'
+                    title: '718bank理财'
                 });
             });
     });
@@ -262,7 +262,7 @@ module.exports = function (router) {
         //    res.render('account/loan',{});
         res.render('account/loan', {
             //tabName: tabName,
-            title: '奇乐融'
+            title: '718bank理财'
         });
     });
 

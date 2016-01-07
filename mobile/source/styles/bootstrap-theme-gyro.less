@@ -11,8 +11,8 @@
 .btn {
     border-radius: 2px;
 
-    &-red, &-theme {
-        .button-variant(#FFF; @color-theme-main; @color-theme-main);
+    &-theme {
+        .button-variant(#FFF; @color-theme-main; transparent);
     }
 }
 
@@ -52,38 +52,52 @@
     }
 }
 
-.inline > .nav-tabs.nav-justified {
-    width: 100%;
-    border-bottom: 1px solid #D9D9D9;
-    background-color: #FFF;
+.inline {
+    > .nav-tabs.nav-justified {
+        display: table;
+        width: 100%;
+        border-bottom: 1px solid #D9D9D9;
+        background-color: #FFF;
 
-    > li {
-        width: 1%;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        display: table-cell;
-
-        > a {
-            color: #333;
-            padding: 0;
-            margin-bottom: 0;
-
-            border: none !important;
-            border-radius: 0 !important;
-            border-left: 1px solid #DDD !important;
-            border-left: none !important;
-        }
-
-        &:first-child > a {
-            border-left: none !important;
-        }
-
-        &.active {
-            border-bottom: 3px solid @color-theme-main !important;
+        > li {
+            width: auto;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            display: table-cell;
 
             > a {
-                color: @color-theme-main;
+                color: #333;
+                padding: 0;
+                margin-bottom: 0;
+
+                border: none !important;
+                border-radius: 0 !important;
+                border-left: 1px solid #DDD !important;
             }
+
+            &:first-child > a {
+                border-left: none !important;
+            }
+
+            &.active {
+                border-bottom: 3px solid @color-theme-main !important;
+
+                > a {
+                    color: @color-theme-main;
+                }
+            }
+
+            &:not(.active) {
+                border-bottom: 3px solid transparent;
+            }
+        }
+    }
+
+    &.flex > .nav-tabs.nav-justified {
+        .flex-display();
+
+        > li {
+            .flex(1);
         }
     }
 }

@@ -11,17 +11,17 @@ do (angular) ->
                 interval: '=delayInSeconds'
 
             template: '''
-                <carousel interval="interval * 1000" no-wrap="noWrapSlides">
-                    <slide ng-repeat="slide in slides" active="slide.active">
-                        <a ng-href="{{ slide.url }}">
+                <uib-carousel interval="interval * 1000" no-wrap="noWrapSlides">
+                    <uib-slide ng-repeat="slide in slides | orderBy: 'pubDate'" active="slide.active">
+                        <a ng-href="{{ slide.url }}" target="_self">
                             <img ng-src="{{ slide.content }}" style="margin:auto;">
 
                             <div class="carousel-caption" ng-if>
                                 <p>{{ slide.title }}</p>
                             </div>
                         </a>
-                    </slide>
-                </carousel>
+                    </uib-slide>
+                </uib-carousel>
             '''
 
             link: (scope, element, attr) ->

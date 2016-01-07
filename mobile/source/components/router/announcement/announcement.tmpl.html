@@ -20,7 +20,7 @@
             <li class="item"
                 ng-repeat="item in data"
             >
-                <div class="pub-date">{{ item.pubDate | moment: 'YYYY-MM-DD HH:mm:ss' }}</div>
+                <div class="pub-date">{{ item.pubDate | date: 'yyyy-MM-dd hh:mm:ss' }}</div>
                 <div class="detail">
                     <h4 class="title">{{ item.title }}</h4>
                     <div class="content" ng-bind-html="item.content | sanitize"></div>

@@ -9,19 +9,21 @@ var template = require('ccc/newAccount/partials/autobid/autobid.html');
 
 
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+      console.log("88");
+        console.log(CC.user.autobidConfig.active);
 var ractive = new Ractive({
     el: ".autobid-ractive-container",
     template:template,
     data: {
-//        isActive: CC.user.autobidConfig.active || false,
-//        autoBidAmount : CC.user.autobidConfig.singleAmount ,
-//        autoBidRemainAmount: CC.user.autobidConfig.reservedAmount,
-//        annualRateFrom: CC.user.autobidConfig.range.minRate / 100,
-//        annualRateTo: CC.user.autobidConfig.range.maxRate / 100,
-//        durationFrom: CC.user.autobidConfig.range.minDuration,
-//        durationTo: CC.user.autobidConfig.range.maxDuration,
-//        repaymentMethod : CC.user.autobidConfig.repayMethod,
-//        allMethod : repayMethod
+        isActive: CC.user.autobidConfig.active || false,
+        autoBidAmount : CC.user.autobidConfig.singleAmount ,
+        autoBidRemainAmount: CC.user.autobidConfig.reservedAmount,
+        annualRateFrom: CC.user.autobidConfig.range.minRate / 100,
+        annualRateTo: CC.user.autobidConfig.range.maxRate / 100,
+        durationFrom: CC.user.autobidConfig.range.minDuration,
+        durationTo: CC.user.autobidConfig.range.maxDuration,
+        repaymentMethod : CC.user.autobidConfig.repayMethod,
+        allMethod : repayMethod
     },
     onrender: function (){
         
@@ -117,15 +119,15 @@ ractive.on('checkValue', function (event) {
 });
 
 ractive.on('saveConfig', function () {
+    var radio=$('input[type=radio]:checked').val();
     if (!$('input[name=type]:checked').length) {
         showError('repaymentMethod', '请选择还款方式');
     }else{
         clearError('repaymentMethod');
     }
-    
     if ( flag ) {        
         var params = {
-            'isActive': this.get('isActive'),
+            'isActive': radio,
             'autoBidAmount': parseFloat(this.get('autoBidAmount')),
             'autoBidRemainAmount': parseFloat(this.get('autoBidRemainAmount')),
             'annualRateFrom': parseInt(parseFloat(this.get('annualRateFrom') * 100),10),

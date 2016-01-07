@@ -1,27 +1,12 @@
 <!doctype html>
-
 <meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8,chrome=1">
 <link rel="stylesheet" href="/ccc/global/css/base.css">
 <link rel="stylesheet" href="/ccc/global/css/base1.css">
 <!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
-<meta name="renderer" content="webkit"  keyword="">
-<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
-<script>(function(global) {
-  'use strict';
-  global.console = global.console || {};
-  var con = global.console;
-  var prop, method;
-  var empty = {};
-  var dummy = function() {};
-  var properties = 'memory'.split(',');
-  var methods = ('assert,clear,count,debug,dir,dirxml,error,exception,group,' +
-     'groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,' +
-     'show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn').split(',');
-  while (prop = properties.pop()) if (!con[prop]) con[prop] = empty;
-  while (method = methods.pop()) if (!con[method]) con[method] = dummy;
-  })(typeof window === 'undefined' ? this : window);</script>
 <!--[if lt IE 10]>
-<script src="/ccc/global/js/ie8fix.js"></script>
+<script src="/ccc/ie8fix/js/console-html5-es5shim-excanvas.js"></script>
 <![endif]-->
 <script src="/ccc/global-common.js" async></script>
 <link rel="stylesheet" href="/ccc/global/css/base.css" />
@@ -254,10 +239,10 @@ var _hmt = _hmt || [];
 <div class="side-bar-box">
     <div class="side-bar">
 <!--         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/service.png" /></a>-->
-        <a href="javascript:;" ><img src="/ccc/global/img/mobile-sidebar.png" /></a>
-        <a class="jiathis_button_weixin"><img src="/ccc/global/img/weixin.png" /></a>
-         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/qq.png" /></a>
-        <a class="back-top" href=""><img src="/ccc/global/img/backTop.png" /></a>
+        <a href="javascript:;" ><img src="/ccc/global/img/mobile-sidebar.png" onmouseover="this.src='/ccc/global/img/mobile-sidebar-nav.png'" onmouseout="this.src='/ccc/global/img/mobile-sidebar.png'"/></a>
+        <a class="jiathis_button_weixin"><img src="/ccc/global/img/weixin.png" onmouseover="this.src='/ccc/global/img/weixin-nav.png'" onmouseout="this.src='/ccc/global/img/weixin.png'"/></a>
+         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/qq.png" onmouseover="this.src='/ccc/global/img/qq-nav.png'" onmouseout="this.src='/ccc/global/img/qq.png'"/></a>
+        <a class="back-top"><img src="/ccc/global/img/backTotop.png" onmouseover="this.src='/ccc/global/img/backTotop-nav.png'" onmouseout="this.src='/ccc/global/img/backTotop.png'"/></a>
     </div>
 </div>
 <script>

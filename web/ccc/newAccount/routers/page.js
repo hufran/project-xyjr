@@ -158,7 +158,32 @@ module.exports = function (router) {
                 });
     });
           router.get('/autobid', function (req, res) {
+                 var user = res.locals.user;
+              console.log('====');
+              console.log('/api/v2/'+user.id+'/autobid_config');
+                req.uest('/api/v2/'+user.id+'/autobid_config')
+                  .end()
+                   .then(function (r) {
+                         user.autobidConfig = r.body;
+                       res.expose(user, 'user');
+                        //next()
+                   });
                 res.render('newAccount/autobid', {
+                    title: '新毅金融'
+                });
+    });
+           router.get('/assign', function (req, res) {
+                res.render('newAccount/assign', {
+                    title: '新毅金融'
+                });
+    });
+               router.get('/invite', function (req, res) {
+                res.render('newAccount/invite', {
+                    title: '新毅金融'
+                });
+    });
+                   router.get('/message', function (req, res) {
+                res.render('newAccount/message', {
                     title: '新毅金融'
                 });
     });

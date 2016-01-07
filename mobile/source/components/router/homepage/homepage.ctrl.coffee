@@ -1,52 +1,30 @@
 
-do (_, angular, moment) ->
+do (_, angular) ->
 
     angular.module('controller').controller 'HomepageCtrl',
 
-        _.ai '            @api, @user, @$scope, @$window, map_loan_summary, @$q', class
-            constructor: (@api, @user, @$scope, @$window, map_loan_summary, @$q) ->
+        _.ai '            @api, @user, @$scope, @$window, map_loan_summary, @$location', class
+            constructor: (@api, @user, @$scope, @$window, map_loan_summary, @$location) ->
 
                 @$window.scrollTo 0, 0
 
                 angular.extend @$scope, {
+                    list: {}
                     page_path: './'
-                    loading: true
+                    carousel_height: do (width = @$window.document.body.clientWidth) ->
+                        # width * 300 / 640 # aspect ratio of banner image
                 }
 
-                (@$q
-                    .all [
-                        @api.get_loan_list_with_type 'LTB', 4
-                        @api.get_loan_list_with_type 'LXY', 4
-                    ]
+                _.split('XSZX HDZX XNB FB XJB').forEach (product) =>
 
-                    .then (list) =>
+                    @api.get_loan_list_by_config product, 1, false
+                        .then ({results}) =>
 
-                        all_loan =
-                            _(list)
-                                .pluck 'results'
-                                .flatten()
-                                .compact()
-                                .map map_loan_summary
-                                .map (item) ->
-                                    if item.status is 'SCHEDULED'
-                                        item.time_open = moment(item.timeOpen).fromNow()
-
-                                    return item
-                                .value()
-
-                        group_loan =
-                            _(all_loan)
-                                .filter (item) ->
-                                    item.product_type isnt 'UNKNOWN'
-                                .groupBy 'product_type'
-                                .pick _.split 'LTB LXY'
-                                .value()
-
-                        @$scope.list = group_loan
-
-                    .finally =>
-                        @$scope.loading = false
-                )
+                            @$scope.list[product] =
+                                _(results)
+                                    .compact()
+                                    .map map_loan_summary
+                                    .value()
 
 
             num: (amount) ->
@@ -57,3 +35,4 @@ do (_, angular, moment) ->
                     amount: amount
                     myriad: if is_myriad then (amount / 10000) | 0 else null
                 }
+

@@ -21,12 +21,14 @@ do (angular) ->
         ngSanitize
         ngMessages
         ngAnimate
+        ngTouch
 
         ui.validate
         ui.bootstrap
 
         timer
         easypiechart
+        monospaced.qrcode
 
         angulartics
         angulartics.baidu
