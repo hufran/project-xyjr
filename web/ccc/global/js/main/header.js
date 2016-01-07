@@ -60,6 +60,9 @@ $(function(){
         }else{
             sideUp.hide();
         }
+    }
+});
+
 $(".back-top").click(function(){
     $('body,html').animate({scrollTop:0},1000);
     return false;
@@ -130,4 +133,3 @@ $("#family").hover(function(){
 	$(this).find("p").css("background","url(/ccc/global/img/slide.png) no-repeat");
 });
 
-}})

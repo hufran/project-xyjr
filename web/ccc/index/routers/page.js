@@ -9,16 +9,7 @@ router.get('/', function (req, res, next) {
     if (user && user.idNumber) {
         delete user.idNumber;
     }
-//    res.locals.regUser = req.uest(
-//        '/api/v2/users/getLastRisterUser')
-//        .end()
-//        .get('body')
-//        .then(function(data){
-//            _.forEach(data,  function (user){
-//                user.registerDate = moment(user.registerDate).format('HH:mm');
-//            })
-//            return data;
-//        });
+    
     res.expose(user, 'user');
     res.locals.carousel = req.uest(
         '/api/v2/cms/carousel_detail')
@@ -29,7 +20,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-            data = (data || []).sort(compare('pubDate'));
+            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
        res.locals.expireOne = req.uest(
@@ -37,7 +28,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-            data = (data || []).sort(compare('pubDate'));
+            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
     res.locals.latestPublication = req.uest(
@@ -45,7 +36,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
-            data = (data || []).sort(compare('pubDate'));
+            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
       res.locals.latestImgPublication = req.uest(
@@ -53,7 +44,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
-            data = (data || []).sort(compare('pubDate'));
+            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });       
     res.locals.latestNews = req.uest(
@@ -61,7 +52,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data) {
-            data = (data || []).sort(compare('pubDate'));
+            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
     res.locals.advertisement = req.uest(
@@ -69,7 +60,7 @@ router.get('/', function (req, res, next) {
         .end()
         .get('body')
         .then( function(data){
-            data = (data || []).sort(compare('pubDate'));
+            data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
         });
 //     res.locals.friendsLinks = req.uest(
