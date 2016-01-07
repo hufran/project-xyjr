@@ -381,7 +381,7 @@ do (_, angular, moment, Array) ->
             payment_pool_register: (name, idNumber) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/authenticateUser/MYSELF',
+                    .post '/api/v2/guozhengtong/authenticateUser/MYSELF',
                         _.compact {name, idNumber}
 
                     .then TAKE_RESPONSE_DATA
