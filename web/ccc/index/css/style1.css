@@ -394,9 +394,6 @@
     overflow: hidden;
     margin-top: 22px;
 }
-#userscrollMsg{
-    float: right;
-}
 #userscrollMsg li{
     height: 18px;
     line-height: 18px;

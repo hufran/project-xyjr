@@ -83,9 +83,16 @@ _.each({
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
     var headerLinks = await req.uest.get('/api/v2/navigation/listPlayPanes').get('body');
+    //除去display == false
+     for(var i=0;i<headerLinks.length;i++){
+        if(headerLinks[i].display == false ){
+            headerLinks.splice(i,1);
+            i-=1;
+        }
+    }
     for(var i=0;i< headerLinks.length; i++){
         headerLinks[i].childrenLink = [];
-        for(var j=1;j<headerLinks.length; j++){
+        for(var j=0;j<headerLinks.length; j++){
             if(headerLinks[i].id == headerLinks[j].parentId){
                 headerLinks[i].childrenLink.push(headerLinks[j]);
             }
@@ -103,7 +110,6 @@ app.use(async function (req, res, next) {
             headerLinks[i].childrenLink = _.sortBy(headerLinks[i].childrenLink, 'ordinal');
         }
     }
-
     var resultLink = _.sortBy(headerLinks, 'ordinal');
     res.locals.headerNavLinks = resultLink;
 
