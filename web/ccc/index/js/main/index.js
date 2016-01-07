@@ -40,12 +40,13 @@ IndexService.getLoanSummary(function (list) {
              listFB.push(list[i]);
          }
      }
-    listXSZX = _.sortBy(listXSZX,'timeopen');
-    listHDZX = _.sortBy(listHDZX,'timeopen');
-    listXJB = _.sortBy(listXJB,'timeopen');
-    listXNB = _.sortBy(listXNB,'timeopen');
-    listLCZQ = _.sortBy(listLCZQ,'timeopen');
-    listLCZQ = [listXJB[0],listXNB[0],listFB[0],[]];
+    listXSZX = _.sortByOrder(listXSZX,'timeOpen','desc');
+    listHDZX = _.sortByOrder(listHDZX,'timeOpen','desc');
+    listXJB = _.sortByOrder(listXJB,'timeOpen','desc');
+    listXNB = _.sortByOrder(listXNB,'timeOpen','desc');
+    listFB = _.sortByOrder(listFB,'timeOpen','desc');
+
+    listLCZQ = [listXJB[0],listXNB[0],listFB[0]];
 
     for(var i=0; i<listLCZQ.length; i++){
         if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
