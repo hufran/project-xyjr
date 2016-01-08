@@ -83,7 +83,7 @@ _.each({
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
     var headerLinks = await req.uest.get('/api/v2/navigation/listPlayPanes').get('body');
-    var Md5keyData = await req.uest.get('/api/v2/getMd5keyData/MYSELF').get('body');
+    // var Md5keyData = await req.uest.get('/api/v2/getMd5keyData/MYSELF').get('body');
     //除去display == false
      for(var i=0;i<headerLinks.length;i++){
         if(headerLinks[i].display == false ){
@@ -112,15 +112,26 @@ app.use(async function (req, res, next) {
         }
     }
     var resultLink = _.sortBy(headerLinks, 'ordinal');
-    var quickLogin = '/'+Md5keyData.data.mobile+'/'+Md5keyData.data.currentTime+'/'+Md5keyData.data.md5key+'.ht'
-    _.forEach(resultLink, function (one){
-        if(one.redirectUrl == '/ctx1'){
-            one.redirectUrl = 'http://www.718vc.com/quickLogin/1/' + quickLogin;
-        }
-        if(one.redirectUrl == '/ctx2'){
-            one.redirectUrl = 'http://www.718vc.com/quickLogin/2/' + quickLogin;
-        }
-    })
+    // var quickLogin;
+    // try {
+    //     quickLogin = '/'+Md5keyData.data.mobile+'/'+Md5keyData.data.currentTime+'/'+Md5keyData.data.md5key+'.ht'
+    // } catch (e) {}
+    // resultLink = _(resultLink)
+    //     .map(function (one){
+    //         console.log(one)
+    //         if ((one.redirectUrl === '/ctx1' || one.redirectUrl === '/ctx2') && !quickLogin) {
+    //             return false;
+    //         }
+    //         if(one.redirectUrl == '/ctx1'){
+    //             one.redirectUrl = 'http://www.718vc.com/quickLogin/1/' + quickLogin;
+    //         }
+    //         if(one.redirectUrl == '/ctx2'){
+    //             one.redirectUrl = 'http://www.718vc.com/quickLogin/2/' + quickLogin;
+    //         }
+    //         return one;
+    //     })
+    //     .filter(Boolean);
+
     res.locals.headerNavLinks = resultLink;
 
     res.expose(Date.now(), 'serverDate');
