@@ -32,15 +32,31 @@
                     </div>
 
                     <div class="pull-right text-right">
-                        <div class="amount" ng-class="item.sign_css_class">
+                        <div class="amount"
+                             ng-class="item.status === 'SUCCESSFUL' && item.sign_css_class"
+                        >
                             {{ item.sign }}{{ item.amount | number }}
                         </div>
 
-                        <div class="description" ng-switch="item.operation">
-                            <span ng-switch-when="IN">充值成功</span>
-                            <span ng-switch-when="OUT">交易成功</span>
-                            <span ng-switch-when="FREEZE">资金冻结</span>
-                            <span ng-switch-when="RELEASE">资金解冻</span>
+                        <div class="description">
+                            <span ng-switch="item.operation">
+                                <span ng-switch-when="IN">资金转入</span>
+                                <span ng-switch-when="OUT">资金转出</span>
+                                <span ng-switch-when="FREEZE">资金冻结</span>
+                                <span ng-switch-when="RELEASE">资金解冻</span>
+                            </span>
+
+                            <span ng-switch="item.status">
+                                <span ng-switch-when="INITIALIZED">初始</span>
+                                <span ng-switch-when="PROCESSING">处理中</span>
+                                <span ng-switch-when="AUDITING">审核中</span>
+                                <span ng-switch-when="PAY_PENDING">支付结果待查</span>
+                                <span ng-switch-when="CUT_PENDING">代扣结果待查</span>
+                                <span ng-switch-when="SUCCESSFUL">成功</span>
+                                <span ng-switch-when="FAILED">失败</span>
+                                <span ng-switch-when="REJECTED">拒绝</span>
+                                <span ng-switch-when="CANCELED">取消</span>
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ do (_, angular) ->
                 @$window.scrollTo 0, 0
 
                 list = []
-                list.remain = _.sortByOrder @data, 'pubDate', 'dasc'
+                list.remain = _.sortByOrder @data, 'pubDate', 'desc'
                 list.length = 0
 
                 @add_more(list)
