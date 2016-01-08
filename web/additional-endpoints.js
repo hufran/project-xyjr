@@ -88,4 +88,5 @@ module.exports = function (router, auth) {
     //自动投标
     router.post('/api/v2/:userId/save_autobid_config',auth.user());
     router.get('/api/v2/:userId/autobid_config',auth.user());
+    router.get('/api/v2/getMd5keyData/:userId',auth.user());
 };
