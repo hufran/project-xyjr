@@ -90,5 +90,6 @@ module.exports = function (router, auth) {
     router.post('/api/v2/resetPassword',auth.user());
     router.get('/api/v2/:userId/autobid_config',auth.user());
     router.get('/api/v2/getMd5keyData/:userId',auth.user());
-    router.get('/api/v2/quickLogin/a/getUser/:md',auth.user());
+    router.get('/api/v2/quickLogin/a/getUser/:mobile/:currentTime/:md5key',auth.pass());
+    router.get('/api/v2/quickLogin/:mobile/:currentTime/:md5key',auth.pass());
 };
