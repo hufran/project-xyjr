@@ -16,13 +16,13 @@ do (_, angular) ->
                 @error = {timer: null, timeout: 2000, message: '', on: false}
 
 
-            open_payment_account: (user_name, id_number, inner_user_code) ->
+            open_payment_account: (user_name, id_number) ->
 
                 return unless !!user_name and !!id_number
 
                 @submit_sending = true
 
-                (@api.payment_pool_register(user_name, id_number, inner_user_code)
+                (@api.payment_pool_register(user_name, id_number)
 
                     .then (data) =>
                         return @$q.reject(data) unless data.success is true
