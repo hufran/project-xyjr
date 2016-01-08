@@ -83,6 +83,7 @@ _.each({
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
     var headerLinks = await req.uest.get('/api/v2/navigation/listPlayPanes').get('body');
+    var getMd5keyData = await req.uest.get('/api/v2/getMd5keyData/MYSELF').get('body');
     //除去display == false
      for(var i=0;i<headerLinks.length;i++){
         if(headerLinks[i].display == false ){
@@ -112,6 +113,7 @@ app.use(async function (req, res, next) {
     }
     var resultLink = _.sortBy(headerLinks, 'ordinal');
     res.locals.headerNavLinks = resultLink;
+    res.locals.Md5keyData = getMd5keyData ? getMd5keyData.data : {};
 
     res.expose(Date.now(), 'serverDate');
     // res.layout = 'ccc/global/views/layouts/default.html';
