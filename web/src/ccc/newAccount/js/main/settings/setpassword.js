@@ -5,3 +5,18 @@ var resetPasswordRactive = new Ractive({
     data: {
     }
 });
+resetPasswordRactive.on('setPassword', function (){
+    // /account/resetPassword
+    if(resetPasswordRactive.get('password') != resetPasswordRactive.get('repassword')){
+        alert('两次密码不一致');
+        return;
+    }
+    request('/account/resetPassword', {
+        body: {
+            mobile: '',
+            newPassword: resetPasswordRactive.get('password')
+        }
+    }).get('body').then(function () {
+
+    })
+})
