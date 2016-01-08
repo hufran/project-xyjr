@@ -150,7 +150,7 @@ setTimeout((function () {
             serverDate: moment(CC.serverDate).format('YYYY-MM-DD'),
             isSend: false,
             backUrl: CC.backUrl,
-            dueDate:CC.repayments[0].dueDate,
+            dueDate:(CC.repayments[0]||{}).dueDate,
             timeSettled:nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
@@ -523,17 +523,21 @@ $('.investInput')
 
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
-//		console.log(r2);
-//		console.log(r1);
+        var loanPurpose=[];
 		for (var j=0;j<r1.length;j++){
+            if(r1[j].proof.proofType=="GUARANTEE_ID"){     
+            
 			if(r1[j].proof.proofType !== ''){
 				r1[j].proofType = i18n.enums.ProofType[r1[j].proof.proofType][0];
 			}else{
 				r1[j].proofType = '暂无认证信息';
 			}
+                loanPurpose.push(r1[j]);
+            }
 		}
+        
 //		console.log(r1);
-		var proofTypeArr = r2.proofs.GUARANTEE;
+		var proofTypeArr = r2.proofs.CAREER;
 		for(var i=0;i<proofTypeArr.length;i++){
 			if(proofTypeArr[i].proof.proofType !== ''){
 				proofTypeArr[i].proofType = i18n.enums.ProofType[proofTypeArr[i].proof.proofType][0];
@@ -548,7 +552,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
             el: ".insurance-wrapper",
             template: require('ccc/loan/partials/relateDataOnDetail.html'),
             data: {
-                loanPurpose: r1,
+                loanPurpose: loanPurpose,
                 career: proofTypeArr,
                 currentIndex: 0,
 				currentIndexB:0,

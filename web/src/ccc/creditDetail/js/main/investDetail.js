@@ -49,15 +49,15 @@ var assignStatus={
            FAILED:"其他原因失败",
 };
 var template = statusMap[CC.loan.status];
-new Ractive({
-    el: ".openTime",
-    template: template,
-    data: {
-        timeOpen: moment(CC.loan.timeOpen)
-            .format('YYYY-MM-DD HH:mm'),
-        timeSettled: CC.loan.timeSettled
-    }
-});
+//new Ractive({
+//    el: ".openTime",
+//    template: template,
+//    data: {
+//        timeOpen: moment(CC.loan.timeOpen)
+//            .format('YYYY-MM-DD HH:mm'),
+//        timeSettled: CC.loan.timeSettled
+//    }
+//});
 
 
 function initailEasyPieChart() {
@@ -289,7 +289,11 @@ setTimeout((function () {
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
 
-
+        if(num!=this.get('creditassign.creditassign.creditAmount')){
+            showErrors('此债转只能一次全额转让');
+            return false;
+        }
+        
 
         accountService.checkPassword(paymentPassword,
             function (r) {
@@ -299,7 +303,6 @@ setTimeout((function () {
                 } else {
 
                     if (document.getElementById('agree').checked == true) {
-                        console.log('++++++++');
                         $('.agree-error').css('visibility','hidden');
                         Confirm.create({
                             msg: '您本次投资的金额为' +num + '元，是否确认投资？',
@@ -336,7 +339,6 @@ setTimeout((function () {
             });
         //};
     });
-
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {

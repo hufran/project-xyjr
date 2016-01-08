@@ -101,3 +101,15 @@ float: right;
       font-size: 24px;
     color: #ffc808;
 }
+.assigned{
+        width: 80px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    background-color: #eee;
+    color: #fff;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 19px;
+    cursor: default;
+}
