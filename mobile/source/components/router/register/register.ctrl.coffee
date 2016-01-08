@@ -91,45 +91,20 @@ do (_, angular) ->
                         socialId: bind_social_weixin
                     }
 
-                (@$q.resolve(!!referral)
-
-                    .then (has_referral) =>
-                        return unless has_referral
-
-                        @api.check_invite_code(referral)
-                            .then @api.process_response
-
-                    .then => @api.register(password, mobile, mobile_captcha, optional)
+                (@api.register(password, mobile, mobile_captcha, optional)
 
                     .then (data) =>
                         unless data.success is true
                             @$q.reject data.error
 
-                    .then => @api.login(mobile, password)
-
                     .then (data) =>
-
-                        @mg_alert @$scope.msg.SUCCEED
-                            .result.finally =>
-                                if @$scope.has_referral
-                                    @$window.location.href = @baseURI + 'static/register-coupon/'
-                                else
-                                    @$location
-                                        .path 'dashboard/payment/register'
-                                        .search back: 'register'
+                        @$window.alert @$scope.msg.SUCCEED
+                        @$location.path 'dashboard'
 
                     .catch (data) =>
-                        key  = _.get data, '[0].message'
-                        key ?= _.get data, 'error[0].message'
-
-                        @mg_alert @$scope.msg[key] or key
+                        key = _.get data, '[0].message'
+                        @$window.alert @$scope.msg[key] or key
                         @submit_sending = false
-
-                        if key is 'INVITECODE_INVALID'
-                            @$location
-                                .replace()
-                                .path @$location.path()
-                                .search refm: null
                 )
 
 
