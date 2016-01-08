@@ -23,6 +23,7 @@ function replaceStr(str){
 
 
 IndexService.getLoanSummary(function (list) {
+
     var listXSZX = [],listHDZX = [],listXJB = [],listXNB = [],listFB = [],listLCZQ = [];
     for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
@@ -40,26 +41,20 @@ IndexService.getLoanSummary(function (list) {
              listFB.push(list[i]);
          }
      }
-    listXSZX = _.sortByOrder(listXSZX,'timeOpen','desc');
-    listHDZX = _.sortByOrder(listHDZX,'timeOpen','desc');
-    listXJB = _.sortByOrder(listXJB,'timeOpen','desc');
-    listXNB = _.sortByOrder(listXNB,'timeOpen','desc');
-    listFB = _.sortByOrder(listFB,'timeOpen','desc');
 
     listLCZQ = [listXJB[0],listXNB[0],listFB[0]];
-
+    
     for(var i=0; i<listLCZQ.length; i++){
         if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
             listLCZQ.splice(i,1);
             i-=1;
         }
     }
-    
     var investRactive = new Ractive({
         el: ".XSZXproductList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: listXSZX[0],
+            list: listXSZX,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
@@ -68,7 +63,7 @@ IndexService.getLoanSummary(function (list) {
         el: ".HDZXproductList",
         template: require('ccc/global/partials/singleInvest.html'),
         data: {
-            list: listHDZX[0],
+            list: listHDZX,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
