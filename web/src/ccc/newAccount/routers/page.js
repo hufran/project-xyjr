@@ -10,6 +10,7 @@ module.exports = function (router) {
 //
 //    });
     router.get('/setpassword',function (req,res,next){
+        res.expose(req.query.mobile, 'mobile')
         res.render('/newAccount/setpassword');
     });
 	// 未登录访问account下的页面,跳转到 /
