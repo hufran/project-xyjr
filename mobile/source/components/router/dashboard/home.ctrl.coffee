@@ -61,5 +61,7 @@ do (_, angular) ->
                 @api.logout().then =>
 
                     @$location.path '/'
-                    @$scope.$on '$locationChangeSuccess', =>
-                        @$window.location.reload()
+
+                    @$scope.$on '$locationChangeStart', (event, new_path) =>
+                        event.preventDefault()
+                        @$window.location = new_path
