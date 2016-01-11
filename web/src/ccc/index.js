@@ -128,7 +128,7 @@ app.use(async function (req, res, next) {
                 return one;
             })
     }
-    
+
 
     res.locals.headerNavLinks = resultLink;
 

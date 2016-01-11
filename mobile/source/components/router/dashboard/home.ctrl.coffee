@@ -60,8 +60,10 @@ do (_, angular) ->
 
                 @api.logout().then =>
 
-                    @$location.path '/'
+                    @$location
+                        .path '/'
+                        .search t: _.now()
 
                     @$scope.$on '$locationChangeStart', (event, new_path) =>
                         event.preventDefault()
-                        @$window.location = new_path
+                        @$window.location.href = new_path

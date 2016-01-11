@@ -51,7 +51,6 @@ do (_, angular, moment, Array) ->
                         api_list = _.split '
                             statistics/invest
                             userfund
-                            payment
                             fundaccounts
                             authenticates
                             paymentPasswordHasSet
@@ -68,7 +67,6 @@ do (_, angular, moment, Array) ->
                         [
                             @user.statistics
                             @user.fund
-                            @user.payment
                             @user.fund_accounts
                             @user.authenticates
                             @user.has_payment_password
