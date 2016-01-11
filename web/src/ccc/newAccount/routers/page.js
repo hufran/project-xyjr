@@ -8,7 +8,7 @@ module.exports = function (router) {
     });
     // 未登录访问account下的页面,跳转到 /
     router.get('/*', function (req, res, next) {
-        if (!req.cookies.ccat) {
+        if (!res.locals.user||(!res.locals.user.id)) {
             res.redirect('/login');
             return;
         }
