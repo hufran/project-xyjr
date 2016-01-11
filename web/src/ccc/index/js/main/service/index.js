@@ -83,10 +83,10 @@ function parseLoanList(loans) {
 //                scheduledLoanLen - finishedLoanLen));
 //        }
 //    }
-    addItem(loans.open);
-    addItem(loans.scheduled);
-    addItem(loans.settled);
-    addItem(loans.finished);
+
+    for(var p in loans){
+        addItem(loans[p]);
+    }
 
     function addItem(items) {
         if (!items.length) {
