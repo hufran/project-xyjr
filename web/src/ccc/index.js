@@ -128,7 +128,7 @@ app.use(async function (req, res, next) {
                 return one;
             })
     }
-    
+
 
     res.locals.headerNavLinks = resultLink;
 
@@ -137,10 +137,7 @@ app.use(async function (req, res, next) {
 //    res.locals.title = config.appName; // 设置html标题
 
     // global user
-    if (!req.cookies.ccat) {
-        res.expose({}, 'user');
-        return next();
-    }
+
 
     var user = ((await req.uest.get('/api/v2/whoamiplz').get('body')) || {}).user;
 
@@ -149,7 +146,10 @@ app.use(async function (req, res, next) {
         return next();
     }
     res.locals.user = user;
-
+    if (!res.locals.user||(!res.locals.user.id)) {
+        res.expose({}, 'user');
+        return next();
+    }
     user.logined = true;
     if (user.email === 'notavailable@creditcloud.com') {
         user.email = '';

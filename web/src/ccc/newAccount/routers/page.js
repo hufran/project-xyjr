@@ -1,5 +1,4 @@
 'use strict';
-var Promise = require('bluebird');
 module.exports = function (router) {
 
     var ccBody = require('cc-body');
@@ -239,13 +238,7 @@ module.exports = function (router) {
     router.post("/change_password", ccBody, function (req,
         res) {
 
-        /*
-        currentPassword:
-        newPassword:
-        passwordConfirm:
-        mobileCaptcha:nhmrx
-        token:16243052-0c4f-4228-b1ad-7b823d637146
-         */
+
         console.log(req.body);
         req.uest.post("/api/v2/user/MYSELF/change_password")
             .type("form")
