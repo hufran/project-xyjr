@@ -5,7 +5,7 @@
     "@cc/oauth2": "^1.9.0",
     "@cc/redis": "^1.0.0",
     "@cc/scripts": "^2.2.0",
-    "@ccc/ie8fix": "^1.1.0",
+    "@ccc/ie8fix": "^2",
     "@ccc/inspect": "^2.0.2",
     "@ccc/login": "^2.7.0",
     "@ccc/payment": "^1.7.0",
