@@ -4,6 +4,7 @@
   "dependencies": {
     "@cc/oauth2": "^1.9.0",
     "@cc/redis": "^1.0.0",
+    "@cc/scripts": "^2.2.0",
     "@ccc/ie8fix": "^2",
     "@ccc/inspect": "^2.0.2",
     "@ccc/login": "^2.7.0",
@@ -77,7 +78,7 @@
     "browserify": "browserify",
     "build": "gulp build",
     "build-config": "gulp build-config",
-    "dev": "gulp dev",
+    "dev": "PORT=`next-port 4000` gulp dev",
     "gulp": "gulp",
     "postinstall": "mkdir -p src/ccc/global/img/fonts && cp node_modules/bootstrap/fonts/* src/ccc/global/img/fonts/ && cp node_modules/font-awesome/fonts/* src/ccc/global/img/fonts/",
     "reload": "NODE_ENV=production PORT=8000 rc-service",

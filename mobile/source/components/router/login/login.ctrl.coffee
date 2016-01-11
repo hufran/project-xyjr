@@ -54,7 +54,9 @@ do (_, angular) ->
                     .then (data) =>
                         @api.fetch_current_user().then =>
                             unless @next_path
-                                @$location.path '/'
+                                @$location
+                                    .path '/'
+                                    .search t: _.now()
                             else
                                 @$location
                                     .path @next_path
@@ -62,7 +64,7 @@ do (_, angular) ->
 
                             @$scope.$on '$locationChangeStart', (event, new_path) =>
                                 event.preventDefault()
-                                @$window.location = new_path
+                                @$window.location.href = new_path
 
                     .catch (data) =>
                         result = _.get data, 'error_description.result'

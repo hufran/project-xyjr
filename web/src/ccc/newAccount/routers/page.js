@@ -1,20 +1,14 @@
 'use strict';
-var Promise=require('bluebird');
 module.exports = function (router) {
 
     var ccBody = require('cc-body');
-	
-//	router.get('/', function (req, res, next) {
-//        req.url = '/newAccount/';
-//        next();
-//
-//    });
     router.get('/setpassword',function (req,res,next){
+        res.expose(req.query.mobile, 'mobile')
         res.render('/newAccount/setpassword');
     });
-	// 未登录访问account下的页面,跳转到 /
+    // 未登录访问account下的页面,跳转到 /
     router.get('/*', function (req, res, next) {
-        if (!req.cookies.ccat) {
+        if (!res.locals.user||(!res.locals.user.id)) {
             res.redirect('/login');
             return;
         }
@@ -23,13 +17,13 @@ module.exports = function (router) {
 
     // topNav 需要的东西
     router.get('/*', function (req, res, next) {
-        
+
         // assign user数据
         var user = res.locals.user;
         if (user && user.idNumber) {
             delete user.idNumber;
         }
-        
+
         res.locals.title = '新毅金融';
         res.locals.keywords = '新毅金融';
         res.locals.description = '新毅金融';
@@ -51,7 +45,8 @@ module.exports = function (router) {
                     return false;
                 }
 
-                if (email === 'notavailable@qilerong.com') {
+                if (email ===
+                    'notavailable@qilerong.com') {
                     return false;
                 }
 
@@ -69,29 +64,35 @@ module.exports = function (router) {
                 return !!user.name;
 
             },
-            authenticates: req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
+            authenticates: req.uest(
+                    '/api/v2/user/MYSELF/authenticates')
+                .get('body'),
             isEnterprise: res.locals.user.enterprise,
-            groupMedal: req.uest('/api/v2/users/MYSELF/groupMedal')
+            groupMedal: req.uest(
+                    '/api/v2/users/MYSELF/groupMedal')
                 .end()
                 .then(function (r) {
                     var results = r.body.results;
                     if (results) {
-                        for(var i = 0; i < results.length; i ++) {
-                            
-                            results[i] = results[i] + "!3";
-                        } 
+                        for (var i = 0; i < results.length; i++) {
+
+                            results[i] = results[i] +
+                                "!3";
+                        }
 
                         return results;
                     } else {
                         return [];
                     }
-            })
+                })
 
         });
 
 
         // safetyProgress
-        var items = ['checkMobile', 'checkEmail', 'checkCard', 'checkUmpay'];
+        var items = ['checkMobile', 'checkEmail', 'checkCard',
+            'checkUmpay'
+        ];
         var avail = items.reduce(function (
             ret, item) {
             if (res.locals[item]()) {
@@ -131,8 +132,8 @@ module.exports = function (router) {
         }
         next();
     });
-	
-	// 特定页面的
+
+    // 特定页面的
 
     router.get('/home', function (req, res) {
         Promise.join(
@@ -152,46 +153,41 @@ module.exports = function (router) {
                 });
             });
     });
-       router.get('/coupon', function (req, res) {
-                res.render('newAccount/coupon', {
-                    title: '新毅金融'
-                });
+    router.get('/coupon', function (req, res) {
+        res.render('newAccount/coupon', {
+            title: '新毅金融'
+        });
     });
-          router.get('/autobid', function (req, res) {
-                 var user = res.locals.user;
-              console.log('====');
-              console.log('/api/v2/'+user.id+'/autobid_config');
-                req.uest('/api/v2/'+user.id+'/autobid_config')
-                  .end()
-                   .then(function (r) {
-                         user.autobidConfig = r.body;
-                       res.expose(user, 'user');
-                        //next()
-                   });
-                res.render('newAccount/autobid', {
-                    title: '新毅金融'
-                });
+    router.get('/autobid', async function (req, res) {
+        var user = res.locals.user;
+        var autobidConfig = await req.uest.get('/api/v2/' + user.id +'/autobid_config').get('body');
+        user.autobidConfig = autobidConfig;
+        res.expose(user, 'user');
+
+        res.render('newAccount/autobid', {
+            title: '新毅金融'
+        });
     });
-           router.get('/assign', function (req, res) {
-                res.render('newAccount/assign', {
-                    title: '新毅金融'
-                });
+    router.get('/assign', function (req, res) {
+        res.render('newAccount/assign', {
+            title: '新毅金融'
+        });
     });
-               router.get('/invite', function (req, res) {
-                res.render('newAccount/invite', {
-                    title: '新毅金融'
-                });
+    router.get('/invite', function (req, res) {
+        res.render('newAccount/invite', {
+            title: '新毅金融'
+        });
     });
-                   router.get('/message', function (req, res) {
-                res.render('newAccount/message', {
-                    title: '新毅金融'
-                });
+    router.get('/message', function (req, res) {
+        res.render('newAccount/message', {
+            title: '新毅金融'
+        });
     });
 
     router.get('/invest/*', function (req, res) {
-    	res.render('newAccount/invest', {
-    		title: '新毅金融'
-    	});
+        res.render('newAccount/invest', {
+            title: '新毅金融'
+        });
     });
 
     router.get('/loanRequest/*', function (req, res) {
@@ -214,11 +210,16 @@ module.exports = function (router) {
                 )
                 .get('body'),
                 req.uest(
-                    '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                    '/api/v2/user/MYSELF/paymentPasswordHasSet'
+                )
                 .get('body'),
-                req.uest('/api/v2/user/MYSELF/fundaccountsMap')
+                req.uest(
+                    '/api/v2/user/MYSELF/fundaccountsMap'
+                )
                 .get('body'),
-                function (authenticates, paymentPasswordHasSet, fundaccountsMap) {
+                function (authenticates,
+                    paymentPasswordHasSet,
+                    fundaccountsMap) {
                     res.locals.user.authenticates =
                         authenticates;
                     res.locals.user.paymentPasswordHasSet =
@@ -237,13 +238,7 @@ module.exports = function (router) {
     router.post("/change_password", ccBody, function (req,
         res) {
 
-        /*
-        currentPassword:
-        newPassword:
-        passwordConfirm:
-        mobileCaptcha:nhmrx
-        token:16243052-0c4f-4228-b1ad-7b823d637146
-         */
+
         console.log(req.body);
         req.uest.post("/api/v2/user/MYSELF/change_password")
             .type("form")
@@ -283,20 +278,25 @@ module.exports = function (router) {
                 '/api/v2/user/MYSELF/paymentPasswordHasSet')
             .get('body'),
             function (paymentPasswordHasSet) {
-                res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;
-                var banks = _.filter(res.locals.user.bankCards, function (r) {
-                    return r.deleted === false;
-                });
+                res.locals.user.paymentPasswordHasSet =
+                    paymentPasswordHasSet;
+                var banks = _.filter(res.locals.user.bankCards,
+                    function (r) {
+                        return r.deleted === false;
+                    });
 
                 if (!banks.length && !enterprise) {
-                    res.redirect('/newAccount/settings/bankCards');
+                    res.redirect(
+                        '/newAccount/settings/bankCards');
                 } else {
                     next();
                 }
-            });        
+            });
     });
-    router.get('/fund/:name',function(req,res,next){
-        res.render('/newAccount/fund',{urlname:req.params.name});
-        
+    router.get('/fund/:name', function (req, res, next) {
+        res.render('/newAccount/fund', {
+            urlname: req.params.name
+        });
+
     });
 }
