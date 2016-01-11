@@ -22,13 +22,11 @@ module.exports = function (router) {
     router.get('/quickLogin/:mobile/:currentTime/:md5key', function *(req, res) {
 
         var r = yield req.uest('/api/v2/quickLogin/'+req.params.mobile+'/'+req.params.currentTime+'/'+req.params.md5key)
-        console.log('==================', r.body)
         if(!r.body.success){
             res.redirect('/');
             return;
         }
         if(!r.body.data.isNewUser){
-            console.log('-------------->>>>>', 123)
             var signInUser = Promise.coroutine(function *(user) {
                 var obj = {
                     user: user,
@@ -39,13 +37,14 @@ module.exports = function (router) {
                     scope: [],
                 };
                 var ccat = yield randomHex(32);
-                console.log('ccat obj', ccat, obj)
                 yield db.setex('access_token:' + ccat, 24 * 60 * 60, JSON.stringify(obj));
-                console.log('obj saved')
                 return ccat;
             });
-            var a = yield signInUser(r.body.data.user);
-            console.log('----------->>', a)
+            var ccat = yield signInUser(r.body.data.user);
+            res.cookie('ccat', ccat, {
+                maxAge: 24 * 60 * 60
+            });
+            res.redirect('/');
         }
         if(r.body.data.isNewUser) {
             res.redirect('/newAccount/setpassword?mobile=' + req.params.mobile);

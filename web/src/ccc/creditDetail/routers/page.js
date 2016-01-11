@@ -32,14 +32,20 @@ module.exports = function (router) {
             "FAILED": "转让未满",
             "CANCELED": "已取消"
         };
-        var creditassign =await req.data.get('/api/v2/creditassign/creditAssignDetail/' + creditassignId)
+        var creditassign =await req.uest('/api/v2/creditassign/creditAssignDetail/' + creditassignId)
             .then(function (r) {
-                if (r.creditassign.timeOpen) {
-                    r.creditassign.timeOpen = moment(r.creditassign.timeOpen).format('YYYY-MM-DD');
+            console.log("&&&&&");
+            console.log(r);
+            if(r.statusCode==200){
+                if (r.body.creditassign.timeOpen) {
+                    r.body.creditassign.timeOpen = moment(r.body.creditassign.timeOpen).format('YYYY-MM-DD');
                 };
-                r.creditassign.cstatus = assignStatus[r.creditassign.status];
-                r.investPercent = Math.round(r.creditassign.bidAmount / r.creditassign.creditAmount * 100);
-                return r;
+                r.body.creditassign.cstatus = assignStatus[r.body.creditassign.status];
+                r.body.investPercent = Math.round(r.body.creditassign.bidAmount / r.body.creditassign.creditAmount * 100);
+                return r.body;
+            }else{
+                return null;
+            }
             });
 
         var methodZh = {

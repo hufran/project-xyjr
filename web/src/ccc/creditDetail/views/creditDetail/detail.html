@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
 
 <link rel="stylesheet" href="/ccc/creditDetail/css/detail.css">
-<!--{{JSON.stringify(creditassign)}}-->
+
 
 <div class="">
     <div class="current-container">
@@ -13,8 +13,12 @@
         <div class="invest-data-wrapper">
             <div class="investContainer">
                 <div class="investTitle">
-                     <div class="time openTime">
+                     <div class="time">
+                         {{#if creditassign.creditassign.timeOpen}}
                         开标时间:{{creditassign.creditassign.timeOpen}}
+                         {{else}}
+                         转让已满,已结束
+                         {{/if}}
                     </div>
 <!--
                      {{#if loans.status == "OPENED" }}
@@ -31,7 +35,7 @@
                 <div class="content">
                     <div class="inner">
                         <div class="item itemSecond">
-                            <div class="value">{{creditassign.creditassign.creditAmount}}<span>元</span>
+                            <div class="value">{{creditassign.creditassign.creditAmount||loan.amount}}<span>元</span>
                             </div>
                             <div class="name" style="margin-left: 70px;">转让价格</div>
                         </div>
@@ -40,7 +44,7 @@
                                <div class="name">年化收益率</div>
                         </div>
                         <div class="item itemFirst">
-                             <div class="value">{{creditassign.creditassign.timeOut}}<span>小时</span>
+                             <div class="value">{{creditassign.creditassign.timeOut||0}}<span>小时</span>
                              </div>
                              <div class="name">剩余期限</div>
                         </div>
@@ -61,7 +65,7 @@
 -->
 				       <ul class="loanMethod interestMethod">
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
-                            <li>待收本金：{{creditassign.creditassign.creditAmount}}</li>
+                            <li>待收本金：{{creditassign.creditassign.creditAmount||0}}</li>
                             <li>保障方式：本息保障</li>
                              <li>起投金额：{{ loan.loanRequest.investRule.minAmount}}元</li>
                         </ul>
