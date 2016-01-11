@@ -183,6 +183,17 @@ module.exports = function (router) {
                     title: '新毅金融'
                 });
     });
+                   router.get('/recharge', function (req, res) {
+                res.render('newAccount/recharge', {
+                    title: '新毅金融'
+                });
+                       
+    });
+                       router.get('/withdraw', function (req, res) {
+                res.render('newAccount/withdraw', {
+                    title: '新毅金融'
+                });
+    });
                    router.get('/message', function (req, res) {
                 res.render('newAccount/message', {
                     title: '新毅金融'

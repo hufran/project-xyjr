@@ -9,8 +9,6 @@ var template = require('ccc/newAccount/partials/autobid/autobid.html');
 
 
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
-      console.log("88");
-        console.log(CC.user.autobidConfig.active);
 var ractive = new Ractive({
     el: ".autobid-ractive-container",
     template:template,
