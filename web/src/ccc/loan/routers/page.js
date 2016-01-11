@@ -27,7 +27,7 @@ router.get('/:id',
             }
         }
 
-        var repayments = req.uest(
+        var repayments =req.uest(
               '/api/v2/loan/' + req.params.id +
               '/repayments')
               .end()
@@ -35,35 +35,19 @@ router.get('/:id',
                   if (!!r.body.data) {
                        var repayments = [];
                       if (Array.isArray(r.body.data)) {
-                         
                           for (var i = 0; i < r.body.data.length; i++) {
                               repayments.push(r.body.data[i].repayment);
                           }
                           return repayments;
                       } else {
-                          return  repayments.push(r.body.data.repayments);//r.body.data.repayments;
+                          repayments.push(r.body.data.repayments); 
+                          return  repayments;//r.body.data.repayments;
                       }
                   } else {
                       return [];
                   }
               });
-
-//        var repayments = req.uest(
-//                '/api/v2/loan/' + req.params.id +
-//                '/repayments')
-//                .end()
-//                .then(function (r) {
-//
-//                    if (Array.isArray(r.body.data)) {
-//                        var repayments = [];
-//                        for (var i = 0; i < r.body.data.length; i++) {
-//                            repayments.push(r.body.data[i].repayment);
-//                        }
-//                        return repayments;
-//                    } else {
-//                        return r.body.data.repayments;
-//                    }
-//                })
+    
         if (user && user.idNumber) {
             delete user.idNumber;
         }
@@ -124,12 +108,7 @@ router.get('/:id',
    
 
         repayments.then(function (repayments) {
-            res.expose(repayments, 'repayments');
-            res.render('loan/detail', _.assign(res.locals, {
-                totalInterest: repayments.reduce(function (p, r) {
-                    return p + (r && r.amountInterest || 0);
-                }, 0)
-            }));
+            res.expose(repayments, 'repayments');        
         });
         res.render('index');
     });

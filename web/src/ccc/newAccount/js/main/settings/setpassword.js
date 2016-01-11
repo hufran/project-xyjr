@@ -11,12 +11,12 @@ resetPasswordRactive.on('setPassword', function (){
         alert('两次密码不一致');
         return;
     }
-    request('/account/resetPassword', {
+    request('/api/v2/resetPassword', {
         body: {
-            mobile: '',
+            mobile: CC.mobile,
             newPassword: resetPasswordRactive.get('password')
         }
     }).get('body').then(function () {
-
+        window.location.href = '/';
     })
 })
