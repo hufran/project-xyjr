@@ -120,6 +120,8 @@ setTimeout((function () {
             $('.time>span').html( days + '<i>' + newTimeleftTotal.hh + '</i>时<i>' + newTimeleftTotal.mm + '</i>分<i>' + newTimeleftTotal.ss + '</i>秒');
         }, 1000)
         //获取最后还款日期
+    console.log("^^^");
+    console.log(CC.repayments);
     if (CC.repayments instanceof Array && CC.repayments.length > 0) {
         CC.loan.lastRepaymentsDate = CC.repayments[0].dueDate;
         for (var i = 0; i < CC.repayments.length; i++) {
