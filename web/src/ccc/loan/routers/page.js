@@ -33,14 +33,15 @@ router.get('/:id',
               .end()
               .then(function (r) {
                   if (!!r.body.data) {
+                       var repayments = [];
                       if (Array.isArray(r.body.data)) {
-                          var repayments = [];
+                         
                           for (var i = 0; i < r.body.data.length; i++) {
                               repayments.push(r.body.data[i].repayment);
                           }
                           return repayments;
                       } else {
-                          return r.body.data.repayments;
+                          return  repayments.push(r.body.data.repayments);//r.body.data.repayments;
                       }
                   } else {
                       return [];

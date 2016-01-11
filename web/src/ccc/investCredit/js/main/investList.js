@@ -8,13 +8,6 @@ var InvestListService = require('ccc/investCredit/js/main/service/list')
 var utils = require('ccc/global/js/lib/utils');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js')
 
-//// 收益计算器
-//var Cal = require('ccc/global/js/modules/cccCalculator');
-//$('.benefit-calculator')
-//    .on('click', function () {
-//        Cal.create();
-//    });
-
 var params = {
     pageSize: 10,
     status: 'SCHEDULED',
@@ -124,6 +117,8 @@ function parseLoanList(list) {
         //list[i].methodFmt = methodFmt;
 		list[i].titleLength = replaceStr(list[i].title);
     }
+    console.log("######");
+    console.log(list);
     return list;
 }
 	
@@ -144,52 +139,6 @@ InvestListService.getCreditassignData(function (res) {
 //    initailEasyPieChart();
 //    ininconut();
     renderPager(res);
-//    investRactive.on("mouseover mouseleave", function (e) {
-//        var hovering = e.name === "mouseover";
-//        this.set(e.keypath + ".hovering", hovering);
-//    });
-//	
-//    $('.no-warry-ul .no-warry').click(function(){
-//        if (!$(this).hasClass("selected active")) {
-//            $(this).addClass("selected active").siblings().removeClass("selected active");
-//             var product = $(this).data('product');
-//            params.currentPage = 1;
-//            params.product=product;
-//            render(params);
-//        }
-//    });    
-//    
-//    $('.sRate li').click(function(){
-//        if (!$(this).hasClass("selectTitle")) {
-//            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-//            var minRate = $(this)
-//                .data('min-rate');
-//            var maxRate = $(this)
-//                .data('max-rate');
-//
-//            params.currentPage = 1;
-//            params.minRate = minRate;
-//            params.maxRate = maxRate;
-//            render(params);
-//        }
-//    });
-//    
-//    $('.sDuration li').click(function(){
-//        if (!$(this).hasClass("selectTitle")) {
-//            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
-//            var minDuration = $(this)
-//                .data('min-duration');
-//            var maxDuration = $(this)
-//                .data('max-duration');
-//
-//            params.currentPage = 1;
-//            params.minDuration = minDuration;
-//            params.maxDuration = maxDuration;
-//            render(params);
-//        }
-//    });
-
-
     function render(params) {
         InvestListService.getLoanListWithCondition(jsonToParams(params),
             function (
@@ -263,73 +212,3 @@ function createList(len, current) {
     }
     return arr;
 };
-
-//function ininconut () {
-//    $(".investBtn > .investbtn-time").each(function () {
-//        var t = $(this);
-//        if(t.data("status") === 'SCHEDULED'){
-//            var id = t.data("id");  
-//            var openTime = t.data("open");  
-//            var serverDate = t.data("serv");
-//            var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-//            var textDay = leftTime.day ? leftTime.day +'天' : '';
-//            var interval = setInterval((function () {
-//                serverDate += 1000;
-//                var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-//                var textDay = leftTime.day ? leftTime.day +'天' : '';
-//                if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
-//                    clearInterval(interval);
-//					t.prev().hide();
-//                    t.replaceWith('<a href="/loan/'+id+'" style="text-decoration:none"><div class="investbtn">立即投资</div></a>');
-//                }else {
-//                    t.html('<span class="text" style="color:#c6c6c6">倒计时<span style="color:#ff7200">'+ textDay + leftTime.hour +'</span>时<span style="color:#ff7200">'+ leftTime.min +'</span>分<span style="color:#ff7200">'+ leftTime.sec +'</span>秒</span>')
-//                }
-//            }), 1000);
-//        }
-//    });
-//};
-
-
-
-
-
-
-
-//
-//function initailEasyPieChart() {
-//    $(function () {
-//        var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
-//        $(".easy-pie-chart").each(function () {
-//            var percentage = $(this).data("percent");
-//             var status=$(this).data("status");
-//            // 100%进度条颜色显示为背景色
-//
-//            //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
-//            var color = (status==='OPENED') ? '#009ada' : "#f58220";
-//
-////            var color = percentage === 100 ? "#f58220" : '#f58220';
-//            $(this).easyPieChart({
-//                barColor: color,
-//                trackColor: '#ddd',
-//                scaleColor: false,
-//                lineCap: 'butt',
-//                lineWidth: 4,
-//                animate: oldie ? false : 1000,
-//                size: 45,
-//                onStep: function (from, to, percent) {
-//                    $(this.el).find('.percent').text(Math.round(percent));
-//                }
-//            });
-//            $(this).find("span.percentageNum").html(percentage+"%");
-//        });
-//
-//    });
-//};
-
-// banenr动效
-//$(".no-warry").mouseenter(function(){
-//    $(this).addClass("active");
-//}).mouseleave(function(){
-//    $(this).removeClass("active");
-//})
-
