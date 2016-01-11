@@ -119,18 +119,17 @@ app.use(async function (req, res, next) {
     // resultLink = _(resultLink)
     //     .map(function (one){
     //         console.log(one)
-    //         if ((one.redirectUrl === '/ctx1' || one.redirectUrl === '/ctx2') && !quickLogin) {
-    //             return false;
-    //         }
-    //         if(one.redirectUrl == '/ctx1'){
+    //         // if ((one.redirectUrl === '/ctx1' || one.redirectUrl === '/ctx2') && !quickLogin) {
+    //         //     return false;
+    //         // }
+    //         if(one.redirectUrl === '/ctx1'){
     //             one.redirectUrl = 'http://www.718vc.com/quickLogin/1/' + quickLogin;
     //         }
-    //         if(one.redirectUrl == '/ctx2'){
+    //         if(one.redirectUrl === '/ctx2'){
     //             one.redirectUrl = 'http://www.718vc.com/quickLogin/2/' + quickLogin;
     //         }
     //         return one;
     //     })
-    //     .filter(Boolean);
 
     res.locals.headerNavLinks = resultLink;
 
