@@ -185,6 +185,25 @@ module.exports = function(router) {
 
     });
     router.get('/withdraw', function(req, res) {
+        var enterprise = res.locals.user.enterprise;
+        Promise.join(req.uest(
+                '/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .get('body'),
+            function(paymentPasswordHasSet) {
+                res.locals.user.paymentPasswordHasSet =
+                    paymentPasswordHasSet;
+                var banks = _.filter(res.locals.user.bankCards,
+                    function(r) {
+                        return r.deleted === false;
+                    });
+
+                if (!banks.length && !enterprise) {
+                    res.redirect(
+                        '/newAccount/settings/bankCards');
+                } else {
+                    next();
+                }
+            });
         res.render('newAccount/withdraw', {
             title: '新毅金融'
         });
@@ -269,7 +288,6 @@ module.exports = function(router) {
 
     // 对提现进行限制,如果是企业用户,显示企业充值
     router.get('/recharge', function(req, res, next) {
-
         var enterprise = res.locals.user.enterprise;
         var banks = _.filter(res.locals.user.bankCards, function(r) {
             return r.deleted === false;
@@ -282,28 +300,6 @@ module.exports = function(router) {
     });
 
     // 对体现进行限制
-    router.get('/withdraw', function(req, res, next) {
-
-        var enterprise = res.locals.user.enterprise;
-        Promise.join(req.uest(
-                '/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .get('body'),
-            function(paymentPasswordHasSet) {
-                res.locals.user.paymentPasswordHasSet =
-                    paymentPasswordHasSet;
-                var banks = _.filter(res.locals.user.bankCards,
-                    function(r) {
-                        return r.deleted === false;
-                    });
-
-                if (!banks.length && !enterprise) {
-                    res.redirect(
-                        '/newAccount/settings/bankCards');
-                } else {
-                    next();
-                }
-            });
-    });
     router.get('/fund/:name', function(req, res, next) {
         res.expose(req.params.name, 'loanl.urlname');
         res.render('/newAccount/fund', {

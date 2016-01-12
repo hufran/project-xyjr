@@ -188,7 +188,6 @@ ractive.loadData = function (obj) {
     if (this.get('loading')) {
         return;
     }
-    console.log(obj.type);
     this.set('loading', true);
     size = obj.pageSize || size;
     if (obj.type === 'ALL') {

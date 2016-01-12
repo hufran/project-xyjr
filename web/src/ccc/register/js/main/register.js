@@ -60,7 +60,6 @@ request.get(encodeURI('/api/v2/cms/category/IMAGE/name/注册')).end().then(func
         }
     });
 });
-
 if (CC.registerRel) {
     registerRactive.set('reftf.data.value', CC.registerRel);
 }

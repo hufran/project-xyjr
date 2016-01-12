@@ -849,7 +849,7 @@ a {
 	text-align: center;
 	line-height: 30px;
 	color: #fff;
-	background-color: #2866c2;
+	    background-color: #5B9DFF;
 	border: none;
 	font-size: 14px;
 	display: inline-block;
@@ -862,7 +862,7 @@ a {
 
 
 .loanWrapper .opre .investbtn:hover {
-	background-color: #346ec4;
+	background-color: #2866C2;
     color:#fff;
 }
 
