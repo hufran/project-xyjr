@@ -25,7 +25,7 @@ do (_, angular) ->
                         return data
 
                     .then (response) =>
-                        @$window.location.reload()
+                        @$window.alert response.data
 
                     .catch (response) =>
                         @$window.alert _.get response, 'error[0].message', 'something happened...'
