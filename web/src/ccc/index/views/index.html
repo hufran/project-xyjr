@@ -245,8 +245,8 @@
             <ul>
                 {{#each latestPublication:num}}
                 {{#if num+1<6 }}
-                <li><a href="/cms/p/{{this.id}}" class="news" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
-                                {{title.substr(0,22)}}...
+                <li><a href="/cms/p/{{this.id}}" class="news" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 15}}
+                                {{title.substr(0,15)}}...
                             {{else}}
                                 {{title}}
                             {{/if}}</a>
@@ -263,7 +263,7 @@
             <h4>平台公告</h4>
             <ul style="margin-left: 20px;">
                 {{#each latestOne:num}}
-                {{#if num<6 }}
+                {{#if num<2 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
 					   
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
@@ -283,7 +283,7 @@
             <h4>到期公告</h4>
             <ul style="margin-left: 20px;">
                 {{#each expireOne:num}}
-                {{#if num<6 }}
+                {{#if num<2 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
 					   
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
