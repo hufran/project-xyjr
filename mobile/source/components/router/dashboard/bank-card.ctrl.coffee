@@ -29,4 +29,13 @@ do (_, angular) ->
 
                     .catch (response) =>
                         @$window.alert _.get response, 'error[0].message', 'something happened...'
+
+                    .finally =>
+                        @$location
+                            .path 'dashboard'
+                            .search t: _.now()
+
+                        @$scope.$on '$locationChangeStart', (event, new_path) =>
+                            event.preventDefault()
+                            @$window.location.href = new_path
                 )
