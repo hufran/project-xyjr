@@ -81,22 +81,6 @@ IndexService.getLoanSummary(function (list) {
 
 });
 
-initUserDynamic();
-setInterval(function(){
-    initUserDynamic();
-},5000);
-
-function initUserDynamic (){
-    IndexService.getHomeDynamicData(function(user){
-        var dynamicRactive = new Ractive({
-            el: "#userscrollMsg",
-            template: require('ccc/index/partials/userdynamic.html'),
-            data: {
-                regUser: user
-            }
-        });
-    });
-}
 //借款计划
 IndexService.getLoanSummary(function (list) {
 
