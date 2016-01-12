@@ -232,6 +232,9 @@ p.tips {
 .PINGAN {
   background-image: url(/ccc/global/img/banks/pingan.png);
 }
+.GDB{
+   background-image: url(/ccc/global/img/banks/GDB.png);
+}
 /*个人信息*/
 .account-userInfo-wrapper {
   position: relative;

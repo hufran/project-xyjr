@@ -6,7 +6,7 @@ var format = require('@ds/format')
 var requestId = '';
 // TODO 对id进行正则匹配
 router.get('/:id', 
-    function (req, res) {
+   async function (req, res) {
         console.log(req.params.id);
         var user = res.locals.user;
         var buffer = new Buffer(req.path);
@@ -27,7 +27,7 @@ router.get('/:id',
             }
         }
 
-        var repayments =req.uest(
+        var repayments =await req.uest(
               '/api/v2/loan/' + req.params.id +
               '/repayments')
               .end()
@@ -105,13 +105,13 @@ router.get('/:id',
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
-   
-
-        repayments.then(function (repayments) {
-            res.expose(repayments, 'repayments');        
-        });
+        res.expose(repayments, 'repayments');        
         res.render('index');
     });
+    
+router.get('/loanRequest/:requestId/contract/template',function(req,res,next){
+    res.redirect('/api/v2/loan/loanRequest/'+req.params.requestId+'/contract/template');next();
+});
 
 router.post('/selectOption', ccBody, function (req, res) {
     var amount = parseInt(req.body.amount,10);
