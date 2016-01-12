@@ -305,8 +305,8 @@ module.exports = function(router) {
             });
     });
     router.get('/fund/:name', function(req, res, next) {
+        res.expose(req.params.name, 'loanl.urlname');
         res.render('/newAccount/fund', {
-            urlname: req.params.name
         });
 
     });
