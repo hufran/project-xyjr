@@ -336,13 +336,15 @@ do (_, angular, moment, Array) ->
             login: (loginName, password) ->
 
                 @$http
-                    .post '/api/web/login', {loginName, password, source: 'mobile'}
+                    .post '/api/web/login', {loginName, password, source: 'mobile', channel: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
             logout: ->
+
+                @add_activity('USER_LOGOUT')
 
                 @$http.post '/logout', {}, {
                     headers: 'X-Requested-With': 'XMLHttpRequest'
@@ -421,7 +423,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/user/MYSELF/resetPaymentPassword',
-                        {password, smsCaptcha}
+                        {password, smsCaptcha, source: 'H5'}
 
                     .then (response) -> success: response.data is true
                     .catch TAKE_RESPONSE_ERROR
@@ -440,7 +442,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/lianlianpay/bindCard/MYSELF',
-                        _.compact {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha}
+                        _.compact {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -449,7 +451,7 @@ do (_, angular, moment, Array) ->
             payment_pool_unbind_card: (cardNo, paymentPassword) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/deleteCard/MYSELF', {cardNo, paymentPassword}
+                    .post '/api/v2/lianlianpay/deleteCard/MYSELF', {cardNo, paymentPassword, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -541,7 +543,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/web/register/submit',
-                        _.merge optional, {password, mobile, mobile_captcha}
+                        _.merge optional, {password, mobile, mobile_captcha, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -586,7 +588,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/user/MYSELF/change_password',
-                        _.compact {mobile, currentPassword, newPassword}
+                        _.compact {mobile, currentPassword, newPassword, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
@@ -616,6 +618,16 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/wx/signature', data, {skip_json_to_form: true}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
+            add_activity: (type, description) ->
+
+                @$http
+                    .post '/api/v2/user/MYSELF/add/activity',
+                        _.compact {type, description, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
