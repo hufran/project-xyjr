@@ -108,7 +108,8 @@ $('.ccc-tab')
 // datetime picker
 $('.date-from-picker,.date-to-picker').datetimepicker({
     language: 'zh-cn',
-    pickTime: false
+    pickTime: false,
+    format:'YYYY-MM-DD'
 }).find('input').click(function () {
     $(this).prev().trigger('click');
     return false;

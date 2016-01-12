@@ -31,7 +31,6 @@ baconflux.store('register', 'success').onValue(function (data) {
 });
 
 $("#getSms").on('click', function () {
-    console.log('sdfsdf');
 });
 
 //$("[name = checkbox]").attr("checked", true);
