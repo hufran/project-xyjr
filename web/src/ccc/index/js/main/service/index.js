@@ -18,8 +18,16 @@ exports.IndexService = {
     },
     getLatestScheduled: function (next) {
         this.getSummaryData(function (res) {
-            if (res.scheduled.length) {
-                var scheduled = res.scheduled;
+            var list = [];
+            for(var p in res){
+                for(var i=0; i<res[p].length; i++){
+                    if(res[p].status == 'SCHEDULED'){
+                        list.push(res[p][i]);
+                    }  
+                }
+            }
+            if (list) {
+                var scheduled = list;
                 if (scheduled.length) {
                     for (var i = 0; i < scheduled.length; i++) {
                         for (var j = i + 1; j < scheduled.length; j++) {
@@ -34,27 +42,6 @@ exports.IndexService = {
                     next(scheduled[0]);
                 }
             }
-        });
-    },
-    getHomeDynamicData: function(next){
-        request.get('/api/v2/users/getHomeDynamicData?userDynamicTypes=RIGISTER&userDynamicTypes=COUPON&userDynamicTypes=INVEST')
-        .end()
-        .get('body')
-        .then(function(data){
-            data = (Array.isArray(data) ? data : []);
-
-            for(var i=0; i<data.length; i++){
-                if(data[i].date == null || data[i].mobile == null){
-                    data.splice(i,1);
-                    i--;
-                }
-            }
-            
-            _.forEach(data,  function (userInfo){
-                userInfo.date = moment(userInfo.date).format('HH:mm:ss');
-                userInfo.mobile = userInfo.mobile.replace(/1(\d{2})\d{4}(\d{4})/g,"1$1****$2");
-            })
-            next(data);
         });
     },
 };

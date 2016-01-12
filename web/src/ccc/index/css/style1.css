@@ -262,11 +262,11 @@
 }
 .bannerLogin{
     color:#fff;
-/*    margin-left: 154px;*/
+    margin-left: 32px;
     font-size: 16px;
     line-height: 34px;
-    text-align: right;
-    margin-right: 80px;
+    text-align: left;
+/*    margin-right: 80px;*/
     margin-top: 20px;
 }
 
