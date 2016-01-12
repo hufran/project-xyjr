@@ -11,8 +11,6 @@ var CccOk = require('ccc/global/js/modules/cccOk');
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
-console.log("^^^");
-console.log(CC.user.paymentPasswordHasSet);
 var ractive = new Ractive({
 	el: '#ractive-container',
 	template: require('ccc/newAccount/partials/withdraw.html'),
