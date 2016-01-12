@@ -60,7 +60,7 @@ router.get('/', function (req, res, next) {
             return data;
         });
       res.locals.latestImgPublication = req.uest(
-        '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('图片新闻资讯'))
+        '/api/v2/cms/category/NEWS/name/' + encodeURIComponent('今日头条'))
         .end()
         .get('body')
         .then( function(data) {

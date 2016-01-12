@@ -10284,7 +10284,7 @@ body {
   height: inherit;
 }
 .s-header-menu-content .s-icon {
-/*  margin-top: 17px;*/
+  margin-top: 10px;
 }
 .s-header-menu-content .u-nolist-ul {
   float: right;
