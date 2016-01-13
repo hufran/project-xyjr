@@ -107,11 +107,13 @@ do (_, angular) ->
                     .then (data) =>
                         @mg_alert _.get data, 'data', 'wow...'
                             .result.finally =>
-                                @$location.path @next_path
+                                @$location
+                                    .path @next_path
+                                    .search t: _.now()
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
-                            @$window.location = new_path
+                            @$window.location.href = new_path
 
                     .catch (data) =>
                         @submit_sending = false

@@ -72,6 +72,8 @@ function formatItem(item) {
     };
         
     item.rate = item.rate / 100;
+    item.deductionRate = item.loanRequest.deductionRate / 100;
+    item.basicRate = item.rate - item.deductionRate;
     item.purpose = purposeMap[item.purpose];
     if (item.investPercent* 100 > 0 && item.investPercent * 100 < 1) {
         item.investPercent = 1;

@@ -13,10 +13,8 @@
 
 
 #main-container {
-/*	margin-top: 6px;*/
 	padding-bottom: 0;
-    background: #f8f8f8;
-/*      margin-top: -14px;*/
+       background: #f2f4f5;
 }
 
 .after-header .project-list,
@@ -97,7 +95,7 @@ hr {
 }
 
 .invest-pager-wrapper .invest-pager .current-page {
-	background: #009ada;
+	background: #5b9dff;
 	color: #ffffff;
 }
 
@@ -138,12 +136,12 @@ hr {
 	width: 95px;
 	padding-top: 4px;
 	padding-bottom: 4px;
-/*	text-align: center;*/
-	color: #6d6c6c;
+	color: #4f4e4e;
 	cursor: pointer;
 	display: block;
 	float: left;
 	margin-right: 20px;
+        font-size: 14px;
 }
 
 .s-content .s-nav-view .u-nolist-ul li:hover {
@@ -156,7 +154,7 @@ hr {
 }
 
 .s-content .s-nav-view .u-nolist-ul li.s__is-selected {
-	color: #ff7200;
+	    color: #f06f21;
 }
 
 .s-content p {
@@ -265,7 +263,7 @@ hr {
 }
 
 .loanItemWrapper:hover{
-	background-color: #F5F4F9;
+	background-color: #f2f4f5;
 }
 
 .loanItemWrapper .loanPartOne {
@@ -293,7 +291,7 @@ hr {
 
 .loanItemWrapper .loanPartOne .loantitle a {
 	text-decoration: none;
-    color: #6e6e6e;
+       color: #7e7e7e;
     font-size: 16px;
 }
 /*
@@ -328,12 +326,12 @@ hr {
 	width: 140px;
 	line-height: 72px;
 	text-align: center;
-	font-size: 28px;
-	color: #ff7200;
+	font-size: 50px;
+    color: #f06f2e;
 }
 
 .loanItemWrapper .loanRate i {
-	font-size: 14px;
+	font-size: 16px;
 }
 
 .loanItemWrapper .duration {
@@ -417,18 +415,20 @@ color: #666;
 	margin-top: 10px;
 }
 
+/*
 .loanItemWrapper .investBtn .investbtn-hover:focus,
 .loanItemWrapper .investBtn .investbtn-hover:hover {
-	background-color: #f58220;
+   background-color: #2866C2;
 	color: white;
 }
+*/
 
 .loanItemWrapper .investBtn .investbtn {
 	width: 102px;
 	height: 36px;
 	text-align: center;
 	line-height: 36px;
-	background-color: #2866c2;
+    background-color: #5B9DFF;
 	color: #fff;
 	border-radius: 2px;
 	display: inline-block;
@@ -437,7 +437,7 @@ color: #666;
 
 .loanItemWrapper .investBtn .investbtn:focus,
 .loanItemWrapper .investBtn .investbtn:hover {
-	background-color: #df6502;
+	background-color:#2866C2;
 }
 
 .easyPieChart {

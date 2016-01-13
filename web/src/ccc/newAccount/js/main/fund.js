@@ -26,16 +26,18 @@ typeLists[0] = [{
     text: '全部'
 }];
 
-var fundinvest =   'INVEST&type=WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT&type=FEE_ADVANCE_REPAY_INVEST';
+var fundinvest =   'WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT&type=FEE_ADVANCE_REPAY_INVEST';
 var fundloan = 'INVEST&type=WITHDRAW&type=DEPOSIT&type=INVEST_REPAY&type=FEE_WITHDRAW&type=TRANSFER&type=OFFLINE_DEPOSIT';
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
     if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
       ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'||k === 'OFFLINE_DEPOSIT'){
+        if(!(CC.loanl.urlname==='investDeal'&&k==='INVEST')){  
         typeLists[0].push({
         type: k,
         text: v
     });
+        }
     }
 });
 typeLists[0].push({
@@ -108,14 +110,14 @@ $('.ccc-tab')
 // datetime picker
 $('.date-from-picker,.date-to-picker').datetimepicker({
     language: 'zh-cn',
-    pickTime: false
+    pickTime: false,
+    format:'YYYY-MM-DD'
 }).find('input').click(function () {
     $(this).prev().trigger('click');
     return false;
 });
 
 $('.date-to-picker>input').change(function () {
-    console.log("success");
 });
 
 ractive.on('select-type', function (e) { // dropdown 选择类型的时候
@@ -188,7 +190,6 @@ ractive.loadData = function (obj) {
     if (this.get('loading')) {
         return;
     }
-    console.log(obj.type);
     this.set('loading', true);
     size = obj.pageSize || size;
     if (obj.type === 'ALL') {

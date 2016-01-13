@@ -184,10 +184,21 @@ module.exports = function(router) {
         });
 
     });
-    router.get('/withdraw', function(req, res) {
+    router.get('/withdraw', async function(req, res) {
+        var enterprise = res.locals.user.enterprise;
+        var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .get('body');
+        res.locals.user.paymentPasswordHasSet =
+            paymentPasswordHasSet;
+        var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
+        if (!banks.length && !enterprise) {
+            res.redirect(
+                '/newAccount/settings/bankCards');
+        }
         res.render('newAccount/withdraw', {
             title: '新毅金融'
         });
+
     });
     router.get('/message', function(req, res) {
         res.render('newAccount/message', {
@@ -248,9 +259,6 @@ module.exports = function(router) {
     // 修改密码
     router.post("/change_password", ccBody, function(req,
         res) {
-
-
-        console.log(req.body);
         req.uest.post("/api/v2/user/MYSELF/change_password")
             .type("form")
             .send(req.body)
@@ -269,7 +277,6 @@ module.exports = function(router) {
 
     // 对提现进行限制,如果是企业用户,显示企业充值
     router.get('/recharge', function(req, res, next) {
-
         var enterprise = res.locals.user.enterprise;
         var banks = _.filter(res.locals.user.bankCards, function(r) {
             return r.deleted === false;
@@ -282,32 +289,9 @@ module.exports = function(router) {
     });
 
     // 对体现进行限制
-    router.get('/withdraw', function(req, res, next) {
-
-        var enterprise = res.locals.user.enterprise;
-        Promise.join(req.uest(
-                '/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .get('body'),
-            function(paymentPasswordHasSet) {
-                res.locals.user.paymentPasswordHasSet =
-                    paymentPasswordHasSet;
-                var banks = _.filter(res.locals.user.bankCards,
-                    function(r) {
-                        return r.deleted === false;
-                    });
-
-                if (!banks.length && !enterprise) {
-                    res.redirect(
-                        '/newAccount/settings/bankCards');
-                } else {
-                    next();
-                }
-            });
-    });
     router.get('/fund/:name', function(req, res, next) {
         res.expose(req.params.name, 'loanl.urlname');
-        res.render('/newAccount/fund', {
-        });
+        res.render('/newAccount/fund', {});
 
     });
 }

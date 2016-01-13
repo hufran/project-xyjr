@@ -8,7 +8,7 @@
 .current-container {
 	width: 1100px;
 	margin: 0 auto;
-	/*  margin-top: 30px;*/
+	    background-color: #f2f4f5;
 }
 
 .after-header {
@@ -92,7 +92,7 @@
 
 .invest-data-wrapper .investContainer .investTitle .title {
 	font-size: 18px;
-	color: #4a4a4a;
+	color: #4f4e4e;;
 	float: left;
 	word-break: break-all;
 }
@@ -168,7 +168,7 @@
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemFirst .value {
-	color: #ff7200;
+	    color: #333;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond {
@@ -181,7 +181,7 @@
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond .value {
-	margin-left: 66px;
+	margin-left: 50px;
 	color: #fe8008;
 }
 
@@ -195,7 +195,7 @@
 	width: 100%;
 	height: 30px;
 	line-height: 30px;
-	color: #4a4a4a;
+	color: #4f4e4e;
 	font-size: 14px;
 }
 
@@ -209,7 +209,7 @@
 	height: 30px;
 	line-height: 30px;
 	margin-left: 34px;
-	color: #4a4a4a;
+	color: #333;
 	font-size: 30px;
 	font-weight: bold;
 	font-family: sans-serif, Hiragino Sans GB;
@@ -217,9 +217,9 @@
 
 .invest-data-wrapper .investContainer .content .inner .item .value span {
 	position: relative;
-	font-size: 18px;
+	font-size: 16px;
 	top: -1px;
-	color: #4a4a4a;
+/*	color: #f06f21;*/
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom {
@@ -237,8 +237,6 @@
 	overflow: hidden;
 	float: left;
 	position: relative;
-/*	height: 80px;*/
-	margin-top: 16px;
     margin-left: 180px;
 }
 
@@ -251,9 +249,9 @@
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom ul li {
-/*	float: left;*/
 	font-family: '微软雅黑';
-	color: #4a4a4a;
+	color: #7e7e7e;
+        line-height: 42px;
 }
 
 .invest-data-wrapper .investContainer .content .innerBottom .itemt {
@@ -689,7 +687,7 @@
 	height: 44px;
 	width: 288px;
 	color: #fff;
-	background-color: #009ada;
+	    background-color: #5B9DFF;
 	font-size: 18px;
 	line-height: 36px;
 	/*    padding: 1px;*/
@@ -705,7 +703,7 @@
 }
 
 .do-invest-wrapper .status .userBlock .input .invest-button:hover {
-	background-color: #0287be;
+	background-color: #2866C2;
 }
 
 .do-invest-wrapper .status .userBlock .left-money {
@@ -789,7 +787,7 @@
 .do-invest-wrapper .status .userBlock .loginBtn {
 	height: 44px;
 	color: #fff;
-	background-color: #0090e0;
+	    background-color: #5B9DFF;
 	font-size: 18px;
 	line-height: 44px;
 	padding: 0;
@@ -805,7 +803,7 @@
 }
 
 .do-invest-wrapper .status .userBlock .loginBtn:hover {
-	background-color: #0287be;
+	background-color: #2866C2;
 }
 
 .do-invest-wrapper .finishBlock {
@@ -1214,7 +1212,7 @@
 	display: block;
 	border-radius: 0;
 	margin-right: 0;
-	color: #4a4a4a;
+	color: #666;
 	width: 132px;
 	height: 52px;
 	line-height: 40px;
@@ -1233,9 +1231,9 @@
 	font-size: 18px;
 	border: none;
 	text-align: center;
-	color: #4a4a4a;
+	color: #333;
 	background: #fff;
-	border-top: 2px solid #0d7cd5;
+	    border-top: 2px solid #5b9dff;
 }
 
 .invest-detail-wrapper .tab-panels {
@@ -1271,6 +1269,7 @@
 	width: 670px;
 	min-height: 500px;
 	margin-left: 30px;
+        color: #7e7e7e;
 }
 
 .invest-detail-wrapper .tab-panels .loanInfoWrapper .loanInfo .eventCont {
@@ -1563,11 +1562,12 @@
 
 .detailTitle a {
 	font-size: 14px;
-	color: #4a4a4a;
+	color: #7e7e7e;
 }
 
 .detailTitle {
     line-height: 50px;
+    color: #7e7e7e;
 }
 
 .detailBanner {
@@ -1857,7 +1857,7 @@
         margin-top: 6px;
 }
 .protocol a{
-   	color: #0090e0; 
+   	    color: #5b9dff;
 }
 
 .time-left {
