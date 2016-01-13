@@ -184,12 +184,10 @@ module.exports = function(router) {
         });
 
     });
-    router.get('/withdraw', function(req, res) {
+    router.get('/withdraw', async function(req, res) {
         var enterprise = res.locals.user.enterprise;
-        Promise.join(req.uest(
-                '/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .get('body'),
-            function(paymentPasswordHasSet) {
+       var paymentPasswordHasSet= await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .get('body');
                 res.locals.user.paymentPasswordHasSet =
                     paymentPasswordHasSet;
                 var banks = _.filter(res.locals.user.bankCards,
@@ -200,13 +198,11 @@ module.exports = function(router) {
                 if (!banks.length && !enterprise) {
                     res.redirect(
                         '/newAccount/settings/bankCards');
-                } else {
-                    next();
                 }
-            });
-        res.render('newAccount/withdraw', {
-            title: '新毅金融'
-        });
+                 res.render('newAccount/withdraw', {
+                 title: '新毅金融'
+                });
+
     });
     router.get('/message', function(req, res) {
         res.render('newAccount/message', {
