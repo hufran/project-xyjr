@@ -32,9 +32,6 @@ var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
     if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
       ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'||k === 'OFFLINE_DEPOSIT'){
-        console.log('======');
-         console.log(CC.loanl.urlname);
-//        console.log(CC.loanl.urlname!='investDeal'&&k!='INVEST');
         if(!(CC.loanl.urlname==='investDeal'&&k==='INVEST')){  
         typeLists[0].push({
         type: k,
@@ -121,7 +118,6 @@ $('.date-from-picker,.date-to-picker').datetimepicker({
 });
 
 $('.date-to-picker>input').change(function () {
-    console.log("success");
 });
 
 ractive.on('select-type', function (e) { // dropdown 选择类型的时候
