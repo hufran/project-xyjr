@@ -150,6 +150,8 @@ function parseLoan(loan) {
     };
     loan.investPercent = Math.floor(loan.investPercent * 100);
     loan.rate = loan.rate / 100;
+    loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
+    loan.basicRate = loan.rate - loan.loanRequest.deductionRate;
     loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
     if (loan.timeSettled) {
         loan.borrowDueDate = formatBorrowDueDate(loan.timeSettled, loan

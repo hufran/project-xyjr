@@ -17,8 +17,6 @@ $('.u-nolist-ul-li').mouseover(function() {
 });
 
 if(CC.user){
-
-
     accountService.getUserInfo(function (res) {
         if(!res.user){
             res.user={};
