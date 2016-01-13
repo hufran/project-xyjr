@@ -23,7 +23,8 @@ var params = {
     maxDuration: 100,
     minRate: 0,
     maxRate: 100,
-    currentPage: 1
+    currentPage: 1,
+    product: CC.product
 };
 
 

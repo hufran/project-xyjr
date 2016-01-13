@@ -584,6 +584,7 @@ a {
     height: 235px;
 	float: left;
     margin-top: 20px;
+    margin-left: 35px;
 /*	border-right: 1px solid #ccc;	*/
 }
 
@@ -642,7 +643,7 @@ a {
 .s-split-view ul li a {
 	text-decoration: none;
 	display: inline-block;
-	width: 350px;
+/*	width: 350px;*/
 	/*  padding-right: 20px;*/
 	
 	overflow: hidden;
@@ -683,10 +684,8 @@ a {
 	background: #ffffff;
 	position: relative;
 }
-
 .loanWrapper:hover{
-/*	background-color: #F5F4F9;*/
-	
+	background-color: #FAFAFA;
 }
 .trangle{
     width: 120px; 
@@ -709,13 +708,15 @@ a {
     margin-right: 40px;
 }
 
-.loanWrapper .contentwraper{
-    float: left;
+.loanWrapper .contentwrapper{
     width: 790px;
-    margin-left: 210px;
     padding-left: 30px;
+    position: absolute;
+    left:210px;
 }
-
+.loanWrapper .contentwrapper:hover{
+    margin-left: 3px;
+}
 .loanWrapper table{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -725,14 +726,6 @@ a {
     height: 20px;
     font-size: 14px;
 }
-/*
-.loanWrapper table td:hover{
-    padding-left:3px;
-}
-.loanWrapper table td:hover .opre{
-    margin-left:-3px;
-} 
-*/
 .loanWrapper .event {
 /*	width: 223px;*/
 	color: #6e6e6e;
@@ -748,9 +741,6 @@ a {
 	line-height: 18px;
 	color: #4a4a4a;
 	font-family: '微软雅黑';
-}
-.loanWrapper .contentwrapper:hover{
-    margin-left: 3px;
 }
 
 .loanWrapper .year {
