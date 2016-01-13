@@ -1,5 +1,7 @@
 'use strict';
 var RegisterRactive = require('@ccc/register').RegisterRactive;
+console.log("^^^");
+console.log(CC.registerRel);
 var registerRactive = new RegisterRactive({
     el: '#register-container',
     template: require('ccc/register/partials/steps.html'),
