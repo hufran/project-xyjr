@@ -242,12 +242,15 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                             banks: _.ai 'api', (api) -> api.get_available_bank_list()
 
-                            _payment_bank_account: _.ai 'api, $location, $route, $q',
-                                (                        api, $location, $route, $q) ->
+                            _payment_account: _.ai 'api, $location, $route, $q',
+                                (                   api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then (user) ->
-                                            return user if user.has_payment_account
+                                            return user if user.has_payment_account   and
+                                                           user.has_payment_password
+
                                             return $q.reject(user)
+
                                         .catch (user) ->
                                             return unless user
 
@@ -256,6 +259,14 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/payment/bind-card'
+
+                                                when user.has_payment_password isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/password'
                                                         .search
                                                             back: 'dashboard'
                                                             next: 'dashboard/payment/bind-card'
