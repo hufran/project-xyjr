@@ -108,7 +108,7 @@
 	text-decoration: underline;
 	float: right;
 	line-height: 40px;
-    
+
 }
 
 .invest-data-wrapper .investContainer .loanbottom {
@@ -168,7 +168,7 @@
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemFirst .value {
-	    color: #333;
+	    color: #4f4e4e;
 }
 
 .invest-data-wrapper .investContainer .content .inner .item.itemSecond {
@@ -209,7 +209,7 @@
 	height: 30px;
 	line-height: 30px;
 	margin-left: 34px;
-	color: #333;
+	color: #4f4e4e;
 	font-size: 30px;
 	font-weight: bold;
 	font-family: sans-serif, Hiragino Sans GB;
@@ -224,7 +224,7 @@
 
 .invest-data-wrapper .investContainer .content .innerBottom {
 	/*  margin-top: 25px;*/
-	
+
 	overflow: hidden;
 }
 
@@ -432,13 +432,13 @@
 	float: right;
 	width: 350px;
 		height: 346px;
-	
+
 	background-color: #fff;
 	border-radius: 3px;
 	text-align: center;
 	border-left: solid #eee 1px;
 	/*background-image: url(/assets/img/box_bj.jpg);*/
-	
+
 /*	min-height: 350px;*/
 }
 
@@ -558,7 +558,7 @@
 	border-bottom: 1px solid #eee;
 	text-align: left;
 	/*	padding-left: 10px;*/
-	
+
 	overflow: hidden;
 	margin-left: 15px;
 	margin-right: 15px;
@@ -646,7 +646,7 @@
 	width: 220px;
 	height: 40px;
 	/* float: left; */
-	
+
 	background: #b5a16b;
 	color: #fff;
 	line-height: 30px;
@@ -691,7 +691,7 @@
 	font-size: 18px;
 	line-height: 36px;
 	/*    padding: 1px;*/
-	
+
 	border: none;
 /*	margin-top: 20px;*/
 	font-family: '微软雅黑';
@@ -721,7 +721,7 @@
 
 .do-invest-wrapper .status .userBlock .login-see {
     font-size: 14px;
-    color: #4a4a4a;
+    color: #7e7e7e;
     text-align: left;
        margin: 10px 0px 0px 30px;
 }
@@ -1010,7 +1010,7 @@
 
 .do-invest-wrapper .invest-button-wrapper {
 	/*	margin: 20px auto 0;*/
-	
+
 	text-align: center;
 }
 
@@ -1178,7 +1178,7 @@
 	min-height: 800px;
 	background: #fff;
 	/*	margin-top: 20px;*/
-	
+
 	width: 730px;
 	margin-left: 0;
 	float: left;
@@ -1188,7 +1188,7 @@
 
 .invest-detail-wrapper .nav-tabs {
 	/*	border: solid 1px #eee;*/
-	
+
 	border-left: none;
 	border-right: none;
 /*	margin: 0 5px 0 5px;*/
@@ -1439,10 +1439,10 @@
 .big-pic-wrapper .img-wrapper {
 	    margin: 60px auto 0;
 	    position: relative;
-	
+
 	position: fixed;
 	    max-width: 90%;
-	
+
 	width: 600px;
 	    height: 800px;
 
@@ -1673,14 +1673,14 @@
 	color: #009ada;
 	position: absolute;
 	/*	margin: 10px 0 0 40px;*/
-	
+
 	top: 20px;
 }
 
 .itemt .processFont {
 	position: absolute;
 	/*	margin: 25px 0 0 20px;*/
-	
+
 	color: #4a4a4a;
 	left: 50%;
 	margin-left: -28px;
@@ -1943,4 +1943,10 @@
 }
 .use-coupon span{
 margin-left: 10px;
+}
+.progress-striped .progress-bar-danger{
+	background: -webkit-linear-gradient(left, #3a6dfe , #41ccb4);
+	background: -o-linear-gradient(right, #3a6dfe , #41ccb4);
+	background: -moz-linear-gradient(right, #3a6dfe , #41ccb4); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to right, #3a6dfe , #41ccb4); 
 }

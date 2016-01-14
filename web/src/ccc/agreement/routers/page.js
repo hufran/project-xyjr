@@ -33,19 +33,19 @@ module.exports = function (router) {
 //            protocollxy:'DECLARATION',
 //            protocol:'DECLARATION',
         };
-        
+
         var tabMap = {
             regist: '新毅金融用户注册协议',
            // protocolltb: '乐投保用户投资服务协议',
 //            protocollxy: '乐享盈用户投资服务协议',
 //            protocol:'用户投资服务协议'
         };
-    
+
         res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param])).get('body').then(function (r) {
             var contents= r.length > 0 ? r : null;
             return contents;
         });
         res.render('mobile/' + param);
     });
-        
+
 };
