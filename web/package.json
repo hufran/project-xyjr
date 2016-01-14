@@ -9,7 +9,7 @@
     "@ccc/inspect": "^2.0.2",
     "@ccc/login": "^2.7.0",
     "@ccc/payment": "^1.7.0",
-    "@ccc/register": "^2.10.3",
+    "@ccc/register": "^2.10.6",
     "@ccc/template-watch": "^2.0.2",
     "@ccc/validation": "^1.0.5",
     "@ds/data": "^1.0.0",
