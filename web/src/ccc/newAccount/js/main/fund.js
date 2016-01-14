@@ -26,13 +26,13 @@ typeLists[0] = [{
     text: '全部'
 }];
 
-var fundinvest =   'WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT&type=FEE_ADVANCE_REPAY_INVEST';
+var fundinvest ='WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT&type=FEE_ADVANCE_REPAY_INVEST';
 var fundloan = 'INVEST&type=WITHDRAW&type=DEPOSIT&type=INVEST_REPAY&type=FEE_WITHDRAW&type=TRANSFER&type=OFFLINE_DEPOSIT';
 var FundRecordType = utils.i18n.FundRecordType;
 $.each(FundRecordType, function (k, v) {
     if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
       ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'||k === 'OFFLINE_DEPOSIT'){
-        if(!(CC.loanl.urlname==='investDeal'&&k==='INVEST')){  
+        if(!(CC.loanl.urlname==='investDeal'&&k==='INVEST')){
         typeLists[0].push({
         type: k,
         text: v
@@ -84,7 +84,7 @@ var ractive = new Ractive({
         user:CC.user,
         tabIndex: 0,
         selectedIndex: 0, // 类别的selectedIndex
-        
+
         typeLists: typeLists, // 切换类别
         list: [], // 数据,
         dateFrom: moment()
@@ -123,13 +123,13 @@ $('.date-to-picker>input').change(function () {
 ractive.on('select-type', function (e) { // dropdown 选择类型的时候
     var selectedIndex = +(e.keypath.substring(e.keypath.lastIndexOf('.') +
         1));
-    
+
    this.set('selectedIndex', selectedIndex);
 
     $(this.find('.type-checker'))
         .removeClass('open');
     var typea=typeLists[0][selectedIndex].type;
-    
+
     if (typea === 'ALL') {
         typea = fundinvest;
     }
@@ -276,7 +276,7 @@ loadInitData(0);
 // tab1,对ajax数据 set到ractive之前的操作
 function tab1Preset(item) {
     // 如果备注是数字，转换成第x期
-    
+
     if (item.description !== null && isNumber(item.description)) {
         item.description = '第' + item.description + '期';
     }
@@ -292,7 +292,7 @@ function tab1Preset(item) {
 
     // 交易类型
     typeLists[0].forEach(function (t) {
-        
+
         if (t.type === item.type) {
             if (t.operation) {
                 // 在typeList中规定了operation,需要两个都等
@@ -467,7 +467,7 @@ var typet;
 if (CC.loanl.urlname === 'investDeal') {
     typet = fundinvest;
 } else {
-    typet = fundloan;    
+    typet = fundloan;
 }
 $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
@@ -477,7 +477,7 @@ $('.sRate li').click(function(){
                 typea = fundloan;
             }
             typet=typea;
-            
+
           ractive.loadData({
                 type: typea,
                 preset: tab1Preset
