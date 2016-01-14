@@ -35,7 +35,27 @@
 	margin: 0 auto;
 	display: table;
 }
-
+#my-carousel .carousel-control-box{
+    width: 1100px;
+    height: 66px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -550px;
+    margin-top: -33px;
+}
+#my-carousel .carousel-control{
+    width: 0;
+}
+#my-carousel .carousel-control.left{
+    background-image: none;
+}
+#my-carousel .carousel-control.left img{
+    margin-left: -37px;
+}
+#my-carousel .carousel-control.right{
+    background-image: none;
+}
 .current-container {
 	width: 998px;
 	margin: 0 auto;

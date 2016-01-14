@@ -48,7 +48,7 @@ $('#loginForm').submit(function (e) {
     }
 
     var errorMaps = {
-        USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-872-7676解锁。',
+        USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-818-9696解锁。',
         FAILED: '手机号或密码错误'
     };
 

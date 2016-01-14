@@ -153,7 +153,10 @@
                         <span class="topAmount" on-click="maxNumber">最大可投金额</span>
                         <div class="clearfix"></div>
 <!--                        <p class="p-max">单笔最多可投：{{loan.rule.max}}元</p>-->
-            <p class="totalInterest">预估总收益<span> {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}</span>元</p>
+            <p class="totalInterest">预估总收益<span>
+<!--                   {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}-->
+                  {{(loan.durationdays/365 * (inum || 0) *loan.rate/100).toFixed(2)}}
+                   </span>元</p>
                     <div class="selectOption">
                         <select name="placementId" id="couponSelection" value="{{coupon}}">                       
                             {{#if selectOption}}
@@ -231,7 +234,7 @@
                 <span class="topAmount" on-click="">最大可投金额</span>
             </div>
 <!--			<p class="one-time-max">单笔最多可投：{{loan.rule.max}}元</p>-->
-            <p class="totalInterest">预估总收益<span> {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}}</span>元</p>
+            <p class="totalInterest">预估总收益<span> {{(loan.durationdays/365 * (inum || 0) *loan.rate/100).toFixed(2)}}</span>元</p>
 <!--
             <div class="use-coupon">
              <input type=checkbox /><span>使用红包</span>

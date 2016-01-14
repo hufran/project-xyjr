@@ -12,7 +12,6 @@ var banks = _.filter(NETBANKS, function (r) {
 var corBanks = _.filter(NETBANKS, function (r) {
     return r.isSupportted === true;
 });
-
 var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/recharge/recharge.html'),
