@@ -263,7 +263,7 @@ hr {
 }
 
 .loanItemWrapper:hover{
-	background-color: #f2f4f5;
+	background-color: #FAFAFA;
 }
 
 .loanItemWrapper .loanPartOne {
@@ -326,7 +326,7 @@ hr {
 	width: 140px;
 	line-height: 72px;
 	text-align: center;
-	font-size: 50px;
+	font-size: 35px;
     color: #f06f2e;
 }
 
