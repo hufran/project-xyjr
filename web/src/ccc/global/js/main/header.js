@@ -16,6 +16,12 @@ $('.u-nolist-ul-li').mouseover(function() {
     $(this).find('.u-seclist-ul').css('display', 'none');
 });
 
+$("#mobileCustomer").hover(function(){
+    $('.float-img').css('display','block');
+},function(){
+    $('.float-img').css('display','none');
+});
+
 if(CC.user){
     accountService.getUserInfo(function (res) {
         if(!res.user){
