@@ -231,7 +231,8 @@
         userId: '{{loans.userId}}',
         LuserId:'{{loans.loanRequest.userId}}',
         productKey:'{{loans.loanRequest.productKey}}',
-//        timeFinished:{{loans.timeFinished ? loans.timeFinished:''}}
+        rate: {{loans.rate}},
+        durationdays: {{loans.duration.totalDays}}
 
     };
     if('{{loans.timeFinished}}'){
