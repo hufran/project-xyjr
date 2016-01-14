@@ -414,18 +414,55 @@
 .side-bar{
     width: 65px;
     float: right;
- 
 }
 .weixin-side{
     float: left;
     margin-top: 180px;
 }
 .side-bar-box{
-      position: fixed;
+    position: fixed;
     right:0;
     top:45%; 
     width:40px;
 }
+.side-bar-box .wap{
+    width: 340px;
+    height: 340px;
+    border: 1px solid #ccc;
+    margin-left: -500px;
+    background: #fff;
+    border-radius: 5px;
+}
+.wap .wap-close{
+    float: right;
+    margin-top:4px;
+    margin-right: 10px;
+    color:#ccc;
+    font-size:16px;
+    cursor: pointer;
+}
+.side-bar-box .topwap{
+    height: 30px;
+    line-height: 30px;
+    margin: 10px 10px 5px 10px;
+    font-size: 16px;
+    color:#4f4e4e;
+}
+.side-bar-box .bottomwap{
+    margin: 5px 10px 10px 10px;
+    font-size: 12px;
+    color:#7e7e7e;
+    word-break:break-all;
+}
+.side-bar-box .wxwap{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.side-bar-box .wxwap img{
+    margin: 20px 0;
+    margin-left: 70px;
+}
+
 .side-bar img{
     margin-bottom: 2px;
 }

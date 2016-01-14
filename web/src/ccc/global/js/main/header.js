@@ -21,6 +21,14 @@ $("#mobileCustomer").hover(function(){
 },function(){
     $('.float-img').css('display','none');
 });
+$(".side-bar-mobile").hover(function(){
+    $('.wap').css('display','block');
+},function(){
+    $('.wap').css('display','none');
+});
+$(".wap-close").click(function(){
+    $('.wap').css('display','none');
+});
 
 if(CC.user){
     accountService.getUserInfo(function (res) {
