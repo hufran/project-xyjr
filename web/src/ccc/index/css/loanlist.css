@@ -83,7 +83,9 @@
     margin-right: 64px;
 }
 #yellow-progress .progress-bar{
-    background: #489be1;
+    background: #3a6dfe;
+    background: linear-gradient(to right, #3a6dfe , #41ccb4);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#3a6dfe, endColorstr=#41ccb4)";
     border-radius: 2px;
 }
 #yellow-progress{

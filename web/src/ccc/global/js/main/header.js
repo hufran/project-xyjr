@@ -16,6 +16,20 @@ $('.u-nolist-ul-li').mouseover(function() {
     $(this).find('.u-seclist-ul').css('display', 'none');
 });
 
+$("#mobileCustomer").hover(function(){
+    $('.float-img').css('display','block');
+},function(){
+    $('.float-img').css('display','none');
+});
+$(".side-bar-mobile").hover(function(){
+    $('.wap').css('display','block');
+},function(){
+    $('.wap').css('display','none');
+});
+$(".wap-close").click(function(){
+    $('.wap').css('display','none');
+});
+
 if(CC.user){
     accountService.getUserInfo(function (res) {
         if(!res.user){
