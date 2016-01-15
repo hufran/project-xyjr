@@ -37,7 +37,7 @@ function init(status) {
             var self = this;
             this.filterDataByStatue(status, function (o) {
                 self.setData(self.parseData(o));
-            
+
             });
             if (self.bindTime == 0) {
                 self.initClick();
@@ -45,12 +45,12 @@ function init(status) {
             }
         },
         setData: function (o) {
-			
+
             this.set('loading', false);
             this.set('total', o.totalSize);
             this.set('pageOne', o.results);
             this.set('list', o.results);
-           
+
             this.renderPager();
         },
         filterDataByStatue: function (status, callback) {
@@ -79,7 +79,7 @@ function init(status) {
                     console.info('请求出现错误，' + o.statusText);
                 });
             } else {
-				
+
                 $.get(temp, function (o) {
                     self.setData(self.parseData(o));
                 }).error(function (o) {

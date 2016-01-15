@@ -69,7 +69,7 @@ if (tab.ractive === null) {
 		},
 		parseData: function(res) {
 			var datas = res.results;
-			//console.log('parse-data', datas);
+			// console.log('parse-data', datas);
 			for (var i=0; i<datas.length; i++) {
 				var o = datas[i];
 				switch(type) {
@@ -77,8 +77,8 @@ if (tab.ractive === null) {
 						datas[i].Fduration = utils.format.duration(o.duration);
 						datas[i].Frate = utils.format.percent(o.rate/100, 2);
 						datas[i].Famount = utils.format.amount(o.amount, 2);
-						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];					                  
-                        datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
+						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
+            datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 					case 'INHAND':
 						datas[i].Fduration = utils.format.duration(o.duration);
@@ -96,12 +96,12 @@ if (tab.ractive === null) {
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 				}
-                
-                //前台不展示逾期,逾期标的展示给投资者时状态为已结算   
+
+                //前台不展示逾期,逾期标的展示给投资者时状态为已结算
                 if( o.status === 'OVERDUE' ){
                     datas[i].Fstatus = utils.i18n.InvestStatus.SETTLED;
                 }
-				
+
 				if (datas[i].hasContract) {
 					var repay = this.getRepay(o.repayments);
 					datas[i].Frepayed = utils.format.amount(repay.repayed, 2);
@@ -125,7 +125,7 @@ if (tab.ractive === null) {
 					}
 				},
 				onSelect: function(p, o) {
-                    
+
                     $('.repay-btn').each(function () {
                         $(this).parents("tr").next().hide();
                     });
@@ -143,7 +143,7 @@ if (tab.ractive === null) {
 		oncomplete: function() {
 			// init plan
 			var plan = new Plan();
-			
+
 			this.on('show-repayments', function(e) {
 				var $this = $(e.node);
 				var $tr = $this.parents("tr");
