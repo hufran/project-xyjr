@@ -1380,6 +1380,7 @@
     color: #7e7e7e;
     text-align: left;
     line-height: 55px;
+    white-space: nowrap;
 }
 #userBlock .totalInterest span {
     color: #f0bf2e;
