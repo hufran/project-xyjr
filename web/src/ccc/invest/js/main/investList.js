@@ -340,21 +340,13 @@ function initailEasyPieChart() {
 //}).mouseleave(function(){
 //    $(this).removeClass("active");
 //})
-$('.u-seclist-ul li:nth-child(1)').click(function(){
-   $('.no-warry-ul .no-warry:nth-child(1)').addClass("active");
-});
-$('.u-seclist-ul li:nth-child(2)').click(function(){
-   $('.no-warry-ul .no-warry:nth-child(2)').addClass("active");
-});
-$('.u-seclist-ul li:nth-child(3)').click(function(){
-   $('.no-warry-ul .no-warry:nth-child(3)').addClass("active");
-});
+
 
 var path=window.location.pathname;
 if(path=='/invest/HDZX'){
   $('.no-warry-ul .no-warry:nth-child(2)').addClass("active");
 };
-if(path=='/invest/XSZY'){
+if(path=='/invest/XSZX'){
   $('.no-warry-ul .no-warry:nth-child(1)').addClass("active");
 };
 if(path=='/invest/XNB'){
