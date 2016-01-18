@@ -228,12 +228,6 @@ $("#my-carousel").hover(function(){
     $('.carousel-control-box').css('display','none');
 });
 
-$("#mobileCustomer").hover(function(){
-    $('.float-img').css('display','block');
-},function(){
-    $('.float-img').css('display','none');
-});
-
 window.onscroll=function(){
     var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop,headerEle;
     if(loginElement){
