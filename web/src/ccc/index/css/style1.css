@@ -362,6 +362,17 @@
 .broadcast .broXY{
     float: left;
 }
+.broadcast .broXY img {
+    float:left;
+    margin-top: 22px;
+}
+.broadcast .broXY em {
+    float:left;
+}
+.broUser img {
+    float:left;
+    margin-top: 22px;
+}
 /*
 #scrollMsg {
     float:left;
