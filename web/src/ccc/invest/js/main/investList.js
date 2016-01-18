@@ -70,7 +70,7 @@ function formatItem(item) {
         "CORPORATION" : "企业融资",
         "OTHER" : "其它借款"
     };
-        
+
     item.rate = item.rate / 100;
     item.deductionRate = item.loanRequest.deductionRate / 100;
     item.basicRate = item.rate - item.deductionRate;
@@ -82,23 +82,23 @@ function formatItem(item) {
     };
     if (item.duration.days > 0) {
         if (typeof item.duration.totalDays === "undefined") {
-            item.fduration = item.duration.days;                            
+            item.fduration = item.duration.days;
         } else {
-            item.fduration = item.duration.totalDays;                            
+            item.fduration = item.duration.totalDays;
         }
         item.fdurunit = "天";
-    } else {                        
+    } else {
         item.fduration = item.duration.totalMonths;
         item.fdurunit = "个月";
     }
-    
+
     if (item.amount >= 10000) {
         item.amountUnit = '万';
         item.amount = (item.amount / 10000);
     } else {
         item.amountUnit = '元';
     }
-    
+
     if (item.status == "OPENED") {
         item.leftTime = formateLeftTime(item.timeLeft);
         item.open = true;
@@ -116,7 +116,7 @@ function formatItem(item) {
         } else {
             item.fProjectType = '';
             item.fProjectCode = item.providerProjectCode;
-        }       
+        }
     }
     return item;
 }
@@ -131,11 +131,11 @@ function parseLoanList(list) {
     }
     return list;
 }
-	
+
 function replaceStr(str){
 	return str.replace(/[^\x00-xff]/g,'xx').length;
 }
-	
+
 InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) {
     var investRactive = new Ractive({
         el: ".invest-list-wrapper",
@@ -153,7 +153,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         var hovering = e.name === "mouseover";
         this.set(e.keypath + ".hovering", hovering);
     });
-	
+
     $('.no-warry-ul .no-warry').click(function(){
         if (!$(this).hasClass("selected active")) {
             $(this).addClass("selected active").siblings().removeClass("selected active");
@@ -162,8 +162,8 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             params.product=product;
             render(params);
         }
-    });    
-    
+    });
+
     $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
@@ -178,7 +178,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
             render(params);
         }
     });
-    
+
     $('.sDuration li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
@@ -273,8 +273,8 @@ function ininconut () {
     $(".investBtn > .investbtn-time").each(function () {
         var t = $(this);
         if(t.data("status") === 'SCHEDULED'){
-            var id = t.data("id");  
-            var openTime = t.data("open");  
+            var id = t.data("id");
+            var openTime = t.data("open");
             var serverDate = t.data("serv");
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
             var textDay = leftTime.day ? leftTime.day +'天' : '';
@@ -341,3 +341,14 @@ function initailEasyPieChart() {
 //    $(this).removeClass("active");
 //})
 
+
+var path=window.location.pathname;
+if(path=='/invest/HDZX'){
+  $('.no-warry-ul .no-warry:nth-child(2)').addClass("active");
+};
+if(path=='/invest/XSZX'){
+  $('.no-warry-ul .no-warry:nth-child(1)').addClass("active");
+};
+if(path=='/invest/XNB'){
+  $('.no-warry-ul .no-warry:nth-child(3)').addClass("active");
+};

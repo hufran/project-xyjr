@@ -429,8 +429,6 @@ setTimeout((function () {
             }), 1000);
         }
     }
-
-
     function parsedata(o) {
         var type = {
             'CASH': '现金券',
@@ -438,7 +436,7 @@ setTimeout((function () {
             'PRINCIPAL': '增值券',
             'REBATE': '返现券'
         };
-        for (var i = 0; i < o.length; i++) {
+        for (var i = o.length-1; i>=0; i--) {
             var canuse = o[i].disabled;
             o[i] = o[i].placement;
             if (o[i].couponPackage.type === 'INTEREST') {
