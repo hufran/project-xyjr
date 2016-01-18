@@ -436,14 +436,13 @@
     font-size: 14px;
 }
 .strengthProtect img{
-   float: left;
+    float: left;
+    transition: .4s all ease;
+    animation-play-state: paused;
 }
 .strengthProtect img:hover{
     float: left;
-    transform: scale(1.2);
-    transition: all 1s ease 0s;
-    -webkit-transform: scale(1.2);
-    -webkit-transform: all 1s ease 0s;
+    margin-top: -10px;
 }
 .strengthProtect-content{
    float: left;
