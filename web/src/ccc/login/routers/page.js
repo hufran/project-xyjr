@@ -21,11 +21,12 @@ module.exports = function (router) {
     });
     router.get('/quickLogin/:mobile/:currentTime/:md5key', function *(req, res) {
 
-        var r = yield req.uest('/api/v2/quickLogin/'+req.params.mobile+'/'+req.params.currentTime+'/'+req.params.md5key)
-        if(!r.body.success){
-            res.redirect('/');
-            return;
-        }
+        var r = yield req.uest('/api/v2/quickLogin/'+req.params.mobile+'/'+req.params.currentTime+'/'+req.params.md5key);
+        console.log('===----=-=-=-=-=--',r.body)
+        // if(!r.body.success){
+        //     res.redirect('/');
+        //     return;
+        // }
         if(!r.body.data.isNewUser){
             var signInUser = Promise.coroutine(function *(user) {
                 var obj = {

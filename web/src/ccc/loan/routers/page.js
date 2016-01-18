@@ -122,7 +122,6 @@ router.get('/:id',
             replay: repayments
         });
    
-
         repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
             res.render('loan/detail', _.assign(res.locals, {

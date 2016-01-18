@@ -16,7 +16,8 @@ resetPasswordRactive.on('setPassword', function (){
             mobile: CC.mobile,
             newPassword: resetPasswordRactive.get('password')
         }
-    }).get('body').then(function () {
+    }).get('body').then(function (r) {
+
         window.location.href = '/';
     })
 })

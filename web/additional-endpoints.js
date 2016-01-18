@@ -87,7 +87,7 @@ module.exports = function (router, auth) {
     
     //自动投标
     router.post('/api/v2/:userId/save_autobid_config',auth.user());
-    router.post('/api/v2/resetPassword',auth.user());
+    router.post('/api/v2/resetPassword',auth.pass());
     router.get('/api/v2/:userId/autobid_config',auth.user());
     router.get('/api/v2/getMd5keyData/:userId',auth.user());
     router.get('/api/v2/quickLogin/a/getUser/:mobile/:currentTime/:md5key',auth.pass());
