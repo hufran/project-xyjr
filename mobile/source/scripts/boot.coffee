@@ -1,6 +1,8 @@
 
 do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
+    eByID = document.getElementById.bind document
+
     angular.module APP_NAME, modules
 
         .config _.ai '$routeProvider, $locationProvider',
@@ -666,9 +668,14 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
         .constant 'baseURI', document.baseURI
 
-        .constant 'build_timestamp', do (src = document.getElementById('main-script')?.src) ->
+        .constant 'build_timestamp', do (src = eByID('main-script')?.src) ->
             1000 * (src?.match(/t=([^&]+)/)?[1] or '0')
 
+        .constant 'api_server', do (server = eByID('main-script').getAttribute('data-api-server')) ->
+            if server.match /^{.*}$/ then '' else server
 
-    angular.element(document).ready ->
+    on_ready = ->
         angular.bootstrap document, [APP_NAME], strictDi: true
+
+    angular.element(document).ready on_ready
+    document.addEventListener 'deviceready', on_ready

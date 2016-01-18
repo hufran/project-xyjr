@@ -663,9 +663,12 @@ do (_, angular, moment, Array) ->
 
         $httpProvider.interceptors.push [].concat [],
 
-            _.ai '$httpParamSerializerJQLike', ($httpParamSerializerJQLike) ->
+            _.ai '$httpParamSerializerJQLike, api_server', ($httpParamSerializerJQLike, api_server) ->
 
                 request: (config) ->
+
+                    if api_server and config.url.match /// ^/ ( api | wx ) ///
+                        config.url = api_server + config.url
 
                     {skip_json_to_form, method, headers, data} = config
 
