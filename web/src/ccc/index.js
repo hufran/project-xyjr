@@ -202,14 +202,16 @@ app.use(require('@ccc/login/middlewares').setBackUrl); // 全局模板变量添�
 app.use('/__', ds.loader('hide'));
 app.use(ds.loader('page'));
 app.all('/logout', async function (req, res) {
-    
-    var user = await (req.uest.get('/api/v2/whoamiplz').get('body') || {});
-    var userId = user.user.id;
-    var query = {
-        type: 'USER_LOGOUT',
-        source: 'PC'
+    if (req.cookies.ccat){
+        var user = await (req.uest.get('/api/v2/whoamiplz').get('body') || {});
+        var userId = user.user.id;
+        var query = {
+            type: 'USER_LOGOUT',
+            source: 'PC'
+        }
+        req.uest.post('api/v2/user/'+userId+'/add/activity').send(query);
     }
-    req.uest.post('api/v2/user/'+userId+'/add/activity').send(query);
+
 
     res.clearCookie('ccat');
     if (req.xhr) {
