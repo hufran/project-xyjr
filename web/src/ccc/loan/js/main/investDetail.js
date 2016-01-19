@@ -165,7 +165,7 @@ setTimeout((function () {
                       break;
                   }
               }
-              this.set('is', investNum);
+              this.set('isnew', investNum);
 
           });
         }
