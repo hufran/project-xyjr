@@ -88,7 +88,7 @@ var ractive = new Ractive({
 
         $(".bankwrap").delegate('.bankItem', 'click', function () {
            
-            var classMap = ['ICBC','CCB','ABC','CMB','BIC','BOC','CEB','CMBC','CITIC','CGB','SPDB','PAB','HXB','NB','DY','SH','BJ','NJ','PSBC'];
+            var classMap = ['ICBC','CCB','ABC','CMBCHINA','BOC','CEB','CMBC','ECITIC','GDB','PINGAN','HXB','POST','BCCB'];
             
             var code = $(this).data('cc');
             if ($.inArray(code,classMap) == -1) {
