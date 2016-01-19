@@ -10,7 +10,7 @@ do (_, angular) ->
 
                 @next_path = @$routeParams.next or 'dashboard'
 
-                @captcha = {timer: null, count: 55, count_default: 55, has_sent: false, buffering: false}
+                @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
                 @submit_sending = false
 
 
