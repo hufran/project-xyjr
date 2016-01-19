@@ -8,7 +8,7 @@
 
 <div class="">
     <div class="current-container">
-        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">理财产品列表 </a><a href=""> >{{loans.loanRequest.productKey}} 列表</a> > {{loans.title}}产品详情</p>
+        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">理财产品列表 </a>> {{loans.title}}产品详情</p>
 		<div class="box-large">
         <div class="invest-data-wrapper">
             <div class="investContainer">
@@ -29,12 +29,12 @@
                     <div class="inner">
                         <div class="item itemSecond">
                               <div class="name"><img src="/ccc/loan/img/detailRate.png" />预期年化收益率:</div>
-                            <div class="value">{{loans.rate}}<span style="color:#ff7200;">%</span>
+                            <div class="value"><span style="font-size:25px;">{{loans.basicRate}}</span><span>%+</span><span style="font-size:35px;">{{loans.loanRequest.deductionRate}}</span><span>%</span>
                             </div>
                         </div>
                         <div class="item itemThird" style="border-right:none">
                                <div class="name"><img src="/ccc/loan/img/limit.png" />投资期限:</div>
-                            <div class="value">{{loans.fduration}}<span>{{loans.fdurunit}}</span>
+                            <div class="value">{{loans.fduration}}<span style="color:#4f4e4e">{{loans.fdurunit}}</span>
                             </div>
                         </div>
                         <div class="item itemFirst">
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-                            </div> 
+                            </div>
 -->
 				       <ul class="loanMethod interestMethod">
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
@@ -66,7 +66,7 @@
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
                             <li>还款方式：{{loans.method}}</li>
                             <li>投资限额：{{loans.loanRequest.investRule.maxAmount}}元</li>
-                        </ul> 
+                        </ul>
                     </div>
                                           <div class="progress-wp">
                                 <div class="progress-num">
@@ -80,7 +80,7 @@
                             </div>
                     												<div class="protocol">
 								<a target="_blank" href="/loan/loanRequest/{{loans.requestId}}/contract/template">协议范本</a>
-							</div>	
+							</div>
                 </div>
                 <div class="h20"></div>
             </div>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </div>
-          
+
             <div class="tab-panel">
                 {{#if user}}
                 <div class="invest-record"></div>
@@ -147,11 +147,11 @@
                 </div>
                 {{/if}}
             </div>
-        
+
             <div class="tab-panel">
                 {{#if user}}
                 <table class="table repay-plan repay-record">
-                   
+
                     <thead>
                         <th style="border-top-left-radius: 3px;">期次</th>
                         <th>预期还款时间</th>
@@ -231,7 +231,8 @@
         userId: '{{loans.userId}}',
         LuserId:'{{loans.loanRequest.userId}}',
         productKey:'{{loans.loanRequest.productKey}}',
-//        timeFinished:{{loans.timeFinished ? loans.timeFinished:''}}    
+        rate: {{loans.rate}},
+        durationdays: {{loans.duration.totalDays}}
 
     };
     if('{{loans.timeFinished}}'){

@@ -78,7 +78,7 @@ function initailEasyPieChart() {
 			var width = $(this).find("span.percentageNum").width();
 			$(this).find("span.percentageNum").css({'left':'50%','margin-left':-width/2});
 //			console.log(width);
-			
+
         });
 
     });
@@ -127,7 +127,7 @@ setTimeout((function () {
             }
         };
     }
-    
+
 
     var investRactive = new Ractive({
         el: ".do-invest-wrapper",
@@ -136,7 +136,7 @@ setTimeout((function () {
             name: '',
             user: CC.user,
             loan: CC.loan,
-            inputNum: CC.loan.rule.min,
+            // inputNum: CC.loan.rule.min,
             rate: utils.format.percent(CC.loan.investPercent *
                 100, 2),
             agreement: CC.user ? (CC.user.agreement ?
@@ -153,8 +153,6 @@ setTimeout((function () {
             timeSettled:nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
-//                            console.log(CC.loan.rule.balance);
-//            console.log(CC.loan.rule.min);
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
@@ -165,7 +163,7 @@ setTimeout((function () {
             var timeunix=Math.round((date.getTime()+1000*60*60*24)/1000);
             var time=moment(timeunix*1000).format('YYYY-MM-DD');
             return time;
-        }      
+        }
     var serverDate = CC.serverDate;
     var openTime = CC.loan.timeOpen;
     serverDate += 1000;
@@ -241,7 +239,7 @@ setTimeout((function () {
             lmount=lmount*10000;
         }
        var minNum=Math.min(CC.user.availableAmount,CC.loan.rule.max,lmount);
-     
+
         investRactive.set('inputNum', Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
         showSelect(Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
     });
@@ -264,12 +262,12 @@ setTimeout((function () {
             showErrors('该标为您本人借款，无法投标 ');
             return false;
         }
-        
+
         if (isNaN(num)) {
             showErrors('输入有误，请重新输入 ! ');
             return false;
         }
-        
+
         if (CC.loan.rule.balance < CC.loan.rule.min) {
             if(this.get('inputNum') != CC.loan.rule.balance) {
                  this.set('inputNum', CC.loan.rule.balance);
@@ -284,7 +282,7 @@ setTimeout((function () {
                     .min + '元 !');
                 return false;
             }
-            
+
             if (((num - CC.loan.rule.min) % CC.loan.rule.step) !==
                 0) {
                 showErrors('不符合投资规则!最少为' + CC.loan.rule.min + '元，且投资增量为' + CC.loan.rule.step + "元");
@@ -302,7 +300,7 @@ setTimeout((function () {
                 '元!');
             return false;
         }
-        
+
         if (num > CC.user.availableAmount) {
             showErrors('账户余额不足，请先充值 !');
             return false;
@@ -332,15 +330,15 @@ setTimeout((function () {
                         }
                         }
                     }
-					
-					
+
+
 					if (document.getElementById('agree').checked == true){
 						$('.agree-error').css('visibility','hidden');
                     	Confirm.create({
                         msg: '您本次投资的金额为' + num + '元，'+ couponText +'是否确认投资？',
                         okText: '确定',
                         cancelText: '取消',
-  
+
                         ok: function () {
                             $.post('/lianlianpay/tender', {
                                 amount : num,
@@ -381,18 +379,18 @@ setTimeout((function () {
                             $('.dialog').hide();
                         },
                         cancel: function () {
-                           $('.dialog').hide();                    
+                           $('.dialog').hide();
 						}
                     });
 					}else{
 						$('.agree-error').css('visibility','visible');
-						$('.agree-error').html('请先同意奇乐融投资协议');
+						$('.agree-error').html('请先同意新毅用户投资服务协议');
 					}
                 }
             });
         };
     });
-   
+
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
@@ -430,8 +428,6 @@ setTimeout((function () {
             }), 1000);
         }
     }
-
-
     function parsedata(o) {
         var type = {
             'CASH': '现金券',
@@ -439,7 +435,7 @@ setTimeout((function () {
             'PRINCIPAL': '增值券',
             'REBATE': '返现券'
         };
-        for (var i = 0; i < o.length; i++) {
+        for (var i = o.length-1; i>=0; i--) {
             var canuse = o[i].disabled;
             o[i] = o[i].placement;
             if (o[i].couponPackage.type === 'INTEREST') {
@@ -524,8 +520,8 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
         var loanPurpose=[];
 		for (var j=0;j<r1.length;j++){
-            if(r1[j].proof.proofType=="GUARANTEE_ID"){     
-            
+            if(r1[j].proof.proofType=="GUARANTEE_ID"){
+
 			if(r1[j].proof.proofType !== ''){
 				r1[j].proofType = i18n.enums.ProofType[r1[j].proof.proofType][0];
 			}else{
@@ -534,7 +530,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
                 loanPurpose.push(r1[j]);
             }
 		}
-        
+
 //		console.log(r1);
 		var proofTypeArr = r2.proofs.CAREER;
 		for(var i=0;i<proofTypeArr.length;i++){
@@ -557,10 +553,10 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 				currentIndexB:0,
                 selectorsMarginLeft: 0,
                 stageLen: 5,
-				
+
             }
         });
-		
+
 		relateDataRactive.on("prev-pic next-pic", function (e) {
 			var self = this;
             console.log(self.get("currentIndex"));
@@ -568,16 +564,16 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 				self.set("currentIndex", self.get("currentIndex") - 1);
 			 if (self.get('currentIndex') < 0) {
 					self.set('currentIndex',self.get('career').length - 1);
-			 	} 
+			 	}
 			}else {
                 self.set("currentIndex", self.get("currentIndex") + 1);
 				if(self.get('currentIndex') >= self.get('career').length){
 					self.set('currentIndex',0);
 				}
             }
-			
+
 		});
-            
+
         relateDataRactive.on("prev-picB next-picB", function (e) {
 			var self = this;
             console.log(self.get("currentIndexB"));
@@ -585,16 +581,16 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 				self.set("currentIndexB", self.get("currentIndexB") - 1);
 			 if (self.get('currentIndexB') < 0) {
 					self.set('currentIndexB',self.get('loanPurpose').length - 1);
-			 	} 
+			 	}
 			}else {
                 self.set("currentIndexB", self.get("currentIndexB") + 1);
 				if(self.get('currentIndexB') >= self.get('loanPurpose').length){
 					self.set('currentIndexB',0);
 				}
             }
-			
+
 		});
-		
+
         relateDataRactive.on('begin-big-pic-career', function (e) {
 			console.log(e);
             var index = Number(e.keypath.substr(-1));
@@ -610,7 +606,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
             return false;
 
         });
-        
+
         relateDataRactive.on('begin-big-pic-loan', function (e) {
 			console.log(e);
             var index = Number(e.keypath.substr(-1));
@@ -701,7 +697,7 @@ var recordRactive = new Ractive({
                 }
             }
 
-            list[i].userLoginName = _name;	
+            list[i].userLoginName = _name;
         }
         return list;
     },
@@ -796,4 +792,3 @@ function mask (str, s, l) {
 	str = str.substring(0, len);
 	return str;
 }
-

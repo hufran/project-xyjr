@@ -81,22 +81,6 @@ IndexService.getLoanSummary(function (list) {
 
 });
 
-initUserDynamic();
-setInterval(function(){
-    initUserDynamic();
-},5000);
-
-function initUserDynamic (){
-    IndexService.getHomeDynamicData(function(user){
-        var dynamicRactive = new Ractive({
-            el: "#userscrollMsg",
-            template: require('ccc/index/partials/userdynamic.html'),
-            data: {
-                regUser: user
-            }
-        });
-    });
-}
 //借款计划
 IndexService.getLoanSummary(function (list) {
 
@@ -237,7 +221,13 @@ $('.loginBtn').click(function (){
 $('.registerBtn').click(function(){
     location.href="/register"
 })
-//var sideUp = $('#sideUp');
+
+$("#my-carousel").hover(function(){
+    $('.carousel-control-box').css('display','block');
+},function(){
+    $('.carousel-control-box').css('display','none');
+});
+
 window.onscroll=function(){
     var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop,headerEle;
     if(loginElement){

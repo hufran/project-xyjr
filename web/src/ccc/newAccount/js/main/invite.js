@@ -66,7 +66,7 @@ new Ractive({
     },
     buildImgUrl: function(){
         var self = this;
-        var url = 'https://' + location.host + '/register?refm=' + self.get('Fmobile');
+        var url = 'http://' + location.host + '/register?refm=' + self.get('Fmobile');
         //return 'http://qr.liantu.com/api.php?&bg=ffffff&fg=000000&text=' + text;
         return url;
     },

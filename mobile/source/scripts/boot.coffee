@@ -1,6 +1,8 @@
 
 do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
+    eByID = document.getElementById.bind document
+
     angular.module APP_NAME, modules
 
         .config _.ai '$routeProvider, $locationProvider',
@@ -242,12 +244,15 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                             banks: _.ai 'api', (api) -> api.get_available_bank_list()
 
-                            _payment_bank_account: _.ai 'api, $location, $route, $q',
-                                (                        api, $location, $route, $q) ->
+                            _payment_account: _.ai 'api, $location, $route, $q',
+                                (                   api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then (user) ->
-                                            return user if user.has_payment_account
+                                            return user if user.has_payment_account   and
+                                                           user.has_payment_password
+
                                             return $q.reject(user)
+
                                         .catch (user) ->
                                             return unless user
 
@@ -256,6 +261,14 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
+                                                        .search
+                                                            back: 'dashboard'
+                                                            next: 'dashboard/payment/bind-card'
+
+                                                when user.has_payment_password isnt true
+                                                    $location
+                                                        .replace()
+                                                        .path 'dashboard/payment/password'
                                                         .search
                                                             back: 'dashboard'
                                                             next: 'dashboard/payment/bind-card'
@@ -655,9 +668,14 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
         .constant 'baseURI', document.baseURI
 
-        .constant 'build_timestamp', do (src = document.getElementById('main-script')?.src) ->
+        .constant 'build_timestamp', do (src = eByID('main-script')?.src) ->
             1000 * (src?.match(/t=([^&]+)/)?[1] or '0')
 
+        .constant 'api_server', do (server = eByID('main-script').getAttribute('data-api-server')) ->
+            if server.match /^{.*}$/ then '' else server
 
-    angular.element(document).ready ->
+    on_ready = ->
         angular.bootstrap document, [APP_NAME], strictDi: true
+
+    angular.element(document).ready on_ready
+    document.addEventListener 'deviceready', on_ready

@@ -128,7 +128,7 @@ app.use(async function (req, res, next) {
                 return one;
             })
     }
-    
+
 
     res.locals.headerNavLinks = resultLink;
 
@@ -201,7 +201,16 @@ _.each([
 app.use(require('@ccc/login/middlewares').setBackUrl); // 全局模板变量添加 loginHrefWithUrl 为登录后返回当前页的登录页面链接
 app.use('/__', ds.loader('hide'));
 app.use(ds.loader('page'));
-app.all('/logout', function (req, res) {
+app.all('/logout', async function (req, res) {
+    
+    var user = await (req.uest.get('/api/v2/whoamiplz').get('body') || {});
+    var userId = user.user.id;
+    var query = {
+        type: 'USER_LOGOUT',
+        source: 'PC'
+    }
+    req.uest.post('api/v2/user/'+userId+'/add/activity').send(query);
+
     res.clearCookie('ccat');
     if (req.xhr) {
         res.send('');

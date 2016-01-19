@@ -34,30 +34,41 @@
             </div>
             {{/carousel}}
         </div>
+        <div class="carousel-control-box" style="display:none;">
+            <a class="left carousel-control" href="#my-carousel" role="button" data-slide="next">
+                <span class="glyphicon" aria-hidden="true"><img src="ccc/index/img/banner-left.png" alt=""></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#my-carousel" role="button" data-slide="prev">
+                <span class="glyphicon" aria-hidden="true"><img src="ccc/index/img/banner-right.png" alt=""></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        
+        
         <div class="middle-box"></div>
-                            <div class="banner-account－box">
-                        <div class="banner-account">
-                            <p class="banner-account1">预期年化收益&nbsp;&nbsp;<span class="banner-account-3">6%-18%</span>
-                            </p>
-                            <p class="banner-account2">活期收益的&nbsp;&nbsp;<span class="banner-account-2">34倍</span></p>
-                            <div class="free-register">
-                            {{#if user}}
-								{{#if user.name}}
-                            	<a href="/newAccount/home"><button class="btn-index">我的账户</button></a>
-								{{else}}
-								<a href="/newAccount/settings/authentication"><button class="btn-index">我的账户</button></a>
-								{{/if}}
-                            {{else}}
-                            <a href="/register"><button class="btn-index">注册领红包</button></a>
-                            {{/if}}
-                            </div> 
-                             {{#if user}}
-                            <h3 class="bannerLogin">{{#if userInfo.user.name}}您当前的登录账户是{{else}}{{shangwuxiawu}}好{{/if}}：<span >{{#if !userInfo.user.name}}{{user.mobile}}{{else}}{{userInfo.user.name}}{{/if}}</span></h3>
-                            {{else}}
-                            <h3 class="bannerLogin">已有账号? <a class="underline" href="/login">立即登录</a></h3>
-                            {{/if}}
-                        </div>
-                    </div>
+        <div class="banner-account－box">
+            <div class="banner-account">
+                <p class="banner-account1">预期年化收益&nbsp;&nbsp;<span class="banner-account-3">6%-18%</span></p>
+                <p class="banner-account2">活期收益的&nbsp;&nbsp;<span class="banner-account-2">34倍</span></p>
+                <div class="free-register">
+                    {{#if user}}
+                        {{#if user.name}}
+                        <a href="/newAccount/home"><button class="btn-index">我的账户</button></a>
+                        {{else}}
+                        <a href="/newAccount/settings/authentication"><button class="btn-index">我的账户</button></a>
+                        {{/if}}
+                    {{else}}
+                        <a href="/register"><button class="btn-index">注册领红包</button></a>
+                    {{/if}}
+                </div> 
+                {{#if user}}
+                    <h3 class="bannerLogin">{{#if userInfo.user.name}}您当前的登录账户是{{else}}{{shangwuxiawu}}好{{/if}}：<span >{{#if !userInfo.user.name}}{{user.mobile}}{{else}}{{userInfo.user.name}}{{/if}}</span></h3>
+                    {{else}}
+                    <h3 class="bannerLogin">已有账号? <a class="underline" href="/login">立即登录</a></h3>
+                {{/if}}
+            </div>
+        </div>
     </div>
 </div>
 
@@ -80,7 +91,13 @@
             <img src="/ccc/index/img/clock.png" style="margin-right:5px;">
             <span id="userscrollWrap">
                 <ul id="userscrollMsg">
-                
+                {{#each regUser}}
+                    <li>
+                        <span>{{date}}</span>&nbsp;&nbsp;
+                        <span>{{mobile}}</span>&nbsp;&nbsp;
+                        <span><em>{{descript}}</em></span>
+                    </li>
+                {{/each}}
                 </ul>  
             </span>
         </div>
@@ -117,7 +134,7 @@
               <img src="/ccc/index/img/safety.png" />
             <div class="strengthProtect-content" style="width:150px;">
                 <h3>资金安全</h3>
-                <p>6重安全暴涨，本息安全</p>
+                <p>6重安全保障，本息安全</p>
             </div>
         </div>
     </div>
@@ -205,7 +222,7 @@
     <div id="myimg-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            {{#carousel}}
+            {{#latestImgPublication}}
 
             <li data-target="#myimg-carousel" data-slide-to="{{@index}}" class="{{#if @index === 0 }}active{{/if}}">
             </li>
@@ -239,8 +256,8 @@
             <ul>
                 {{#each latestPublication:num}}
                 {{#if num+1<6 }}
-                <li><a href="/cms/p/{{this.id}}" class="news" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
-                                {{title.substr(0,22)}}...
+                <li><a href="/cms/p/{{this.id}}" class="news" target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 15}}
+                                {{title.substr(0,15)}}...
                             {{else}}
                                 {{title}}
                             {{/if}}</a>
@@ -257,7 +274,7 @@
             <h4>平台公告</h4>
             <ul style="margin-left: 20px;">
                 {{#each latestOne:num}}
-                {{#if num<6 }}
+                {{#if num<2 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
 					   
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
@@ -277,7 +294,7 @@
             <h4>到期公告</h4>
             <ul style="margin-left: 20px;">
                 {{#each expireOne:num}}
-                {{#if num<6 }}
+                {{#if num<2 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
 					   
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}

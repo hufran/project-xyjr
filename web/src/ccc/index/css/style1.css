@@ -262,16 +262,19 @@
 }
 .bannerLogin{
     color:#fff;
-/*    margin-left: 154px;*/
+    margin-left: 32px;
     font-size: 16px;
     line-height: 34px;
-    text-align: right;
-    margin-right: 80px;
+    text-align: left;
+/*    margin-right: 80px;*/
     margin-top: 20px;
 }
 
 .bannerLogin .underline{
     text-decoration:underline;
+}
+.bannerLogin .underline:hover{
+    color: #f06f2e;
 }
 .banner-account4{
     color:#ff7200;
@@ -359,6 +362,17 @@
 .broadcast .broXY{
     float: left;
 }
+.broadcast .broXY img {
+    float:left;
+    margin-top: 22px;
+}
+.broadcast .broXY em {
+    float:left;
+}
+.broUser img {
+    float:left;
+    margin-top: 22px;
+}
 /*
 #scrollMsg {
     float:left;
@@ -433,14 +447,13 @@
     font-size: 14px;
 }
 .strengthProtect img{
-   float: left;
+    float: left;
+    transition: .4s all ease;
+    animation-play-state: paused;
 }
 .strengthProtect img:hover{
     float: left;
-    transform: scale(1.2);
-    transition: all 1s ease 0s;
-    -webkit-transform: scale(1.2);
-    -webkit-transform: all 1s ease 0s;
+    margin-top: -10px;
 }
 .strengthProtect-content{
    float: left;

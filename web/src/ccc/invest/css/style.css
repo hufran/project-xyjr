@@ -1,6 +1,6 @@
 #main-container .title{
  font-size: 14px;
-  color: #4a4a4a;
+      color: #7e7e7e;
 /*  background-color: #f6f8fc;*/
   width: 1100px;
   margin: 0px auto;
@@ -18,7 +18,7 @@
 }
 #main-container .s-content table{
     width: 1100px;
-    border-top:2px solid #009ada;
+    border-top: 2px solid #5b9dff;
 }
 #main-container .s-content .investBoxTitle{
     text-align: center;
@@ -84,13 +84,13 @@
 /*    float: left;*/
 }
 .no-warry-left img{
-width: 80px;
+width: 48px;
 }
 .s-content .no-warry-right {
 float: right;
     width:212px;
     margin-top: 42px;
-  
+
 }
 .s-content .no-warry-right p{
     line-height: 24px;
@@ -98,6 +98,6 @@ float: right;
     color: #4a4a4a;
 }
 .s-content .no-warry-left p{
-      font-size: 24px;
+      font-size:16px;
     color: #ffc808;
 }

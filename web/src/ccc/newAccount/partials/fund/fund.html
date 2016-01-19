@@ -14,13 +14,15 @@
         {{else}}
             <div class="dropdown input-group type-checker pull-left">
                 <ul class="dropdown-menu" role="listbox">
-                {{# {typeList: typeLists[tabIndex]} }} {{#each typeList}}
+                {{# {typeList: typeLists[tabIndex]} }}
+                    {{#each typeList}}
                     <li role="presentation">
                         <a role="menuitem" href="#" on-click="select-type" data-type='{{type}}' rel="nofollow" >
                             {{ text }}
                         </a>
                     </li>
-                    {{/each}} {{/}}
+                    {{/each}} 
+                    {{/}}
                 </ul>
 
                 <span class="form-control type-text" data-toggle="dropdown" data-type="{{ typeLists[tabIndex][selectedIndex].type }}">
@@ -81,7 +83,7 @@
 				<th>备注</th>
 			</tr>
 		</thead>
-		<!--                {{JSON.stringify(list)}}-->
+
 		{{#if list}}
 		<tbody>
 			{{#each list}}

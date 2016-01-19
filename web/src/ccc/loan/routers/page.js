@@ -6,7 +6,7 @@ var format = require('@ds/format')
 var requestId = '';
 // TODO 对id进行正则匹配
 router.get('/:id', 
-    function (req, res) {
+   async function (req, res) {
         console.log(req.params.id);
         var user = res.locals.user;
         var buffer = new Buffer(req.path);
@@ -27,7 +27,7 @@ router.get('/:id',
             }
         }
 
-        var repayments = req.uest(
+        var repayments =await req.uest(
               '/api/v2/loan/' + req.params.id +
               '/repayments')
               .end()
@@ -35,35 +35,19 @@ router.get('/:id',
                   if (!!r.body.data) {
                        var repayments = [];
                       if (Array.isArray(r.body.data)) {
-                         
                           for (var i = 0; i < r.body.data.length; i++) {
                               repayments.push(r.body.data[i].repayment);
                           }
                           return repayments;
                       } else {
-                          return  repayments.push(r.body.data.repayments);//r.body.data.repayments;
+                          repayments.push(r.body.data.repayments); 
+                          return  repayments;//r.body.data.repayments;
                       }
                   } else {
                       return [];
                   }
               });
-
-//        var repayments = req.uest(
-//                '/api/v2/loan/' + req.params.id +
-//                '/repayments')
-//                .end()
-//                .then(function (r) {
-//
-//                    if (Array.isArray(r.body.data)) {
-//                        var repayments = [];
-//                        for (var i = 0; i < r.body.data.length; i++) {
-//                            repayments.push(r.body.data[i].repayment);
-//                        }
-//                        return repayments;
-//                    } else {
-//                        return r.body.data.repayments;
-//                    }
-//                })
+    
         if (user && user.idNumber) {
             delete user.idNumber;
         }
@@ -121,7 +105,6 @@ router.get('/:id',
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
-   
         repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
             res.render('loan/detail', _.assign(res.locals, {
@@ -132,6 +115,10 @@ router.get('/:id',
         });
         res.render('index');
     });
+    
+router.get('/loanRequest/:requestId/contract/template',function(req,res,next){
+    res.redirect('/api/v2/loan/loanRequest/'+req.params.requestId+'/contract/template');next();
+});
 
 router.post('/selectOption', ccBody, function (req, res) {
     var amount = parseInt(req.body.amount,10);
@@ -170,6 +157,8 @@ function parseLoan(loan) {
     };
     loan.investPercent = Math.floor(loan.investPercent * 100);
     loan.rate = loan.rate / 100;
+    loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
+    loan.basicRate = loan.rate - loan.loanRequest.deductionRate;
     loan.dueDate = loan.timeout * 60 * 60 * 1000 + loan.timeOpen;
     if (loan.timeSettled) {
         loan.borrowDueDate = formatBorrowDueDate(loan.timeSettled, loan

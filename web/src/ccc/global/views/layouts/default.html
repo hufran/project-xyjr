@@ -37,7 +37,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "//hm.baidu.com/hm.js?c2450bbb743e30cea0ef4d21fbce95d2";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
@@ -52,6 +52,7 @@ var _hmt = _hmt || [];
         <div class="s-header-info-content u-pos-r-center">
             <span class="nav-phone"><img src="/ccc/global/img/phone.png"/></span>
             <span class="nav-customer" style="color:#999">客服电话：400-818-9696</span>
+             <img style="display:none" class="float-img" src="/ccc/global/img/app.png" alt="扫码下载APP">
 <!--
             <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw" style="margin-top:-6px;margin-right:24px;"><img src="/ccc/global/img/navQQ.png"  onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'"/></a>
             </span>
@@ -62,7 +63,7 @@ var _hmt = _hmt || [];
 -->
             {{#if user}}
 
-             <a href="/help/login" class="text account" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a> 
+             <a href="/help/login" class="text account" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a>
             {{#if user.loginName}}
             <a href="/newAccount/message">
                 <div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;"><span id='head-message-container' style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;"></span>
@@ -78,9 +79,9 @@ var _hmt = _hmt || [];
             {{else}}
              <div class="nav-mobile">
 
-                <span>|</span> <a href="" id="mobileCustomer" class="text"><img src="/ccc/global/img/mobile.png" /></a>
-                
-            </div> 
+                <span>|</span> <a href="" id="mobileCustomer" class="text"><img src="/ccc/global/img/mobile.png" onmouseover="this.src='/ccc/global/img/mobile-nav.png'" onmouseout="this.src='/ccc/global/img/mobile.png'"/></a>
+
+            </div>
             <div class="nav-fastregister">
                 <span>|</span><a href="/register" id="dingbuzhuce" class="text">注册</a>
             </div>
@@ -92,10 +93,10 @@ var _hmt = _hmt || [];
 
             {{/if}}
         </div>
-      
+
     </div>
 
-    
+
     <div class="s-header-menu" id="menu">
         <div class="s-header-menu-content u-pos-r-center">
             <a href="/" style="float: left;" alt="新毅" title="新毅">
@@ -202,16 +203,16 @@ var _hmt = _hmt || [];
                 <dd><a href="/help/login">注册/登录</a></dd>
             </dl>
              <dl class="footer-guide">
-                <dt><a href="/aboutus/safety">安全保障</a></dt>
-                <dd><a href="/aboutus/safety">项目来源</a></dd>
-                <dd class="footer-guide-style"><a href="/aboutus/safety">风控措施</a></dd>
-                <dd><a href="/aboutus/safety">系统安全</a></dd>
-                <dd><a href="/aboutus/safety">律所护航</a></dd>
+                <dt><a href="/userKnow">用户须知</a></dt>
+                <dd><a href="/userKnow#prosource">项目来源</a></dd>
+                <dd class="footer-guide-style"><a href="/userKnow#measure">风控措施</a></dd>
+                <dd><a href="/userKnow#systemsafety">系统安全</a></dd>
+                <dd><a href="/userKnow#firmprotect">律所护航</a></dd>
             </dl>
               <!-- <dl class="footer-guide">
                 <dt><img src="/ccc/global/img/map.png"/><a href="">网站地图</a></dt>
             </dl> -->
-            
+
              <div class="bottom-left">
 
                 <div class="bottom-rightApp" style="margin-right:34px;">
@@ -228,7 +229,7 @@ var _hmt = _hmt || [];
             <div class="bottom-right">
                 <p class="bottom-right-service"><span style="color:#abb2ba;">客服电话：（工作时间：9：00-18：00）</span></p>
                     <p class="bottom-right-mail"><span class="telNum">400-818-9696</span></p>
-                    <p class="bottom-right-copy"><span>版权所有&copy;2015&nbsp;&nbsp;新毅网络www.718bank.com&nbsp;&nbsp;京ICP备15059004号</span></p>       
+                    <p class="bottom-right-copy"><span>版权所有&copy;2015&nbsp;&nbsp;新毅网络www.718bank.com&nbsp;&nbsp;京ICP备15059004号</span></p>
             </div>
         </div>
         </div>
@@ -238,10 +239,18 @@ var _hmt = _hmt || [];
 <div class="side-bar-box">
     <div class="side-bar">
 <!--         <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/service.png" /></a>-->
-        <a href="javascript:;" ><img src="/ccc/global/img/mobile-sidebar.png" onmouseover="this.src='/ccc/global/img/mobile-sidebar-nav.png'" onmouseout="this.src='/ccc/global/img/mobile-sidebar.png'"/></a>
-        <a class="jiathis_button_weixin"><img src="/ccc/global/img/weixin.png" onmouseover="this.src='/ccc/global/img/weixin-nav.png'" onmouseout="this.src='/ccc/global/img/weixin.png'"/></a>
+        <a class="side-bar-mobile" href="javascript:;" ><img src="/ccc/global/img/mobile-sidebar.png" onmouseover="this.src='/ccc/global/img/mobile-sidebar-nav.png'" onmouseout="this.src='/ccc/global/img/mobile-sidebar.png'"/></a>
+        <a href="javascript:;" class="jiathis_button_weixin"><img src="/ccc/global/img/weixin.png" onmouseover="this.src='/ccc/global/img/weixin-nav.png'" onmouseout="this.src='/ccc/global/img/weixin.png'"/></a>
          <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw"><img src="/ccc/global/img/qq.png" onmouseover="this.src='/ccc/global/img/qq-nav.png'" onmouseout="this.src='/ccc/global/img/qq.png'"/></a>
         <a class="back-top"><img src="/ccc/global/img/backTotop.png" onmouseover="this.src='/ccc/global/img/backTotop-nav.png'" onmouseout="this.src='/ccc/global/img/backTotop.png'"/></a>
+    </div> 
+    <div class="wap" style="display:none;">
+        <div class="wap-header">
+           <span class="wap-close">x</span>
+           <h3 class="topwap">访问718bank理财平台-wap端</h3>
+        </div>
+        <div class="wxwap"><img src="/ccc/global/img/wap.png" alt="wap端二维码"></div>
+        <p class="bottomwap">扫描二维码，访问718bank理财平台wap端页面</p>
     </div>
 </div>
 <script>
@@ -252,14 +261,14 @@ var _hmt = _hmt || [];
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
-	
+
 	//QQ
 //	function clickQq(){
 //		document.write('<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAxNDcwNF8zMTg5OTVfNDAwODcyNzY3Nl8"></"+"script>');
 //		window.location.reload();
 //	}
 // (function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();
-		
+
 </script>
 
 <script src="/ccc/global/js/main/header.js" async defer></script>

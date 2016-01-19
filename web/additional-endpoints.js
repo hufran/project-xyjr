@@ -92,4 +92,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/getMd5keyData/:userId',auth.user());
     router.get('/api/v2/quickLogin/a/getUser/:mobile/:currentTime/:md5key',auth.pass());
     router.get('/api/v2/quickLogin/:mobile/:currentTime/:md5key',auth.pass());
+    
+    //退出登录日志
+    router.post('/api/v2/user/{userId}/add/activity',auth.user());
 };
