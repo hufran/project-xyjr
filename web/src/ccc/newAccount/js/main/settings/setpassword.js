@@ -11,13 +11,13 @@ resetPasswordRactive.on('setPassword', function (){
         alert('两次密码不一致');
         return;
     }
-    request('/api/v2/resetPassword', {
+    request('POST', '/api/v2/resetPassword', {
         body: {
             mobile: CC.mobile,
             newPassword: resetPasswordRactive.get('password')
         }
     }).get('body').then(function (r) {
-
+        // if(r.success)
         window.location.href = '/';
     })
 })
