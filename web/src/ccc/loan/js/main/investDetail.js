@@ -6,7 +6,6 @@ var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format')
-
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
