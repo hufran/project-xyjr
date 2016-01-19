@@ -24,6 +24,7 @@ module.exports = function (router) {
         var r = yield req.uest('/api/v2/quickLogin/'+req.params.mobile+'/'+req.params.currentTime+'/'+req.params.md5key);
         if(!r.body.success){
             res.redirect('/');
+            return;
         }
 
         if(!r.body.data.isNewUser){
