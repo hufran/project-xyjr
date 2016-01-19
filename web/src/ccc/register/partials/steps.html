@@ -6,7 +6,7 @@
                     <div class="rinput">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号:</label>
                         <input class="phone" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="请输入手机号">
-                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}  
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}
                         </span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
                     </div>
@@ -28,7 +28,7 @@
                 <RInput field="smsCaptcha">
                     <div class="rinput message-confirm bring-in">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码:</label>
-                        <input id="{{rinputId}}" value="{{value}}" placeholder="请输入短信验证码" class="message-brame"> 
+                        <input id="{{rinputId}}" value="{{value}}" placeholder="请输入短信验证码" class="message-brame">
                         {{#if !smsCaptchaReady}}
                             <button on-click='sendSmsCaptcha' id="get-message">
                                 获取短信验证码
@@ -72,7 +72,7 @@
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
                 </RInput>
-                
+
                 <RInput field="agreement" valueStableDuration=100>
                     <div class="rinput agreement-div">
                          {{#if stepLoading}}
@@ -80,14 +80,14 @@
                         <input on-click='nextStep' class="next-step" type="button" value="立即注册" /> {{/if}}
                         <label class="agree-register-protocol">
                             <input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}" />
-                             <span>我同意<span class="i-agree"><a href="/agreement/mobile/regist" target="_blank" class="ccc-agreement">《新毅金融用户注册协议》</a></span></span>                          
+                             <span>我同意<span class="i-agree"><a href="/agreement/mobile/regist" target="_blank" class="ccc-agreement">《新毅金融用户注册协议》</a></span></span>
                             <br>
 
-                            <span class="tip" style="left:22px;top:35px;line-height:normal;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                            <span class="tip" style="left:22px;top:35px;line-height:14px;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                         </label>
                     </div>
                 </RInput>
-                
+
             </div>
             <div class="register-banner">
                 <p><img src="/ccc/register/img/gray-line.png" />
@@ -107,7 +107,7 @@
             </div>
             <img class="regist-right" src="/ccc/register/img/regist-success-banner.png"/>
         </div>
-        
+
     </Step>
 </div>
 
