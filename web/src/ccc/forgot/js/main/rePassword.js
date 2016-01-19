@@ -116,30 +116,36 @@
 	        showErrors("MOBILE_NULL");
 	        return false;
 	    }
-	    if (user.captcha == null || user.captcha.toString().trim() === "") {
+        
+        var bMobile = false;
+	    utils.formValidator.checkMobile(user.mobile, function (ok, msg) {
+            if (ok) {
+                disableErrors();
+                registerService.checkMobile(user.mobile, function (err, msg) {
+
+                    if (err) {
+                        rePassword.set('errors', {
+                            visible: true,
+                            msg: '未注册的手机号码'
+                        });
+                        bMobile = true;
+                    }
+                });
+            } else {
+                showErrors(msg);
+                bMobile = true;
+            }
+	    });
+        if(bMobile){
+            return false;
+        }
+        
+        
+        if (user.captcha == null || user.captcha.toString().trim() === "") {
 	        showErrors("MOBILE_CAPTCHA_NULL");
 	        return false;
 	    }
-
-	    utils.formValidator.checkMobile(user.mobile, function (ok, msg) {
-	        if (ok) {
-	            disableErrors();
-	            registerService.checkMobile(user.mobile, function (err, msg) {
-
-	                if (err) {
-	                    rePassword.set('errors', {
-	                        visible: true,
-	                        msg: '未注册的手机号码'
-	                    });
-                        return false;
-	                }
-	            });
-	        } else {
-	            showErrors(msg);
-	            return false;
-	        }
-	    });
-
+        
 	    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
 	        if (!err) {
 	            showErrors(msg);
@@ -234,7 +240,6 @@
 
 	});
 
-
 	rePassword.on('sendTelCode', function (e) {
 	    var $captchaBtn = $(".getcaptcha");
 	    var mobile = this.get('user.mobile');
@@ -244,11 +249,21 @@
 
 	    utils.formValidator.checkMobile(mobile, function (ok, msg) {
 	        if (ok) {
-	            CommonService.getSmsCaptchaForResetPassword(mobile, function (r) {
-	                if (r.success) {
-	                    countDown();
-	                }
-	            });
+                registerService.checkMobile(mobile, function (err, msg) {
+
+                    if (err) {
+                        rePassword.set('errors', {
+                            visible: true,
+                            msg: '未注册的手机号码'
+                        });
+                    }else{
+                        CommonService.getSmsCaptchaForResetPassword(mobile, function (r) {
+                            if (r.success) {
+                                countDown();
+                            }
+                        });
+                    }
+                });    
 	        } else {
 	            showErrors(msg);
 	        }

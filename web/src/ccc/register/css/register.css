@@ -404,6 +404,7 @@ h3 {
 	font-size: 14px;
 	line-height: 20px;
 	margin-left: 106px;
+    margin-top: 70px;
 	color: #999999;
 	width: 280px;
 	text-align: center;
@@ -436,9 +437,8 @@ h3 {
 	display: block;
 	background-color: #007ec5;
 	margin-left: 120px;
-    margin-top: 80px;
+    margin-bottom: 20px;
 }
-
 .agreement-div .next-step:hover{
 	background-color: #1499e3;
 }
