@@ -22,9 +22,7 @@ resetPasswordRactive.on('setPassword', function (){
     }).get('body').then(function (r) {
         if(r.success) {
             alert('密码设置成功')
-            request('/quickLogin/' + CC.mobile + '/' + CC.currentTime + '/' + CC.md5key).get('body').then(function (r){
-                window.location.href = '/';
-            })
+            window.location.href = '/login/quickLogin/' + CC.mobile + '/' + CC.currentTime + '/' + CC.md5key;
         }else {
             alert(r.error.message);
             window.location.href = '/';
