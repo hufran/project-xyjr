@@ -4,6 +4,8 @@ module.exports = function(router) {
     var ccBody = require('cc-body');
     router.get('/setpassword', function(req, res, next) {
         res.expose(req.query.mobile, 'mobile')
+        res.expose(req.query.currentTime, 'currentTime')
+        res.expose(req.query.md5key, 'md5key')
         res.render('/newAccount/setpassword');
     });
     // 未登录访问account下的页面,跳转到 /
