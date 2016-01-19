@@ -500,6 +500,10 @@ setTimeout((function () {
     investRactive.on('getCoupon', function () {
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
+        if(inputNum.length>10){
+            showErrors('投标金额最大允许10位数字');
+            return false;
+        }
         if (parseFloat(inputNum) !== parseFloat(inum)) {
            showSelect(inputNum);
         }

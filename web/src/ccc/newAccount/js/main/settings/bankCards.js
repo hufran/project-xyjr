@@ -136,7 +136,7 @@ ractive.on("bind-card-submit", function (e) {
     $.post('/lianlianpay/bindCard', sendObj, function (r) {
         if(r.success) {
             CccOk.create({
-                msg: '绑卡成功', 
+                msg: '绑卡成功',
                 okText: '确定',
                 ok: function () {
                     window.location.reload();
@@ -147,7 +147,7 @@ ractive.on("bind-card-submit", function (e) {
             });
         } else {
             CccOk.create({
-                msg: '绑卡失败，' + r.error[0].message, 
+                msg: '绑卡失败，' + r.error[0].message,
                 okText: '确定',
                 ok: function () {
                     window.location.reload();
@@ -155,7 +155,7 @@ ractive.on("bind-card-submit", function (e) {
                 cancel: function () {
                     window.location.reload();
                 }
-            }); 
+            });
         }
     });
 });
@@ -174,7 +174,7 @@ ractive.on("delete-card-submit", function (e) {
             }, function (r) {
                 if(r.success) {
                     CccOk.create({
-                        msg: '删卡申请成功，请等待审核!', 
+                        msg: '删卡申请成功，请等待审核!',
                         okText: '确定',
                         ok: function () {
                             window.location.reload();
@@ -185,7 +185,7 @@ ractive.on("delete-card-submit", function (e) {
                     });
                 } else {
                     CccOk.create({
-                        msg: '删卡失败，' + r.error[0].message, 
+                        msg: '删卡失败，' + r.error[0].message,
                         okText: '确定',
                         ok: function () {
                             window.location.reload();
@@ -193,7 +193,7 @@ ractive.on("delete-card-submit", function (e) {
                         cancel: function () {
                             window.location.reload();
                         }
-                    }); 
+                    });
                 }
 
             });
@@ -201,7 +201,7 @@ ractive.on("delete-card-submit", function (e) {
         cancel: function () {
         }
     });
-    
+
 });
 
 ractive.on('selectPro', function () {
@@ -224,7 +224,12 @@ function changeToList(map) {
 };
 
 ractive.on('sendCode', function (){
+    var cardNoError = this.get("cardNoError")==undefined?true:this.get("cardNoError");
+    var cardDiff = this.get('cardDiff')==undefined?true:this.get('cardDiff');
 
+    if (cardNoError || cardDiff) {
+        return false;
+    }
     if (!this.get('isSend')) {
         this.set('isSend', true);
         var smsType = 'CREDITMARKET_CAPTCHA';
@@ -248,7 +253,7 @@ function countDown() {
             $('.sendCode')
                 .html(msg.replace('$', left--));
         } else {
-            ractive.set('isSend', true);
+            ractive.set('isSend', false);
             $('.sendCode')
                 .html(previousText);
             $('.sendCode')
