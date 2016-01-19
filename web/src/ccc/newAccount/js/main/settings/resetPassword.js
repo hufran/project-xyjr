@@ -35,9 +35,13 @@ resetPasswordRactive.on('resetPassword', function () {
             } else {
                 isAcess = false;
             }
-        } 
-        
+        }
+
         if(isAcess) {
+					accountService.checkPassword(pwd,function(r){
+	       if(r){
+			        showError("与原密码相同");
+	             }else{
             accountService.resetPassword(pwd, smsCaptcha, function (r) {
                 if (r) {
                     CccOk.create({
@@ -53,8 +57,11 @@ resetPasswordRactive.on('resetPassword', function () {
                     });
                     return;
                 }
-            });
-        } 
+								else{
+									showError("短信验证码错误");
+								}
+            });}});
+        }
 
     }
 });
