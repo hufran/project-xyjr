@@ -14,6 +14,14 @@ exports.loanService = {
                 next(res.body);
             });
     },
+    getInvestNum: function(next){
+       request
+          .get('/api/v2/user/MYSELF/invest/list/0/10?status=FINISHED&status=PROPOSED&status=FROZEN')
+          .end()
+          .then(function (res) {
+              next(res.body);
+          });
+  },
     getCareerProof: function (userId, next) {
         request
             .get('/api/v2/user/' + userId + '/certificates/proofs')

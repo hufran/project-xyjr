@@ -5,7 +5,7 @@ var format = require('@ds/format')
 
 var requestId = '';
 // TODO 对id进行正则匹配
-router.get('/:id', 
+router.get('/:id',
    async function (req, res) {
         console.log(req.params.id);
         var user = res.locals.user;
@@ -40,14 +40,14 @@ router.get('/:id',
                           }
                           return repayments;
                       } else {
-                          repayments.push(r.body.data.repayments); 
+                          repayments.push(r.body.data.repayments);
                           return  repayments;//r.body.data.repayments;
                       }
                   } else {
                       return [];
                   }
               });
-    
+
         if (user && user.idNumber) {
             delete user.idNumber;
         }
@@ -72,11 +72,11 @@ router.get('/:id',
 //                    else{
 //                    res.locals.title =result.loanRequest.title+'_我要投资_奇乐融';
 //                    res.locals.keywords = result.loanRequest.title;};
-                    
-                    res.locals.description = result.loanRequest.description; 
+
+                    res.locals.description = result.loanRequest.description;
                     return result;
-                    
-                    
+
+
                 }),
             invests: req.uest('/api/v2/loan/' + req.params.id + '/invests')
                 .end()
@@ -97,24 +97,24 @@ router.get('/:id',
                                 var _name = mask(r.body[i].userLoginName, 2);
                             }
                         }
-                        
-                        r.body[i].userLoginName = _name;	
+
+                        r.body[i].userLoginName = _name;
                     }
                     return r.body;
                 }),
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
-        repayments.then(function (repayments) {
+        // repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
-            res.render('loan/detail', _.assign(res.locals, {
+            res.render('index', _.assign(res.locals, {
                 totalInterest: repayments.reduce(function (p, r) {
                     return p + (r && r.amountInterest || 0);
                 }, 0)
             }));
-        });
+        // });
     });
-    
+
 router.get('/loanRequest/:requestId/contract/template',function(req,res,next){
     res.redirect('/api/v2/loan/loanRequest/'+req.params.requestId+'/contract/template');next();
 });
@@ -136,7 +136,7 @@ router.post('/selectOption', ccBody, function (req, res) {
 });
 
 function parseLoan(loan) {
-   
+
     var methodZh = {
         'MonthlyInterest': '按月付息到期还本',
         'EqualInstallment': '按月等额本息',
@@ -192,19 +192,19 @@ function parseLoan(loan) {
         .format('YYYY-MM-DD');
     loan.method = methodZh[loan.method];
     loan.timeLeftStamp=loan.timeLeft;
-    
+
     loan.timeLeft = formatLeftTime(loan.timeLeft);
     loan.purpose = purposeMap[loan.purpose];
     //格式化期限
     loan.months = loan.duration.totalMonths;
     if (loan.duration.days > 0) {
         if (typeof loan.duration.totalDays === "undefined") {
-            loan.fduration = loan.duration.days;                            
+            loan.fduration = loan.duration.days;
         } else {
-            loan.fduration = loan.duration.totalDays;                            
+            loan.fduration = loan.duration.totalDays;
         }
         loan.fdurunit = "天";
-    } else {                        
+    } else {
         loan.fduration = loan.duration.totalMonths;
         loan.fdurunit = "个月";
     }
@@ -217,9 +217,9 @@ function parseLoan(loan) {
         } else {
             loan.fProjectType = '';
             loan.fProjectCode = loan.providerProjectCode;
-        }        
+        }
     }
-    
+
     return loan;
 }
 
@@ -239,7 +239,7 @@ function formatLeftTime(leftTime) {
         mm:mm,
         ss:ss
     });
-  
+
     return obj;
 }
 
@@ -253,7 +253,7 @@ function formatBorrowDueDate(timeSettled, duration) {
     var addMonth = month;
     if(duration) {addMonth = month + duration.totalMonths;}
     if( duration.days > 0 ){
-        return moment(timeSettled).add('days',duration.totalDays).format('YYYY-MM-DD');       
+        return moment(timeSettled).add('days',duration.totalDays).format('YYYY-MM-DD');
     } else {
         if (!(addMonth % 12)) {
             //console.log(addMonth);
@@ -269,8 +269,8 @@ function formatBorrowDueDate(timeSettled, duration) {
         if (day < 10) {
             day = '0' + day;
         }
-        return year + '-' + month + '-' + day;    
-    }        
+        return year + '-' + month + '-' + day;
+    }
 }
 }
 

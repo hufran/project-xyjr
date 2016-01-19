@@ -156,6 +156,18 @@ setTimeout((function () {
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
+            loanService.getInvestNum(function (res) {
+              var list = res.results;
+              var investNum = false;
+              for (var i = 0; i < list.length; i++) {
+                  if(list[i].product.productKey=='XSZX'){
+                      investNum=true;
+                      break;
+                  }
+              }
+              this.set('isnew', investNum);
+
+          });
         }
     });
       function nextDate(timestr){
@@ -192,57 +204,57 @@ setTimeout((function () {
 
     }
 
+    //
+    // investRactive.on('reduce', function (e) {
+    //      if (CC.loan.rule.balance < CC.loan.rule.min) {
+    //         this.set('inputNum', CC.loan.rule.balance);
+    //         showErrors('投资金额必须为标的剩余金额');
+    //         return;
+    //     }
+    //     var num = parseInt(this.get('inputNum'));
+    //     num = num - parseInt(CC.loan.rule.step);
+    //     if (num < CC.loan.rule.min) {
+    //         return;
+    //     }
+    //     investRactive.set('inputNum', num);
+    //     showSelect(num);
+    // });
 
-    investRactive.on('reduce', function (e) {
-         if (CC.loan.rule.balance < CC.loan.rule.min) {
-            this.set('inputNum', CC.loan.rule.balance);
-            showErrors('投资金额必须为标的剩余金额');
-            return;
-        }
-        var num = parseInt(this.get('inputNum'));
-        num = num - parseInt(CC.loan.rule.step);
-        if (num < CC.loan.rule.min) {
-            return;
-        }
-        investRactive.set('inputNum', num);
-        showSelect(num);
-    });
-
-    investRactive.on('add', function (e) {
-        if (CC.loan.rule.balance < CC.loan.rule.min) {
-            this.set('inputNum', CC.loan.rule.balance);
-            showErrors('投资金额必须为标的剩余金额');
-            return;
-        }
-        var num = parseInt(this.get('inputNum'));
-        if (num < CC.loan.rule.min) {
-            num = CC.loan.rule.min;
-        } else {
-            num = num + parseInt(CC.loan.rule.step);
-        }
-        if (num > CC.loan.rule.max) {
-            return;
-        }
-        investRactive.set('inputNum', num);
-        showSelect(num);
-    });
+    // investRactive.on('add', function (e) {
+    //     if (CC.loan.rule.balance < CC.loan.rule.min) {
+    //         this.set('inputNum', CC.loan.rule.balance);
+    //         showErrors('投资金额必须为标的剩余金额');
+    //         return;
+    //     }
+    //     var num = parseInt(this.get('inputNum'));
+    //     if (num < CC.loan.rule.min) {
+    //         num = CC.loan.rule.min;
+    //     } else {
+    //         num = num + parseInt(CC.loan.rule.step);
+    //     }
+    //     if (num > CC.loan.rule.max) {
+    //         return;
+    //     }
+    //     investRactive.set('inputNum', num);
+    //     showSelect(num);
+    // });
 
 
-    investRactive.on('maxNumber', function (e) {
-        if (CC.loan.rule.balance < CC.loan.rule.min) {
-            this.set('inputNum', CC.loan.rule.balance);
-            showErrors('投资金额必须为标的剩余金额');
-             return;
-        }
-      var lmount=CC.loan.rule.leftAmount;
-        if(CC.loan.rule.dw==='万'){
-            lmount=lmount*10000;
-        }
-       var minNum=Math.min(CC.user.availableAmount,CC.loan.rule.max,lmount);
-
-        investRactive.set('inputNum', Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
-        showSelect(Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
-    });
+    // investRactive.on('maxNumber', function (e) {
+    //     if (CC.loan.rule.balance < CC.loan.rule.min) {
+    //         this.set('inputNum', CC.loan.rule.balance);
+    //         showErrors('投资金额必须为标的剩余金额');
+    //          return;
+    //     }
+    //   var lmount=CC.loan.rule.leftAmount;
+    //     if(CC.loan.rule.dw==='万'){
+    //         lmount=lmount*10000;
+    //     }
+    //    var minNum=Math.min(CC.user.availableAmount,CC.loan.rule.max,lmount);
+    //
+    //     investRactive.set('inputNum', Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
+    //     showSelect(Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
+    // });
 
 
     investRactive.on("invest-submit", function (e) {
@@ -254,6 +266,18 @@ setTimeout((function () {
            var couponSelection=$("#couponSelection").find("option:selected").text();
         var indexnum=couponSelection.indexOf("最低投资额：");
         var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
+        if (investRactive.get('user').totalInvest > 0) {
+          if (CC.loan.productKey === 'XSZX') {
+              showErrors('只有新手可以投');
+              return false;
+          }
+      }
+
+      var isnew = this.get('isnew');
+      if(isnew){
+          showErrors('您已投过新手标，不可重复！');
+          return false;
+      }
         if(num<minnum){
             showErrors('投资额小于奖券最低投资额');
              return false;
