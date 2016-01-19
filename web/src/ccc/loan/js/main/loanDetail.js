@@ -7,7 +7,6 @@ var CccBox = require('ccc/global/js/modules/cccBox');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format')
 var Confirm = require('ccc/global/js/modules/cccConfirm');
-
 var investRactive = new Ractive({
     el: ".do-invest-wrapper",
     template: require('ccc/loan/partials/doInvestOnDetail.html'),

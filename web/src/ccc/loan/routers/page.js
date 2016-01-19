@@ -105,8 +105,14 @@ router.get('/:id',
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
-        res.expose(repayments, 'repayments');        
-        res.render('index');
+        repayments.then(function (repayments) {
+            res.expose(repayments, 'repayments');
+            res.render('loan/detail', _.assign(res.locals, {
+                totalInterest: repayments.reduce(function (p, r) {
+                    return p + (r && r.amountInterest || 0);
+                }, 0)
+            }));
+        });
     });
     
 router.get('/loanRequest/:requestId/contract/template',function(req,res,next){
