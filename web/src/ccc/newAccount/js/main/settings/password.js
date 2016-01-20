@@ -52,7 +52,7 @@ passwordRactive.on('initialPassword', function () {
     } else {
         isAcess = true;
     }
-    
+
     var msg,link;
     if (this.get('bank') && this.get('paymentPasswordHasSet')) {
         msg = "恭喜您，设置成功！";
@@ -83,7 +83,7 @@ passwordRactive.on('initialPassword', function () {
                 return;
             }
         });
-    } 
+    }
 });
 
 passwordRactive.on('updatePassword', function () {
@@ -106,15 +106,15 @@ passwordRactive.on('updatePassword', function () {
     }else {
         isAcess=true;
     }
-    
-   
+
+
     if(isAcess) {
          accountService.checkPassword(oldpwd,function(r){
         if(!r){
             showError("原始密码错误！");
-           
+
         }else{
-           
+
          accountService.updatePassword(oldpwd, newPwd, function (r) {
             if (r.success) {
                 CccOk.create({
@@ -132,10 +132,10 @@ passwordRactive.on('updatePassword', function () {
             }
         });
         }
-        
+
     });
-        
-    } 
+
+    }
 });
 
 passwordRactive.on('resetPassword', function () {
@@ -145,14 +145,14 @@ passwordRactive.on('resetPassword', function () {
     if (pwd.indexOf(" ") >=0) {
         return showError("密码不能为空格");
     } else {
-       
+
 	    if (pwd === '') {
 	        var r = confirm('您未输入重置密码，系统将生成随机的交易密码并发送到您的手机上,确定这样做吗？');
 	        if (r) {
 	            isAcess = true;
 	        }
-	    } 
-	    
+	    }
+
 	    if(isAcess) {
 	        accountService.resetPassword(pwd, function (r) {
 	            if (r) {
@@ -170,7 +170,7 @@ passwordRactive.on('resetPassword', function () {
 	                return;
 	            }
 	        });
-	    } 
+	    }
 
 	}
 });
@@ -182,28 +182,28 @@ passwordRactive.on('tab', function (event) {
 });
 
 $("#newPassword").keyup(function(){
-    var newPassword=$("#newPassword").val(); 
+    var newPassword=$("#newPassword").val();
     if(newPassword.indexOf(' ')>-1){
         showError("含有非法字符:空格");
     }else{
         passwordRactive.set({
-           showErrorMessage: false 
+           showErrorMessage: false
         });
     }
-    
+
 });
 $("#oldPassword").blur(function(){
     var oldPassword=$("#oldPassword").val().trim();
-    
+
     accountService.checkPassword(oldPassword,function(r){
         if(!r){
             showError("原始密码错误！");
         }else{
             passwordRactive.set({
-           showErrorMessage: false 
+           showErrorMessage: false
         });
         }
-        
+
     });
 });
 
@@ -230,9 +230,6 @@ passwordRactive.on("submit-modify-password", function (event) {
     var newPassword = this.get("newPassword");
     var passwordConfirm = this.get("passwordConfirm");
     var captcha = this.get("captcha.captcha");
-     console.log("=====");
-    console.log(newPassword);
-     console.log(newPassword.length);
     if (!currentPassword) {
         // 没填就密码
         return showError("还未填写原密码");
@@ -249,7 +246,7 @@ passwordRactive.on("submit-modify-password", function (event) {
     if (newPassword.indexOf(" ") >=0) {
         return showError("密码不能为空格");
     }
-    
+
     if (!passwordConfirm) {
         // 没重复新密码
         return showError("请重复新密码");
@@ -281,7 +278,7 @@ passwordRactive.on("submit-modify-password", function (event) {
                     res = JSON.parse(res.text);
 
                     if (res.success) {
-                        
+
                         CccOk.create({
                             msg: '恭喜您修改密码成功！',
                             okText: '确定',
@@ -293,7 +290,7 @@ passwordRactive.on("submit-modify-password", function (event) {
                                 window.location.reload();
                             }
                         });
-                        
+
                         return;
                     }
 
