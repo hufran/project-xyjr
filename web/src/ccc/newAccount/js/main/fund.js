@@ -25,10 +25,40 @@ typeLists[0] = [{
     type: 'ALL',
     text: '全部'
 }];
-
+var nameMap={
+    INVEST:'投标',
+    WITHDRAW:'提现',
+    DEPOSIT:'充值',
+    INVEST_REPAY:'回款',
+    FEE_WITHDRAW:'提现手续费',
+    TRANSFER:'平台奖励',
+    LOAN:'放款',
+    FEE_LOAN_SERVICE:'借款服务费',
+    LOAN_REPAY:'贷款还款',
+    DISBURSE:'垫付还款',
+    CREDIT_ASSIGN:'债权转让',
+    REWARD_REGISTER:'注册奖励',
+    REWARD_INVEST:'投标奖励',
+    REWARD_DEPOSIT:'充值奖励',
+    FEE_AUTHENTICATE:'身份验证手续费',
+    FEE_INVEST_INTEREST:'回款利息管理费',
+    FEE_LOAN_MANAGE:'借款管理费',
+    FEE_LOAN_INTEREST:'还款利息管理费',
+    FEE_LOAN_VISIT:'实地考察费',
+    FEE_LOAN_GUARANTEE:'担保费',
+    FEE_LOAN_RISK:'风险管理费',
+    FEE_LOAN_OVERDUE:'逾期管理费',
+    FEE_LOAN_PENALTY:'逾期罚息(给商户)',
+    FEE_LOAN_PENALTY_INVEST:'逾期罚息(给投资人)',
+    FEE_DEPOSIT:'充值手续费',
+    FEE_ADVANCE_REPAY:'提前还款违约金(给商户)',
+    FEE_ADVANCE_REPAY_INVEST:'提前还款违约金(给投资人)',
+    FSS:'生利宝',
+    OFFLINE_DEPOSIT:'线下充值'
+};
 var fundinvest ='WITHDRAW&type=DEPOSIT&type=LOAN&type=LOAN_REPAY&type=DISBURSE&type=TRANSFER&type=FEE_WITHDRAW&type=FEE_LOAN_SERVICE&type=FEE_LOAN_GUARANTEE&type=FEE_LOAN_PENALTY&type=FEE_DEPOSIT&type=FEE_ADVANCE_REPAY&type=OFFLINE_DEPOSIT&type=FEE_ADVANCE_REPAY_INVEST';
 var fundloan = 'INVEST&type=WITHDRAW&type=DEPOSIT&type=INVEST_REPAY&type=FEE_WITHDRAW&type=TRANSFER&type=OFFLINE_DEPOSIT';
-var FundRecordType = utils.i18n.FundRecordType;
+var FundRecordType = nameMap;
 $.each(FundRecordType, function (k, v) {
     if(k=== 'FEE_LOAN_GUARANTEE' ||k=== 'INVEST' ||k === 'WITHDRAW'||k === 'DEPOSIT'||k === 'LOAN'||k ==='LOAN_REPAY'||k === 'DISBURSE'||k ==='TRANSFER'
       ||k === 'FEE_WITHDRAW'||k === 'FEE_LOAN_SERVICE'||k === 'FEE_LOAN_PENALTY'||k === 'FEE_DEPOSIT'||k ==='FEE_ADVANCE_REPAY'||k === 'OFFLINE_DEPOSIT'){
@@ -44,7 +74,6 @@ typeLists[0].push({
     type:'OFFLINE_DEPOSIT',
     text:'线下充值'
 });
-
 typeLists[1] = [{
     type: true,
     text: '全部状态'
@@ -231,37 +260,6 @@ ractive.loadData = function (obj) {
             ractive.set('list', parseList(list));
             renderPage(res.totalSize, obj);
         });
-};
-var nameMap={
-    INVEST:'投标',
-    WITHDRAW:'提现',
-    DEPOSIT:'充值',
-    INVEST_REPAY:'回款',
-    FEE_WITHDRAW:'提现手续费',
-    TRANSFER:'平台奖励',
-    LOAN:'放款',
-    FEE_LOAN_SERVICE:'借款服务费',
-    LOAN_REPAY:'贷款还款',
-    DISBURSE:'垫付还款',
-    CREDIT_ASSIGN:'债权转让',
-    REWARD_REGISTER:'注册奖励',
-    REWARD_INVEST:'投标奖励',
-    REWARD_DEPOSIT:'充值奖励',
-    FEE_AUTHENTICATE:'身份验证手续费',
-    FEE_INVEST_INTEREST:'回款利息管理费',
-    FEE_LOAN_MANAGE:'借款管理费',
-    FEE_LOAN_INTEREST:'还款利息管理费',
-    FEE_LOAN_VISIT:'实地考察费',
-    FEE_LOAN_GUARANTEE:'担保费',
-    FEE_LOAN_RISK:'风险管理费',
-    FEE_LOAN_OVERDUE:'逾期管理费',
-    FEE_LOAN_PENALTY:'逾期罚息(给商户)',
-    FEE_LOAN_PENALTY_INVEST:'逾期罚息(给投资人)',
-    FEE_DEPOSIT:'充值手续费',
-    FEE_ADVANCE_REPAY:'提前还款违约金(给商户)',
-    FEE_ADVANCE_REPAY_INVEST:'提前还款违约金(给投资人)',
-    FSS:'生利宝',
-    OFFLINE_DEPOSIT:'线下充值'
 };
 function parseList(date){
     for(var i=0;i<date.length;i++){
