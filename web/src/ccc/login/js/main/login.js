@@ -34,22 +34,27 @@ $('#loginForm').submit(function (e) {
     var $loginName = $('input[name=loginName]');
     var $password = $('input[name=password]');
     var $postBtn = $('#login_button');
-    var $error = $('.login-error');
+    var $errorMobile = $('.mobile');
+    var $errorPwd = $('.password');
+    var $error = $('.loginlock');
 
+    $errorMobile.empty();
+    $errorPwd.empty();
     $error.empty();
 
     if ($loginName.val() === '') {
-        $error.text('手机号不能为空');
+        $errorMobile.text('手机号不能为空');
         return;
     }
     if ($password.val() === '') {
-        $error.text('密码不能为空');
+        $errorPwd.text('密码不能为空');
         return;
     }
 
     var errorMaps = {
         USER_DISABLED: '帐号密码错误次数过多，您的帐户已被锁定，请联系客服400-818-9696解锁。',
-        FAILED: '手机号或密码错误'
+        FAILED: '手机号或密码错误',
+        TOO_MANY_ATTEMPT: '密码输入次数过多，该用户已被禁用'
     };
 
     if ($postBtn.hasClass('disabled')) {
@@ -59,7 +64,6 @@ $('#loginForm').submit(function (e) {
     $postBtn.addClass('disabled').html('登录中...');
 
     request.post('/api/web/login').type('form').send($this.serialize()).end().get('body').then(function (r) {
-//        console.log(r);
         if (r.success) {
             $postBtn.text('登录成功');
             var url = /(loan)/;

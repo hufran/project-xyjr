@@ -48,10 +48,10 @@
 
 #main-container .s-login-view .s-login-window {
 /*  top: 50%;*/
-  width: 300px;
+  width: 400px;
     float:left;
 /*  left: 50%;*/
-  margin-left: 150px;
+  margin-left: 100px;
     margin-top: 60px;
 }
 #main-container .s-login-view .s-login-window .s-input-wrapper {
@@ -101,9 +101,10 @@
     
 }
 #main-container .s-login-view .s-login-window a {
-  line-height: 46px;
-  text-decoration: none;
-  color: #009ada;
+    line-height: 46px;
+    text-decoration: none;
+    color: #009ada;
+    margin-right: 100px;
 }
 #main-container .s-login-view .s-login-window input[type=submit],
 #main-container .s-login-view .s-login-window button {
@@ -127,11 +128,11 @@
 	background-color: #0287be;
 }
 
-p.login-error {
-  text-align: left!important;
-  width: 100%;
-  color: #d2252c;
-    float: left;
+.login-error {
+    text-align: left!important;
+    width: 100%;
+    color: #d2252c;
+    margin-left:5px;
 }
 .s-login-window .mdi {
   width: 20px!important;

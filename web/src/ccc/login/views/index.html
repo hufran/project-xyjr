@@ -11,15 +11,17 @@
             <form id="loginForm" action="/login" method="POST">
                 
                 <div class="s-input-wrapper">
-                    <p class="login-error"></p>
+                    <p class="loginlock login-error"></p>
                   <div class="lineUser">
                       
                     <img src="/ccc/login/img/user.png"/>
                     <input type="text" name="loginName" id="txtUserName"   placeholder="请输入手机号" class="loginName"/>
+                    <span class="mobile login-error"></span>
                   </div>
                     <div class="lineUser">
                         <img src="/ccc/login/img/lock.png"/>
                     <input type="password" name="password" placeholder="请输入密码"  id="txtPassword" />
+                    <span class="password login-error"></span>
                     </div>
                     <input type="hidden" name="backUrl" value="{{backUrl}}">
                 </div>
