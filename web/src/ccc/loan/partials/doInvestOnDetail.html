@@ -80,7 +80,7 @@
 
         <div class="userBlock" id="userBlock">
             {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if !name}}
-            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red">{{user.availableAmount}}</i>
+            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" >{{user.availableAmount}}</i>
                 <a href="/newAccount/recharge" class="recharge">
                     <button>充值</button>
                 </a>
@@ -103,7 +103,7 @@
             </div>
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
 
-            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red">{{user.availableAmount}}</i>
+            <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" style="{{#if user.availableAmount>10000000}}font-size:16px;{{/if}}">{{user.availableAmount}}</i>
                 <a href="/newAccount/recharge" class="recharge">
                     <button>充值</button>
                 </a>
