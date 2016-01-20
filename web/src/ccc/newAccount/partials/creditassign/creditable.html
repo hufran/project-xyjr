@@ -31,13 +31,13 @@
             {{/if}}
             <td class="align-center">
                 <button class="operation btn btn-smaller" data-invest="{{id}}" data-amount="{{amount}}" data-title="{{loanTitle}}">转让</button>
-                {{#if hasContract}} {{#HIDE}}
+                <!-- {{#if hasContract}} {{#HIDE}}
                 <button class="btn btn-smaller btn-blue-light" on-click="show-repayments" data-id="{{id}}" data-loanid="{{loanId}}">还款计划</button>
                 {{/HIDE}}
                 <a href="/account/invest/allContracts/{{id}}" class="btn btn-smaller btn-light" target="_blank">查看合同</a> {{else}} {{#if status === 'CANCELED'}}
                 <i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i> {{else}} {{#if loan.timeSettled}}
                 <i class="fa fa-clock-o text-muted tips-top" title="已购买成功，合同将于{{moment(loan.timeSettled).add(1, 'day').format('YYYY-MM-DD')}}日生成"></i> {{else}}
-                <i class="fa fa-clock-o text-muted tips-top" title="已购买成功，合同将于结算后次日生成"></i> {{/if}} {{/if}} {{/if}}
+                <i class="fa fa-clock-o text-muted tips-top" title="已购买成功，合同将于结算后次日生成"></i> {{/if}} {{/if}} {{/if}} -->
             </td>
         </tr>
         <tr class="repay-plan-wp" id="invest-{{id}}">
@@ -52,7 +52,7 @@
 </table>
 
 <div style="width:100%;text-align:center">
-    <ul class="pagination"></ul>
+    <ul class="ccc-paging"></ul>
 </div>
 
 

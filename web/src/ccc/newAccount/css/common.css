@@ -244,10 +244,11 @@ table tbody tr td {
 	margin: 0 5px;
 	cursor: pointer;
 }
-.ccc-paging .current {
+.ccc-paging span.current {
 	background-color: #0096de;
 	color: #fff;
 	border: 1px #0096de solid;
+		padding: 0px;
 }
 .null {
 	margin: 0 auto;
@@ -272,7 +273,7 @@ table tbody tr td {
    	margin: 0 auto;
 	width: 250px;
 	height: 250px;
-	background: url(/ccc/newAccount/img/no-loan.png) no-repeat center; 
+	background: url(/ccc/newAccount/img/no-loan.png) no-repeat center;
 }
 .nomsg {
 	margin: 0 auto;
@@ -363,4 +364,3 @@ table tbody tr td {
 .btn-success:hover{
     font-size: 13px;
 }
-

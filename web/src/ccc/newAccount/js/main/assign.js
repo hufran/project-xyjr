@@ -233,7 +233,7 @@ function init(status) {
             this.tooltip();
             var api = defalutApi;
             self.bindActions();
-            $(this.el).find(".pagination").cccPaging({
+            $(this.el).find(".ccc-paging").cccPaging({
                 total: this.get('total'),
                 perpage: self.size,
                 api: api.replace('$size', this.size),
@@ -378,17 +378,18 @@ function init(status) {
                         $("#creditDealRate").siblings("span.error").text("");
                         if (investId && creditDealRate && assignTitle) {
                             accountService.createCreditAssign(investId, creditDealRate, assignTitle, function (o) {
-                                console.log(o);
+              
                                 if (o == "SUCCESSFUL") {
+
                                     alert("债转创建成功!");
 
                                     $('#mask-layer-wraper').hide();
                                     $('#popup').hide();
                                     window.location.reload();
                                 } else {
-
                                     alert("债转创建失败，" + returnMap[o]);
                                     window.location.reload();
+
                                     $('#mask-layer-wraper').hide();
                                     $('#popup').hide();
 
