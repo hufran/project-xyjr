@@ -43,7 +43,7 @@ IndexService.getLoanSummary(function (list) {
      }
 
     listLCZQ = [listXJB[0],listXNB[0],listFB[0]];
-    
+
     for(var i=0; i<listLCZQ.length; i++){
         if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
             listLCZQ.splice(i,1);
@@ -58,7 +58,7 @@ IndexService.getLoanSummary(function (list) {
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
-    
+
     var investRactive = new Ractive({
         el: ".HDZXproductList",
         template: require('ccc/global/partials/singleInvest.html'),
@@ -67,7 +67,7 @@ IndexService.getLoanSummary(function (list) {
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式
         }
     });
-    
+
     var investRactive = new Ractive({
         el: ".LCZQproductList",
         template: require('ccc/global/partials/singleInvest.html'),
@@ -174,7 +174,7 @@ function showError(message){
         FAILED: '手机号/用户名或密码错误'
     };
     var $error = $(".error");
-    $error.text(errorMaps[message]); 
+    $error.text(errorMaps[message]);
     $error.addClass('show');
     setTimeout(function(){
         $error.css({
@@ -296,15 +296,15 @@ function ininconut () {
     $(".opre > .investbtn-time").each(function () {
         var t = $(this);
         if(t.data("status") === 'SCHEDULED'){
-            var id = t.data("id");  
-            var openTime = t.data("open");  
+            var id = t.data("id");
+            var openTime = t.data("open");
             var serverDate = t.data("serv");
             var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-            var textDay = leftTime.day ? leftTime.day +'天' : '';
+            var textDay = leftTime.day ? leftTime.day +'天'+'&nbsp;' : '';
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-                var textDay = leftTime.day ? leftTime.day +'天' : '';
+                var textDay = leftTime.day ? leftTime.day +'天'+'&nbsp;': '';
                 if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                     clearInterval(interval);
 					t.prev().hide();
@@ -327,7 +327,7 @@ function es6(){
     //let sym = Symbol('asd');
     let o = {
         log: x => console.log(x)
-    } 
+    }
     let str = `ccc`;
     let arr = [1,2,3,4,5,6];
     let a = (...aaa) => {
