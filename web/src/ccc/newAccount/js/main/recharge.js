@@ -30,7 +30,7 @@ var ractive = new Ractive({
         corBanks: corBanks,
         isEnterpriseUser: CC.user.enterprise,
         amountValue: 10000000,
-        action: '/lianlianpay/onlineBankDeposit',
+        action: '/yeepay/onlineBankDeposit',
         showNum: 9,
         minAmount: 100
     },
@@ -70,7 +70,7 @@ var ractive = new Ractive({
                 self.set('msg.AMOUNT_NULL', true);
                 return;
             }
-            if (value <100){
+            if (value > 10){
                 self.set('msg.AMOUNT_NOTENOUGH',true);
                 return;
             }
@@ -111,10 +111,10 @@ var ractive = new Ractive({
           	var type = $(this).parent().siblings('.methodwr').data('type');
 		    if (type !== 'net') {
         		ractive.set('isNormal', true);
-		        ractive.set('action', '/lianlianpay/deposit');
+		        ractive.set('action', '/yeepay/deposit');
 		    } else {
         		ractive.set('isNormal', false);
-		        ractive.set('action', '/lianlianpay/onlineBankDeposit');
+		        ractive.set('action', '/yeepay/onlineBankDeposit');
 		    }
         });
         
@@ -145,7 +145,7 @@ ractive.on('recharge_submit', function (e){
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
         return false;
-    } else if (amount < 100 ) {
+    } else if (amount > 10 ) {
         e.original.preventDefault();
         this.set('msg.AMOUNT_NOTENOUGH', true);
         this.$amount.focus();
@@ -183,16 +183,16 @@ ractive.on('changeMethod', function (event) {
     var type = event.node.getAttribute('data-type');
     if (type !== 'net') {
         ractive.set('isNormal', true);
-        ractive.set('action', '/lianlianpay/deposit');
+        ractive.set('action', '/yeepay/deposit');
     } else {
         ractive.set('isNormal', false);
-        ractive.set('action', '/lianlianpay/onlineBankDeposit');
+        ractive.set('action', '/yeepay/onlineBankDeposit');
     }
 });
 ractive.on('showAll', function () {
 	this.set('showNum', banks.length);
 });
 ractive.on('selectBank', function (event) {
-    var code = event.node.getAttribute('data-code');
+    var code = event.node.getAttribute('data-cc');
     this.set('bankCode', code);
 });
