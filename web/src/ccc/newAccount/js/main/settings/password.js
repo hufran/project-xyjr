@@ -36,22 +36,38 @@ passwordRactive.on('checkTab', function (event) {
 		clearError();
 	}
 });
-
+passwordRactive.on('checkpwd',function(){
+  var pwd = this.get('password');
+  var rePwd = this.get('repassword');
+    this.set('isAcessa',false);
+    if (pwd === '') {
+        showErrorIndex('showErrorMessagea','errorMessagea','交易密码不能为空');
+    } else if (pwd.length < 6) {
+        showErrorIndex('showErrorMessagea','errorMessagea','交易密码长度最少为6位');
+  }else {
+    clearErrorIndex('showErrorMessagea','errorMessagea');
+      this.set('isAcessa',true);
+  }
+});
+passwordRactive.on('checkrepwd',function(){
+  var pwd = this.get('password');
+  var rePwd = this.get('repassword');
+    this.set('isAcessb',false);
+    if (rePwd === '') {
+        showErrorIndex('showErrorMessageb','errorMessageb','交易密码不能为空');
+    } else if (pwd !== rePwd) {
+        showErrorIndex('showErrorMessageb','errorMessageb','两次密码输入不一致');
+  }else {
+    clearErrorIndex('showErrorMessageb','errorMessageb');
+      this.set('isAcessb',true);
+  }
+});
 passwordRactive.on('initialPassword', function () {
     var pwd = this.get('password');
     var rePwd = this.get('repassword');
-    var isAcess = false;
-    if (pwd === '') {
-        showError('交易密码不能为空');
-    } else if (pwd.length < 6) {
-        showError('交易密码长度最少为6位');
-    } else if (rePwd === '') {
-        showError('交易密码不能为空');
-    } else if (pwd !== rePwd) {
-        showError('两次密码输入不一致');
-    } else {
-        isAcess = true;
-    }
+    var isAcess=this.get('isAcessa')&&this.get('isAcessb');
+    passwordRactive.fire('checkpwd');
+    passwordRactive.fire('checkrepwd');
 
     var msg,link;
     if (this.get('bank') && this.get('paymentPasswordHasSet')) {
@@ -85,34 +101,77 @@ passwordRactive.on('initialPassword', function () {
         });
     }
 });
+passwordRactive.on('checkoldpwd',function(){
+  var oldpwd = this.get('oldPassword');
+  var newPwd = this.get('newPassword');
+  var reNewPwd = this.get('reNewPassword');
+    this.set('isAcess0',false);
+   if (oldpwd === '') {
+      showErrorIndex('showErrorMessage0','errorMessage0','原密码不能为空');
+  }else {
+    clearErrorIndex('showErrorMessage0','errorMessage0');
+      this.set('isAcess0',true);
+  }
+});
+passwordRactive.on('checknewpwd',function(){
+  var oldpwd = this.get('oldPassword');
+  var newPwd = this.get('newPassword');
+  var reNewPwd = this.get('reNewPassword');
+  this.set('isAcess1',false);
+  if (newPwd.length < 6) {
+      showErrorIndex('showErrorMessage1','errorMessage1','交易密码长度最少为6位');
+  }else if (newPwd === '') {
+      showErrorIndex('showErrorMessage1','errorMessage1','交易密码不能为空');
+  } else if (oldpwd == newPwd) {
+      showErrorIndex('showErrorMessage1','errorMessage1','新密码原密码不能相同！');
+  } else if(newPwd.indexOf(' ')>-1){
+      showErrorIndex('showErrorMessage1','errorMessage1','含有非法字符:空格');
+  }else{
+    clearErrorIndex('showErrorMessage1','errorMessage1');
+    this.set('isAcess1',true);
+  }
 
+});
+passwordRactive.on('checkreNewPassword',function(){
+  var oldpwd = this.get('oldPassword');
+  var newPwd = this.get('newPassword');
+  var reNewPwd = this.get('reNewPassword');
+  this.set('isAcess2',false);
+   if ( reNewPwd === '') {
+      showErrorIndex('showErrorMessage2','errorMessage2','交易密码不能为空');
+  } else if (newPwd !== reNewPwd) {
+      showErrorIndex('showErrorMessage2','errorMessage2','两次密码输入不一致');
+  }else {
+    clearErrorIndex('showErrorMessage2','errorMessage2');
+      this.set('isAcess2',true);
+  }
+});
+function clearErrorIndex(key,msgkey){
+  passwordRactive.set(key,false);
+  passwordRactive.set(msgkey,'');
+  return false;
+}
+function showErrorIndex(key,msgkey,msg){
+  passwordRactive.set(key,true);
+  passwordRactive.set(msgkey,msg);
+return false;
+}
 passwordRactive.on('updatePassword', function () {
-    var oldpwd = this.get('oldPassword');
-    var newPwd = this.get('newPassword');
-    var reNewPwd = this.get('reNewPassword');
-    var isAcess = false;
-    if (newPwd.length < 6) {
-        showError('交易密码长度最少为6位');
-    }else if (oldpwd === '') {
-        showError('原密码不能为空');
-    } else if (newPwd === '' || reNewPwd === '') {
-        showError('交易密码不能为空');
-    } else if (oldpwd == newPwd) {
-        showError('新密码原密码不能相同！');
-    } else if (newPwd !== reNewPwd) {
-        showError('两次密码输入不一致');
-    }else if(newPwd.indexOf(' ')>-1){
-        showError('含有非法字符:空格');
-    }else {
-        isAcess=true;
-    }
+  var oldpwd = this.get('oldPassword');
+  var newPwd = this.get('newPassword');
+  var reNewPwd = this.get('reNewPassword');
+    passwordRactive.fire('checkoldpwd');
+    passwordRactive.fire('checknewpwd');
+    passwordRactive.fire('checkreNewPassword');
+    var isAcess=this.get('isAcess0')&&this.get('isAcess1')&&this.get('isAcess2');
 
 
     if(isAcess) {
+
          accountService.checkPassword(oldpwd,function(r){
         if(!r){
-            showError("原始密码错误！");
-
+            // showError("原始密码错误！");
+            showErrorIndex('showErrorMessage0','errorMessage0','原始密码错误!');
         }else{
 
          accountService.updatePassword(oldpwd, newPwd, function (r) {
@@ -224,42 +283,91 @@ passwordRactive.on('changeCaptcha', function () {
         });
     });
 });
+passwordRactive.on('checkreNewPassword',function(){
+  var currentPassword = this.get("currentPassword");
+  var newPassword = this.get("newPassword");
+  var passwordConfirm = this.get("passwordConfirm");
+  var captcha = this.get("captcha.captcha");
+  this.set('isAcess2',false);
+   if ( reNewPwd === '') {
+      showErrorIndex('showErrorMessage2','errorMessage2','交易密码不能为空');
+  } else if (newPwd !== reNewPwd) {
+      showErrorIndex('showErrorMessage2','errorMessage2','两次密码输入不一致');
+  }else {
+    clearErrorIndex('showErrorMessage2','errorMessage2');
+      this.set('isAcess2',true);
+  }
+});
+//登陆原密码判定
+passwordRactive.on('checkcurrentpwd',function(){
+  var currentPassword = this.get("currentPassword");
+  var newPassword = this.get("newPassword");
+  var passwordConfirm = this.get("passwordConfirm");
+  var captcha = this.get("captcha.captcha");
+  this.set('isAcessc',false);
+   if (!currentPassword) {
+      showErrorIndex('showErrorMessagec','errorMessagec','还未填写原密码');
+  } else {
+    clearErrorIndex('showErrorMessagec','errorMessagec');
+      this.set('isAcessc',true);
+  }
+});
+passwordRactive.on('checknewp',function(){
+  var currentPassword = this.get("currentPassword");
+  var newPassword = this.get("newPassword");
+  var passwordConfirm = this.get("passwordConfirm");
+  var captcha = this.get("captcha.captcha");
+  this.set('isAcessd',false);
+   if (!newPassword) {
+      showErrorIndex('showErrorMessaged','errorMessaged','还未填写新密码');
+  }else if(newPassword.length < 6){
+      showErrorIndex('showErrorMessaged','errorMessaged','密码长度必须大于6位');
+  }else if(newPassword.indexOf(" ") >=0){
+        showErrorIndex('showErrorMessaged','errorMessaged','密码不能为空格');
+  }else {
+    clearErrorIndex('showErrorMessaged','errorMessaged');
+      this.set('isAcessd',true);
+  }
+});
+passwordRactive.on('checkrepwdConfirm',function(){
+  var currentPassword = this.get("currentPassword");
+  var newPassword = this.get("newPassword");
+  var passwordConfirm = this.get("passwordConfirm");
+  var captcha = this.get("captcha.captcha");
+  this.set('isAcesse',false);
+   if (!passwordConfirm) {
+      showErrorIndex('showErrorMessagee','errorMessagee','请重复新密码');
+  }else if(newPassword !== passwordConfirm){
+      showErrorIndex('showErrorMessagee','errorMessagee','两次密码不一致');
+  }else {
+    clearErrorIndex('showErrorMessagee','errorMessagee');
+      this.set('isAcessd',true);
+  }
+});
+passwordRactive.on('checkCaptcha',function(){
+  var currentPassword = this.get("currentPassword");
+  var newPassword = this.get("newPassword");
+  var passwordConfirm = this.get("passwordConfirm");
+  var captcha = this.get("captcha.captcha");
+  this.set('isAcessf',false);
+   if (!captcha) {
+      showErrorIndex('showErrorMessagef','errorMessagef','请填写图形验证码');
+  }else {
+    clearErrorIndex('showErrorMessagef','errorMessagef');
+      this.set('isAcessd',true);
+  }
+});
 passwordRactive.on("submit-modify-password", function (event) {
 	event.original.preventDefault();
     var currentPassword = this.get("currentPassword");
     var newPassword = this.get("newPassword");
     var passwordConfirm = this.get("passwordConfirm");
     var captcha = this.get("captcha.captcha");
-    if (!currentPassword) {
-        // 没填就密码
-        return showError("还未填写原密码");
-    }
-
-    if (!newPassword) {
-        // 没填新密码
-        return showError("还未填写新密码");
-    }
-
-    if (newPassword.length < 6) {
-        return showError("密码长度必须大于6位");
-    }
-    if (newPassword.indexOf(" ") >=0) {
-        return showError("密码不能为空格");
-    }
-
-    if (!passwordConfirm) {
-        // 没重复新密码
-        return showError("请重复新密码");
-    }
-
-    if (newPassword !== passwordConfirm) {
-        return showError("两次密码不一致");
-    }
-
-    if (!captcha) {
-        return showError('请填写图形验证码');
-    }
-
+    passwordRactive.fire('checkcurrentpwd');
+    passwordRactive.fire('checknewp');
+    passwordRactive.fire('checkrepwdConfirm');
+    passwordRactive.fire('checkCaptcha');
+    var isAcess=this.get('isAcessc')&&this.get('isAcessf')&&this.get('isAcesse')&&this.get('isAcessd');
     CommonService.checkCaptcha(passwordRactive.get('captcha'), function (res) {
         if (res.success) {
 
