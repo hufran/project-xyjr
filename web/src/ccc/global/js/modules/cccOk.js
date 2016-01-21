@@ -2,7 +2,7 @@ var Box = require('ccc/global/js/modules/cccBox');
 var tpl = require('ccc/global/partials/modules/cccOk.html');
 
 function CccOk(options) {
-	
+
 	// defaults
 	var defaults = {
 		title: '信息提示',
@@ -16,26 +16,27 @@ function CccOk(options) {
 		cancelText: '取消',
 		ok: function() {},
 		cancel: function() {},
+		close:function(){},
 		debug: false,
 	};
-	
+
 	var config = {};
 	$.extend(config, defaults, options);
-	
+
 	if (config.debug) {
 		console.log('debug:cccConfirm:config', config);
 	}
-	
+
 	var before = function() {
 		config.tpl = config.tpl.replace('{{okText}}', config.okText);
 		config.tpl = config.tpl.replace('{{msg}}', config.msg);
 	};
-	
+
 	var initialize = function() {
-		
+
 		// before init
 		before();
-		
+
 		new Box({
 			title: config.title,
 			value: config.tpl,
@@ -48,23 +49,27 @@ function CccOk(options) {
 					config.ok($(this), ele, box);
 				});
 				
+
+				$(ele).prev().find('.close').on('click',function(){
+
+					config.close($(this), ele, box);
+				});
 				// click cancel
 				$(ele).find('.btn-confirm-cancel').on('click', function(){
 					config.cancel($(this), ele, box);
 					box.hide();
 				});
-				
+
 				config.complete(ele, box);
 			}
 		});
 	};
-	
-	
-	
+
+
+
 	initialize.call(this);
 }
 
 module.exports.create = function(options) {
 	CccOk(options);
 };
-

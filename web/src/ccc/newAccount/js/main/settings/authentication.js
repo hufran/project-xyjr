@@ -9,6 +9,7 @@ var format = require('@ds/format');
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
+
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/authentication.html'),
@@ -88,9 +89,12 @@ ractive.on("register-account-submit", function () {
                                     } else {
                                         window.location.reload();
                                     }
-                                    
+
                                 },
                                 cancel: function () {
+                                    window.location.reload();
+                                },
+                                close:function(){
                                     window.location.reload();
                                 }
                             });
