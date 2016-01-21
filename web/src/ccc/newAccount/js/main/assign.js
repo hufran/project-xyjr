@@ -233,7 +233,7 @@ function init(status) {
             this.tooltip();
             var api = defalutApi;
             self.bindActions();
-            $(this.el).find(".pagination").cccPaging({
+            $(this.el).find(".ccc-paging").cccPaging({
                 total: this.get('total'),
                 perpage: self.size,
                 api: api.replace('$size', this.size),
@@ -339,7 +339,7 @@ function init(status) {
                         $("#creditDealRate").siblings("span.error").text("折价率最多保留两位小数");
                     } else if ($(this).val() < 0.95) {
                         $("#creditDealRate").siblings("span.error").text("折价率必须大于等于0.95!");
-                    } else {
+                    }else {
                         $(this).siblings("span.error").text("");
                     }
                 });
@@ -369,21 +369,27 @@ function init(status) {
                         $("#creditDealRate").siblings("span.error").text("请输入您的折价率");
                         $(this).removeClass('disabled').html('确认转让');
                         return false;
-                    } else {
+                    } else if(isNaN(creditDealRate)){
+                          $("#creditDealRate").siblings("span.error").text("只能输入数字和小数点");
+                          $(this).removeClass('disabled').html('确认转让');
+                          return false;
+                    }
+                    else {
                         $("#creditDealRate").siblings("span.error").text("");
                         if (investId && creditDealRate && assignTitle) {
                             accountService.createCreditAssign(investId, creditDealRate, assignTitle, function (o) {
-                                console.log(o);
+              
                                 if (o == "SUCCESSFUL") {
+
                                     alert("债转创建成功!");
 
                                     $('#mask-layer-wraper').hide();
                                     $('#popup').hide();
                                     window.location.reload();
                                 } else {
-
                                     alert("债转创建失败，" + returnMap[o]);
                                     window.location.reload();
+
                                     $('#mask-layer-wraper').hide();
                                     $('#popup').hide();
 

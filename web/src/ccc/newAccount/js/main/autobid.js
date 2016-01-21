@@ -24,7 +24,7 @@ var ractive = new Ractive({
         allMethod : repayMethod
     },
     onrender: function (){
-        
+
         this.parseRepaymentMethod();
     },
     parseRepaymentMethod: function(){
@@ -51,7 +51,7 @@ var maxRate = CC.user.autobidConfig.range.maxRate / 100,
     maxDuration = 48,
     flag = true;
 ractive.on('checkbutton',function(){
-   
+
     this.set('isActive',!this.get('isActive'));
 });
 ractive.on('checkValue', function (event) {
@@ -67,12 +67,12 @@ ractive.on('checkValue', function (event) {
             showError(selector,'输入信息无效');
 
         } else if (selector === 'annualRateFrom' || selector === 'annualRateTo') {
-           
+
             var annualRateFrom = parseFloat(this.get('annualRateFrom'));
             var annualRateTo = parseFloat(this.get('annualRateTo'));
-                
-            if (value > 24) {
-                showError(selector,'利率最大值不能超过'+24+'%');
+
+            if (value > 50) {
+                showError(selector,'利率最大值不能超过'+50+'%');
 
             } else if (annualRateFrom != '' && annualRateTo != '') {
 
@@ -84,7 +84,7 @@ ractive.on('checkValue', function (event) {
                     }
                 }
             } else {
-               clearError(selector); 
+               clearError(selector);
             }
 
         } else if (selector === 'durationFrom' || selector === 'durationTo') {
@@ -92,7 +92,7 @@ ractive.on('checkValue', function (event) {
             var durationFrom = parseInt(this.get('durationFrom'),10);
             var durationTo = parseInt(this.get('durationTo'),10);
 
-            if (value < minDuration || value > maxDuration) {
+            if (value < minDuration || value >maxDuration) {
 
                 showError(selector,'借款期限只能在0到48个月之间');
 
@@ -105,7 +105,7 @@ ractive.on('checkValue', function (event) {
                     } else {
                         showError(selector, '最小期限不能超过最大期限');
                     }
-                } 
+                }
 
             } else {
                 clearError(selector);
@@ -123,7 +123,10 @@ ractive.on('saveConfig', function () {
     }else{
         clearError('repaymentMethod');
     }
-    if ( flag ) {        
+    if(this.get('autoBidAmount')==0){
+        showError('autoBidAmount', '单笔投资金额不可以为0');
+    }
+    if ( flag ) {
         var params = {
             'isActive': radio,
             'autoBidAmount': parseFloat(this.get('autoBidAmount')),
@@ -134,7 +137,7 @@ ractive.on('saveConfig', function () {
             'durationTo': parseInt(this.get('durationTo'),10),
             //'mortgaged': $('input[name=mortgaged]:checked').val()
         };
-       
+
         var methods = [];
         $('input[name=type]:checked').each(function() {
             methods.push($(this).val());
@@ -155,7 +158,7 @@ ractive.on('saveConfig', function () {
                 }
             });
         });
-     
+
     } else {
         alert('请确认输入信息无误,才可以保存设置!');
     }
@@ -170,11 +173,9 @@ function showError (ele, msg) {
 }
 
 function clearError (ele) {
-   
+
     $('#' + ele)
         .find('div.error')
         .text('');
-    flag = true; 
+    flag = true;
 }
-
-
