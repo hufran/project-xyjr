@@ -147,7 +147,7 @@ ractive.on('saveConfig', function () {
 
         accountService.saveAutoBidConfig(params, function (o) {
             CccOk.create({
-                msg: '自动投资设置保存成功',
+                msg: '自动投标设置保存成功',
                 okText: '确定',
                 cancelText: '',
                 klass: 'cc-autobid-succ',
