@@ -2,7 +2,7 @@
   "name": "xyjr-web",
   "version": "0.0.0",
   "dependencies": {
-    "@cc/oauth2": "^1.17.0",
+    "@cc/oauth2": "^1.17.1",
     "@cc/redis": "^1.0.0",
     "@cc/scripts": "^2.2.0",
     "@ccc/ie8fix": "^2",
