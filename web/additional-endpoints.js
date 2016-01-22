@@ -101,6 +101,7 @@ module.exports = function (router, auth) {
     //yeepay
     router.post('/api/v2/yeepay/deposit/:userId', auth.user());
     router.get('/api/v2/yeepay/BankDepositReturn', auth.pass());
+    router.get('/api/v2/yeepay/WapDepositReturn', auth.pass());
     router.post('/api/v2/yeepay/withdrawReturn', auth.pass());
     router.get('/api/v2/yeepay/banks', auth.pass());
     router.get('/api/v2/yeepay/provinceCodes', auth.user());
