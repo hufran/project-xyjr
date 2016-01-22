@@ -94,5 +94,9 @@ module.exports = function (router, auth) {
     router.get('/api/v2/quickLogin/:mobile/:currentTime/:md5key',auth.pass());
     
     //退出登录日志
-    router.post('/api/v2/user/{userId}/add/activity',auth.user());
+    router.post('/api/v2/user/:userId/add/activity',auth.user());
+    
+    //yeepay
+    router.get('/api/v2/yeepay/provinceCodes', auth.user());
+    
 };

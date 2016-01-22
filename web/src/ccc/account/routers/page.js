@@ -364,7 +364,7 @@ module.exports = function (router) {
         });
 
     //邮箱验证
-    router.get('/account/authenticateEmail', function (req, res, next) {
+    router.get('/authenticateEmail', function (req, res, next) {
 
         var email = req.query.email;
         var code = req.query.code;
