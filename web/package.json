@@ -7,7 +7,7 @@
     "@cc/scripts": "^2.2.0",
     "@ccc/ie8fix": "^2",
     "@ccc/inspect": "^2.0.2",
-    "@ccc/login": "^2.7.0",
+    "@ccc/login": "^2.8.1",
     "@ccc/payment": "^1.7.0",
     "@ccc/register": "^2.10.6",
     "@ccc/template-watch": "^2.0.2",
