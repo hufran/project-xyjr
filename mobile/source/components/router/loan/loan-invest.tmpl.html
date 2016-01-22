@@ -9,6 +9,14 @@
     </div>
     </nav>
 
+    <div>
+        <param ng-init="agreement_name = {
+            XNB: '新能宝',
+            XJB: '薪金宝',
+            XDB: '新抵宝',
+        }[loan.product_type] + '用户投资服务协议'">
+    </div>
+
     <section class="omit-margin container loan-summary">
         <div class="rate-duration">
             <div class="rate">
@@ -136,7 +144,7 @@
         <div class="text-center agreement">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                我同意 <a href="#" ng-click="self.agreement('新毅金融投资协议')">《新毅金融投资协议》</a>
+                我同意 <a href="#" ng-click="self.agreement(agreement_name)">《{{ agreement_name }}》</a>
             </label>
         </div>
 

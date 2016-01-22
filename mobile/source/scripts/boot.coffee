@@ -587,6 +587,28 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             return $q.reject()
                                     )
 
+                            _newbie: _.ai 'api, $location, $route, $q, $window',
+                                (          api, $location, $route, $q, $window) ->
+                                    is_newbie = false
+
+                                    (api.fetch_current_user()
+
+                                        .then (user) -> is_newbie = user.is_newbie
+
+                                        .then -> api.get_loan_detail($route.current.params.id, true)
+
+                                        .then (loan) ->
+                                            if loan.loanRequest.productKey is 'XSZX' and is_newbie isnt true
+
+                                                $window.alert '此为新注册用户专享产品，您不符合活动要求，请选择其他产品！'
+
+                                                $location
+                                                    .replace()
+                                                    .path "loan/#{ $route.current.params.id }"
+
+                                                return $q.reject()
+                                    )
+
                             _fund: _.ai 'update_user_funds', (update_user_funds) ->
                                 return update_user_funds()
                     }
