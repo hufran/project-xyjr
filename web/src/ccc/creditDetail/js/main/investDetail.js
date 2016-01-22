@@ -293,7 +293,7 @@ setTimeout((function () {
             showErrors('此债转只能一次全额转让');
             return false;
         }
-        
+
 
         accountService.checkPassword(paymentPassword,
             function (r) {
@@ -333,7 +333,7 @@ setTimeout((function () {
                         });
                     } else {
                         $('.agree-error').css('visibility','visible');
-                        $('.agree-error').html('请先同意奇乐融投资协议');
+                        $('.agree-error').html('请先同意新毅金融投资协议');
                     }
                 }
             });

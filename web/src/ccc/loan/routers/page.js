@@ -86,8 +86,8 @@ router.get('/:id',
                         r.body[i].submitTime = moment(r.body[i].submitTime)
                             .format('YYYY-MM-DD HH:mm:ss');
 
-                        if (/^ZQJR_/.test(r.body[i].userLoginName)) {
-                            r.body[i].userLoginName = r.body[i].userLoginName.replace('ZQJR_', '手机用户');
+                        if (/^XYJR_/.test(r.body[i].userLoginName)) {
+                            r.body[i].userLoginName = r.body[i].userLoginName.replace('XYJR_', '手机用户');
                         } else if (r.body[i].userLoginName.indexOf('手机用户') === 0) {
                             var _name = r.body[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
                         } else {

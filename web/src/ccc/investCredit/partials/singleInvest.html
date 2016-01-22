@@ -7,7 +7,7 @@
 			{{#if titleLength>20}}
 			<p>{{title}}</p>
 			{{/if}}
-            <a href="/loan/{{ id }}" class="invest-title">
+            <a href="/creditDetail/{{id}}/{{loanId}}" class="invest-title">
 				{{#if titleLength>20}}
                 {{title.substr(0,12)}}...
 				{{else}}
@@ -30,7 +30,7 @@
         </div>
     </div>
 -->
-    
+
     <div class="investBtn">
 
         <a href="/creditDetail/{{id}}/{{loanId}}" style="text-decoration:none" class="investbtn">我要认购</a>
@@ -43,6 +43,6 @@
 	}).mouseleave(function(){
 		$(this).siblings().fadeOut(100);
 	})
-	
+
 </script>
 {{/list}}
