@@ -11,7 +11,7 @@ module.exports = function (router) {
         res.locals.description =
             '718bank理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
 
-        var productKey = ['XNB', 'XDB', 'XJB'];
+        var productKey = ['XNB', 'FB', 'XJB'];
         res.locals.products = [];
         var productKeyXSZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).get('body');
         var productKeyHDZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).get('body');
@@ -33,7 +33,7 @@ router.get('/:product',async function (req, res) {
         res.locals.description =
             '718bank理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
 
-        var productKey = ['XNB', 'XDB', 'XJB'];
+        var productKey = ['XNB', 'FB', 'XJB'];
         res.locals.products = [];
         var productKeyXSZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).get('body');
         var productKeyHDZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).get('body');

@@ -502,10 +502,10 @@ setTimeout((function () {
             });
     }
 
-    $('.benefit-calculator')
-        .on('click', function () {
-            Cal.create();
-        });
+    // $('.benefit-calculator')
+    //     .on('click', function () {
+    //         Cal.create();
+    //     });
 
     function showSelect(amount) {
             $('#couponSelection').val('');
