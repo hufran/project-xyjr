@@ -514,7 +514,11 @@ setTimeout((function () {
             disableErrors();
             loanService.getMyCoupon(amount, months, function (coupon) {
                 if(coupon.success) {
-                    investRactive.set('selectOption', parsedata(coupon.data));
+                    var list=parsedata(coupon.data);
+                    list.sort(function(a,b){
+                        return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
+                    });
+                    investRactive.set('selectOption', list);
                 }
             });
         }
