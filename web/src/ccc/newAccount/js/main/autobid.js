@@ -53,6 +53,7 @@ var maxRate = CC.user.autobidConfig.range.maxRate / 100,
 ractive.on('checkbutton',function(){
 
     this.set('isActive',!this.get('isActive'));
+    arams['repaymentMethod'] = methods.toString();
 });
 ractive.on('checkValue', function (event) {
     var selector = event.node.getAttribute('data-selector');
