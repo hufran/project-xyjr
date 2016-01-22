@@ -35,7 +35,7 @@
                 <div class="content">
                     <div class="inner">
                         <div class="item itemSecond">
-                            <div class="value">{{creditassign.creditassign.creditAmount||loan.amount}}<span>元</span>
+                            <div class="value">{{creditassign.creditassign.creditDealAmount||loan.amount}}<span>元</span>
                             </div>
                             <div class="name" style="margin-left: 70px;">转让价格</div>
                         </div>
@@ -89,7 +89,7 @@
 -->
                             </div>
                     												<div class="protocol">
-								<a target="_blank" href="/loan/loanRequest/{{loan.requestId}}/contract/template">协议范本</a>
+								<a target="_blank" href="/loan/loanRequest/{{loan.loanRequest.id}}/contract/template">协议范本</a>
 							</div>
                 </div>
                 <div class="h20"></div>

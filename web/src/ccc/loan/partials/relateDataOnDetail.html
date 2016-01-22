@@ -31,17 +31,17 @@
     暂无相关资料
 </div>
 {{/if}}
-<p class="controler-title">担保认证图片</p>
+<p class="controler-title">风控认证图片</p>
 {{#if loanPurpose.length}}
 <div class="controler" style="margin-left:10px;margin-right:10px">
     <div id="carousel-com-loan" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner" role="listbox">
             {{#loanPurpose}}
-           
+
             <div class="item item-pic {{#if @index===0}} active {{/if}}" style="background-image:url({{uri}});" on-click="begin-big-pic-loan" title="认证类型：{{proofType}}">
             </div>
-              
-            {{/loanPurpose}} 
+
+            {{/loanPurpose}}
         </div>
 <!--
 		<div class="proof">

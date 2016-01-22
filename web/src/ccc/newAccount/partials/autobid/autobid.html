@@ -27,21 +27,21 @@
         <div class="clearfix"></div>
 			<div class="error"></div>
          </div>
-       
+
          <div class="scope-right" id="annualRateTo">
         <input type="text" name="annualRateTo"  placeholder="最大利率" style="margin-left:10px;margin-right:0" data-selector="annualRateTo" on-keyup="checkValue" value="{{annualRateTo}}">
         <p>单位(%)</p>
         <div class="clearfix"></div>
 			<div class="error"></div>
              </div>
-   
+
     <div class="scope-left" id="durationFrom">
         <p>借款期限范围</p>
         <input type="text" name="durationFrom"  placeholder="最小期限" data-selector="durationFrom" on-keyup="checkValue" value="{{durationFrom}}">  <p>～</p>
          <div class="clearfix"></div>
 			<div class="error"></div>
           </div>
-      
+
         <div class="scope-right" id="durationTo">
               <input type="text" name="durationTo"  placeholder="最大期限" style="margin-left:10px;margin-right:0" data-selector="durationTo" on-keyup="checkValue" value="{{durationTo}}">
         <p>单位(月)</p>
@@ -58,6 +58,7 @@
             <p>{{name}}</p>
         </div>
         {{/each}}
+        <div class="error methodError"></div>
     </div>
     <div>
         <input type="button" class="btn blue-botton" value="保存设置" on-click="saveConfig" />
