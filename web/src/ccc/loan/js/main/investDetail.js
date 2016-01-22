@@ -464,7 +464,7 @@ setTimeout((function () {
             o[i] = o[i].placement;
             if (o[i].couponPackage.type === 'INTEREST') {
                 o[i].interest = true;
-                o[i].displayValue = (parseFloat(o[i].couponPackage.parValue) / 100).toFixed(1) + '%';
+                o[i].displayValue = (parseFloat(o[i].couponPackage.parValue) / 100).toFixed(2) + '%';
             } else if (o[i].couponPackage.type === 'CASH') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
                 o[i].hide = true;

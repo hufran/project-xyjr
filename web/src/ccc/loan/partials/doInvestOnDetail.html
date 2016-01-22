@@ -130,7 +130,7 @@
                             <select name="placementId" id="couponSelection" value="{{coupon}}">
                                 {{#if selectOption}}
                                 <option value="">请选择可用的红包</option>
-                                {{#each selectOption.reverse()}} {{#if !hide}}
+                                {{#each selectOption}} {{#if !hide}}
                                 <option value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest
 
                                 }}</option>
