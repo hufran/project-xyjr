@@ -13,7 +13,7 @@
 #main-container .label {
 	height: 70px;
 	line-height: 70px;
-	
+
 }
 .value {
 	width: 310px;
@@ -72,8 +72,19 @@ p.tips {
 	color: #4a4a4a;
 	border-bottom: 2px #009ada solid;
 }
-.updateWra,.resetWra,.formwra {
+.resetWra {
 	text-align: center;
+}
+#main-container .updateWra .row{
+	margin-left: 270px;
+	margin-right: 0px;
+}
+#main-container .formwra .row{
+	margin-left: 270px;
+	margin-right: 0px;
+}
+.updateWra,.formwra{
+	    text-align: left;
 }
 #main-container .row {
 	margin-bottom: 15px;
@@ -112,6 +123,7 @@ p.tips {
 	line-height: 40px;
 	border-radius: 5px;
   cursor: pointer;
+	text-align: center;
 }
 .btn-update:hover {
 	color: #fff;
@@ -125,7 +137,7 @@ p.tips {
 	font-size: 16px;
 }
 .modify-password-wrapper {
-	width: 400px;
+	width: 430px;
 	margin: 0 auto;
   position: relative;
   left: 60px;
@@ -494,7 +506,7 @@ p.tips {
 /*.btn-success:hover,*/
 .info-submit:hover{
     background-color: #015989 !important;
-    
+
 }
 .btn-success:hover{
     font-size: 16px;
@@ -504,4 +516,7 @@ p.tips {
 }
 .account-password-set .tipss-set{
   width: 80px;
+}
+.errorPass{
+	display: inline;
 }

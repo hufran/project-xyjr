@@ -15,19 +15,19 @@ var getCurrentType = function() {
 };
 
 $('ul.ttabs li a').on('click', function() {
-	var type = $(this).parent().data('type');	
+	var type = $(this).parent().data('type');
 	init(type);
 });
 
-Date.prototype.Format = function (fmt) { //author: meizz 
+Date.prototype.Format = function (fmt) { //author: meizz
     var o = {
-        "M+": this.getMonth() + 1, //月份 
-        "d+": this.getDate(), //日 
-        "h+": this.getHours(), //小时 
-        "m+": this.getMinutes(), //分 
-        "s+": this.getSeconds(), //秒 
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-        "S": this.getMilliseconds() //毫秒 
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)
@@ -51,7 +51,7 @@ function init (type) {
 				loading: true,
 				list: [],
 				total: 0
-			}, 
+			},
 			bindTime:0,
 			status: {
 	            'INITIATED': '未使用',
@@ -67,7 +67,7 @@ function init (type) {
 	            'PRINCIPAL': '增值券',
 	            'REBATE': '返现券'
 	        },
-            
+
 			onrender: function() {
 				var self = this;
 				self.getCouponData(function (o){
@@ -87,7 +87,7 @@ function init (type) {
 					pageNo: self.page,
 					pageSize: self.size
 				},function (o){
-					
+
 					console.log(o.data);
 					if (o.success) {
 						self.pageOneData = o.data.results;
@@ -115,7 +115,7 @@ function init (type) {
 	                }
 	                if (o[i].type === 'INTEREST') {
 	                	o[i].interest  = true;
-	                    o[i].displayValue = (parseFloat(o[i].parValue)/100).toFixed(1) + '%';
+	                    o[i].displayValue = (parseFloat(o[i].parValue)/100).toFixed(2) + '%';
 	                } else if (o[i].type === 'CASH') {
 	                    o[i].displayValue = parseInt(o[i].parValue);
 	                } else if (o[i].type === 'PRINCIPAL') {
@@ -163,7 +163,7 @@ function init (type) {
 	                    		o[i].displayStatus = '已过期';
 							}
 						}
-						
+
 					}
 	                if (o[i].description === "") {
 	                    o[i].description = "暂无描述";
@@ -209,8 +209,8 @@ function init (type) {
 
                 renderPager(totalPage, self.page);
             }
-		});		
-        
+		});
+
         function renderPager(totalPage, current) {
             console.log("===>render")
             if (!current) {
@@ -265,7 +265,7 @@ function init (type) {
 	}
 }
 
-        
+
 //var ctype=['CASH','INTEREST','PRINCIPAL','REBATE'];
 init(getCurrentType());
 

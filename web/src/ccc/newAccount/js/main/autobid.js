@@ -118,6 +118,7 @@ ractive.on('checkValue', function (event) {
 
 ractive.on('saveConfig', function () {
     var radio=$('input[type=radio]:checked').val();
+    console.log(!$('input[name=type]:checked').length);
     if (!$('input[name=type]:checked').length) {
         showError('repaymentMethod', '请选择还款方式');
     }else{
