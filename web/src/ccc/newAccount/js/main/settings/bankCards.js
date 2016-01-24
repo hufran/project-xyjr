@@ -50,8 +50,8 @@ var ractive = new Ractive({
     oncomplete: function () {
         accountService.getProvince(function (res) {
             ractive.set('province', changeToList(res));
-            ractive.set('myProvince','安徽省');
-            var fProvince = ractive.get('myProvince') || '安徽省';
+            ractive.set('myProvince','广东');
+            var fProvince = ractive.get('myProvince') || '广东';
             accountService.getCity(fProvince, function (res) {
                 ractive.set('city', changeToList(res));
             });
@@ -133,7 +133,7 @@ ractive.on("bind-card-submit", function (e) {
         smsCaptcha: smsCaptcha
     }
 
-    $.post('/lianlianpay/bindCard', sendObj, function (r) {
+    $.post('/yeepay/bindCard', sendObj, function (r) {
         if(r.success) {
             CccOk.create({
                 msg: '绑卡成功',
@@ -168,7 +168,7 @@ ractive.on("delete-card-submit", function (e) {
         cancelText: '取消解绑',
         ok: function () {
             $('.btn-confirm-cancel').trigger('click');
-            $.post('/lianlianpay/deleteCard', {
+            $.post('/yeepay/deleteCard', {
                 cardNo : ractive.get('bankAccount[0].account.account'),
                 paymentPassword : ractive.get('password')
             }, function (r) {

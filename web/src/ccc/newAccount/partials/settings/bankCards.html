@@ -5,7 +5,8 @@
     </div>
 </div>
 <div class="space-40"></div>
-{{#if !authenticated}}
+<!--{{#if !authenticated}}-->
+{{#if flase}}
 <div class="row">
 	<div class="space space-30"></div>
 	<div class="col-md-12 align-center">
@@ -71,12 +72,14 @@
                 </select>
                 <div class="clearfix"></div>
             </div>
+<!--
             <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户行：</div>
                 <input type="text" name="branchName" value="{{branchName}}" class="payInp" placeholder="如：招商银行肥西路支行">
                 <a href="http://jingyan.baidu.com/article/76a7e409b18839fc3b6e1527.html" target="_blank" style="text-decoration:none;margin-left:10px;color:#009ada"><span>查询支行?</span></a>
                 <div class="clearfix"></div>
             </div>
+-->
             <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">短信验证码：</div>
                 <input type="text" name="smsCaptcha" class="payInp" style="width:90px;margin-right:16px;" on-blur="checkSmsCaptcha" value="{{smsCaptcha}}">
@@ -140,6 +143,6 @@
     <p>1、为保障您的资金安全，绑卡前请先进行实名认证。</p>
     <p>2、您所绑定的银行卡须是借记卡，718bank理财严禁利用信用卡套现。</p>
     <p>3、718bank理财目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。</p>
-    <p>4、已绑定的银行卡如需更换，请联系客服：400-818-9696。</p>
+    <p>4、已绑定的银行卡如需更换，请联系客服：4001-718-718。</p>
 </div>
 <div class="img-wrapperbn"></div>

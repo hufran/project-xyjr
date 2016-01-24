@@ -67,7 +67,7 @@ var ractive = new Ractive({
 		this.$amount.focus();
 		
 		// set form action
-		this.set('active', '/lianlianpay/withdraw');
+		this.set('active', '/yeepay/withdraw');
 		
 		this.on('changeValue', function(e){
 			var amount = $.trim($(e.node).val());
@@ -211,7 +211,7 @@ ractive.on('withDrawSubmit', function () {
 				}
 				
 				if (isAcess) {
-					$.post('/lianlianpay/withdraw', 
+					$.post('/yeepay/withdraw', 
 					{
 						paymentPassword : pass,
 						amount : amount

@@ -57,14 +57,14 @@ exports.accountService = {
             });
     },
     getProvince: function (next) {
-        request('GET', '/api/v2/lianlianpay/provinceCodes')
+        request('GET', '/api/v2/yeepay/provinceCodes')
             .end()
             .then(function (r) {
                 next(r.body);
             });
     },
     getCity: function (provinceName, next) {
-        request('GET', encodeURI('/api/v2/lianlianpay/provinceCityCodes/' + provinceName))
+        request('GET', encodeURI('/api/v2/yeepay/provinceCityCodes/' + provinceName))
             .end()
             .then(function (r) {
                 next(r.body);

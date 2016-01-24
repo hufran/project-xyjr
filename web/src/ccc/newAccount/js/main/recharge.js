@@ -171,7 +171,7 @@ ractive.on('recharge_submit', function (e){
         okText: '充值成功',
         cancelText: '充值失败',
         ok: function () {
-            window.location.href = '/newAccount/fund';
+            window.location.href = '/newAccount/fund/loanDeal';
         },
         cancel: function () {
             window.location.reload();

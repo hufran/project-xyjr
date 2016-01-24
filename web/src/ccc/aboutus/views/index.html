@@ -12,8 +12,8 @@
 
     <div id="help-right" class="pull-right">
         <div class="invest-container">
-<!--
-{{#if contents.length===1}}
+<!--{{#if contents.length===1}}-->
+{{#if tab.text!='平台公告' && tab.text!='到期公告' && tab.text!='新闻资讯' && tab.text!='今日头条'}}
             <div id="help-right" class="pull-right">
                 <div class="invest-container">
                     <div class="invest-wrapper">
@@ -28,7 +28,6 @@
                 </div>
             </div>
             {{else}}
--->
               
                 <div id="help-right" class="pull-right">
                     <div class="invest-container">
@@ -56,7 +55,7 @@
                         </div>
                     </div>
 
-                <!--        {{/if}}-->
+                        {{/if}}
                 </div>
             </div>
              
