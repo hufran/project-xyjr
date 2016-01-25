@@ -47,7 +47,7 @@ var ractive = new Ractive({
 });
 var maxRate = CC.user.autobidConfig.range.maxRate / 100,
     minRate = 0,
-    minDuration = 1,
+    minDuration = -1,
     maxDuration = 48,
     flag = true;
 ractive.on('checkbutton',function(){
@@ -95,7 +95,7 @@ ractive.on('checkValue', function (event) {
 
             if (value < minDuration || value >maxDuration) {
 
-                showError(selector,'借款期限只能在1到48个月之间');
+                showError(selector,'借款期限只能在0到48个月之间');
 
             } else if (durationFrom != '' && durationTo != '') {
 
