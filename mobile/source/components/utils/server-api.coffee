@@ -382,7 +382,7 @@ do (_, angular, moment, Array) ->
 
                 @$http
                     .post '/api/v2/guozhengtong/authenticateUser/MYSELF',
-                        _.compact {name, idNumber}
+                        _.compact {name, idNumber, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
