@@ -44,7 +44,7 @@ do (_, angular) ->
         api.__proto__.homepage_fetch_loan_list = ->
 
             @$http
-                .get 'api/v2/loans/home/summary', cache: true
+                .get '/api/v2/loans/home/summary', cache: true
 
                 .then @TAKE_RESPONSE_DATA
                 .catch @TAKE_RESPONSE_ERROR
