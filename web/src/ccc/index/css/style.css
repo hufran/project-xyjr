@@ -605,7 +605,7 @@ a {
 	float: left;
     margin-top: 20px;
     margin-left: 35px;
-/*	border-right: 1px solid #ccc;	*/
+	border-right: 1px solid #ccc;	
 }
 
 .s-split-view .s-right-view ul{
@@ -617,13 +617,13 @@ a {
 	width: 374px;
 	float: left;
     margin-top: 20px;
-    border-left: 1px solid #ccc;
+/*    border-left: 1px solid #ccc;*/
 }
 .s-split-view .s-left-view-in {
 	width: 374px;
 	float: left;
 	margin-bottom: 20px;
-	margin-left: 60px;
+	margin-left: 50px;
 }
 
 

@@ -50,12 +50,13 @@ if (config.startOAuthServer) {
 var proxy = require('simple-http-proxy');
 // 连连回调转发
 _.each({
-    '/depositReturn': '/depositReturn',
+//    '/depositReturn': '/depositReturn',
+    '/BankDepositReturn': '/BankDepositReturn',
     '/withdrawReturn': '/withdrawReturn'
 }, function (api, fe) {
-    var proxyUrl = (config.proxy && config.proxy.market || 'http://127.0.0.1:8888').replace(/\/+$/, '') + '/api/v2/lianlianpay' + api;
-    var log = require('bunyan-hub-logger')({app: 'web', name: 'lianlianpay'});
-    app.use('/lianlianpay' + fe, proxy(proxyUrl, {
+    var proxyUrl = (config.proxy && config.proxy.market || 'http://127.0.0.1:8888').replace(/\/+$/, '') + '/api/v2/yeepay' + api;
+    var log = require('bunyan-hub-logger')({app: 'web', name: 'yeepay'});
+    app.use('/yeepay' + fe, proxy(proxyUrl, {
         onrequest: function (opts, req) {
             var chunks = [];
             req.on('data',function(chunk) {
@@ -65,7 +66,7 @@ _.each({
                 var buf = Buffer.concat(chunks);
                 var body = buf.toString('utf-8');
                 log.info({
-                    type: 'lianlianpay'+fe+'/request',
+                    type: 'yeepay'+fe+'/request',
                     req: req,
                     proxy: opts,
                     body: body,
