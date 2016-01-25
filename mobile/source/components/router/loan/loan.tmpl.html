@@ -73,7 +73,13 @@
         <div ng-switch-when="OPENED">
             <a class="btn btn-block btn-theme btn-lg"
                ng-href="loan/{{ loan.id }}/invest"
+               ng-if="self.user.has_logged_in"
             >立即投资</a>
+
+            <a class="btn btn-block btn-theme btn-lg"
+               ng-href="loan/{{ loan.id }}/invest"
+               ng-if="!self.user.has_logged_in"
+            >立即登录</a>
         </div>
 
         <div ng-switch-when="FINISHED"
