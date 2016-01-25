@@ -341,14 +341,9 @@ function initailEasyPieChart() {
 //    $(this).removeClass("active");
 //})
 
-
-var path=window.location.pathname;
-if(path=='/invest/HDZX'){
-  $('.no-warry-ul .no-warry:nth-child(2)').addClass("active");
-};
-if(path=='/invest/XSZX'){
-  $('.no-warry-ul .no-warry:nth-child(1)').addClass("active");
-};
-if(path=='/invest/XNB'){
-  $('.no-warry-ul .no-warry:nth-child(3)').addClass("active");
-};
+initselect();
+function initselect(){
+    var path=CC.product;
+    $('.no-warry').removeClass('active');
+    $('.no-warry[data-product='+path+']').addClass('active');
+}

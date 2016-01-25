@@ -40,6 +40,10 @@ router.get('/:id',
                           }
                           return repayments;
                       } else {
+                        var data= r.body.data.repayments;
+                          if(data && typeof data==='object' && Array == data.constructor){
+                              return  data;
+                          }
                           repayments.push(r.body.data.repayments);
                           return  repayments;//r.body.data.repayments;
                       }
@@ -105,6 +109,8 @@ router.get('/:id',
             // TODO 如何共享 loanRequestId 减少请求次数
             replay: repayments
         });
+        console.log('======');
+        console.log(repayments);
         // repayments.then(function (repayments) {
             res.expose(repayments, 'repayments');
             res.render('index', _.assign(res.locals, {

@@ -29,7 +29,7 @@
                     <div class="inner">
                         <div class="item itemSecond">
                               <div class="name"><img src="/ccc/loan/img/detailRate.png" />预期年化收益率:</div>
-                            <div class="value"><span style="font-size:25px;">{{loans.basicRate}}</span><span>%+</span><span style="font-size:35px;">{{loans.loanRequest.deductionRate}}</span><span>%</span>
+                            <div class="value"><span style="font-size:25px;">{{loans.basicRate}}</span><span>%</span>{{#if loans.loanRequest.deductionRate>0}}<span style="font-size:25px;">+{{loans.loanRequest.deductionRate}}</span><span>%</span>{{/if}}
                             </div>
                         </div>
                         <div class="item itemThird" style="border-right:none">
@@ -149,6 +149,7 @@
             </div>
 
             <div class="tab-panel">
+
                 {{#if user}}
                 <table class="table repay-plan repay-record">
 
@@ -160,16 +161,17 @@
                         <th>应收利息(元)</th>
                         <th style="border-top-right-radius: 3px;">剩余本金(元)</th>
                     </thead>
-                    {{#replay}}
+
+                    {{#each replay:num}}
                     <tr>
-                        <th>{{@index + 1}}</th>
+                        <th>{{num + 1}}</th>
                         <th>{{dueDate}}</th>
                         <th class="col-current-period">{{amount}}</th>
                         <th>{{amountPrincipal}}</th>
                         <th>{{amountInterest}}</th>
                         <th>{{amountOutstanding}}</th>
                     </tr>
-                    {{/replay}}
+                    {{/each}}
                 </table>
                 {{else}}
                 <div class="notLogin">
@@ -232,8 +234,8 @@
         LuserId:'{{loans.loanRequest.userId}}',
         productKey:'{{loans.loanRequest.productKey}}',
         rate: {{loans.rate}},
-        durationdays: {{loans.duration.totalDays}}
-
+        durationdays: {{loans.duration.totalDays}},
+        enterprise:{{loans.loanRequest.user.enterprise}}
     };
     if('{{loans.timeFinished}}'){
         CC.loan.timeFinished='{{loans.timeFinished}}';

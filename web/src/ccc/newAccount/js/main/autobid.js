@@ -16,8 +16,8 @@ var ractive = new Ractive({
         isActive: CC.user.autobidConfig.active || false,
         autoBidAmount : CC.user.autobidConfig.singleAmount ,
         autoBidRemainAmount: CC.user.autobidConfig.reservedAmount,
-        annualRateFrom: CC.user.autobidConfig.range.minRate / 100,
-        annualRateTo: CC.user.autobidConfig.range.maxRate / 100,
+        annualRateFrom: CC.user.autobidConfig.range.minRate / 100||0,
+        annualRateTo: CC.user.autobidConfig.range.maxRate / 100||0,
         durationFrom: CC.user.autobidConfig.range.minDuration,
         durationTo: CC.user.autobidConfig.range.maxDuration,
         repaymentMethod : CC.user.autobidConfig.repayMethod,
@@ -47,7 +47,7 @@ var ractive = new Ractive({
 });
 var maxRate = CC.user.autobidConfig.range.maxRate / 100,
     minRate = 0,
-    minDuration = 1,
+    minDuration = -1,
     maxDuration = 48,
     flag = true;
 ractive.on('checkbutton',function(){
@@ -119,7 +119,6 @@ ractive.on('checkValue', function (event) {
 
 ractive.on('saveConfig', function () {
     var radio=$('input[type=radio]:checked').val();
-    console.log(!$('input[name=type]:checked').length);
     if (!$('input[name=type]:checked').length) {
         showError('repaymentMethod', '请选择还款方式');
     }else{
@@ -128,6 +127,12 @@ ractive.on('saveConfig', function () {
     if(this.get('autoBidAmount')==0){
         showError('autoBidAmount', '单笔投资金额不可以为0');
     }
+
+    $('div.error').each(function(){
+        if($(this).text().trim()){
+            flag=false;
+        }
+    });
     if ( flag ) {
         var params = {
             'isActive': radio,

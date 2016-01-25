@@ -172,6 +172,7 @@ ractive.on('select-type', function (e) { // dropdown 选择类型的时候
 
 ractive.on('do-filter', function () { // 开始筛选数据
     // 类型
+    $('.sDuration li').removeClass('s__is-selected');
     var type,
         status,
         operation;
@@ -259,6 +260,7 @@ ractive.loadData = function (obj) {
             pageOneData = parseList(list);
             ractive.set('list', parseList(list));
             renderPage(res.totalSize, obj);
+            return null;
         });
 };
 function parseList(date){
@@ -390,7 +392,7 @@ function renderPage(total, obj) {
 //        type: obj.type || 'ALL',
         allStatus: obj.status || false,
         allOperation: true,
-        startDate: 1111122222000,
+        startDate: moment($('.date-from-picker>input').val()).unix() * 1000,
         endDate: moment(self.get('toDate'))
             .unix() * 1000,
         pageSize: size
@@ -483,18 +485,23 @@ $('.sRate li').click(function(){
         }
     });
     $('.sDuration li').click(function(){
+
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
             var longtime=$(this).text().substring(0,2);
            if(longtime==='全部'){
                longtime=0;
            }
-//           $('.date-from-picker>input').val(moment().add('days',-longtime)
-//            .format('YYYY-MM-DD'));
-//             $('.date-to-picker>input').val(moment().format('YYYY-MM-DD'));
+           ractive.set({
+               dateFrom:'',
+               dateTo:''
+           });
+           ractive.set('dateFrom',moment().subtract(longtime,'d').format('YYYY-MM-DD'));
+           ractive.set('dateTo',moment().format('YYYY-MM-DD'));
+
              ractive.loadData({
                  type: typet,
                  preset: tab1Preset
-    });
+             });
         }
     });

@@ -30,6 +30,7 @@ var passwordRactive = new Ractive({
 
 passwordRactive.on('checkTab', function (event) {
 	var tab = event.node.getAttribute('data-tab');
+    this.set('newPassword','');
 	if (tab !== this.get('frontTab')) {
 		this.set('frontTab', tab);
 		this.set('showFundPass', !this.get('showFundPass'));

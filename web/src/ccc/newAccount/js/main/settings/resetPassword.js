@@ -96,6 +96,7 @@ function countDown() {
                 .html(previousText);
             $('.sendCode')
                 .removeClass('disabled');
+			resetPasswordRactive.set('isSend',false);
             clearInterval(interval);
         }
     }), 1000);

@@ -204,57 +204,6 @@ setTimeout((function () {
 
     }
 
-    //
-    // investRactive.on('reduce', function (e) {
-    //      if (CC.loan.rule.balance < CC.loan.rule.min) {
-    //         this.set('inputNum', CC.loan.rule.balance);
-    //         showErrors('投资金额必须为标的剩余金额');
-    //         return;
-    //     }
-    //     var num = parseInt(this.get('inputNum'));
-    //     num = num - parseInt(CC.loan.rule.step);
-    //     if (num < CC.loan.rule.min) {
-    //         return;
-    //     }
-    //     investRactive.set('inputNum', num);
-    //     showSelect(num);
-    // });
-
-    // investRactive.on('add', function (e) {
-    //     if (CC.loan.rule.balance < CC.loan.rule.min) {
-    //         this.set('inputNum', CC.loan.rule.balance);
-    //         showErrors('投资金额必须为标的剩余金额');
-    //         return;
-    //     }
-    //     var num = parseInt(this.get('inputNum'));
-    //     if (num < CC.loan.rule.min) {
-    //         num = CC.loan.rule.min;
-    //     } else {
-    //         num = num + parseInt(CC.loan.rule.step);
-    //     }
-    //     if (num > CC.loan.rule.max) {
-    //         return;
-    //     }
-    //     investRactive.set('inputNum', num);
-    //     showSelect(num);
-    // });
-
-
-    // investRactive.on('maxNumber', function (e) {
-    //     if (CC.loan.rule.balance < CC.loan.rule.min) {
-    //         this.set('inputNum', CC.loan.rule.balance);
-    //         showErrors('投资金额必须为标的剩余金额');
-    //          return;
-    //     }
-    //   var lmount=CC.loan.rule.leftAmount;
-    //     if(CC.loan.rule.dw==='万'){
-    //         lmount=lmount*10000;
-    //     }
-    //    var minNum=Math.min(CC.user.availableAmount,CC.loan.rule.max,lmount);
-    //
-    //     investRactive.set('inputNum', Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
-    //     showSelect(Math.floor(parseInt(minNum/CC.loan.rule.step)*CC.loan.rule.step));
-    // });
 
 
     investRactive.on("invest-submit", function (e) {
@@ -563,7 +512,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
             }
 		}
 
-//		console.log(r1);
+
 		var proofTypeArr = r2.proofs.CAREER;
 		for(var i=0;i<proofTypeArr.length;i++){
 			if(proofTypeArr[i].proof.proofType !== ''){
@@ -572,8 +521,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 				proofTypeArr[i].proofType = '暂无认证信息';
 			}
 		};
-//		console.log(proofTypeArr);
-
+        if(CC.loan.enterprise){
         var relateDataRactive = new Ractive({
             // insurance 担保
             el: ".insurance-wrapper",
@@ -655,6 +603,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
             return false;
 
         });
+    }
     });
 });
 
