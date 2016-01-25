@@ -378,7 +378,7 @@ function init(status) {
                         $("#creditDealRate").siblings("span.error").text("");
                         if (investId && creditDealRate && assignTitle) {
                             accountService.createCreditAssign(investId, creditDealRate, assignTitle, function (o) {
-              
+
                                 if (o == "SUCCESSFUL") {
 
                                     alert("债转创建成功!");

@@ -38,8 +38,11 @@
                 <div ng-repeat="item in list.XSZX">
                     <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
                         <div class="rate-duration">
-                            <div class="rate">
+                            <div class="rate" ng-if="item.deduction_rate > 0">
                                 <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
+                            </div>
+                            <div class="rate" ng-if="item.deduction_rate <= 0">
+                                {{ item.rate }}%
                             </div>
 
                             <div class="duration">
@@ -91,8 +94,11 @@
                 <div ng-repeat="item in list.HDZX">
                     <a ng-href="loan/{{ item.id }}?back={{ page_path }}">
                         <div class="rate-duration">
-                            <div class="rate">
+                            <div class="rate" ng-if="item.deduction_rate > 0">
                                 <small>{{ item.basic_rate }}%+</small>{{ item.deduction_rate }}%
+                            </div>
+                            <div class="rate" ng-if="item.deduction_rate <= 0">
+                                {{ item.rate }}%
                             </div>
 
                             <div class="duration">

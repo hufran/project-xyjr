@@ -4,9 +4,13 @@
 
     <div class="info-list">
         <div class="item rate">
-            <div class="value">
+            <div class="value" ng-if="loan.deduction_rate > 0">
                 <small>{{ ::loan.basic_rate }}%+</small>{{ ::loan.deduction_rate }}%
             </div>
+            <div class="value" ng-if="loan.deduction_rate <= 0">
+                {{ ::loan.rate }}%
+            </div>
+
             <div class="name">年化收益</div>
         </div>
 

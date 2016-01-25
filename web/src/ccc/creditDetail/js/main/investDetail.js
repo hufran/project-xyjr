@@ -288,13 +288,14 @@ setTimeout((function () {
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
-
+         if(CC.user.userId== this.get('creditassign.creditassign.userId')){
+           showErrors('不能投自己的转让的标的');
+           return false;
+         }
         if(num!=this.get('creditassign.creditassign.creditAmount')){
             showErrors('此债转只能一次全额转让');
             return false;
         }
-
-
         accountService.checkPassword(paymentPassword,
             function (r) {
                 if (!r) {

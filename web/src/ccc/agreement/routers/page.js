@@ -29,16 +29,18 @@ module.exports = function (router) {
         var param = req.params.param;
         var cateMap = {
             regist:'DECLARATION',
-           // protocolltb:'DECLARATION',
-//            protocollxy:'DECLARATION',
+           protocolltb:'DECLARATION',
+           protocollxy:'DECLARATION',
            protocol:'DECLARATION',
+           protocolxnb:'DECLARATION',
         };
 
         var tabMap = {
             regist: '新毅金融用户注册协议',
-           // protocolltb: '乐投保用户投资服务协议',
-//            protocollxy: '乐享盈用户投资服务协议',
-           protocol:'用户投资服务协议'
+           protocolltb: '新抵宝用户投资服务协议',
+           protocollxy: '薪金宝用户投资服务协议',
+           protocol:'用户投资服务协议',
+           protocolxnb: '新能宝用户投资服务协议',
         };
 
         res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param])).get('body').then(function (r) {

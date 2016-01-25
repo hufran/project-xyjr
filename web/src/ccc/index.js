@@ -209,7 +209,7 @@ app.all('/logout', async function (req, res) {
             type: 'USER_LOGOUT',
             source: 'PC'
         }
-        req.uest.post('api/v2/user/'+userId+'/add/activity').send(query);
+        req.uest.post('/api/v2/user/'+userId+'/add/activity').send(query).end();
     }
     res.clearCookie('ccat');
     if (req.xhr) {
