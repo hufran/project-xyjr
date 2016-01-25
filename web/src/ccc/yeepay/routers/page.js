@@ -88,8 +88,8 @@ module.exports = function (router) {
 	            req: req,
 	            body: req.body
 	        });
+            req.body.retUrl = req.headers.host + '/yeepay/BankDepositReturn';
 	        var data = qs.stringify(req.body);
-            req.body.retUrl = '/api/v2/yeepay/BankDepositReturn';
 	        req.body = data.replace(/%5B\d+%5D/g, '');
 	        next();
 	    }, function (req, res) {
@@ -103,9 +103,9 @@ module.exports = function (router) {
 	                    req: req,
 	                    body: r.body
 	                });
-	                res.render('post', {
-	                    data: r.body
-	                });
+//	                res.render('post', {
+//	                    data: r.body
+//	                });
                     res.redirect(r.body.message);
 	            });
 	    });
@@ -121,10 +121,7 @@ module.exports = function (router) {
                 req: req,
                 body: req.body
             });
-
-            req.uest.post('/api/v2/yeepay' + api)
-                .type("form")
-                .send(req.body)
+                req.uest.get('/api/v2/yeepay' + api)
                 .end()
                 .then(function (r) {
                     log.info({
