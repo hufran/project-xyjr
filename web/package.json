@@ -80,7 +80,7 @@
     "build-config": "gulp build-config",
     "dev": "PORT=`next-port 4000` gulp dev",
     "gulp": "gulp",
-    "postinstall": "mkdir -p src/ccc/global/img/fonts && cp node_modules/bootstrap/fonts/* src/ccc/global/img/fonts/ && cp node_modules/font-awesome/fonts/* src/ccc/global/img/fonts/",
+    "postinstall": "mkdir -p src/ccc/global/img/fonts && cp node_modules/bootstrap/fonts/* src/ccc/global/img/fonts/ && cp node_modules/font-awesome/fonts/* src/ccc/global/img/fonts/ && gulp init",
     "reload": "NODE_ENV=production PORT=8000 rc-service",
     "start": "NODE_ENV=production PORT=8000 rc-service",
     "start-uat": "NODE_APP_INSTANCE=uat NODE_ENV=production PORT=8000 rc-service",
