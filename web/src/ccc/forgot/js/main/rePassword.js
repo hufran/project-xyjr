@@ -116,7 +116,7 @@
 	        showErrors("MOBILE_NULL");
 	        return false;
 	    }
-        
+
         var bMobile = false;
 	    utils.formValidator.checkMobile(user.mobile, function (ok, msg) {
             if (ok) {
@@ -139,13 +139,13 @@
         if(bMobile){
             return false;
         }
-        
-        
+
+
         if (user.captcha == null || user.captcha.toString().trim() === "") {
 	        showErrors("MOBILE_CAPTCHA_NULL");
 	        return false;
 	    }
-        
+
 	    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
 	        if (!err) {
 	            showErrors(msg);
@@ -239,7 +239,15 @@
 	    }
 
 	});
-
+	rePassword.on('keydown',function(){
+		var newPass=this.get('newPass');
+		if(newPass.length>16||newPass.length==16){
+			rePassword.set('errors', {
+	            visible: true,
+	            msg: '密码长度不能大于16'
+	        });
+		}
+	});
 	rePassword.on('sendTelCode', function (e) {
 	    var $captchaBtn = $(".getcaptcha");
 	    var mobile = this.get('user.mobile');
@@ -263,7 +271,7 @@
                             }
                         });
                     }
-                });    
+                });
 	        } else {
 	            showErrors(msg);
 	        }
