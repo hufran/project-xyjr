@@ -218,6 +218,7 @@ app.all('/logout', async function (req, res) {
     } else {
         res.redirect('/');
     }
+    return false;
 });
 
 server.listen(port, '0.0.0.0', function () {

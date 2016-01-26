@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function (router) {
-    router.get('/',async function (req, res) {
+    router.get('/', async function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
             delete user.idNumber;
@@ -21,8 +21,9 @@ module.exports = function (router) {
         res.locals.products.push(productKeyLCZQ);
         res.expose('', 'product');
         res.render();
+        return false;
     });
-router.get('/:product',async function (req, res) {
+router.get('/:product', async function (req, res) {
         var user = res.locals.user;
         if (user && user.idNumber) {
             delete user.idNumber;
@@ -43,5 +44,6 @@ router.get('/:product',async function (req, res) {
         res.locals.products.push(productKeyLCZQ);
         res.expose(req.params.product, 'product')
         res.render('index');
+        return false;
     });
 }

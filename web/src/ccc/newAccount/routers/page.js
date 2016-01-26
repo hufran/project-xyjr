@@ -169,6 +169,7 @@ module.exports = function(router) {
         res.render('newAccount/autobid', {
             title: '新毅金融'
         });
+        return false;
     });
     router.get('/assign', function(req, res) {
         res.render('newAccount/assign', {
@@ -200,7 +201,7 @@ module.exports = function(router) {
         res.render('newAccount/withdraw', {
             title: '新毅金融'
         });
-
+        return false;
     });
     router.get('/message', function(req, res) {
         res.render('newAccount/message', {
