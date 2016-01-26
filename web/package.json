@@ -17,7 +17,7 @@
     "@ds/i18n": "^1.2.1",
     "baconflux": "^2.0.3",
     "baconjs": "^0.7",
-    "bluebird": "^3",
+    "bluebird": "^2",
     "body-parser": "^1",
     "bootstrap": "^3",
     "browserify": "^12",
