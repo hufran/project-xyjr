@@ -115,13 +115,14 @@ module.exports = function (router) {
         '/BankDepositReturn': '/BankDepositReturn',
         '/withdrawReturn': '/withdrawReturn'
     }, function (api, fe) {
-        router.post(fe, ccBody, function (req, res) {
+        router.get(fe, function (req, res) {
             log.info({
                 type: 'yeepay'+fe+'/request',
                 req: req,
                 body: req.body
             });
                 req.uest.get('/api/v2/yeepay' + api)
+                .send(req.query)
                 .end()
                 .then(function (r) {
                     log.info({
@@ -129,9 +130,12 @@ module.exports = function (router) {
                         req: req,
                         body: r.body
                     });
-                    res.render('return', {
-                        data: r.body
+                    var results = qs.stringify({
+                        method: fe,
+                        api: api,
+                        body: r.body
                     });
+                    res.redirect('/newAccount/recharge');
                 });
             });
     });
