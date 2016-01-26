@@ -119,6 +119,7 @@ router.get('/:id',
                 }, 0)
             }));
         // });
+        return false;
     });
 
 router.get('/loanRequest/:requestId/contract/template',function(req,res,next){

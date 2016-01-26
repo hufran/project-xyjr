@@ -20,7 +20,7 @@ function Fpercent(percent, offset) {
 };
 
 module.exports = function (router) {
-    router.get('/:id/:loanId',async function (req,res) {
+    router.get('/:id/:loanId', async function (req, res) {
         var creditassignId = req.params.id;
         var loanId = req.params.loanId;
        var serverDate = moment(new Date()).format('YYYY-MM-DD');
@@ -170,6 +170,7 @@ module.exports = function (router) {
         });
         res.expose(loanParam,'loan');
 
-         res.render('creditDetail/detail');
+        res.render('creditDetail/detail');
+        return false;
     });
 }
