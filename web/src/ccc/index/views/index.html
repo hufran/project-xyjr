@@ -22,7 +22,7 @@
             {{/}}
         </ol>
 
-        
+
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             {{#carousel}}
@@ -30,7 +30,7 @@
                 <a href="{{this.link}}" target="_blank">
                     <div style="background-image:url({{this.img}}); background-repeat:no-repeat; background-position:center;height: 498px;">
                     </div>
-                </a>    
+                </a>
             </div>
             {{/carousel}}
         </div>
@@ -44,8 +44,8 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        
-        
+
+
         <div class="middle-box"></div>
         <div class="banner-account－box">
             <div class="banner-account">
@@ -61,7 +61,7 @@
                     {{else}}
                         <a href="/register"><button class="btn-index">注册领红包</button></a>
                     {{/if}}
-                </div> 
+                </div>
                 {{#if user}}
                     <h3 class="bannerLogin">{{#if userInfo.user.name}}您当前的登录账户是{{else}}{{shangwuxiawu}}好{{/if}}：<span >{{#if !userInfo.user.name}}{{user.mobile}}{{else}}{{userInfo.user.name}}{{/if}}</span></h3>
                     {{else}}
@@ -98,7 +98,7 @@
                         <span><em>{{descript}}</em></span>
                     </li>
                 {{/each}}
-                </ul>  
+                </ul>
             </span>
         </div>
     </div>
@@ -108,9 +108,9 @@
 <!--实力保障-->
 <div class="strengthProtectBg">
     <div class="strengthProtectBox">
-           
+
         <div class="strengthProtect">
-            <img src="/ccc/index/img/advantage.png" />
+            <img style="width:75px;" src="/ccc/index/img/advantage.png" />
             <div class="strengthProtect-content" style="width:144px;">
                 <h3>品牌优势</h3>
                 <p>互联网信用AA级企业</p>
@@ -204,7 +204,7 @@
             </ul>
         </div>
 -->
-        
+
         <div class="s-right-view">
             <a href="/aboutus/action" target="_blank">
                 <p class="u-float-right">更多&nbsp;&gt;</p>
@@ -228,7 +228,7 @@
             {{/}}
         </ol>
 
-        
+
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             {{#each latestImgPublication:num}}
@@ -236,7 +236,7 @@
                 <a href="/cms/p/{{this.id}}" target="_blank">
                     <div style="background-image:url({{url}}); background-repeat:no-repeat; background-position:center; width:292px;height: 181px;">
                     </div>
-                </a>    
+                </a>
             </div>
             {{/each}}
         </div>
@@ -249,7 +249,7 @@
                 {{/if}}
             {{/each}}
 -->
-            
+
 <!--            图片新闻轮播end-->
             <ul>
                 {{#each latestPublication:num}}
@@ -274,7 +274,7 @@
                 {{#each latestOne:num}}
                 {{#if num<5 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
-					   
+
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
                                 {{title.substr(0,22)}}...
                             {{else}}
@@ -295,7 +295,7 @@
                 {{#each expireOne:num}}
                 {{#if num<2 }}
                 <li><a href="/cms/p/{{this.id}}" class="news"
-					   
+
 					   target="_blank"><img src="/ccc/index/img/circle.png"/>{{#if title.length > 22}}
                                 {{title.substr(0,22)}}...
                             {{else}}
@@ -341,8 +341,8 @@
             <a href="" class="par-title3" target="_blank">更多+</a>
         </div>
         <div class="index-partner-content">
-            {{JSON.stringify(latestNews)}} 
-           {{#latestNews:num}} 
+            {{JSON.stringify(latestNews)}}
+           {{#latestNews:num}}
             {{#if !hide}}{{#if num<=2}}
             <div class="index-internet">
                 <div>
@@ -352,7 +352,7 @@
                 <div class="media-content">
                     <p><a href="/cms/p/{{this.id}}" target="_blank" class="media-t">{{this.title}}</a></p>
                     <p>{{{this.content}}}</p>
-                </div> 
+                </div>
             </div>
             {{/if}}{{/if}}
            {{/latestNews}}
@@ -373,12 +373,12 @@
             var isStoped = false,userisStoped = false;
             var oScroll = document.getElementById("scrollWrap");
             var useroScroll = document.getElementById("userscrollWrap");
-            
+
             oScroll.onmouseover = new Function('isStoped = true');
             oScroll.onmouseout = new Function('isStoped = false');
             useroScroll.onmouseover = new Function('userisStoped = true');
             useroScroll.onmouseout = new Function('userisStoped = false');
-            
+
             var preTop = 0, userpreTop = 0;
             var curTop = 0,usercurTop = 0;
             var stopTime = 0,userstopTime = 0;
@@ -386,7 +386,7 @@
             var useroScrollMsg = document.getElementById("userscrollMsg");
             oScroll.appendChild(oScrollMsg.cloneNode(true));
             useroScroll.appendChild(useroScrollMsg.cloneNode(true));
-            
+
             init_srolltext(oScroll,'scrollUp()');
             init_srolltext(useroScroll,'userscrollUp()');
         } catch (e) {}
@@ -415,7 +415,7 @@
                         oScroll.scrollTop += 1;
                     }
                 }
-            }   
+            }
         function userscrollUp() {
                 if (userisStoped)
                     return;
@@ -435,7 +435,7 @@
                         useroScroll.scrollTop += 1;
                     }
                 }
-            }  
+            }
 
 </script>
 </dsBody>
