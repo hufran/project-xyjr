@@ -344,10 +344,9 @@ do (_, angular, moment, Array) ->
 
             logout: ->
 
-                @add_activity('USER_LOGOUT')
-
                 @$http.post '/logout', {}, {
                     headers: 'X-Requested-With': 'XMLHttpRequest'
+                    params: source: 'H5'
                 }
 
 
