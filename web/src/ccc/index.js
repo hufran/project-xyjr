@@ -50,8 +50,7 @@ if (config.startOAuthServer) {
 var proxy = require('simple-http-proxy');
 // 连连回调转发
 _.each({
-//    '/depositReturn': '/depositReturn',
-    '/BankDepositReturn': '/BankDepositReturn',
+    '/depositReturn': '/depositReturn',
     '/withdrawReturn': '/withdrawReturn'
 }, function (api, fe) {
     var proxyUrl = (config.proxy && config.proxy.market || 'http://127.0.0.1:8888').replace(/\/+$/, '') + '/api/v2/yeepay' + api;
@@ -121,10 +120,10 @@ app.use(async function (req, res, next) {
         } catch (e) {}
             resultLink = _.map(resultLink, function (one){
                 if(one.redirectUrl === '/ctx1'){
-                    one.redirectUrl = 'http://www.718vc.com/quickLogin/1/' + quickLogin;
+                    one.redirectUrl = 'http://www.718vc.com/quickLogin/1' + quickLogin;
                 }
                 if(one.redirectUrl === '/ctx2'){
-                    one.redirectUrl = 'http://www.718vc.com/quickLogin/2/' + quickLogin;
+                    one.redirectUrl = 'http://www.718vc.com/quickLogin/2' + quickLogin;
                 }
                 return one;
             })
