@@ -26,9 +26,9 @@ module.exports = function (router, auth) {
     router.get('/api/v2/user/:userId/fundaccountsMap', auth.user());
     router.get('/api/v2/user/:userId/funds/query', auth.user());
     router.post('/api/v2/loanIntent/addNew', auth.pass());
-    router.get('/api/v2/loanIntent/:userId/listAll', auth.user()); 
+    router.get('/api/v2/loanIntent/:userId/listAll', auth.user());
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
-      
+
     router.get('/api/v2/message/markAsRead/:messageId', auth.user());
     router.get('/api/v2/message/user/:userId/listByStatus', auth.user());
     router.get('/api/v2/loans/getLoanWithProduct', auth.pass());
@@ -70,13 +70,13 @@ module.exports = function (router, auth) {
     router.get('/api/v2/navigation/listPlayPanes', auth.pass());
     //首页标的
     router.get('/api/v2/loans/home/summary', auth.pass());
-    
+
      //用户注册动态
     router.get('/api/v2/users/getHomeDynamicData', auth.pass());
-    
+
     //实名认证
     router.post('/api/v2/guozhengtong/authenticateUser/:userId', auth.owner());
-    
+
     //债转相关
     router.post('/api/v2/creditassign/create/:userId/:investId/:creditDealRate', auth.user());
 	router.get('/api/v2/creditassign/listForCreditAssign/:userId', auth.user());
@@ -84,7 +84,9 @@ module.exports = function (router, auth) {
 	router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass());
 	router.post('/api/v2/creditassign/cancel/:creditAssignId', auth.user());
 	router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
-    
+  //债转转让记录
+    router.get('/api/v2/creditassign/list/loan/:loanId', auth.pass());
+
     //自动投标
     router.post('/api/v2/:userId/save_autobid_config',auth.user());
     router.post('/api/v2/resetPassword',auth.pass());
@@ -92,10 +94,10 @@ module.exports = function (router, auth) {
     router.get('/api/v2/getMd5keyData/:userId',auth.user());
     router.get('/api/v2/quickLogin/a/getUser/:mobile/:currentTime/:md5key',auth.pass());
     router.get('/api/v2/quickLogin/:mobile/:currentTime/:md5key',auth.pass());
-    
+
     //退出登录日志
     router.post('/api/v2/user/:userId/add/activity',auth.user());
-    
+
     //yeepay
     router.post('/api/v2/yeepay/deposit/:userId', auth.user());
     router.post('/api/v2/yeepay/BankDepositReturn', auth.pass());
