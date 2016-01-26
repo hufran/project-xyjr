@@ -202,17 +202,22 @@ _.each([
 app.use(require('@ccc/login/middlewares').setBackUrl); // 全局模板变量添加 loginHrefWithUrl 为登录后返回当前页的登录页面链接
 app.use('/__', ds.loader('hide'));
 app.use(ds.loader('page'));
+
 app.all('/logout', async function (req, res) {
-    if(req.cookies.ccat){
-        var user = await (req.uest.get('/api/v2/whoamiplz').get('body') || {});
-        var userId = user.user.id;
+    if (req.cookies.ccat) {
+        var userId = _.get(await req.uest.get('/api/v2/whoamiplz').get('body'), 'user.id');
         var query = {
             type: 'USER_LOGOUT',
-            source: 'PC'
+            source: req.query.source || 'PC',
+        };
+
+        if (!!userId) {
+            req.uest.post('/api/v2/user/' + userId + '/add/activity').send(query).end();
         }
-        req.uest.post('/api/v2/user/'+userId+'/add/activity').send(query).end();
     }
+
     res.clearCookie('ccat');
+
     if (req.xhr) {
         res.send('');
     } else {
