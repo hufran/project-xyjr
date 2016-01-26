@@ -88,7 +88,8 @@ module.exports = function (router) {
 	            req: req,
 	            body: req.body
 	        });
-            req.body.retUrl = req.headers.host + '/yeepay/BankDepositReturn';
+//            req.body.retUrl = req.headers.host + '/yeepay/BankDepositReturn';
+            req.body.retUrl = 'http://licai.718bank.com/api/v2/yeepay/BankDepositReturn';
 	        var data = qs.stringify(req.body);
 	        req.body = data.replace(/%5B\d+%5D/g, '');
 	        next();
