@@ -1,125 +1,80 @@
-.big-container{
-    background:url('/ccc/activity/img/bg_01.png')center top no-repeat,
-   url('/ccc/activity/img/bg_02.png')center 950px no-repeat,url('/ccc/activity/img/bg_03.png')center 1900px no-repeat,url('/ccc/activity/img/bg_04.png')center 2850px no-repeat;
-    width:auto;
+.big-container {
+    background: url('/ccc/activity/img/bg_01.png')center top no-repeat, url('/ccc/activity/img/bg_02.png')center 412px no-repeat,url('/ccc/activity/img/bg_03.png')center 824px no-repeat,url('/ccc/activity/img/bg_04.png')center 1236px no-repeat,url('/ccc/activity/img/bg_05.png')center 1648px no-repeat,url('/ccc/activity/img/bg_06.png')center 2059px no-repeat,url('/ccc/activity/img/bg_07.png')center 2471px no-repeat,url('/ccc/activity/img/bg_08.png')center 2883px no-repeat;
+    width: auto;
     margin: 0px auto;
-    height: 3800px;
+    height: 3000px;
 }
-.top{
-    height:400px;
+#main-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
 }
-.family-len-box{
-    font-size: 30px;
-    color: #009ada;
+.banner-title{
+           padding-top: 834px;
+    margin-left: 156px;
+}
+.middle{
+    width: 1000px;
+    margin: 0px auto;
+}
+.four{
+    margin-top: 92px;
+    margin-left: 354px;
+}
+.four-first{
+    display: block;
+    margin-top: 40px;
+}
+.process-pic{
+    margin-top: 34px;
+}
+.four-second{
+    margin-top: 95px;
+}
+.rule{
+       font-size: 22px;
+    color: #fff;
+    margin-top: 16px;
+}
+.four-third{
+    margin-top: 36px;
+}
+.make-money{
+    background-image:url('/ccc/activity/img/bg-make.png');
+    font-size: 25px;
+    color:#fff;
+    padding: 30px 40px;
+    margin-top: 44px;
+}
+.four-forth{
+    margin-top: 80px;
+}
+.book{
+    background-image:url('/ccc/activity/img/bg-make.png');
+    margin-top: 34px;
+    color: #fff;
+        height: 300px;
+}
+.book .book-title{
+    font-size: 25px;
     text-align: center;
+     padding-top: 20px;
+}
+.book-red-box img{
     float: left;
-    margin-left: 100px;
-/*    margin-right: 40px;*/
-    margin-top: 170px;
 }
-
-.family-pic{
-    width: 980px;
-    margin: 0px auto;
+.book-red-box div{
+    float: left;
+    width: 302px;
 }
-.media-box{
-    width: 770px;
-    margin: 0 auto;
+.book-red-box div p{
+    font-size: 22px;
+        margin-top: 54px;
+   
 }
-.vedio-box{
-    background:url('/ccc/activity/img/vedio-bottom.png')center 436px no-repeat;
-    height: 556px;
-}
-.family-box{
-    background:url('/ccc/activity/img/family.png')center top no-repeat;
-    height: 601px;
-    margin-top: 48px;
-}
-.family-word{
+.book-red-box div h3{
     font-size: 16px;
-    color: #4a4a4a;
-    line-height: 40px;
-    width: 900px;
-    margin: 0 auto;
-    clear: both;
-}
-.family-len-box p{
-    line-height: 100px;
-    font-size: 26px;
     color: #fff;
-    margin-bottom: 26px;
-}
-.internet-box{
-    background:url('/ccc/activity/img/internet1.png')center top no-repeat;
-    height: 931px;
-    margin-top: 54px;
-}
-.bee{
-     width: 1000px;
-     margin: 0 auto;
-}
-.bee img{
-    margin-top: 104px;
-    margin-left: 106px;
-}
-.bee-word{
-    width:880px;
-    margin: 0 auto;
-    font-size: 16px;
-    color:#4a4a4a;
-    line-height: 30px;
-    margin-top: 64px;
-    text-indent: 2em;
-}
-.p2p-word{
-    margin-top: 62px;
-}
-.p2p-box{
-    background:url('/ccc/activity/img/p2p.png')center top no-repeat;
-    height: 649px;
-    margin-top: 50px;
-}
-.p2p{
-     width: 1000px;
-     margin: 0 auto;
-}
-.p2p img{
-    margin-top: 106px;
-}
-.tips-box{
-    background:url('/ccc/activity/img/tips.png')center top no-repeat;
-    height: 312px;
-    margin-top: 72px;
-}
-.tips{
-    width: 910px;
-    margin:0 auto;
-    padding-top: 81px;
-    padding-left: 12px;
-}
-.tips img{
-    margin-right: 14px;
-}
-.tips-top{
-    margin-top: 10px;
-}
-.tips .tips-content{
-    margin-left: 64px;
-     font-size: 16px;
-    color: #4a4a4a;
-    line-height: 40px;
-}
-.regist{
-    width: 320px;
-    height: 60px;
-    background: #f58200;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-    font-size: 30px;
-}
-.regist-box{
-    margin:0 auto;
-    width: 320px;
-    margin-top: 50px;
+    margin-top: 24px;
 }
