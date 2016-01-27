@@ -8,9 +8,9 @@
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <div class="row">
-                   {{#each cooperation}} 
+                   {{#each cooperation}}
                    <div class="icon-single">
-                       <a href="{{author}}"><img class="company-pic" src="{{url}}" /></a>
+                       <a href="{{author}}" target=_blank><img class="company-pic" src="{{url}}" /></a>
                    </div>
                    {{/each}}
                 </div>
@@ -18,7 +18,7 @@
             {{#if cooperationNext}}
                 <div class="item">
                     <div class="row">
-                            {{#each cooperationNext}} 
+                            {{#each cooperationNext}}
                        <div class="icon-single">
                            <a href="{{author}}"><img class="company-pic" src="{{url}}" /></a>
                        </div>
