@@ -64,13 +64,11 @@ $(function(){
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA1'});
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA2'});
     });
-    var sideUp = $('#sideUp');
+    
     window.onscroll=function(){
         var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop;
-        if(scrollTopOffset  >= 500){  //document.documentElement.clientWidth
-            sideUp.show();
-        }else{
-            sideUp.hide();
+        if(scrollTopOffset  <= 10){
+            $('body,html').stop();
         }
     }
 });

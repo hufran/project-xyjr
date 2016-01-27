@@ -29,6 +29,7 @@ var ractive = new Ractive({
         banks: banks,
         corBanks: corBanks,
         isEnterpriseUser: CC.user.enterprise,
+        isBankCard: CC.user.bankCards.length,
         amountValue: 10000000,
         action: '/yeepay/onlineBankDeposit',
         showNum: 9,
