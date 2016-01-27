@@ -138,7 +138,7 @@ passwordRactive.on('checkreNewPassword',function(){
   var newPwd = this.get('newPassword');
   var reNewPwd = this.get('reNewPassword');
   this.set('isAcess2',false);
-   if ( reNewPwd === '') {
+   if (reNewPwd === '') {
       showErrorIndex('showErrorMessage2','errorMessage2','交易密码不能为空');
   } else if (newPwd !== reNewPwd) {
       showErrorIndex('showErrorMessage2','errorMessage2','两次密码输入不一致');
@@ -158,6 +158,7 @@ function showErrorIndex(key,msgkey,msg){
 return false;
 }
 passwordRactive.on('updatePassword', function () {
+
   var oldpwd = this.get('oldPassword');
   var newPwd = this.get('newPassword');
   var reNewPwd = this.get('reNewPassword');
@@ -284,21 +285,7 @@ passwordRactive.on('changeCaptcha', function () {
         });
     });
 });
-passwordRactive.on('checkreNewPassword',function(){
-  var currentPassword = this.get("currentPassword");
-  var newPassword = this.get("newPassword");
-  var passwordConfirm = this.get("passwordConfirm");
-  var captcha = this.get("captcha.captcha");
-  this.set('isAcess2',false);
-   if ( reNewPwd === '') {
-      showErrorIndex('showErrorMessage2','errorMessage2','交易密码不能为空');
-  } else if (newPwd !== reNewPwd) {
-      showErrorIndex('showErrorMessage2','errorMessage2','两次密码输入不一致');
-  }else {
-    clearErrorIndex('showErrorMessage2','errorMessage2');
-      this.set('isAcess2',true);
-  }
-});
+
 //登陆原密码判定
 passwordRactive.on('checkcurrentpwd',function(){
   var currentPassword = this.get("currentPassword");
