@@ -10,8 +10,7 @@ var ractive = new Ractive({
         expand: true,
         bindMsg: null,
         unbindMsg: null,
-        agreement: typeof CC.user.accountId === 'undefined' ? false : CC.user
-            .agreement,
+        agreement: typeof CC.user.accountId === 'undefined' ? false : CC.user.agreement,
         accountId: CC.user.agreement ? CC.user.agreement : false,
         mobile: formatNumber(CC.user.mobile),
         idNumber: false,
