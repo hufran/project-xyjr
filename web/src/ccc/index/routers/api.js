@@ -2,7 +2,7 @@
 module.exports = function (router) {
     router.get('/loans', async function (req, res, next) {
         
-        var loans = await req.uest.get('/api/v2/loans/home/summary').get('body');
+        var loans = await req.uest.get('/api/v2/loans/home/summary').end().get('body');
         
             for(var p in loans){
                 if(loans[p][0]){

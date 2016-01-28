@@ -364,6 +364,7 @@ var recordRactive = new Ractive({
         var self = this;
         var api = self.api + self.page + '/' + self.pageSize;
         request(api)
+            .end()
             .get('body')
             .then(function (r) {
                 self.setData(r);

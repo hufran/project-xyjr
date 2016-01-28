@@ -156,7 +156,7 @@ module.exports = function (router) {
                 return !!user.name;
 
             },
-            authenticates: req.uest('/api/v2/user/MYSELF/authenticates').get('body'),
+            authenticates: req.uest('/api/v2/user/MYSELF/authenticates').end().get('body'),
             isEnterprise: res.locals.user.enterprise,
             groupMedal: req.uest('/api/v2/users/MYSELF/groupMedal')
                 .end()
@@ -217,12 +217,15 @@ module.exports = function (router) {
                 req.uest(
                     '/api/v2/user/MYSELF/authenticates'
                 )
+                .end()
                 .get('body'),
                 req.uest(
                     '/api/v2/user/MYSELF/agreement')
+                .end()
                 .get('body'),
                 req.uest(
                     '/api/v2/user/MYSELF/paymentPasswordHasSet')
+                .end()
                 .get('body'),
                 function (authenticates, agreement, paymentPasswordHasSet) {
                     if (!_.isEmpty(agreement)) {
@@ -314,6 +317,7 @@ module.exports = function (router) {
         var enterprise = res.locals.user.enterprise;
         Promise.join(req.uest(
                 '/api/v2/user/MYSELF/paymentPasswordHasSet')
+            .end()
             .get('body'),
             function (paymentPasswordHasSet) {
                 res.locals.user.paymentPasswordHasSet = paymentPasswordHasSet;

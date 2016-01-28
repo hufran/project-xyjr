@@ -162,6 +162,7 @@ exports.accountService = {
     },
     getAuthentication: function (next) {
         request('GET', '/api/v2/user/MYSELF/userAuthenticate')
+          .end()
           .get('body')
           .then(function (r) {
               if (r.success) {
