@@ -6,6 +6,7 @@ do (angular) ->
         _.ai '            @user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams', class
             constructor: (@user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams) ->
 
+                EXTEND_API @api
                 @$window.scrollTo 0, 0
 
                 @back_path = @$routeParams.back
@@ -24,3 +25,29 @@ do (angular) ->
 
                 @api.get_available_bank_list().then (data) =>
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
+
+
+            submit: (event, amount, return_url) ->
+
+                @api.payment_get_recharge_url amount, return_url
+                    .then (data) =>
+                        @$window.location.href = data.message
+
+
+
+
+
+
+
+
+
+    EXTEND_API = (api) ->
+
+        api.__proto__.payment_get_recharge_url = (amount, retUrl, isWAP = true) ->
+
+            @$http
+                .post '/api/v2/yeepay/wapBankDeposit/MYSELF',
+                    {amount, retUrl, isWAP}
+
+                .then @TAKE_RESPONSE_DATA
+                .catch @TAKE_RESPONSE_ERROR

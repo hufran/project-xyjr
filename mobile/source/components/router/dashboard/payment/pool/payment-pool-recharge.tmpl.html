@@ -21,10 +21,8 @@
     <section class="form-wrapper">
         <form class="form-horizontal form-flatten"
               name="form"
-              action="/lianlianpay/deposit"
               method="post"
-              target="_self"
-              ng-submit="self.submit(amount)"
+              ng-submit="self.submit($event, amount, return_url)"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
