@@ -62,6 +62,8 @@ do (_, angular) ->
 
             need_location: ->
 
+                return true # always need location right now
+
                 @$scope.store.bankName and @$scope.store.bankName not in @$scope.direct_paid_banks
 
 
@@ -95,7 +97,7 @@ do (_, angular) ->
 
                         return check_input({cardNo}) unless !!cardNo
                         return check_input({bankName}) unless !!bankName
-                        return check_input({city, province, branchName}) if location_needed
+                        return check_input({city, province}) if location_needed
                         return check_input({smsCaptcha}) unless !!smsCaptcha
 
                     .then => @api.payment_pool_bind_card(bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha)
