@@ -304,7 +304,7 @@ function ininconut () {
             var interval = setInterval((function () {
                 serverDate += 1000;
                 var leftTime = utils.countDown.getCountDownTime2(openTime, serverDate);
-                var textDay = leftTime.day ? leftTime.day +'天'+'&nbsp;': '';
+                var textDay = leftTime.day ? leftTime.day +'<span style="color:#c6c6c6">天</span>'+'&nbsp;': '';
                 if(!+(leftTime.day) && !+(leftTime.hour) && !+(leftTime.min) && !+(leftTime.sec)) {
                     clearInterval(interval);
 					t.prev().hide();
