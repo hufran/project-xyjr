@@ -486,8 +486,10 @@ setTimeout((function () {
         }
     });
     investRactive.on('tenNum',function(){
+        disableErrors();
         var inputNum = this.get('inputNum');
-        if(inputNum.length==10||inputNum.length>10){
+        if(inputNum.length>10){
+            this.set('inputNum',inputNum.substring(0,10));
             showErrors('投标金额最大允许10位数字');
             return false;
         }
