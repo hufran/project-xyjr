@@ -32,8 +32,13 @@
     <div class="amount">{{ amount }}<span>{{ amountUnit }}</span>
     </div>
 -->
-    <div class="loanRate"><span style="font-size:25px;">{{basicRate}}</span><i>%</i>{{#if deductionRate>0}}<span style="font-size:25px;">+{{deductionRate}}</span><i>%</i>{{/if}}
+{{#if deductionRate>0}}
+    <div class="loanRate"><span style="font-size:18px;">{{basicRate}}</span><i>%</i><span style="font-size:25px;">+{{deductionRate}}</span><i>%</i>
     </div>
+    {{else}}
+    <div class="loanRate"><span style="font-size:25px;">{{basicRate}}</span><i>%</i>
+    </div>
+    {{/if}}
     <div class="duration">{{ fduration }}<span>{{ fdurunit }}</span>
     </div>
     <div class="backmoney">{{ methodFmt }}</div>
