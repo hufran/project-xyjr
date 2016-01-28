@@ -390,10 +390,10 @@ do (_, angular, moment, Array) ->
             payment_pool_withdraw: (amount, paymentPassword) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/withdraw/MYSELF', {amount, paymentPassword}
+                    .post '/api/v2/yeepay/withdraw/MYSELF', {amount, paymentPassword}
 
                     .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             payment_pool_check_password: (password) ->
