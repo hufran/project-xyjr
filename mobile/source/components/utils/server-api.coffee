@@ -440,7 +440,7 @@ do (_, angular, moment, Array) ->
             payment_pool_bind_card: (bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/bindCard/MYSELF',
+                    .post '/api/v2/yeepay/bindCard/MYSELF',
                         _.compact {bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
@@ -450,7 +450,7 @@ do (_, angular, moment, Array) ->
             payment_pool_unbind_card: (cardNo, paymentPassword) ->
 
                 @$http
-                    .post '/api/v2/lianlianpay/deleteCard/MYSELF', {cardNo, paymentPassword, source: 'H5'}
+                    .post '/api/v2/yeepay/deleteCard/MYSELF', {cardNo, paymentPassword, source: 'H5'}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -468,7 +468,7 @@ do (_, angular, moment, Array) ->
 
             get_available_bank_list: ->
 
-                @$http.get '/api/v2/lianlianpay/banks', cache: true
+                @$http.get '/api/v2/yeepay/banks', cache: true
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -476,7 +476,7 @@ do (_, angular, moment, Array) ->
 
             get_province_list: ->
 
-                @$http.get '/api/v2/lianlianpay/provinceCodes', cache: true
+                @$http.get '/api/v2/yeepay/provinceCodes', cache: true
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
@@ -484,7 +484,7 @@ do (_, angular, moment, Array) ->
 
             get_city_list_by_province: (province) ->
 
-                @$http.get '/api/v2/lianlianpay/provinceCityCodes/' + province, cache: true
+                @$http.get '/api/v2/yeepay/provinceCityCodes/' + province, cache: true
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
