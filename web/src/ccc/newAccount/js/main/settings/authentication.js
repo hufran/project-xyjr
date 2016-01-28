@@ -99,6 +99,9 @@ ractive.on("register-account-submit", function () {
                                 }
                             });
                         } else {
+                          setTimeout(function(){
+                            window.location.reload();
+                          },5000);
                             if (res.error[0].message == '认证失败') {
                                 res.error[0].message = "";
                             }
@@ -111,7 +114,10 @@ ractive.on("register-account-submit", function () {
                                 },
                                 cancel: function () {
                                     window.location.reload();
-                                }
+                                },
+                                close:function(){
+                                  window.location.reload();
+                                },
                             });
                         }
                     });

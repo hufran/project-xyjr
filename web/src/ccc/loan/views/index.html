@@ -29,8 +29,13 @@
                     <div class="inner">
                         <div class="item itemSecond">
                               <div class="name"><img src="/ccc/loan/img/detailRate.png" />预期年化收益率:</div>
-                            <div class="value"><span style="font-size:25px;">{{loans.basicRate}}</span><span>%</span>{{#if loans.loanRequest.deductionRate>0}}<span style="font-size:25px;">+{{loans.loanRequest.deductionRate}}</span><span>%</span>{{/if}}
+                            {{#if loans.loanRequest.deductionRate>0}}
+                            <div class="value"><span style="font-size:24px;">{{loans.basicRate}}</span><span>%</span><span style="font-size:32px;">+{{loans.loanRequest.deductionRate}}</span><span>%</span>
                             </div>
+                            {{else}}
+                            <div class="value"><span style="font-size:25px;">{{loans.basicRate}}</span><span>%</span>
+                            </div>
+                            {{/if}}
                         </div>
                         <div class="item itemThird" style="border-right:none">
                                <div class="name"><img src="/ccc/loan/img/limit.png" />投资期限:</div>
