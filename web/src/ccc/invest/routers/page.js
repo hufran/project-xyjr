@@ -13,9 +13,9 @@ module.exports = function (router) {
 
         var productKey = ['XNB', 'FB', 'XJB'];
         res.locals.products = [];
-        var productKeyXSZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).get('body');
-        var productKeyHDZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).get('body');
-        var productKeyLCZQ=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).get('body');
+        var productKeyXSZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).end().get('body');
+        var productKeyHDZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).end().get('body');
+        var productKeyLCZQ=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
         res.locals.products.push(productKeyXSZX);
         res.locals.products.push(productKeyHDZX);
         res.locals.products.push(productKeyLCZQ);
@@ -36,9 +36,9 @@ router.get('/:product', async function (req, res) {
 
         var productKey = ['XNB', 'FB', 'XJB'];
         res.locals.products = [];
-        var productKeyXSZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).get('body');
-        var productKeyHDZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).get('body');
-        var productKeyLCZQ=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).get('body');
+        var productKeyXSZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[0]).end().get('body');
+        var productKeyHDZX=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[1]).end().get('body');
+        var productKeyLCZQ=await req.uest('/api/v2/loan/getLoanProduct/productKey/'+productKey[2]).end().get('body');
         res.locals.products.push(productKeyXSZX);
         res.locals.products.push(productKeyHDZX);
         res.locals.products.push(productKeyLCZQ);

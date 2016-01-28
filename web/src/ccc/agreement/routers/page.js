@@ -16,7 +16,7 @@ module.exports = function (router) {
             return next();
         }
 
-        res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param])).get('body').then(function (r) {
+        res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param])).end().get('body').then(function (r) {
             var contents= r.length > 0 ? r : null;
             return contents;
         });
@@ -43,7 +43,7 @@ module.exports = function (router) {
            protocolxnb: '新能宝用户投资服务协议',
         };
 
-        res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param])).get('body').then(function (r) {
+        res.locals.contents = req.uest('/api/v2/cms/category/DECLARATION/name/'+encodeURIComponent(tabMap[param])).end().get('body').then(function (r) {
             var contents= r.length > 0 ? r : null;
             return contents;
         });
