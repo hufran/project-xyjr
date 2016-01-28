@@ -487,7 +487,14 @@ setTimeout((function () {
     });
     investRactive.on('tenNum',function(){
         disableErrors();
+
         var inputNum = this.get('inputNum');
+        var amount=CC.loan.rule.leftAmount*(CC.loan.rule.amountUnit=='万'?10000:1);
+        var mout=CC.loan.rule.max>amount?amount:CC.loan.rule.max;
+        if(parseInt(inputNum)>parseInt(mout)){
+            this.set('inputNum',mout);
+            inputNum=mout;
+        }
         if(inputNum.length>10){
             this.set('inputNum',inputNum.substring(0,10));
             showErrors('投标金额最大允许10位数字');
