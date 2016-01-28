@@ -485,7 +485,15 @@ setTimeout((function () {
            showSelect(inputNum);
         }
     });
+    investRactive.on('tenNum',function(){
+        var inputNum = this.get('inputNum');
+        if(inputNum.length==10||inputNum.length>10){
+            showErrors('投标金额最大允许10位数字');
+            return false;
+        }
+    });
 }), 100);
+
 
 
 
