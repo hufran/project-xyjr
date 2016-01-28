@@ -34,7 +34,7 @@ var getSocialId = co.wrap(function *(openid) {
         query: {
             openid: payload.FromUserName,
         },
-    }).get('body');
+    }).end().get('body');
     log.debug({ type: 'wxunionid', wxuser: wxuser });
     return 'unionid:' + wxuser.unionid;
 });
@@ -152,7 +152,7 @@ module.exports = function (router) {
 
     wxrequest('POST', '/cgi-bin/menu/create', {
         body: config.weixinmp.menu,
-    }).get('body').then(function (body) {
+    }).end().get('body').then(function (body) {
         log.debug({ type: 'wxmenu', body: body }, '微信公众号设置菜单返回：');
     });
 

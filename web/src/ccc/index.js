@@ -82,7 +82,7 @@ _.each({
 
 require('@ccc/inspect/middleware')(app);
 app.use(async function (req, res, next) {
-    var headerLinks = await req.uest.get('/api/v2/navigation/listPlayPanes').get('body');
+    var headerLinks = await req.uest.get('/api/v2/navigation/listPlayPanes').end().get('body');
     //除去display == false
      for(var i=0;i<headerLinks.length;i++){
         if(headerLinks[i].display == false ){
@@ -113,7 +113,7 @@ app.use(async function (req, res, next) {
     var resultLink = _.sortBy(headerLinks, 'ordinal');
 
     if (req.cookies.ccat) {
-        var Md5keyData = await req.uest.get('/api/v2/getMd5keyData/MYSELF').get('body');
+        var Md5keyData = await req.uest.get('/api/v2/getMd5keyData/MYSELF').end().get('body');
         var quickLogin;
         try {
             quickLogin = '/'+Md5keyData.data.mobile+'/'+Md5keyData.data.currentTime+'/'+Md5keyData.data.md5key+'.ht'
@@ -142,7 +142,7 @@ app.use(async function (req, res, next) {
         return next();
     }
 
-    var user = ((await req.uest.get('/api/v2/whoamiplz').get('body')) || {}).user;
+    var user = ((await req.uest.get('/api/v2/whoamiplz').end().get('body')) || {}).user;
 
     res.expose(user || {}, 'user');
     if (!user) {
@@ -157,7 +157,7 @@ app.use(async function (req, res, next) {
     if (!user.accountId) {
         return next();
     }
-    user.agreement = (await req.uest.get('/api/v2/user/MYSELF/agreement').get('body') || {});
+    user.agreement = (await req.uest.get('/api/v2/user/MYSELF/agreement').end().get('body') || {});
     next();
 });
 
@@ -204,7 +204,7 @@ app.use(ds.loader('page'));
 
 app.all('/logout', async function (req, res) {
     if (req.cookies.ccat) {
-        var userId = _.get(await req.uest.get('/api/v2/whoamiplz').get('body'), 'user.id');
+        var userId = _.get(await req.uest.get('/api/v2/whoamiplz').end().get('body'), 'user.id');
         var query = {
             type: 'USER_LOGOUT',
             source: req.query.source || 'PC',

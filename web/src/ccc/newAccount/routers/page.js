@@ -68,7 +68,7 @@ module.exports = function(router) {
             },
             authenticates: req.uest(
                     '/api/v2/user/MYSELF/authenticates')
-                .get('body'),
+                .end().get('body'),
             isEnterprise: res.locals.user.enterprise,
             groupMedal: req.uest(
                     '/api/v2/users/MYSELF/groupMedal')
@@ -140,10 +140,10 @@ module.exports = function(router) {
     router.get('/home', function(req, res) {
         Promise.join(
             req.uest('/api/v2/user/MYSELF/statistics/invest')
-            .get('body'),
+            .end().get('body'),
             req.uest(
                 '/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .get('body'),
+            .end().get('body'),
             function(investStatistics, paymentPasswordHasSet) {
                 res.locals.user.investStatistics =
                     investStatistics;
@@ -162,7 +162,7 @@ module.exports = function(router) {
     });
     router.get('/autobid', async function(req, res) {
         var user = res.locals.user;
-        var autobidConfig = await req.uest.get('/api/v2/' + user.id + '/autobid_config').get('body');
+        var autobidConfig = await req.uest.get('/api/v2/' + user.id + '/autobid_config').end().get('body');
         user.autobidConfig = autobidConfig;
         res.expose(user, 'user');
 
@@ -190,7 +190,7 @@ module.exports = function(router) {
     router.get('/withdraw', async function(req, res) {
         var enterprise = res.locals.user.enterprise;
         var paymentPasswordHasSet = await req.uest('/api/v2/user/MYSELF/paymentPasswordHasSet')
-            .get('body');
+            .end().get('body');
         res.locals.user.paymentPasswordHasSet =
             paymentPasswordHasSet;
         var banks = _.filter(res.locals.user.bankCards, r => r.deleted === false);
@@ -233,15 +233,15 @@ module.exports = function(router) {
                 req.uest(
                     '/api/v2/user/MYSELF/authenticates'
                 )
-                .get('body'),
+                .end().get('body'),
                 req.uest(
                     '/api/v2/user/MYSELF/paymentPasswordHasSet'
                 )
-                .get('body'),
+                .end().get('body'),
                 req.uest(
                     '/api/v2/user/MYSELF/fundaccountsMap'
                 )
-                .get('body'),
+                .end().get('body'),
                 function(authenticates,
                     paymentPasswordHasSet,
                     fundaccountsMap) {
