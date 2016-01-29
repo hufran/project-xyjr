@@ -158,6 +158,7 @@ function init (type) {
                     if(o[i].timeExpire != "永不过期"){
 						if(o[i].displayStatus === '未使用'){
 							if(o[i].couponPackage.timeExpire<new Date()){
+                                o[i].status = 'EXPIRED';
 								o[i].notUse = false;
                                 o[i].EXPIRED = true;
 	                    		o[i].displayStatus = '已过期';

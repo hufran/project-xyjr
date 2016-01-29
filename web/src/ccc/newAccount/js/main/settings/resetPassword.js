@@ -65,7 +65,7 @@ resetPasswordRactive.on('resetPassword', function () {
     //     return showError('短信验证码为6位');
     // } else {
         // clearError();
-        isAcess = true;
+//        isAcess = true;
         // if (pwd === '') {
         //     var r = confirm('您未输入重置密码，系统将生成随机的交易密码并发送到您的手机上,确定这样做吗？');
         //     if (r) {

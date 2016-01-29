@@ -101,9 +101,9 @@ function parseLoanList(loans) {
             item.fduration = item.duration.totalMonths;
             item.fdurunit = "个月";
         }
-        if (item.amount >= 10000) {
+        if (item.balance >= 10000) {
             item.amountUnit = '万';
-            item.amount = (item.amount / 10000);
+            item.balance = (item.balance / 10000);
         } else {
             item.amountUnit = '元';
         }
