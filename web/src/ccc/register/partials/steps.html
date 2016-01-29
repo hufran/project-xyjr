@@ -74,7 +74,7 @@
                 </RInput>
 
                 <RInput field="agreement" valueStableDuration=100>
-                    <div class="rinput agreement-div">    
+                    <div class="rinput agreement-div">
                         <label class="agree-register-protocol">
                             <input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}" />
                              <span>我同意<span class="i-agree"><a href="/agreement/mobile/regist" target="_blank" class="ccc-agreement">《新毅金融用户注册协议》</a></span></span>
@@ -83,9 +83,9 @@
                             <span class="tip" style="left:22px;top:35px;line-height:14px;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                         </label>
                         {{#if stepLoading}}
-                        <input class="next-step" type="button" value="请稍等" disabled /> 
+                        <input class="next-step" type="button" value="请稍等" disabled />
                         {{else}}
-                        <input on-click='nextStep' class="next-step" type="button" value="立即注册" />  
+                        <input on-click='nextStep' class="next-step" type="button" value="立即注册" />
                         {{/if}}
                     </div>
                 </RInput>
