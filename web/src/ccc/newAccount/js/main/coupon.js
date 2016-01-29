@@ -143,7 +143,7 @@ function init (type) {
 	                if (o[i].status === 'USED' || o[i].status === 'REDEEMED') {
 	                    o[i].used = true;
 	                }
-	                o[i].status = this.status[o[i].status];
+//	                o[i].status = this.status[o[i].status];
 	                o[i].timePlaced = (new Date(o[i].timePlaced)).Format("yyyy-MM-dd");//分发时间
 	                o[i].timeRedeemed = o[i].timeRedeemed;//兑换时间
 	                o[i].description = o[i].couponPackage.description;
@@ -169,6 +169,7 @@ function init (type) {
 	                if (o[i].description === "") {
 	                    o[i].description = "暂无描述";
 	                }
+                    o[i].status = this.status[o[i].status];
 	            }
 	            return o;
 
