@@ -28,6 +28,9 @@ IndexService.getLoanSummary(function (list) {
     for(var i=0;i<list.length;i++){
         list[i].method = i18n.enums.RepaymentMethod[list[i].method][0];
         list[i].titleLength = replaceStr(list[i].title);
+        if(list[i].titleLength > 60){
+             list[i].title = list[i].title.substr(0,60)+'...';
+        }
         //		 console.log(list[i].titleLength);
         if(list[i].loanRequest.productKey == 'XSZX'){
              listXSZX.push(list[i]);
