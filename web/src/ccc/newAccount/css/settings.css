@@ -205,6 +205,9 @@ p.tips {
 .CIB {
   background-image: url(/ccc/global/img/banks/CIB.png);
 }
+.CITIC{
+  background-image: url(/ccc/global/img/banks/CITIC.png);
+}
 .CMBC {
   background-image: url(/ccc/global/img/banks/CMBC.png);
 }
@@ -237,6 +240,9 @@ p.tips {
 }
 .WZCB {
   background-image: url(/ccc/global/img/banks/WZCB.png);
+}
+.PAB {
+  background-image: url(/ccc/global/img/banks/PAB.png);
 }
 .PSBC {
   background-image: url(/ccc/global/img/banks/PSBC.png);
