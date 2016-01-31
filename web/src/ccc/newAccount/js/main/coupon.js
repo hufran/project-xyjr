@@ -158,8 +158,6 @@ function init (type) {
 	                } else {
 	                	o[i].timeExpire = (new Date(o[i].couponPackage.timeExpire)).Format("yyyy-MM-dd");
 	                }
-                    console.log('未使用-------',o[i]);
-                    console.log('未使用-------',o[i].status);
                     if(o[i].timeExpire != "永不过期"){
 						if(o[i].displayStatus === '未使用'){
 							if(o[i].couponPackage.timeExpire<new Date()){
@@ -167,8 +165,6 @@ function init (type) {
 								o[i].notUse = false;
                                 o[i].EXPIRED = true;
 	                    		o[i].displayStatus = '已过期';
-                                console.log('过期---+++----',o[i]);
-                                console.log('过期----+++---',o[i].status);
 							}
 						}
 
