@@ -71,10 +71,10 @@ var ractive = new Ractive({
                 self.set('msg.AMOUNT_NULL', true);
                 return;
             }
-            if (value > 10){
-                self.set('msg.AMOUNT_NOTENOUGH',true);
-                return;
-            }
+//            if (value > 10){
+//                self.set('msg.AMOUNT_NOTENOUGH',true);
+//                return;
+//            }
 
             if (!self.get('msg.AMOUNT_MULL')) {
                 self.set('msg.AMOUNT_NULL', false);
@@ -146,12 +146,14 @@ ractive.on('recharge_submit', function (e){
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
         return false;
-    } else if (amount > 10 ) {
-        e.original.preventDefault();
-        this.set('msg.AMOUNT_NOTENOUGH', true);
-        this.$amount.focus();
-        return false;
-    } else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
+    } 
+//    else if (amount > 10 ) {
+//        e.original.preventDefault();
+//        this.set('msg.AMOUNT_NOTENOUGH', true);
+//        this.$amount.focus();
+//        return false;
+//    } 
+    else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
         e.original.preventDefault();
         this.set('msg.AMOUNT_INVALID', true);
         this.$amount.focus();

@@ -37,7 +37,8 @@ ractive.on('initialPassword', function () {
                     okText: '确定',
                     // cancelText: '重新登录',
                     ok: function () {
-                        window.location.reload();
+//                        window.location.reload();
+                        window.location.href = '/newAccount/recharge'
                     },
                     cancel: function () {
                         window.location.reload();

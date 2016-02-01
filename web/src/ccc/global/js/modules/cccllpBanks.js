@@ -3,7 +3,7 @@
 module.exports = [
   {code: 'ABCs', name: "中国农业银行", enable: true, bankCode: '01030000'},
   {code: 'CMBs', name: "招商银行", enable: true, bankCode: '03080000'},
-  {code: 'SPDBs', name: "浦发银行", enable: true, bankCode: '03100000'},
+//  {code: 'SPDBs', name: "浦发银行", enable: true, bankCode: '03100000'},
   {code: 'HXBs', name: "华夏银行", enable: true, bankCode: '03040000'},
   {code: 'ICBCs', name: "中国工商银行", enable: true, bankCode: '01020000'},
   {code: 'CITICs', name: "中信银行", enable: true, bankCode: '03020000'},
