@@ -382,8 +382,7 @@ module.exports = function (router) {
             .send(sendObj)
             .end()
             .then(function (r) {
-                res.redirect('/register/renzheng?message=' + r.body
-                    .ConfirmResult);
+                res.redirect('/register/renzheng?message=' + r.body.ConfirmResult);
             });
     });
       

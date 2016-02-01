@@ -71,7 +71,7 @@ ractive.on("validateCardNo", function () {
 ractive.on('checkSame', function () {
     var no = this.get("cardNo");
     var reno = this.get("recardNo");
-
+    
     if (reno !== '') {
         if (no !== reno) {
             this.set('cardDiff', true);
@@ -117,12 +117,26 @@ ractive.on("bind-card-submit", function (e) {
     // });
     var bankName = this.get('bankName');
     var cardNo = this.get('cardNo');
+    var recardNo = this.get('recardNo');
     var cardPhone = this.get('mobile');
     var province = this.get('myProvince');
     var city = this.get('myCity');
     var branchName = this.get('branchName');
     var smsCaptcha = this.get('smsCaptcha');
-
+    
+    if(cardNo === ''){
+        showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
+        return false;
+    }else{
+         clearErrorIndex('showErrorMessagea','errorMessagea');
+    }
+     if(recardNo === ''){
+        showErrorIndex('showErrorMessageb','errorMessageb','* 确认卡号不能为空');
+        return false;
+    }else{
+        clearErrorIndex('showErrorMessageb','errorMessageb');
+    }
+    
     var sendObj = {
         bankName: bankName,
         cardNo: cardNo,
@@ -261,4 +275,15 @@ function countDown() {
             clearInterval(interval);
         }
     }), 1000);
+}
+
+function clearErrorIndex(key,msgkey){
+    ractive.set(key,false);
+    ractive.set(msgkey,'');
+    return false;
+}
+function showErrorIndex(key,msgkey,msg){
+    ractive.set(key,true);
+    ractive.set(msgkey,msg);
+    return false;
 }
