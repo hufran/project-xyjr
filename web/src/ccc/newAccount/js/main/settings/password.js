@@ -387,10 +387,10 @@ passwordRactive.on("submit-modify-password", function (event) {
                     }
 
                     // var msg = res.message;
-                    return showErrorIndex('showErrorMessagec','errorMessagec','原始密码错误');;
+                    return showErrorIndex('showErrorMessagec','errorMessagec','原始密码错误');
                 });
         } else {
-            return showError(utils.errorMsg[res.error[0].message]);
+            return showErrorIndex('showErrorMessagef','errorMessagef','图形验证码错误');
         }
     });
 

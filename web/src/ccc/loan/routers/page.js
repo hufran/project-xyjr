@@ -50,6 +50,7 @@ router.get('/:id',
                   } else {
                       return [];
                   }
+
               });
 
         if (user && user.idNumber) {
@@ -67,17 +68,20 @@ router.get('/:id',
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
                     res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
-                    if(result.loanRequest.productKey=='XSZX'){
-                    res.locals.title = '新手专享_'+result.loanRequest.title+'理财产品_718bank理财平台';
-                    res.locals.description = '新手专享是'+result.loanRequest.title+'系列理财产品的一种，预期年化收益率达'+result.loanRequest.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='HDZQ'){
-                    res.locals.title = '活动专区_'+result.loanRequest.title+'理财产品_718bank理财平台';
-                    res.locals.keywords = '活动专区是'+result.loanRequest.title+'系列理财产品的一种，预期年化收益率达'+result.loanRequest.rate+'，无手续费。';}
+                    if(result.loanRequest.productKey=='XNB'){
+                    res.locals.title = '新能宝_'+result.title+'理财产品_718金融理财平台';
+                    res.locals.description = '新能宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
+                    else if(result.loanRequest.productKey=='FB'){
+                    res.locals.title = '新抵宝_'+result.title+'理财产品_718金融理财平台';
+                    res.locals.description = '新抵宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
+                    else if(result.loanRequest.productKey=='XJB'){
+                    res.locals.title = '薪金宝_'+result.title+'理财产品_718金融理财平台';
+                    res.locals.description = '薪金宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
 //                    else{
 //                    res.locals.title =result.loanRequest.title+'_我要投资_奇乐融';
 //                    res.locals.keywords = result.loanRequest.title;};
 
-                    res.locals.description = result.loanRequest.description;
+                    // res.locals.description = result.loanRequest.description;
                     return result;
 
 
