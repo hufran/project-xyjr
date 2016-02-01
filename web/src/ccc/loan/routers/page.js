@@ -65,8 +65,6 @@ router.get('/:id',
                 .end()
                 .then(function (r) {
                     var result = parseLoan(r.body);
-                    console.log("&&&&&&&&");
-                    console.log(result);
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
                     res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
