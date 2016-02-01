@@ -289,9 +289,6 @@ passwordRactive.on('changeCaptcha', function () {
 //登陆原密码判定
 passwordRactive.on('checkcurrentpwd',function(){
   var currentPassword = this.get("currentPassword");
-  var newPassword = this.get("newPassword");
-  var passwordConfirm = this.get("passwordConfirm");
-  var captcha = this.get("captcha.captcha");
   this.set('isAcessc',false);
    if (!currentPassword) {
       showErrorIndex('showErrorMessagec','errorMessagec','还未填写原密码');
@@ -304,7 +301,6 @@ passwordRactive.on('checknewp',function(){
   var currentPassword = this.get("currentPassword");
   var newPassword = this.get("newPassword");
   var passwordConfirm = this.get("passwordConfirm");
-  var captcha = this.get("captcha.captcha");
   this.set('isAcessd',false);
    if (!newPassword) {
       showErrorIndex('showErrorMessaged','errorMessaged','还未填写新密码');
@@ -358,11 +354,11 @@ passwordRactive.on("submit-modify-password", function (event) {
     var isAcess=this.get('isAcessc')&&this.get('isAcessf')&&this.get('isAcesse')&&this.get('isAcessd');
     CommonService.checkCaptcha(passwordRactive.get('captcha'), function (res) {
         if (res.success) {
-
             if(currentPassword===newPassword){
-                return showError('新密码不能与原始密码相同');
+               return showErrorIndex('showErrorMessaged','errorMessaged','新密码不能与原始密码相同');
+            }else if(newPassword !== passwordConfirm){
+               return showErrorIndex('showErrorMessagee','errorMessagee','两次密码不一致');
             }
-
             request.post("/newAccount/change_password")
                 .type("form")
                 .send({
@@ -390,8 +386,8 @@ passwordRactive.on("submit-modify-password", function (event) {
                         return;
                     }
 
-                    var msg = res.message;
-                    return showError(msg);
+                    // var msg = res.message;
+                    return showErrorIndex('showErrorMessagec','errorMessagec','原始密码错误');;
                 });
         } else {
             return showError(utils.errorMsg[res.error[0].message]);
