@@ -88,7 +88,7 @@ module.exports = function (router) {
 	            req: req,
 	            body: req.body
 	        });
-            req.body.retUrl = 'http://www.718bank.com/newAccount/recharge';
+            req.body.retUrl = 'http://www.718bank.com/yeepay/BankDepositReturn';
 	        var data = qs.stringify(req.body);
 	        req.body = data.replace(/%5B\d+%5D/g, '');
 	        next();
@@ -111,33 +111,9 @@ module.exports = function (router) {
 	    });
 	});
 
-    _.each({
-        '/BankDepositReturn': '/BankDepositReturn',
-        '/withdrawReturn': '/withdrawReturn'
-    }, function (api, fe) {
-        router.get(fe, function (req, res) {
-            log.info({
-                type: 'yeepay'+fe+'/request',
-                req: req,
-                body: req.body
-            });
-                req.uest.get('/api/v2/yeepay' + api)
-                .send(req.query)
-                .end()
-                .then(function (r) {
-                    log.info({
-                        type: 'yeepay'+fe+'/return',
-                        req: req,
-                        body: r.body
-                    });
-                    var results = qs.stringify({
-                        method: fe,
-                        api: api,
-                        body: r.body
-                    });
-                    res.redirect('/newAccount/recharge');
-                });
-            });
+    router.get('/BankDepositReturn', function (req, res, next) {
+        res.redirect('/newAccount/recharge');
+        next();
     });
 
 };
