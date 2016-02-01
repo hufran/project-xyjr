@@ -13,9 +13,9 @@ var log = require('bunyan-hub-logger')({ app: 'web', name: 'wx' })
 module.exports = function (router) {
     router.get('/', function (req, res) {
         _.assign(res.locals, {
-            title : '718_bank理财平台',
-            keywords : '718_bank理财平台',
-            description : '718_bank理财平台'
+            title : '718_金融理财平台',
+            keywords : '718_金融理财平台',
+            description : '718_金融理财平台'
         });
         res.render();
     });
@@ -50,7 +50,7 @@ module.exports = function (router) {
         if(r.body.data.isNewUser) {
             res.redirect('/newAccount/setpassword?mobile=' + req.params.mobile + '&currentTime=' + req.params.currentTime + '&md5key=' + req.params.md5key);
         }
-       
+
     })
 }
 function randomHex(len) {
