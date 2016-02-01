@@ -610,11 +610,11 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 			console.log('*********');
 			console.log(index);
             var options = {
-                imgs: r1,
+                imgs: loanPurpose,
                 currentIndex: index,
                 selectorsMarginLeft: 0,
                 stageLen: 5,
-                imgLen: r1.length
+                imgLen: loanPurpose.length
             };
             popupBigPic.show(options);
             return false;
