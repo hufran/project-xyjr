@@ -63,7 +63,7 @@ module.exports = function (router) {
              text: '保障机构',
              url: '/aboutus/recruitment'
          },{
-             text: ' 团队介绍',
+             text: '团队介绍',
              url: '/aboutus/team',
          },  {
             text: '合作伙伴',

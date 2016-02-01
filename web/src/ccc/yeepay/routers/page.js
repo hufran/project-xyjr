@@ -88,8 +88,7 @@ module.exports = function (router) {
 	            req: req,
 	            body: req.body
 	        });
-//            req.body.retUrl = req.headers.host + '/api/v2/yeepay/BankDepositReturn';
-            req.body.retUrl = 'http://www.718bank.com/api/v2/yeepay/BankDepositReturn';
+            req.body.retUrl = 'http://www.718bank.com/newAccount/recharge';
 	        var data = qs.stringify(req.body);
 	        req.body = data.replace(/%5B\d+%5D/g, '');
 	        next();

@@ -382,8 +382,14 @@ module.exports = function (router) {
             .send(sendObj)
             .end()
             .then(function (r) {
-                res.redirect('/register/renzheng?message=' + r.body
-                    .ConfirmResult);
+                if(r.body.ConfirmResult === 'successful'){
+                    res.locals.emailMessage = "认证成功";
+                    res.redirect('/register/renzheng?message=' + r.body.ConfirmResult);
+                }else{
+                    res.locals.emailMessage = "认证失败";
+                    res.redirect('/newAccount/settings/userInfo');
+                }
+                
             });
     });
       
