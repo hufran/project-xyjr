@@ -3,13 +3,13 @@ var moment = require('moment');
 module.exports = function (router) {
 router.get('/', function (req, res, next) {
     var user = res.locals.user;
-    res.locals.title = '首页_718bank理财平台';
+    res.locals.title = '首页_718金融理财平台';
     res.locals.keywords = '理财、投资、财富、理财投资、个人理财、理财产品、理财平台、金融理财、个人投资、普惠金融';
-    res.locals.description = '718bank理财平台是新毅网络旗下，致力于为投资者提供专业、绿色、智能、透明、安全的理财服务，是新型的互联网理财服务交易平台。';
+    res.locals.description = '718金融理财平台是新毅网络旗下，致力于为投资者提供专业、绿色、智能、透明、安全的理财服务，是新型的互联网理财服务交易平台。';
     if (user && user.idNumber) {
         delete user.idNumber;
     }
-    
+
     res.expose(user, 'user');
     res.locals.carousel = req.uest(
         '/api/v2/cms/carousel_detail')
@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
                     i--;
                 }
             }
-            
+
             _.forEach(data,  function (userInfo){
                 userInfo.date = moment(userInfo.date).format('HH:mm:ss');
                 userInfo.mobile = userInfo.mobile.replace(/1(\d{2})\d{4}(\d{4})/g,"1$1****$2");
@@ -66,7 +66,7 @@ router.get('/', function (req, res, next) {
         .then( function(data) {
             data = (Array.isArray(data) ? data : []).sort(compare('pubDate'));
             return data;
-        });       
+        });
     res.locals.latestNews = req.uest(
         '/api/v2/cms/category/COVERAGE/name/' + encodeURIComponent('媒体报道'))
         .end()
@@ -102,7 +102,7 @@ router.get('/', function (req, res, next) {
         console.log(data);
             return data;
         });
-    
+
     var nowtime=new Date();
     var nowname='';
     if(nowtime.getHours()>=12&&nowtime.getHours()<18){
@@ -110,9 +110,9 @@ router.get('/', function (req, res, next) {
     }else if(nowtime.getHours()>=5&&nowtime.getHours()<12){
         nowname='上午';
     }else{
-       nowname='晚上'; 
+       nowname='晚上';
     }
-    
+
   res.locals.shangwuxiawu=nowname;
   res.render();
 });
@@ -125,7 +125,7 @@ function parseCMStitle(data) {
     }
     return data;
 }
-    
+
 function compare(propertyName){
 	return function(object1,object2){
 		var value1 = object1[propertyName];
@@ -139,7 +139,7 @@ function compare(propertyName){
 		}
 	}
 }
-   
+
 }
 
 
