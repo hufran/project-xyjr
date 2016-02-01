@@ -20,12 +20,22 @@
             </div>
             <div class="trueName">
                 <label for="trueName" class="">真实姓名</label>
-                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" />
+                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName"/>
+                {{#if showErrorMessageName}}
+                <div class="error-message nameAndId">
+                    {{ errorMessageName }}
+                </div>
+                {{/if}}
             </div>
 
             <div class="userIdNumber">
                 <label for="userIdNumber" class="">身份证号</label>
-                 <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{idNumber}}" />
+                 <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{idNumber}}" on-blur="checkIdNumber"/>
+                 {{#if showErrorMessageId}}
+                 <div class="error-message nameAndId">
+                     {{ errorMessageId }}
+                 </div>
+                 {{/if}}
             </div>
             <div class="account-submit">
                 <input type="button" value="立即认证" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;check-name"  />

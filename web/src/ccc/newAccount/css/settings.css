@@ -31,6 +31,10 @@ p.tips {
 	color: red;
 	padding: 10px 0;
 }
+.nameAndId{
+	margin-left: 460px;
+	margin-top: -35px;
+}
 .form-control_set {
 	height: 45px;
 	line-height: 45px;

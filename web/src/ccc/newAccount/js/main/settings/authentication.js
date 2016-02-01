@@ -41,22 +41,48 @@ ractive.on('maskDepositAgreement', function (e) {
 });
 
 // 要认证
+ractive.on('checkName',function(){
+    var name = this.get("name");
+    this.set('showErrorMessageName',false);
+    utils.formValidator.checkName(name, function (bool, error) {
+        if (!bool) {
+            ractive.set({
+                showErrorMessageName: true,
+                errorMessageName: utils.errorMsg[error]
+            });
+        }
+    });
+});
+ractive.on('checkIdNumber',function(){
+    var idNumber = this.get("idNumber");
+    this.set('showErrorMessageId',false);
+    utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
+        if (!bool) {
+            ractive.set({
+                showErrorMessageId: true,
+                errorMessageId: utils.errorMsg[error]
+            });
+        }
+    });
+});
 ractive.on("register-account-submit", function () {
     var name = this.get("name");
     var idNumber = this.get("idNumber");
     var that=this;
+    this.fire('checkName');
+    this.fire('checkIdNumber');
     utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
-                showErrorMessage: true,
-                errorMessage: utils.errorMsg[error]
+                showErrorMessageName: true,
+                errorMessageName: utils.errorMsg[error]
             });
         } else {
             utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
                 if (!bool) {
                     ractive.set({
-                        showErrorMessage: true,
-                        errorMessage: utils.errorMsg[error]
+                        showErrorMessageId: true,
+                        errorMessageId: utils.errorMsg[error]
                     });
 
                     return false;
