@@ -78,13 +78,12 @@ $(".back-top").click(function(){
     return false;
 })     
 
-var Sys = {};  
 var ua = navigator.userAgent.toLowerCase();  
-var s;  
-(s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] : 0;  
-/*以下进行测试*/  
-if (Sys.ie <= 8) alert('您的浏览器版本为IE: ' + Sys.ie + '请升级浏览器版本');  
+var brw = ua.match(/msie ([\d.]+)/) ;
 
+/*以下进行测试*/   
+console.log(brw[1]); 
+if(brw[1] <= 8) alert('为了不影响您对本网站的使用，请升级您的浏览器');
     
 
 
