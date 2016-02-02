@@ -317,7 +317,6 @@ passwordRactive.on('checkrepwdConfirm',function(){
   var currentPassword = this.get("currentPassword");
   var newPassword = this.get("newPassword");
   var passwordConfirm = this.get("passwordConfirm");
-  var captcha = this.get("captcha.captcha");
   this.set('isAcesse',false);
    if (!passwordConfirm) {
       showErrorIndex('showErrorMessagee','errorMessagee','请重复新密码');
@@ -325,20 +324,17 @@ passwordRactive.on('checkrepwdConfirm',function(){
       showErrorIndex('showErrorMessagee','errorMessagee','两次密码不一致');
   }else {
     clearErrorIndex('showErrorMessagee','errorMessagee');
-      this.set('isAcessd',true);
+      this.set('isAcesse',true);
   }
 });
 passwordRactive.on('checkCaptcha',function(){
-  var currentPassword = this.get("currentPassword");
-  var newPassword = this.get("newPassword");
-  var passwordConfirm = this.get("passwordConfirm");
   var captcha = this.get("captcha.captcha");
   this.set('isAcessf',false);
    if (!captcha) {
       showErrorIndex('showErrorMessagef','errorMessagef','请填写图形验证码');
   }else {
     clearErrorIndex('showErrorMessagef','errorMessagef');
-      this.set('isAcessd',true);
+      this.set('isAcessf',true);
   }
 });
 passwordRactive.on("submit-modify-password", function (event) {
@@ -352,6 +348,9 @@ passwordRactive.on("submit-modify-password", function (event) {
     passwordRactive.fire('checkrepwdConfirm');
     passwordRactive.fire('checkCaptcha');
     var isAcess=this.get('isAcessc')&&this.get('isAcessf')&&this.get('isAcesse')&&this.get('isAcessd');
+    if(!isAcess){
+      return false;
+    }
     CommonService.checkCaptcha(passwordRactive.get('captcha'), function (res) {
         if (res.success) {
             if(currentPassword===newPassword){
@@ -390,7 +389,7 @@ passwordRactive.on("submit-modify-password", function (event) {
                     return showErrorIndex('showErrorMessagec','errorMessagec','原始密码错误');
                 });
         } else {
-            return showErrorIndex('showErrorMessagef','errorMessagef','图形验证码错误');
+            return showErrorIndex('showErrorMessagef','errorMessagef','图片验证码错误或已失效');
         }
     });
 
