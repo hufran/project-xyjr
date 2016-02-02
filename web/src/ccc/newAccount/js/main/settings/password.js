@@ -390,7 +390,7 @@ passwordRactive.on("submit-modify-password", function (event) {
                     return showErrorIndex('showErrorMessagec','errorMessagec','原始密码错误');
                 });
         } else {
-            return showErrorIndex('showErrorMessagef','errorMessagef','图形验证码错误');
+            return showErrorIndex('showErrorMessagef','errorMessagef','图片验证码错误或已失效');
         }
     });
 
