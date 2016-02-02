@@ -78,68 +78,16 @@ $(".back-top").click(function(){
     return false;
 })     
 
-//导航状态
-var path = window.location.pathname;
+var Sys = {};  
+var ua = navigator.userAgent.toLowerCase();  
+var s;  
+(s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] : 0;  
+/*以下进行测试*/  
+if (Sys.ie <= 8) alert('您的浏览器版本为IE: ' + Sys.ie + '请升级浏览器版本');  
 
-if (new RegExp("^/$")
-    .test(path)) {
-//    $(".u-nolist-ul li a#index")
-//        .addClass("navactive");
-
-} else if (new RegExp("^/invest")
-    .test(path)) {
-    $(".u-nolist-ul li a#touzi")
-        .addClass("navactive");
-
-} else if (new RegExp("^/applyloan")
-    .test(path)) {
-    $(".u-nolist-ul li a#jiekuan")
-        .addClass("navactive");
-
-} else if (new RegExp("^/newAccount/*")
-    .test(path)) {
-    $(".u-nolist-ul li a#safety")
-        .addClass("navactive");
-
-} else if (new RegExp("^/guide")
-    .test(path)) {
-    $(".u-nolist-ul li a#help")
-        .addClass("navactive");
-
-} else if (new RegExp("^/aboutus/*")
-    .test(path)) {
-    $(".u-nolist-ul li a#aboutus")
-        .addClass("navactive");
-}
+    
 
 
-var Cal = require('ccc/global/js/modules/cccCalculator');
-$('.calculator-create').on('click', function () {
-    Cal.create();
-});
 
 
-//导航移动在上面出现微信
-//$('.erweima').hide();
-$('.weixin-icon').mouseenter(function () {
-        $('.erweima-act2').show();
-    }).mouseleave(function () {
-        $('.erweima-act2').hide();
-    });
-
-$('.weixin-icon').mouseenter(function () {
-        $('.erweima-act').show();
-    }).mouseleave(function () {
-        $('.erweima-act').hide();
-    });
-
-//控股下拉菜单
-    	
-$("#family").hover(function(){
-	$(this).find("p").css("background","url(/ccc/global/img/slideOn.png) no-repeat");
-	$(this).find("ul").stop().slideDown();
-},function(){
-	$(this).find("ul").stop().slideUp();
-	$(this).find("p").css("background","url(/ccc/global/img/slide.png) no-repeat");
-});
 
