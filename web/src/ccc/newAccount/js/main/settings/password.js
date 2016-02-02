@@ -324,7 +324,7 @@ passwordRactive.on('checkrepwdConfirm',function(){
       showErrorIndex('showErrorMessagee','errorMessagee','两次密码不一致');
   }else {
     clearErrorIndex('showErrorMessagee','errorMessagee');
-      this.set('isAcessd',true);
+      this.set('isAcesse',true);
   }
 });
 passwordRactive.on('checkCaptcha',function(){
