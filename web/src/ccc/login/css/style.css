@@ -98,7 +98,7 @@
     background: #fff;
 /*    margin-bottom: 26px;*/
     height:45px;
-    
+
 }
 #main-container .s-login-view .s-login-window a {
     line-height: 46px;
@@ -202,7 +202,7 @@ float:left;
     border-top: 1px solid #e5e5e5;
     border-bottom:1px solid #e5e5e5;
     border-left:1px solid #e5e5e5;
-   
+
 }
 #loginForm .s-input-wrapper .lineUser{
 /*     border: 1px solid #e5e5e5;*/
@@ -216,6 +216,7 @@ float:left;
     font-size: 14px;
     color:#4a4a4a;
     padding-left: 10px;
+    line-height: 45px;
 }
 
 #main-container .s-login-view .s-login-window button{
