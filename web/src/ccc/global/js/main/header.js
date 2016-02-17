@@ -37,13 +37,13 @@ if(CC.user){
             res.user.name='';}
             new Ractive({
             el: "#head-ractive-container",
-            template:'<img src="/ccc/newAccount/img/user.png" style="position:relative;bottom:2px;"/>{{#if !name}}{{mobile}}{{else}}{{name}}{{/if}}', 
+            template:'<img src="/ccc/newAccount/img/user.png" style="position:relative;bottom:2px;"/>{{#if !name}}{{mobile}}{{else}}{{name}}{{/if}}',
             data: {
                name:res.user.name,
                loginName:CC.user.loginName,
                 mobile:res.user.mobile
             }
-        });     
+        });
     });
     accountService.getNewMessageNum(function (res) {
         var messageRactive = new Ractive({
@@ -54,17 +54,17 @@ if(CC.user){
             }
         });
     });
-     
+
 };
 
- 
+
 
 $(function(){
-    utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){
+    utils.tool.loadScript('https://wpa.b.qq.com/cgi/wpa.php',function(){
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA1'});
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA2'});
     });
-    
+
     window.onscroll=function(){
         var scrollTopOffset= document.documentElement.scrollTop || document.body.scrollTop;
         if(scrollTopOffset  <= 10){
@@ -76,17 +76,11 @@ $(function(){
 $(".back-top").click(function(){
     $('body,html').animate({scrollTop:0},1000);
     return false;
-})     
+})
 
-var ua = navigator.userAgent.toLowerCase();  
+var ua = navigator.userAgent.toLowerCase();
 var brw = ua.match(/msie ([\d.]+)/) ;
 
-/*以下进行测试*/   
-console.log(brw[1]); 
+/*以下进行测试*/
+console.log(brw[1]);
 if(brw[1] <= 8) alert('为了不影响您对本网站的使用，请升级您的浏览器');
-    
-
-
-
-
-
