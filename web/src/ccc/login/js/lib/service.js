@@ -4,7 +4,7 @@
  */
 
 'use strict';
-var request = require('cc-superagent-promise');
+// var request = require('cc-superagent-promise');
 exports.LoginService = {
     //checkLoginName: function (loginName, next) {},
     doLogin: function (loginName, password, next) {
