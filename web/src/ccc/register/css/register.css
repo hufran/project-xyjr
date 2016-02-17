@@ -367,7 +367,7 @@ h3 {
 
 #register-container {
 	/*    height: 346px;*/
-	
+
 	overflow: hidden;
 }
 
@@ -391,7 +391,7 @@ h3 {
 }
 
 .rinput input[type=checkbox] {
-	width: 14px;
+	width: 22px;
 	height: 14px;
 }
 
@@ -400,7 +400,7 @@ h3 {
 	position: relative;
 	/*    top: 4px;*/
 	/*    width: 214px;*/
-	
+
 	font-size: 14px;
 	line-height: 20px;
 	margin-left: 106px;
@@ -412,7 +412,7 @@ h3 {
 
 .agreement-div {
 	/*    margin-top: 40px;*/
-	
+
 	overflow: hidden;
 }
 

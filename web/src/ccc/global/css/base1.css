@@ -7,7 +7,7 @@
  #nav-color a, #nav-color div, #nav-color img{
      padding: 0;
      margin: 0;
-	 
+
      color: #999;
 /*	 margin-bottom: 8px;*/
  }
@@ -31,14 +31,14 @@
     text-align: left;
     width: 200px;
     font-size: 12px;
-	
+
     color: #bcbcbc;
 }
 #nav-color .s-header-info-content .float-img{
     position: absolute;
     top: 30px;
     left: 1020px;
-    z-index: 9999; 
+    z-index: 9999;
 }
 #nav-color .s-header-info-content .nav-help{
  float: right;
@@ -66,7 +66,7 @@
      text-align: left;
     width: 96px;
     font-size: 12px;
-	
+
      color: #999;
 }
 
@@ -115,11 +115,11 @@
     position: absolute;
     left: 50%;
     margin-left:-960px;
-   
+
 }
 #footer-color-box{
    background:#6c6c6c;
-    
+
 }
 
 #footer-color-box .footerBox{
@@ -136,7 +136,7 @@
 }
 .ssfooter{
     margin-top:25px;
-  
+
 }
 .footer-guide dd{
 /*    margin-top: 14px;*/
@@ -145,7 +145,7 @@
     font-size: 14px;
     line-height: 24px;
     margin-left: 4px;
-    
+
 }
 #footer-color dt a{
     color: #e1e1e1;
@@ -167,7 +167,7 @@
     color:#e1e1e1;
     line-height: 16px;
     margin-bottom: 20px;
-    
+
 }
 
 .footer-guide dt img{
@@ -182,7 +182,7 @@
     border: none;
     overflow: hidden;
 	background-color: #6c6c6c;
-   
+
 }
 .bottom-left{
     float:left;
@@ -334,7 +334,7 @@
     top: 30px;
     left: 0;
     width: 120px;
-    z-index: 9999;  
+    z-index: 9999;
 }
 .s-header-menu-content .u-seclist-ul a{
     background-color: #5b9dff;
@@ -355,7 +355,7 @@
 #family{
     float: right;
     width: 180px;
-   
+
  margin-left: 24px;
     margin-top: 32px;
     position: relative;
@@ -422,7 +422,7 @@
 .side-bar-box{
     position: fixed;
     right:0;
-    top:45%; 
+    top:45%;
     width:40px;
 }
 .side-bar-box .wap{
@@ -496,7 +496,7 @@
     text-decoration: none;
 }
 .bottom-right{
-    float: right;
+    /*float: right;*/
     height:126px;
 /*    margin-right: 50px;*/
     }
@@ -585,7 +585,7 @@ li a {
     color: #666;
     text-decoration: none;
 */
-     width: auto; 
+     width: auto;
     display: inline-block;
     text-align: center;
     font-weight: bold;
@@ -598,7 +598,7 @@ li a {
 }
 
 .text-p{
-	text-align: center;	
+	text-align: center;
 	color: #bcbcbc;
     margin-top:17px;
     font-size: 14px;
