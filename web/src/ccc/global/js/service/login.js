@@ -1,5 +1,5 @@
 'use strict';
-var request = require('cc-superagent-promise');
+// var request = require('cc-superagent-promise');
 
 module.exports = {
     // user = {loginName: '', password: ''}

@@ -4,7 +4,7 @@
  */
 
 'use strict';
-var request = require('cc-superagent-promise');
+// var request = require('cc-superagent-promise');
 
 exports.InvestListService = {
     getSummaryData: function (next) {
@@ -41,7 +41,7 @@ exports.InvestListService = {
 //                next(res.body);
 //            });
 //    }
-    
+
 };
 
 function parseLoanList(loans) {
