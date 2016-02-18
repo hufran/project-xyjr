@@ -73,12 +73,13 @@ passwordRactive.on('initialPassword', function () {
     var msg,link;
     if (this.get('bank') && this.get('paymentPasswordHasSet')) {
         msg = "恭喜您，设置成功！";
+        link = '/newAccount/recharge';
     } else if (!this.get('bank') && this.get('paymentPasswordHasSet')) {
         msg = "设置成功，请绑定银行卡！";
         link = '/newAccount/settings/bankCards';
     } else {
         msg = "恭喜您，设置成功！";
-        link = '/newAccount/settings/password';
+        link = '/newAccount/recharge';
     }
     if(isAcess) {
         accountService.initialPassword(pwd, function (r) {
@@ -88,10 +89,10 @@ passwordRactive.on('initialPassword', function () {
                     okText: '确定',
                     cancelText: '稍后再说',
                     ok: function () {
-                        if (link) {
+                        // if (link) {
                             window.location.href = link;
-                        }
-                        window.location.reload();
+                        // }
+                        // window.location.reload();
                     },
                     cancel: function () {
                         window.location.reload();
@@ -183,7 +184,7 @@ passwordRactive.on('updatePassword', function () {
                     okText: '确定',
                     // cancelText: '重新登录',
                     ok: function () {
-                        window.location.href = "/newAccount/home";
+                        window.location.href = "/newAccount/recharge";
                     },
                     cancel: function () {
                         window.location.reload();
