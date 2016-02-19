@@ -60,7 +60,7 @@ if(CC.user){
 
 
 $(function(){
-    utils.tool.loadScript('https://wpa.b.qq.com/cgi/wpa.php',function(){
+    utils.tool.loadScript('http://wpa.b.qq.com/cgi/wpa.php',function(){
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA1'});
         BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4001000099, selector: 'BizQQWPA2'});
     });
