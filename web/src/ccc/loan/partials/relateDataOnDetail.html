@@ -4,7 +4,8 @@
     <div id="carousel-com-career" class="carousel slide li-content" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner" role="listbox">
             {{#career}}
-            <div class="item item-pic {{#if @index===0}} active {{/if}}" style="background-image:url({{uri}});" on-click="begin-big-pic-career" title="认证类型：{{proofType}}">
+            <div class="item item-pic {{#if @index===0}} active {{/if}}" on-click="begin-big-pic-career" title="认证类型：{{proofType}}">
+              <img src="{{uri}}" style="height: 100%;margin: auto;"/>
             </div>
             {{/career}}
 <!--
@@ -38,7 +39,8 @@
         <div class="carousel-inner" role="listbox">
             {{#loanPurpose}}
 
-            <div class="item item-pic {{#if @index===0}} active {{/if}}" style="background-image:url({{uri}});" on-click="begin-big-pic-loan" title="认证类型：{{proofType}}">
+            <div class="item item-pic {{#if @index===0}} active {{/if}}" on-click="begin-big-pic-loan" title="认证类型：{{proofType}}">
+              <img src="{{uri}}" style="height: 100%;margin: auto;"/>
             </div>
 
             {{/loanPurpose}}
