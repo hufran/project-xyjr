@@ -77,10 +77,3 @@ $(".back-top").click(function(){
     $('body,html').animate({scrollTop:0},1000);
     return false;
 })
-
-var ua = navigator.userAgent.toLowerCase();
-var brw = ua.match(/msie ([\d.]+)/) ;
-
-/*以下进行测试*/
-console.log(brw[1]);
-if(brw[1] <= 8) alert('为了不影响您对本网站的使用，请升级您的浏览器');
