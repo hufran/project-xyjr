@@ -106,7 +106,7 @@ new Ractive({
             width:120,
             height:120
         });
-//        $('#inviteCodeImg').append(qrcode);
+        $('#inviteCodeImg').append(qrcode);
         
         $(this.el).find("#btn-invite-copy").mouseover(function () {
             $("#invite-link").select();
