@@ -14,7 +14,7 @@ do (_, angular) ->
                     list: {}
                     page_path: './'
                     carousel_height: do (width = @$window.document.body.clientWidth) ->
-                        # width * 300 / 640 # aspect ratio of banner image
+                        width * 260 / 640 # aspect ratio of banner image
                 }
 
                 @api.homepage_fetch_loan_list().then (data) =>
