@@ -173,6 +173,28 @@ _.each([
     });
 });
 
+_.each([
+    '/act'
+], function(url){
+    app.get(url, function (req, res, next) {
+        if (res.locals.user && res.locals.user.id) {
+            res.redirect('/act/success');
+        }
+        next();
+    });
+});
+
+_.each([
+    '/act/success'
+], function(url){
+    app.get(url, function (req, res, next) {
+        if (!(res.locals.user && res.locals.user.id)) {
+            res.redirect('/act');
+        }
+        next();
+    });
+});
+
 // mobile page (H5) redirection
 _.each([
     {path: '/'},
