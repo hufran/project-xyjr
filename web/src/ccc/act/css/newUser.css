@@ -43,7 +43,7 @@ ul,li{margin: 0;padding: 0;list-style: none;}
 .libao{width: 270px; box-sizing:content-box;border-left: 2px dashed #ccc;margin: 0;padding: 0 20px; }
 .libao:first-child{border-left: none;}
 .libaoWbox{height: 68px; line-height: 24px;}
-.guwen{width: 170px;margin: 0 21px;margin-top: 45px;display: inline-block;zoom:1;*display:inline; text-align: center;color: #666;font-size: 14px;line-height:28px;color: #666;vertical-align: top;}
+.guwen{width: 170px;margin: 0 41px;margin-top: 45px;display: inline-block;zoom:1;*display:inline; text-align: center;color: #666;font-size: 14px;line-height:28px;color: #666;vertical-align: top;}
 .lbTit{font-size: 22px; margin-bottom: 10px;}
 .guwenDes{text-align: left;}
 .guwen .imgIcon{width: 154px;height: 154px;background-repeat: no-repeat;background-image: url(../img/touxiang.png);}
