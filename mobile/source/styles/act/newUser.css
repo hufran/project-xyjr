@@ -28,10 +28,10 @@ body{background-color: #f3f4f6;}
 
 .box{width: 10rem;margin: auto;margin-top: 0.3466666667rem;padding: 0.3333333333rem;background-color: #fff;}
 .box .tit{/*position: relative;*/border-top: 1px solid #000;width: 4.4533333333rem;height: 0.32rem;margin: auto;text-align: center;}
-.box .huhangTit{width: 5.4533333333rem}
+.box .huhangTit{width: 6.4533333333rem}
 .box .tit span{position: relative;padding: 0.16rem 0.4266666667rem;background-color: #fff;top: -0.2133333333rem;color: #072a68;}
 .libao{display: block;text-align: center;}
-.libaoWord{display: inline-block; vertical-align: bottom;text-align: center;height: 1.5433333333rem;background-color: #f3f4f6;width: 5.92rem; padding: 0.1rem 0;  margin-bottom: 0.2rem;}
+.libaoWord{display: inline-block; vertical-align: bottom;text-align: center;height: 1.5433333333rem;background-color: #f3f4f6;width: 5.92rem; padding: 0.1rem 0;  margin-bottom: 0.2rem; color: #7e7e7e;}
 .lbTit{ color: red;}
 .youShi,.guwen,.huhang{-webkit-box-flex:1.0;box-flex:1.0; text-align: center; margin-bottom: 0.6rem;}
 .huhang{margin-top: 0.3rem}
@@ -61,14 +61,14 @@ body{background-color: #f3f4f6;}
 .falv{background-position: 46% 0;}
 .fengkong{background-position: 68% 0;;}
 .laiyuan{background-position: 0 0;}
-.huhangDes div{margin-top: 0.2rem; color: #666;}
+.huhangDes div{margin-top: 0.2rem; color: #7e7e7e;}
 .youShi{margin-top: 0.2rem;}
 .youShi div{margin-bottom: 0.1rem;}
-.youshi .f12{color: #666;}
+.youshi .f12{color: #7e7e7e;}
 #mobile,#password{-webkit-appearance: none;appearance: none;border-radius: 0;width: 8.96rem;height: 1.2533333333rem;text-align: left;padding: 0.5733333333rem;border: none; margin: 0 auto;}
 #mobile_captcha{width: 5.3333333333rem;vertical-align: middle;-webkit-appearance: none;appearance: none;border-radius: 0;height: 1.2533333333rem;text-align: left;padding: 0.5733333333rem;border: none; display: inline-block;}
 .form-control-wrap .btn{width: 3.32rem;border: 1px solid #5b9dfe;display: inline-block;vertical-align: middle;margin-left: 0.2933333333rem;padding: 0.3466666667rem 0;text-align: center;-webkit-appearance: none;appearance: none;}
 .form-horizontal .form-group{text-align: center;}
 #signBtn{  width: 9rem;margin: 0 auto;}
 .agreement{text-align: center;}
-
+.guwen div:last-child{color: #7e7e7e;}

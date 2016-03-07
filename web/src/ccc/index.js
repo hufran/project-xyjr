@@ -200,6 +200,7 @@ _.each([
     {path: '/'},
     {path: '/login'},
     {path: '/register'},
+	{path: '/act'},
     {path: '/invest', new_path: '/list'},
     {path: '/account', new_path: '/dashboard'},
 
