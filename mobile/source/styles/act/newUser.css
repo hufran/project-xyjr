@@ -2,8 +2,8 @@
 body{background-color: #f3f4f6;}
 .banner{width: 10rem; margin: 0 auto;}
 .bannerImg{width: 10rem;height: 4.6133333333rem;background-size: contain;background-image:url(../../assets/image/act/newUserBanner.jpg)}
-.sider{width:3.8rem;margin-left: 0.2rem; height: 0.6666666667rem; overflow: hidden;display: inline-block; vertical-align: middle;  position: relative;}
-.sider img{width:3.8rem; position: absolute;top: 0;}
+.sider{width:3.72rem;margin-left: 0.2rem; height: 0.7333333333rem; overflow: hidden;display: inline-block; vertical-align: middle;  position: relative;}
+.sider img{width:3.72rem; position: absolute;top: 0;}
 .kefu{display: inline-block; }
 .kefuImg{width: 0.5333333333rem;height: 0.5333333333rem;display: inline-block; background-image: url(../../assets/image/act/phoneIcon.png);background-size: contain; vertical-align: middle; margin-right: 0.1rem;}
 .kefu a{color: #666;display: inline-block;vertical-align: middle;}
