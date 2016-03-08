@@ -172,7 +172,11 @@ function parseLoan(loan) {
         'CORPORATION': '企业融资',
         'OTHER': '其它借款'
     };
-    loan.investPercent = Math.floor(loan.investPercent * 100);
+    if (loan.investPercent* 100 > 0 && loan.investPercent * 100 < 1) {
+        loan.investPercent = 1;
+    } else {
+      loan.investPercent = parseInt(loan.investPercent * 100, 10);
+    };
     loan.rate = loan.rate / 100;
     loan.loanRequest.deductionRate = loan.loanRequest.deductionRate / 100;
     loan.basicRate = loan.rate - loan.loanRequest.deductionRate;
