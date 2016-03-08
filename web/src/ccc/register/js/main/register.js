@@ -62,6 +62,6 @@ if (CC.registerRel) {
     registerRactive.set('reftf.data.value', CC.registerRel);
 }
 
-if (CC.comefromRel) {
-    registerRactive.set('comefrom.data.value', CC.comefromRel);
+if (CC.channelRel) {
+    registerRactive.set('channel.data.value', CC.channelRel);
 }
