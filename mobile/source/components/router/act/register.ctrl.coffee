@@ -9,6 +9,8 @@ do (_, angular) ->
                 @$scope.store =
                     referral: do ({ref, rel, refm, reftf, referral} = @$routeParams) ->
                         _.first _.compact [ref, rel, refm, reftf, referral]
+                    comefrom: do ({UID} = @$routeParams) ->
+                        _.first _.compact [UID]
 
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
@@ -73,7 +75,7 @@ do (_, angular) ->
                     @$scope.store.captcha = '' if reset
 
 
-            signup: ({password, mobile, mobile_captcha, referral}) ->
+            signup: ({password, mobile, mobile_captcha, referral, comefrom}) ->
 
                 @submit_sending = true
 
@@ -84,6 +86,12 @@ do (_, angular) ->
                         optional.referral = referral
                     else if referral?.length > 3
                         optional.inviteCode = referral
+
+                do (optional, comefrom) ->
+                    if /^1\d{10}/.test comefrom
+                        optional.comefrom = comefrom
+                    else if comefrom?.length > 3
+                        optional.comefrom = comefrom
 
                 do (optional, {bind_social_weixin} = @$routeParams) =>
                     if bind_social_weixin then _.merge optional, {
