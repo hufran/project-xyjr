@@ -88,10 +88,8 @@ function parseLoanList(loans) {
         item.rate = item.rate / 100;
         item.deductionRate = item.loanRequest.deductionRate / 100;
         item.basicRate = item.rate - item.deductionRate;
-        alert(item.investPercent);
-        item.investPercent =Math.round( parseFloat(item.investPercent * 100, 10));
+        item.investPercent =parseInt(item.investPercent * 100, 10);
 
-        alert(item.investPercent);
         //格式化期限
         if (item.duration.days > 0) {
             if (typeof item.duration.totalDays === "undefined") {
