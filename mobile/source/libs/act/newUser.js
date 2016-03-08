@@ -12,7 +12,12 @@ function gundong(){
 	if (imgH1>-maxH) {
 		jQuery('.sider img').animate({top: '-='+slideHeight},500);
 	}else if(imgH1<=-maxH){
-			tclone();
+			//tclone();
+			jQuery('<img src="assets/image/act/sider.png">').appendTo('.sider');
+
+			jQuery('.sider img').eq(1).css('top',slideHeight+'px');
+			jQuery('.sider img').animate({top: '-='+slideHeight},500);
+
 			jQuery('.sider img').eq(0).remove();
 	}
 }
