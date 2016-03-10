@@ -31,11 +31,7 @@ IndexService.getLoanSummary(function (list) {
         if(list[i].titleLength > 60){
              list[i].title = list[i].title.substr(0,60)+'...';
         }
-        if (list[i].investPercent > 0 && list[i].investPercent< 1) {
-            list[i].investPercent = 1;
-        } else {
-          list[i].investPercent = parseInt(list[i].investPercent, 10);
-        };
+        //		 console.log(list[i].titleLength);
         if(list[i].loanRequest.productKey == 'XSZX'){
              listXSZX.push(list[i]);
          }else if(list[i].loanRequest.productKey == 'HDZX'){
@@ -59,7 +55,7 @@ IndexService.getLoanSummary(function (list) {
     }
     var investRactive = new Ractive({
         el: ".XSZXproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
+        template: require('ccc/global/partials/singleInvest1.html'),
         data: {
             list: listXSZX,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式

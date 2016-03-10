@@ -44,7 +44,22 @@ var _hmt = _hmt || [];
 <meta name="Keywords" content="{{keywords}}">
 <meta name="Description" content="{{description}}">
 
-<!-- 导航开始 -->
+	<!-- 导航开始 -->
+	<style type="text/css">
+    .header-sider{
+        width: 330px;
+        height: 30px;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .header-sider img{
+        position: absolute;
+        top: 0;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
 
 <div class="s-header" id="s-header-height">
 
@@ -52,6 +67,29 @@ var _hmt = _hmt || [];
         <div class="s-header-info-content u-pos-r-center">
             <span class="nav-phone"><img src="/ccc/global/img/phone.png"/></span>
             <span class="nav-customer" style="color:#999">客服电话：4001-718-718</span>
+			<div class="header-sider" style="margin-left:-60px;">
+					<img src="/ccc/global/img/lc-header-sider.png"alt="合作下载"><!--/ccc/global/img/app.png-->
+				</div>
+				<script type="text/javascript">
+					jQuery(function(){
+					   clone();
+						function gundong(){
+							var imgH1=parseInt(jQuery('.header-sider img').eq(0).css('top'));
+							if (imgH1>-180) {
+								jQuery('.header-sider img').animate({top: '-=30'},500);
+							}else if(imgH1==-180){
+									jQuery('.header-sider img').eq(0).remove();
+									clone(); 
+							}
+						}
+						function clone(){
+							jQuery('.header-sider img').clone().appendTo('.header-sider');
+							jQuery('.header-sider img').eq(1).css('top','180px');
+						}
+							var t1 = window.setInterval(gundong,1000); 
+					})
+				</script>
+
              <img style="display:none" class="float-img" src="/ccc/global/img/app.png" alt="扫码下载APP">
 <!--
             <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw" style="margin-top:-6px;margin-right:24px;"><img src="/ccc/global/img/navQQ.png"  onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'"/></a>
