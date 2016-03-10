@@ -1,12 +1,10 @@
 {
     "ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js": {
         "copiedFrom": "node_modules/@ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js",
-        "fromVersion": "2.0.0",
         "revHash": "5a3d5680e0"
     },
     "ccc/ie8fix/js/dist/html5-es5shim-excanvas.js": {
         "copiedFrom": "node_modules/@ccc/ie8fix/js/dist/html5-es5shim-excanvas.js",
-        "fromVersion": "2.0.0",
         "revHash": "c751d18622"
     },
     "ccc/ie8fix/readme.md": {
@@ -196,7 +194,6 @@
     },
     "ccc/template-watch/js/dist/getRactiveTemplate.js": {
         "copiedFrom": "node_modules/@ccc/template-watch/js/dist/getRactiveTemplate.js",
-        "fromVersion": "2.0.2",
         "revHash": "0f8606f292"
     },
     "ccc/template-watch/readme.md": {
