@@ -51,18 +51,14 @@
                 </div>
                 <div class="space space-30"></div>
                 <div class="bankwrap">
-                    {{#if !isEnterpriseUser}} {{#banks:index}} {{#if index
+                     {{#banks:index}} {{#if index
                     < showNum}} <span class="bankItem {{code}}" data-cc="{{code}}" data-code="{{bankCode}}"
                     on-click="selectBank">
                         <span class="check"></span>
                         </span>
                         {{/if}} {{#if index == showNum}}
                         <span class="bankItem more" on-click="showAll"></span> {{/if}}
-                        {{/banks}} {{else}} {{#each corBanks}}
-                        <span class="bankItem c{{code}}" data-code="{{bankCode}}" on-click="selectBank">
-                            <span class="check"></span>
-                        </span>
-                        {{/each}} {{/if}}
+                        {{/banks}}
                 </div>
                 <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
                 <!--                <input type="hidden" name="retUrl" value="http://xyjr.uats.cc/api/v2/yeepay/BankDepositReturn">-->
