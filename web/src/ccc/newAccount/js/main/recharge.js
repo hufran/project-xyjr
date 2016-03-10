@@ -50,7 +50,7 @@ var ractive = new Ractive({
         console.log(num);
     },
     oncomplete: function () {
-        var self = this;        
+        var self = this;
         this.$help = $(this.el)
             .find('.help-block');
         this.$amount = $(this.el)
@@ -88,9 +88,9 @@ var ractive = new Ractive({
         });
 
         $(".bankwrap").delegate('.bankItem', 'click', function () {
-           
+
             var classMap = ['ICBC','CCB','ABC','CMBCHINA','BOC','CEB','CMBC','ECITIC','GDB','PINGAN','HXB','POST','BCCB'];
-            
+
             var code = $(this).data('cc');
             if ($.inArray(code,classMap) == -1) {
                 ractive.set('showamountInfo', false);
@@ -98,17 +98,17 @@ var ractive = new Ractive({
                 ractive.set('showamountInfo', true);
                 $("#" + code).show().siblings().hide();
             }
-            $('.bankwrap .bankItem')    
+            $('.bankwrap .bankItem')
                 .removeClass('currentBank');
             $(this)
                 .addClass('currentBank');
             $('.bankwrap .bankItem')
             	.find('span.check')
-            	.hide();    
+            	.hide();
             $(this)
             	.find('span.check')
             	.show()
-            
+
           	var type = $(this).parent().siblings('.methodwr').data('type');
 		    if (type !== 'net') {
         		ractive.set('isNormal', true);
@@ -118,7 +118,7 @@ var ractive = new Ractive({
 		        ractive.set('action', '/yeepay/onlineBankDeposit');
 		    }
         });
-        
+
 
     },
 
@@ -146,13 +146,13 @@ ractive.on('recharge_submit', function (e){
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
         return false;
-    } 
+    }
 //    else if (amount > 10 ) {
 //        e.original.preventDefault();
 //        this.set('msg.AMOUNT_NOTENOUGH', true);
 //        this.$amount.focus();
 //        return false;
-//    } 
+//    }
     else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
         e.original.preventDefault();
         this.set('msg.AMOUNT_INVALID', true);
