@@ -200,6 +200,6 @@ ractive.on('selectBank', function (event) {
     this.set('bankCode', code);
 });
 ractive.on('chooseBank', function (event) {
-    var code = event.node.getAttribute('data-code');
+    var code = event.node.getAttribute('data-cc');
     this.set('bankCode', code);
 });
