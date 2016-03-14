@@ -54,12 +54,12 @@
                 <div class="free-register">
                     {{#if user}}
                         {{#if user.name}}
-                        <a href="/newAccount/home"><button class="btn-index">我的账户</button></a>
+                        <a href="/newAccount/home"><div class="btn-index">我的账户</div></a>
                         {{else}}
-                        <a href="/newAccount/settings/authentication"><button class="btn-index">我的账户</button></a>
+                        <a href="/newAccount/settings/authentication"><div class="btn-index">我的账户</div></a>
                         {{/if}}
                     {{else}}
-                        <a href="/register"><button class="btn-index">注册领红包</button></a>
+                        <a href="/register"><div class="btn-index">注册领红包</div></a>
                     {{/if}}
                 </div>
                 {{#if user}}
