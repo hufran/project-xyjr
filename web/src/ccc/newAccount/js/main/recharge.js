@@ -29,6 +29,13 @@ var ractive = new Ractive({
         banks: banks,
         corBanks: corBanks,
         isEnterpriseUser: CC.user.enterprise,
+        bankCodeEnd: (function () {
+            if(CC.user.enterprise) {
+                return '-NET-B2B';
+            }else {
+                return '-NET-B2C';
+            }
+        })(),
         isBankCard: CC.user.bankCards.length,
         amountValue: 10000000,
         action: '/yeepay/onlineBankDeposit',
