@@ -132,24 +132,26 @@ var ractive = new Ractive({
 		this.set('disabled', true);
 		
 		var _FEE = null;
-		var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
-		$.ajax({
-			type: 'GET',
-			async: false,
-			url: url,
-			success: function(o){
-				_FEE = o;
-				self.set('submitText', '确认提现');
-				self.set('disabled', false);
-			},
-			error: function(o){
-				console.info('请求出现错误，' + o.statusText);
-				self.set('error', true);
-				self.set('submitText', '确认提现');
-				self.set('disabled', false);
-			}
-		});
-		
+		// var url = '/api/v2/user/MYSELF/calculateWithdrawFee/'+amount;
+		// $.ajax({
+		// 	type: 'GET',
+		// 	async: false,
+		// 	url: url,
+		// 	success: function(o){
+		// 		_FEE = o;
+		// 		self.set('submitText', '确认提现');
+		// 		self.set('disabled', false);
+		// 	},
+		// 	error: function(o){
+		// 		console.info('请求出现错误，' + o.statusText);
+		// 		self.set('error', true);
+		// 		self.set('submitText', '确认提现');
+		// 		self.set('disabled', false);
+		// 	}
+		// });
+		_FEE = {
+			withdrawAmount: amount
+		}
 		if (_FEE === null) {
 			return false;
 		}
@@ -162,7 +164,8 @@ var ractive = new Ractive({
 		}
 		
 		return confirm(
-			'实际到账' + _FEE.withdrawAmount + '元 (收取' + _FEE.totalFee + '元提现手续费)\n确认提现吗？'
+			// '实际到账' + _FEE.withdrawAmount + '元 (收取' + _FEE.totalFee + '元提现手续费)\n确认提现吗？'
+			'实际到账' + _FEE.withdrawAmount + '元 (平台代付手续费)\n确认提现吗？'
 		);
 	},
 	
