@@ -18,6 +18,7 @@ do (_, angular) ->
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
 
+
             get_verification_code: ({mobile, captcha}) ->
 
                 @mobile_verification_code_has_sent = true
