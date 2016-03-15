@@ -3,7 +3,7 @@
 
     <nav class="container page-nav">
     <div class="row">
-        <a class="col-xs-3 back" ng-href="{{ self.back_path || '/' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <a class="col-xs-3 back" ng-href="{{ self.back_path || './' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
         <span class="col-xs-6 title">{{ self.bind_weixin ? '绑定微信' : '登录' }}</span>
         <span class="col-xs-3">&nbsp;</span>
     </div>
@@ -58,7 +58,7 @@
                     <span class="left">
                         <a href="password/forgot">找回密码？</a>
                     </span>
-                    <a href="" ng-click="self.goto('register')">免费注册</a>
+                    <a href="" ng-click="self.goto('register', {back: 'login'})">免费注册</a>
                 </p>
             </div>
         </form>

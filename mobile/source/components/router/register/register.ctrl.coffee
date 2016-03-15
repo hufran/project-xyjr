@@ -12,11 +12,14 @@ do (_, angular) ->
                     channel: do ({UID} = @$routeParams) ->
                         _.first _.compact [UID]
 
+                @$scope.back_path = @$routeParams.back
+
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
 
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
+
 
             get_verification_code: ({mobile, captcha}) ->
 
