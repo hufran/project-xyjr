@@ -27,7 +27,9 @@ do (_, angular) ->
 
             goto: (new_path, value) ->
 
-                (@$location.path new_path).search value
+                @$location
+                    .path new_path
+                    .search value
 
 
             login: ({username, password} = {}) ->
