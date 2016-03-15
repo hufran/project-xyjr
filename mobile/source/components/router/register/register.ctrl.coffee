@@ -11,6 +11,7 @@ do (_, angular) ->
                         _.first _.compact [ref, rel, refm, reftf, referral]
                     channel: do ({UID} = @$routeParams) ->
                         _.first _.compact [UID]
+                @$scope.back_path = @$routeParams.back
 
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
