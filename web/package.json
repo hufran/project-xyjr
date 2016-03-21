@@ -19,7 +19,7 @@
     "baconjs": "^0.7",
     "bluebird": "^2",
     "body-parser": "^1",
-    "bootstrap": "^3",
+    "bootstrap": "^3.3.5",
     "browserify": "^12",
     "browserify-common-prelude": "^0.5.1",
     "bunyan-hub-logger": "^1",
