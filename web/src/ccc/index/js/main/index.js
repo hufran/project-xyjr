@@ -2,6 +2,11 @@
 
 require('bootstrap/js/transition');
 require('bootstrap/js/carousel');
+$('[data-ride="carousel"]').each(function () {
+  var $carousel = $(this)
+  $(this).carousel($carousel.data())
+})
+
 require('bootstrap/js/tab');
 var $carousel = $("#my-carousel");
 var IndexService = require('./service')
