@@ -1,0 +1,443 @@
+
+
+<link rel="stylesheet" type="text/css" href="styles/act/eclStyle.css">
+<link rel="stylesheet" type="text/css" href="styles/act/newUser.css">
+
+<div class="banner">
+	<div class="bannerImg">
+	</div>
+</div>
+<div class="row clearFix">
+	<div class="f0">
+		<span class="f12">合作伙伴:</span>
+		<div class="sider">
+			<img src="assets/image/act/sider.png">
+		</div>
+		<div class="kefu">
+			<div>
+				<div class="kefuImg"></div>
+				<a href="tel:4001-718-718" class="f14">4001-718-718</a>
+			</div>
+		</div>
+	</div>
+	<div class="fr callImg"></div>
+</div>
+	
+
+	<div>
+      <param ng-model="msg" ng-init="msg = {
+          MOBILE_EXISTS: '手机号已被占用',
+          MOBILE_USED: '手机号已被占用',
+          MOBILE_CAPTCHA_INVALID: '手机验证码不匹配',
+          MOBILE_CAPTCHA_ALREADY_SENT: '验证码已发送',
+          MOBILE_SMS_CAPTCHA_ALREADY_SEND: '验证码已发送',
+          LOGINNAME_EXISTS: '用户名已被占用',
+          INVALID_CAPTCHA: '图形验证码不匹配',
+          IMG_CAPTCHA_NULL: '请输入图形验证码',
+          IMG_CAPTCHA_REQUIRED: '请输入图形验证码',
+          INVITECODE_INVALID: '邀请码无效',
+          USERINVITECODE_INVALID: '推荐码不存在',
+
+          SUCCEED: '注册成功',
+          UNKNOWN: '未知错误',
+      }">
+    </div>
+
+    <div class="page-content">
+
+    <form class="form form-flatten form-horizontal" name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          novalidate
+    >
+        <div class="inputs container">
+            <div class="form-group merge"
+                 ng-class="{'has-error': form.loginName.$invalid && form.loginName.$dirty}"
+                 x-gyro-comment
+            >
+                <input class="form-control input-target input-lg" type="text"
+                       autocapitalize="none"
+                       autocomplete="off"
+                       autocorrect="off"
+                       name="loginName"
+                       ng-model="store.loginName"
+                       pattern="^(?!(([1][3|5|7|8][0-9]{9})|([\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+)))([0-9a-zA-Z_\u4E00-\u9FBF]+)"
+                       placeholder="用户名"
+                       required
+                >
+                <div class="help-block"
+                     ng-show="form.loginName.$invalid && form.loginName.$dirty"
+                >
+                    <span ng-show="form.loginName.$error.required">必须填写</span>
+                    <span ng-show="form.loginName.$error.pattern">2至15位中英文字符、数字或下划线</span>
+                </div>
+            </div>
+
+            <div class="form-group merge"
+                 ng-class="{
+                    'has-error': form.mobile.$invalid && form.mobile.$dirty,
+                 }"
+            >
+                <label for="mobile"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-target input-lg cell" type="tel"
+                           id="mobile"
+                           name="mobile"
+                           ng-model="store.mobile"
+                           ng-pattern="/^1\d{10}$/"
+                           placeholder="填写手机号"
+                           maxlength="11"
+                           required
+                    >
+
+                    <div class="help-block"
+                         ng-show="form.mobile.$invalid && form.mobile.$dirty"
+                    >
+                        <span ng-show="form.mobile.$error.required">必须填写</span>
+                        <span ng-show="form.mobile.$error.pattern">填写中国大陆正确的 11 位手机号</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group merge captcha"
+                 ng-show="self.captcha.token"
+                 ng-class="{
+                    'has-error': form.captcha.$invalid && form.captcha.$dirty
+                 }"
+                 x-gyro-comment
+            >
+                <label for="captcha"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-target input-lg captcha" type="text"
+                           id="captcha"
+                           name="captcha"
+                           ng-model="store.captcha"
+                           ng-pattern="/^[A-Za-z0-9]+$/"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
+                           maxlength="5"
+                           placeholder="填写图形码"
+                           required
+                    >
+
+                    <div class="action"
+                          ng-click="self.fetch_new_captcha()"
+                    >
+                        <img ng-src="{{ self.captcha.captcha }}"
+                             class="captcha-img"
+                             width="72"
+                             height="24"
+                        >
+                    </div>
+
+                    <div class="help-block"
+                         ng-show="form.captcha.$invalid && form.captcha.$dirty"
+                    >
+                        <span ng-show="form.captcha.$invalid">必须填写</span>
+                        <span ng-show="form.captcha.$error.pattern">图形验证码错误或失效</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group merge mobile-captcha"
+                 ng-class="{
+                    'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
+                    init: !self.mobile_verification_code_has_sent,
+                 }"
+            >
+                <label for="mobile_captcha"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-target input-lg captcha" type="tel"
+                           id="mobile_captcha"
+                           name="mobile_captcha"
+                           x-focus-on="self.cell_buffering"
+                           ng-model="store.mobile_captcha"
+                           pattern="^\d{6}$"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
+                           placeholder="填写短信验证码"
+                           maxlength="6"
+                           required
+                    >
+
+                    <button class="btn btn-sm btn-action btn-theme" type="button"
+                            ng-click="self.get_verification_code(store)"
+                            ng-disabled="!store.mobile || (self.captcha.token && !store.captcha) || self.cell_buffering"
+                    >
+                        <span class="text">获取</span>
+                        <span class="count" ng-show="self.cell_buffering">
+                            {{ self.cell_buffering_count | number: 0 }}
+                        </span>
+                        <span class="icon" ng-hide="self.cell_buffering">重发</span>
+                    </button>
+
+                    <div class="help-block"
+                         ng-show="form.mobile_captcha.$invalid && form.mobile_captcha.$dirty"
+                    >
+                        <span ng-show="form.mobile_captcha.$invalid">必须填写</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group merge"
+                 ng-class="{'has-error': form.password.$invalid && form.password.$dirty}"
+            >
+                <label for="password"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-target input-lg" type="password"
+                           id="password"
+                           name="password"
+                           ng-model="store.password"
+                           minlength="6"
+                           maxlength="16"
+                           placeholder="填写密码"
+                           required
+                    >
+                    <div class="help-block"
+                          ng-show="form.password.$invalid && form.password.$dirty"
+                    >
+                        <span ng-show="form.password.$invalid">6-16位字符</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group merge"
+                 ng-class="{'has-error': form.password_confirm.$invalid && form.password_confirm.$dirty}"
+                 x-gyro-comment
+            >
+                <label for="password_confirm"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-target input-lg" type="password"
+                           id="password_confirm"
+                           name="password_confirm"
+                           ng-model="password_confirm"
+                           ui-validate=" '$value == store.password' "
+                           ui-validate-watch=" 'store.password' "
+                           placeholder="请再次输入密码"
+                           maxlength="16"
+                           required
+                    >
+                    <div class="help-block"
+                         ng-show="form.password_confirm.$error.validator && form.password_confirm.$dirty"
+                    >
+                        <span ng-show="form.password_confirm.$error.validator">两次输入密码不一致</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group merge" style="display:none">
+                <label for="referral"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-lg"
+                           type="text"
+                           name="referral"
+                           ng-model="store.referral"
+                           placeholder="推荐人手机号码或推荐码（选填）"
+                    >
+                </div>
+            </div>
+
+			<div class="form-group merge" style="display:none">
+                <label for="channel"></label>
+                <div class="form-control-wrap">
+                    <input class="form-control input-lg"
+                           type="text"
+                           name="channel"
+                           ng-model="store.channel"
+                           placeholder="来源（选填）"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="container agreement">
+            <label>
+                <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
+                我阅读并同意 <a href="#" ng-click="self.agreement('新毅金融用户注册协议')">《新毅金融注册服务协议》</a>
+            </label>
+        </div>
+
+        <p class="container">
+            <button type="button" id="signBtn" class="btn btn-theme btn-block btn-lg"
+                    ng-click="self.signup(store)"
+                    ng-disabled="form.$invalid || !agreement || self.submit_sending"
+            >注册</button>
+        </p>
+    </form>
+    </div>
+
+
+<!--新手大礼包-->
+<div class="box">
+	<div class="tit"><span class="f16">新手大礼包</span></div>
+	<ul class="libaoUl">
+		<a href="/invest">
+		<li class="libao f0">
+			<div class="imgIcon yibai"></div>
+			<div class="libaoWord">
+				<div class="bold pink f14 lbTit">注册成功</div>
+				<div class="libaoWbox f12">
+					<div>成功注册718金融用户可获得100元</div>
+					
+				</div>
+			</div>
+		</li>
+		</a>
+
+		<a href="/invest">
+		<li class="libao f0">
+			<div class="imgIcon wuyi"></div>
+			<div class="libaoWord">
+				<div class="bold pink f14 lbTit">新户专享</div>
+				<div class="libaoWbox f12">
+					<div>5亿现金大派送（全场通用）</div>
+					
+				</div>
+			</div>
+		</li>
+		</a>
+
+		<a href="/invest">
+		<li class="libao f0">
+			<div class="imgIcon liubai"></div>
+			<div class="libaoWord">
+				<div class="bold pink f14 lbTit">开卷有益</div>
+				<div class="libaoWbox f12">
+					<div>用户可获得600元金融课程免费赠送</div>
+					
+				</div>
+			</div>
+		</li>
+		</a>
+
+	</ul>
+</div>
+<!--718金融优势-->
+<div class="box">
+	<div class="tit"><span class="f16">718金融的优势</span></div>
+	<ul class="youshiUl dbox">
+		<li class="youShi">
+			<div class="imgIcon shouyi"></div>
+			<div class="f14">收益高</div>
+			<div class="f12">预计年化收益</div>
+			<div class="f12">6%~18%</div>
+		</li>
+		<li class="youShi">
+			<div class="imgIcon feiyong"></div>
+			<div class="f14">0费用</div>
+			<div class="f12">充值提现</div>
+			<div class="f12">0费用</div>
+		</li>
+		<li class="youShi">
+			<div class="imgIcon menkan"></div>
+			<div class="f14">门槛低</div>
+			<div class="f12">100元起投</div>
+			<div class="f12">人人皆可受益</div>
+		</li>
+	</ul>
+	<ul class="youshiUl dbox">
+		<li class="youShi">
+			<div class="imgIcon xinyu"></div>
+			<div class="f14">信誉好</div>
+			<div class="f12">互联网信用</div>
+			<div class="f12">AA级企业</div>
+		</li>
+		<li class="youShi">
+			<div class="imgIcon shili"></div>
+			<div class="f14">实力强</div>
+			<div class="f12">6重安全保障</div>
+			<div class="f12">本息安全</div>
+		</li>
+		<li class="youShi">
+			<div class="imgIcon qixian"></div>
+			<div class="f14">期限短</div>
+			<div class="f12">私人定制</div>
+			<div class="f12">多样选择</div>
+		</li>
+	</ul>
+</div>
+
+<!--顾问团-->
+<div class="box">
+	<div class="tit"><span class="f16">权威顾问团</span></div>
+	<ul class="guwenUl dbox">
+<!-- 		<li class="guwen">
+			<div class="imgIcon linhua"></div>
+			<div class="f14">林华</div>
+			<div class="f14">董事合伙人</div>
+		</li> -->
+		<li class="guwen">
+			<div class="imgIcon wanghong"></div>
+			<div class="f14">王宏杰</div>
+			<div class="f14">董事合伙人</div>
+		</li>
+		<li class="guwen">
+			<div class="imgIcon wutian"></div>
+			<div class="f14">吴天鹏</div>
+			<div class="f14">高级顾问</div>
+		</li>
+		<li class="guwen">
+			<div class="imgIcon guowei"></div>
+			<div class="f14">郭伟</div>
+			<div class="f14">高级顾问</div>
+		</li>
+	</ul>
+</div>
+<!--保驾护航-->
+<div class="box">
+	<div class="tit huhangTit"><span class="f16">718金融为您保驾护航</span></div>
+	<ul class="huhangUl dbox">
+		<li class="huhang">
+			<div class="imgIcon qianwan"></div>
+			<div class="huhangDes huhangDes1">
+				<div class="f14">千万级</div>
+				<div class="f14">风险准备金</div>
+			</div>
+			
+		</li>
+		<li class="huhang">
+			<div class="imgIcon jishu"></div>
+			<div class="huhangDes huhangDes2">
+				<div class="f14">技术支持</div>
+				<div class="f14">信息安全</div>
+			</div>
+			
+			
+		</li>
+		<li class="huhang">
+			<div class="imgIcon falv"></div>
+			<div class="huhangDes huhangDes1">
+				<div class="f14">法律保障</div>
+				<div class="f14">律所护航</div>
+			</div>
+			
+		</li>
+	</ul>
+	<ul class="huhangUl dbox">
+		<li class="huhang">
+			<div class="imgIcon fengkong"></div>
+			<div class="huhangDes huhangDes2">
+				<div class="f14">风控审核</div>
+				<div class="f14">项目优选</div>
+			</div>
+			
+		</li>
+		<li class="huhang">
+			<div class="imgIcon laiyuan"></div>
+			<div class="huhangDes huhangDes1">
+				<div class="f14">AAA级</div>
+				<div class="f14">项目来源</div>
+			</div>
+			
+		</li>
+	</ul>
+</div>
+
+
+
+
+
+

@@ -1,20 +1,21 @@
-  {{#if isBankCard===0}}
-    <div class="row">
-        <div class="space space-30"></div>
-        <div class="col-md-12 align-center">
-            <p class="text-warning" style="color:#009ada">您还没有绑定银行卡，绑卡后才能进行充值</p>
-            <div class="space space-40"></div>
-            <p>
-                <a href="/newAccount/settings/bankCards" style="width: 230px;background-color:#009ada" class="btn btn-orange">立即绑卡</a>
-            </p>
-            <div class="space space-40"></div>
-        </div>
+ {{#if isBankCard===0}}
+<div class="row">
+    <div class="space space-30"></div>
+    <div class="col-md-12 align-center">
+        <p class="text-warning" style="color:#009ada">您还没有绑定银行卡，绑卡后才能进行充值</p>
+        <div class="space space-40"></div>
+        <p>
+            <a href="/newAccount/settings/bankCards" style="width: 230px;background-color:#009ada"
+              class="btn btn-orange">立即绑卡</a>
+        </p>
+        <div class="space space-40"></div>
     </div>
-      {{else}}
-   <div class="ccc-banks-wrap">
+</div>
+{{else}}
+<div class="ccc-banks-wrap">
     <div class="recharge-form-wrap">
         <form role="form" name="rechargeForm" action="{{action}}" method="POST" target="_blank"
-        on-submit="recharge_submit">
+          on-submit="recharge_submit">
             <div class="space space-10"></div>
             <div class="space space-10"></div>
             <div class="row">
@@ -30,8 +31,8 @@
                     <div class="rows">
                         <span class="tipss">充值金额</span>
                         <input type="text" name="amount" id="rechargeValue" on-blur="changeValue" placeholder=""
-                        value="{{amount}}" style="width:238px;height:44px;line-height:44px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;"
-                        autocomplete="off">
+                          value="{{amount}}" style="width:238px;height:44px;line-height:44px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;"
+                          autocomplete="off">
                         <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>
                         <p class="help-block text-danger" style="color:red;text-indent:95px;display:inline;">
                             {{#msg.BANK_NULL}}请选择银行卡{{/msg.BANK_NULL}} {{#msg.AMOUNT_NULL}}请输入充值金额{{/msg.AMOUNT_NULL}}
@@ -51,22 +52,32 @@
                 </div>
                 <div class="space space-30"></div>
                 <div class="bankwrap">
-                    {{#if !isEnterpriseUser}} {{#banks:index}} {{#if index
+                    {{#if !isEnterpriseUser}}
+                        {{#banks:index}}
+                        {{#if index
                     < showNum}} <span class="bankItem {{code}}" data-cc="{{code}}" data-code="{{bankCode}}"
-                    on-click="selectBank">
+                      on-click="selectBank">
                         <span class="check"></span>
                         </span>
-                        {{/if}} {{#if index == showNum}}
-                        <span class="bankItem more" on-click="showAll"></span> {{/if}}
-                        {{/banks}} {{else}} {{#each corBanks}}
-                        <span class="bankItem c{{code}}" data-code="{{bankCode}}" on-click="selectBank">
-                            <span class="check"></span>
+                        {{/if}} 
+                        {{#if index == showNum}}
+                        <span class="bankItem more" on-click="showAll"></span> 
+                        {{/if}}
+                        {{/banks}}
+                    {{else}}
+                        {{#each corBanks}}
+
+                        <span class="bankItem c{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
+
+                           <span class="check"></span>
+
                         </span>
+
                         {{/each}} {{/if}}
                 </div>
                 <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
                 <!--                <input type="hidden" name="retUrl" value="http://xyjr.uats.cc/api/v2/yeepay/BankDepositReturn">-->
-                <input type="hidden" name="bankCode" value="{{bankCode}}">
+                <input type="hidden" name="bankCode" value="{{bankCode}}{{bankCodeEnd}}">
                 <div class="space-20"></div>
                 <!--
             {{#if !isEnterpriseUser}}
@@ -291,10 +302,10 @@
                 </td>
                 <td>
                     <div>50万</div>
-                    <div>信用额度
-（如信用额度超过50万，限额为50万）</div>
-                    <div>信用额度
-（如信用额度超过50万，限额为50万）</div>
+                    <div>信用额度 （如信用额度超过50万，限额为50万）
+                    </div>
+                    <div>信用额度 （如信用额度超过50万，限额为50万）
+                    </div>
                     <div style="border:none">5000</div>
                 </td>
                 <td>95566</td>
@@ -362,8 +373,8 @@
                     <div> 大众版（浏览器证书）</div>
                     <div> 贵宾版（U宝）</div>
                     <div> 贵宾版（OTP）</div>
-                    <div>大众版
-（短信验证码&浏览器证书）</div>
+                    <div>大众版 （短信验证码&浏览器证书）
+                    </div>
                     <div style="border:none">贵宾版（U宝&OTP）</div>
                 </td>
                 <td>

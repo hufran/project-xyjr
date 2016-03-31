@@ -7,6 +7,7 @@
 <!--[if lt IE 8]><script src="http://wuyongzhiyong.b0.upaiyun.com/iedie/v1.1/script.min.js"></script><![endif]-->
 <!--[if lt IE 10]>
 <script src="/ccc/ie8fix/js/dist/console-html5-es5shim-excanvas.js"></script>
+<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="/ccc/global-common.js" async></script>
 <link rel="stylesheet" href="/ccc/global/css/base.css" />
@@ -44,7 +45,22 @@ var _hmt = _hmt || [];
 <meta name="Keywords" content="{{keywords}}">
 <meta name="Description" content="{{description}}">
 
-<!-- 导航开始 -->
+	<!-- 导航开始 -->
+	<style type="text/css">
+    .header-sider{
+        width: 330px;
+        height: 30px;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .header-sider img{
+        position: absolute;
+        top: 0;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
 
 <div class="s-header" id="s-header-height">
 
@@ -52,6 +68,29 @@ var _hmt = _hmt || [];
         <div class="s-header-info-content u-pos-r-center">
             <span class="nav-phone"><img src="/ccc/global/img/phone.png"/></span>
             <span class="nav-customer" style="color:#999">客服电话：4001-718-718</span>
+			<div class="header-sider" style="margin-left:-45px;">
+					<img src="/ccc/global/img/lc-header-sider.png"alt="合作下载"><!--/ccc/global/img/app.png-->
+				</div>
+				<script type="text/javascript">
+					jQuery(function(){
+					   clone();
+						function gundong(){
+							var imgH1=parseInt(jQuery('.header-sider img').eq(0).css('top'));
+							if (imgH1>-180) {
+								jQuery('.header-sider img').animate({top: '-=30'},500);
+							}else if(imgH1==-180){
+									jQuery('.header-sider img').eq(0).remove();
+									clone();
+							}
+						}
+						function clone(){
+							jQuery('.header-sider img').clone().appendTo('.header-sider');
+							jQuery('.header-sider img').eq(1).css('top','180px');
+						}
+							var t1 = window.setInterval(gundong,1000);
+					})
+				</script>
+
              <img style="display:none" class="float-img" src="/ccc/global/img/app.png" alt="扫码下载APP">
 <!--
             <a target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODAxNDcwNF8zMjA0NDJfNDAwODcyNzY3Nl8yXw" style="margin-top:-6px;margin-right:24px;"><img src="/ccc/global/img/navQQ.png"  onmouseover="this.src='/ccc/global/img/blue-qq.png'" onmouseout="this.src='/ccc/global/img/navQQ.png'"/></a>
@@ -227,7 +266,7 @@ var _hmt = _hmt || [];
 -->
             </div>
             <div class="bottom-right">
-                <p class="bottom-right-service"><span style="color:#abb2ba;">客服电话：（工作时间：9：00-18：00）</span></p>
+                <p class="bottom-right-service"><span style="color:#abb2ba;">投资交流群：515449675 &nbsp;&nbsp;客服电话：（工作时间：9：00-18：00）</span></p>
                     <p class="bottom-right-mail"><span class="telNum">4001-718-718</span></p>
                     <p class="bottom-right-copy"><span>版权所有&copy;2016&nbsp;&nbsp;新毅金融www.718bank.com&nbsp;&nbsp;京ICP备15059004号</span></p>
             </div>
@@ -247,10 +286,10 @@ var _hmt = _hmt || [];
     <div class="wap" style="display:none;">
         <div class="wap-header">
            <span class="wap-close">x</span>
-           <h3 class="topwap">访问718金融理财手机端</h3>
+           <h3 class="topwap">下载718金融理财客户端</h3>
         </div>
-        <div class="wxwap"><img src="/ccc/global/img/wap.png" alt="wap端二维码"></div>
-        <p class="bottomwap">扫描二维码，访问718金融手机端页面</p>
+        <div class="wxwap"><img src="/ccc/global/img/app_ewm.png" style="width:200px;height:200px" alt="718金融理财客户端"></div>
+        <p class="bottomwap">扫描二维码，下载718金融理财客户端</p>
     </div>
 </div>
 <script>

@@ -2,6 +2,11 @@
 
 require('bootstrap/js/transition');
 require('bootstrap/js/carousel');
+$('[data-ride="carousel"]').each(function () {
+  var $carousel = $(this)
+  $(this).carousel($carousel.data())
+})
+
 require('bootstrap/js/tab');
 var $carousel = $("#my-carousel");
 var IndexService = require('./service')
@@ -55,7 +60,7 @@ IndexService.getLoanSummary(function (list) {
     }
     var investRactive = new Ractive({
         el: ".XSZXproductList",
-        template: require('ccc/global/partials/singleInvest.html'),
+        template: require('ccc/global/partials/singleInvest1.html'),
         data: {
             list: listXSZX,
             RepaymentMethod: i18n.enums.RepaymentMethod // 还款方式

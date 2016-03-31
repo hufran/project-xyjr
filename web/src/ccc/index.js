@@ -167,7 +167,29 @@ _.each([
 ], function(url){
     app.get(url, function (req, res, next) {
         if (res.locals.user && res.locals.user.id) {
-            res.redirect('/newAccount');
+            res.redirect('/newAccount/home');
+        }
+        next();
+    });
+});
+
+_.each([
+    '/act'
+], function(url){
+    app.get(url, function (req, res, next) {
+        if (res.locals.user && res.locals.user.id) {
+            res.redirect('/act/success');
+        }
+        next();
+    });
+});
+
+_.each([
+    '/act/success'
+], function(url){
+    app.get(url, function (req, res, next) {
+        if (!(res.locals.user && res.locals.user.id)) {
+            res.redirect('/act');
         }
         next();
     });
@@ -178,6 +200,7 @@ _.each([
     {path: '/'},
     {path: '/login'},
     {path: '/register'},
+	{path: '/act'},
     {path: '/invest', new_path: '/list'},
     {path: '/account', new_path: '/dashboard'},
 
