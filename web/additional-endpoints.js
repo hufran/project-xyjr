@@ -110,6 +110,5 @@ module.exports = function (router, auth) {
     router.post('/api/v2/yeepay/deleteCard/:userId', auth.user());
     router.post('/api/v2/yeepay/withdraw/:userId', auth.user());
     
-    router.post('/api/v2/yeepay/wapBankDeposit/:userId', auth.user());
-    router.post('/api/v2/yeepay/onlineBankDepositNoBind/:userId', auth.user());
+
 };
