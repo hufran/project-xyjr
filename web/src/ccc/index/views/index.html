@@ -4,56 +4,78 @@
 <link rel="stylesheet" href="/ccc/index/css/style1.css">
 <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
 <!--<script language="javascript" type="text/javascript" src="/ccc/index/js/main/ss.js"></script>-->
-<!--add by Jude start-->
-    <style type="text/css">
-        .dn{display: none!important;}
-        .db{display: block!important;}
-        .tan{position: fixed; width: 570px;top: 80px; left: 0;right: 0;margin: 0 auto;border:7px solid #1ca2ef;border-radius: 20px; background-color: #fff;z-index: 999;color: #333;font-size: 14px;line-height: 1.6em;}
-        .tanTit{text-align: center;padding: 15px 0;border-bottom: 1px solid #ccc;}
-        .tanTit span{color: red;font-size: 16px;}
-        .tanTit .close{float: right;color: #000;margin-right: 15px;font-size: 20px;font-family: arial;cursor: pointer;}
-        .tanDes{padding: 35px;padding-top: 20px;}
-        .tanEnd{text-align: right;margin-top: 30px;}
-        .tanTime{text-align: center;margin-top: 20px;}
-        .tanTime span,.tanW span{color:red;}
-        .tanW p{margin-top: 0; font-size: 16px; text-indent: 2em;}
-        .tanW p span{color: #1ca2ef; cursor: pointer;}
-        .tanClose{background-color: #1ca2ef;color: #fff; width: 140px;height:36px;text-align: center;line-height: 36px;border-radius: 3px;margin: auto; cursor: pointer;margin-top: 52px;}
-    </style>
-    <div class="mask" style="background-color: rgba(0,0,0,0.6);background-color: #000\9;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);  position: fixed;top: 0;bottom: 0;left: 0;right: 0; z-index: 9999;"></div>
-    <div class="db tan" style="z-index: 10000;">
-        <div style="margin-top: 38px;margin-left: 36px;">
-            <span>亲爱的718金融会员您好：</span>
-        </div>
-        <div class="tanDes">
-            <div class="tanW">
-                <p>
-                    为了响应国家对互联网金融行业的规范号召，我们决定对<span>www.718bank.com</span>网站进行升级，树立718金融在行业内的合规标杆。届时您可能无法正常浏览该网站，给您造成的困扰深表歉意。您可以通过<span>www.718zc.com</span>继续访问。
-                </p>
-                <p>718金融将给您账户打入500元投资红包作为补偿，以便您在投资中使用，对于给您造成的困扰再次表示歉意。在此期间，手机客户端将会短暂升级，请您根据网站提示信息更新下载最新版本</p>
-                <p>如有问题您可以拨打4001-718-718， 会有专人为您解答疑问。718金融带给您：新金融！新生活！新生态！</p>
+    <!--add by Jude start-->
+        <style type="text/css">
+            .dn{display: none!important;}
+            .db{display: block!important;}
+            .tan{position: fixed; width: 570px;top: 80px; left: 0;right: 0;margin: 0 auto;border:7px solid #1ca2ef;border-radius: 20px; background-color: #fff;z-index: 999;color: #333;font-size: 14px;line-height: 1.6em;}
+            .tanTit{text-align: center;padding: 15px 0;border-bottom: 1px solid #ccc;}
+            .tanTit span{color: red;font-size: 16px;}
+            .tanTit .close{float: right;color: #000;margin-right: 15px;font-size: 20px;font-family: arial;cursor: pointer;}
+            .tanDes{padding: 35px;padding-top: 20px;}
+            .tanEnd{text-align: right;margin-top: 30px;}
+            .tanTime{text-align: center;margin-top: 20px;}
+            .tanTime span,.tanW span{color:red;}
+            .tanW p{margin-top: 0; font-size: 16px; text-indent: 2em;}
+            .tanW p span{color: #1ca2ef; cursor: pointer;}
+            .tanClose{background-color: #1ca2ef;color: #fff; width: 140px;height:36px;text-align: center;line-height: 36px;border-radius: 3px;margin: auto; cursor: pointer;margin-top: 52px;}
+        </style>
+        <div class="mask dn" style="background-color: rgba(0,0,0,0.6);background-color: #000\9;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);  position: fixed;top: 0;bottom: 0;left: 0;right: 0; z-index: 9999;"></div>
+        <div class="dn tan" style="z-index: 10000;">
+            <div style="margin-top: 38px;margin-left: 36px;">
+                <span>亲爱的718金融会员您好：</span>
+            </div>
+            <div class="tanDes">
+                <div class="tanW">
+                    <p>
+                        为了响应国家对互联网金融行业的规范号召，我们决定对<span>www.718bank.com</span>网站进行升级，树立718金融在行业内的合规标杆。届时您可能无法正常浏览该网站，给您造成的困扰深表歉意。您可以通过<span>www.718zc.com</span>继续访问。
+                    </p>
+                    <p>718金融将给您账户打入500元投资红包作为补偿，以便您在投资中使用，对于给您造成的困扰再次表示歉意。在此期间，手机客户端将会短暂升级，请您根据网站提示信息更新下载最新版本</p>
+                    <p>如有问题您可以拨打4001-718-718， 会有专人为您解答疑问。718金融带给您：新金融！新生活！新生态！</p>
+
+                </div>
+                <div class="tanClose">
+                    知道了
+                </div>
 
             </div>
-            <div class="tanClose">
-                知道了
-            </div>
-
         </div>
-    </div>
-    <script type="text/javascript">
-        jQuery(function(){
-            tanClose('.tan .tanClose');
-            tanClose('.tanW p span');
-        })
+        <script type="text/javascript">
+            //cookie start
+            function setCookie(name,value)
+            {
+                var Days = 30;
+                var exp = new Date();
+                exp.setTime(exp.getTime() + Days*24*60*60*1000);
+                document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+            }
+            function getCookie(name)
+            {
+                var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+                if(arr=document.cookie.match(reg))
+                    return unescape(arr[2]);
+                else
+                    return null;
+            }
 
-        function tanClose(className){
-            jQuery(className).bind('click',function(){
-                jQuery('.tan').removeClass('db').addClass('dn');
-                jQuery('.mask').addClass('dn');
+            jQuery(function(){
+                if(getCookie('dd')==null){
+                    jQuery('.tan').removeClass('dn').addClass('db');
+                    jQuery('.mask').removeClass('dn').addClass('db');
+                    tanClose('.tan .tanClose');
+                    tanClose('.tanW p span');
+                    setCookie('dd','22');
+                }
             })
-        }
-    </script>
-<!--add by Jude end-->
+
+            function tanClose(className){
+                jQuery(className).bind('click',function(){
+                    jQuery('.tan').removeClass('db').addClass('dn');
+                    jQuery('.mask').removeClass('db').addClass('dn');
+                })
+            }
+        </script>
+    <!--add by Jude end-->
 <!-- 轮播组件 -->
 <div class="carousel-wrapper">
     <!-- 在carousel上的 按钮 等 -->
