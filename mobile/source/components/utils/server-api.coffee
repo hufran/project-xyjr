@@ -307,6 +307,8 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+
+
             get_loan_investors: (id) ->
 
                 @$http

@@ -3,7 +3,7 @@ do (_, angular) ->
 
     angular.module('service').service 'user',
 
-        _.ai '            @$rootScope', class
+        _.ai '            =@$rootScope', class
             constructor: (@$rootScope) ->
 
                 @info = null

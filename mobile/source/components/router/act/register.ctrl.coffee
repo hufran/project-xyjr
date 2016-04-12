@@ -1,7 +1,7 @@
 
 do (_, angular) ->
 
-    angular.module('controller').controller 'RegisterCtrl',
+    angular.module('controller').controller 'RegisterCtrlAct',
 
         _.ai '            @api, @$scope, @$interval, @$location, @$routeParams, @$window, @$cookies, @$q, @$uibModal, @mg_alert, @baseURI', class
             constructor: (@api, @$scope, @$interval, @$location, @$routeParams, @$window, @$cookies, @$q, @$uibModal, @mg_alert, @baseURI) ->
@@ -11,11 +11,16 @@ do (_, angular) ->
                         _.first _.compact [ref, rel, refm, reftf, referral]
                     channel: do ({UID} = @$routeParams) ->
                         _.first _.compact [UID]
-
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
 
-                @$scope.has_referral = !!@$scope.store.referral
+                @uidclass =  do ({UID} = @$routeParams) ->
+                    _.first _.compact [UID]
+
+                @uidclass="bannerImg" if @uidclass == undefined
+
+
+
                 @submit_sending = false
 
             get_verification_code: ({mobile, captcha}) ->
