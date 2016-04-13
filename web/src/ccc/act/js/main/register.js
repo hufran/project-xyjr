@@ -70,3 +70,17 @@ if (CC.registerRel) {
 if (CC.channelRel) {
     registerRactive.set('channel.data.value', CC.channelRel);
 }
+
+    var url = window.location.href;
+    //alert(url);
+    var arrUrl = new Array();
+    arrUrl=url.split('=');
+    console.log(arrUrl.length);
+    if (arrUrl.length>1) {
+        var result = arrUrl[1];
+    }
+    if (url.indexOf(result)>=0) {
+        jQuery('.bannerImg').attr('class','bannerImg '+result);
+    }else{
+        jQuery('.bannerImg').attr('class','bannerImg');
+    }
