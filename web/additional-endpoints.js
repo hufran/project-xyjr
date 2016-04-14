@@ -36,8 +36,15 @@ module.exports = function (router, auth) {
 
     router.post('/api/v2/user/authenticateEmail', auth.user());
     router.get('/api/v2/user/:userId/invite', auth.user());
+    //红包功能 add by Jude start
+    router.get('/api/v2/rebateCounpon/listUserCouponPlacement/:userId', auth.user());//根据用户ID获取可用奖券列表
+    //router.post('/api/v2/invest/tenderUseCash/:userId', auth.pass());//投标使用现金券
+    router.post('/api/v2/invest/tenderUseRebate/:userId', auth.pass());//投标使用返现券
+    //router.post('/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/:couponId', auth.pass());//根据现金券ID获取现金券的使用记录
+    //router.post('/api/v2/rebateCounpon/getCouponStatusList/{type}', auth.pass());//获取指定的奖券的状态
+    router.post('/api/v2/rebateCounpon/listUserCouponPlacementByCond/:userId', auth.pass());//根据奖券的类型和状态查询奖券
+    //红包功能 add by Jude end
     router.post('/api/v2/users/mobile/encrypt', auth.pass());
-
     //积分
     router.get('/api/v2/points/user/:userId/getTotalPoints', auth.user());
     router.get('/api/v2/points/user/:userId/listByPeroid/:from/:to', auth.user());

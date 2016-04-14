@@ -52,7 +52,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     }
 
                     .when '/act', {
-                        controller: 'RegisterCtrl as self'
+                        controller: 'RegisterCtrlAct as self'
                         templateUrl: 'components/router/act/act.tmpl.html'
                         resolve:
                             user: _.ai 'api, $location, $q',
