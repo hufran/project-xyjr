@@ -1,6 +1,6 @@
 
 do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
-
+111111111111
     eByID = document.getElementById.bind document
 
     angular.module APP_NAME, modules
