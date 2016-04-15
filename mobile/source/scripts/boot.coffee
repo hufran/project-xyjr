@@ -11,7 +11,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                 $routeProvider
 
                     .when '/', {
-                        controller: 'HomepageCtrlact as self'
+                        controller: 'HomepageCtrl as self'
                         templateUrl: 'components/router/homepage/homepage.tmpl.html'
                         # redirectTo: '/list'
                     }
