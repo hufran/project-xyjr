@@ -30,9 +30,7 @@ do (_, angular, Math) ->
                             #.pluck 'placement'
                             #.filter (item) -> item.id isnt 'null'
                             .map (item) ->
-                                console.log item
                                 info = item.couponPackage
-                                console.log info
 
                                 return {
                                     id: item.id
