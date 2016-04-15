@@ -1,6 +1,6 @@
 
 do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
-2222
+
     eByID = document.getElementById.bind document
 
     angular.module APP_NAME, modules
@@ -11,7 +11,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                 $routeProvider
 
                     .when '/', {
-                        controller: 'HomepageCtrl as self'
+                        controller: 'HomepageCtrlact as self'
                         templateUrl: 'components/router/homepage/homepage.tmpl.html'
                         # redirectTo: '/list'
                     }
