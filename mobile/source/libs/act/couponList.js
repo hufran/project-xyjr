@@ -26,6 +26,7 @@ function loadCoupon(index,id){
 //构造结构
 function getStructs(index,data){
 	var data = data.results;
+	var tmp = '';
 	if($("#tabContent section").eq(index).html()!=''){
 		return;
 	}else{
