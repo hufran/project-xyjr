@@ -91,10 +91,10 @@
                        name="amount"
                        ng-model="store.amount"
                        ng-change="form.amount.$valid && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
-
+                       onkeyup="testNum(this)"
                        placeholder=""
                        required
-                ><!--onkeyup="testNum(this)"-->
+                ><!---->
             </div>
             <div class="col-xs-4 omit-padding earning" ng-show="form.amount.$valid">
                 预期收益 <span class="num">{{ earning | number: 2 }}</span>元
