@@ -81,7 +81,7 @@
                 <a class="btn btn-sm btn-recharge" ng-href="dashboard/recharge?next={{ self.page_path }}">充值</a>
             </div>
         </div>
-
+<input type="text"  onkeydown="javascript:console.log('down')" onkeyup="javascript:testNum(this)"/>
         <div class="form-group">
             <label for="amount" class="col-xs-3">投资金额:</label>
             <div class="col-xs-5 omit-padding">
@@ -90,10 +90,11 @@
                        id="amount"
                        name="amount"
                        ng-model="store.amount"
-                       ng-change="form.amount.$valid && self.fetch_analyse(store.amount)"
+                       ng-change="form.amount.$valid && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
+
                        placeholder=""
                        required
-                >
+                ><!--onkeyup="testNum(this)"-->
             </div>
             <div class="col-xs-4 omit-padding earning" ng-show="form.amount.$valid">
                 预期收益 <span class="num">{{ earning | number: 2 }}</span>元
@@ -110,7 +111,7 @@
         <div class="form-group">
             <label for="coupon" class="col-xs-3">使用红包:</label>
             <div class="col-xs-5 omit-padding">
-                <select name="placementId" class="form-control input-sm"
+                <select style="padding-top:1px" name="placementId" class="form-control input-sm"
                         id="coupon"
                         ng-model="store.coupon"
                         ng-options="
@@ -118,16 +119,33 @@
                             for coupon in coupon_list
                             track by coupon.id
                         "
-                        ng-click="self.pick_up_coupon($event, store.amount)"
+                        
                         ng-if="coupon_list.length"
-                >
-                    <option value="">{{ coupon_list.length }}个红包可用</option>
+                        
+                ><!--ng-change="self.changeSelect($event, store.amount)"ng-click="self.pick_up_coupon($event, store.amount)"-->
+                    <option value="">不使用红包</option>
                 </select>
 
                 <div class="coupon-tip" ng-if="!coupon_list.length">暂无红包可用</div>
             </div>
         </div>
-
+		<!--<div class="form-group rule">
+            <div class="col-xs-4 omit-padding earning" ng-show="form.amount.$valid">
+            </div>
+        </div>
+       {{loan}}-->
+       <!--{{newCoupon_list}}-->
+        <div class="form-group rule"  ng-show="form.amount.$valid && store.coupon.id === null">
+            <div class="col-xs-offset-3">
+                可用返现<span class="num">{{store.coupon.actualAm}}</span>元，本次返现<span class="num">{{ earning1 | number: 2 }}</span>元
+            </div>
+        </div>
+       <!-- {{store.coupon.id}}
+        {{store}}<br />-->
+        <!--{{store.amount}}<br />
+        !!!{{store.coupon.id}}!!!!<br />
+        {{store.coupon}}-->
+        <!--{{coupon_list}}-->
         <div class="form-group">
             <label for="password" class="col-xs-3">交易密码:</label>
             <div class="col-xs-5 omit-padding">

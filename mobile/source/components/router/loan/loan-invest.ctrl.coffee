@@ -8,26 +8,35 @@ do (_, angular, Math) ->
 
                 @$window.scrollTo 0, 0
 
+                #@newCoupon_list(@user.fund.userId);
                 @page_path = @$location.path()[1..]
                 @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
+                #console.log @coupon.data
+				
+                #console.log @newCoupon_list(@user.fund.userId)                
+
 
                 angular.extend @$scope, {
                     store: {}
                     earning: 0
                     loan: map_loan_summary @loan
+					#@coupon = @newCoupon_list(@user.fund.userId)
 
                     coupon_list:
+                        #_(@newCoupon_list(@user.fund.userId))
                         _(@coupon.data)
-                            .filter (item) -> item.disabled is false
-                            .pluck 'placement'
-                            #.filter (item) -> item.couponPackage.type isnt 'CASH'
+                        #_(@coupon.data)
+                            #.filter (item) -> item.disabled is false
+                            #.pluck 'placement'
+                            #.filter (item) -> item.id isnt 'null'
                             .map (item) ->
+                                #console.log item
                                 info = item.couponPackage
 
                                 return {
                                     id: item.id
                                     minimum: info.minimumInvest
-
+                                    actualAm: item.actualAmount
                                     display: do ->
                                         INTEREST = 'INTEREST'
 
@@ -43,7 +52,9 @@ do (_, angular, Math) ->
 
                                         unit = if info.type is INTEREST then '%' else '元'
 
-                                        return "#{ value + unit + type_cn } - 最低投资额: #{ info.minimumInvest }"
+                                        if item.id is null then return "返现券"
+
+                                        return "#{ value + unit + type_cn } - 最低投资额: #{ info.minimumInvest }" 
                                 }
                             .value()
 
@@ -89,6 +100,29 @@ do (_, angular, Math) ->
                     @$scope.earning = +response.data?.interest
 
 
+            fetch_analyse1: (amount = 0, loan = @$scope.loan) ->
+
+                #console.log loan
+
+                protimeT =  loan.raw.duration.totalMonths
+
+                rebateMoney = amount * protimeT / 12 * 0.005 if loan.raw.duration.days == 0
+
+                if loan.raw.duration.days == 0
+                    rebateMoney = amount * protimeT / 12 * 0.005
+
+                else
+                    rebateMoney = amount * protimeT / 1.825
+
+                @$scope.earning1 = rebateMoney.toFixed(2)
+
+
+            newCoupon_list: (id) ->
+
+                @api.fetch_coupon_list_select(id)
+
+                
+
             pick_up_coupon: (event, input_amount = 0) ->
 
                 do event.preventDefault
@@ -104,6 +138,14 @@ do (_, angular, Math) ->
                 @$location
                     .path new_path
                     .search back: ARRAY_JOIN_SLASH.call [@page_path_origin, input_amount]
+
+            #changeSelect: (event, input_amount = 0) ->
+
+                #alert "222"
+
+                #@$scope.earning1 =   event
+
+                #@$scope.earning1 =  @$scope.loan.balance
 
 
             submit: (event) ->
@@ -144,11 +186,14 @@ do (_, angular, Math) ->
                     @mg_alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
                 )
 
+
                 return unless good_to_go
 
                 @submit_sending = true
 
-                (@api.payment_pool_tender(loan.id, password, amount, coupon?.id)
+                if coupon != undefined and coupon.id == null
+					
+                    (@api.payment_pool_rebeat(loan.id, password, amount, @user.fund.userId, @$scope.earning1)
 
                     .then @api.process_response
                     .then @api.TAKE_RESPONSE_DATA
@@ -163,8 +208,8 @@ do (_, angular, Math) ->
 
                         if alert_success
                             @mg_alert '投标成功'
-                                .result.finally =>
-                                    @$location.path "/loan/#{ @loan.id }"
+                            .result.finally =>
+                                @$location.path "/loan/#{ @loan.id }"
 
                         @$location.path "/loan/#{ @loan.id }"
 
@@ -177,7 +222,41 @@ do (_, angular, Math) ->
 
                     .finally =>
                         @submit_sending = false
-                )
+                    )
+
+                else
+
+
+                    (@api.payment_pool_tender(loan.id, password, amount, coupon?.id)
+
+                        .then @api.process_response
+                        .then @api.TAKE_RESPONSE_DATA
+
+                        .then ({userShare, tenderResult}) =>
+                            return true unless userShare?.id
+
+                            @prompt_coupon_sharing(userShare.id).catch =>
+                                @$q.resolve false
+
+                        .then (alert_success) =>
+
+                            if alert_success
+                                @mg_alert '投标成功'
+                                    .result.finally =>
+                                        @$location.path "/loan/#{ @loan.id }"
+
+                            @$location.path "/loan/#{ @loan.id }"
+
+                            @$scope.$on '$locationChangeSuccess', =>
+                                @$window.location.reload()
+
+                        .catch (data) =>
+                            message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
+                            @mg_alert message
+
+                        .finally =>
+                            @submit_sending = false
+                    )
 
 
             prompt_coupon_sharing: (id) ->

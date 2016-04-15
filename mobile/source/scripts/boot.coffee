@@ -552,13 +552,9 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                             coupon: _.ai 'api, $location, $route, $q',
                                 (         api, $location, $route, $q) ->
                                     api.fetch_current_user()
-                                        .then -> api.get_loan_detail($route.current.params.id, true)
-                                        .then (data) ->
-                                            amount = data.balance
-                                            months = _.get data, 'duration.totalMonths'
-                                            loan_id = data.id
+                                        .then (user) ->									
+                                            return api.fetch_coupon_list_select user.fund.userId										
 
-                                            return api.fetch_coupon_list amount, months, loan_id
 
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->
@@ -615,7 +611,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .then (loan) ->
                                             if loan.loanRequest.productKey is 'XSZX' and is_newbie isnt true
 
-                                                $window.alert '此为新注册用户专享产品，您不符合活动要求，请选择其他产品！'
+                                                $window.alert '此为新注册用户专享产品，您不符合活动要求，请选择其他产品�?
 
                                                 $location
                                                     .replace()
