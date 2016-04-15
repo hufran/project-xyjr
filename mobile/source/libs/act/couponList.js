@@ -34,7 +34,7 @@ function getStructs(index,data){
 	{
 		case 0:            
 		$.each(data,function(n,item){
-			if(n == 0){				
+			if(n == 0){
 				tmp += '<div class="hongB"><div class="layout">';
 				tmp += '<div class="floatR noUseMoney">'+parseFloat(item.actualAmount).toFixed(2)+'<span> 元</span></div>';
 				tmp += '<div class="floatR canUseMoney">'+parseFloat(item.priv).toFixed(2)+'<span> 元</span></div>';
@@ -153,7 +153,7 @@ function format(time, format){
 	}); 
 }
 function testNum(obj){
-	var reg = new RegExp("^[0-9]+(.[0-9]{2})?$");
+	var reg = new RegExp("^[0-9]*$");
 	if(!reg.test(obj.value)){
 		obj.value = "";
 	}
