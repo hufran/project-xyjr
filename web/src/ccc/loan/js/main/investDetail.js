@@ -757,12 +757,12 @@ var recordRactive = new Ractive({
     setData: function (r) {
         var self = this;
         console.log('zzdhahahha');
-        self.set('rebateMoney',rebateMoney);   
+        //self.set('rebateMoney',rebateMoney);
         self.set('loading', false);
         console.log(self.get('loading'));
         self.set('list', self.parseData(r.results));
         self.set('totalSize', r.totalSize);
-        self.set('protimeT',)
+        //self.set('protimeT',)
         self.renderPager();
     },
     parseData: function (list) {
