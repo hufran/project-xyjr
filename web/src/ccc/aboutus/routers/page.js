@@ -16,7 +16,7 @@ module.exports = function (router) {
             // manage:'PUBLICATION',
             // media:'COVERAGE',
             announcement:'PUBLICATION',
-//            timeoutann:'PUBLICATION',
+            timeoutann:'PUBLICATION',
             action:'NEWS',
             imgaction:'NEWS',
         };
@@ -35,7 +35,7 @@ module.exports = function (router) {
             // notice: '最新公告',
             // manage: '经营报告’
             announcement:'平台公告',
-//            timeoutann:'到期公告',
+            timeoutann:'到期公告',
             action: '新闻资讯',
             imgaction:'今日头条',
         };
@@ -48,7 +48,7 @@ module.exports = function (router) {
             partner: '合作伙伴',
             contactus: '联系我们',
             announcement:'平台公告',
-//            timeoutann:'到期公告',
+            timeoutann:'到期公告',
             action: '新闻资讯',
             imgaction:'今日头条',
         };
@@ -75,10 +75,10 @@ module.exports = function (router) {
             text: '平台公告',
             url: '/aboutus/announcement',
         },
-//                    {
-//            text: '到期公告',
-//            url: '/aboutus/timeoutann',
-//        },
+                    {
+            text: '到期公告',
+            url: '/aboutus/timeoutann',
+        },
                     {
              text: '新闻资讯',
              url: '/aboutus/action'
