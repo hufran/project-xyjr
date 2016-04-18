@@ -58,7 +58,7 @@ function initailEasyPieChart() {
             //var color = percentage != 100 && (status==='SETTLED'|| status==='CLEARED') ? "#f58220" : '#009ada';
              var color = (status==='OPENED') ? '#009ada' : "#f58220";
 
-//            var color = percentage === 100 ? "#f58220" : '#f58220';
+            //            var color = percentage === 100 ? "#f58220" : '#f58220';
 
             $(this).easyPieChart({
                 barColor: color,
@@ -77,7 +77,7 @@ function initailEasyPieChart() {
 
 			var width = $(this).find("span.percentageNum").width();
 			$(this).find("span.percentageNum").css({'left':'50%','margin-left':-width/2});
-//			console.log(width);
+            //			console.log(width);
 
         });
 
@@ -313,42 +313,84 @@ setTimeout((function () {
                         cancelText: '取消',
 
                         ok: function () {
-                            $.post('/lianlianpay/tender', {
-                                amount : num,
-                                loanId : investRactive.get('loan.id'),
-                                placementId : investRactive.get('coupon'),
-                                paymentPassword : investRactive.get('paymentPassword')
-                            }, function (res) {
-                                if (res.success) {
-                                    CccOk.create({
-                                        msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
-                                        okText: '确定',
-                                        // cancelText: '重新登录',
-                                        ok: function () {
-                                            window.location.reload();
-                                        },
-                                        cancel: function () {
-                                            window.location.reload();
-                                        }
-                                    });
-                                } else {
-                                    var errType = res.error && res.error[0] && res.error[0].message || '';
-                                    var errMsg = {
-                                        TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                                    }[errType] || errType;
-                                    CccOk.create({
-                                        msg: '投资失败，' + errMsg,
-                                        okText: '确定',
-                                        // cancelText: '重新登录',
-                                        ok: function () {
-                                            window.location.reload();
-                                        },
-                                        cancel: function () {
-                                            window.location.reload();
-                                        }
-                                    });
-                                }
-                            });
+                            if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g,"")=='返现券') {
+                                var thisRebate=parseFloat(jQuery('#thisRebate').text());
+                                $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
+                                    amount : num,
+                                    loanId : investRactive.get('loan.id'),
+                                    paymentPassword : investRactive.get('paymentPassword'),
+                                    rebateAmount:thisRebate
+                                }, function (res) {
+                                    if (res.success) {
+                                        CccOk.create({
+                                            msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        var errType = res.error && res.error[0] && res.error[0].message || '';
+                                        var errMsg = {
+                                            TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                        }[errType] || errType;
+                                        CccOk.create({
+                                            msg: '投资失败' + errMsg,
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }
+                                });
+                            }//使用返现劵接口end
+                            else{
+                                $.post('/lianlianpay/tender', {
+                                    amount : num,
+                                    loanId : investRactive.get('loan.id'),
+                                    placementId : investRactive.get('coupon'),
+                                    paymentPassword : investRactive.get('paymentPassword')
+                                }, function (res) {
+                                    if (res.success) {
+                                        CccOk.create({
+                                            msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        var errType = res.error && res.error[0] && res.error[0].message || '';
+                                        var errMsg = {
+                                            TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                        }[errType] || errType;
+                                        CccOk.create({
+                                            msg: '投资失败' + errMsg,
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                            
                             $('.dialog').hide();
                         },
                         cancel: function () {
@@ -363,7 +405,31 @@ setTimeout((function () {
             });
         };
     });
-
+    //显示返现金额
+    investRactive.on('rebate',function(){
+        var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());// 输入的值
+        if (jQuery('#couponSelection').find("option:selected").val()=='返现券'&&isNaN(inpNum)==false) {
+            $.get('/api/v2/loan/'+ CC.loan.id,
+              function(r){
+                    console.log('zzzzzzzz=====');
+                    var protimeT='';
+                    var rebateMoney='';
+                    if(r.duration.days!=0){
+                        protimeT=parseInt(r.duration.totalDays);
+                        rebateMoney=inpNum*protimeT/365*0.005;
+                    }else{
+                        protimeT=parseInt(r.duration.totalMonths);
+                        rebateMoney=inpNum*protimeT/12*0.005;
+                    }
+                    jQuery('#thisRebate').html(rebateMoney.toFixed(2));
+                    jQuery('.totalInterestRebate').css('display','block');
+              }
+            );
+        }else{
+            jQuery('.totalInterestRebate').css('display','none');
+        }
+        
+    })
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
@@ -409,8 +475,13 @@ setTimeout((function () {
             'REBATE': '返现券'
         };
         for (var i = o.length-1; i>=0; i--) {
-            var canuse = o[i].disabled;
-            o[i] = o[i].placement;
+            //var canuse = o[i].disabled;
+            //o[i] = o[i].data;
+            o[i].value = parseInt(o[i].couponPackage.parValue);
+            o[i].id = o[i].id;
+            o[i].typeKey = type[o[i].couponPackage.type];
+            o[i].minimumInvest = o[i].couponPackage.minimumInvest + "元";
+
             if (o[i].couponPackage.type === 'INTEREST') {
                 o[i].interest = true;
                 o[i].displayValue = (parseFloat(o[i].couponPackage.parValue) / 100).toFixed(2) + '%';
@@ -420,13 +491,12 @@ setTimeout((function () {
             } else if (o[i].couponPackage.type === 'PRINCIPAL') {
                 o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
             } else if (o[i].couponPackage.type === 'REBATE') {
-                o[i].displayValue = parseInt(o[i].couponPackage.parValue) + "元";
+                o[i].displayValue ='';
+                o[i].minimumInvest ='';
+
             };
-            o[i].value = parseInt(o[i].couponPackage.parValue);
-            o[i].id = o[i].id;
-            o[i].typeKey = type[o[i].couponPackage.type];
-            o[i].minimumInvest = o[i].couponPackage.minimumInvest + "元";
-            o[i].canuse = canuse;
+            
+            //o[i].canuse = canuse;
         }
         return o;
     };
@@ -450,24 +520,24 @@ setTimeout((function () {
                 msg: ''
             });
     }
-
-    // $('.benefit-calculator')
-    //     .on('click', function () {
-    //         Cal.create();
-    //     });
-
     function showSelect(amount) {
             $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
             loanService.getMyCoupon(amount, months, function (coupon) {
-                if(coupon.success) {
+                console.log(coupon);
+                if (coupon.data[0].id==null) {
+                    var actualAmountNum=coupon.data[0].actualAmount;
+                    jQuery('#actualAmount').html(actualAmountNum);
+                }
+                
+                if (coupon.success) {
                     var list=parsedata(coupon.data);
                     list.sort(function(a,b){
                         return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
                     });
-                    investRactive.set('selectOption', list);
+                    investRactive.set('selectOption', list); 
                 }
             });
         }
@@ -477,6 +547,7 @@ setTimeout((function () {
     investRactive.on('getCoupon', function () {
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
+        jQuery('.totalInterestRebate').css('display','none');
         if(inputNum.length>10){
             showErrors('投标金额最大允许10位数字');
             return false;
@@ -509,10 +580,9 @@ setTimeout((function () {
 
 
 
-$('.investInput')
-    .on('keyup', function () {
+$('.investInput').on('keyup', function () {
         showSelect($(this).val());
-    });
+});
 
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.LuserId, function (r2) {
@@ -639,6 +709,8 @@ $('.nav-tabs > li')
             .removeClass('active');
     });
 
+
+
 function add() {
     var getNum = parseInt(document.getElementById("calculatorText").value);
     if (getNum > 0) {
@@ -673,10 +745,15 @@ var recordRactive = new Ractive({
     },
     setData: function (r) {
         var self = this;
+        console.log('zzdhahahha');
         console.log(r);
+        console.log(r.results[0].duration.days);
+        
+        self.set('rebateMoney',rebateMoney);   
         self.set('loading', false);
         self.set('list', self.parseData(r.results));
         self.set('totalSize', r.totalSize);
+        self.set('protimeT',)
         self.renderPager();
     },
     parseData: function (list) {
@@ -791,3 +868,7 @@ function mask (str, s, l) {
 	str = str.substring(0, len);
 	return str;
 }
+
+
+
+
