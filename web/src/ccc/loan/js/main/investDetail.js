@@ -407,7 +407,9 @@ setTimeout((function () {
     });
     //显示返现金额
     investRactive.on('rebate',function(){
-        var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());// 输入的值
+        jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^1-9]/g,''))
+        //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val().replace(/[^1-9]/g,''));// 输入的值
+        var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
         if (jQuery('#couponSelection').find("option:selected").val()=='返现券'&&isNaN(inpNum)==false) {
             $.get('/api/v2/loan/'+ CC.loan.id,
               function(r){
@@ -422,11 +424,16 @@ setTimeout((function () {
                         rebateMoney=inpNum*protimeT/12*0.005;
                     }
                     jQuery('#thisRebate').html(rebateMoney.toFixed(2));
+                    //console.log(r.duration.totalDays+'hsajkhkja'+inpNum+'r.rate'+r.rate);
+
+                    //jQuery('.totalNum span').html((r.duration.totalDays/365 * (0 || inpNum) *r.rate/100).toFixed(2));
                     jQuery('.totalInterestRebate').css('display','block');
+
               }
             );
         }else{
             jQuery('.totalInterestRebate').css('display','none');
+            // jQuery('.totalNum span').html('0.00');
         }
         
     })
@@ -558,7 +565,6 @@ setTimeout((function () {
     });
     investRactive.on('tenNum',function(){
         disableErrors();
-
         var inputNum = this.get('inputNum');
         var amount=CC.loan.rule.leftAmount*(CC.loan.rule.amountUnit=='万'?10000:1);
         var mout=CC.loan.rule.max>amount?amount:CC.loan.rule.max;
@@ -740,15 +746,15 @@ var recordRactive = new Ractive({
             .end()
             .get('body')
             .then(function (r) {
+                console.log('zzzzboomzzzhahaha')
+                console.log(r);
                 self.setData(r);
+                
             });
     },
     setData: function (r) {
         var self = this;
         console.log('zzdhahahha');
-        console.log(r);
-        console.log(r.results[0].duration.days);
-        
         self.set('rebateMoney',rebateMoney);   
         self.set('loading', false);
         self.set('list', self.parseData(r.results));

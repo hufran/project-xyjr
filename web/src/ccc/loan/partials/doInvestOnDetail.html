@@ -122,7 +122,7 @@
                         <!-- <span class="topAmount" on-click="maxNumber">最大可投金额</span> -->
                         <div class="clearfix"></div>
                         <!--                        <p class="p-max">单笔最多可投：{{loan.rule.max}}元</p>-->
-                        <p class="totalInterest" style="line-height: 35px;margin: 0;">预计收益<span>
+                        <p class="totalInterest totalNum" style="line-height: 35px;margin: 0;">预计收益<span>
                         <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
                         {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}}
                         </span>元</p>
