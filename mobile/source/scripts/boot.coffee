@@ -552,13 +552,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                             coupon: _.ai 'api, $location, $route, $q',
                                 (         api, $location, $route, $q) ->
                                     api.fetch_current_user()
-                                        .then -> api.get_loan_detail($route.current.params.id, true)
-                                        .then (data) ->
-                                            amount = data.balance
-                                            months = _.get data, 'duration.totalMonths'
-                                            loan_id = data.id
-
-                                            return api.fetch_coupon_list amount, months, loan_id
+                                    .then (user) ->
+                                        return api.fetch_coupon_list_select user.fund.userId
 
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->

@@ -278,6 +278,18 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            fetch_coupon_list_select: (id) ->
+
+         
+
+                @$http
+                    .get "/api/v2/rebateCounpon/listUserCouponPlacement/#{ id }"
+                    #.get "/api/v2/rebateCounpon/listUserCouponPlacement/43F497BB-2BF8-4484-A1CB-3FFEB56B81ED"					
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             redeem_coupon: (placementId) ->
 
                 @$http
@@ -305,8 +317,6 @@ do (_, angular, moment, Array) ->
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
-
-
 
 
             get_loan_investors: (id) ->
@@ -463,6 +473,16 @@ do (_, angular, moment, Array) ->
                 @$http
                     .post '/api/v2/invest/tender/MYSELF',
                         _.compact {loanId, paymentPassword, amount, placementId}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+
+            payment_pool_rebeat: (loanId, paymentPassword, amount, id, rebateAmount) ->
+
+                @$http
+                    .post "/api/v2/invest/tenderUseRebate/#{ id }", {loanId, paymentPassword, amount, rebateAmount}
+                        #_.compact {loanId, paymentPassword, amount, placementId}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA

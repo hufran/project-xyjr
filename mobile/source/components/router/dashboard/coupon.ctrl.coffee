@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'CouponCtrl',
 
-        _.ai '            @data, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location', class
-            constructor: (@data, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location) ->
+        _.ai '            @data, @user, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location', class
+            constructor: (@data, @user, @api, @$q, @$scope, @$window, @mg_alert, @$routeParams, @$location) ->
 
                 @$window.scrollTo 0, 0
 
@@ -48,6 +48,8 @@ do (_, angular) ->
 
                 @$scope.data = list
 
+                @test(@user.fund.userId)
+
 
             select: (id) ->
 
@@ -86,5 +88,10 @@ do (_, angular) ->
 
                 while list.remain.length and PAGE_SIZE--
                     list.push list.remain.shift()
+
+
+            test: (id) ->
+
+                getReturnCoupon(id);
 
 
