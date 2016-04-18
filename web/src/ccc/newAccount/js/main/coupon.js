@@ -1,11 +1,11 @@
 'use strict';
-sss
+
 var utils = require('ccc/global/js/lib/utils');
 var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/cccTab');
 
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
-
+//测试sss
 var pagesize = 6;
 var page = 1;
 var totalPage = 1;
