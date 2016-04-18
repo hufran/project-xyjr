@@ -35,12 +35,13 @@ exports.loanService = {
             amount: amount,
             months:months
         };
-        request('POST', '/api/v2/coupon/MYSELF/listCoupon')
+        request('GET','/api/v2/rebateCounpon/listUserCouponPlacement/'+CC.user.userId)//获取可用红包
             .type('form')
             .send(sendObj)
             .end()
             .then(function (r){
                 next(r.body);
             })
+  
         }
 };
