@@ -534,9 +534,12 @@ setTimeout((function () {
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
             loanService.getMyCoupon(amount, months, function (coupon) {
-                console.log(coupon);
+                console.log('zzz   '+coupon);
                 if (coupon.data[0].id==null) {
+                    console.log('zzzhhh   '+coupon);
                     var actualAmountNum=coupon.data[0].actualAmount;
+                    console.log(actualAmountNum)
+                    console.log(jQuery('#actualAmount').attr('id'));
                     jQuery('#actualAmount').html(actualAmountNum);
                 }
                 
