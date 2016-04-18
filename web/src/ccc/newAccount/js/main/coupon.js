@@ -18,7 +18,7 @@ $('ul.ttabs li a').on('click', function() {
 	var type = $(this).parent().data('type');
 	init(type);
 
-	//getcouponId();
+	//getcouponId(); sss
 	jQuery('#zhuangtai-'+type).val('');
 	if (type='REBATE') {
 		jQuery('#huoqu-'+type).val('');
