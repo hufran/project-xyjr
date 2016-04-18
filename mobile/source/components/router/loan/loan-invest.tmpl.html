@@ -114,11 +114,9 @@
                         ng-options="
                             coupon.display
                             for coupon in coupon_list
-                            track by coupon.id
+                            track by coupon.id+1
                         "
-                        
                         ng-if="coupon_list.length"
-                        
                 ><!--ng-change="self.changeSelect($event, store.amount)"ng-click="self.pick_up_coupon($event, store.amount)"-->
                     <option value="">不使用红包</option>
                 </select>
