@@ -81,7 +81,6 @@
                 <a class="btn btn-sm btn-recharge" ng-href="dashboard/recharge?next={{ self.page_path }}">充值</a>
             </div>
         </div>
-<input type="number"  onkeydown="javascript:console.log('down')" onkeyup="javascript:testNum(this)"/>
         <div class="form-group">
             <label for="amount" class="col-xs-3">投资金额:</label>
             <div class="col-xs-5 omit-padding">
@@ -91,10 +90,8 @@
                        name="amount"
                        ng-model="store.amount"
                        ng-change="form.amount.$valid && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
-                       onkeyup="testNum(this)"
-                       placeholder=""
                        required
-                ><!---->
+                >
             </div>
             <div class="col-xs-4 omit-padding earning" ng-show="form.amount.$valid">
                 预期收益 <span class="num">{{ earning | number: 2 }}</span>元
@@ -167,11 +164,15 @@
             </label>
         </div>
 
-        <p class="action">
+       <p class="action">
             <button type="submit" class="btn btn-invest btn-lg btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
             >立即支付</button>
         </p>
+        <!--<p class="action">
+            <button type="submit" ng-class="{true: 'btn btn-lg btn-block', false: 'btn btn-invest btn-lg btn-block'}[form.$invalid]"
+                    ng-disabled="form.$invalid || self.submit_sending">立即支付</button>
+        </p>-->
     </form>
 
 </div>

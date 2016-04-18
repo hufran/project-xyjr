@@ -152,9 +152,3 @@ function format(time, format){
 		}; 
 	}); 
 }
-function testNum(obj){
-	var reg = new RegExp("^[0-9]*$");
-	if(!reg.test(obj.value)){
-		obj.value = "";
-	}
-}

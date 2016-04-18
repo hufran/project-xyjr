@@ -12,8 +12,8 @@ do (_, angular, Math) ->
                 @page_path = @$location.path()[1..]
                 @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
                 #console.log @coupon.data
-				
-                #console.log @newCoupon_list(@user.fund.userId)                
+
+                #console.log @newCoupon_list(@user.fund.userId)
 
 
                 angular.extend @$scope, {
