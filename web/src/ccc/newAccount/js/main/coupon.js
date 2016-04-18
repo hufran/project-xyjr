@@ -5,7 +5,7 @@ var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/cccTab');
 
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
-//测试sss   aaaa
+
 var pagesize = 6;
 var page = 1;
 var totalPage = 1;
