@@ -127,16 +127,18 @@
                         {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}}
                         </span>元</p>
                         <div class="selectOption">
-                            <select name="placementId" id="couponSelection" value="{{coupon}}" on-change="rebate">
+                            <select name="placementId" id="couponSelection" on-change="rebate"> <!-- value="{{coupon}}" -->
                                 {{#if selectOption}}
-                                <option value="">请选择可用的红包</option>
+                                
                                 {{#each selectOption}} {{#if !hide}}
                                  {{#if typeKey == "返现券"}}
-                                <option value="{{ id }}">{{ displayValue }}{{ typeKey }}</option>
+                                <option selected value="{{ id }}">{{ displayValue }}{{ typeKey }}</option>
                                 {{else}}
                                 <option value="{{ id }}">{{ displayValue }}{{ typeKey }} - 最低投资额：{{ minimumInvest}}</option>
                                 {{/if}}
-                                {{/if}} {{/each}} {{else}}
+                                {{/if}} {{/each}} 
+                                <option value="">不使用红包</option>
+                                {{else}}
                                 <option value="">暂无可用券</option>
                                 {{/if}}
                             </select>
