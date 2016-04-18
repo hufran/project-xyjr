@@ -410,6 +410,7 @@ setTimeout((function () {
         jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^1-9]/g,''))
         //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val().replace(/[^1-9]/g,''));// 输入的值
         var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
+        console.log('whatfuck   '+inpNum);
         if (jQuery('#couponSelection').find("option:selected").val()=='返现券'&&isNaN(inpNum)==false) {
             $.get('/api/v2/loan/'+ CC.loan.id,
               function(r){
@@ -757,6 +758,7 @@ var recordRactive = new Ractive({
         console.log('zzdhahahha');
         self.set('rebateMoney',rebateMoney);   
         self.set('loading', false);
+        console.log(self.get('loading'));
         self.set('list', self.parseData(r.results));
         self.set('totalSize', r.totalSize);
         self.set('protimeT',)
