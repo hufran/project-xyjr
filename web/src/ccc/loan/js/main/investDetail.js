@@ -407,7 +407,7 @@ setTimeout((function () {
     });
     //显示返现金额
     investRactive.on('rebate',function(){
-        jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^1-9]/g,''))
+        jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^0-9]/g,''))
         //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val().replace(/[^1-9]/g,''));// 输入的值
         var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
         console.log('whatfuck   '+inpNum);
