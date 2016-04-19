@@ -1,4 +1,12 @@
-
+<style>
+    .btn.disabled, .btn[disabled], fieldset[disabled] .btn{
+        cursor: not-allowed;
+        filter: alpha(opacity=15);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .15;
+    }
+</style>
 <div id="loan-invest">
 
     <nav class="omit-margin container page-nav">
@@ -90,6 +98,8 @@
                        name="amount"
                        ng-model="store.amount"
                        ng-change="form.amount.$valid && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
+                       max="{{maxMoney}}"
+                       min="{{minMoney}}"
                        required
                 >
             </div>
