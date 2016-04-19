@@ -7,7 +7,7 @@ do (_, angular, Math) ->
             constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams) ->
 
                 @$window.scrollTo 0, 0
-                #@$scope.abc = 123
+
                 #@newCoupon_list(@user.fund.userId);
                 @page_path = @$location.path()[1..]
                 @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
@@ -18,7 +18,7 @@ do (_, angular, Math) ->
 
                 angular.extend @$scope, {
                     store: {}
-                    abc: @coupon.data[0].actualAmount
+                    #abc: @coupon.data[0].actualAmount
                     earning: 0
                     loan: map_loan_summary @loan
 					#@coupon = @newCoupon_list(@user.fund.userId)
@@ -52,7 +52,8 @@ do (_, angular, Math) ->
 
                                         unit = if info.type is INTEREST then '%' else '元'
 
-                                        if item.id is null  return "返现券"
+                                        if item.id is null
+                                            return "返现券"
 
                                         return "#{ value + unit + type_cn } - 最低投资额: #{ info.minimumInvest }" 
                                 }
@@ -192,7 +193,8 @@ do (_, angular, Math) ->
                 @submit_sending = true
 
                 if coupon != undefined and coupon.id == null
-					
+
+                    #console.log 123
                     (@api.payment_pool_rebeat(loan.id, password, amount, @user.fund.userId, @$scope.earning1)
 
                     .then @api.process_response
