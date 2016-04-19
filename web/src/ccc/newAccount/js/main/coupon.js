@@ -96,7 +96,7 @@ function init (type) {
 				}
 
 				//点击查询红包按钮start
-				var getcouponIdClick=true;
+				
 				jQuery('.chaxunBtn-'+type).click(function(){
 					isClick=true;
 					self.getCouponCond(function(z){
@@ -104,6 +104,7 @@ function init (type) {
 						console.log(z);
 						console.log(z.totalSize);
 						var chaxun = self.parseData(z.results);
+						var getcouponIdClick=true;
 						self.setData(chaxun);
 						if(getcouponIdClick){
 							getcouponId();
@@ -362,19 +363,29 @@ init(getCurrentType());
 window.onload=function(){
 	CouponPackage();
 }
-function couponInfData(Id,callback){
-	$.get("/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/"+Id, {couponId:Id },
-		function(o){
-			callback(o);
-		});
+function couponInfData(Id,callback,errorFn){
+	$.ajax({
+	  	url: "/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/"+Id,
+	  	data: {couponId:Id },
+	  	type:'get',
+	  	success:	function(o){ callback(o)},
+		error:	function(){errorFn()}
+	});
+	// $.get("/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/"+Id, {couponId:Id },
+	// 	function(o){
+	// 		callback(o);
+	// 	});
 }
 function getcouponId(event){
 	$('.checkInforBtn').click(function(){
 		var couponId='';
+		console.log('youmeiyou');
 		couponId=jQuery(this).siblings('.couponId').text();
 		if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
+			console.log(111+"   "+couponId);
 			couponInfData(couponId,function(o){
 				var trHtml="";
+				console.log(111+" ===   "+couponId);
 				for (var i = 0; i < o.data.length; i++) {
 					o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
 					o.data[i].amount=o.data[i].amount;
@@ -382,7 +393,7 @@ function getcouponId(event){
 				}
 				jQuery('#'+couponId).html(trHtml);
 				jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
-			});
+			},function(){console.log('ajaxerror')});
 		}else{
 			jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
 		}
