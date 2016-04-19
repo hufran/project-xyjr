@@ -427,6 +427,10 @@ setTimeout((function () {
                         protimeT=parseInt(r.duration.totalMonths);
                         rebateMoney=inpNum*protimeT/12*0.005;
                     }
+                    var actualAmountNum=investRactive.get('actualAmountNum');
+                    if (rebateMoney>actualAmountNum) {
+                        rebateMoney=actualAmountNum;
+                    }
                     jQuery('#thisRebate').html(rebateMoney.toFixed(2));
                     jQuery('.totalInterestRebate').css('display','block');
 
