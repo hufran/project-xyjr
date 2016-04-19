@@ -76,7 +76,7 @@
             <div class="col-xs-4 omit-padding">
                 <button type="button"
                         class="btn btn-sm btn-polish"
-                        ng-click="store.amount = self.amount_polishing(self.user.fund.availableAmount); self.fetch_analyse(store.amount)"
+                        ng-click="store.amount = self.amount_polishing(self.user.fund.availableAmount); self.fetch_analyse(store.amount); self.fetch_analyse1(store.amount)"
                 >全投</button>
                 <a class="btn btn-sm btn-recharge" ng-href="dashboard/recharge?next={{ self.page_path }}">充值</a>
             </div>
