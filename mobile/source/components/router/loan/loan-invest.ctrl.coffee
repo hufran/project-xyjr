@@ -12,6 +12,13 @@ do (_, angular, Math) ->
                 @page_path = @$location.path()[1..]
                 @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
                 #console.log @coupon.data
+                #console.log @user.fund.availableAmount#账户余额
+                #console.log @loan.balance #可投金额
+                #console.log @loan.loanRequest.investRule.minAmount
+                #console.log @loan.loanRequest.investRule.maxAmount
+                @$scope.maxMoney =  Math.max(@user.fund.availableAmount,@loan.balance,@loan.loanRequest.investRule.minAmount,@loan.loanRequest.investRule.maxAmount)
+                @$scope.minMoney =  Math.min(@user.fund.availableAmount,@loan.balance,@loan.loanRequest.investRule.minAmount,@loan.loanRequest.investRule.maxAmount)
+
 
                 #console.log @newCoupon_list(@user.fund.userId)
 

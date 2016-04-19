@@ -90,6 +90,8 @@
                        name="amount"
                        ng-model="store.amount"
                        ng-change="form.amount.$valid && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
+                       max="{{maxMoney}}"
+                       min="{{minMoney}}"
                        required
                 >
             </div>
