@@ -11,17 +11,11 @@ do (_, angular, Math) ->
                 #@newCoupon_list(@user.fund.userId);
                 @page_path = @$location.path()[1..]
                 @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
-                #console.log @coupon.data
-                #console.log @user.fund.availableAmount#账户余额
-                #console.log @loan.balance #可投金额
-                #console.log @loan.loanRequest.investRule.minAmount
-                #console.log @loan.loanRequest.investRule.maxAmount
-                @$scope.maxMoney =  Math.max(@user.fund.availableAmount,@loan.balance,@loan.loanRequest.investRule.minAmount,@loan.loanRequest.investRule.maxAmount)
-                @$scope.minMoney =  Math.min(@user.fund.availableAmount,@loan.balance,@loan.loanRequest.investRule.minAmount,@loan.loanRequest.investRule.maxAmount)
-
-
-                #console.log @newCoupon_list(@user.fund.userId)
-
+                arrList = [@user.fund.availableAmount*1,@loan.balance*1,@loan.loanRequest.investRule.minAmount*1,@loan.loanRequest.investRule.maxAmount*1]
+                sortNumer= (a,b) -> a-b
+                arrList.sort(sortNumer)
+                @$scope.maxMoney = arrList[1]
+                @$scope.minMoney = arrList[0]
 
                 angular.extend @$scope, {
                     store: {}
