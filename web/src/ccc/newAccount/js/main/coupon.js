@@ -266,7 +266,9 @@ function init (type) {
 				var self = this;
 				var currentPage = $(".currentPage").text();
 				$(".prev").click(function(){
+
 					if ( self.page == 0 ) {
+
 						return false
 					} else {
 						self.page = self.page - 1;
@@ -315,8 +317,9 @@ function init (type) {
 
 			pagerRactive.on('previous', function (e) {
 				e.original.preventDefault();
+
 				var current = this.get('current');
-				if (current > 0) {
+				if (current > 1) {
 					current -= 1;
 					this.set('current', current);
 					couponRactive.page = current;
