@@ -160,10 +160,11 @@ setTimeout((function () {
               var list = res.results;
               var investNum = false;
               for (var i = 0; i < list.length; i++) {
+                  /**
                   if(list[i].product.productKey=='XSZX'){
                       investNum=true;
                       break;
-                  }
+                  }**/
               }
               this.set('isnew', investNum);
 
