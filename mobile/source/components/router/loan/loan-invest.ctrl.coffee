@@ -18,7 +18,7 @@ do (_, angular, Math) ->
 
                 angular.extend @$scope, {
                     store: {}
-                    #abc: @coupon.data[0].actualAmount
+                    abc: @coupon.data[0].actualAmount
                     earning: 0
                     loan: map_loan_summary @loan
 					#@coupon = @newCoupon_list(@user.fund.userId)
@@ -114,6 +114,9 @@ do (_, angular, Math) ->
 
                 else
                     rebateMoney = amount * protimeT / 1.825
+                #console.log  @$scope.abc
+                if rebateMoney >  @$scope.abc
+                    rebateMoney = @$scope.abc
 
                 @$scope.earning1 = rebateMoney.toFixed(2)
 
