@@ -19,7 +19,7 @@ do (_, angular) ->
 
                 @uidclass="bannerImg" if @uidclass == undefined
 
-                
+
 
                 @submit_sending = false
 
