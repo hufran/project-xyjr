@@ -100,8 +100,10 @@ function init (type) {
 				jQuery('.chaxunBtn-'+type).click(function(){
 					isClick=true;
 					self.getCouponCond(function(z){
-						var chaxun = self.parseData(z.results);
 						self.set('total',z.totalSize);
+						console.log(z);
+						console.log(z.totalSize);
+						var chaxun = self.parseData(z.results);
 						self.setData(chaxun);
 						if(getcouponIdClick){
 							getcouponId();
@@ -126,16 +128,19 @@ function init (type) {
 					couponPackageId=jQuery('#huoqu-REBATE').find("option:selected").val();
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:page-1,
+						page:(self.page - 1),
+						pageSize: self.size,
 						couponPackageId:couponPackageId,
 						status:statusCha
 					},function(z){
+						console.log(z);
 						callback(z);
 					});
 				}else{
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:page-1,
+						page:(self.page - 1),
+						pageSize: self.size,
 						status:statusCha
 					},function(z){
 						callback(z);
