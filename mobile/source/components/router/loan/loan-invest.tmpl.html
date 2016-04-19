@@ -114,9 +114,11 @@
                         ng-options="
                             coupon.display
                             for coupon in coupon_list
-                            track by coupon.id+1
+                            track by coupon.id
                         "
+
                         ng-if="coupon_list.length"
+
                 ><!--ng-change="self.changeSelect($event, store.amount)"ng-click="self.pick_up_coupon($event, store.amount)"-->
                     <option value="">不使用红包</option>
                 </select>
@@ -127,12 +129,20 @@
 		<!--<div class="form-group rule">
             <div class="col-xs-4 omit-padding earning" ng-show="form.amount.$valid">
             </div>
-        </div>-->
-        <div class="form-group rule"  ng-show="form.amount.$valid && store.coupon.id == null">
+        </div>
+       {{loan}}-->
+       <!--{{newCoupon_list}}-->
+        <div class="form-group rule"  ng-show="form.amount.$valid && store.coupon.id === null">
             <div class="col-xs-offset-3">
-                可用返现<span class="num">{{abc}}</span>元，本次返现<span class="num">{{ earning1 | number: 2 }}</span>元
+                可用返现<span class="num">{{store.coupon.actualAm}}</span>元，本次返现<span class="num">{{ earning1 | number: 2 }}</span>元
             </div>
         </div>
+       <!-- {{store.coupon.id}}
+        {{store}}<br />-->
+        <!--{{store.amount}}<br />
+        !!!{{store.coupon.id}}!!!!<br />
+        {{store.coupon}}-->
+        <!--{{coupon_list}}-->
         <div class="form-group">
             <label for="password" class="col-xs-3">交易密码:</label>
             <div class="col-xs-5 omit-padding">
