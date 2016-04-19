@@ -291,6 +291,8 @@ function init (type) {
 				var totalSize = self.get('total');
 				if (totalSize != 0) {
 					self.totalPage = Math.ceil(totalSize / self.size);
+				}else{
+					self.totalPage=1;
 				}
 
 				var totalPage = [];
