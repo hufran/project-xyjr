@@ -1,8 +1,8 @@
 
-<script src="/project-xyjr/web/src/nnfe/global/applyloan_files/id.php" charset="utf-8"></script>
+<script src="../rongzi/applyloan_files/id.php" charset="utf-8"></script>
 
-<link rel="stylesheet" href="/project-xyjr/web/src/nnfe/global/applyloan_files/base-db6d74b2.css">
-<link rel="stylesheet" href="/project-xyjr/web/src/nnfe/global/applyloan_files/base1-2ab14ffe.css">
+<link rel="stylesheet" href="../rongzi/applyloan_files/base-db6d74b2.css">
+<link rel="stylesheet" href="../rongzi/applyloan_files/base1-2ab14ffe.css">
 
 
 
@@ -21,17 +21,39 @@
     }
 </style>
 	<script src="js/jquery.min.js"></script>
-
+	<script type="text/javascript">
+		$(function(){
+			$(".login").css("display","none");
+			var userId="05FDDC09-6ECB-4404-8A16-464EE47C46E8";
+			if(!userId){
+				return;
+			}
+			$.ajax({
+				url:"/api/v2/user/"+userId,
+				type:"get",
+				dataType:"json",
+				success:function(data){
+					if(data){
+						$(".logout").css("display","none");
+						$(".login").css("display","block");
+					}
+				},
+				error:function(data){
+					//location.href="/login";
+				}
+			})
+		})
+	</script>
 	<!--头部start-->
 	<div class="s-header" id="s-header-height">
 		<!--客服电话 登录 注册start-->
 		<div class="s-header-info" id="nav-color" style="background:#eee">
 			<div class="s-header-info-content u-pos-r-center">
-				<span class="nav-phone"><img src="/project-xyjr/web/src/nnfe/global/applyloan_files/phone-953a49c0.png"></span>
+				<span class="nav-phone"><img src="../rongzi/applyloan_files/phone-953a49c0.png"></span>
 				<span class="nav-customer" style="color:#999">客服电话：4001-718-718</span>
 				<div class="header-sider" style="margin-left:-45px;">
-					<img src="/project-xyjr/web/src/nnfe/global/applyloan_files/lc-header-sider-b74cb001.png" alt="合作下载" style="top: -24.8488px;">
-					<img src="/project-xyjr/web/src/nnfe/global/applyloan_files/lc-header-sider-b74cb001.png" alt="合作下载" style="top: 155.151px;">
+					<img src="../rongzi/applyloan_files/lc-header-sider-b74cb001.png" alt="合作下载" style="top: -24.8488px;">
+					<img src="../rongzi/applyloan_files/lc-header-sider-b74cb001.png" alt="合作下载" style="top: 155.151px;">
 				</div>
 				<script type="text/javascript">
 				jQuery(function(){
@@ -52,20 +74,38 @@
 								var t1 = window.setInterval(gundong,1000);
 						})
 				</script>
-				<img style="display:none" class="float-img" src="/project-xyjr/web/src/nnfe/global/applyloan_files/app-cf682a29.png" alt="扫码下载APP">
-				<div class="nav-mobile" style="width:64px;">
-					<span>|</span> 
+				<img style="display:none" class="float-img" src="../rongzi/applyloan_files/app-cf682a29.png" alt="扫码下载APP">
+
+				<!--未登录start-->
+				<div class="nav-mobile logout" style="width:64px;">
+					<span>|</span>
 					<a href="" id="mobileCustomer" class="text">
-						<img src="/project-xyjr/web/src/nnfe/global/applyloan_files/mobile-41f91aa2.png" onmouseover="this.src=&#39;/ccc/global/img/mobile-nav-8b136859.png&#39;" onmouseout="this.src=&#39;/ccc/global/img/mobile-41f91aa2.png&#39;">
+						<img src="../rongzi/applyloan_files/mobile-41f91aa2.png" onmouseover="this.src=&#39;/ccc/global/img/mobile-nav-8b136859.png&#39;" onmouseout="this.src=&#39;/ccc/global/img/mobile-41f91aa2.png&#39;">
 					</a>
-				</div> 
-				<div class="nav-fastregister">
+				</div>
+				<div class="nav-fastregister logout">
 					<span>|</span>
 					<a href="http://www.718zc.com/register" id="dingbuzhuce" class="text">注册</a>
 				</div>
-				<div class="nav-fastlogin">
+				<div class="nav-fastlogin logout">
 					<a href="http://www.718zc.com/login" id="dingbudenglu" class="text">登录</a>
 				</div>
+				<!--未登录end-->
+				<!--已登录start-->
+				<a href="/help/login" class="text account login" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a>
+				<!--loginName存在-->
+				<a href="/newAccount/message" class="login">
+					<div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img  						src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;						"><span id='head-message-container' style="color:#009ada;font-size:12px;						margin:0;position:relative;top:1px;margin-left:5px;"></span>
+					</div>
+				</a>
+
+				<a href="/logout" class="text login" style="color:#999;margin-right:5px;">退出&nbsp;&nbsp;|</a>
+				<!--用户名存在-->
+				<a href="/newAccount/home" class="login"><div id='head-ractive-container' 					style="color:#009ada;position:relative;bottom:1px;" class="text">用户名</div></a>
+
+				<a href="/newAccount/home" class="login"><div id='head-ractive-container' 					style="color:#f58220;position:relative;bottom:1px;" class="text">手机号</div></a>
+				<!--已登录end-->
+
 			</div>
 		</div> 
 		<!--客服电话 登录 注册end-->
@@ -101,5 +141,5 @@
 		</div>
 		<!--头部菜单栏end-->
 	</div>
-	<script src="/project-xyjr/web/src/nnfe/global/applyloan_files/header.js"></script>
+	<script src="../rongzi/applyloan_files/header.js"></script>
 	<!--头部end-->
