@@ -13,7 +13,7 @@ module.exports = [
   {name: '中信银行', code: 'ECITIC', enable: true, bankCode: '03020000', isSupportted: false},
   {name: '广发银行', code: 'GDB', enable: true, bankCode: '03060000', isSupportted: false},
 //  {name: '浦发银行', code: 'SPDB', enable: true, bankCode: '03100000', isSupportted: false},
-  {name: '平安银行', code: 'PINGAN', enable: true, bankCode: '03070000', isSupportted: false},
+  {name: '平安银行', code: 'PINGANBANK', enable: true, bankCode: '03070000', isSupportted: false},
   {name: '华夏银行', code: 'HXB', enable: true, bankCode: '03040000', isSupportted: false},
 //  {name: '宁波银行', code: 'NB', enable: true, bankCode: '04083320', isSupportted: false},
 //  {name: '东亚银行', code: 'DY', enable: true, bankCode: '03200000', isSupportted: false},
