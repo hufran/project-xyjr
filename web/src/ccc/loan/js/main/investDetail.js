@@ -315,7 +315,7 @@ setTimeout((function () {
 
                         ok: function () {
                             if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g,"")=='返现券') {
-                                var thisRebate=parseFloat(jQuery('#thisRebate').text());
+                                var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
                                 $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
                                     amount : num,
                                     loanId : investRactive.get('loan.id'),
@@ -409,13 +409,15 @@ setTimeout((function () {
     //显示返现金额
     investRactive.on('rebate',function(){
         jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^0-9]/g,''))
-        //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val().replace(/[^1-9]/g,''));// 输入的值
-        var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
-        console.log('whatfuck   '+inpNum);
+        //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
+        var inpNum = investRactive.get('inputNum');
+        if (inpNum>CC.loan.rule.balance) {
+           inpNum= CC.loan.rule.balance;
+        }
+        
         if (jQuery('#couponSelection').find("option:selected").val()=='返现券'&&isNaN(inpNum)==false) {
             $.get('/api/v2/loan/'+ CC.loan.id,
               function(r){
-                    console.log('zzzzzzzz=====');
                     var protimeT='';
                     var rebateMoney='';
                     if(r.duration.days!=0){
@@ -425,10 +427,11 @@ setTimeout((function () {
                         protimeT=parseInt(r.duration.totalMonths);
                         rebateMoney=inpNum*protimeT/12*0.005;
                     }
+                    var actualAmountNum=investRactive.get('actualAmountNum');
+                    if (rebateMoney>actualAmountNum) {
+                        rebateMoney=actualAmountNum;
+                    }
                     jQuery('#thisRebate').html(rebateMoney.toFixed(2));
-                    //console.log(r.duration.totalDays+'hsajkhkja'+inpNum+'r.rate'+r.rate);
-
-                    //jQuery('.totalNum span').html((r.duration.totalDays/365 * (0 || inpNum) *r.rate/100).toFixed(2));
                     jQuery('.totalInterestRebate').css('display','block');
 
               }
@@ -439,6 +442,9 @@ setTimeout((function () {
         }
         
     })
+    // investRactive.on('rebateKeyup',function(){
+    //     CC.loan.rule.balance
+    // })
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
@@ -502,6 +508,9 @@ setTimeout((function () {
             } else if (o[i].couponPackage.type === 'REBATE') {
                 o[i].displayValue ='';
                 o[i].minimumInvest ='';
+                var actualAmountNum=o[i].actualAmount;
+                console.log('zhsha'+actualAmountNum);
+                investRactive.set('actualAmountNum',actualAmountNum);
 
             };
             
@@ -534,13 +543,7 @@ setTimeout((function () {
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
-            loanService.getMyCoupon(amount, months, function (coupon) {
-                console.log(coupon);
-                if (coupon.data[0].id==null) {
-                    var actualAmountNum=coupon.data[0].actualAmount;
-                    jQuery('#actualAmount').html(actualAmountNum);
-                }
-                
+            loanService.getMyCoupon(amount, months, function (coupon) {                
                 if (coupon.success) {
                     var list=parsedata(coupon.data);
                     list.sort(function(a,b){

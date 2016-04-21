@@ -96,12 +96,15 @@ function init (type) {
 				}
 
 				//点击查询红包按钮start
-				var getcouponIdClick=true;
+				
 				jQuery('.chaxunBtn-'+type).click(function(){
 					isClick=true;
 					self.getCouponCond(function(z){
-						var chaxun = self.parseData(z.results);
 						self.set('total',z.totalSize);
+						console.log(z);
+						console.log(z.totalSize);
+						var chaxun = self.parseData(z.results);
+						var getcouponIdClick=true;
 						self.setData(chaxun);
 						if(getcouponIdClick){
 							getcouponId();
@@ -126,16 +129,19 @@ function init (type) {
 					couponPackageId=jQuery('#huoqu-REBATE').find("option:selected").val();
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:page-1,
+						page:(self.page - 1),
+						pageSize: self.size,
 						couponPackageId:couponPackageId,
 						status:statusCha
 					},function(z){
+						console.log(z);
 						callback(z);
 					});
 				}else{
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:page-1,
+						page:(self.page - 1),
+						pageSize: self.size,
 						status:statusCha
 					},function(z){
 						callback(z);
@@ -261,7 +267,9 @@ function init (type) {
 				var self = this;
 				var currentPage = $(".currentPage").text();
 				$(".prev").click(function(){
+
 					if ( self.page == 0 ) {
+
 						return false
 					} else {
 						self.page = self.page - 1;
@@ -283,6 +291,8 @@ function init (type) {
 				var totalSize = self.get('total');
 				if (totalSize != 0) {
 					self.totalPage = Math.ceil(totalSize / self.size);
+				}else{
+					self.totalPage=1;
 				}
 
 				var totalPage = [];
@@ -310,8 +320,9 @@ function init (type) {
 
 			pagerRactive.on('previous', function (e) {
 				e.original.preventDefault();
+
 				var current = this.get('current');
-				if (current > 0) {
+				if (current > 1) {
 					current -= 1;
 					this.set('current', current);
 					couponRactive.page = current;
@@ -354,19 +365,29 @@ init(getCurrentType());
 window.onload=function(){
 	CouponPackage();
 }
-function couponInfData(Id,callback){
-	$.get("/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/"+Id, {couponId:Id },
-		function(o){
-			callback(o);
-		});
+function couponInfData(Id,callback,errorFn){
+	$.ajax({
+	  	url: "/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/"+Id,
+	  	data: {couponId:Id },
+	  	type:'get',
+	  	success:	function(o){ callback(o)},
+		error:	function(){errorFn()}
+	});
+	// $.get("/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/"+Id, {couponId:Id },
+	// 	function(o){
+	// 		callback(o);
+	// 	});
 }
 function getcouponId(event){
 	$('.checkInforBtn').click(function(){
 		var couponId='';
+		console.log('youmeiyou');
 		couponId=jQuery(this).siblings('.couponId').text();
 		if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
+			console.log(111+"   "+couponId);
 			couponInfData(couponId,function(o){
 				var trHtml="";
+				console.log(111+" ===   "+couponId);
 				for (var i = 0; i < o.data.length; i++) {
 					o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
 					o.data[i].amount=o.data[i].amount;
@@ -374,7 +395,7 @@ function getcouponId(event){
 				}
 				jQuery('#'+couponId).html(trHtml);
 				jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
-			});
+			},function(){console.log('ajaxerror')});
 		}else{
 			jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
 		}

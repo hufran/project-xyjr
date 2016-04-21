@@ -115,8 +115,8 @@
                         <div class="calculator">
                             <!-- <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span> -->
                             <input type="hidden" name="loanId" value="{{loan.id}}">
-                            <input style="width: 285px;" placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}" on-input="rebate"
-                            autocomplete="off"  on-keyup="tenNum"/><!-- getCoupon -->
+                            <input style="width: 285px;" placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}"
+                            autocomplete="off"  on-input="rebate" on-keyup="tenNum"/><!-- getCoupon -->
                             <!-- <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span> -->
                         </div>
                         <!-- <span class="topAmount" on-click="maxNumber">最大可投金额</span> -->
@@ -145,7 +145,7 @@
                                 {{/if}}
                             </select>
                         </div>
-                        <p class="totalInterest totalInterestRebate" style="line-height:40px;margin-left:0px;display: none;">可用返现<span id="actualAmount"></span>元,本次返现<span id="thisRebate"></span>元</p>
+                        <p class="totalInterest totalInterestRebate" style="line-height:40px;margin-left:0px;display: none;">可用返现<span id="actualAmount">{{actualAmountNum}}</span>元,本次返现<span id="thisRebate"></span>元</p>
                         <div class="password-box">
                             <div class="password">
                                 <input class="trade-password" type="password" placeholder="请输入交易密码" name="paymentPassword"
