@@ -2,7 +2,7 @@ body,html{padding: 0;margin: 0;font-family: 微软雅黑,Microsoft Yahei,幼圆,
 ul,li{margin: 0;padding: 0;list-style: none;}
 .hide{display: none!important;}
 .rongzi{width: 1100px;margin: auto;background-color: #f6f8fc;font-size: 0;}
-.leftInfor{box-sizing: content-box; width: 690px;padding: 50px;background-color: #fff;border: 1px solid #f2f2f4; display: inline-block;font-size: 0;vertical-align: top; margin-right: 12px;}
+.leftInfor{min-height: 1055px; box-sizing: content-box; width: 690px;padding: 50px;background-color: #fff;border: 1px solid #f2f2f4; display: inline-block;font-size: 0;vertical-align: top; margin-right: 12px;}
 .rzRight{display: inline-block;font-size: 0; background-color: #fff;}
 .rightImg{background-image: url(../images/rzinfor.png);background-repeat: no-repeat;background-position: left; width: 287px;height: 1102px;vertical-align: top;}
 .rzrightTit{width: 100%; padding: 13px 0; vertical-align: middle; border-bottom: 1px solid #41afe0; font-size: 18px;color: #57495f; background-color: #fff; display: inline-block;}
@@ -30,6 +30,6 @@ ul,li{margin: 0;padding: 0;list-style: none;}
 .nextStep.off:hover{background-color:#abb2ba;}
 #assure{display: inline-block;width: 320px;padding: 10px 0; text-align: left;}
 #assure input{margin-left: 55px;}
-
-
+.rzFinishImg{background-image: url(../images/rzsuccess.png);width: 400px;height: 264px;margin: 0 auto; margin-bottom: 10px;}
+.rzFinishWord{font-size: 18px;color: #7e7e7e;width: 420px;margin: auto;}
 
