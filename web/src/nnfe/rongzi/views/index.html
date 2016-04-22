@@ -123,7 +123,7 @@
 		<div class="s-header-menu" id="menu">
 			<div class="s-header-menu-content u-pos-r-center">
 				<a href="http://www.718zc.com/" style="float: left;" alt="新毅" title="新毅">
-					<img class="s-icon" style="margin-width:300px;" src="/project-xyjr/web/src/nnfe/global/applyloan_files/navLogo-e6670385.png">
+					<img class="s-icon" style="margin-width:300px;" src="../applyloan_files/navLogo-e6670385.png">
 				</a>
 				<ul class="u-nolist-ul">
 					<li class="u-nolist-ul-li">
@@ -158,191 +158,195 @@
 
 
 	<!--++++++++++++++++++++=====-->
-
-	<div class="rongzi step1 hide">
-		<div class="leftInfor">
-			<div class="rongziheadImg rongziheadImg1"></div>
-			<div class="rzInforBox">
-			<ul>
-				<li>
-					<label for="companyName"><span class="red">*</span>公司全称:</label>
-					<input id="companyName" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="userName"><span class="red">*</span>法人姓名:</label>
-					<input id="userName" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="userCode"><span class="red">*</span>法人身份证:</label>
-					<input id="userCode" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="companyAddress"><span class="red">*</span>公司地址:</label>
-					<input id="companyAddress" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="business"><span class="red">*</span>公司经营范围:</label>
-					<input id="business" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="phoneNum"><span class="red">*</span>联系电话:</label>
-					<input id="phoneNum" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="email"><span class="red">*</span>电子邮箱:</label>
-					<input id="email" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="companyDate"><span class="red">*</span>公司成立日期:</label>
-					<input id="companyDate" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="companyLicence"><span class="red">*</span>营业执照号码:</label>
-					<input id="companyLicence" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="companyIC"><span class="red">*</span>组织机构代码:</label>
-					<input id="companyIC" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<div class="nextStep">下一步</div>
-				</li>
-			</ul>
+	<form name="loanIntent" action="" method="post">
+		<div class="rongzi step1 hide">
+			<div class="leftInfor">
+				<div class="rongziheadImg rongziheadImg1"></div>
+				<div class="rzInforBox">
+				<ul>
+					<li>
+						<label for="companyName"><span class="red">*</span>公司全称:</label>
+						<input id="companyName" type="text" name="coporationName">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="userName"><span class="red">*</span>法人姓名:</label>
+						<input id="userName" type="text" name="name">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="userCode"><span class="red">*</span>法人身份证:</label>
+						<input id="userCode" type="text" name="idcard">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="companyAddress"><span class="red">*</span>公司地址:</label>
+						<input id="companyAddress" type="text" name="addressDetail">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="business"><span class="red">*</span>公司经营范围:</label>
+						<input id="business" type="text" name="businessScope">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="phoneNum"><span class="red">*</span>联系电话:</label>
+						<input id="phoneNum" type="text" name="mobile">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="email"><span class="red">*</span>电子邮箱:</label>
+						<input id="email" type="text" name="email">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="companyDate"><span class="red">*</span>公司成立日期:</label>
+						<input id="companyDate" type="text" name="companyCreateTime">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="companyLicence"><span class="red">*</span>营业执照号码:</label>
+						<input id="companyLicence" type="text" name="licenseNumber">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="companyIC"><span class="red">*</span>组织机构代码:</label>
+						<input id="companyIC" type="text" name="organizationNumber">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<div class="nextStep">下一步</div>
+					</li>
+				</ul>
+				</div>
+			</div>
+			<div class="rzRight">
+				<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
+				<div class="rightImg"></div>
 			</div>
 		</div>
-		<div class="rzRight">
-			<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
-			<div class="rightImg"></div>
-		</div>
-	</div>
-	<div class="rongzi step2 hide">
-		<div class="leftInfor">
-			<div class="rongziheadImg rongziheadImg2"></div>
-			<div class="rzInforBox">
-			<ul>
-				<li>
-					<label for="rongziMoney"><span class="red">*</span>融资金额:</label>
-					<input id="rongziMoney" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "><span>元</span>
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="rongziTime"><span class="red">*</span>融资期限:</label>
-					<input id="rongziTime" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "><span>天</span>
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="rongziStyle">融资方式:</label>
-					<select>
-						<option value="">应收账款转让</option>
-						<option value="">质押贷款</option>
-						<option value="">抵押贷款</option>
-						<option value="">信用担保贷款</option>
-						<option value="">供应链融资</option>
-						<option value="">其他</option>
-					</select>
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="APY"><span class="red">*</span>拟承担年化利率:</label>
-					<div id="APY">
-						<input id="APYstart" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "> % -
-						<input id="APYend" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "> %
-					</div>
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="repaymentStyle"><span class="red">*</span>还款方式:</label>
-					<select id="repaymentStyle">
-						<option value="">一次性到期还本付息</option>
-						<option value="">按季付息到期还本</option>
-						<option value="">按月付息到期还本</option>
-					</select>
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="rongziUse"><span class="red">*</span>融资用途:</label>
-					<input id="rongziUse" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="otherInf">其它情况:</label>
-					<input id="otherInf" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<div class="nextStep">下一步</div>
-				</li>
-			</ul>
+		<div class="rongzi step2 hide">
+			<div class="leftInfor">
+				<div class="rongziheadImg rongziheadImg2"></div>
+				<div class="rzInforBox">
+				<ul>
+					<li>
+						<label for="rongziMoney"><span class="red">*</span>融资金额:</label>
+						<input id="rongziMoney" type="text" name="amout"><span>元</span>
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="rongziTime"><span class="red">*</span>融资期限:</label>
+						<input id="rongziTime" type="text" name="days"><span>天</span>
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="rongziStyle">融资方式:</label>
+						<select name="financingWay">
+							<option value="RECEIVABLE">应收账款转让</option>
+							<option value="HYPOTHECATED">质押贷款</option>
+							<option value="MORTGAGE">抵押贷款</option>
+							<option value="CREDIT">信用担保贷款</option>
+							<option value="CHAIN">供应链融资</option>
+							<option value="OTHER">其他</option>
+						</select>
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="APY"><span class="red">*</span>拟承担年化利率:</label>
+						<div id="APY">
+							<input id="APYstart" type="text" name="minRate"> % -
+							<input id="APYend" type="text" name="maxRate"> %
+						</div>
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="repaymentStyle"><span class="red">*</span>还款方式:</label>
+						<select id="repaymentStyle" name="repayWay">
+							<option value="ONETIME">一次性到期还本付息</option>
+							<option value="QUARTERLY">按季付息到期还本</option>
+							<option value="MONTHLY">按月付息到期还本</option>
+						</select>
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="rongziUse"><span class="red">*</span>融资用途:</label>
+						<input id="rongziUse" type="text" name="loanPurposeCustomized">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="otherInf">其它情况:</label>
+						<input id="otherInf" type="text" name="description">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<div class="nextStep">下一步</div>
+					</li>
+				</ul>
+				</div>
+			</div>
+			<div class="rzRight">
+				<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
+				<div class="rightImg"></div>
 			</div>
 		</div>
-		<div class="rzRight">
-			<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
-			<div class="rightImg"></div>
-		</div>
-	</div>
-	<div class="rongzi step3 hide">
-		<div class="leftInfor">
-			<div class="rongziheadImg rongziheadImg3"></div>
-			<div class="rzInforBox">
-			<ul>
-				<li style="text-align: center;">
-					<label for="assure" style="float: none;"><span class="red">*</span>融资企业是否可以提供担保:</label>
-					<div id="assure">
-						<input type="radio" name="assure" value="yes" checked/>是
-						<input type="radio" name="assure" value="no" />否
-					</div>
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="assureStyle">担保方式:</label>
-					<select>
-						<option value="ziranren">自然人担保</option>
-						<option value="jihou">机构担保</option>
-						<option value="zidi">资产抵押</option>
-						<option value="zizhi">资产质押</option>
-						<option value="danbaoOther">其他方式</option>
-					</select>
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<label for="assureInf"><span class="red">*</span>担保情况介绍:</label>
-					<input id="assureInf" type="text">
-					<div class="tip hiddenrz"></div>
-				</li>
-				<li>
-					<div class="nextStep">下一步</div>
-				</li>
-			</ul>
+		<div class="rongzi step3 hide">
+			<div class="leftInfor">
+				<div class="rongziheadImg rongziheadImg3"></div>
+				<div class="rzInforBox">
+				<ul>
+					<li style="text-align: center;">
+						<label for="assure" style="float: none;"><span class="red">*</span>融资企业是否可以提供担保:</label>
+						<div id="assure">
+							<input type="radio" name="assure" value="1" checked/>是
+							<input type="radio" name="assure" value="0" />否
+						</div>
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="assureStyle">担保方式:</label>
+						<select  name="assureWay">
+							<option value="NATURAL">自然人担保</option>
+							<option value="NATURAL">机构担保</option>
+							<option value="NATURAL">资产抵押</option>
+							<option value="ASSETS">资产质押</option>
+							<option value="OTHER">其他方式</option>
+						</select>
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<label for="assureInf"><span class="red">*</span>担保情况介绍:</label>
+						<input id="assureInf" type="text" name="assureInfo">
+						<div class="tip hiddenrz"></div>
+					</li>
+					<li>
+						<!--
+												<div class="nextStep off">下一步</div>
+						-->
+						<button type="submit" class="nextStep">下一步</button>
+					</li>
+				</ul>
+				</div>
+			</div>
+			<div class="rzRight">
+				<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
+				<div class="rightImg"></div>
 			</div>
 		</div>
-		<div class="rzRight">
-			<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
-			<div class="rightImg"></div>
-		</div>
-	</div>
-	<div class="rongzi step4">
-		<div class="leftInfor">
-			<div class="rongziheadImg rongziheadImg4"></div>
-			<div class="rzInforBox">
-				<div class="rzFinishImg"></div>
-				<div class="rzFinishWord">资料已提交成功，我们将在3～5个工作日给您回复！</div>
+		<div class="rongzi step4">
+			<div class="leftInfor">
+				<div class="rongziheadImg rongziheadImg4"></div>
+				<div class="rzInforBox">
+					<div class="rzFinishImg"></div>
+					<div class="rzFinishWord">资料已提交成功，我们将在3～5个工作日给您回复！</div>
+				</div>
+			</div>
+			<div class="rzRight">
+				<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
+				<div class="rightImg"></div>
 			</div>
 		</div>
-		<div class="rzRight">
-			<div class="rzrightTit"><i class="rzrightIcon"></i><span>借款流程</span></div>
-			<div class="rightImg"></div>
-		</div>
-	</div>
+	</form>
 	<!--<div class="footer"></div>-->
 
 
