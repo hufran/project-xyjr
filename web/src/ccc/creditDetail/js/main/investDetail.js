@@ -192,9 +192,15 @@ setTimeout((function () {
             timeSettled: nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
-            console.log(CC.loan.rule.min);
+            //console.log(CC.loan.rule.min);
+            console.log("test 時間");
+            //console.log(CC.creditassign.creditassign.timeOpen)
+            //console.log(moment(CC.creditassign.creditassign.timeOpen).add('days',1).format('YYYY-MM-DD HH:mm:ss'))
+          //  console.log(moment(CC.creditassign.creditassign.timeOpen).format('YYYY-MM-DD HH:mm:ss'));
+          //  console.log(CC.serverDate));
             if (CC.loan.rule.balance < CC.loan.rule.min) {
-                this.set('inputNum', CC.loan.rule.balance);
+                //this.set('inputNum', CC.loan.rule.balance);
+                this.set('inputNum', CC.creditassign.creditassign.creditDealAmount);
             }
         }
     });
@@ -292,7 +298,7 @@ setTimeout((function () {
            showErrors('不能投自己的转让的标的');
            return false;
          }
-        if(num!=this.get('creditassign.creditassign.creditAmount')){
+        if(num!=this.get('creditassign.creditassign.creditDealAmount')){
             showErrors('此债转只能一次全额转让');
             return false;
         }
