@@ -248,12 +248,12 @@
 				<li>
 					<label for="rongziStyle">融资方式:</label>
 					<select name="financingWay">
-						<option value="">应收账款转让</option>
-						<option value="">质押贷款</option>
-						<option value="">抵押贷款</option>
-						<option value="">信用担保贷款</option>
-						<option value="">供应链融资</option>
-						<option value="">其他</option>
+						<option value="RECEIVABLE">应收账款转让</option>
+						<option value="HYPOTHECATED">质押贷款</option>
+						<option value="HYPOTHECATED">抵押贷款</option>
+						<option value="CREDIT">信用担保贷款</option>
+						<option value="CHAIN">供应链融资</option>
+						<option value="OTHER">其他</option>
 					</select>
 					<div class="tip hiddenrz"></div>
 				</li>
@@ -268,9 +268,9 @@
 				<li>
 					<label for="repaymentStyle"><span class="red">*</span>还款方式:</label>
 					<select id="repaymentStyle"  name="repayWay">
-						<option value="">一次性到期还本付息</option>
-						<option value="">按季付息到期还本</option>
-						<option value="">按月付息到期还本</option>
+						<option value="ONETIME">一次性到期还本付息</option>
+						<option value="QUARTERLY">按季付息到期还本</option>
+						<option value="MONTHLY">按月付息到期还本</option>
 					</select>
 					<div class="tip hiddenrz"></div>
 				</li>
@@ -311,11 +311,11 @@
 				<li>
 					<label for="assureStyle">担保方式:</label>
 					<select name="assureWay">
-						<option value="ziranren">自然人担保</option>
-						<option value="jihou">机构担保</option>
-						<option value="zidi">资产抵押</option>
-						<option value="zizhi">资产质押</option>
-						<option value="danbaoOther">其他方式</option>
+						<option value="NATURAL">自然人担保</option>
+						<option value="INSTITUTIONS">机构担保</option>
+						<option value="INSTITUTIONS">资产抵押</option>
+						<option value="ASSETS">资产质押</option>
+						<option value="OTHER">其他方式</option>
 					</select>
 					<div class="tip hiddenrz"></div>
 				</li>
