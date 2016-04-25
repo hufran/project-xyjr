@@ -182,6 +182,7 @@ setTimeout((function () {
             user: CC.user,
             loan: CC.loan,
             inputNum: CC.loan.rule.min,
+            planEarning: CC.creditassign.creditassign.amountInterest.toFixed(2),
             rate: utils.format.percent(CC.loan.investPercent *
                 100, 2),
             agreement: CC.user ? (CC.user.agreement ?
