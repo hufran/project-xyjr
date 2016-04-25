@@ -14,17 +14,19 @@
             <div class="investContainer">
                 <div class="investTitle">
                      <div class="time">
-                         {{#if creditassign.creditassign.timeOpen}}
-                        开标时间:{{creditassign.creditassign.timeOpen}}
-                         {{else}}
-                         转让已满,已结束
-                         {{/if}}
+                         <div class="time">剩余时间：<span class="time-left">{{loans.timeLeft.dd}}日{{loans.timeLeft.hh}}小时{{loans.timeLeft.mm}}分{{loans.timeLeft.ss}}</span>
+                         </div>
+                         <!--{{#if creditassign.creditassign.timeOpen}}-->
+                        <!--开标时间:{{creditassign.creditassign.timeOpen}}-->
+                         <!--{{else}}-->
+                         <!--转让已满,已结束-->
+                         <!--{{/if}}-->
                     </div>
 <!--
                      {{#if loans.status == "OPENED" }}
 					<div class="time">剩余时间：<span class="time-left">{{loans.timeLeft.dd}}日{{loans.timeLeft.hh}}小时{{loans.timeLeft.mm}}分{{loans.timeLeft.ss}}</span>
                     </div>
-                    {{/if}}
+                   {{/if}}
                       {{#if loans.status == "SCHEDULED" || loans.status == "SETTLED" }}
 
                     {{/if}}
@@ -43,11 +45,22 @@
                             <div class="value">{{loan.rate}}%</div>
                                <div class="name">年化收益率</div>
                         </div>
+                        <!--<div class="item itemFirst">-->
+                             <!--<div class="value">{{creditassign.creditassign.timeOut||0}}<span>小时</span>-->
+                             <!--</div>-->
+                             <!--<div class="name">剩余期限</div>-->
+                        <!--</div>-->
                         <div class="item itemFirst">
-                             <div class="value">{{creditassign.creditassign.timeOut||0}}<span>小时</span>
-                             </div>
-                             <div class="name">剩余期限</div>
+                            <div class="value">
+                                {{#if creditassign.creditassign.timeOpen1}}
+                                {{creditassign.creditassign.timeOpen1}}
+                                {{else}}
+                                转让已满,已结束
+                                {{/if}}
+                            </div>
+                            <div class="name">开标时间</div>
                         </div>
+
                     </div>
                     <div class="innerBottom">
 

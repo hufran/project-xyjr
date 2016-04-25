@@ -126,11 +126,9 @@ $("[data-toggle=tooltip]")
     });
 setTimeout((function () {
     CC.loan.timeElapsed = utils.format.timeElapsed(CC.loan.timeElapsed);
-    console.log(CC.loan.timeElapsed);
 
-    var leftTime = CC.loan.timeLeft;
-    var timeLeftToal = leftTime.ss + leftTime.mm * 60 + leftTime.hh *
-        60 * 60 + leftTime.dd * 60 * 60 * 24;
+    var timeLeftToal = (CC.creditassign.creditassign.timeOpen + (24*60*60*1000) - CC.loan.serverDate)/1000;
+
     setInterval(function () {
         timeLeftToal -= 1;
         var dd = parseInt(timeLeftToal / (60 * 60 * 24), 10),
@@ -140,6 +138,15 @@ setTimeout((function () {
                 hh * 60 * 60) / 60, 10),
             ss = parseInt(timeLeftToal - dd * 60 * 60 * 24 -
                 hh * 60 * 60 - mm * 60, 10);
+        if(hh < 10){
+            hh = "0" + hh;
+        }
+        if(mm < 10){
+            mm = "0" + mm;
+        }
+        if(ss < 10){
+            ss = "0" + ss;
+        }
         var newTimeleftTotal = {
             dd: dd,
             hh: hh,
@@ -175,6 +182,7 @@ setTimeout((function () {
             user: CC.user,
             loan: CC.loan,
             inputNum: CC.loan.rule.min,
+            planEarning: CC.creditassign.creditassign.amountInterest.toFixed(2),
             rate: utils.format.percent(CC.loan.investPercent *
                 100, 2),
             agreement: CC.user ? (CC.user.agreement ?
@@ -192,12 +200,16 @@ setTimeout((function () {
             timeSettled: nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
-            console.log(CC.loan.rule.min);
+            //console.log("init:");
+            //console.log(CC.loan);
+            //console.log(CC.creditassign);
             if (CC.loan.rule.balance < CC.loan.rule.min) {
-                this.set('inputNum', CC.loan.rule.balance);
+                //this.set('inputNum', CC.loan.rule.balance);
+                this.set('inputNum', CC.creditassign.creditassign.creditDealAmount);
             }
         }
     });
+
     function nextDate(timestr){
 
           var date=new Date(timestr?timestr.replace('/-/g','\/'):'');
@@ -292,7 +304,7 @@ setTimeout((function () {
            showErrors('不能投自己的转让的标的');
            return false;
          }
-        if(num!=this.get('creditassign.creditassign.creditAmount')){
+        if(num!=this.get('creditassign.creditassign.creditDealAmount')){
             showErrors('此债转只能一次全额转让');
             return false;
         }
@@ -343,9 +355,11 @@ setTimeout((function () {
 
     // 初始化倒计时
     if (CC.loan.timeOpen > 0) {
-        var serverDate = CC.loan.serverDate;
-        var leftTime = utils.countDown.getCountDownTime2(CC.loan.timeOpen,
+        var timeOpen = CC.creditassign.creditassign.timeOpen;
+        var serverDate = CC.creditassign.creditassign.serverDate;
+        var leftTime = utils.countDown.getCountDownTime2(timeOpen,
             serverDate);
+
         if (leftTime) {
             var countDownRactive = new Ractive({
                 el: ".next-time",
@@ -514,7 +528,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 
         relateDataRactive.on("prev-pic next-pic", function (e) {
             var self = this;
-            console.log(self.get("currentIndex"));
+            //*console.log(self.get("currentIndex"));
             if (e.name === 'prev-pic') {
                 self.set("currentIndex", self.get(
                     "currentIndex") - 1);
@@ -537,7 +551,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 
         relateDataRactive.on("prev-picB next-picB", function (e) {
             var self = this;
-            console.log(self.get("currentIndexB"));
+            //*console.log(self.get("currentIndexB"));
             if (e.name === 'prev-picB') {
                 self.set("currentIndexB", self.get(
                     "currentIndexB") - 1);
@@ -560,7 +574,7 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
 
         relateDataRactive.on('begin-big-pic-career', function (
             e) {
-            console.log(e);
+           //* console.log(e);
             var index = Number(e.keypath.substr(-1));
             var options = {
                 imgs: r2.proofs.CAREER,
@@ -576,10 +590,10 @@ loanService.getLoanProof(CC.loan.requestId, function (r1) {
         });
 
         relateDataRactive.on('begin-big-pic-loan', function (e) {
-            console.log(e);
+           //* console.log(e);
             var index = Number(e.keypath.substr(-1));
-            console.log('*********');
-            console.log(index);
+            //*console.log('*********');
+            //* console.log(index);
             var options = {
                 imgs: r1,
                 currentIndex: index,
@@ -635,7 +649,7 @@ var recordRactive = new Ractive({
     getRecord: function () {
         var self = this;
         var api = self.api + self.page + '/' + self.pageSize;
-        console.log(api);
+        //*console.log(api);
         request(api)
             .end()
             .get('body')
@@ -645,7 +659,7 @@ var recordRactive = new Ractive({
     },
     setData: function (r) {
         var self = this;
-        console.log(r);
+        //* console.log(r);
         self.set('loading', false);
         self.set('list', self.parseData(r.results));
         self.set('totalSize', r.totalSize);
@@ -683,7 +697,7 @@ var recordRactive = new Ractive({
         }
 
         var totalPage = [];
-        console.log("===>> totalPage = " + self.totalPage);
+        //* console.log("===>> totalPage = " + self.totalPage);
         for (var i = 0; i < self.totalPage; i++) {
             totalPage.push(i + 1);
         }
@@ -693,7 +707,7 @@ var recordRactive = new Ractive({
 });
 
 function renderPager(totalPage, current) {
-    console.log("===>render")
+    //*console.log("===>render")
     if (!current) {
         current = 1;
     }
