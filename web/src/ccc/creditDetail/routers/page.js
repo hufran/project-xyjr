@@ -34,11 +34,13 @@ module.exports = function (router) {
         };
         var creditassign =await req.uest('/api/v2/creditassign/creditAssignDetail/' + creditassignId)
             .then(function (r) {
-            console.log("&&&&&");
-            console.log(r);
             if(r.statusCode==200){
                 if (r.body.creditassign.timeOpen) {
-                    r.body.creditassign.timeOpen = moment(r.body.creditassign.timeOpen).format('YYYY-MM-DD');
+                    r.body.creditassign.timeOpen1 = moment(r.body.creditassign.timeOpen).format('YYYY-MM-DD');
+
+                    r.body.creditassign.timeOpen = r.body.creditassign.timeOpen;
+
+                    r.body.creditassign.serverDate = new Date().getTime();
                 };
                 r.body.creditassign.cstatus = assignStatus[r.body.creditassign.status];
                 r.body.investPercent = Math.round(r.body.creditassign.bidAmount / r.body.creditassign.creditAmount * 100);
