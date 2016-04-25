@@ -72,14 +72,14 @@ jQuery(function(){
 	inpBlurNoEmpty('#companyIC','组织机构代码不能为空！');
 	
 	jQuery('.rongzi.step1 .nextStep').click(function(){
-		if(jQuery('#companyName').val().replace(/(^\s*)|(\s*$)/g,"")==''){
+		/*if(jQuery('#companyName').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			jQuery('#companyName').siblings('.tip').html('公司全称不能为空！').removeClass('hiddenrz');
 			return false;
 		}else if (jQuery('#userName').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			if(jQuery('#companyName').siblings('.tip').hasClass('hiddenrz')==false){
 				jQuery('#companyName').siblings('.tip').addClass('hiddenrz');
 			}
-			
+
 			jQuery('#userName').siblings('.tip').html('法人姓名不能为空！').removeClass('hiddenrz');
 			return false;
 		}else if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"")==''){
@@ -145,14 +145,16 @@ jQuery(function(){
 		}else{
 			jQuery('.rongzi.step1').addClass('hide');
 		  	jQuery('.rongzi.step2').removeClass('hide');
-		}
+		}*/
+	jQuery('.rongzi.step1').addClass('hide');
+	jQuery('.rongzi.step2').removeClass('hide');
 	})
 	
 	inpBlurNoEmpty('#rongziMoney','融资金额不能为空！');
 	inpBlurNoEmpty('#rongziTime','融资期限不能为空！');
 	inpBlurNoEmpty('#rongziUse','融资用途不能为空！');
 	jQuery('.rongzi.step2 .nextStep').click(function(){
-		if (jQuery('#rongziMoney').val().replace(/(^\s*)|(\s*$)/g,"")=='') {
+		/*if (jQuery('#rongziMoney').val().replace(/(^\s*)|(\s*$)/g,"")=='') {
 			jQuery('#rongziMoney').siblings('.tip').html('融资金额不能为空！').removeClass('hiddenrz');
 			return false;
 		}else if (jQuery('#rongziTime').val().replace(/(^\s*)|(\s*$)/g,"")=='') {
@@ -170,18 +172,30 @@ jQuery(function(){
 		}else{
 			jQuery('.rongzi.step2').addClass('hide');
 		  	jQuery('.rongzi.step3').removeClass('hide');
-		}
+		}*/
+		jQuery('.rongzi.step2').addClass('hide');
+		jQuery('.rongzi.step3').removeClass('hide');
 	})
 	inpBlurNoEmpty('#assureInf','担保情况介绍不为空！');
 	
 	jQuery('.rongzi.step3 .nextStep').click(function(){
-		if (jQuery('#assureInf').val().replace(/(^\s*)|(\s*$)/g,"")=='') {
+		/*if (jQuery('#assureInf').val().replace(/(^\s*)|(\s*$)/g,"")=='') {
 			jQuery('#assureInf').siblings('.tip').html('担保情况介绍不为空！').removeClass('hiddenrz');
 			return false;
 		}else{
 			jQuery('.rongzi.step3').addClass('hide');
 		  	jQuery('.rongzi.step4').removeClass('hide');
-		}
+		}*/
+		alert(1);
+		$.ajax({
+			url:"http://localhost:9000/loanIntent/addNew",
+			type:"post",
+			data:$("#loanIntentForm").serialize(),
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+			}
+		})
 	})
 })
 
