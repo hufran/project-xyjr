@@ -20,7 +20,7 @@ jQuery(function(){
 		if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			jQuery('#userCode').siblings('.tip').html('法人身份证不能为空！').removeClass('hiddenrz');
 			return false;
-		}else if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"").length!=18numLetter.test(jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,""))=='false'){
+		}else if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"").length!=18||numLetter.test(jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,""))=='false'){
 			jQuery('#userCode').siblings('.tip').html('身份证输入错误！').removeClass('hiddenrz');
 			return false;
 		}else{
