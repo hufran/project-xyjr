@@ -20,7 +20,7 @@ jQuery(function(){
 		if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			jQuery('#userCode').siblings('.tip').html('法人身份证不能为空！').removeClass('hiddenrz');
 			return false;
-		}else if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"").length!=18||numLetter.test(jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,""))==false){
+		}else if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"").length!=18numLetter.test(jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,""))=='false'){
 			jQuery('#userCode').siblings('.tip').html('身份证输入错误！').removeClass('hiddenrz');
 			return false;
 		}else{
@@ -36,7 +36,7 @@ jQuery(function(){
 		if (jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			jQuery('#phoneNum').siblings('.tip').html('联系电话不能为空！').removeClass('hiddenrz');
 			return false;
-		}else if (jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length<8||jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length>12||phonenum.test(jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,""))==false){
+		}else if (jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length<8||jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length>12||phonenum.test(jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,""))=='false'){
 			jQuery('#phoneNum').siblings('.tip').html('联系电话输入错误！').removeClass('hiddenrz');
 			return false;
 		}else{
@@ -48,7 +48,7 @@ jQuery(function(){
 		if (jQuery('#email').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			jQuery('#email').siblings('.tip').html('电子邮箱不能为空！').removeClass('hiddenrz');
 			return false;
-		}else if (email.test(jQuery('#email').val().replace(/(^\s*)|(\s*$)/g,""))==false){
+		}else if (email.test(jQuery('#email').val().replace(/(^\s*)|(\s*$)/g,""))=='false'){
 			jQuery('#email').siblings('.tip').html('电子邮箱输入错误！').removeClass('hiddenrz');
 			return false;
 		}else{
@@ -62,7 +62,7 @@ jQuery(function(){
 		if (jQuery('#companyLicence').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			jQuery('#companyLicence').siblings('.tip').html('营业执照号码不能为空！').removeClass('hiddenrz');
 			return false;
-		}else if (companyNum.test(jQuery('#companyLicence').val().replace(/(^\s*)|(\s*$)/g,""))==false){
+		}else if (companyNum.test(jQuery('#companyLicence').val().replace(/(^\s*)|(\s*$)/g,""))=='false'){
 			jQuery('#companyLicence').siblings('.tip').html('营业执照编号输入错误！').removeClass('hiddenrz');
 			return false;
 		}else{
