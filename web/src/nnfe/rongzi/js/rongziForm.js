@@ -4,6 +4,15 @@ jQuery(function(){
 	var companyNum=/\d{15}/;
 	var email=/^\w+([-+.]\w+)*@\w+([-.]\w+)+$/i;
 
+	//日期时间控件
+	jQuery('#companyDate').datetimepicker({
+
+		format:"Y-m-d",
+		timepicker:false,
+		todayButton:false
+	});
+	$.datetimepicker.setLocale('zh');
+
 	inpBlurNoEmpty('#companyName','公司全称不能为空！');
 	inpBlurNoEmpty('#userName','法人姓名不能为空！');
 	
@@ -14,6 +23,8 @@ jQuery(function(){
 		}else if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"").length!=18||numLetter.test(jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,""))==false){
 			jQuery('#userCode').siblings('.tip').html('身份证输入错误！').removeClass('hiddenrz');
 			return false;
+		}else{
+			jQuery('#userCode').siblings('.tip').addClass('hiddenrz');
 		}
 	})
 	//inpBlur('#userCode','法人身份证不能为空！','身份证输入错误！');
@@ -28,6 +39,8 @@ jQuery(function(){
 		}else if (jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length<8||jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length>12||phonenum.test(jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,""))==false){
 			jQuery('#phoneNum').siblings('.tip').html('联系电话输入错误！').removeClass('hiddenrz');
 			return false;
+		}else{
+			jQuery('#phoneNum').siblings('.tip').addClass('hiddenrz');
 		}
 	})
 
@@ -38,6 +51,8 @@ jQuery(function(){
 		}else if (email.test(jQuery('#email').val().replace(/(^\s*)|(\s*$)/g,""))==false){
 			jQuery('#email').siblings('.tip').html('电子邮箱输入错误！').removeClass('hiddenrz');
 			return false;
+		}else{
+			jQuery('#email').siblings('.tip').addClass('hiddenrz');
 		}
 	})
 
@@ -50,6 +65,8 @@ jQuery(function(){
 		}else if (companyNum.test(jQuery('#companyLicence').val().replace(/(^\s*)|(\s*$)/g,""))==false){
 			jQuery('#companyLicence').siblings('.tip').html('营业执照编号输入错误！').removeClass('hiddenrz');
 			return false;
+		}else{
+			jQuery('#companyLicence').siblings('.tip').addClass('hiddenrz');
 		}
 	})
 	inpBlurNoEmpty('#companyIC','组织机构代码不能为空！');
@@ -92,7 +109,7 @@ jQuery(function(){
 			}
 			jQuery('#phoneNum').siblings('.tip').html('联系电话不能为空！').removeClass('hiddenrz');
 			return false;
-		}else if (jQuery(idName).val().replace(/(^\s*)|(\s*$)/g,"").length<8||jQuery(idName).val().replace(/(^\s*)|(\s*$)/g,"").length>12||phonenum.test(jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,""))==false){
+		}else if (jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length<8||jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,"").length>12||phonenum.test(jQuery('#phoneNum').val().replace(/(^\s*)|(\s*$)/g,""))==false){
 			jQuery('#phoneNum').siblings('.tip').html('联系电话输入错误！').removeClass('hiddenrz');
 			return false;
 		}else if (jQuery('#email').val().replace(/(^\s*)|(\s*$)/g,"")==''){
@@ -173,6 +190,8 @@ function inpBlurNoEmpty(idName,text){
 		if(jQuery(idName).val().replace(/(^\s*)|(\s*$)/g,"")==''){
 				jQuery(idName).siblings('.tip').html(text).removeClass('hiddenrz');
 				return false;
-			}
+			}else{
+			jQuery(idName).siblings('.tip').html(text).addClass('hiddenrz');
+		}
 	})
 }
