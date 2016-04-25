@@ -4,6 +4,15 @@ jQuery(function(){
 	var companyNum=/\d{15}/;
 	var email=/^\w+([-+.]\w+)*@\w+([-.]\w+)+$/i;
 
+	//日期时间控件
+	jQuery('#companyDate').datetimepicker({
+
+		format:"Y-m-d",
+		timepicker:false,
+		todayButton:false
+	});
+	$.datetimepicker.setLocale('zh');
+
 	inpBlurNoEmpty('#companyName','公司全称不能为空！');
 	inpBlurNoEmpty('#userName','法人姓名不能为空！');
 	
