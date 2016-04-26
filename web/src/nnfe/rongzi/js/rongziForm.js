@@ -1,6 +1,6 @@
 jQuery(function(){
-	var numLetter = /^[0-9a-zA-Z]*$/g;
-	var phonenum= /^[0-9]*$/g;
+	var numLetter = /^[A-Za-z0-9]+$/;
+	var phonenum= /^[0-9]*$/;
 	var companyNum=/\d{15}/;
 	var email=/^\w+([-+.]\w+)*@\w+([-.]\w+)+$/i;
 
@@ -21,7 +21,8 @@ jQuery(function(){
 		if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"")==''){
 			jQuery('#userCode').siblings('.tip').html('法人身份证不能为空！').removeClass('hiddenrz');
 			return false;
-		}else if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"").length!=18||numLetter.test(jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,""))==false){
+		}
+		if (jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,"").length!=18||numLetter.test(jQuery('#userCode').val().replace(/(^\s*)|(\s*$)/g,""))==false){
 			jQuery('#userCode').siblings('.tip').html('身份证输入错误！').removeClass('hiddenrz');
 			return false;
 		}else{
