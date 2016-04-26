@@ -32,7 +32,9 @@
 <script type="text/javascript">
 	$(function(){
 		$(".login").css("display","none");
-		var userId="05FDDC09-6ECB-4404-8A16-464EE47C46E8";
+		var reqURI=window.location.href;
+		var index=reqURI.indexOf("?");
+		var userId=reqURI.substr(index+1);
 		if(!userId){
 			return;
 		}
@@ -42,8 +44,17 @@
 			dataType:"json",
 			success:function(data){
 				if(data){
+					if(data.name){
+						$("#username").html(data.name);
+					}else {
+						$("#username").html(data.mobile);
+						$("#username").css("color","#f58220");
+
+					}
+
 					$(".logout").css("display","none");
 					$(".login").css("display","block");
+
 				}
 			},
 			error:function(data){
@@ -103,15 +114,17 @@
 			<a href="/help/login" class="text account login" style="color:#999;font-size:12px;margin-left:10px;text-decoration:none">帮助中心 </a>
 			<!--loginName存在-->
 			<a href="/newAccount/message" class="login">
-				<div  style="color:#f58220;position:relative;bottom:4px;" class="text"><img  						src="/ccc/newAccount/img/message.png" alt="" style="margin:0;width:20px;						"><span id='head-message-container' style="color:#009ada;font-size:12px;						margin:0;position:relative;top:1px;margin-left:5px;"></span>
+				<div style="color:#f58220;position:relative;bottom:4px;" class="text">
+					<img src="/ccc/newAccount/img/message-967e357f.png" alt="" style="margin:0;width:20px;">
+					<span id="head-message-container" style="color:#009ada;font-size:12px;margin:0;position:relative;top:1px;margin-left:5px;">(0)</span>
 				</div>
 			</a>
 
 			<a href="/logout" class="text login" style="color:#999;margin-right:5px;">退出&nbsp;&nbsp;|</a>
 			<!--用户名存在-->
-			<a href="/newAccount/home" class="login"><div id='head-ractive-container' 					style="color:#009ada;position:relative;bottom:1px;" class="text">用户名</div></a>
-
-			<a href="/newAccount/home" class="login"><div id='head-ractive-container' 					style="color:#f58220;position:relative;bottom:1px;" class="text">手机号</div></a>
+			<a href="/newAccount/home" class="login">
+				<div id="head-ractive-container" style="position:relative;bottom:1px;"
+					 class="text"><img src="/ccc/newAccount/img/user-4ecf6c05.png" style="position:relative;bottom:2px;"><span id="username" style="width: auto;color: #009ada;"></span></div></a>
 			<!--已登录end-->
 
 		</div>
@@ -135,6 +148,10 @@
 						<li><a href="http://www.718zc.com/invest/HDZX">活动标</a></li>
 						<li><a href="http://www.718zc.com/invest/XSZX">新手标</a></li>
 					</ul>
+				</li>
+				<li class="u-nolist-ul-li">
+					<a class="u-nolist-a" href="javascript:void(0)">企业融资</a>
+					<ul class="u-seclist-ul"></ul>
 				</li>
 				<li class="u-nolist-ul-li">
 					<a class="u-nolist-a" href="http://www.718zc.com/userKnow">用户须知</a>
@@ -162,7 +179,7 @@
 
 
 
-<form id="loanIntentForm" name="loanIntent" action="http://localhost:9000/loanIntent/addNew" method="post">
+<form id="loanIntentForm" name="loanIntent" action="" method="post">
 
 	<div class="rongzi step1">
 		<div class="leftInfor">
@@ -196,7 +213,7 @@
 				</li>
 				<li>
 					<label for="phoneNum"><span class="red">*</span>联系电话:</label>
-					<input id="phoneNum" type="text"  maxlength="12" name="mobile">
+					<input id="phoneNum" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "  maxlength="12" name="mobile">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -211,7 +228,7 @@
 				</li>
 				<li>
 					<label for="companyLicence"><span class="red">*</span>营业执照号码:</label>
-					<input id="companyLicence" type="text"  maxlength="15" name="licenseNumber">
+					<input id="companyLicence" type="text"  onkeyup="this.value=this.value.replace(/[^\d]/g,'') " maxlength="15" name="licenseNumber">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -237,12 +254,12 @@
 			<ul>
 				<li>
 					<label for="rongziMoney"><span class="red">*</span>融资金额:</label>
-					<input id="rongziMoney" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "  name="amout"><span>元</span>
+					<input id="rongziMoney" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "  name="amount"><span style="margin-left: 10px;">元</span>
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
 					<label for="rongziTime"><span class="red">*</span>融资期限:</label>
-					<input id="rongziTime" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " name="days"><span>天</span>
+					<input id="rongziTime" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " name="days"><span style="margin-left: 10px;">天</span>
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -250,7 +267,7 @@
 					<select name="financingWay">
 						<option value="RECEIVABLE">应收账款转让</option>
 						<option value="HYPOTHECATED">质押贷款</option>
-						<option value="HYPOTHECATED">抵押贷款</option>
+						<option value="MORTGAGE">抵押贷款</option>
 						<option value="CREDIT">信用担保贷款</option>
 						<option value="CHAIN">供应链融资</option>
 						<option value="OTHER">其他</option>
@@ -276,12 +293,12 @@
 				</li>
 				<li>
 					<label for="rongziUse"><span class="red">*</span>融资用途:</label>
-					<input id="rongziUse" type="text" name="loanPurposeCustomized">
+					<input id="rongziUse" type="text" name="loanPurposeCustomized" maxlength="60">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
 					<label for="otherInf">其它情况:</label>
-					<input id="otherInf" type="text"  name="description">
+					<input id="otherInf" type="text"  name="description" maxlength="100">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -313,7 +330,7 @@
 					<select name="assureWay">
 						<option value="NATURAL">自然人担保</option>
 						<option value="INSTITUTIONS">机构担保</option>
-						<option value="INSTITUTIONS">资产抵押</option>
+						<option value="PLEDGE">资产抵押</option>
 						<option value="ASSETS">资产质押</option>
 						<option value="OTHER">其他方式</option>
 					</select>
@@ -321,7 +338,7 @@
 				</li>
 				<li>
 					<label for="assureInf"><span class="red">*</span>担保情况介绍:</label>
-					<input id="assureInf" type="text"  name="assureInfo">
+					<input id="assureInf" type="text"  name="assureInfo" maxlength="100">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -387,10 +404,18 @@
 						<img src="../applyloan_files/dingyue-182d0d8d.png">
 						<p class="text-p">订阅号</p></div>
 				</div>
+				<div class="bottom-right">
+					<p class="bottom-right-service">
+						<span style="color:#abb2ba;">投资交流群：515449675 &nbsp;&nbsp;客服电话：（工作时间：9：00-18：00）</span>
+					</p>
+					<p class="bottom-right-mail"><span class="telNum">4001-718-718</span></p>
+					<p class="bottom-right-copy"><span>版权所有©2016&nbsp;&nbsp;新毅金融www.718bank.com&nbsp;&nbsp;京ICP备15059004号</span></p>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 </div>
 
 	<script src="../js/rongziForm.js"></script>
