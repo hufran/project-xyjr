@@ -10,7 +10,11 @@ jQuery(function(){
 		format:"Y-m-d",
 		timepicker:false,
 		todayButton:false,
-		maxDate:'+1970/01/02'
+		maxDate:'+1970/01/02',
+		onSelectDate:function(){
+			jQuery('#companyDate').siblings('.tip').addClass('hiddenrz');
+		}
+		
 	});
 	$.datetimepicker.setLocale('zh');
 
