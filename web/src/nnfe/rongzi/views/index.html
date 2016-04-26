@@ -196,7 +196,7 @@
 				</li>
 				<li>
 					<label for="phoneNum"><span class="red">*</span>联系电话:</label>
-					<input id="phoneNum" type="text"  maxlength="12" name="mobile">
+					<input id="phoneNum" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "  maxlength="12" name="mobile">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -211,7 +211,7 @@
 				</li>
 				<li>
 					<label for="companyLicence"><span class="red">*</span>营业执照号码:</label>
-					<input id="companyLicence" type="text"  maxlength="15" name="licenseNumber">
+					<input id="companyLicence" type="text"  onkeyup="this.value=this.value.replace(/[^\d]/g,'') " maxlength="15" name="licenseNumber">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -237,12 +237,12 @@
 			<ul>
 				<li>
 					<label for="rongziMoney"><span class="red">*</span>融资金额:</label>
-					<input id="rongziMoney" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "  name="amout"><span>元</span>
+					<input id="rongziMoney" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "  name="amout"><span style="margin-left: 10px;">元</span>
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
 					<label for="rongziTime"><span class="red">*</span>融资期限:</label>
-					<input id="rongziTime" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " name="days"><span>天</span>
+					<input id="rongziTime" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " name="days"><span style="margin-left: 10px;">天</span>
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -276,12 +276,12 @@
 				</li>
 				<li>
 					<label for="rongziUse"><span class="red">*</span>融资用途:</label>
-					<input id="rongziUse" type="text" name="loanPurposeCustomized">
+					<input id="rongziUse" type="text" name="loanPurposeCustomized" maxlength="60">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
 					<label for="otherInf">其它情况:</label>
-					<input id="otherInf" type="text"  name="description">
+					<input id="otherInf" type="text"  name="description" maxlength="100">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
@@ -321,7 +321,7 @@
 				</li>
 				<li>
 					<label for="assureInf"><span class="red">*</span>担保情况介绍:</label>
-					<input id="assureInf" type="text"  name="assureInfo">
+					<input id="assureInf" type="text"  name="assureInfo" maxlength="100">
 					<div class="tip hiddenrz"></div>
 				</li>
 				<li>
