@@ -10,7 +10,7 @@ jQuery(function(){
 		format:"Y-m-d",
 		timepicker:false,
 		todayButton:false,
-		maxDate:'+1970/01/02',
+		maxDate:'0',
 		onSelectDate:function(){
 			jQuery('#companyDate').siblings('.tip').addClass('hiddenrz');
 		}
