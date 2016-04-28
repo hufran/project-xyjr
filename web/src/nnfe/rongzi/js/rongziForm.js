@@ -11,6 +11,7 @@ jQuery(function(){
 		timepicker:false,
 		todayButton:false,
 		maxDate:'0',
+		scrollInput:false,
 		onSelectDate:function(){
 			jQuery('#companyDate').siblings('.tip').addClass('hiddenrz');
 		}
