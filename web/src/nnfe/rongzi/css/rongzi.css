@@ -22,7 +22,7 @@ ul,li{margin: 0;padding: 0;list-style: none;}
 .red{color: red;}
 .leftInfor li{display: block;}
 .leftInfor li:after{content: "";clear: both;}
-.tip{background-image: url(../images/error.png);line-height: 12px;height: 12px; background-repeat: no-repeat;background-color: #fff;margin: 5px 0; margin-left: 240px; font-size: 12px;color: #f06f2e;width: 320px;padding-left: 13px; background-position: left center;}
+.tip{background-image: url(../images/error.png);line-height: 12px;height: 12px; background-repeat: no-repeat;background-color: #fff;margin: 5px 0; margin-left: 260px; font-size: 12px;color: #f06f2e;width: 320px;padding-left: 13px; background-position: left center;}
 .tip.hiddenrz{visibility: hidden;}
 .nextStep{width: 252px;height: 44px;border-radius: 3px; margin: auto; background-color: #029bda; color: #fff;text-align: center;line-height: 44px;font-size: 18px; cursor: pointer;}
 .nextStep:hover{background-color: #015989;}
