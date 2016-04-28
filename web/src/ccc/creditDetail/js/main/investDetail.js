@@ -330,12 +330,13 @@ setTimeout((function () {
                                 };
                                 loanService.sendAutoAssign(cparams,function(r){
                                     if(r.body=='SUCCESSFUL'){
-                                            alert('债转成功');
+                                            alert('债转成功，请选择其他项目！');
+                                        window.location.href = "/investCredit";
                                     }else {
                                         var msg=assignStatus[r.body]||'请检查网络配置或服务器异常';
                                         alert(msg);
+                                        window.location.reload();
                                     }
-                                    window.location.reload();
                                 });
 
 
