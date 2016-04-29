@@ -486,9 +486,8 @@ $('.investInput')
         showSelect($(this)
             .val());
     });
-
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
-    loanService.getCareerProof(CC.loan.LuserId, function (r2) {
+    loanService.getCareerProof(CC.loan.userId, function (r2) {
 
         for (var j = 0; j < r1.length; j++) {
             if (r1[j].proof.proofType !== '') {
