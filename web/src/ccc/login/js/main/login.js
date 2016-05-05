@@ -74,8 +74,10 @@ $('#loginForm').submit(function (e) {
             var url5 = /(userKnow)/;
             var url6 = /(creditDetail)/;
 
+            //console.log(CC.user.enterprise+"=====");
             if (url.test(document.referrer) || url2.test(document.referrer) || url3.test(document.referrer) || url4.test(document.referrer) || url5.test(document.referrer) || url6.test(document.referrer)) {
-                location.href = document.referrer
+
+                location.href = document.referrer + "?" + CC.user.id;
                 return;
             }
             if (CC.user.enterprise) {
