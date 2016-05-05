@@ -50,6 +50,7 @@ exports.accountService = {
     },
     checkAuthenticate: function (next) {
         request('GET', '/api/v2/user/MYSELF/authenticates')
+
             .end()
             .then(function (r) {
                 next(r.body);
