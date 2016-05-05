@@ -66,9 +66,15 @@ $('#loginForm').submit(function (e) {
     request.post('/api/web/login').type('form').send($this.serialize()).end().get('body').then(function (r) {
         if (r.success) {
             $postBtn.text('登录成功');
+
             var url = /(loan)/;
-            if (url.test(document.referrer)) {
-                location.href = document.referrer;
+            var url2 = /(investCredit)/;
+            var url3 = /(invest)/;
+            var url4 = /(rongzi)/;
+            var url5 = /(userKnow)/;
+
+            if (url.test(document.referrer) || url2.test(document.referrer) || url3.test(document.referrer) || url4.test(document.referrer) || url5.test(document.referrer) ) {
+                location.href = document.referrer
                 return;
             }
             if (CC.user.enterprise) {
