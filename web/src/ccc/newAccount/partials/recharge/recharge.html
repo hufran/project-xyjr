@@ -1,17 +1,17 @@
- {{#if isBankCard===0}}
-<div class="row">
-    <div class="space space-30"></div>
-    <div class="col-md-12 align-center">
-        <p class="text-warning" style="color:#009ada">您还没有绑定银行卡，绑卡后才能进行充值</p>
-        <div class="space space-40"></div>
-        <p>
-            <a href="/newAccount/settings/bankCards" style="width: 230px;background-color:#009ada"
-              class="btn btn-orange">立即绑卡</a>
-        </p>
-        <div class="space space-40"></div>
-    </div>
-</div>
-{{else}}
+ <!--{{#if isBankCard===0}}-->
+ <!--<div class="row">-->
+     <!--<div class="space space-30"></div>-->
+     <!--<div class="col-md-12 align-center">-->
+         <!--<p class="text-warning" style="color:#009ada">您还没有绑定银行卡，绑卡后才能进行充值</p>-->
+         <!--<div class="space space-40"></div>-->
+         <!--<p>-->
+             <!--<a href="/newAccount/settings/bankCards" style="width: 230px;background-color:#009ada"-->
+                <!--class="btn btn-orange">立即绑卡</a>-->
+         <!--</p>-->
+         <!--<div class="space space-40"></div>-->
+     <!--</div>-->
+ <!--</div>-->
+ <!--{{else}}-->
 <div class="ccc-banks-wrap">
     <div class="recharge-form-wrap">
         <form role="form" name="rechargeForm" action="{{action}}" method="POST" target="_blank"
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    {{/if}}
+    <!--{{/if}}-->
     <div class="line"></div>
     <div class="space-10"></div>
     {{#if showamountInfo}}
