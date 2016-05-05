@@ -72,8 +72,9 @@ $('#loginForm').submit(function (e) {
             var url3 = /(invest)/;
             var url4 = /(rongzi)/;
             var url5 = /(userKnow)/;
+            var url6 = /(creditDetail)/;
 
-            if (url.test(document.referrer) || url2.test(document.referrer) || url3.test(document.referrer) || url4.test(document.referrer) || url5.test(document.referrer) ) {
+            if (url.test(document.referrer) || url2.test(document.referrer) || url3.test(document.referrer) || url4.test(document.referrer) || url5.test(document.referrer) || url6.test(document.referrer)) {
                 location.href = document.referrer
                 return;
             }
