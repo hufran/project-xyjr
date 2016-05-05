@@ -76,8 +76,11 @@ $('#loginForm').submit(function (e) {
 
             //console.log(CC.user.enterprise+"=====");
             if (url.test(document.referrer) || url2.test(document.referrer) || url3.test(document.referrer) || url4.test(document.referrer) || url5.test(document.referrer) || url6.test(document.referrer)) {
-
-                location.href = document.referrer + "?" + CC.user.id;
+                if(url4.test(document.referrer)){
+                    location.href = document.referrer + "?" + r.user.id;
+                }else{
+                    location.href = document.referrer;
+                }
                 return;
             }
             if (CC.user.enterprise) {
