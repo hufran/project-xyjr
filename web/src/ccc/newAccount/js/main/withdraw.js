@@ -35,7 +35,8 @@ var ractive = new Ractive({
 		submitMessage: null,
 		error: false,
 		isEnterpriseUser: CC.user.enterprise,
-        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false
+        paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
+		banksabled : banksabled.length? true : false
 	},
     parseDataNum:function(){
         var self = this;
