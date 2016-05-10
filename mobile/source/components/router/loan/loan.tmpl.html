@@ -73,11 +73,18 @@
         <div ng-switch-when="OPENED">
             <a style="color:#FFFFFF" class="btn btn-block btn-theme btn-lg"
                ng-href="loan/{{ loan.id }}/invest"
-               ng-if="self.user.has_logged_in"
+               ng-if="self.user.has_logged_in && !!self.user.info.priv"
             >立即投资</a>
-
             <a style="color:#FFFFFF" class="btn btn-block btn-theme btn-lg"
-               ng-href="loan/{{ loan.id }}/invest"
+               ng-href="/questions/{{ loan.id }}"
+               ng-if="self.user.has_logged_in && !self.user.info.priv"
+            >立即投资</a>
+            <!--<a style="color:#FFFFFF" class="btn btn-block btn-theme btn-lg"-->
+               <!--ng-href="loan/{{ loan.id }}/invest"-->
+               <!--ng-if="!self.user.has_logged_in"-->
+            <!--&gt;立即登录</a>-->
+            <a style="color:#FFFFFF" class="btn btn-block btn-theme btn-lg"
+               ng-href="login?next=loan/{{loan.id}}"
                ng-if="!self.user.has_logged_in"
             >立即登录</a>
         </div>
