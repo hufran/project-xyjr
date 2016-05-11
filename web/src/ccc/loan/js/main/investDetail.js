@@ -319,7 +319,7 @@ setTimeout((function () {
                             jQuery('input.questionBtn').click(function(){
                                 var r=true;
                                 var mark=0;
-                                for (var i = 1; i < 10; i++) {
+                                for (var i = 1; i < 11; i++) {
                                     if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
                                         r=false;
                                     }else{
@@ -338,13 +338,36 @@ setTimeout((function () {
                                         mark:mark
                                     },
                                     success: function(){
-                                        alert('问卷提交成功~~~');
-                                        jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox').removeClass('db').addClass('dn');
                                         jQuery(document).scrollTop(0);
+                                        jQuery('.questionTit').addClass('result');
+                                        jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
+                                        if (mark>=10&&mark<=16) {
+                                            jQuery('.resultInfor span').html("一级（保守型）");
+                                        }else if(mark>=17&&mark<=23){
+                                            jQuery('.resultInfor span').html("二级（中庸保守型）");
+                                        }else if(mark>=24&&mark<=31){
+                                            jQuery('.resultInfor span').html("三级（中庸型）");
+                                        }else if(mark>=32&&mark<=38){
+                                            jQuery('.resultInfor span').html("四级（中庸进取型）");
+                                        }else if(mark>=39&&mark<=45){
+                                            jQuery('.resultInfor span').html("五级（进取型）");
+                                        };
+                                        jQuery('.returnWenjuan div').click(function(){
+                                            jQuery('.questionTit').removeClass('result');
+                                            jQuery('.resultInfor').removeClass('db').addClass('dn');
+                                            jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                            jQuery('.questionBox').removeClass('dn').addClass('db');
+                                        })
+                                                                            
                                     }
                                 });
                             })
                             jQuery('.questionBtn.false').click(function(){
+                                jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                jQuery(document).scrollTop(0);
+                            })
+                            jQuery('.wenjuanClose').click(function(){
                                 jQuery('.wenjuan').removeClass('db').addClass('dn');
                                 jQuery(document).scrollTop(0);
                             })
