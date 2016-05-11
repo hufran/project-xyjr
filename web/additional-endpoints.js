@@ -3,7 +3,7 @@ module.exports = function (router, auth) {
     router.get('/api/v0/hello/world', auth.pass());
     router.get('/api/v2/message/notifications/:page/:userId', auth.owner());
     router.get('/api/v2/cms/appBootPage', auth.pass());
-
+    //dada add
     // 支付相关
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());
@@ -27,7 +27,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/user/:userId/funds/query', auth.user());
     router.post('/api/v2/loanIntent/addNew', auth.pass());
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user());
-    router.get('/api/v2/loan/getLoanProduct/productKey/:productKey', auth.pass());
+    router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
 
     router.get('/api/v2/message/markAsRead/:messageId', auth.user());
     router.get('/api/v2/message/user/:userId/listByStatus', auth.user());
@@ -46,6 +46,9 @@ module.exports = function (router, auth) {
     
     //红包功能 add by Jude end
     router.post('/api/v2/users/mobile/encrypt', auth.pass());
+    //调查问卷 add by Jude
+    router.post('/api/v2/users/userQuestion', auth.pass());
+
     //积分
     router.get('/api/v2/points/user/:userId/getTotalPoints', auth.user());
     router.get('/api/v2/points/user/:userId/listByPeroid/:from/:to', auth.user());
@@ -74,12 +77,12 @@ module.exports = function (router, auth) {
     router.get('/api/v2/lianlianpay/bankBranches/:cityCode/:branchNameFilter/:cardNo', auth.pass());
     router.get('/api/v2/loans/getLoanWithProduct', auth.pass());
     router.get('/api/v2/user/:userId/userAuthenticate', auth.user());
-    //导航
+     //导航
     router.get('/api/v2/navigation/listPlayPanes', auth.pass());
     //首页标的
     router.get('/api/v2/loans/home/summary', auth.pass());
 
-    //用户注册动态
+     //用户注册动态
     router.get('/api/v2/users/getHomeDynamicData', auth.pass());
 
     //实名认证
@@ -87,24 +90,24 @@ module.exports = function (router, auth) {
 
     //债转相关
     router.post('/api/v2/creditassign/create/:userId/:investId/:creditDealRate', auth.user());
-    router.get('/api/v2/creditassign/listForCreditAssign/:userId', auth.user());
-    router.get('/api/v2/creditassign/list', auth.pass());
-    router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass());
-    router.post('/api/v2/creditassign/cancel/:creditAssignId', auth.user());
-    router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
-    //债转转让记录
+	router.get('/api/v2/creditassign/listForCreditAssign/:userId', auth.user());
+	router.get('/api/v2/creditassign/list', auth.pass());
+	router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass());
+	router.post('/api/v2/creditassign/cancel/:creditAssignId', auth.user());
+	router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
+  //债转转让记录
     router.get('/api/v2/creditassign/list/loan/:loanId', auth.pass());
 
     //自动投标
-    router.post('/api/v2/:userId/save_autobid_config', auth.user());
-    router.post('/api/v2/resetPassword', auth.pass());
-    router.get('/api/v2/:userId/autobid_config', auth.user());
-    router.get('/api/v2/getMd5keyData/:userId', auth.user());
-    router.get('/api/v2/quickLogin/a/getUser/:mobile/:currentTime/:md5key', auth.pass());
-    router.get('/api/v2/quickLogin/:mobile/:currentTime/:md5key', auth.pass());
+    router.post('/api/v2/:userId/save_autobid_config',auth.user());
+    router.post('/api/v2/resetPassword',auth.pass());
+    router.get('/api/v2/:userId/autobid_config',auth.user());
+    router.get('/api/v2/getMd5keyData/:userId',auth.user());
+    router.get('/api/v2/quickLogin/a/getUser/:mobile/:currentTime/:md5key',auth.pass());
+    router.get('/api/v2/quickLogin/:mobile/:currentTime/:md5key',auth.pass());
 
     //退出登录日志
-    router.post('/api/v2/user/:userId/add/activity', auth.user());
+    router.post('/api/v2/user/:userId/add/activity',auth.user());
 
     //yeepay
     router.post('/api/v2/yeepay/deposit/:userId', auth.user());
@@ -117,7 +120,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/yeepay/bindCard/:userId', auth.user());
     router.post('/api/v2/yeepay/deleteCard/:userId', auth.user());
     router.post('/api/v2/yeepay/withdraw/:userId', auth.user());
-
+    
     router.post('/api/v2/yeepay/wapBankDeposit/:userId', auth.user());
     router.post('/api/v2/yeepay/onlineBankDepositNoBind/:userId', auth.user());
 };

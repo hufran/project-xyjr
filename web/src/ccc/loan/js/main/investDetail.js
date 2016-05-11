@@ -307,6 +307,49 @@ setTimeout((function () {
 
 
 					if (document.getElementById('agree').checked == true){
+                         // 问卷start
+                        if (CC.user.priv==null) {
+                            jQuery('.wenjuan').removeClass('dn').addClass('db');
+                            jQuery('.radioW').click(function(){
+                                var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
+                                jQuery('input[name="'+radioName+'"]').prop('checked',false);
+                                jQuery(this).siblings('input[type="radio"]').prop('checked',true);
+
+                            })
+                            jQuery('input.questionBtn').click(function(){
+                                var r=true;
+                                var mark=0;
+                                for (var i = 1; i < 10; i++) {
+                                    if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
+                                        r=false;
+                                    }else{
+                                        mark=mark+parseInt(jQuery('input[name="Q'+i+'"]:checked').attr('data-value'));
+                                    };
+                                    if (!r) {
+                                        jQuery('.questionTip').removeClass('dn').addClass('db');
+                                        return false;
+                                    }
+                                };
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/api/v2/users/userQuestion',
+                                    data: {
+                                        userId:CC.user.userId,
+                                        mark:mark
+                                    },
+                                    success: function(){
+                                        alert('问卷提交成功~~~');
+                                        jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                        jQuery(document).scrollTop(0);
+                                    }
+                                });
+                            })
+                            jQuery('.questionBtn.false').click(function(){
+                                jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                jQuery(document).scrollTop(0);
+                            })
+                         };
+                        // 问卷end
 						$('.agree-error').css('visibility','hidden');
                     	Confirm.create({
                         msg: '您本次投资的金额为' + num + '元，'+ couponText +'是否确认投资？',
