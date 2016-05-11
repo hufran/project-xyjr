@@ -16,10 +16,28 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         # redirectTo: '/list'
                     }
 
+
                     .when '/list/:type?', {
                         controller: 'ListCtrl as self'
                         templateUrl: 'components/router/list/list.tmpl.html'
                     }
+#                    .when '/questions', {
+#                        controller: 'QuestionCtrl as self'
+#                        templateUrl: 'components/router/questions/question.tmpl.html'
+#                    }
+
+
+                    .when '/questions/:id', {
+                        controller: 'QuestionCtrl as self'
+                        templateUrl: 'components/router/questions/question.tmpl.html'
+                        resolve:
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.get_loan_detail($route.current.params.id, false).catch ->
+                                        $location.path '/'
+                                        do $q.reject
+                    }
+
 
                     .when '/login', {
                         controller: 'LoginCtrl as self'

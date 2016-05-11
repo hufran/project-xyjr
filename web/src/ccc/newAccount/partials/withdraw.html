@@ -1,5 +1,10 @@
 <div class="ccc-banks-wrap">
     {{#if paymentPasswordHasSet}}
+        {{#if !banksabled}}
+        <div class="space-30"></div>
+        <div class="has-line" style="padding:30px 20px;">
+        您尚未绑定银行卡，请联系客服完成绑定后才可提现，客服电话：4001-718-718。</div>
+        {{else}}
     <div class="row">
         <div class="methodwr" style="text-indent:14px;">填写提现金额</div>
         <div class="space space-20"></div>
@@ -39,6 +44,7 @@
             </div>
         </div>
     </div>
+    {{/if}}
     {{else}}
     <div class="space-30"></div>
     <div class="has-line" style="padding:30px 20px;">

@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="styles/act/question.css">
+<div id="list" style="background-color: white">
+    <nav class="omit-margin container page-nav" ng-if="!isClient">
+    <div class="row">
+        <a class="col-xs-3 back" href="loan/{{loan.id}}" id="backUrl">
+            <param class="glyphicon glyphicon-menu-left">
+        </a>
+        <span class="col-xs-6 title">
+            <span>调查问卷</span>
+        </span>
+    </div>
+    </nav>
+    <!--题目列表start-->
+    <div class="questionPage" id="questionPage">
+        <div id="questions">
+        <p>尊敬的投资者：<br>
+            这份问卷旨在协助您了解自己在投资时的风险偏好及对投资风险的承受度，同时也便于我们为您提供更准确的投资服务 ,问卷结果可能不能完全呈现您在面对投资风险时的真正态度，但是可提供您一些衡量自身风险属性的指标。
+        <form id="formQues" name="formQues">
+        <ul>
+            <li>1、 您的年龄？<br>
+                <label><input type="radio" name="ques1" value="1">18—25周岁</label>
+                <label><input type="radio" name="ques1" value="2">26—40周岁</label>
+                <label><input type="radio" name="ques1" value="3">41—60周岁</label>
+                <label><input type="radio" name="ques1" value="4">60周岁以上</label>
+            </li>
+            <li style="display: none;">2、 您目前的职业状况是？<br>
+                <label><input type="radio" name="ques2" value="1">无业或已退休</label>
+                <label><input type="radio" name="ques2" value="2">自由职业</label>
+                <label><input type="radio" name="ques2" value="3">民营企业白领</label>
+                <label><input type="radio" name="ques2" value="4">自营事业</label>
+                <label><input type="radio" name="ques2" value="5">国企事业单位</label>
+            </li>
+            <li style="display: none;">3、 您的家庭收入为（税后折合人民币）？
+                <label><input type="radio" name="ques3" value="1">5—10万元</label>
+                <label><input type="radio" name="ques3" value="2">10—20万元</label>
+                <label><input type="radio" name="ques3" value="3">20—30万元</label>
+                <label><input type="radio" name="ques3" value="4">30万元以上</label>
+            </li>
+            <li style="display: none;">4、 在您每年的家庭收入中，可用于金融投资（储蓄存款除外）的比例为？
+                <label><input type="radio" name="ques4" value="1">小于10%</label>
+                <label><input type="radio" name="ques4" value="2">10%—25%</label>
+                <label><input type="radio" name="ques4" value="3">25%—50%</label>
+                <label><input type="radio" name="ques4" value="4">50%以上</label>
+            </li>
+            <li style="display: none;">5、 您有多少年非保本类金融产品投资的经验？
+                <label><input type="radio" name="ques5" value="1">没有经验</label>
+                <label><input type="radio" name="ques5" value="2">1—2年</label>
+                <label><input type="radio" name="ques5" value="3">2—5年</label>
+                <label><input type="radio" name="ques5" value="4">5年以上</label>
+            </li>
+            <li style="display: none;">6、 以下哪项描述最符合您的投资态度？
+                <label><input type="radio" name="ques6" value="1">厌恶风险，不希望本金损失，希望获得稳定回报</label>
+                <label><input type="radio" name="ques6" value="2">保守投资，不希望本金损失，愿意承担一定幅度的收益波动</label>
+                <label><input type="radio" name="ques6" value="3">寻求资金的较高收益和成长性，愿意为此承担有限本金损失</label>
+                <label><input type="radio" name="ques6" value="4">希望赚取高回报，能接受为期较长期间的负面波动，包括本金损失</label>
+            </li>
+            <li style="display: none;">7、 您有多少年p2p产品的投资经验？
+                <label><input type="radio" name="ques7" value="1">刚刚开始</label>
+                <label><input type="radio" name="ques7" value="2">半年以内</label>
+                <label><input type="radio" name="ques7" value="3">一年以内</label>
+                <label><input type="radio" name="ques7" value="4">一年以上</label>
+            </li>
+            <li style="display: none;">8、 哪项能说明您的投资经验？
+                <label><input type="radio" name="ques8" value="1">只投资过银行存款、国债</label>
+                <label><input type="radio" name="ques8" value="2">大部分投资于银行存款、国债，较少投资于股票、基金等风险产品</label>
+                <label><input type="radio" name="ques8" value="3">资产均衡地分布于存款、国债、银行理财、信托、股票、基金等</label>
+                <label><input type="radio" name="ques8" value="4">大部分投资于股票、外汇、金融衍生产品等风险产品，较少投资于银行存款、国债</label>
+            </li>
+            <li style="display: none;">9、您的投资目的是？
+                <label><input type="radio" name="ques9" value="1">资产保值</label>
+                <label><input type="radio" name="ques9" value="2">资产稳健增值</label>
+                <label><input type="radio" name="ques9" value="3">资产迅速增值</label>
+            </li>
+            <li style="display: none;">10、您投资产品的价值出现何种程度的波动时，您会呈现明显的焦虑？
+                <label><input type="radio" name="ques10" value="1">本金无损失，但收益未达预期</label>
+                <label><input type="radio" name="ques10" value="2">本金5%以内的损失</label>
+                <label><input type="radio" name="ques10" value="4">本金5%-20%损失</label>
+                <label><input type="radio" name="ques10" value="6">本金5%-20%损失</label>
+                <label><input type="radio" name="ques10" value="9">本金50%以上损失</label>
+            </li>
+        </ul>
+        </form>
+        <!--题目列表end-->
+         <!--{{self.user}}-->
+        <div class="aButtons">
+            <a href="loan/{{loan.id}}/invest" onclick="igNore()">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a>
+            <div class="clearBoth"></div>
+        </div>
+        </div>
+        <div  id="result" style="display: none;">
+            尊敬的客户：<br>
+            您当前的风险承受能力评价：<span id="lastMark">三级（中庸型）</span>
+            <div class="buttonOperator">
+            <a href="javascript:ReEvaluation()">重新评估</a><a href="loan/{{loan.id}}/invest">马上支付</a>
+            </div>
+            <div class="clearBoth"></div>
+        </div>
+    </div>
+    <!--</form>-->
+    <input type="hidden" value="0" id="index">
+    <input type="hidden" value="{{self.user.info.id||clientUserId}}" id="userId">
+    <input type="hidden" value="{{loan.id}}" id="loanId">
+</div>
