@@ -99,7 +99,7 @@ function ReEvaluation(){
     if(loanId == ""){
         aHref = "loan/client"
     }else{
-        aHref = "loan/"+loanId;
+        aHref = "loan/"+loanId+"/invest";
     }
     $(".aButtons").html('<a href="'+aHref+'" onclick="igNore()">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
     $("#questionPage ul li").eq(0).show();
