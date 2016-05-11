@@ -18,10 +18,10 @@
         <form id="formQues" name="formQues">
         <ul>
             <li>1、 您的年龄？<br>
-                <label><input type="radio" name="ques1" value="1">&nbsp;18—25周岁</label>
-                <label><input type="radio" name="ques1" value="2">&nbsp;26—40周岁</label>
-                <label><input type="radio" name="ques1" value="3">&nbsp;41—60周岁</label>
-                <label><input type="radio" name="ques1" value="4">&nbsp;60周岁以上</label>
+                <label><input type="radio" name="ques1" value="1">18—25周岁</label>
+                <label><input type="radio" name="ques1" value="2">26—40周岁</label>
+                <label><input type="radio" name="ques1" value="3">41—60周岁</label>
+                <label><input type="radio" name="ques1" value="4">60周岁以上</label>
             </li>
             <li style="display: none;">2、 您目前的职业状况是？<br>
                 <label><input type="radio" name="ques2" value="1">无业或已退休</label>
@@ -95,6 +95,6 @@
     </div>
     <!--</form>-->
     <input type="hidden" value="0" id="index">
-    <input type="text" value="{{self.user.info.id||clientUserId}}" id="userId">
-    <input type="text" value="{{loan.id}}" id="loanId">
+    <input type="hidden" value="{{self.user.info.id||clientUserId}}" id="userId">
+    <input type="hidden" value="{{loan.id}}" id="loanId">
 </div>

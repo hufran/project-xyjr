@@ -1,11 +1,13 @@
-.questionPage{margin:0rem 1rem;font-size:0.3733333333333333rem;padding-top:0.5rem;line-height:0.6rem}
-.questionPage p{font-weight:bold;line-height:0.8rem}
-.questionPage ul{line-height: 1rem;list-style-type: none;padding:0.5rem 0;margin:0;border-top:0.0266666666666667rem dashed #e3e2e2;border-bottom:0.0266666666666667rem dashed #e3e2e2;}
-.questionPage ul li label{display:block}
-.questionPage ul li label input{margin-right:0.2rem}
+.questionPage{margin:0rem 1rem;font-size:0.3733333333333333rem;padding-top:0.5rem;line-height:0.6rem;font-family: "华文细黑","Helvetica", "Arial", "Verdana", "Hiragino Sans GB", "STHeiti", "sans-serif"}
+.questionPage p{font-weight:bold;line-height:0.6rem;letter-spacing:0.03rem;color:#3e3e3e;margin-top:-0.3rem}
+.questionPage ul{line-height: 1rem;list-style-type: none;padding:0.2rem 0;margin:0;border-top:0.0266666666666667rem dashed #e3e2e2;border-bottom:0.0266666666666667rem dashed #e3e2e2;font-size:0.4266666666666667rem;color:#909090}
+.questionPage ul li label{display:block;color:#666666}
+.questionPage ul li label input{margin-right:0.4rem}
 .aButtons{text-align: center;margin-top:1rem}
-.aButtons a,#result a{display:block;width:2.5rem;height:1rem;line-height:1rem; text-align:center;background-color:#669df8;color:#FFF;-moz-border-radius: 0.1333333333333333rem;      /* Gecko browsers */
-    -webkit-border-radius:0.1333333333333333rem; border-radius:0.1333333333333333rem;float:left;margin-left:1.5rem}
+.aButtons a,#result a{display:block;width:auto;height:1rem;line-height:1rem; text-align:center;background-color:#669df8;color:#FFF;-moz-border-radius: 0.1333333333333333rem;      /* Gecko browsers */
+   -webkit-border-radius:0.1333333333333333rem; border-radius:0.1333333333333333rem; display:inline-block;font-size:0.4266666666666667rem;padding:0 0.5rem;letter-spacing:0.06rem} /*float:left;*/
+.aButtons a:first-child{margin-right:0.5rem;}
+/*.aButtons a:last-child{margin-left:0.4rem;}*/
 #result{padding-bottom:2rem}
 #result a{width:3rem; margin:8rem auto 2rem;width:85%; float: none;}
 .ng-isolate-scope{display:none}
