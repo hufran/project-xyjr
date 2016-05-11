@@ -2,6 +2,7 @@
  * Created by Gloria on 2016/5/9.
  */
 function goNext(obj,direction) {
+    window.scrollTo(0,0);
     var i = $("#index").val()*1;
     var $ul = $("ul");
     var $li = $("ul li");
