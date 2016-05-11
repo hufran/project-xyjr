@@ -13,3 +13,5 @@
 /*#result a{width:3rem; margin:8rem auto 2rem;width:85%; float: none;}*/
 .ng-isolate-scope{display:none}
 .clearBoth{clear:both;margin-bottom:2rem}
+.col-xs-3{width:20%}
+.col-xs-6{width:65%}
