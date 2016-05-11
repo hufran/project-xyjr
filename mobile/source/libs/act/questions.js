@@ -96,6 +96,7 @@ function ReEvaluation(){
     $("#formQues")[0].reset();
     $("#questionPage ul li").hide();
     var loanId = $("#loanId").val();
+    $("#index").val("0");
     var aHref = "";
     if(loanId == ""){
         aHref = "loan/client"
