@@ -475,10 +475,10 @@ setTimeout((function () {
     //显示返现金额
     investRactive.on('rebate',function(){
         jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^0-9]/g,''))
-        //var inpNum=parseInt(jQuery('.calculator input[type="text"]').val());
         var inpNum = investRactive.get('inputNum');
         if (inpNum>CC.loan.rule.balance) {
-           inpNum= CC.loan.rule.balance;
+            investRactive.set('inputNum', CC.loan.rule.balance);
+            inpNum= CC.loan.rule.balance;
         }
         
         if (jQuery('#couponSelection').find("option:selected").val()=='返现券'&&isNaN(inpNum)==false) {
