@@ -43,8 +43,25 @@ function goNext(obj,direction) {
         }
     }
 }
-function igNore(){
-    $("#backUrl").click();
+function igNore(argu){
+    var subStr = "token";
+    var index = location.href.indexOf(subStr);
+    if(index!=-1){
+        funSurveyResults(argu);
+    }
+}
+function funSurveyResults(code){
+    var priv = null;
+    if(code == 1){
+        var priv = $("#mark").val();
+    }
+    var substr = "android";
+    var index = location.href.indexOf(substr);
+    if(index != -1){
+        window.AndroidWebView.showCode(code,priv);
+    }else{
+        showCode(code,priv);
+    }
 }
 function submitForm(){
    //? $("#form1").submit();
@@ -64,6 +81,7 @@ function submitForm(){
 
     var mark = formQues.ques1.value*1 +formQues.ques2.value*1 +formQues.ques3.value*1 +formQues.ques4.value*1 +formQues.ques5.value*1 +
         formQues.ques6.value*1 +formQues.ques7.value*1 +formQues.ques8.value*1 +formQues.ques9.value*1 +formQues.ques10.value*1;
+
     if(mark>=10 && mark<=16){
         investType = "（一级）保守型";
     }else if(mark>=17 && mark<=23){
@@ -86,8 +104,10 @@ function submitForm(){
                 $("#questions").hide();
                 $("#lastMark").html(investType);
                 $("#result").show();
+                $("#mark").val(mark);
             }else{
-                alert(data.msg)
+                alert(data.msg);
+                igNore(2);
             }
         }
     });
@@ -108,3 +128,4 @@ function ReEvaluation(){
     $("#result").hide();
     $("#questions").show();
 }
+
