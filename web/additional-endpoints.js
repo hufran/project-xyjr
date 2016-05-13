@@ -47,7 +47,8 @@ module.exports = function (router, auth) {
     //红包功能 add by Jude end
     router.post('/api/v2/users/mobile/encrypt', auth.pass());
     //调查问卷 add by Jude
-    router.post('/api/v2/users/userQuestion', auth.pass());
+    router.post('/api/v2/users/userQuestion', auth.pass());//提交调查问卷结果
+    router.get('/api/v2/users/userQuestion/getMark/:userId', auth.pass());//登录之后查询问卷分数
 
     //积分
     router.get('/api/v2/points/user/:userId/getTotalPoints', auth.user());
