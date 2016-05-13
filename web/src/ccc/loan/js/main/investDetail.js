@@ -308,7 +308,7 @@ setTimeout((function () {
 
 					if (document.getElementById('agree').checked == true){
                          // 问卷start
-                        if (CC.user.priv==null) {
+                        if (CC.user.priv==null&&getCookie('question')==null) {
                             jQuery('.wenjuan').removeClass('dn').addClass('db');
                             jQuery('.radioW').click(function(){
                                 var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
@@ -353,10 +353,12 @@ setTimeout((function () {
                                         }else if(mark>=39&&mark<=45){
                                             jQuery('.resultInfor span').html("五级（进取型）");
                                         };
+                                        setCookie('question','questionTrue');
                                         jQuery('.returnWenjuan div').click(function(){
                                             jQuery('.questionTit').removeClass('result');
                                             jQuery('.resultInfor').removeClass('db').addClass('dn');
                                             jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                            jQuery('.questionTip').removeClass('db').addClass('dn');
                                             jQuery('.questionBox').removeClass('dn').addClass('db');
                                         })
                                                                             
@@ -365,10 +367,14 @@ setTimeout((function () {
                             })
                             jQuery('.questionBtn.false').click(function(){
                                 jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                jQuery('.questionTip').removeClass('db').addClass('dn');
                                 jQuery(document).scrollTop(0);
                             })
                             jQuery('.wenjuanClose').click(function(){
                                 jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                jQuery('.questionTip').removeClass('db').addClass('dn');
                                 jQuery(document).scrollTop(0);
                             })
                          };
@@ -946,7 +952,21 @@ function mask (str, s, l) {
 	str = str.substring(0, len);
 	return str;
 }
-
+function setCookie(name,value)
+    {
+        var Days = 30;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        document.cookie = name + "="+ escape(value) + ";expires=" + exp.toGMTString();
+    }
+function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg))
+          return unescape(arr[2]);
+        else
+          return null;
+    }
 
 
 
