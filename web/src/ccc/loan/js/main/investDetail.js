@@ -354,12 +354,18 @@ setTimeout((function () {
                                             jQuery('.resultInfor span').html("五级（进取型）");
                                         };
                                         setCookie('question','questionTrue');
-                                        jQuery('.returnWenjuan div').click(function(){
+                                        jQuery('.returnWenjuan').click(function(){
                                             jQuery('.questionTit').removeClass('result');
                                             jQuery('.resultInfor').removeClass('db').addClass('dn');
                                             jQuery('.questionBox input[type=radio]').prop('checked',false);
                                             jQuery('.questionTip').removeClass('db').addClass('dn');
                                             jQuery('.questionBox').removeClass('dn').addClass('db');
+                                        })
+                                        jQuery('.returnPay').click(function(){
+                                            jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                            jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                            jQuery('.questionTip').removeClass('db').addClass('dn');
+                                            jQuery(document).scrollTop(0);
                                         })
                                                                             
                                     }
