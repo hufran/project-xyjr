@@ -4,7 +4,7 @@
 <p class="left-money-credit">账户余额：<a href="/login">登录</a>后可见</p>
 <div class="money-brame-box" style="margin-left:30px;">
     <span class="money-brame-title">投资金额：</span>
-    <input type="text" class="money-brame" value="{{ inputNum }}" />
+    <input type="text" class="money-brame" value="{{creditassign.creditassign.creditDealAmount||loan.amount}}" />
     <span class="totalInterest">预估收益：{{planEarning}}元</span>
 </div>
 <a href="/login" style="text-decoration: none;">
@@ -27,7 +27,7 @@
                 <div class="calculator">
                     <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span>
                     <input type="hidden" name="loanId" value="{{loan.id}}">
-                    <input placeholder="{{loan.rule.min}}" name="amount" type="text" value="{{ inputNum }}"
+                    <input placeholder="{{loan.rule.min}}" name="amount" type="text" value="{{creditassign.creditassign.creditDealAmount||loan.amount}}"
                     on-blur="getCoupon" />
                     <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span>
                 </div>
@@ -53,7 +53,7 @@
                     <div class="calculatorBox">
                         <div class="money-brame-box">
                             <span class="money-brame-title">投资金额：</span>
-                            <input type="text" class="money-brame" value="{{inputNum}}" readonly/>
+                            <input type="text" class="money-brame" value="{{creditassign.creditassign.creditDealAmount||loan.amount}}" readonly/>
                             <span class="totalInterest">预估收益：{{planEarning}}元</span>
                         </div>
 
