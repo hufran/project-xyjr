@@ -17,8 +17,15 @@ function goNext(obj,direction) {
         $(".aButtons a").eq(0).html("跳过调查问卷");
         $(obj).removeAttr("onclick").unbind("click");
         $(obj).bind("click", function () {
-            $(obj).attr("href","loan/"+$("#loanId").val())
+            var subStr = "token";
+            var index = location.href.indexOf(subStr);
+            if(index!=-1){
+                igNore(3);
+            }else{
+            $(obj).attr("href","loan/"+$("#loanId").val()+"/invest");
+            }
         })
+
     } else if (i * 1 + direction >= 9) {
         $(obj).removeAttr("onclick").unbind("click");
         $(".aButtons a").eq(1).html("提&nbsp;交");
@@ -117,7 +124,7 @@ function ReEvaluation(){
     }else{
         aHref = "loan/"+loanId+"/invest";
     }
-    $(".aButtons").html('<a href="'+aHref+'" onclick="igNore()">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
     $("#questionPage ul li").eq(0).show();
     $("#result").hide();
     $("#questions").show();
