@@ -102,10 +102,20 @@ for(var i=0;i<$("ul li input:checked").length;i++){
         },
         success: function(data){
             if(data.status == 0){
-                $("#questions").hide();
-                $("#lastMark").html(investType);
-                $("#result").show();
-                $("#mark").val(mark);
+                var subStr = "token";
+                var index = location.href.indexOf(subStr);
+                if(index!=-1){
+                    $("#questions").hide();
+                    $("#lastMark").html(investType);
+                    $("#result").show();
+                    $("#mark").val(mark);
+                    funSurveyResults(4);
+                }else{
+                    $("#questions").hide();
+                    $("#lastMark").html(investType);
+                    $("#result").show();
+                    $("#mark").val(mark);
+                }
             }else{
                 alert(data.msg);
                 igNore(2);
