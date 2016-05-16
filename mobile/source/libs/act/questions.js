@@ -22,10 +22,15 @@ function goNext(obj,direction) {
     } else if (i * 1 + direction >= 9) {
         $(obj).removeAttr("onclick").unbind("click");
         $(".aButtons a").eq(1).html("提&nbsp;交");
-        $(obj).bind("click", function () {
-            //alert("提交ing！");
+        $(".aButtons a").eq(1).unbind("click").bind("click", function () {
+            //alert(0);
             submitForm();
         })
+        //$(obj).bind("click", function () {
+        //    //alert("提交ing！");
+        //    alert("点击提交");
+        //    submitForm();
+        //})
     } else {
         if (i * 1 + direction == 1 && direction == 1) {
             $(".aButtons a").eq(0).html("上一步");
@@ -64,24 +69,12 @@ function funSurveyResults(code){
     }
 }
 function submitForm(){
-   //? $("#form1").submit();
-   // caculateMark();
-    var mark1 = formQues.ques1.value;
-    var mark2 = formQues.ques2.value;
-    var mark3 = formQues.ques3.value;
-    var mark4 = formQues.ques4.value;
-    var mark5 = formQues.ques5.value;
     var userId = $("#userId").val();
     var investType = "";
-    //if(userId == ""){
-    //    window.location.href = "/login";;
-    //}else{
-    //
-    //}
-
-    var mark = formQues.ques1.value*1 +formQues.ques2.value*1 +formQues.ques3.value*1 +formQues.ques4.value*1 +formQues.ques5.value*1 +
-        formQues.ques6.value*1 +formQues.ques7.value*1 +formQues.ques8.value*1 +formQues.ques9.value*1 +formQues.ques10.value*1;
-
+    var mark = 0;
+for(var i=0;i<$("ul li input:checked").length;i++){
+    mark += parseInt($("ul li input:checked").eq(i).val());
+}
     if(mark>=10 && mark<=16){
         investType = "（一级）保守型";
     }else if(mark>=17 && mark<=23){
@@ -96,11 +89,12 @@ function submitForm(){
     $.ajax({
         type: "POST",
         url: "/api/v2/users/userQuestion",
-        data: "userId="+userId+"&mark="+mark,
+        data:{
+            userId:userId,
+            mark:mark
+        },
         success: function(data){
-            //alert(data.status)
             if(data.status == 0){
-                //alert("提交成功！");
                 $("#questions").hide();
                 $("#lastMark").html(investType);
                 $("#result").show();
