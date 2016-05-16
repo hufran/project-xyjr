@@ -486,7 +486,7 @@ setTimeout((function () {
     });
     //显示返现金额
     investRactive.on('rebate',function(){
-        jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^0-9]/g,''))
+        jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^\d.]/g,"").replace(/^\./g,"").replace(/\.{2,}/g,".").replace(".","$#$").replace(/\./g,"").replace("$#$","."))
         var inpNum = investRactive.get('inputNum');
         if (inpNum>CC.loan.rule.balance) {
             investRactive.set('inputNum', CC.loan.rule.balance);
