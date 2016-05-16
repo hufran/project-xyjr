@@ -23,14 +23,14 @@ function goNext(obj,direction) {
         $(obj).removeAttr("onclick").unbind("click");
         $(".aButtons a").eq(1).html("提&nbsp;交");
         $(".aButtons a").eq(1).unbind("click").bind("click", function () {
-            //alert(0);
-            submitForm();
+            var currentRadio = $li.eq($("#index").val()).find('input:radio:checked');
+            if(currentRadio.length == 0 && direction == 1){
+                alert("请选择！")
+                return;
+            }else{
+                submitForm();
+            }
         })
-        //$(obj).bind("click", function () {
-        //    //alert("提交ing！");
-        //    alert("点击提交");
-        //    submitForm();
-        //})
     } else {
         if (i * 1 + direction == 1 && direction == 1) {
             $(".aButtons a").eq(0).html("上一步");
