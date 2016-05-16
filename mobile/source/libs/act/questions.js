@@ -124,7 +124,8 @@ function ReEvaluation(){
     }else{
         aHref = "loan/"+loanId+"/invest";
     }
-    $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    //提交过
+    $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(4)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
     $("#questionPage ul li").eq(0).show();
     $("#result").hide();
     $("#questions").show();
