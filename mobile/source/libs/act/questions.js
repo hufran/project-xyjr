@@ -145,4 +145,11 @@ function ReEvaluation(){
 function goBack(){
     window.location.href = "loan/"+$("#loanId").val();
 }
+function refreshPage(){
+    var subStr = "source";
+    var index = location.href.indexOf(subStr);
+    if(index!=-1){
+        location.reload();
+    }
+}
 
