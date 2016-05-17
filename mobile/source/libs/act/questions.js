@@ -20,9 +20,9 @@ function goNext(obj,direction) {
             var subStr = "token";
             var index = location.href.indexOf(subStr);
             if(index!=-1){
-                igNore(3);
+                funSurveyResults(3);
             }else{
-            $(obj).attr("href","loan/"+$("#loanId").val()+"/invest");
+                $(obj).attr("href","loan/"+$("#loanId").val()+"/invest");
             }
         })
 
@@ -79,7 +79,7 @@ function submitForm(){
     var userId = $("#userId").val();
     var investType = "";
     var mark = 0;
-for(var i=0;i<$("ul li input:checked").length;i++){
+    for(var i=0;i<$("ul li input:checked").length;i++){
     mark += parseInt($("ul li input:checked").eq(i).val());
 }
     if(mark>=10 && mark<=16){
@@ -93,6 +93,8 @@ for(var i=0;i<$("ul li input:checked").length;i++){
     }else if(mark>=39 && mark<=45){
         investType = "（五级）进取型";
     }
+    var subStr = "token";
+    var index = location.href.indexOf(subStr);
     $.ajax({
         type: "POST",
         url: "/api/v2/users/userQuestion",
@@ -102,8 +104,6 @@ for(var i=0;i<$("ul li input:checked").length;i++){
         },
         success: function(data){
             if(data.status == 0){
-                var subStr = "token";
-                var index = location.href.indexOf(subStr);
                 if(index!=-1){
                     $("#questions").hide();
                     $("#lastMark").html(investType);
@@ -118,28 +118,29 @@ for(var i=0;i<$("ul li input:checked").length;i++){
                 }
             }else{
                 alert(data.msg);
-                igNore(2);
+                if(index!=-1){
+                    funSurveyResults(2)
+                }
             }
         }
     });
 }
 function ReEvaluation(){
-    //$("#formQues")[0].reset();
-    //$("#questionPage ul li").hide();
-    //var loanId = $("#loanId").val();
-    //$("#index").val("0");
-    //var aHref = "";
-    //if(loanId == ""){
-    //    aHref = "loan/client"
-    //}else{
-    //    aHref = "loan/"+loanId+"/invest";
-    //}
-    ////提交过
-    //$(".aButtons").html('<a href="'+aHref+'" onclick="igNore(4)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
-    //$("#questionPage ul li").eq(0).show();
-    //$("#result").hide();
-    //$("#questions").show();
-    location.reload();
+    $("#formQues")[0].reset();
+    $("#questionPage ul li").hide();
+    var loanId = $("#loanId").val();
+    $("#index").val("0");
+    var aHref = "";
+    if(loanId == ""){
+        aHref = "loan/client"
+    }else{
+        aHref = "loan/"+loanId+"/invest";
+    }
+    //提交过
+    $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    $("#questionPage ul li").eq(0).show();
+    $("#result").hide();
+    $("#questions").show();
 }
 function goBack(){
     window.location.href = "loan/"+$("#loanId").val();
