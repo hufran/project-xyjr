@@ -124,21 +124,22 @@ for(var i=0;i<$("ul li input:checked").length;i++){
     });
 }
 function ReEvaluation(){
-    $("#formQues")[0].reset();
-    $("#questionPage ul li").hide();
-    var loanId = $("#loanId").val();
-    $("#index").val("0");
-    var aHref = "";
-    if(loanId == ""){
-        aHref = "loan/client"
-    }else{
-        aHref = "loan/"+loanId+"/invest";
-    }
-    //提交过
-    $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(4)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
-    $("#questionPage ul li").eq(0).show();
-    $("#result").hide();
-    $("#questions").show();
+    //$("#formQues")[0].reset();
+    //$("#questionPage ul li").hide();
+    //var loanId = $("#loanId").val();
+    //$("#index").val("0");
+    //var aHref = "";
+    //if(loanId == ""){
+    //    aHref = "loan/client"
+    //}else{
+    //    aHref = "loan/"+loanId+"/invest";
+    //}
+    ////提交过
+    //$(".aButtons").html('<a href="'+aHref+'" onclick="igNore(4)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    //$("#questionPage ul li").eq(0).show();
+    //$("#result").hide();
+    //$("#questions").show();
+    location.reload();
 }
 function goBack(){
     window.location.href = "loan/"+$("#loanId").val();
