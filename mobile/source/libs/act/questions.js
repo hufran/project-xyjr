@@ -1,14 +1,14 @@
 /**
  * Created by Gloria on 2016/5/9.
  */
-function goNext(obj, direction) {
-    window.scrollTo(0, 0);
-    var i = $("#index").val() * 1;
+function goNext(obj,direction) {
+    window.scrollTo(0,0);
+    var i = $("#index").val()*1;
     var $ul = $("ul");
     var $li = $("ul li");
     var currentRadio = $li.eq(i).find('input:radio:checked');
-    if (currentRadio.length == 0 && direction == 1) {
-        alert("请选择！")
+    if(currentRadio.length == 0 && direction == 1){
+     alert("请选择！")
         return;
     }
     $("#index").val(i * 1 + direction);
@@ -19,10 +19,10 @@ function goNext(obj, direction) {
         $(obj).bind("click", function () {
             var subStr = "token";
             var index = location.href.indexOf(subStr);
-            if (index != -1) {
+            if(index!=-1){
                 igNore(3);
-            } else {
-                $(obj).attr("href", "loan/" + $("#loanId").val() + "/invest");
+            }else{
+            $(obj).attr("href","loan/"+$("#loanId").val()+"/invest");
             }
         })
 
@@ -31,10 +31,10 @@ function goNext(obj, direction) {
         $(".aButtons a").eq(1).html("提&nbsp;交");
         $(".aButtons a").eq(1).unbind("click").bind("click", function () {
             var currentRadio = $li.eq($("#index").val()).find('input:radio:checked');
-            if (currentRadio.length == 0 && direction == 1) {
+            if(currentRadio.length == 0 && direction == 1){
                 alert("请选择！")
                 return;
-            } else {
+            }else{
                 submitForm();
             }
         })
@@ -43,7 +43,7 @@ function goNext(obj, direction) {
             $(".aButtons a").eq(0).html("上一步");
             $(".aButtons a").eq(0).removeAttr("onclick").removeAttr("href").unbind("click");
             $(".aButtons a").eq(0).bind("click", function () {
-                goNext(this, -1)
+                goNext(this,-1)
             });
         }
         if (i == 9) {
@@ -55,92 +55,93 @@ function goNext(obj, direction) {
         }
     }
 }
-function igNore(argu) {
+function igNore(argu){
     var subStr = "token";
     var index = location.href.indexOf(subStr);
-    if (index != -1) {
+    if(index!=-1){
         funSurveyResults(argu);
     }
 }
-function funSurveyResults(code) {
+function funSurveyResults(code){
     var priv = null;
-    if (code == 1 || code == 4) {
+    if(code == 1||code == 4){
         var priv = $("#mark").val();
     }
     var substr = "android";
     var index = location.href.indexOf(substr);
-    if (index != -1) {
-        window.AndroidWebView.showCode(code, priv);
-    } else {
-        showCode(code, priv);
+    if(index != -1){
+        window.AndroidWebView.showCode(code,priv);
+    }else{
+        showCode(code,priv);
     }
 }
-function submitForm() {
+function submitForm(){
     var userId = $("#userId").val();
     var investType = "";
     var mark = 0;
-    for (var i = 0; i < $("ul li input:checked").length; i++) {
-        mark += parseInt($("ul li input:checked").eq(i).val());
-    }
-    if (mark >= 10 && mark <= 16) {
+for(var i=0;i<$("ul li input:checked").length;i++){
+    mark += parseInt($("ul li input:checked").eq(i).val());
+}
+    if(mark>=10 && mark<=16){
         investType = "（一级）保守型";
-    } else if (mark >= 17 && mark <= 23) {
+    }else if(mark>=17 && mark<=23){
         investType = "（二级）中庸保守型";
-    } else if (mark >= 24 && mark <= 31) {
+    }else if(mark>=24 && mark<=31){
         investType = "（三级）中庸型";
-    } else if (mark >= 32 && mark <= 38) {
+    }else if(mark>=32 && mark<=38){
         investType = "（四级）中庸进取型";
-    } else if (mark >= 39 && mark <= 45) {
+    }else if(mark>=39 && mark<=45){
         investType = "（五级）进取型";
     }
     $.ajax({
         type: "POST",
         url: "/api/v2/users/userQuestion",
-        data: {
-            userId: userId,
-            mark: mark
+        data:{
+            userId:userId,
+            mark:mark
         },
-        success: function (data) {
-            if (data.status == 0) {
+        success: function(data){
+            if(data.status == 0){
                 var subStr = "token";
                 var index = location.href.indexOf(subStr);
-                if (index != -1) {
+                if(index!=-1){
                     $("#questions").hide();
                     $("#lastMark").html(investType);
                     $("#result").show();
                     $("#mark").val(mark);
                     funSurveyResults(4);
-                } else {
+                }else{
                     $("#questions").hide();
                     $("#lastMark").html(investType);
                     $("#result").show();
                     $("#mark").val(mark);
                 }
-            } else {
+            }else{
                 alert(data.msg);
                 igNore(2);
             }
         }
     });
 }
-function ReEvaluation() {
-    $("#formQues")[0].reset();
-    $("#questionPage ul li").hide();
-    var loanId = $("#loanId").val();
-    $("#index").val("0");
-    var aHref = "";
-    if (loanId == "") {
-        aHref = "loan/client"
-    } else {
-        aHref = "loan/" + loanId + "/invest";
-    }
-    //提交过
-    $(".aButtons").html('<a href="' + aHref + '" onclick="igNore(4)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
-    $("#questionPage ul li").eq(0).show();
-    $("#result").hide();
-    $("#questions").show();
+function ReEvaluation(){
+    //$("#formQues")[0].reset();
+    //$("#questionPage ul li").hide();
+    //var loanId = $("#loanId").val();
+    //$("#index").val("0");
+    //var aHref = "";
+    //if(loanId == ""){
+    //    aHref = "loan/client"
+    //}else{
+    //    aHref = "loan/"+loanId+"/invest";
+    //}
+    ////提交过
+    //$(".aButtons").html('<a href="'+aHref+'" onclick="igNore(4)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    //$("#questionPage ul li").eq(0).show();
+    //$("#result").hide();
+    //$("#questions").show();
+    location.reload();
 }
-function goBack() {
-    window.location.href = "loan/" + $("#loanId").val();
+function goBack(){
+    window.location.href = "loan/"+$("#loanId").val();
 }
 
