@@ -64,7 +64,7 @@ function igNore(argu){
 }
 function funSurveyResults(code){
     var priv = null;
-    if(code == 1){
+    if(code == 1||code == 4){
         var priv = $("#mark").val();
     }
     var substr = "android";
@@ -139,5 +139,8 @@ function ReEvaluation(){
     $("#questionPage ul li").eq(0).show();
     $("#result").hide();
     $("#questions").show();
+}
+function goBack(){
+    window.location.href = "loan/"+$("#loanId").val();
 }
 
