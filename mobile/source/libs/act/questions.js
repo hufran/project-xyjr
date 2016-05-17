@@ -149,7 +149,7 @@ function refreshPage(){
     var subStr = "source";
     var index = location.href.indexOf(subStr);
     if(index!=-1){
-        location.reload();
+        window.location.href = "loan/"+$("#loanId").val();
     }
 }
 
