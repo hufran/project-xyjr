@@ -345,12 +345,18 @@ function init(status) {
                 });
 
                 $("#mask-layer-wraper").show();
+                var feeNum=0;
+                jQuery('#fee').html(feeNum);
                 $.ajax({
                     type: 'GET',
                     url: '/api/v2/accountRate',
                     success: function(data){
-                        var feeNum=parseFloat(amount*data).toFixed(2)
-                        jQuery('#fee').html(feeNum);
+                        jQuery('#creditDealRate').on('input',function(){
+                            var creditDealRate = $("#creditDealRate").val(); 
+                            feeNum=parseFloat(amount*data*creditDealRate).toFixed(2)
+                            jQuery('#fee').html(feeNum);
+                        })
+                        
 
                     }
                 });
