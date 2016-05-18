@@ -181,7 +181,8 @@ setTimeout((function () {
             name: '',
             user: CC.user,
             loan: CC.loan,
-            inputNum: CC.loan.rule.min,
+            //inputNum: CC.loan.rule.min,
+            inputNum: CC.creditassign.creditassign.creditDealAmount,
             planEarning: CC.creditassign.creditassign.amountInterest.toFixed(2),
             rate: utils.format.percent(CC.loan.investPercent *
                 100, 2),
@@ -244,9 +245,9 @@ setTimeout((function () {
         var num = parseFloat(this.get('inputNum'));
         //var num =creditassign.creditassign.creditDealAmount||loan.amount;
         num = num - parseFloat(CC.loan.rule.step);
-        if (num < CC.loan.rule.min) {
-            return;
-        }
+        // if (num < CC.loan.rule.min) {
+        //     return;
+        // }
         investRactive.set('inputNum', num);
         showSelect(num);
     });
@@ -258,16 +259,16 @@ setTimeout((function () {
             return;
         }
         var num = parseFloat(this.get('inputNum'));
-        if (num < CC.loan.rule.min) {
-            num = CC.loan.rule.min;
-        } else {
-            num = num + parseFloat(CC.loan.rule.step);
-        }
-        if (num > CC.loan.rule.max) {
-            return;
-        }
-        investRactive.set('inputNum', num);
-        showSelect(num);
+        // if (num < CC.loan.rule.min) {
+        //     num = CC.loan.rule.min;
+        // } else {
+        //     num = num + parseFloat(CC.loan.rule.step);
+        // }
+        // if (num > CC.loan.rule.max) {
+        //     return;
+        // }
+        // investRactive.set('inputNum', num);
+        // showSelect(num);
     });
 
 
@@ -306,6 +307,7 @@ setTimeout((function () {
            return false;
          }
         if(num!=this.get('creditassign.creditassign.creditDealAmount')){
+            alert(num);
             showErrors('此债转只能一次全额转让');
             return false;
         }
