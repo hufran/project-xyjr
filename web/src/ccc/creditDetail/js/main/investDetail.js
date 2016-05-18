@@ -241,9 +241,9 @@ setTimeout((function () {
             showErrors('投资金额必须为标的剩余金额');
             return;
         }
-        var num = parseInt(this.get('inputNum'));
+        var num = parseFloat(this.get('inputNum'));
         //var num =creditassign.creditassign.creditDealAmount||loan.amount;
-        num = num - parseInt(CC.loan.rule.step);
+        num = num - parseFloat(CC.loan.rule.step);
         if (num < CC.loan.rule.min) {
             return;
         }
@@ -257,11 +257,11 @@ setTimeout((function () {
             showErrors('投资金额必须为标的剩余金额');
             return;
         }
-        var num = parseInt(this.get('inputNum'));
+        var num = parseFloat(this.get('inputNum'));
         if (num < CC.loan.rule.min) {
             num = CC.loan.rule.min;
         } else {
-            num = num + parseInt(CC.loan.rule.step);
+            num = num + parseFloat(CC.loan.rule.step);
         }
         if (num > CC.loan.rule.max) {
             return;
