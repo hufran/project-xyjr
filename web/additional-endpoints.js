@@ -49,7 +49,9 @@ module.exports = function (router, auth) {
     //调查问卷 add by Jude
     router.post('/api/v2/users/userQuestion', auth.pass());//提交调查问卷结果
     router.get('/api/v2/users/userQuestion/getMark/:userId', auth.pass());//登录之后查询问卷分数
-
+    //债券转让手续费计算
+    router.get('/api/v2/accountRate', auth.pass());//债权转让手续费百分比
+    
     //积分
     router.get('/api/v2/points/user/:userId/getTotalPoints', auth.user());
     router.get('/api/v2/points/user/:userId/listByPeroid/:from/:to', auth.user());

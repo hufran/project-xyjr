@@ -345,6 +345,15 @@ function init(status) {
                 });
 
                 $("#mask-layer-wraper").show();
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/v2/accountRate',
+                    success: function(data){
+                        var feeNum=parseFloat(amount*data).toFixed(2)
+                        jQuery('#fee').html(feeNum);
+
+                    }
+                });
                 $('#popup').show();
 
                 //提交
