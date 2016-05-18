@@ -18,6 +18,7 @@ do (_, angular) ->
                     _.first _.compact [UID]
 
                 @uidclass="bannerImg" if @uidclass == undefined
+                @uidclass="wuerling" if @uidclass == "520"
 
 
 
