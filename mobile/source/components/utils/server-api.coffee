@@ -193,6 +193,14 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
 
 
+            get_project_name_list: ->
+
+                @$http.get '/api/v2/yeepay/provinceCodes', cache: true
+
+                .then TAKE_RESPONSE_DATA
+                .catch TAKE_RESPONSE_DATA
+
+
             get_loan_detail: (id, cache = false) ->
 
                 @$http.get('/api/v2/loan/' + id, {cache})

@@ -14,7 +14,10 @@ do (_, angular) ->
                     filter_type
                     page_path: @$location.path()[1..]
                     loading: true
+                    province: null
                 }
+                @api.get_province_list().then (data) =>
+                    @$scope.province = data
 
                 (@api.get_loan_list_by_config(filter_type, 20, false)
 
