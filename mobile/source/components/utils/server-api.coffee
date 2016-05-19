@@ -193,6 +193,14 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
 
 
+            get_project_name_list: ->
+
+                @$http.get '/api/v2/navigation/listDisplayProductForPc/h5', cache: true
+
+                .then TAKE_RESPONSE_DATA
+                .catch TAKE_RESPONSE_DATA
+
+
             get_loan_detail: (id, cache = false) ->
 
                 @$http.get('/api/v2/loan/' + id, {cache})
