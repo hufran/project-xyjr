@@ -152,16 +152,3 @@ function format(time, format){
 		}; 
 	}); 
 }
-function getTypeByName(type){
-	//console.log(type == "undefined");
-	console.log(type);
-	if(type == undefined || type == ""){
-		$("#titleName").html("投资理财");
-	}else{
-		var a = $("#"+type).text();
-		console.log(a);
-		//$("#titleName").text($("#"+type).text());
-
-		$("#titleName").html(a);
-	}
-}
