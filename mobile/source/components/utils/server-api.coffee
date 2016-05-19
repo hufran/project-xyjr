@@ -195,7 +195,7 @@ do (_, angular, moment, Array) ->
 
             get_project_name_list: ->
 
-                @$http.get '/api/v2/yeepay/provinceCodes', cache: true
+                @$http.get '/api/v2/navigation/listDisplayProductForPc/h5', cache: true
 
                 .then TAKE_RESPONSE_DATA
                 .catch TAKE_RESPONSE_DATA
