@@ -126,4 +126,8 @@ module.exports = function (router, auth) {
     
     router.post('/api/v2/yeepay/wapBankDeposit/:userId', auth.user());
     router.post('/api/v2/yeepay/onlineBankDepositNoBind/:userId', auth.user());
+    //获取产品的列表
+    router.get('/api/v2/navigation/listDisplayProductForPc/:client', auth.pass());
+    router.get('/api/v2/navigation/listDisplayProductForApp/:client', auth.pass());
+    router.get('/api/v2/navigation/listMessageForAppHome/:client/:size', auth.pass());
 };
