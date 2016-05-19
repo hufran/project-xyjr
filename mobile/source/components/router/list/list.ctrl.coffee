@@ -19,6 +19,9 @@ do (_, angular) ->
                 @api.get_project_name_list().then (data) =>
                     @$scope.project = data
 
+
+                @test(filter_type)
+
                 (@api.get_loan_list_by_config(filter_type, 20, false)
 
                     .then ({results}) =>
@@ -32,4 +35,7 @@ do (_, angular) ->
                     .finally =>
                         @$scope.loading = false
                 )
+            test: (id) ->
+
+                getTypeByName(id)
 
