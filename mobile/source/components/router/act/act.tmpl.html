@@ -435,7 +435,15 @@
 		</li>
 	</ul>
 </div>
+<script type="text/ng-template" id="ngt-register-agreement.tmpl">
+	<div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
 
+	<div class="modal-footer">
+		<button class="btn btn-block btn-theme" ng-click="$close()">
+			已阅读此协议
+		</button>
+	</div>
+</script>
 
 
 
