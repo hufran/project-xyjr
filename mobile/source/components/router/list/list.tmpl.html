@@ -6,72 +6,76 @@
         <a class="col-xs-3 back" href="./">
             <param class="glyphicon glyphicon-menu-left">
         </a>
-        <span class="col-xs-6 title" ng-switch="filter_type">
-            <span ng-switch-when="XSZX">新手专享</span>
-            <span ng-switch-when="HDZX">活动专享</span>
-            <span ng-switch-when="XNB">新能宝</span>
-            <!--<span ng-switch-when="FB">新抵宝</span>
-            <span ng-switch-when="XJB">薪金宝</span>-->
-            <span ng-switch-default>投资理财</span>
+        <!--<span class="col-xs-6 title" ng-switch="filter_type">-->
+            <!--<span ng-switch-when="XSZX">新手专享</span>-->
+            <!--<span ng-switch-when="HDZX">活动专享</span>-->
+            <!--<span ng-switch-when="XNB">新能宝</span>-->
+            <!--<span ng-switch-when="FB">新抵宝</span>-->
+            <!--<span ng-switch-when="XJB">薪金宝</span>-->
+            <!--<span ng-switch-default>投资理财</span>-->
+        <!--</span>-->
+        <span class="col-xs-6 title">
+            <span id="titleName5">{{filter_name || "投资理财"}}</span>
         </span>
+
         <span class="col-xs-3 text-right">
             <span class="dropdown dropdown-filter" x-uib-dropdown>
                 <small x-uib-dropdown-toggle>筛选</small>
 
                 <ul class="dropdown-menu pull-right">
-                    <li>
-                        <a href="list/XSZX"><img width="24" src="assets/image/loan-icons/xszx.png">新手专享</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="list/HDZX"><img width="24" src="assets/image/loan-icons/hdzx.png">活动专享</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="list/XNB"><img width="24" src="assets/image/loan-icons/xnb.png">新能宝</a>
-                    </li>
-                    <li class="divider"></li>
-                    <!--<li>
-                        <a href="list/FB"><img width="24" src="assets/image/loan-icons/fb.png">新抵宝</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="list/XJB"><img width="24" src="assets/image/loan-icons/xjb.png">薪金宝</a>
-                    </li>-->
+                    <!--<li>-->
+                        <!--<a href="list/XSZX"><img width="24" src="assets/image/loan-icons/xszx.png">新手专享</a>-->
+                    <!--</li>-->
+                    <!--<li class="divider"></li>-->
+                    <!--<li>-->
+                        <!--<a href="list/HDZX"><img width="24" src="assets/image/loan-icons/hdzx.png">活动专享</a>-->
+                    <!--</li>-->
+                    <!--<li class="divider"></li>-->
+                    <!--<li>-->
+                        <!--<a href="list/XNB"><img width="24" src="assets/image/loan-icons/xnb.png">新能宝</a>-->
+                    <!--</li>-->
+                    <!--<li class="divider"></li>-->
+                    <!--&lt;!&ndash;<li>-->
+                        <!--<a href="list/FB"><img width="24" src="assets/image/loan-icons/fb.png">新抵宝</a>-->
+                    <!--</li>-->
+                    <!--<li class="divider"></li>-->
+                    <!--<li>-->
+                        <!--<a href="list/XJB"><img width="24" src="assets/image/loan-icons/xjb.png">薪金宝</a>-->
+                    <!--</li>&ndash;&gt;-->
+                    <li ng-repeat="item in project"><a href="list/{{item.productKey}}?name={{item.name}}"><img width="24" src="{{item.iconUrl}}">{{item.name}}</a></li>
                 </ul>
             </span>
         </span>
     </div>
     </nav>
 
-    <section class="subject" ng-if="filter_type">
-        <div class="media">
-            <div class="media-left">
-                <img class="media-object" width="24"
-                     ng-src="assets/image/loan-icons/{{ filter_type | lowercase }}.png"
-                >
-            </div>
+    <!--<section class="subject" ng-if="filter_type">-->
+        <!--<div class="media">-->
+            <!--<div class="media-left">-->
+                <!--<img class="media-object" width="24"-->
+                     <!--ng-src="assets/image/loan-icons/{{ filter_type | lowercase }}.png"-->
+                <!--&gt;-->
+            <!--</div>-->
 
-            <div class="media-body" ng-switch="filter_type">
-                <div ng-switch-when="XSZX">
-                    <h4 class="media-heading">新手专享</h4>
-                </div>
-                <div ng-switch-when="HDZX">
-                    <h4 class="media-heading">活动专享</h4>
-                </div>
-                <div ng-switch-when="XNB">
-                    <h4 class="media-heading">新能宝</h4>
-                </div>
-                <!--<div ng-switch-when="FB">
-                    <h4 class="media-heading">新抵宝</h4>
-                </div>
-                <div ng-switch-when="XJB">
-                    <h4 class="media-heading">薪金宝</h4>
-                </div>-->
-            </div>
-        </div>
-    </section>
-
+            <!--<div class="media-body" ng-switch="filter_type">-->
+                <!--<div ng-switch-when="XSZX">-->
+                    <!--<h4 class="media-heading">新手专享</h4>-->
+                <!--</div>-->
+                <!--<div ng-switch-when="HDZX">-->
+                    <!--<h4 class="media-heading">活动专享</h4>-->
+                <!--</div>-->
+                <!--<div ng-switch-when="XNB">-->
+                    <!--<h4 class="media-heading">新能宝</h4>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<div ng-switch-when="FB">-->
+                    <!--<h4 class="media-heading">新抵宝</h4>-->
+                <!--</div>-->
+                <!--<div ng-switch-when="XJB">-->
+                    <!--<h4 class="media-heading">薪金宝</h4>-->
+                <!--</div>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
     <section class="loan omit-margin">
         <div ng-hide="loading">
             <ul class="list-unstyled u-off-margin-bottom list-loan">
