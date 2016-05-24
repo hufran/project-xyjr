@@ -11,11 +11,11 @@
         <div class="investBox">
              <div class="no-warry-ul">
                  {{#products:num}}
-                 <div class="no-warry" data-product="{{productKey}}" {{#if num===2}} style="margin-right:0px;"{{/if}}>
+                 <div class="no-warry" data-product="{{data.productKey}}" {{#if num===2}} style="margin-right:0px;"{{/if}}>
                      <div class="no-warry-left">
-                        <img src="{{iconUrl}}"/>
+                        <img src="{{data.iconUrl}}"/>
                            <p {{#if num===0}}style="color:#4dbaa6;"{{elseif num===1}}style="color:#d64341;"{{else}}
-                           style="color:#36aad0;"{{/if}}>{{name}}</p>
+                           style="color:#36aad0;"{{/if}}>{{data.name}}</p>
                      </div>
                  </div>
                  {{/products}}
