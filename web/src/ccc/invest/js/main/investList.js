@@ -27,6 +27,27 @@ var params = {
     product: CC.product
 };
 
+$.ajax({
+    type: 'GET',
+    url: '/api/v2/navigation/listDisplayProductForPc/pc' ,
+    success: function(data){
+        console.log('ajax success');
+        var productKey=[];
+        // console.log(data.length+'zzd新接口的数量');
+        
+        if (data.length>3) {
+            var sItemLiHtml="";
+           for (var i = 3; i < data.length; i++) {
+                sItemLiHtml=sItemLiHtml+'<li style="width:74px" data-productKey='+data[i].productKey+'>'+data[i].name+'</li>';
+                //productKey.push(data[i].productKey);
+            }; 
+            jQuery('.sItem').append(sItemLiHtml);
+        };
+    },
+    error:function(){
+        console.log('ajax error');
+    }
+});
 
 function jsonToParams(params) {
     var str = '';
@@ -36,6 +57,11 @@ function jsonToParams(params) {
         }
     }
     return str;
+}
+
+function jsonToWarry(params){
+
+
 }
 
 function formateLeftTime(leftTime){
@@ -164,6 +190,17 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
         }
     });
 
+    $('.sItem li').click(function(){
+        if (!$(this).hasClass("selectTitle")) {
+            $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
+            var productKey = jQuery(this).attr('data-productkey');
+            var product = $(this).data('productkey');
+            params.currentPage = 1;
+            params.product=product;
+            render(params);
+        }
+    });
+
     $('.sRate li').click(function(){
         if (!$(this).hasClass("selectTitle")) {
             $(this).addClass("s__is-selected").siblings().removeClass("s__is-selected");
@@ -202,6 +239,7 @@ InvestListService.getLoanListWithCondition(jsonToParams(params), function (res) 
                 investRactive.set('list', []);
                 setTimeout(function () {
                     investRactive.set('list', parseLoanList(res.results));
+                    console.log(res.results);
 					console.log(investRactive.get('list'));
                     initailEasyPieChart();
                     ininconut();
