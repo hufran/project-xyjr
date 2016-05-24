@@ -11,19 +11,23 @@
         <div class="investBox">
              <div class="no-warry-ul">
                  {{#products:num}}
-                 <div class="no-warry" data-product="{{data.productKey}}" {{#if num===2}} style="margin-right:0px;"{{/if}}>
+                 <div class="no-warry" data-product="{{productKey}}" {{#if num===2}} style="margin-right:0px;"{{/if}}>
                      <div class="no-warry-left">
-                          {{#if num===0}}<img src="/ccc/invest/img/XNB.png"/>{{elseif num===1}}<img src="/ccc/invest/img/HDZX.png"/>{{else}}<img src="/ccc/invest/img/XSZX.png"/>{{/if}}
+                        <img src="{{iconUrl}}"/>
                            <p {{#if num===0}}style="color:#4dbaa6;"{{elseif num===1}}style="color:#d64341;"{{else}}
-                           style="color:#36aad0;"{{/if}}>{{data.name}}</p>
+                           style="color:#36aad0;"{{/if}}>{{name}}</p>
                      </div>
                  </div>
                  {{/products}}
             </div>
         </div>
         <div class="s-nav-view">
+            <ul class="u-nolist-ul sItem">
+                <li class="selectTitle">产品类型：</li>
+                <li class="s__is-selected" data-productkey='' style="width:50px">全部</li>
+            </ul>
             <ul class="u-nolist-ul sRate">
-                <li class="selectTitle">年化收益：</li>
+                <li class="selectTitle">预计年化收益：</li>
                 <li class="s__is-selected" data-min-rate="0" data-max-rate="100" style="width:50px">全部</li>
                 <li data-min-rate="0" data-max-rate="6" style="width:74px">6%以下</li>
                 <li data-min-rate="6" data-max-rate="9" style="width:74px">6%-9%</li>
@@ -46,7 +50,7 @@
             <tr>
                 <th style="width:280px;padding-left:40px;">名称</th>
 <!--                <th style="width:160px;">标的金额</th>-->
-                <th style="width:140px;padding-left:30px;">年化收益</th>
+                <th style="width:140px;padding-left:30px;">预计年化收益</th>
                 <th style="width:154px;">投资期限</th>
                 <th style="width:190px;padding-left:15px;">还款方式</th>
 
@@ -68,4 +72,5 @@
 <div class="space space-30"></div>
 <script>{{{state}}}</script>
 <script src="/ccc/invest/js/main/investList.js"></script>
+<script src="http://libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
 </dsBody>
