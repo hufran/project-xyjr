@@ -47,15 +47,6 @@ router.get('/:product', async function (req, res) {
                 res.locals.products.push(products0);
                 res.locals.products.push(products1);
                 res.locals.products.push(products2);
-                console.log('===zzdstart');
-                console.log('=======zzdstart');
-
-                console.log('======');
-                console.log(res.locals.products);
-                 console.log('===zzdend');
-
-                
-                
             })
             res.render('index');
             return false;
