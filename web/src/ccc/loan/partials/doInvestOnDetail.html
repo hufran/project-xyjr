@@ -157,16 +157,7 @@
                         <p class="agree-box" style="text-align:left;line-height: 30px;">
                             <input type="checkbox" class="agree" checked id="agree" />
                             <span>我同意
-                                            {{#if loan.productKey==="FB"}}
-                                        <a href="/agreement/mobile/protocolltb" target="_blank">《新抵宝用户投资服务协议》</a>
-                                           {{elseif loan.productKey==="XJB"}}
-                                         <a href="/agreement/mobile/protocollxy" target="_blank">
-                                        《金裘保用户投资服务协议》</a>
-                                         {{elseif loan.productKey==="XNB"}}
-                                         <a href="/agreement/mobile/protocolxnb" target="_blank">《新能宝用户投资服务协议》</a>
-                                         {{else}}
-                                         <a href="/agreement/mobile/protocol" target="_blank">《用户投资服务协议》</a>
-                                         {{/if}}
+                                         <a href="/agreement/mobile/protocol?key={{loan.productName}}用户投资服务协议" id="protocol" target="_blank">《{{loan.productName}}用户投资服务协议》</a>
                                     </span>
                         </p>
                         <p class="agree-error"></p>

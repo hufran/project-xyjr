@@ -61,34 +61,19 @@ router.get('/:id',
 
         _.assign(res.locals, {
             loans: req.uest(
-                '/api/v2/loan/' + req.params.id)
-                .end()
+                '/api/v2/loan/getLoan4Pc/' + req.params.id)
+                .end().get('body')
                 .then(function (r) {
-                    var result = parseLoan(r.body);
+                    console.log('####');
+                    console.log('1234');
+                    console.log(r);
+                    var result = parseLoan(r.loanExt);
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
+                    result.productName=r.productName;
                     res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
-                    if(result.loanRequest.productKey=='XNB'){
-                    res.locals.title = '新能宝_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '新能宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='FB'){
-                    res.locals.title = '新抵宝_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '新抵宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='XJB'){
-                    res.locals.title = '薪金宝_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '薪金宝是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='XSZX'){
-                    res.locals.title = '新手专享_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '新手专享是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                    else if(result.loanRequest.productKey=='HDZX'){
-                    res.locals.title = '活动专享_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = '活动专享是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';}
-                  //  else{
-                  //  res.locals.title =result.title+'理财产品_718金融理财平台';
-                  //  res.locals.description = '是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。'
-                  //     };
-
-                    // res.locals.description = result.loanRequest.description;
+                    res.locals.title = r.productName+'_'+result.title+'理财产品_718金融理财平台';
+                    res.locals.description = r.productName+'是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';
                     return result;
 
 
@@ -172,6 +157,8 @@ function parseLoan(loan) {
         'CORPORATION': '企业融资',
         'OTHER': '其它借款'
     };
+    console.log('#######123');
+    console.log(loan);
     if (loan.investPercent* 100 > 0 && loan.investPercent * 100 < 1) {
         loan.investPercent = 1;
     } else {

@@ -42,6 +42,7 @@ $.ajax({
                 //productKey.push(data[i].productKey);
             }; 
             jQuery('.sItem').append(sItemLiHtml);
+            initselect();
         };
     },
     error:function(){
@@ -384,4 +385,6 @@ function initselect(){
     var path=CC.product;
     $('.no-warry').removeClass('active');
     $('.no-warry[data-product='+path+']').addClass('active');
+    $('.sItem li').removeClass('s__is-selected');
+    $('.sItem li[data-productkey='+path+']').addClass('s__is-selected');
 }

@@ -29,6 +29,7 @@ var statusMap = {
 };
 var template = statusMap[CC.loan.status];
 
+
 new Ractive({
     el: ".openTime",
     template: template,
@@ -38,6 +39,8 @@ new Ractive({
         timeSettled:CC.loan.timeSettled
     }
 });
+
+
 
 function initailEasyPieChart() {
     ///////////////////////////////////////////////////////////
@@ -83,6 +86,7 @@ function initailEasyPieChart() {
 initailEasyPieChart();
 
 
+
 $("[data-toggle=tooltip]")
     .each(function () {
         $(this)
@@ -123,7 +127,6 @@ setTimeout((function () {
             }
         };
     }
-
 
     var investRactive = new Ractive({
         el: ".do-invest-wrapper",
@@ -627,6 +630,8 @@ setTimeout((function () {
                 }
             });
         }
+
+
         //初始化选项
     showSelect(CC.loan.rule.min);
 
