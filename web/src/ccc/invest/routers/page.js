@@ -36,26 +36,29 @@ router.get('/:product', async function (req, res) {
         res.locals.keywords = '网络投资|P2P理财|个人理财|718bank投资理财|';
         res.locals.description =
             '718bank理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
-        req.uest('/api/v2/navigation/listDisplayProductForPcContainData')
+        res.expose(req.params.product, 'product');
+        req.uest('/api/v2/navigation/listDisplayProductForPc/pc')
             .then(function (resData){
-                
-                res.locals.products =resData.body;
+                res.locals.products=[];
+                var products0 ={"data":resData.body[0]};
+                var products1 ={"data":resData.body[1]};
+                var products2 ={"data":resData.body[2]};
 
-                // var products0 ={"data":resData.body[0]};
-                // var products1 ={"data":resData.body[1]};
-                // var products2 ={"data":resData.body[2]};
-
-                // res.locals.products.push(products0);
-                // res.locals.products.push(products1);
-                // res.locals.products.push(products2);
+                res.locals.products.push(products0);
+                res.locals.products.push(products1);
+                res.locals.products.push(products2);
                 console.log('===zzdstart');
+                console.log('=======zzdstart');
+
+                console.log('======');
                 console.log(res.locals.products);
                  console.log('===zzdend');
 
-                res.expose(req.params.product, 'product');
-                res.render('index');
-                return false;
+                
+                
             })
+            res.render('index');
+            return false;
     });
 
 }
