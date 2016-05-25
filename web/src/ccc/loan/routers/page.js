@@ -61,7 +61,7 @@ router.get('/:id',
 
         _.assign(res.locals, {
             loans: req.uest(
-                '/api/v2/getLoan/' + req.params.id)
+                '/api/v2/loan/' + req.params.id)
                 .end()
                 .then(function (r) {
                     var result = parseLoan(r.body);
