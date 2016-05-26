@@ -10,6 +10,7 @@ module.exports = function (router) {
         res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
         res.locals.description =
             '718金融理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
+        res.expose('', 'product');
         req.uest('/api/v2/navigation/listDisplayProductForPc/pc')
             .then(function (resData){
                 
@@ -21,7 +22,7 @@ module.exports = function (router) {
                 res.locals.products.push(products0);
                 res.locals.products.push(products1);
                 res.locals.products.push(products2);
-                res.expose('', 'product');
+                
                 res.render();
                 return false;
             })
