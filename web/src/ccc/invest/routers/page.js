@@ -11,7 +11,7 @@ module.exports = function (router) {
         res.locals.description =
             '718金融理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
         res.expose('', 'product');
-        req.uest('/api/v2/navigation/listDisplayProductForPc/pc')
+        await req.uest('/api/v2/navigation/listDisplayProductForPc/pc').end()
             .then(function (resData){
                 
                 res.locals.products =[];
@@ -38,7 +38,7 @@ router.get('/:product', async function (req, res) {
         res.locals.description =
             '718bank理财平台为您提供了多种理财产品，每种理财产品都有不同的特点，满足您的投资需求。理财产品有：新手专享、活动专享、新能宝等。';
         res.expose(req.params.product, 'product');
-        req.uest('/api/v2/navigation/listDisplayProductForPc/pc')
+        await req.uest('/api/v2/navigation/listDisplayProductForPc/pc').end()
             .then(function (resData){
                 res.locals.products=[];
                 var products0 ={"data":resData.body[0]};
@@ -48,6 +48,15 @@ router.get('/:product', async function (req, res) {
                 res.locals.products.push(products0);
                 res.locals.products.push(products1);
                 res.locals.products.push(products2);
+                console.log('===zzdstart');
+                console.log('=======zzdstart');
+
+                console.log('======');
+                console.log(res.locals.products);
+                 console.log('===zzdend');
+
+                
+                
             })
             res.render('index');
             return false;

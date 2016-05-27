@@ -27,6 +27,7 @@ var params = {
     product: CC.product
 };
 
+
 $.ajax({
     type: 'GET',
     url: '/api/v2/navigation/listDisplayProductForPc/pc' ,
