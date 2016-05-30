@@ -74,3 +74,13 @@ body{background-color: #f3f4f6;}
 #signBtn{  width: 9rem;margin: 0 auto;}
 .agreement{text-align: center;}
 .guwen div:last-child{color: #7e7e7e;}
+/*modify by Gloria 2016-05-30*/
+body{background-color:#fff;}
+.bannerImg{width: 10rem;height: 5.733333333333333rem;background-size: contain;background-image:url(../../assets/image/act/newBanner.jpg)}
+#mobile,#password{-webkit-appearance: none;appearance: none;border-radius: 0;width: 4.853333333333333rem;height: 1.2533333333rem;text-align: left;padding: 0.5733333333rem;border: 0; margin: 0 auto; display: inline-block;}
+
+#mobile_captcha{width: 2.786666666666667rem;vertical-align: middle;-webkit-appearance: none;appearance: none;border-radius: 0;height: 1.2533333333rem;text-align: left;padding: 0.5733333333rem;border: none; display: inline-block;}
+
+.input_title{font-size:0.32rem;font-weight:bold;color:#9d9c9c;}
+/*font-family: "华文细黑","Helvetica", "Arial", "Verdana", "Hiragino Sans GB", "STHeiti", "sans-serif"*/
+.form-control-wrap{text-align:left;}

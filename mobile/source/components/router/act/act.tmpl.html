@@ -1,27 +1,37 @@
-
-
 <link rel="stylesheet" type="text/css" href="styles/act/eclStyle.css">
 <link rel="stylesheet" type="text/css" href="styles/act/newUser.css">
-
-<div class="banner">
-	<div class="bannerImg {{self.uidclass}}">
+<header id="page-header" class="navbar u-off-margin-bottom">
+	<div class="logo">
+		<a href="./">
+			<img width="186" ng-src="assets/image/nav-logo.png?v=2">
+		</a>
 	</div>
-</div>
-<div class="row clearFix">
-	<div class="f0">
+	<div class="userbar">
 		<span class="f12">合作伙伴:</span>
 		<div class="sider">
 			<img src="assets/image/act/sider.png">
 		</div>
-		<div class="kefu">
-			<div>
-				<div class="kefuImg"></div>
-				<a href="tel:4001-718-718" class="f14"> 4001-718-718</a>
-			</div>
-		</div>
 	</div>
-	<div class="fr callImg"></div>
+</header>
+<div class="banner">
+	<div class="bannerImg {{self.uidclass}}">
+	</div>
 </div>
+<!--<div class="row clearFix">-->
+	<!--<div class="f0">-->
+		<!--<span class="f12">合作伙伴:</span>-->
+		<!--<div class="sider">-->
+			<!--<img src="assets/image/act/sider.png">-->
+		<!--</div>-->
+		<!--&lt;!&ndash;<div class="kefu">&ndash;&gt;-->
+			<!--&lt;!&ndash;<div>&ndash;&gt;-->
+				<!--&lt;!&ndash;<div class="kefuImg"></div>&ndash;&gt;-->
+				<!--&lt;!&ndash;<a href="tel:4001-718-718" class="f14"> 4001-718-718</a>&ndash;&gt;-->
+			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+	<!--</div>-->
+	<!--<div class="fr callImg"></div>-->
+<!--</div>-->
 	
 
 	<div>
@@ -44,14 +54,14 @@
     </div>
 
     <div class="page-content">
-
+		<div style="color:#df2525;font-weight:bold;line-height:1.12rem;font-size:0.4rem;text-align:center">五重安全保障 旗下村镇银行</div>
     <form class="form form-flatten form-horizontal" name="form"
           autocapitalize="none"
           autocomplete="off"
           autocorrect="off"
           novalidate
     >
-        <div class="inputs container">
+        <div class="inputs container" style="width:8.08rem;border:0.0666666666666667rem solid #eb823b;-webkit-border-radius:0.0666666666666667rem ;-moz-border-radius: 0.0666666666666667rem;border-radius:0.0666666666666667rem ;margin:0 auto;">
             <div class="form-group merge"
                  ng-class="{'has-error': form.loginName.$invalid && form.loginName.$dirty}"
                  x-gyro-comment
@@ -81,12 +91,12 @@
             >
                 <label for="mobile"></label>
                 <div class="form-control-wrap">
-                    <input class="form-control input-target input-lg cell" type="tel"
+                    <label class="input_title">手机号:</label><input class="form-control input-target input-lg cell" type="tel"
                            id="mobile"
                            name="mobile"
                            ng-model="store.mobile"
                            ng-pattern="/^1\d{10}$/"
-                           placeholder="填写手机号"
+                           placeholder="请输入手机号码"
                            maxlength="11"
                            required
                     >
@@ -149,7 +159,7 @@
             >
                 <label for="mobile_captcha"></label>
                 <div class="form-control-wrap">
-                    <input class="form-control input-target input-lg captcha" type="tel"
+					<label class="input_title">验证码:</label><input class="form-control input-target input-lg captcha" type="tel"
                            id="mobile_captcha"
                            name="mobile_captcha"
                            x-focus-on="self.cell_buffering"
@@ -158,7 +168,7 @@
                            autocapitalize="none"
                            autocomplete="off"
                            autocorrect="off"
-                           placeholder="填写短信验证码"
+                           placeholder="请输入验证码"
                            maxlength="6"
                            required
                     >
@@ -187,13 +197,13 @@
             >
                 <label for="password"></label>
                 <div class="form-control-wrap">
-                    <input class="form-control input-target input-lg" type="password"
+					<label class="input_title">密　码:</label><input class="form-control input-target input-lg" type="password"
                            id="password"
                            name="password"
                            ng-model="store.password"
                            minlength="6"
                            maxlength="16"
-                           placeholder="填写密码"
+                           placeholder="请输入密码"
                            required
                     >
                     <div class="help-block"
