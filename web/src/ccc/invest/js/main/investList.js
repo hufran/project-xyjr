@@ -35,16 +35,14 @@ $.ajax({
         console.log('ajax success');
         var productKey=[];
         // console.log(data.length+'zzd新接口的数量');
-        
         if (data.length>3) {
             var sItemLiHtml="";
-           for (var i = 3; i < data.length; i++) {
+            for (var i = 0; i < data.length; i++) {
                 sItemLiHtml=sItemLiHtml+'<li style="width:74px" data-productKey='+data[i].productKey+'>'+data[i].name+'</li>';
-                //productKey.push(data[i].productKey);
             }; 
             jQuery('.sItem').append(sItemLiHtml);
             initselect();
-        };
+        }
     },
     error:function(){
         console.log('ajax error');

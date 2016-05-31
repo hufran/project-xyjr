@@ -7,7 +7,9 @@
 <div id="main-container">
     <p class="title"><a href="/">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;理财产品列表</p> 
     <div class="s-content u-pos-r-center">
-
+        
+        <!-- {{#if products.lenght===3}} -->
+        {{#if products.length===3}}
         <div class="investBox">
              <div class="no-warry-ul">
                  {{#products:num}}
@@ -21,11 +23,16 @@
                  {{/products}}
             </div>
         </div>
+        <!-- {{elseif num === 4}} -->
+        
+        {{/if}}
         <div class="s-nav-view">
-            <ul class="u-nolist-ul sItem">
+            {{#if products.length>3}}            
+            <ul class="u-nolist-ul sItem" style="margin-top:70px">
                 <li class="selectTitle">产品类型：</li>
                 <li class="s__is-selected" data-productkey='' style="width:50px">全部</li>
             </ul>
+            {{/if}}
             <ul class="u-nolist-ul sRate">
                 <li class="selectTitle">预期年化收益：</li>
                 <li class="s__is-selected" data-min-rate="0" data-max-rate="100" style="width:50px">全部</li>
