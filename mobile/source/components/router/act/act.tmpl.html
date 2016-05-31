@@ -3,36 +3,26 @@
 <header id="page-header" class="navbar u-off-margin-bottom">
 	<div class="logo">
 		<a href="./">
-			<img width="186" ng-src="assets/image/nav-logo.png?v=2">
+			<img width="100" ng-src="assets/image/nav-logo-new.png?v=2">
 		</a>
 	</div>
 	<div class="userbar">
-		<span class="f12">合作伙伴:</span>
+		<span class="f12">合作单位:</span>
 		<div class="sider">
-			<img src="assets/image/act/sider.png">
-		</div>
+            <ul>
+                <li>新奥集团(港02688)</li>
+                <li>华夏幸福基业(600340)</li>
+                <li>庞大集团(601258)</li>
+                <li>荣盛(002146)</li>
+                <li>升达林业(002259)</li>
+            </ul>
+        </div>
 	</div>
 </header>
 <div class="banner">
 	<div class="bannerImg {{self.uidclass}}">
 	</div>
 </div>
-<!--<div class="row clearFix">-->
-	<!--<div class="f0">-->
-		<!--<span class="f12">合作伙伴:</span>-->
-		<!--<div class="sider">-->
-			<!--<img src="assets/image/act/sider.png">-->
-		<!--</div>-->
-		<!--&lt;!&ndash;<div class="kefu">&ndash;&gt;-->
-			<!--&lt;!&ndash;<div>&ndash;&gt;-->
-				<!--&lt;!&ndash;<div class="kefuImg"></div>&ndash;&gt;-->
-				<!--&lt;!&ndash;<a href="tel:4001-718-718" class="f14"> 4001-718-718</a>&ndash;&gt;-->
-			<!--&lt;!&ndash;</div>&ndash;&gt;-->
-		<!--&lt;!&ndash;</div>&ndash;&gt;-->
-	<!--</div>-->
-	<!--<div class="fr callImg"></div>-->
-<!--</div>-->
-	
 
 	<div>
       <param ng-model="msg" ng-init="msg = {
@@ -62,7 +52,7 @@
           novalidate
     >
         <div class="inputs container" style="width:8.08rem;border:0.0666666666666667rem solid #eb823b;-webkit-border-radius:0.0666666666666667rem ;-moz-border-radius: 0.0666666666666667rem;border-radius:0.0666666666666667rem ;margin:0 auto;">
-           <div class="loginInput_title">注册有豪礼</div>
+           <div class="loginInput_title" style="font-size:0.56rem;text-align: center;font-weight:bold;">注册有豪礼</div>
             <div class="form-group merge"
                  ng-class="{'has-error': form.loginName.$invalid && form.loginName.$dirty}"
                  x-gyro-comment
@@ -264,7 +254,7 @@
             </div>
         </div>
 
-        <div class="container agreement">
+        <div class="container agreement" style="margin:0.2rem 0">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
                 我阅读并同意 <a href="#" ng-click="self.agreement('新毅金融用户注册协议')">《新毅金融注册服务协议》</a>
@@ -282,15 +272,16 @@
 
 <!--718金融优势-->
 <div class="box">
-	<div class="tit"><span class="f24">●　718金融优势　●</span></div>
+	<!--<div class="tit"><span class="f24">●　718金融优势　●</span></div>-->
+	<div class="tit"><span class="f24">　718金融优势　</span></div>
 	<ul class="advantage_list">
 		<li>与多家上市公司战略合作&nbsp;&nbsp;安全</li>
-		<li>项目多来源于国有企业&nbsp;&nbsp;踏实</li>
-		<li>控股村镇银行&nbsp;&nbsp;稳定</li>
+		<li class="second">项目多来源于国有企业&nbsp;&nbsp;踏实</li>
+		<li class="third">控股村镇银行&nbsp;&nbsp;稳定</li>
 	</ul>
 </div>
 <div class="box">
-	<div class="tit"><span class="f24">●　　投资流程　　●</span></div>
+	<div class="tit"><span class="f24">　　投资流程　　</span></div>
 	<ul class="process_work">
 		<li><p></p>注册</li>
 		<li><p></p>认证</li>
@@ -299,7 +290,7 @@
 		<li style="margin-right:0rem"><p></p>收益</li>
 	</ul>
 </div>
-
+<div class="clearBoth"></div>
 
 <script type="text/ng-template" id="ngt-register-agreement.tmpl">
 	<div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>

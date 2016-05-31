@@ -75,28 +75,29 @@ body{background-color: #f3f4f6;}
 .agreement{text-align: center;}
 .guwen div:last-child{color: #7e7e7e;}
 /*modify by Gloria 2016-05-30*/
-body{background-color:#fff;}
+body{background-color:#fff;font-family: "方正兰亭超细黑简体","Helvetica", "Arial", "Verdana", "Hiragino Sans GB", "STHeiti", "sans-serif";font-weight:bold;}
 .bannerImg{width: 10rem;height: 5.733333333333333rem;background-size: contain;background-image:url(../../assets/image/act/newBanner.jpg)}
+.lvye,.i520{height: 4.6133333333rem;}
 #mobile,#password{-webkit-appearance: none;appearance: none;border-radius: 0;width: 4.853333333333333rem;height: 1.2533333333rem;text-align: left;padding: 0.5733333333rem 0.2rem;border: 0; margin: 0 auto 0.08rem; display: inline-block;}
 
 #mobile_captcha{width: 2.026666666666667rem;vertical-align: middle;-webkit-appearance: none;appearance: none;border-radius: 0;height: 1.2533333333rem;text-align: left;padding: 0.5733333333rem 0.2rem;border: none; margin: 0 auto 0.08rem; display: inline-block;}
 
 .input_title{font-size:0.32rem;font-weight:bold;color:#9d9c9c;}
 .form-control-wrap .btn{width: 3.32rem;border: 1px solid #eb823b;background-color:#eb823b;display: inline-block;vertical-align: middle;margin-left: 0.2933333333rem;padding: 0;text-align: center;-webkit-appearance: none;appearance: none;line-height:0.64rem;font-size:0.2666666666666667rem;
-    font-weight:bold;}
-/*font-family: "华文细黑","Helvetica", "Arial", "Verdana", "Hiragino Sans GB", "STHeiti", "sans-serif"*/
+    font-weight:bold; }
 .form-control-wrap{text-align:left;border-bottom:0.0266666666666667rem solid #9c9c9c;margin:0 0.5rem;}
 #signBtn{background-color:#eb823b;-webkit-border-radius:0.1466666666666667rem ;-moz-border-radius: 0.1466666666666667rem;border-radius:0.1466666666666667rem ; width:8.08rem}
 
 .box .tit{width: 8.08rem;border-top:1px solid #9d9c9c;color:#9d9c9c;font-size:0.32rem;font-weight:bold;}
-.box .tit span{position: relative;padding: 0.16rem 0rem;margin:0 -0.3rem;background-color: #fff;top: -0.2733333333rem;color: #9d9c9c;}
+.box .tit span{position: relative;width:2.573333333333333rem;padding: 0.16rem 0rem;margin:0 -0.3rem;top: -0.2533333333rem;color: #9d9c9c;.bannerImg{width: 10rem;height: 5.733333333333333rem;background-size: contain;background-image:url(../../assets/image/act/line-gb.png);background-size: contain;background-repeat: no-repeat}
+}
 ul.advantage_list{line-height:0.8rem;font-size:0.32rem;font-weight:bold;width:8.08rem;margin:0.5rem auto;text-align: left;color:#9d9c9c;}
-ul.advantage_list li{background:url("../../assets/image/act/listBg.png") 0 0 no-repeat;padding-left:0.9333333333333333rem;}
-ul.advantage_list li.second{background-position: 0 -0.8rem;}
-ul.advantage_list li.second{background-position: 0 -1.6rem;}
+ul.advantage_list li{background-image: url(../../assets/image/act/listBg-1.png);padding-left:1.2rem;background-size: contain;background-repeat: no-repeat}
+ul.advantage_list li.second{background-image: url(../../assets/image/act/listBg-2.png)}
+ul.advantage_list li.third{background-image: url(../../assets/image/act/listBg-3.png)}
 ul.process_work{font-weight:bold;width:8.08rem;margin:0.8rem auto;text-align: left;color:#9d9c9c;border-top:0.0266666666666667rem solid #7e99af;}
-ul.process_work li{top:-0.42rem;position:relative;margin-right:0.97rem;text-align:center;
-    float: left;color:#9d9c9c;}
+ul.process_work li{top:-0.42rem;position:relative;margin-right:0.97rem;text-align:center;float: left;color:#9d9c9c;}
 ul.process_work li p{width:0.84rem;height:0.84rem;-webkit-border-radius:0.84rem ;-moz-border-radius: 0.84rem;border-radius:0.84rem;background-color:#7f99b0;margin-bottom:0.1066666666666667rem}
-.loginInput_title{width: 4.293333333333333rem;height:1.64rem;margin:-0.08rem auto 0.5rem;color:#fff;font-weight:bold;
-    background-image:url(../../assets/image/act/loginInput_bg.png);line-height:1.64rem;}
+.loginInput_title{width: 4.293333333333333rem;height:1.64rem;margin:-0.08rem auto 0.5rem;color:#fff;font-weight:bold;background-image:url(../../assets/image/act/loginInput_bg.png);line-height:1.64rem;background-size: contain;background-repeat: no-repeat}
+.userbar .sider ul,.userbar span{line-height:0.7413333333333333rem;font-size:0.24rem;font-weight:bold;color:#9d9c9c;}
+.clearBoth{clear:both;font-size:0px;display:block}
