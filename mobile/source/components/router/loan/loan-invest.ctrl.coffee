@@ -9,6 +9,13 @@ do (_, angular, Math) ->
                 @$window.scrollTo 0, 0
 
                 #@newCoupon_list(@user.fund.userId);
+                @getAgreement_name(@loan.id)
+                .then (data) =>
+#                    console.log data.productName
+                    @$scope.agreement_name = data.productName
+
+
+
                 @page_path = @$location.path()[1..]
                 @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
                 arrList = [@user.fund.availableAmount*1,@loan.balance*1,@loan.loanRequest.investRule.minAmount*1,@loan.loanRequest.investRule.maxAmount*1]
@@ -125,6 +132,9 @@ do (_, angular, Math) ->
             newCoupon_list: (id) ->
 
                 @api.fetch_coupon_list_select(id)
+            getAgreement_name: (id) ->
+
+                @api.get_agreement_name(id)
 
                 
 
