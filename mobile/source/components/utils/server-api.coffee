@@ -298,6 +298,17 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_agreement_name: (id) ->
+
+
+
+                @$http
+                    .get "/api/v2/loan/getLoan4Pc/#{ id }"
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             redeem_coupon: (placementId) ->
 
                 @$http
