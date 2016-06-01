@@ -111,8 +111,9 @@ do (_, angular) ->
                             @$q.reject data.error
 
                     .then (data) =>
+                        console.log @$scope.msg
                         @$window.alert @$scope.msg.SUCCEED
-                        @$location.path 'dashboard'
+                        @$location.path 'act/success'
 
                     .catch (data) =>
                         key = _.get data, '[0].message'

@@ -6,7 +6,6 @@ jQuery(function(){
 function gundong(){
 	var slideHeight = jQuery('.sider').height();
 	var maxH = slideHeight*4;
-
 	var imgH1=parseInt(jQuery('.sider ul').eq(0).css('margin-top'));
 	var imgH2=parseInt(jQuery('.sider ul').eq(1).css('margin-top'));
 	if (imgH1>-maxH) {
