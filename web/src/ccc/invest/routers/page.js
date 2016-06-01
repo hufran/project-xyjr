@@ -15,14 +15,9 @@ module.exports = function (router) {
             .then(function (resData){
                 
                 res.locals.products =[];
-                var products0 ={"data":resData.body[0]};
-                var products1 ={"data":resData.body[1]};
-                var products2 ={"data":resData.body[2]};
-
-                res.locals.products.push(products0);
-                res.locals.products.push(products1);
-                res.locals.products.push(products2);
-                
+                for (var i = 0; i < resData.body.length; i++) {
+                    res.locals.products.push({"data":resData.body[i]})
+                };
                 res.render();
                 return false;
             })
@@ -41,22 +36,16 @@ router.get('/:product', async function (req, res) {
         await req.uest('/api/v2/navigation/listDisplayProductForPc/pc').end()
             .then(function (resData){
                 res.locals.products=[];
-                var products0 ={"data":resData.body[0]};
-                var products1 ={"data":resData.body[1]};
-                var products2 ={"data":resData.body[2]};
+                for (var i = 0; i < resData.body.length; i++) {
+                    res.locals.products.push({"data":resData.body[i]})
+                };
+                // var products0 ={"data":resData.body[0]};
+                // var products1 ={"data":resData.body[1]};
+                // var products2 ={"data":resData.body[2]};
 
-                res.locals.products.push(products0);
-                res.locals.products.push(products1);
-                res.locals.products.push(products2);
-                console.log('===zzdstart');
-                console.log('=======zzdstart');
-
-                console.log('======');
-                console.log(res.locals.products);
-                 console.log('===zzdend');
-
-                
-                
+                // res.locals.products.push(products0);
+                // res.locals.products.push(products1);
+                // res.locals.products.push(products2);
             })
             res.render('index');
             return false;
