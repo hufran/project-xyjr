@@ -87,7 +87,7 @@ body{background-color:#fff;font-family: "方正兰亭超细黑简体","Helvetica
     font-weight:bold; }
 .form-control-wrap{text-align:left;border-bottom:0.03rem solid #9c9c9c;margin:0 0.5rem;}/*border-bottom:0.04rem solid #9c9c9c;*/
 #signBtn,#signBtn2{background-color:#eb823b;-webkit-border-radius:0.1466666666666667rem ;-moz-border-radius: 0.1466666666666667rem;border-radius:0.1466666666666667rem ; width:8.08rem}
-#signBtn2{width:6rem;font-size:0.4rem;text-align: center;font-weight:bold;margin-bottom:1rem}
+#signBtn2{width:6rem;font-size:0.4rem;text-align: center;font-weight:bold;margin:0 auto 1rem}
 .box .tit{width: 8.08rem;border-top:1px solid #9d9c9c;color:#9d9c9c;font-size:0.32rem;font-weight:bold;}
 .box .tit span{position: relative;width:2.573333333333333rem;padding: 0.16rem 0rem;margin:0 -0.3rem;top: -0.2333333333rem;color: #9d9c9c;width: 10rem;height: 5.733333333333333rem;background-size: contain;background-image:url(../../assets/image/act/line-gb.png);background-size: contain;background-repeat: no-repeat;background-position: center}/*top: -0.2533333333rem*/
 ul.advantage_list{line-height:0.8rem;font-size:0.32rem;font-weight:bold;width:8.08rem;margin:0.5rem auto;text-align: left;color:#9d9c9c;}
