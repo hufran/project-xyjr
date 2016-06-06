@@ -83,6 +83,20 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                         .catch $q.resolve
                     }
+                    .when '/act/success', {
+                        controller: 'RegisterCtrlAct as self'
+                        templateUrl: 'components/router/act/actRegSuccess.tmpl.html'
+                        resolve:
+                            user: _.ai 'api, $location, $q',
+                                (       api, $location, $q) ->
+                                    api.fetch_current_user()
+
+                                        .then ->
+                                            $location.path '/'
+                                            return $q.reject()
+
+                                        .catch $q.resolve
+                    }
 
                     .when '/password/forgot', {
                         controller: 'PasswordForgotCtrl as self'

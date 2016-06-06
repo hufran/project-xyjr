@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="styles/act/eclStyle.css">
+<link rel="stylesheet" type="text/css" href="styles/act/newUser.css">
+<header id="page-header" class="navbar u-off-margin-bottom">
+    <div class="logo">
+        <a href="./">
+            <img width="100" ng-src="assets/image/nav-logo-new.png?v=2">
+        </a>
+    </div>
+    <div class="userbar">
+        <span>合作单位:</span>
+        <div class="sider">
+            <ul>
+                <li>新奥集团(港02688)</li>
+                <li>华夏幸福基业(600340)</li>
+                <li>庞大集团(601258)</li>
+                <li>荣盛(002146)</li>
+                <li>升达林业(002259)</li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="banner">
+    <div class="bannerImg {{self.uidclass}}">
+    </div>
+</div>
+
+
+<div class="page-content">
+    <div class="baozhang">五重安全保障 旗下村镇银行</div>
+    <form class="form form-flatten form-horizontal" name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          novalidate
+    >
+        <div class="inputs container newFrame marginBottom">
+            <div class="loginInput_title">恭　喜　您</div>
+            <div class="successRegister">领取成功！<br>
+            赶快去投资让红包生钱提现吧！
+            </div>
+                <a href="list" id="signBtn2" class="btn btn-theme btn-block btn-lg">马上理财</a>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/ng-template" id="ngt-register-agreement.tmpl">
+    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-block btn-theme" ng-click="$close()">
+            已阅读此协议
+        </button>
+    </div>
+</script>
+
+
+
+
+
