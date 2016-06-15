@@ -124,6 +124,17 @@ do (_, angular, Math) ->
 
                 @$scope.earning1 = rebateMoney.toFixed(2)
 
+            detection: (amount = 0,max = @$scope.maxMoney,min = @$scope.minMoney, loan = @$scope.loan) ->
+
+                if amount>max
+                    @$scope.store.amount = max
+
+                else if amount<min
+                    @$scope.store.amount = min
+                else
+                    @$scope.store.amount = amount
+
+
 
             newCoupon_list: (id) ->
 

@@ -32,7 +32,7 @@
                 <div class="value">
                     <small>{{ loan.basic_rate }}%+</small>{{ loan.deduction_rate }}%
                 </div>
-                <div class="name">年化收益率</div>
+                <div class="name">预期年化收益率</div>
             </div>
 
             <div class="duration">
@@ -97,8 +97,7 @@
                        id="amount"
                        name="amount"
                        ng-model="store.amount"
-                       ng-change="form.amount.$valid && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
-                       max="{{maxMoney}}"
+                       ng-change="form.amount.$valid&&self.detection(store.amount) && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
                        min="{{minMoney}}"
                        required
                 >
