@@ -111,17 +111,13 @@ do (_, angular, Math) ->
 
             fetch_analyse1: (amount = 0, loan = @$scope.loan) ->
 
-                #console.log loan
-
-                protimeT =  loan.raw.duration.totalMonths
-
-                rebateMoney = amount * protimeT / 12 * 0.005 if loan.raw.duration.days == 0
-
                 if loan.raw.duration.days == 0
+                    protimeT =  parseInt(loan.raw.duration.totalMonths)
                     rebateMoney = amount * protimeT / 12 * 0.005
 
                 else
-                    rebateMoney = amount * protimeT / 1.825
+                    protimeT =  parseInt(loan.raw.duration.totalDays)
+                    rebateMoney = amount * protimeT / 365*0.005
                 #console.log  @$scope.abc
                 if rebateMoney >  @$scope.abc
                     rebateMoney = @$scope.abc
