@@ -485,8 +485,10 @@ setTimeout((function () {
     });
     //显示返现金额
     investRactive.on('rebate',function(){
-        jQuery('.calculator input[type="text"]').val(jQuery('.calculator input[type="text"]').val().replace(/[^\d]/g,""))
+        var inputNumNew= jQuery('.calculator input[type="text"]').val().replace(/[^\d]/g,"");
+        investRactive.set('inputNum', inputNumNew);
         var inpNum = investRactive.get('inputNum');
+            console.log('测试返现金额是多少zzd'+inpNum);
         if (inpNum>CC.loan.rule.balance) {
             investRactive.set('inputNum', CC.loan.rule.balance);
             inpNum= CC.loan.rule.balance;
