@@ -122,6 +122,9 @@
     background-position: left top;
     margin-left: 12px;
     line-height: 44px;
+   border: 1px solid #ccc;
+   -webkit-border: 1px solid #ccc;
+   -moz-border: 1px solid #ccc;
 }
 .rinput label {
     line-height: 45px;
