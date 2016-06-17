@@ -54,6 +54,12 @@ do (_, angular) ->
                 @api.get_user_investments()
                 @api.get_available_bank_list()
 
+                (@api
+                .get_yesterday_income(@user.info.id)
+                .then (data) =>
+                    @$scope.yesterdayIncome = data.yesterdayYields
+                )
+
 
             logout: ->
 

@@ -216,6 +216,15 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_ERROR
 
 
+            get_yesterday_income: (id, cache = false) ->
+
+                @$http
+                    .get "/api/v2/user/#{ id }/userfundNew", {cache}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+
             fetch_invest_analyse: ({amountValue, dueDay, dueMonth, dueYear, annualRate, paymentMethod}) ->
                 store =            {amountValue, dueDay, dueMonth, dueYear, annualRate, paymentMethod}
 
