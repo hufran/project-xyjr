@@ -13,6 +13,12 @@ var avaAmount = parseFloat(CC.user.availableAmount).toFixed(2);
 // 累计收益
 var investInterestAmount = parseFloat(CC.user.investStatistics.investInterestAmount || 0).toFixed(2);
 
+//昨日收益
+var yesterdayAmount;
+var yesterdayLAmount;
+
+console.log('昨日收益hou'+yesterdayAmount+'+++++'+yesterdayLAmount);
+
 // 待收金额
 var dueInAmount = CC.user.dueInAmount || 0;
 
@@ -29,6 +35,8 @@ var homeRactive = new Ractive({
 		avaAmount : avaAmount,
 		cAmount : parseFloat(CC.user.availableAmount).toFixed(2),
 		investInterestAmount : investInterestAmount,
+		yesterdayAmount: yesterdayAmount,
+		yesterdayLAmount: yesterdayLAmount,
 		totalAmount : totalAmount,
 		cTotalAmount : parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2),
 		dueInAmount : parseFloat(dueInAmount).toFixed(2),
@@ -38,6 +46,31 @@ var homeRactive = new Ractive({
     parseData:function(){
 		var self = this;
         var investInterestAmount = self.get('investInterestAmount') + '';
+        $.ajax({
+		    type: 'GET',
+		    url: '/api/v2/user/'+CC.user.id+'/userfundNew' ,
+		    data: {
+		    	userId:CC.user.id 
+		    },
+		    success: function (data){
+		    	if (data.yesterdayYields.indexOf('.')==-1) {
+		    		yesterdayAmount=data.yesterdayYields;
+		    		yesterdayLAmount='00';
+		    		console.log('wtf');
+		    		console.log('sha');
+		    		console.log(parseInt(yesterdayAmount));
+		    	}else{
+		    		var yesterdayArry=data.yesterdayYields.split('.');
+		    		yesterdayAmount=yesterdayArry[0];
+		    		yesterdayLAmount=yesterdayArry[1];
+		    		console.log('shshshwth');
+		    	};
+		    	self.set('yesterdayAmount',parseInt(yesterdayAmount));
+				self.set('yesterdayLAmount',yesterdayLAmount);
+		    }
+
+		});
+		var yesterdayLAmount= self.get('yesterdayLAmount');
         var avaAmount = self.get('avaAmount') + '';
 		var totalAmount = self.get('totalAmount') + '';
 		var check = totalAmount.indexOf('.');
@@ -60,6 +93,9 @@ var homeRactive = new Ractive({
 			self.set('moreiAmount',amoutArray[1]);
 			console.log(amoutArray);
 			console.log(this.get('moreiAmount'));
+
+			
+
 		}
 	}
 });

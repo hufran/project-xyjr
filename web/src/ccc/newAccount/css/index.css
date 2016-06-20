@@ -9,17 +9,18 @@
 	
 }
 .home-topnav {
-	height: 147px;
+	height: 207px;
 	border-bottom: 1px #cccccc solid;
 }
 .home-top-container {
 	height: 80px;
+	margin-top: 20px;
 }
 .home-interest {
 	height: 100%;
 	width: 239px;
 	float: left;
-	color: #f58220;
+	/*color: #f58220;*/
 	border-right: 1px #ccc solid;
 }
 .home-total {
@@ -27,11 +28,31 @@
 	width: 390px;
 	float: left;
 }
-.home-avaliable {
+.homeTopBox{
+	border-bottom: 1px #cccccc solid;
+	padding-bottom: 40px;
+}
+.home-avaliable{
+	display: inline-block;
+	vertical-align: middle;
+}
+.home-avaliable .money,.home-avaliable .more-amount{
+	color: #f58220;	
+}
+
+.home-bottomBar{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 30px;
+}
+.home-yesterday {
 	height: 100%;
 	width: 239px;
 	float: left;
-	border-left: 1px #ccc solid;
+	color: #f58220;
+	/*border-left: 1px #ccc solid;*/
+	border-right: 1px #ccc solid;
+
 }
 .home-top-container .home-tab-amount {
 	width: 100%;
