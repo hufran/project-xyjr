@@ -1,4 +1,15 @@
-
+<style>
+    .yesterdayInterest{height: 3.6rem;width:100%; text-align: center;color:#ffffff; margin:0.3rem auto; line-height:1rem;}
+    .gradientGloria{
+        background: -moz-linear-gradient(top, #3e9fd6 0%, #76ccfe 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3e9fd6), color-stop(100%,#76ccfe));
+        background: -webkit-linear-gradient(top, #3e9fd6 0%,#76ccfe 100%);
+        background: -o-linear-gradient(top, #3e9fd6 0%,#76ccfe 100%);
+        background: -ms-linear-gradient(top, #3e9fd6 0%,#76ccfe 100%);
+        background: linear-gradient(to bottom, #3e9fd6 0%,#76ccfe 100%);
+    }
+    .gradientGloria span{font-size:0.8rem;font-weight:bold}
+</style>
 <div id="dashboard">
 
     <nav class="omit-margin container page-nav">
@@ -11,8 +22,11 @@
     </div>
     </nav>
 
-    <div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>
-
+    <!--<div class="banner" x-carousel-banner data-delay-in-seconds="4"></div>-->
+    <div class="yesterdayInterest gradientGloria">
+        昨日收益（元）<br>
+        <span>{{yesterdayIncome | number:2}}</span>
+    </div>
     <section class="c-list-panel info-list">
         <div class="item">
             <img class="user-icon" width="14" src="assets/image/dashboard-user-icon.png">
