@@ -392,6 +392,7 @@ setTimeout((function () {
 
                         ok: function () {
                             if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g,"")=='返现券') {
+                                //alert('222');
                                 var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
                                 $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
                                     amount : num,
@@ -428,7 +429,26 @@ setTimeout((function () {
                                             }
                                         });
                                     }
+                                })
+                                .error(function(res) {
+                                    var errType = res.error && res.error[0] && res.error[0].message || '';
+                                        var errMsg = {
+                                            TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+                                        }
+                                         [errType] || errType;
+                                        CccOk.create({
+                                            msg: '投资失败'+errMsg,
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
                                 });
+                                //alert(111);
                             }//使用返现劵接口end
                             else{
                                 $.post('/lianlianpay/tender', {
