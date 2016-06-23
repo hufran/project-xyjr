@@ -127,12 +127,12 @@ do (_, angular, Math) ->
             detection: (amount = 0,max = @$scope.maxMoney,min = @$scope.minMoney, loan = @$scope.loan) ->
 
                 if amount>max
-                    @$scope.store.amount = max
+                    @$scope.store.amount = parseInt(max)
 
                 else if amount<min
-                    @$scope.store.amount = min
+                    @$scope.store.amount = parseInt(min)
                 else
-                    @$scope.store.amount = amount
+                    @$scope.store.amount = parseInt(amount)
 
 
 
