@@ -125,7 +125,12 @@
                         <p class="totalInterest totalNum" style="line-height: 35px;margin: 0;">预计收益<span>
                         <!-- {{(loan.totalInterest * (inum||0) / loan.originalAmount).toFixed(2)}} -->
                         <!-- {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}} -->
+                        {{#if loan.days > 0}}
+
                         {{(loan.durationdays/365 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
+                        {{else}}
+                        {{(loan.duration/12 * (isNaN(inputNum)?0 : inputNum) *loan.rate/100).toFixed(2)}}
+                        {{/if}}
                         </span>元</p>
                         <div class="selectOption">
                             <select name="placementId" id="couponSelection" on-change="rebate"> <!-- value="{{coupon}}" -->
