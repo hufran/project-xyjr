@@ -53,8 +53,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/accountRate', auth.pass());//债权转让手续费百分比
     
     //昨日收益
-    router.get('nnfe/userFund/getYesterdayYields', auth.pass());//昨日收益
-    router.get('api/v2/user/:userId/userfundNew', auth.pass());//昨日收益
+    router.get('/nnfe/userFund/getYesterdayYields', auth.pass());//昨日收益
+    router.get('/api/v2/user/:userId/userfundNew', auth.pass());//昨日收益
     
 
     router.get('/api/v2/navigation/listDisplayProductForPcContainData', auth.pass());//列表页面按钮写成读取数据
