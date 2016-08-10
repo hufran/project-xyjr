@@ -18,6 +18,8 @@ do (angular) ->
                     bank_account: _.clone @user.bank_account
                     available_amount: @user.fund.availableAmount
                     return_url: @baseURI + 'dashboard'
+                    userId:@user.fund.userId
+                    action1:'http://10.4.33.251:8888/api/v2/jdpay/onlineBankDeposit4Wap/'+@user.fund.userId
                 }
 
                 if +@$routeParams.amount > 0

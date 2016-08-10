@@ -19,15 +19,18 @@
     </section>
 
     <section class="form-wrapper">
+        {{bank_account.account}}<br>
+{{action1}}
         <form class="form-horizontal form-flatten"
               name="form"
               method="post"
-              ng-submit="self.submit($event, amount, return_url)"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
               novalidate
-        >
+              action="http://10.4.33.251:8888/api/v2/jdpay/onlineBankDeposit4Wap/43F497BB-2BF8-4484-A1CB-3FFEB56B81ED"
+              id="batchForm"
+        >{{userId || 'default'}}testing
             <div class="inputs container">
                 <div class="multi-line-container-item" x-gyro-comment>
                     <div class="form-group">
@@ -66,8 +69,10 @@
                 </div>
             </div>
 
-            <input type="hidden" name="isWAP" value="true">
+            <!--<input type="hidden" name="isWAP" value="true">-->
             <input type="hidden" name="retUrl" value="{{ return_url }}">
+            <input type="text" name="bankCode" value="{{bank_account.account}}">
+
 
             <p class="container">
                 <button class="btn btn-theme btn-block btn-lg"
