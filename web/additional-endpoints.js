@@ -1,5 +1,6 @@
 'use strict';
 module.exports = function (router, auth) {
+
     router.get('/api/v0/hello/world', auth.pass());
     router.get('/api/v2/message/notifications/:page/:userId', auth.owner());
     router.get('/api/v2/cms/appBootPage', auth.pass());
@@ -28,6 +29,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/loanIntent/addNew', auth.pass());
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user());
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
+    
+    
 
     router.get('/api/v2/message/markAsRead/:messageId', auth.user());
     router.get('/api/v2/message/user/:userId/listByStatus', auth.user());
@@ -106,9 +109,8 @@ module.exports = function (router, auth) {
 	router.get('/api/v2/creditassign/creditAssignDetail/:creditassignId', auth.pass());
 	router.post('/api/v2/creditassign/cancel/:creditAssignId', auth.user());
 	router.post('/api/v2/creditassign/autoAssign/:userId', auth.user());
-  //债转转让记录
+    //债转转让记录
     router.get('/api/v2/creditassign/list/loan/:loanId', auth.pass());
-
     //自动投标
     router.post('/api/v2/:userId/save_autobid_config',auth.user());
     router.post('/api/v2/resetPassword',auth.pass());
@@ -138,4 +140,35 @@ module.exports = function (router, auth) {
     router.get('/api/v2/navigation/listDisplayProductForPc/:client', auth.pass());
     router.get('/api/v2/navigation/listDisplayProductForApp/:client', auth.pass());
     router.get('/api/v2/navigation/listMessageForAppHome/:client/:size', auth.pass());
+    //添加提现银行卡 新接口
+    router.post('/api/v2/smsCaptcha/:userId',auth.pass());
+    //购买新接口
+    router.post('/api/mermaid/invest/tenderUseRebate',auth.user());
+    router.post('/api/mermaid/invest/tender',auth.user());
+    //充值新街口
+    router.post('/api/mermaid/yeepay/wapBankDeposit',auth.user());
+    //提现新接口
+    router.post('/api/mermaid/yeepay/withdraw', auth.user());
+    //消息新接口
+    router.get('/api/mermaid/message/notifications/:userId/:page/:count', auth.user());
+    router.get('/api/mermaid/message/markAsRead/:messId', auth.user());
+    router.get('/api/mermaid/message/countNewNotifications/:userId', auth.user());
+    //新接口登录
+    router.post('/api/mermaid/users/login',auth.pass());
+    //新接口注册
+    router.post('/api/mermaid/users/register',auth.pass());
+    //修改登录密码
+    router.post('/api/mermaid/users/reset_password/password',auth.user());
+    //修改交易密码
+    router.post('/api/v2/smsCaptcha/:userId',auth.pass());
+    router.post('/api/mermaid/users/resetPaymentPassword',auth.pass());
+    //实名认证
+    router.post('/api/mermaid/guozhengtong/authenticateUser',auth.pass());
+    //分享好友
+    router.get('/api/v2/user/:userId/inviteCode/', auth.pass());
+    //新PC充值接口
+    router.post('/api/v2/yeepay/onlineBankDeposit/:userId', auth.user());
+    //新H5充值
+    router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.user());
+    
 };
