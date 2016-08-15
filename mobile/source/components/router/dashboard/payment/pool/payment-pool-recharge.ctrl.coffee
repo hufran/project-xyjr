@@ -3,8 +3,8 @@ do (angular) ->
 
     angular.module('controller').controller 'RechargeCtrl',
 
-        _.ai '            @user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams', class
-            constructor: (@user, @api, @baseURI, @$location, @$scope, @$window, @$routeParams) ->
+        _.ai '            @user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams', class
+            constructor: (@user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams) ->
 
                 EXTEND_API @api
                 @$window.scrollTo 0, 0
@@ -18,6 +18,8 @@ do (angular) ->
                     bank_account: _.clone @user.bank_account
                     available_amount: @user.fund.availableAmount
                     return_url: @baseURI + 'dashboard'
+                    action1:'/api/v2/jdpay/onlineBankDeposit4Wap/'+@user.fund.userId
+                    token:@$cookies.get 'ccat'
                 }
 
                 if +@$routeParams.amount > 0

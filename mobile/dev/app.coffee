@@ -57,7 +57,8 @@ app.use express.static static_path
 
 app.get '*.min.js.map$', (req, res) ->
     res.status(204).end()
-
+#app.get '/test', (req, res) ->
+#    res.redirect 'http://10.4.34.202:3001/'
 app.get '/*', (req, res) ->
     res.sendFile 'index.html', root: static_path
 

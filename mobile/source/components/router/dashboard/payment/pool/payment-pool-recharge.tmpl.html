@@ -22,11 +22,12 @@
         <form class="form-horizontal form-flatten"
               name="form"
               method="post"
-              ng-submit="self.submit($event, amount, return_url)"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
               novalidate
+              action="{{action1}}"
+              id="batchForm"
         >
             <div class="inputs container">
                 <div class="multi-line-container-item" x-gyro-comment>
@@ -66,8 +67,10 @@
                 </div>
             </div>
 
-            <input type="hidden" name="isWAP" value="true">
+            <!--<input type="hidden" name="isWAP" value="true">-->
             <input type="hidden" name="retUrl" value="{{ return_url }}">
+            <input type="hidden" name="bankCode" value="{{bank_account.account}}">
+            <input type="hidden" name="token" value="{{token}}">
 
             <p class="container">
                 <button class="btn btn-theme btn-block btn-lg"
