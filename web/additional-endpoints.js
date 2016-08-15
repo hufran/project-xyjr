@@ -169,6 +169,9 @@ module.exports = function (router, auth) {
     //新PC充值接口
     router.post('/api/v2/yeepay/onlineBankDeposit/:userId', auth.user());
     //新H5充值
-    router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.user());
-    
+    router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.pass());
+    router.get('/api/mermaid/users/checkToken',auth.pass());
+    router.get('/api/mermaid/users/refToken',auth.user());
+
+   
 };
