@@ -152,4 +152,9 @@ function refreshPage(){
         window.location.href = "loan/"+$("#loanId").val();
     }
 }
-
+function a(){
+   // console.log(2)
+    //setTimeout("alert('5 seconds!')",5000);
+    //document.getElementById("batchForm").submit();
+    setTimeout("document.getElementById('batchForm').submit()",500)
+}
