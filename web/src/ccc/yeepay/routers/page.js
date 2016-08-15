@@ -89,7 +89,7 @@ module.exports = function (router) {
 	            body: req.body
 	        });
             //req.body.retUrl = 'http://'+req.connection.remoteAddress+'/newAccount/recharge';
-            req.body.retUrl = 'http://718zc.com/newAccount/recharge';
+            req.body.retUrl = 'http://718bank.com/newAccount/recharge';
 	        var data = qs.stringify(req.body);
 	        req.body = data.replace(/%5B\d+%5D/g, '');
 	        next();
