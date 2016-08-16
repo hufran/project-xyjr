@@ -11,23 +11,18 @@
 //         return r.data;
 //     }
 // });
-var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().then(function (r) {console.log('####pay');console.log(r.data);return r.data;});
+var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().then(function (r) {return r.body.results.data;});
 console.log('###list有没有');
 console.log(NETBANKS);
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-// var banks = _.filter(NETBANKS, function (r) {
-//     return r.enable === true;
-// });
 var banks=NETBANKS;
+
 // var corBanks = _.filter(NETBANKS, function (r) {
-//     return r.isSupportted === true;
+//     return r.support === true;
 // });
-var corBanks = _.filter(NETBANKS, function (r) {
-    return r.support === true;
-});
 var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/recharge/recharge.html'),
