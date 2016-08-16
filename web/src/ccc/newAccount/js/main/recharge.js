@@ -11,7 +11,7 @@ var NETBANKS=$.ajax({
         return r.data;
     }
 });
-
+console.log(NETBANKS);
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
