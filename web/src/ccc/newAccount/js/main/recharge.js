@@ -3,7 +3,7 @@
 //var NETBANKS = require('ccc/global/js/modules/netBank');
 //var NETBANKS = require('ccc/global/js/modules/fastnetBank');
 var NETBANKS=$.ajax({
-    type: 'POST',
+    type: 'GET',
     url:'/fish/api/v3/jdpay/bank/list',
     success:function(r){
         console.log('####pay');
