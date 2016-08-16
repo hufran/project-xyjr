@@ -14,8 +14,8 @@
  <!--{{else}}-->
 <div class="ccc-banks-wrap">
     <div class="recharge-form-wrap">
-        <form role="form" name="rechargeForm" action="{{action}}" method="POST" target="_blank"
-          on-submit="recharge_submit">
+        <form role="form" name="rechargeForm" action="http://10.4.33.251{{action}}" method="POST" target="_blank"
+          on-submit="recharge_submit"><!--action="{{action}}"/api/v2/gateway/deposit/BD839D6F-353B-4B4B-B87B-018367057F14-->
             <div class="space space-10"></div>
             <div class="space space-10"></div>
             <div class="row">
@@ -48,14 +48,22 @@
             <div class="space-20"></div>
             <div class="row">
                 <div class="methodwr" data-type="net">
-                    网银充值
+                    <div style="display:inline-block;">
+                        <input type="radio" id="paynet" name="payType" checked on-click="choosePayType">
+                        <label for="paynet" on-click="choosePayType">网银充值</label>
+                    </div>
+                    <div style="display:inline-block;margin-left: 20px;">
+                        <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType">
+                        <label for="fastpaynet" on-click="choosePayType">快捷支付</label>
+                    </div>
+                    
                 </div>
                 <div class="space space-30"></div>
                 <div class="bankwrap">
-                    {{#if !isEnterpriseUser}}
+                    {{#if !isEnterpriseUser}}<!--个人账户-->
                         {{#banks:index}}
                         {{#if index
-                    < showNum}} <span class="bankItem {{code}}" data-cc="{{code}}" data-code="{{bankCode}}"
+                    < showNum}} <span class="bankItem jd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}"
                       on-click="selectBank">
                         <span class="check"></span>
                         </span>
@@ -64,10 +72,28 @@
                         <span class="bankItem more" on-click="showAll"></span> 
                         {{/if}}
                         {{/banks}}
-                    {{else}}
+                    {{else}}<!--企业账户-->
                         {{#each corBanks}}
+                        <div class="corBanks">{{corBanks}}</div>
+                        <span class="bankItem cjd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
 
-                        <span class="bankItem c{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
+                           <span class="check"></span>
+
+                        </span>
+
+                        {{/each}} {{/if}}
+                </div>
+
+                <div class="fastbankwrap" style="display:none;">
+                    {{#if !isEnterpriseUser}}
+                        <span class="bankItem {{bankName}}" data-cc="{{bankName}}" data-code="{{bankCode}}"
+                      on-click="selectBank">
+                        <span class="check"></span>
+                        </span>
+                    {{else}}
+                        {{#each corfatsBanks}}
+
+                        <span class="bankItem c{{bankName}}" data-cc="{{bankName}}" data-code="{{bankCode}}" on-click="chooseBank">
 
                            <span class="check"></span>
 
@@ -76,8 +102,9 @@
                         {{/each}} {{/if}}
                 </div>
                 <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
-                <!--                <input type="hidden" name="retUrl" value="http://xyjr.uats.cc/api/v2/yeepay/BankDepositReturn">-->
-                <input type="hidden" name="bankCode" value="{{bankCode}}{{bankCodeEnd}}">
+                <input type="hidden" name="retUrl" value="http://www.baidu.com">
+                <input type="hidden" name="bankCode" value="{{bankCode}}" ><!--value="{{bankCode}}{{bankCodeEnd}}"104-->
+                
                 <div class="space-20"></div>
                 <!--
             {{#if !isEnterpriseUser}}
@@ -119,6 +146,453 @@
         </thead>
         <tbody>
 
+            <tr id="jd1025">
+                <td>工商银行</td>
+                <td>借记卡和贷记卡</td>
+                <td>
+                    <div>柜面注册存量静态密码客户</div>
+                    <div>电子银行口令客户（短信认证）</div>
+                    <div>电子银行口令客户（非短信认证）</div>
+                    <div>电子密码器</div>
+                    <div>一代U盾客户（未开通短信认证）</div>
+                    <div>一代U盾客户（开通短信认证）</div>
+                    <div>二代U盾客户</div>
+                    <div style="border:none">网银互联签约客户</div>
+                </td>
+                <td>
+                    <div>300</div>
+                    <div>2000</div>
+                    <div>500</div>
+                    <div>20万</div>
+                    <div>50万</div>
+                    <div>100万</div>
+                    <div>100万</div>
+                    <div style="border:none">5000</div>
+                </td>
+                <td>
+                    <div>300</div>
+                    <div>5000</div>
+                    <div>1000</div>
+                    <div>100万</div>
+                    <div>100万</div>
+                    <div>100万</div>
+                    <div>100万</div>
+                    <div style="border:none">5000</div>
+                </td>
+                <td>95588</td>
+            </tr>
+
+            <tr id="jd1051">
+                <td>建设银行</td>
+                <td>
+                    <div style="height: 325px;line-height: 325px;"> 签约的借记卡&贷记卡</div>
+                    <div style="border:none">非签约的借记卡和贷记卡</div>
+                </td>
+                <td>
+                    <div>全部（签约）</div>
+                    <div>动态口令卡（刮刮卡）</div>
+                    <div>短信动态口令</div>
+                    <div>文件证书</div>
+                    <div>二代网银盾</div>
+                    <div>文件证书+刮刮卡</div>
+                    <div>USB Key+动态口令卡</div>
+                    <div>网银高端版</div>
+                    <div>USB Key+短信动态口令</div>
+                    <div>刮刮卡+短信动态口令</div>
+                    <div>USB Key+短信确认</div>
+                    <div>USB Key</div>
+                    <div>音频盾</div>
+                    <div style="border:none">非签约</div>
+                </td>
+                <td>
+                    <div>500000</div>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>0</div>
+                    <div>500000</div>
+                    <div>5000</div>
+                    <div>500000</div>
+                    <div>500000</div>
+                    <div>500000</div>
+                    <div></div>
+                    <div>500000</div>
+                    <div>500000</div>
+                    <div></div>
+                    <div style="border:none">0</div>
+                </td>
+                <td>
+                    <div>500000</div>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>0</div>
+                    <div>500000</div>
+                    <div>5000</div>
+                    <div>500000</div>
+                    <div>500000</div>
+                    <div>500000</div>
+                    <div></div>
+                    <div>500000</div>
+                    <div>500000</div>
+                    <div></div>
+                    <div style="border:none">0</div>
+                </td>
+                <!-- <tr>
+            <th>非签约的借记卡和贷记卡</th>
+            <td>非签约</td>
+            <td>0</td>
+            <td>0</td>
+           </tr> -->
+                <td>95533</td>
+            </tr>
+
+            <tr id="jd103">
+                <td>农业银行</td>
+                <td>金穗借记卡、准贷记卡</td>
+                <td>
+                    <div>一代K宝</div>
+                    <div>二代K宝</div>
+                    <div>动态口令卡</div>
+                    <div style="border:none">K码支付</div>
+                </td>
+                <td>
+                    <div>50万</div>
+                    <div>100万</div>
+                    <div>1000</div>
+                    <div style="border:none">1000</div>
+                </td>
+                <td>
+                    <div>100万</div>
+                    <div>500万</div>
+                    <div>1000</div>
+                    <div style="border:none">3000</div>
+                </td>
+                <td>95599</td>
+            </tr>
+            <tr id="jd3080">
+                <td>招商银行</td>
+                <td>
+                    <div style="height: 50px;line-height: 50px;">借记卡</div>
+                    <div style="border:none">信用卡</div>
+                </td>
+                <td>
+                    <div>USBkey </div>
+                    <div>大众版</div>
+                    <div style="border:none">USBkey及大众版</div>
+                </td>
+                <td>
+                    <div>无</div>
+                    <div>5000</div>
+                    <div style="border:none">500</div>
+                </td>
+                <td>
+                    <div>无</div>
+                    <div></div>
+                    <div style="border:none"></div>
+                </td>
+                <td>95555</td>
+            </tr>
+            <tr id="jd3407">
+                <td>交通银行</td>
+                <td>
+                    <div>USB证书</div>
+                    <div style="border:none">短信密码</div>
+                </td>
+                <td>
+                    <div>100万</div>
+                    <div style="border:none">5万</div>
+                </td>
+                <td>
+                    <div>100万</div>
+                    <div style="border:none">5万</div>
+                </td>
+                <td>95566</td>
+            </tr>
+            <tr id="jd104">
+                <td>中国银行</td>
+                <td>
+                    <div>借记卡</div>
+                    <div>准贷记卡</div>
+                    <div>贷记卡</div>
+                    <div style="border:none">中银快付（借、贷）</div>
+                </td>
+                <td>
+                    <div>口令卡&UKEY</div>
+                    <div>口令卡&UKEY</div>
+                    <div>口令卡&UKEY</div>
+                    <div style="border:none">中银快付</div>
+                </td>
+                <td>
+                    <div>5万</div>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div style="border:none">1000</div>
+                </td>
+                <td>
+                    <div>50万</div>
+                    <div>信用额度 （如信用额度超过50万，限额为50万）
+                    </div>
+                    <div>信用额度 （如信用额度超过50万，限额为50万）
+                    </div>
+                    <div style="border:none">5000</div>
+                </td>
+                <td>95566</td>
+            </tr>
+            <tr id="jd3230">
+                <td>邮政</td>
+                <td>借记卡</td>
+                <td>
+                    <div>XXUSBkey </div>
+                    <div>XX动态口令</div>
+                    <div style="border:none">电子令牌</div>
+                </td>
+                <td>
+                    <div>2000000 </div>
+                    <div>10000</div>
+                    <div style="border:none">200000</div>
+                </td>
+                <td>
+                    <div>2000000 </div>
+                    <div>10000</div>
+                    <div style="border:none">200000</div>
+                </td>
+                <td>95580</td>
+            </tr>
+            <tr id="jd312">
+                <td>光大银行</td>
+                <td>
+                    <div>阳光借记卡</div>
+                    <div style="border:none">信用卡</div>
+                </td>
+                <td>
+                    <div>动态密码</div>
+                    <div>阳光令牌</div>
+                    <div>PUSH支付</div>
+                    <div>动态密码</div>
+                    <div>阳光令牌</div>
+                    <div style="border:none">PUSH支付</div>
+                </td>
+                <td>
+                    <div>1万元</div>
+                    <div>50万元</div>
+                    <div>1万元</div>
+                    <div>1000</div>
+                    <div>1000</div>
+                    <div style="border:none">1000</div>
+                </td>
+                <td>
+                    <div>1万元</div>
+                    <div>50万元</div>
+                    <div>1万元</div>
+                    <div>1万元</div>
+                    <div>50万元</div>
+                    <div style="border:none">1万元</div>
+                </td>
+                <td>95595</td>
+            </tr>
+            <tr id="jd305">
+                <td>民生银行</td>
+                <td>
+                    <div style="    height: 76px;line-height:76px;"> 借记卡</div>
+                    <div style="border:none">信用卡</div>
+                </td>
+                <td>
+                    <div>大众版（短信验证码）</div>
+                    <div> 大众版（浏览器证书）</div>
+                    <div> 贵宾版（U宝）</div>
+                    <div> 贵宾版（OTP）</div>
+                    <div>大众版 （短信验证码&浏览器证书）
+                    </div>
+                    <div style="border:none">贵宾版（U宝&OTP）</div>
+                </td>
+                <td>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>50万</div>
+                    <div>50万</div>
+                    <div>5000或信用额度</div>
+                    <div style="border:none">50万或信用额度</div>
+                </td>
+                <td>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>50万</div>
+                    <div>50万</div>
+                    <div>5000或信用额度</div>
+                    <div style="border:none">50万或信用额度</div>
+                </td>
+                <td>95568</td>
+            </tr>
+            <tr id="jd313">
+                <td>中信银行</td>
+                <td>
+                    <div>借记卡</div>
+                    <div style="border:none">信用卡</div>
+                </td>
+                <td>
+                    <div>动态口令</div>
+                    <div>USBKey</div>
+                    <div>动态口令</div>
+                    <div style="border:none">USBkey</div>
+                </td>
+                <td>
+                    <div>1000</div>
+                    <div>1000000</div>
+                    <div>1000</div>
+                    <div style="border:none">1000</div>
+                </td>
+                <td>
+                    <div>5000</div>
+                    <div>1000000</div>
+                    <div>10000</div>
+                    <div style="border:none">10000</div>
+                </td>
+                <td>95558</td>
+            </tr>
+            <tr id="jd3061">
+                <td>广发银行</td>
+                <td>
+                    <div>借记卡</div>
+                    <div style="border:none">信用卡</div>
+                </td>
+                <td>
+                    <div>USBkey </div>
+                    <div>动态口令</div>
+                    <div>key令</div>
+                    <div>USBkey </div>
+                    <div>动态口令</div>
+                    <div style="border:none">key令</div>
+                </td>
+                <td>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>2000</div>
+                    <div>2000</div>
+                    <div style="border:none">2000</div>
+                </td>
+                <td>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>5000</div>
+                    <div>2000</div>
+                    <div>2000</div>
+                    <div style="border:none">2000</div>
+                </td>
+                <td>95508</td>
+            </tr>
+            <tr id="jd314">
+                <td>浦发银行</td>
+                <td>
+                    <div>签约用户（数字证书版）</div>
+                    <div style="border:none">签约用户（动态密码版）</div>
+                </td>
+                <td>
+                    <div>无限额</div>
+                    <div style="border:none">20万</div>
+                </td>
+                <td>
+                    <div>无限额</div>
+                    <div style="border:none">20万</div>
+                </td>
+                <td>95528</td>
+            </tr>
+            <tr id="jd307">
+                <td>平安银行</td>
+                <td>
+                    <div>借记卡</div>
+                    <div style="border:none">信用卡</div>
+                </td>
+                <td>
+                    <div>USBkey </div>
+                    <div>动态口令 </div>
+                    <div>USBkey </div>
+                    <div style="border:none">动态口令</div>
+                </td>
+                <td>
+                    <div>5万 </div>
+                    <div>5万 </div>
+                    <div>2000 </div>
+                    <div style="border:none">2000</div>
+                </td>
+                <td>
+                    <div>5万 </div>
+                    <div>5万 </div>
+                    <div>2000 </div>
+                    <div style="border:none">2000</div>
+                </td>
+                <td>95511</td>
+            </tr>
+            <tr id="jd311">
+                <td>华夏银行</td>
+                <td>借记卡</td>
+                <td>
+                    <div>非签约客户（密码验证）</div>
+                    <div>手机动态验证</div>
+                    <div>证书/U-key</div>
+                </td>
+                <td>
+                    <div>300</div>
+                    <div>500</div>
+                    <div>5000</div>
+                </td>
+                <td>
+                    <div>1000</div>
+                    <div>2000</div>
+                    <div>20000</div>
+                </td>
+                <td>95577</td>
+            </tr>
+            <tr id="jd326">
+                <td>上海银行</td>
+                <td>
+                    <div>易签宝（USBKey证书）</div>
+                    <div style="border:none">文件证书</div>
+                </td>
+                <td>
+                    <div>5000</div>
+                    <div style="border:none">5万</div>
+                </td>
+                <td>
+                    <div>5000</div>
+                    <div style="border:none">5万</div>
+                </td>
+                <td>95594</td>
+            </tr>
+            <tr id="jd310">
+                <td>北京银行</td>
+                <td>普通/仅借记卡</td>
+                <td>借记卡</td>
+                <td>
+                    <div>普通</div>
+                    <div>动态密码</div>
+                    <div style="border:none">证书</div>
+                </td>
+                <td>
+                    <div>300</div>
+                    <div>1000</div>
+                    <div style="border:none">100万</div>
+                </td>
+                <td>95526</td>
+            </tr>
+            <tr id="jd316">
+                <td>南京银行</td>
+                <td>
+                    <div>普通版</div>
+                    <div>手机版</div>
+                    <div style="border:none">专业版</div>
+                </td>
+                <td>
+                    <div>300</div>
+                    <div>1万</div>
+                    <div style="border:none">5万</div>
+                </td>
+                <td>
+                    <div>300</div>
+                    <div>1万</div>
+                    <div style="border:none">5万</div>
+                </td>
+                <td>4008896400</td>
+            </tr>
             <tr id="ICBC">
                 <td>工商银行</td>
                 <td>借记卡和贷记卡</td>

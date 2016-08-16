@@ -66,49 +66,49 @@
 .yeepay {
 	background: url(/ccc/newAccount/img/yeepay.jpg) no-repeat center #fff;
 }
-.ICBC {
+.ICBC,.jd1025 {
   background: url(/ccc/newAccount/img/pBanks/ICBC.jpg) no-repeat center #fff;
 }
 
-.CCB {
+.CCB,.jd1051 {
   background: url(/ccc/newAccount/img/pBanks/CCB.jpg) no-repeat center #fff;
 }
 
-.ABC {
+.ABC,.jd103 {
   background: url(/ccc/newAccount/img/pBanks/ABC.jpg) no-repeat center #fff;
 }
-.CMBCHINA {
+.CMBCHINA,.jd3080 {
   background: url(/ccc/newAccount/img/pBanks/CMBCHINA.jpg) no-repeat center #fff;
 }
-.BIC {
+.BIC,.jd3407 {
   background: url(/ccc/newAccount/img/pBanks/BIC.jpg) no-repeat center #fff;
 }
-.BOC {
+.BOC,.jd104 {
   background: url(/ccc/newAccount/img/pBanks/BOC.jpg) no-repeat center #fff;
 }
-.CEB {
+.CEB,.jd312 {
   background: url(/ccc/newAccount/img/pBanks/CEB.jpg) no-repeat center #fff;
 }
-.CMBC {
+.CMBC,.jd305 {
   background: url(/ccc/newAccount/img/pBanks/CMBC.jpg) no-repeat center #fff;
 }
-.CIB {
+.CIB,.jd309 {
   background: url(/ccc/newAccount/img/pBanks/CIB.jpg) no-repeat center #fff;
 }
-.ECITIC {
+.ECITIC,.jd313 {
   background: url(/ccc/newAccount/img/pBanks/ECITIC.jpg) no-repeat center #fff;
 }
-.GDB {
+.GDB,.jd3061 {
   background: url(/ccc/newAccount/img/pBanks/GDB.jpg) no-repeat center #fff;
 }
 
-.SPDB {
+.SPDB,.jd314 {
   background: url(/ccc/newAccount/img/pBanks/SPDB.jpg) no-repeat center #fff;
 }
-.PINGANBANK {
+.PINGANBANK,.jd307 {
   background: url(/ccc/newAccount/img/pBanks/PINGAN.jpg) no-repeat center #fff;
 }
-.HXB {
+.HXB,.jd311 {
   background: url(/ccc/newAccount/img/pBanks/HXB.jpg) no-repeat center #fff;
 }
 .NB {
@@ -117,17 +117,17 @@
 .DY {
   background: url(/ccc/newAccount/img/pBanks/DY.jpg) no-repeat center #fff;
 }
-.SH {
+.SH,.jd326 {
   background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat center #fff;
 }
-.POST {
+.POST,.jd3230 {
   background: url(/ccc/newAccount/img/pBanks/POST.jpg) no-repeat center #fff;
 }
-.NJ {
+.NJ,.jd316 {
   background: url(/ccc/newAccount/img/pBanks/NJ.jpg) no-repeat center #fff;
 }
 
-.SHNS {
+.SHNS,.jd343 {
   background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat center #fff;
 }
 
@@ -139,54 +139,66 @@
   background: url(/ccc/newAccount/img/pBanks/BH.jpg) no-repeat center #fff;
 }
 
-.BCCB {
+.BCCB,.jd310 {
   background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat center #fff;
+}
+.jd335{
+  background: url(/ccc/newAccount/img/pBanks/BJNS.jpg) no-repeat center #fff;
+}
+.jd342{
+  background: url(/ccc/newAccount/img/pBanks/CQNS.jpg) no-repeat center #fff;
+}
+.jd344{
+  background: url(/ccc/newAccount/img/pBanks/HF.jpg) no-repeat center #fff;
+}
+.jd401{
+  background: url(/ccc/newAccount/img/pBanks/XM.jpg) no-repeat center #fff;
 }
 /*企业*/
 
-.cICBC {
+.cICBC,.cjd1025 {
   background: url(/ccc/newAccount/img/nBanks/ICBC.jpg) no-repeat center #fff;
 }
 
-.cCCB {
+.cCCB,.cjd1051 {
   background: url(/ccc/newAccount/img/nBanks/CCB.jpg) no-repeat center #fff;
 }
 
-.cABC {
+.cABC,.cjd103 {
   background: url(/ccc/newAccount/img/nBanks/ABC.jpg) no-repeat center #fff;
 }
-.cCMBCHINA {
+.cCMBCHINA,.cjd3080 {
   background: url(/ccc/newAccount/img/nBanks/CMBCHINA.jpg) no-repeat center #fff;
 }
-.cBIC {
+.cBIC,.cjd3407 {
   background: url(/ccc/newAccount/img/nBanks/BIC.jpg) no-repeat center #fff;
 }
-.cBOC {
+.cBOC,.cjd104 {
   background: url(/ccc/newAccount/img/nBanks/BOC.jpg) no-repeat center #fff;
 }
-.cCEB {
+.cCEB,.cjd312 {
   background: url(/ccc/newAccount/img/nBanks/CEB.jpg) no-repeat center #fff;
 }
-.cCMBC {
+.cCMBC,.cjd305 {
   background: url(/ccc/newAccount/img/nBanks/CMBC.jpg) no-repeat center #fff;
 }
-.cCIB {
+.cCIB,.cjd309 {
   background: url(/ccc/newAccount/img/nBanks/CIB.jpg) no-repeat center #fff;
 }
-.cECITIC {
+.cECITIC,.cjd313 {
   background: url(/ccc/newAccount/img/nBanks/ECITIC.jpg) no-repeat center #fff;
 }
-.cGDB {
+.cGDB,.cjd3061 {
   background: url(/ccc/newAccount/img/nBanks/GDB.jpg) no-repeat center #fff;
 }
 
-.cSPDB {
+.cSPDB,.cjd314 {
   background: url(/ccc/newAccount/img/nBanks/SPDB.jpg) no-repeat center #fff;
 }
-.cPINGAN {
+.cPINGAN,.cjd307 {
   background: url(/ccc/newAccount/img/nBanks/PINGAN.jpg) no-repeat center #fff;
 }
-.cHXB {
+.cHXB,.cjd311 {
   background: url(/ccc/newAccount/img/nBanks/HXB.jpg) no-repeat center #fff;
 }
 .cNB {
@@ -195,17 +207,17 @@
 .cDY {
   background: url(/ccc/newAccount/img/nBanks/DY.jpg) no-repeat center #fff;
 }
-.cSH {
+.cSH,.cjd326 {
   background: url(/ccc/newAccount/img/nBanks/SH.jpg) no-repeat center #fff;
 }
-.cPOST {
+.cPOST,.cjd3230 {
   background: url(/ccc/newAccount/img/nBanks/POST.jpg) no-repeat center #fff;
 }
-.cNJ {
+.cNJ,.cjd316 {
   background: url(/ccc/newAccount/img/nBanks/NJ.jpg) no-repeat center #fff;
 }
 
-.cSHNS {
+.cSHNS,.cjd343 {
   background: url(/ccc/newAccount/img/nBanks/SHNS.jpg) no-repeat center #fff;
 }
 
@@ -217,8 +229,20 @@
   background: url(/ccc/newAccount/img/nBanks/BH.jpg) no-repeat center #fff;
 }
 
-.cBCCB {
+.cBCCB,.cjd310 {
   background: url(/ccc/newAccount/img/nBanks/BCCB.jpg) no-repeat center #fff;
+}
+.cjd335{
+  background: url(/ccc/newAccount/img/nBanks/BJNS.jpg) no-repeat center #fff;
+}
+.cjd342{
+  background: url(/ccc/newAccount/img/nBanks/CQNS.jpg) no-repeat center #fff;
+}
+.cjd344{
+  background: url(/ccc/newAccount/img/nBanks/HF.jpg) no-repeat center #fff;
+}
+.cjd401{
+  background: url(/ccc/newAccount/img/nBanks/XM.jpg) no-repeat center #fff;
 }
 table.tinfo {
   width: 850px;
