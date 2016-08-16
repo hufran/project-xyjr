@@ -1,7 +1,17 @@
 'use strict';
 
 //var NETBANKS = require('ccc/global/js/modules/netBank');
-var NETBANKS = require('ccc/global/js/modules/fastnetBank');
+//var NETBANKS = require('ccc/global/js/modules/fastnetBank');
+var NETBANKS=$.ajax({
+    type: 'POST',
+    url:'/fish/api/v3/jdpay/bank/list',
+    success:function(r){
+        console.log('####pay');
+        console.log(r.data);
+        return r.data;
+    }
+});
+
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
@@ -244,7 +254,10 @@ ractive.on('selectBank', function (event) {
         var code = event.node.getAttribute('data-cc');
         this.set('bankCode', code);
     }else{
-        this.set('bankCode', CC.user.bankCards[0].account.account);
+        if (CC.user.bankCards.length>0) {
+            this.set('bankCode', CC.user.bankCards[0].account.account);
+        };
+        
     }
     
 });
@@ -253,7 +266,10 @@ ractive.on('chooseBank', function (event) {
         var code = event.node.getAttribute('data-cc');
         this.set('bankCode', code);
     }else{
-        this.set('bankCode', CC.user.bankCards[0].account.account);
+        if (CC.user.bankCards.length>0) {
+            this.set('bankCode', CC.user.bankCards[0].account.account);
+        };
+        
     }
     
 });
@@ -270,7 +286,10 @@ ractive.on('choosePayType', function (event) {
         ractive.set('showamountInfo', false);
         $('.bankItem').removeClass('currentBank');
         $('.bankItem').find('span.check').hide();
-        this.set('bankName',CC.user.bankCards[0].account.bank);
+        if (CC.user.bankCards.length>0) {
+            this.set('bankName',CC.user.bankCards[0].account.bank);
+        };
+        
         $('.fastbankwrap').css('display','block');
         $('.bankwrap').css('display','none');
         ractive.set('action','/api/v2/jdpay/gateway/deposit/'+CC.user.id);
