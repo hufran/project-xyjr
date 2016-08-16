@@ -11,7 +11,7 @@
 //         return r.data;
 //     }
 // });
-var banks="";
+var banks=[];
 var corBanks="";
 var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().
                 then(function (r) {
@@ -21,7 +21,8 @@ var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().
                     });
                 });
 console.log('###list有没有');
-console.log(NETBANKS.data);
+console.log(banks);
+console.log(corBanks);
 console.log('######');
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
