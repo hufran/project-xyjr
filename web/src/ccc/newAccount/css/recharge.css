@@ -66,6 +66,9 @@
 .yeepay {
 	background: url(/ccc/newAccount/img/yeepay.jpg) no-repeat center #fff;
 }
+.noCardTip a{color: #f58220;}
+.noCardTip a:hover{color: #f58220;text-decoration: none;}
+
 .ICBC,.jd1025 {
   background: url(/ccc/newAccount/img/pBanks/ICBC.jpg) no-repeat center #fff;
 }

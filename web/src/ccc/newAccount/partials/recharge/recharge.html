@@ -86,10 +86,15 @@
 
                 <div class="fastbankwrap" style="display:none;">
                     {{#if !isEnterpriseUser}}
+                        {{#if isBankCard > 0}}
                         <span class="bankItem {{bankName}}" data-cc="{{bankName}}" data-code="{{bankCode}}"
                       on-click="selectBank">
                         <span class="check"></span>
                         </span>
+                        {{else}}
+                        <div class="noCardTip">您尚未绑定银行卡，<a href="/newAccount/settings/bankCards">立即绑卡</a></div>
+                        {{/if}}
+
                     {{else}}
                         {{#each corfatsBanks}}
 
