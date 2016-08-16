@@ -13,15 +13,15 @@
 // });
 var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().then(function (r) {return r.body;});
 console.log('###list有没有');
-console.log(NETBANKS);
+console.log(NETBANKS.data);
 console.log('######');
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-var banks=NETBANKS;
+var banks=NETBANKS.data;
 
-var corBanks = _.filter(NETBANKS, function (r) {
+var corBanks = _.filter(NETBANKS.data, function (r) {
     return r.support === true;
 });
 var ractive = new Ractive({
