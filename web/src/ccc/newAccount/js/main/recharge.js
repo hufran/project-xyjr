@@ -1,16 +1,20 @@
 'use strict';
 
-var NETBANKS = require('ccc/global/js/modules/netBank');
+//var NETBANKS = require('ccc/global/js/modules/netBank');
+var NETBANKS = require('ccc/global/js/modules/fastnetBank');
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-var banks = _.filter(NETBANKS, function (r) {
-    return r.enable === true;
-});
-
+// var banks = _.filter(NETBANKS, function (r) {
+//     return r.enable === true;
+// });
+var banks=NETBANKS;
+// var corBanks = _.filter(NETBANKS, function (r) {
+//     return r.isSupportted === true;
+// });
 var corBanks = _.filter(NETBANKS, function (r) {
-    return r.isSupportted === true;
+    return r.support === true;
 });
 var ractive = new Ractive({
     el: '#ractive-container',
@@ -38,7 +42,7 @@ var ractive = new Ractive({
         })(),
         isBankCard: CC.user.bankCards.length,
         amountValue: 10000000,
-        action: '/yeepay/onlineBankDeposit',
+        action:'/api/v2/jdpay/gateway/deposit/'+CC.user.id,
         showNum: 9,
         minAmount: 100
     },
@@ -96,20 +100,20 @@ var ractive = new Ractive({
 
         $(".bankwrap").delegate('.bankItem', 'click', function () {
 
-            var classMap = ['ICBC','CCB','ABC','CMBCHINA','BOC','CEB','CMBC','ECITIC','GDB','PINGAN','HXB','POST','BCCB'];
+            var classMap = ['jd1025','jd1051','jd103','jd3080','jd104','jd312','jd305','jd313','jd3061','jd307','jd311','jd3230','jd310'];
 
-            var code = $(this).data('cc');
+            var code = 'jd'+$(this).data('cc');
             if ($.inArray(code,classMap) == -1) {
                 ractive.set('showamountInfo', false);
             } else {
                 ractive.set('showamountInfo', true);
                 $("#" + code).show().siblings().hide();
             }
-            $('.bankwrap .bankItem')
+            $('.bankItem')
                 .removeClass('currentBank');
             $(this)
                 .addClass('currentBank');
-            $('.bankwrap .bankItem')
+            $('.bankItem')
             	.find('span.check')
             	.hide();
             $(this)
@@ -122,8 +126,40 @@ var ractive = new Ractive({
 		        ractive.set('action', '/yeepay/deposit');
 		    } else {
         		ractive.set('isNormal', false);
-		        ractive.set('action', '/yeepay/onlineBankDeposit');
+		        ractive.set('action', '/api/v2/jdpay/gateway/deposit/'+CC.user.id);
 		    }
+        });
+
+        //jd快捷支付
+        $(".fastbankwrap").delegate('.bankItem', 'click', function () {
+            var classMap = ['ICBC','CCB','ABC','CMBCHINA','BOC','CEB','CMBC','ECITIC','GDB','PINGAN','HXB','POST','BCCB'];
+
+            var code =$(this).data('cc');
+            if ($.inArray(code,classMap) == -1) {
+                ractive.set('showamountInfo', false);
+            } else {
+                ractive.set('showamountInfo', true);
+                $("#" + code).show().siblings().hide();
+            }
+            $('.bankItem')
+                .removeClass('currentBank');
+            $(this)
+                .addClass('currentBank');
+            $('.bankItem')
+                .find('span.check')
+                .hide();
+            $(this)
+                .find('span.check')
+                .show()
+
+            var type = $(this).parent().siblings('.methodwr').data('type');
+            if (type !== 'net') {
+                ractive.set('isNormal', true);
+                ractive.set('action', '/yeepay/deposit');
+            } else {
+                ractive.set('isNormal', false);
+                ractive.set('action', '/api/v2/yeepay/onlineBankDeposit/'+CC.user.id);
+            }
         });
 
 
@@ -196,17 +232,49 @@ ractive.on('changeMethod', function (event) {
         ractive.set('action', '/yeepay/deposit');
     } else {
         ractive.set('isNormal', false);
-        ractive.set('action', '/yeepay/onlineBankDeposit');
+        ractive.set('action','/api/v2/jdpay/gateway/deposit/'+CC.user.id);
     }
 });
 ractive.on('showAll', function () {
 	this.set('showNum', banks.length);
 });
+
 ractive.on('selectBank', function (event) {
-    var code = event.node.getAttribute('data-cc');
-    this.set('bankCode', code);
+    if ($('#paynet').prop('checked')==true) {
+        var code = event.node.getAttribute('data-cc');
+        this.set('bankCode', code);
+    }else{
+        this.set('bankCode', CC.user.bankCards[0].account.account);
+    }
+    
 });
 ractive.on('chooseBank', function (event) {
-    var code = event.node.getAttribute('data-cc');
-    this.set('bankCode', code);
+    if ($('#paynet').prop('checked')==true) {
+        var code = event.node.getAttribute('data-cc');
+        this.set('bankCode', code);
+    }else{
+        this.set('bankCode', CC.user.bankCards[0].account.account);
+    }
+    
+});
+
+ractive.on('choosePayType', function (event) {
+    if ($('#paynet').prop('checked')==true) {
+        $('.fastbankwrap').css('display','none');
+        $('.bankwrap').css('display','block');
+        ractive.set('showamountInfo', false);
+        $('.bankItem').removeClass('currentBank');
+        $('.bankItem').find('span.check').hide();
+        
+    }else{
+        ractive.set('showamountInfo', false);
+        $('.bankItem').removeClass('currentBank');
+        $('.bankItem').find('span.check').hide();
+        this.set('bankName',CC.user.bankCards[0].account.bank);
+        $('.fastbankwrap').css('display','block');
+        $('.bankwrap').css('display','none');
+        ractive.set('action','/api/v2/jdpay/gateway/deposit/'+CC.user.id);
+
+    }
+    
 });

@@ -167,7 +167,10 @@ module.exports = function (router, auth) {
     //分享好友
     router.get('/api/v2/user/:userId/inviteCode/', auth.pass());
     //新PC充值接口
-    router.post('/api/v2/yeepay/onlineBankDeposit/:userId', auth.user());
+    router.post('/api/v2/yeepay/onlineBankDeposit/:userId', auth.pass());
+    router.post('/api/v2/jdpay/gateway/deposit/:userId', auth.user());
+    //jd银行列表
+    router.get('/fish/api/v3/jdpay/bank/list',auth.pass());
     //新H5充值
     router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.pass());
     router.get('/api/mermaid/users/checkToken',auth.pass());
