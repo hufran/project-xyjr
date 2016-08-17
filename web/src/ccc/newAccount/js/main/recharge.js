@@ -3,7 +3,16 @@
 //var NETBANKS = require('ccc/global/js/modules/netBank');
 //var NETBANKS = require('ccc/global/js/modules/fastnetBank');
 var banks=[];
-var corBanks="";
+var corBanks=[
+{"code":"9102","name":"中国工商银行","support":true},
+{"code":"9105","name":"中国建设银行","support":true},
+{"code":"9109","name":"中国银行","support":true},
+{"code":"9103","name":"中国农业银行","support":true},
+{"code":"9104","name":"交通银行","support":true},
+{"code":"9107","name":"招商银行","support":true},
+{"code":"9108","name":"光大银行","support":true},
+{"code":"9110","name":"平安银行","support":true},
+];
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
@@ -22,6 +31,7 @@ var ractive = new Ractive({
         pointNum:null,
         intNum:null,
         isNormal: false,
+        corBanks:corBanks,
         isEnterpriseUser: CC.user.enterprise,
         bankCodeEnd: (function () {
             if(CC.user.enterprise) {
@@ -156,14 +166,11 @@ var ractive = new Ractive({
     }
 
 });
+
 request('GET','/fish/api/v3/jdpay/bank/list').end().
     then(function (r) {
         banks=r.body.data;
-        corBanks = _.filter(r.body.data, function (r) {
-            return r.support === true;
-        });
         ractive.set('banks', banks);
-        ractive.set('corBanks', corBanks);
     });
 ractive.parseData();
 
