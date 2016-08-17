@@ -13,15 +13,15 @@
 // });
 var banks=[];
 var corBanks="";
-var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().
-                then(function (r) {
-                    banks=r.body.data;
-                    console.log('不会没有吧');
-                    console.log(banks);
-                    corBanks = _.filter(NETBANKS.data, function (r) {
-                        return r.support === true;
-                    });
-                });
+request('GET','/fish/api/v3/jdpay/bank/list').end().
+    then(function (r) {
+        banks=r.body.data;
+        console.log('不会没有吧');
+        console.log(banks);
+        corBanks = _.filter(r.body.data, function (r) {
+            return r.support === true;
+        });
+    });
 console.log('###list有没有');
 console.log(banks);
 console.log(corBanks);
