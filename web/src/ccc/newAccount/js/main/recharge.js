@@ -11,7 +11,15 @@
 //         return r.data;
 //     }
 // });
-var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().then(function (r) {return r.body;});
+var banks="";
+var corBanks="";
+var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().
+                then(function (r) {
+                    banks=r.body.data;
+                    corBanks = _.filter(NETBANKS.data, function (r) {
+                        return r.support === true;
+                    });
+                });
 console.log('###list有没有');
 console.log(NETBANKS.data);
 console.log('######');
@@ -19,11 +27,11 @@ require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-var banks=NETBANKS.data;
+// var banks=r.body.data;
 
-var corBanks = _.filter(NETBANKS.data, function (r) {
-    return r.support === true;
-});
+// var corBanks = _.filter(NETBANKS.data, function (r) {
+//     return r.support === true;
+// });
 var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/recharge/recharge.html'),
