@@ -114,7 +114,7 @@
 .HXB,.jd311 {
   background: url(/ccc/newAccount/img/pBanks/HXB.jpg) no-repeat center #fff;
 }
-.NB {
+.NB,.jd302 {
   background: url(/ccc/newAccount/img/pBanks/NB.jpg) no-repeat center #fff;
 }
 .DY {
@@ -134,7 +134,7 @@
   background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat center #fff;
 }
 
-.CD {
+.CD,.jd336 {
   background: url(/ccc/newAccount/img/pBanks/CD.jpg) no-repeat center #fff;
 }
 
@@ -156,6 +156,12 @@
 }
 .jd401{
   background: url(/ccc/newAccount/img/pBanks/XM.jpg) no-repeat center #fff;
+}
+.jd324{
+  background: url(/ccc/newAccount/img/pBanks/HZ.jpg) no-repeat center #fff;
+}
+.jd3341{
+  background: url(/ccc/newAccount/img/pBanks/QD.jpg) no-repeat center #fff;
 }
 /*企业*/
 
@@ -204,7 +210,7 @@
 .cHXB,.cjd311 {
   background: url(/ccc/newAccount/img/nBanks/HXB.jpg) no-repeat center #fff;
 }
-.cNB {
+.cNB,.cjd302 {
   background: url(/ccc/newAccount/img/nBanks/NB.jpg) no-repeat center #fff;
 }
 .cDY {
@@ -224,7 +230,7 @@
   background: url(/ccc/newAccount/img/nBanks/SHNS.jpg) no-repeat center #fff;
 }
 
-.cCD {
+.cCD,.cjd336 {
   background: url(/ccc/newAccount/img/nBanks/CD.jpg) no-repeat center #fff;
 }
 
@@ -246,6 +252,12 @@
 }
 .cjd401{
   background: url(/ccc/newAccount/img/nBanks/XM.jpg) no-repeat center #fff;
+}
+.cjd324{
+  background: url(/ccc/newAccount/img/pBanks/HZ.jpg) no-repeat center #fff;
+}
+.cjd3341{
+  background: url(/ccc/newAccount/img/pBanks/QD.jpg) no-repeat center #fff;
 }
 table.tinfo {
   width: 850px;

@@ -2,26 +2,12 @@
 
 //var NETBANKS = require('ccc/global/js/modules/netBank');
 //var NETBANKS = require('ccc/global/js/modules/fastnetBank');
-// var NETBANKS=$.ajax({
-//     type: 'GET',
-//     url:'/fish/api/v3/jdpay/bank/list',
-//     success:function(r){
-//         console.log('####pay');
-//         // console.log(r.data);
-//         return r.data;
-//     }
-// });
 var banks=[];
 var corBanks="";
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 
-// var banks=r.body.data;
-
-// var corBanks = _.filter(NETBANKS.data, function (r) {
-//     return r.support === true;
-// });
 var ractive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/recharge/recharge.html'),
@@ -178,9 +164,6 @@ request('GET','/fish/api/v3/jdpay/bank/list').end().
         });
         ractive.set('banks', banks);
         ractive.set('corBanks', corBanks);
-        console.log('不会没有吧');
-        console.log(banks);
-        console.log(corBanks);
     });
 ractive.parseData();
 

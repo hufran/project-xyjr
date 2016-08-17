@@ -52,10 +52,12 @@
                         <input type="radio" id="paynet" name="payType" checked on-click="choosePayType">
                         <label for="paynet" on-click="choosePayType">网银充值</label>
                     </div>
+                    {{#if !isEnterpriseUser}}
                     <div style="display:inline-block;margin-left: 20px;">
                         <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType">
                         <label for="fastpaynet" on-click="choosePayType">快捷支付</label>
                     </div>
+                    {{/if}}
                     
                 </div>
                 <div class="space space-30"></div>
@@ -74,7 +76,7 @@
                         {{/banks}}
                     {{else}}<!--企业账户-->
                         {{#each corBanks}}
-                        <div class="corBanks">{{corBanks}}</div>
+                        <!-- <div class="corBanks">{{corBanks}}</div> -->
                         <span class="bankItem cjd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
 
                            <span class="check"></span>
@@ -95,16 +97,7 @@
                         <div class="noCardTip">您尚未绑定银行卡，<a href="/newAccount/settings/bankCards">立即绑卡</a></div>
                         {{/if}}
 
-                    {{else}}
-                        {{#each corfatsBanks}}
-
-                        <span class="bankItem c{{bankName}}" data-cc="{{bankName}}" data-code="{{bankCode}}" on-click="chooseBank">
-
-                           <span class="check"></span>
-
-                        </span>
-
-                        {{/each}} {{/if}}
+                    {{/if}}
                 </div>
                 <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
                 <input type="hidden" name="retUrl" value="http://www.baidu.com">
