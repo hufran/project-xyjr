@@ -4,13 +4,13 @@
 //var NETBANKS = require('ccc/global/js/modules/fastnetBank');
 var banks=[];
 var corBanks=[
-{"code":"9102","name":"中国工商银行","support":true},
+//{"code":"9102","name":"中国工商银行","support":true},
 {"code":"9105","name":"中国建设银行","support":true},
 {"code":"9109","name":"中国银行","support":true},
 {"code":"9103","name":"中国农业银行","support":true},
 {"code":"9104","name":"交通银行","support":true},
 {"code":"9107","name":"招商银行","support":true},
-{"code":"9108","name":"光大银行","support":true},
+//{"code":"9108","name":"光大银行","support":true},
 {"code":"9110","name":"平安银行","support":true},
 ];
 require('ccc/global/js/modules/cccTab');
