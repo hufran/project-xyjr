@@ -11,7 +11,7 @@
 //         return r.data;
 //     }
 // });
-var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().then(function (r) {return r.body.data.results;});
+var NETBANKS=request('GET','/fish/api/v3/jdpay/bank/list').end().then(function (r) {return r.body;});
 console.log('###list有没有');
 console.log(NETBANKS);
 console.log('######');
