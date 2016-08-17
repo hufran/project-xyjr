@@ -165,100 +165,34 @@
 }
 /*企业*/
 
-.cICBC,.cjd1025 {
+.cICBC,.cjd9102 {
   background: url(/ccc/newAccount/img/nBanks/ICBC.jpg) no-repeat center #fff;
 }
 
-.cCCB,.cjd1051 {
+.cCCB,.cjd9105 {
   background: url(/ccc/newAccount/img/nBanks/CCB.jpg) no-repeat center #fff;
 }
 
-.cABC,.cjd103 {
+.cABC,.cjd9103 {
   background: url(/ccc/newAccount/img/nBanks/ABC.jpg) no-repeat center #fff;
 }
-.cCMBCHINA,.cjd3080 {
+.cCMBCHINA,.cjd9107 {
   background: url(/ccc/newAccount/img/nBanks/CMBCHINA.jpg) no-repeat center #fff;
 }
-.cBIC,.cjd3407 {
+.cBIC,.cjd9104 {
   background: url(/ccc/newAccount/img/nBanks/BIC.jpg) no-repeat center #fff;
 }
-.cBOC,.cjd104 {
+.cBOC,.cjd9109 {
   background: url(/ccc/newAccount/img/nBanks/BOC.jpg) no-repeat center #fff;
 }
-.cCEB,.cjd312 {
+.cCEB,.cjd9108 {
   background: url(/ccc/newAccount/img/nBanks/CEB.jpg) no-repeat center #fff;
 }
-.cCMBC,.cjd305 {
-  background: url(/ccc/newAccount/img/nBanks/CMBC.jpg) no-repeat center #fff;
-}
-.cCIB,.cjd309 {
-  background: url(/ccc/newAccount/img/nBanks/CIB.jpg) no-repeat center #fff;
-}
-.cECITIC,.cjd313 {
-  background: url(/ccc/newAccount/img/nBanks/ECITIC.jpg) no-repeat center #fff;
-}
-.cGDB,.cjd3061 {
-  background: url(/ccc/newAccount/img/nBanks/GDB.jpg) no-repeat center #fff;
-}
 
-.cSPDB,.cjd314 {
-  background: url(/ccc/newAccount/img/nBanks/SPDB.jpg) no-repeat center #fff;
-}
-.cPINGAN,.cjd307 {
+.cPINGAN,.cjd9110 {
   background: url(/ccc/newAccount/img/nBanks/PINGAN.jpg) no-repeat center #fff;
 }
-.cHXB,.cjd311 {
-  background: url(/ccc/newAccount/img/nBanks/HXB.jpg) no-repeat center #fff;
-}
-.cNB,.cjd302 {
-  background: url(/ccc/newAccount/img/nBanks/NB.jpg) no-repeat center #fff;
-}
-.cDY {
-  background: url(/ccc/newAccount/img/nBanks/DY.jpg) no-repeat center #fff;
-}
-.cSH,.cjd326 {
-  background: url(/ccc/newAccount/img/nBanks/SH.jpg) no-repeat center #fff;
-}
-.cPOST,.cjd3230 {
-  background: url(/ccc/newAccount/img/nBanks/POST.jpg) no-repeat center #fff;
-}
-.cNJ,.cjd316 {
-  background: url(/ccc/newAccount/img/nBanks/NJ.jpg) no-repeat center #fff;
-}
 
-.cSHNS,.cjd343 {
-  background: url(/ccc/newAccount/img/nBanks/SHNS.jpg) no-repeat center #fff;
-}
-
-.cCD,.cjd336 {
-  background: url(/ccc/newAccount/img/nBanks/CD.jpg) no-repeat center #fff;
-}
-
-.cBH {
-  background: url(/ccc/newAccount/img/nBanks/BH.jpg) no-repeat center #fff;
-}
-
-.cBCCB,.cjd310 {
-  background: url(/ccc/newAccount/img/nBanks/BCCB.jpg) no-repeat center #fff;
-}
-.cjd335{
-  background: url(/ccc/newAccount/img/nBanks/BJNS.jpg) no-repeat center #fff;
-}
-.cjd342{
-  background: url(/ccc/newAccount/img/nBanks/CQNS.jpg) no-repeat center #fff;
-}
-.cjd344{
-  background: url(/ccc/newAccount/img/nBanks/HF.jpg) no-repeat center #fff;
-}
-.cjd401{
-  background: url(/ccc/newAccount/img/nBanks/XM.jpg) no-repeat center #fff;
-}
-.cjd324{
-  background: url(/ccc/newAccount/img/pBanks/HZ.jpg) no-repeat center #fff;
-}
-.cjd3341{
-  background: url(/ccc/newAccount/img/pBanks/QD.jpg) no-repeat center #fff;
-}
 table.tinfo {
   width: 850px;
   margin: 0 auto;
