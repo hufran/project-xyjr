@@ -77,7 +77,7 @@ var ractive = new Ractive({
             });
             var value = $(e.node)
                 .val();
-
+            console.log(parseInt(value));
             if (value === '') {
                 self.set('msg.AMOUNT_NULL', true);
                 return;
@@ -184,7 +184,7 @@ ractive.on('recharge_submit', function (e){
         AMOUNT_NOTENOUGH : false,
     });
 
-    if (amount === '') {
+    if (amount === ''||parseFloat(amount)<=0) {
         console.log(amount=== '');
         e.original.preventDefault();
         this.$amount.focus();
