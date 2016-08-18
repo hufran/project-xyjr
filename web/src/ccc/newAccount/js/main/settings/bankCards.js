@@ -1,15 +1,15 @@
 "use strict";
 
 var utils = require('ccc/global/js/lib/utils');
-var LLPBANKS = require('ccc/global/js/modules/cccllpBanks');
+//var LLPBANKS = require('ccc/global/js/modules/cccllpBanks');
+
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 // 过滤银行卡，只显示enabled=true的
-var banks = _.filter(LLPBANKS, function (r) {
-    return r.enable === true;
-});
+var banksList={};
+var banks=[];
 
 if (CC.user.account) {
     CC.user.account.Faccount = utils.bankAccount(CC.user.account.account);
@@ -26,7 +26,7 @@ var ractive = new Ractive({
     data: {
         status: banksabled.length ? 1 : 0,
         payment: CC.user.name ? true : false,
-        banks: banks,
+        //banks: banks,
         msg: {
             BANK_NULL: false,
             CARD_NULL: false,
@@ -58,7 +58,22 @@ var ractive = new Ractive({
         });
     }
 });
+request('GET','/api/v2/yeepay/banks').end().
+    then(function (r) {
 
+        banksList=r.body;
+        for (var i in banksList) {
+            name=banksList[i];
+            banks.push({'name': name});
+        };
+        ractive.set('banks', banks);
+        console.log('#####bank');
+        console.log(banks);
+    });
+
+// var banks = _.filter(LLPBANKS, function (r) {
+//     return r.enable === true;
+// });
 ractive.on("validateCardNo", function () {
     var no = this.get("cardNo");
     if (!/^\d*$/.test(no)) {
