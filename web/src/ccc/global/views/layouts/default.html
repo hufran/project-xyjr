@@ -142,7 +142,7 @@ var _hmt = _hmt || [];
                 <img class="s-icon" style="margin-width:300px;" src="/ccc/global/img/navLogo.png">
             </a>
 
-            <ul class="u-nolist-ul" style="z-index: 999;">
+            <ul class="u-nolist-ul">
 <!--                {{#if !user.enterprise}}-->
 <!--                   动态导航数据开始-->
 <!--
@@ -172,7 +172,7 @@ var _hmt = _hmt || [];
         <li class="u-nolist-ul-li">
             <a class="u-nolist-a" href="{{redirectUrl}}">{{name}}</a>
         {{#if childrenLink != []}}
-            <ul class="u-seclist-ul">
+            <ul class="u-seclist-ul" style="z-index: 999;">
                {{#each childrenLink}}
                 <li><a href="{{redirectUrl}}">{{name}}</a></li>
                 {{/each}}
