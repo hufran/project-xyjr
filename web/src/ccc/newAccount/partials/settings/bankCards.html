@@ -28,6 +28,7 @@
             <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户银行：</div>
                 <select name="bankName" class="select" value="{{bankName}}">
+                    <option value="请选择开户银行">请选择开户银行</option>
                     {{#each banks}}
                         <option value="{{name}}">{{name}}</option>
                     {{/each}}
