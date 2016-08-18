@@ -451,6 +451,7 @@ setTimeout((function () {
                                 //alert(111);
                             }//使用返现劵接口end
                             else{
+                                investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
                                 $.post('/lianlianpay/tender', {
                                     amount : num,
                                     loanId : investRactive.get('loan.id'),
