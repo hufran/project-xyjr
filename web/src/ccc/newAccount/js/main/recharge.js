@@ -176,6 +176,13 @@ ractive.parseData();
 
 ractive.on('recharge_submit', function (e){
     var amount = this.get('amount');
+    var actionName=this.get('action');
+    this.set('amountNew',amount);
+    if (actionName=='/api/v2/yeepay/onlineBankDeposit/'+CC.user.id) {
+        console.log('actionName是快捷');
+        amount = parseFloat(amount)*100;
+        this.set('amountNew',amount);
+    };
     this.set('msg', {
         BANK_NULL: false,
         AMOUNT_NULL: false,
@@ -183,7 +190,6 @@ ractive.on('recharge_submit', function (e){
         BANKCODE_NULL: false,
         AMOUNT_NOTENOUGH : false,
     });
-
     if (amount === ''||parseFloat(amount)<=0) {
         console.log(amount=== '');
         e.original.preventDefault();
@@ -283,7 +289,7 @@ ractive.on('choosePayType', function (event) {
         
         $('.fastbankwrap').css('display','block');
         $('.bankwrap').css('display','none');
-        ractive.set('action','/api/v2/jdpay/gateway/deposit/'+CC.user.id);
+        //ractive.set('action','/api/v2/jdpay/gateway/deposit/'+CC.user.id);
 
     }
     
