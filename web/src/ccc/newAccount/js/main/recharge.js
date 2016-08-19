@@ -178,10 +178,10 @@ ractive.on('recharge_submit', function (e){
     var amount = this.get('amount');
     var actionName=this.get('action');
     this.set('amountNew',amount);
-    if (actionName=='/api/v2/yeepay/onlineBankDeposit/'+CC.user.id) {
-        console.log('actionName是快捷');
-        amount = parseFloat(amount)*100;
-        this.set('amountNew',amount);
+    if (actionName=='/api/v2/yeepay/onlineBankDeposit/'+CC.user.id &&amount!='') {
+            amount = parseFloat(amount)*100;
+            this.set('amountNew',amount);
+        
     };
     this.set('msg', {
         BANK_NULL: false,
