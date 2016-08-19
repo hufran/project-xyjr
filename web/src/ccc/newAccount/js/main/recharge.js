@@ -174,6 +174,17 @@ request('GET','/fish/api/v3/jdpay/bank/list').end().
     });
 ractive.parseData();
 
+ractive.on('checkAmount',function(){
+    var inp=jQuery('#rechargeValue');
+    inp.val(inp.val().replace(/[^\d.]/g,"")); //清除"数字"和"."以外的字符
+    inp.val(inp.val().replace(/^\./g,""));
+    inp.val(inp.val().replace(/\.{2,}/g,"."));
+    inp.val(inp.val().replace(".","$#$").replace(/\./g,"").replace("$#$","."));
+    inp.val(inp.val().replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'));
+    if (inp.val().length>2&&inp.val().substr(1,1)!='.') {
+        inp.val(inp.val().replace(/\b(0+)/gi,""))
+    }
+})
 ractive.on('recharge_submit', function (e){
     var amount = this.get('amount');
     var actionName=this.get('action');
