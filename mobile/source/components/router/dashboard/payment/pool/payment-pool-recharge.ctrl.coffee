@@ -20,6 +20,7 @@ do (angular) ->
                     return_url: @baseURI + 'dashboard'
                     action1:'/api/v2/jdpay/onlineBankDeposit4Wap/'+@user.fund.userId
                     token:@$cookies.get 'ccat'
+
                 }
 
                 if +@$routeParams.amount > 0
@@ -27,6 +28,13 @@ do (angular) ->
 
                 @api.get_available_bank_list().then (data) =>
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
+
+
+
+
+            modify_amonut:  ->
+
+                @$scope.amountNew = parseInt(@$scope.amount*100);
 
 
             submit: (event, amount, return_url) ->
