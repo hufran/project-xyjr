@@ -51,13 +51,11 @@
                            disabled
                     >
                 </div>
-
                 <div class="form-group merge">
                     <label for="amount">充值金额</label>
                     <input class="form-control input-target input-lg"
                            type="number"
                            id="amount"
-                           name="amount"
                            ng-model="amount"
                            max="1000000"
                            minlength="1"
@@ -73,6 +71,7 @@
             <input type="hidden" name="retUrl" value="{{ return_url }}">
             <input type="hidden" name="bankCode" value="{{bank_account.account}}">
             <input type="hidden" name="token" value="{{token}}">
+            <input type="hidden" name="amount" value="{{amount*100 | number:0}}">
 
             <p class="container">
                 <button class="btn btn-theme btn-block btn-lg"
