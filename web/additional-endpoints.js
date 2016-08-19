@@ -127,7 +127,6 @@ module.exports = function (router, auth) {
     router.get('/api/v2/yeepay/BankDepositReturn', auth.pass());
     router.all('/api/v2/yeepay/WapDepositReturn', auth.pass());
     router.post('/api/v2/yeepay/withdrawReturn', auth.pass());
-    router.get('/api/v2/yeepay/banks', auth.pass());
     router.get('/api/v2/yeepay/provinceCodes', auth.user());
     router.get('/api/v2/yeepay/provinceCityCodes/:provinceName', auth.user());
     router.post('/api/v2/yeepay/bindCard/:userId', auth.user());
@@ -171,10 +170,9 @@ module.exports = function (router, auth) {
     router.post('/api/v2/jdpay/gateway/deposit/:userId', auth.user());
     //jd银行列表
     router.get('/fish/api/v3/jdpay/bank/list',auth.pass());
+    router.get('/api/v2/jdpay/banks', auth.pass());
     //新H5充值
     router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.pass());
     router.get('/api/mermaid/users/checkToken',auth.pass());
     router.get('/api/mermaid/users/refToken',auth.user());
-
-   
 };
