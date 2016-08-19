@@ -58,7 +58,7 @@ var ractive = new Ractive({
         });
     }
 });
-request('GET','/api/v2/yeepay/banks').end().
+request('GET','/api/v2/jdpay/banks').end().
     then(function (r) {
 
         banksList=r.body;
