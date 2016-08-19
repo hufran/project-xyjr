@@ -80,7 +80,7 @@
 .ABC,.jd103 {
   background: url(/ccc/newAccount/img/pBanks/ABC.jpg) no-repeat center #fff;
 }
-.CMBCHINA,.jd3080 {
+.CMB,.jd3080 {
   background: url(/ccc/newAccount/img/pBanks/CMBCHINA.jpg) no-repeat center #fff;
 }
 .BOCOM,.jd3407 {
@@ -98,7 +98,7 @@
 .CIB,.jd309 {
   background: url(/ccc/newAccount/img/pBanks/CIB.jpg) no-repeat center #fff;
 }
-.ECITIC,.jd313 {
+.CITIC,.jd313 {
   background: url(/ccc/newAccount/img/pBanks/ECITIC.jpg) no-repeat center #fff;
 }
 .GDB,.jd3061 {
@@ -123,14 +123,14 @@
 .SH,.jd326 {
   background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat center #fff;
 }
-.POST,.jd3230 {
+.PSBC,.jd3230 {
   background: url(/ccc/newAccount/img/pBanks/POST.jpg) no-repeat center #fff;
 }
-.NJ,.jd316 {
+.NJCB,.jd316 {
   background: url(/ccc/newAccount/img/pBanks/NJ.jpg) no-repeat center #fff;
 }
 
-.SHNS,.jd343 {
+.SRCB,.jd343 {
   background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat center #fff;
 }
 
@@ -145,7 +145,7 @@
 .BCCB,.jd310 {
   background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat center #fff;
 }
-.jd335{
+.BJRCB .jd335{
   background: url(/ccc/newAccount/img/pBanks/BJNS.jpg) no-repeat center #fff;
 }
 .jd342{
@@ -157,7 +157,7 @@
 .jd401{
   background: url(/ccc/newAccount/img/pBanks/XM.jpg) no-repeat center #fff;
 }
-.jd324{
+.HZCB .jd324{
   background: url(/ccc/newAccount/img/pBanks/HZ.jpg) no-repeat center #fff;
 }
 .jd3341{
@@ -176,7 +176,7 @@
 .cABC,.cjd9103 {
   background: url(/ccc/newAccount/img/nBanks/ABC.jpg) no-repeat center #fff;
 }
-.cCMBCHINA,.cjd9107 {
+.cCMB,.cjd9107 {
   background: url(/ccc/newAccount/img/nBanks/CMBCHINA.jpg) no-repeat center #fff;
 }
 .cBOCOM,.cjd9104 {
