@@ -278,6 +278,7 @@ ractive.on('choosePayType', function (event) {
         ractive.set('showamountInfo', false);
         $('.bankItem').removeClass('currentBank');
         $('.bankItem').find('span.check').hide();
+        ractive.set('bankCode','');
         
     }else{
         ractive.set('showamountInfo', false);
@@ -286,7 +287,7 @@ ractive.on('choosePayType', function (event) {
         if (CC.user.bankCards.length>0) {
             this.set('bankName',CC.user.bankCards[0].account.bank);
         };
-        
+        ractive.set('bankCode','');
         $('.fastbankwrap').css('display','block');
         $('.bankwrap').css('display','none');
         //ractive.set('action','/api/v2/jdpay/gateway/deposit/'+CC.user.id);
