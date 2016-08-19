@@ -30,7 +30,7 @@
                     <div class="space-20"></div>
                     <div class="rows">
                         <span class="tipss">充值金额</span>
-                        <input type="text" value="{{amount}}" id="rechargeValue" on-blur="changeValue" placeholder="" style="width:238px;height:44px;line-height:44px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;"
+                        <input type="text" value="{{amount}}" id="rechargeValue" on-blur="changeValue" on-input="checkAmount" placeholder="" style="width:238px;height:44px;line-height:44px;border:1px #cccccc solid;border-radius:5px;background-color:#eeeeee;color:#999999;text-indent:10px;"
                           autocomplete="off">
                         <span class="tipss" style="position:relative;left:5px;top:15px;">元</span>
                         <p class="help-block text-danger" style="color:red;text-indent:95px;display:inline;">
