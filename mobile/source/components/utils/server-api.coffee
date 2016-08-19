@@ -518,7 +518,8 @@ do (_, angular, moment, Array) ->
 
             get_available_bank_list: ->
 
-                @$http.get '/api/v2/yeepay/banks', cache: true
+#                @$http.get '/api/v2/yeepay/banks', cache: true
+                @$http.get '/api/v2/jdpay/banks', cache: true
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
