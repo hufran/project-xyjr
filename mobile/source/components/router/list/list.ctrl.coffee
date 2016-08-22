@@ -22,7 +22,7 @@ do (_, angular) ->
                     @$scope.project = data
 
 
-                (@api.get_loan_list_by_config(filter_type, 20, false)
+                (@api.get_loan_list_by_config(filter_type, 100, false)
 
                     .then ({results}) =>
 

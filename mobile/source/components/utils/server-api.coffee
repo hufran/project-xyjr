@@ -119,7 +119,7 @@ do (_, angular, moment, Array) ->
                     startDate: convert_to_day moment().subtract 1, 'y'
                     endDate: convert_to_day moment().add 1, 'd'
                     page: 1
-                    pageSize: 99
+                    pageSize: 999
                 }
 
                 @$http
