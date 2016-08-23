@@ -159,8 +159,11 @@ var ractive = new Ractive({
 		
 		// 实际到账<=0的情况
 		if (_FEE.withdrawAmount <= 0) {
-			var text = '实际到账金额为'+_FEE.withdrawAmount+'元，请调整取现金额';
+			//var text = '实际到账金额为'+_FEE.withdrawAmount+'元，请调整取现金额';
+			this.$form.find('.post-btn').removeClass('disabled');
+			var text ='请输入正确提现金额';
 			self.set('submitMessage', text);
+			self.set('submitText','确认提现');
 			return false;
 		}
 		
@@ -175,7 +178,17 @@ var ractive = new Ractive({
 	}
 });
 ractive.parseDataNum();
-
+ractive.on('checkAmount',function(){
+    var inp=jQuery('#withdraw');
+    inp.val(inp.val().replace(/[^\d.]/g,"")); //清除"数字"和"."以外的字符
+    inp.val(inp.val().replace(/^\./g,""));
+    inp.val(inp.val().replace(/\.{2,}/g,"."));
+    inp.val(inp.val().replace(".","$#$").replace(/\./g,"").replace("$#$","."));
+    inp.val(inp.val().replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'));
+    if (inp.val().length>2&&inp.val().substr(1,1)!='.') {
+        inp.val(inp.val().replace(/\b(0+)/gi,""))
+    }
+})
 
 ractive.on('withDrawSubmit', function () {
 	this.set('submitMessage', null);
@@ -205,6 +218,7 @@ ractive.on('withDrawSubmit', function () {
 	} 
 
 	else if (pass !== '') {
+		console.log('pass!=');
 		accountService.checkPassword(pass, function (r) {
 			if (!r) {
 				ractive.set('submitMessage', '交易密码错误');
@@ -247,6 +261,9 @@ ractive.on('withDrawSubmit', function () {
                             });
                         }
 					});
+				}else{
+					$('.post-btn').removeClass('disabled');
+					ractive.set('submitText','确认提现');
 				}
 			}
 		});
