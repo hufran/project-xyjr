@@ -88,15 +88,18 @@
                     ></a>
                 </li>
             </ul>
-
             <div ng-if="!list.length" class="container">
                 <h4 class="alert alert-info text-center">暂无数据</h4>
             </div>
         </div>
-
         <p class="text-center" ng-show="loading">
             <img src="assets/image/spinner.gif">
         </p>
     </section>
+    <p ng-if="data.length && self.has_more(data)" class="container">
+        <button class="load-more btn btn-default btn-block"
+                ng-click="self.add_more(data)"
+        >点击查看更多</button>
+    </p>
 
 </div>

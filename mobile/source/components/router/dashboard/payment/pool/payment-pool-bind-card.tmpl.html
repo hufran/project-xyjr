@@ -24,7 +24,7 @@
         <param ng-model="msg" ng-init="msg = {
             bankName:   '请选择开户银行',
             branchName: '请选择支行名称',
-            cardNo:     '请输入卡号',
+            cardNo:     '请输入正确的卡号',
             city:       '请选择市区',
             province:   '请选择省份',
             smsCaptcha: '请输入短信验证码',
@@ -59,8 +59,10 @@
                            }"
                            ng-change="self.fetch_branch(city[store.city], store.cardNo)"
                            placeholder="填写银行卡号"
+                           ng-pattern="/^\d{16,19}$/"
                            required
                     >
+                    <!--^(\d{16}|\d{19})$-->
                 </div>
 
                 <div class="form-group merge">
