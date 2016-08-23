@@ -20,7 +20,7 @@
             </div>
             <div class="trueName">
                 <label for="trueName" class="">真实姓名</label>
-                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName"/>
+                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName" maxlength="15"/>
                 {{#if showErrorMessageName}}
                 <div class="error-message nameAndId">
                     {{ errorMessageName }}
