@@ -67,6 +67,10 @@ do (_, angular) ->
                 @$scope.store.bankName and @$scope.store.bankName not in @$scope.direct_paid_banks
 
 
+            detection: (cardNo) ->
+
+                @$scope.store.cardNo = parseInt(cardNo)
+
             on_change_bank_name: ->
 
                 return if @need_location()

@@ -99,6 +99,7 @@
                        ng-model="store.amount"
                        ng-change="form.amount.$valid&&self.detection(store.amount) && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
                        min="{{minMoney}}"
+                       ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"
                        required
                 >
             </div>
