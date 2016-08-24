@@ -172,6 +172,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.pass());
     router.get('/api/mermaid/users/checkToken',auth.pass());
     router.get('/api/mermaid/users/refToken',auth.user());
-
-   
+    
+    //美人鱼用户信息
+    router.get('/mermaid/api/find/用户信息',auth.pass());
 };
