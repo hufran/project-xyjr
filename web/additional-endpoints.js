@@ -173,8 +173,5 @@ module.exports = function (router, auth) {
     router.get('/api/mermaid/users/checkToken',auth.pass());
     router.get('/api/mermaid/users/refToken',auth.user());
 
-    //美人鱼登录
-    router.get('/mermaid/api/find/用户信息',auth.pass());
-    
    
 };
