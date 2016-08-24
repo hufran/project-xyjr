@@ -50,14 +50,14 @@
 
                 <div class="form-group merge">
                     <label for="card-no">银行卡号</label>
-                    <input id="card-no" class="form-control input-target input-lg" type="tel"
+                    <input id="card-no" class="form-control input-target input-lg" type="number"
                            name="card-no"
                            ng-model="store.cardNo"
                            ng-model-options="{
                                updateOn: 'blur default',
                                debounce: {blur: 0, default: 300},
                            }"
-                           ng-change="self.fetch_branch(city[store.city], store.cardNo)"
+                           ng-change="self.fetch_branch(city[store.city], store.cardNo)&&form.card-no.$valid&&self.detection(store.cardNo)"
                            placeholder="填写银行卡号"
                            ng-pattern="/^\d{16,19}$/"
                            required
