@@ -24,9 +24,11 @@ do (_, angular, Math) ->
                 @$scope.maxMoney = arrList[1]
                 @$scope.minMoney = arrList[0]
 
+                console.log @coupon
+
                 angular.extend @$scope, {
                     store: {}
-                    abc: @coupon.data[0].actualAmount
+#                    abc: @coupon.data[0].actualAmount
                     earning: 0
                     loan: map_loan_summary @loan
 					#@coupon = @newCoupon_list(@user.fund.userId)
@@ -119,6 +121,10 @@ do (_, angular, Math) ->
                     protimeT =  parseInt(loan.raw.duration.totalDays)
                     rebateMoney = amount * protimeT / 365*0.005
                 #console.log  @$scope.abc
+                if @coupon.data.length == 0
+                    @$scope.abc = 0
+                else
+                    @$scope.abc = @coupon.data[0].actualAmount
                 if rebateMoney >  @$scope.abc
                     rebateMoney = @$scope.abc
 
