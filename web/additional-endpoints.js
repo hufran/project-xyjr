@@ -25,7 +25,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/user/:userId/certificates/proofs', auth.pass());
     router.get('/api/v2/user/:userId/membership', auth.user());
     router.get('/api/v2/user/:userId/fundaccountsMap', auth.user());
-    router.get('/api/v2/user/:userId/funds/query', auth.user());
+    router.get('/api/v2/user/:userId/funds/query', auth.pass());
     router.post('/api/v2/loanIntent/addNew', auth.pass());
     router.get('/api/v2/loanIntent/:userId/listAll', auth.user());
     router.get('/api/v2/loan/getLoanProduct/productKey/:productKey',auth.pass());
@@ -168,11 +168,21 @@ module.exports = function (router, auth) {
     //新PC充值接口
     router.post('/api/v2/yeepay/onlineBankDeposit/:userId', auth.pass());
     router.post('/api/v2/jdpay/gateway/deposit/:userId', auth.user());
+	//jdpay回调地址
+	router.post('/api/v2/jdpay/gateway/BankDepositReturn', auth.pass());
+    router.post('/api/v2/jdpay/asynNotify', auth.pass());
+	router.post('/api/v2/jdpay/asynNotifyWap', auth.pass());
+
     //jd银行列表
     router.get('/fish/api/v3/jdpay/bank/list',auth.pass());
     router.get('/api/v2/jdpay/banks', auth.pass());
+
     //新H5充值
     router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.pass());
     router.get('/api/mermaid/users/checkToken',auth.pass());
     router.get('/api/mermaid/users/refToken',auth.user());
+    
+    //美人鱼用户信息
+    router.get('/mermaid/api/find/用户信息',auth.pass());
+
 };
