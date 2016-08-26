@@ -17,8 +17,8 @@ do (angular) ->
                 angular.extend @$scope, {
                     bank_account: _.clone @user.bank_account
                     available_amount: @user.fund.availableAmount
-                    return_url: 'http://10.4.33.251/h5/dashboard/funds'
-#                    return_url:'http://www.718bank.com/h5/dashboard/funds'
+#                    return_url: @baseURI + 'dashboard'
+                    return_url:'http://www.718bank.com/h5/dashboard/funds'
                     action1:'/api/v2/jdpay/onlineBankDeposit4Wap/'+@user.fund.userId
                     token:@$cookies.get 'ccat'
 
