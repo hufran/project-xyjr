@@ -139,6 +139,12 @@ ractive.on("bind-card-submit", function (e) {
     var branchName = this.get('branchName');
     var smsCaptcha = this.get('smsCaptcha');
     
+    if ($('select[name="bankName"]').val()=='请选择开户银行'){
+        showErrorIndex('showErrorMessagea1','errorMessagea1','* 请选择开户银行');
+        return false;
+    }else{
+        clearErrorIndex('showErrorMessagea1','errorMessagea1');
+    } 
     if(cardNo === ''){
         showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
         return false;
