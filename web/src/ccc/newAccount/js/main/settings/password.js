@@ -66,10 +66,9 @@ passwordRactive.on('checkrepwd',function(){
 passwordRactive.on('initialPassword', function () {
     var pwd = this.get('password');
     var rePwd = this.get('repassword');
-    var isAcess=this.get('isAcessa')&&this.get('isAcessb');
+    var isAcess=false;
     passwordRactive.fire('checkpwd');
     passwordRactive.fire('checkrepwd');
-
     var msg,link;
     if (this.get('bank') && this.get('paymentPasswordHasSet')) {
         msg = "恭喜您，设置成功！";
@@ -81,6 +80,10 @@ passwordRactive.on('initialPassword', function () {
         msg = "恭喜您，设置成功！";
         link = '/newAccount/recharge';
     }
+    if(this.get('isAcessa')&&this.get('isAcessb')==true){
+      isAcess= true;
+    };
+    console.log('isAcess'+isAcess);
     if(isAcess) {
         accountService.initialPassword(pwd, function (r) {
             if (r.success) {
@@ -350,6 +353,7 @@ passwordRactive.on("submit-modify-password", function (event) {
     passwordRactive.fire('checkCaptcha');
     var isAcess=this.get('isAcessc')&&this.get('isAcessf')&&this.get('isAcesse')&&this.get('isAcessd');
     if(!isAcess){
+
       return false;
     }
     CommonService.checkCaptcha(passwordRactive.get('captcha'), function (res) {
