@@ -46,7 +46,7 @@ function getStructs(index,data){
 				tmp += '<div class="floatR moneyDetail">';
 				tmp += '<div class="floatR setWidth">已用金额 （元）<br><span>'+item.actualAmount.toFixed(2)+'</span></div>'
 				tmp += '<div class="floatR setWidth">可用金额 （元）<br><span>'+(item.couponPackage.parValue-item.actualAmount).toFixed(2)+'</span></div>';	
-				tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeRedeemed)+'<span class="floatR">'+getStatus(item.status)+'</span></div>';	
+				tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div>';
 				tmp += '</div><div class="clearLF"></div></div>';
 			}
 		})
@@ -59,7 +59,7 @@ function getStructs(index,data){
 			tmp += item.couponPackage.displayName+'</div>';
 			tmp += '<div class="floatR moneyDetail"><div>';
 			tmp += '<span class="h3">'+item.couponPackage.parValue+'</span> <span class="h4">元</span><br>最低投资'+item.couponPackage.minimumInvest+'元，起投期限0个月</div>'
-			tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeRedeemed)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
+			tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
 			
 			tmp += '<div class="clearLF"></div></div>'	
 		})
@@ -71,7 +71,7 @@ function getStructs(index,data){
 			tmp += item.couponPackage.displayName+'</div>';
 			tmp += '<div class="floatR moneyDetail"><div>';
 			tmp += '<span class="h4">加息</span> <span class="h3">'+item.couponPackage.friendlyParValue+'</span><br>最低投资'+item.couponPackage.minimumInvest+'元，起投期限0个月</div>'
-			tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeRedeemed)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
+			tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
 			
 			tmp += '<div class="clearLF"></div></div>'
 		})
@@ -114,11 +114,11 @@ function getStatus(type){
 	return status;
 }
 
-function getStartToEndTime(startTime,endTime) {
-	if(startTime == null || endTime == null){
+function getStartToEndTime(startTime,timeExpire) {
+	if(timeExpire == null || startTime == null){
 		return "无限制";
 	}else{
-		return format(startTime,'yyyy-MM-dd')+'至'+format(endTime,'yyyy-MM-dd');
+		return format(startTime,'yyyy-MM-dd')+'至'+format(timeExpire,'yyyy-MM-dd');
 	}
 }      
 function getReturnCoupon(id){
