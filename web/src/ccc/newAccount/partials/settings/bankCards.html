@@ -49,9 +49,6 @@
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">确认卡号：</div>
                 <input on-keyup="validateCardNo" on-blur="checkSame" type="text" name="recardNo" value="{{recardNo}}" class="payInp" onPaste='return false;'>
                 <span class="error">{{errorMessageb}}</span>
-                {{#if cardDiff}}
-                <span class="error">* 两次银行卡号不一致</span>
-                {{/if}}
                 <div class="clearfix"></div>
             </div>
             <div class="" style="display:none">

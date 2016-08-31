@@ -151,7 +151,7 @@ ractive.on("bind-card-submit", function (e) {
     }else{
          clearErrorIndex('showErrorMessagea','errorMessagea');
     }
-     if(recardNo === ''){
+    if(recardNo === ''){
         showErrorIndex('showErrorMessageb','errorMessageb','* 确认卡号不能为空');
         return false;
     }else{
@@ -261,6 +261,13 @@ function changeToList(map) {
 ractive.on('sendCode', function (){
     var cardNoError = this.get("cardNoError")==undefined?true:this.get("cardNoError");
     var cardDiff = this.get('cardDiff')==undefined?true:this.get('cardDiff');
+
+    if(cardDiff ==true){
+        showErrorIndex('showErrorMessageb','errorMessageb','* 两次银行卡号不一致');
+        return false;
+    }else{
+        clearErrorIndex('showErrorMessageb','errorMessageb');
+    }
 
     if (cardNoError || cardDiff) {
         return false;
