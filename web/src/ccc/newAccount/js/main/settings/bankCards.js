@@ -158,6 +158,20 @@ ractive.on("bind-card-submit", function (e) {
         clearErrorIndex('showErrorMessageb','errorMessageb');
     }
     
+    var cardNoError = this.get("cardNoError")==undefined?true:this.get("cardNoError");
+    var cardDiff = this.get('cardDiff')==undefined?true:this.get('cardDiff');
+
+    if(cardDiff ==true){
+        showErrorIndex('showErrorMessageb','errorMessageb','* 两次银行卡号不一致');
+        return false;
+    }else{
+        clearErrorIndex('showErrorMessageb','errorMessageb');
+    }
+
+    if (cardNoError || cardDiff) {
+        return false;
+    }
+    
     var sendObj = {
         bankName: bankName,
         cardNo: cardNo,
@@ -259,19 +273,7 @@ function changeToList(map) {
 };
 
 ractive.on('sendCode', function (){
-    var cardNoError = this.get("cardNoError")==undefined?true:this.get("cardNoError");
-    var cardDiff = this.get('cardDiff')==undefined?true:this.get('cardDiff');
-
-    if(cardDiff ==true){
-        showErrorIndex('showErrorMessageb','errorMessageb','* 两次银行卡号不一致');
-        return false;
-    }else{
-        clearErrorIndex('showErrorMessageb','errorMessageb');
-    }
-
-    if (cardNoError || cardDiff) {
-        return false;
-    }
+    
     if (!this.get('isSend')) {
         this.set('isSend', true);
         var smsType = 'CREDITMARKET_CAPTCHA';
