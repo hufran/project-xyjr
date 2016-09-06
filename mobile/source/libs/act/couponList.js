@@ -124,12 +124,12 @@ function getStartToEndTime(startTime,timeExpire) {
 function getReturnCoupon(id){
 	var type = "REBATE";
 	$.ajax({
-	   type: "POST",	
-	   url: "/api/v2/rebateCounpon/listUserCouponPlacementByCond/"+id,	
+	   type: "POST",
+	   url: "/api/v2/rebateCounpon/listUserCouponPlacementByCond/"+id,
 	   data: "type="+type+"&page=0&pageSize=100",
 	   success: function(msg){
 		 getStructs(0,msg);
-	   }	
+	   }
 	})
 }
 function format(time, format){ 
