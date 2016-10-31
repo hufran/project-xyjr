@@ -72,7 +72,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/users/:userId/groupMedal', auth.user());
     router.get('/api/v2/reward/getReferralUsers/:uid', auth.user());
 
-    router.get('/api/v2/coupon/:userId/coupons/byStatus', auth.user());
+    router.get('/api/v2/coupon/:userId/coupons/byStatus', auth.user());//auth.user()
     router.get('/api/v2/loan/:id/invests/:page/:pageSize', auth.pass());
 
     //银盈通
@@ -149,9 +149,9 @@ module.exports = function (router, auth) {
     //提现新接口
     router.post('/api/mermaid/yeepay/withdraw', auth.user());
     //消息新接口
-    router.get('/api/mermaid/message/notifications/:userId/:page/:count', auth.user());
-    router.get('/api/mermaid/message/markAsRead/:messId', auth.user());
-    router.get('/api/mermaid/message/countNewNotifications/:userId', auth.user());
+    router.get('/api/mermaid/message/notifications/:userId/:page/:count', auth.user());//auth.user()
+    router.get('/api/mermaid/message/markAsRead/:messId', auth.user());//auth.user()
+    router.get('/api/mermaid/message/countNewNotifications/:userId', auth.user());//auth.user()
     //新接口登录
     router.post('/api/mermaid/users/login',auth.pass());
     //新接口注册
@@ -183,6 +183,7 @@ module.exports = function (router, auth) {
     router.get('/api/mermaid/users/refToken',auth.user());
     
     //美人鱼用户信息
-    router.get('/mermaid/api/find/用户信息',auth.pass());
+    router.get('/api/mermaid/api/find/用户信息',auth.pass());
+    router.get('/api/mermaid/message/user/:userId/listByStatus',auth.pass());
 
 };
