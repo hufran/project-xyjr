@@ -11,7 +11,7 @@
         <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">理财产品列表 </a>> {{loans.title}}产品详情</p>
 		<div class="box-large">
         <div class="invest-data-wrapper">
-            <div class="investContainer">
+            <div class="investContainer" style="height:384px;">
                 <div class="investTitle">
                      {{#if loans.status == "OPENED" }}
 					<div class="time">剩余时间：<span class="time-left">{{loans.timeLeft.dd}}日{{loans.timeLeft.hh}}小时{{loans.timeLeft.mm}}分{{loans.timeLeft.ss}}</span>
@@ -66,6 +66,7 @@
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
                             <li>计息日：放款后第二天计息</li>
                             <li>起投金额：{{loans.loanRequest.investRule.minAmount}}元</li>
+                            <li>是否可转让：否</li>
                         </ul>
                         <ul class="loanMethod">
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
