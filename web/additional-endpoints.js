@@ -185,7 +185,7 @@ module.exports = function (router, auth) {
     //美人鱼用户信息
     router.get('/api/mermaid/api/find/用户信息',auth.pass());
     router.get('/api/mermaid/message/user/:userId/listByStatus',auth.pass());
-    router.get('/api/mermaid/users/changePassword',auth.pass());
+    router.post('/api/mermaid/users/changePassword',auth.pass());
 
 
 };
