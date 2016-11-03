@@ -8,11 +8,12 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                EXTEND_API @api
+#                EXTEND_API @api
 
                 angular.extend @$scope, {
                     list: {}
                     page_path: './'
+                    appTypeLink:''
                     carousel_height: do (width = @$window.document.body.clientWidth) ->
                         width * 260 / 640 # aspect ratio of banner image
                 }
@@ -20,6 +21,10 @@ do (_, angular) ->
                 @api.homepage_fetch_loan_list().then (data) =>
                     data = _.mapValues data, (list) -> list.map map_loan_summary
                     _.assign @$scope.list, data
+                if @test(1)
+                  @$scope.appTypeLink = 'https://itunes.apple.com/us/app/718li-cai-kan-bi-yin-xing/id1071995825?l=zh&ls=1&mt=8'
+                else
+                  @$scope.appTypeLink = 'http://718bank.com/ccc/app/zc.apk'
 
 
             num: (amount) ->
@@ -30,6 +35,8 @@ do (_, angular) ->
                     amount: amount
                     myriad: if is_myriad then (amount / 10000) | 0 else null
                 }
+            test: (amount) ->
+              return ismobile(amount);
 
 
 
