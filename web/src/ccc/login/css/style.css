@@ -171,9 +171,11 @@
 #main-container .needRegister{
     text-align: center;
     color:#999999;
+    margin-left: -120px;
 }
- #main-container .s-login-view .s-login-window .needRegister a{
+#main-container .s-login-view .s-login-window .needRegister a{
     color:#009ada;
+    margin-right: 0px;
 }
 
 #main-container #loginForm .rememberPassword{
