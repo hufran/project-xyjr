@@ -20,10 +20,12 @@ do (_, angular) ->
                 @api.homepage_fetch_loan_list().then (data) =>
                     data = _.mapValues data, (list) -> list.map map_loan_summary
                     _.assign @$scope.list, data
-                if @test(1)
+                if @test(1) == '1'
                     @$scope.appTypeLink = 'https://itunes.apple.com/us/app/718li-cai-kan-bi-yin-xing/id1071995825?l=zh&ls=1&mt=8'
+                else if @test(1) == '0'
+                    @$scope.appTypeLink = 'http://718bank.com/ccc/app/zc.apk'
                 else
-                  @$scope.appTypeLink = 'http://718bank.com/ccc/app/zc.apk'
+                    @$scope.appTypeLink = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.creditcloud.xinyi'
 
 
             num: (amount) ->

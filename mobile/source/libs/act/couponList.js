@@ -159,15 +159,31 @@ function ismobile(num){
 		if(window.location.href.indexOf("?mobile")<0){
 			try{
 				if(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)){
-					return true;
+					if(isWeiXin()){
+						return '2';
+					}else{
+						return '1';
+					}
 				}else{
-					return false;
+					return '0';
 				}
 			}catch(e){}
 		}
 	}else if( u.indexOf('iPad') > -1){
+		if(isWeiXin()){
+			return '2';
+		}else{
+			return '1';
+		}
+	}else{
+		return '0';
+	}
+};
+function isWeiXin(){
+	var ua = window.navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
 		return true;
 	}else{
 		return false;
 	}
-};
+}
