@@ -124,12 +124,12 @@ function getStartToEndTime(startTime,timeExpire) {
 function getReturnCoupon(id){
 	var type = "REBATE";
 	$.ajax({
-	   type: "POST",	
-	   url: "/api/v2/rebateCounpon/listUserCouponPlacementByCond/"+id,	
+	   type: "POST",
+	   url: "/api/v2/rebateCounpon/listUserCouponPlacementByCond/"+id,
 	   data: "type="+type+"&page=0&pageSize=100",
 	   success: function(msg){
 		 getStructs(0,msg);
-	   }	
+	   }
 	})
 }
 function format(time, format){ 
@@ -151,4 +151,39 @@ function format(time, format){
 			break; 
 		}; 
 	}); 
+}
+//验证手机端的类型
+function ismobile(num){
+	var u = navigator.userAgent, app = navigator.appVersion;
+	if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+		if(window.location.href.indexOf("?mobile")<0){
+			try{
+				if(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)){
+					if(isWeiXin()){
+						return '2';
+					}else{
+						return '1';
+					}
+				}else{
+					return '0';
+				}
+			}catch(e){}
+		}
+	}else if( u.indexOf('iPad') > -1){
+		if(isWeiXin()){
+			return '2';
+		}else{
+			return '1';
+		}
+	}else{
+		return '0';
+	}
+};
+function isWeiXin(){
+	var ua = window.navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		return true;
+	}else{
+		return false;
+	}
 }
