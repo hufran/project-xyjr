@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/ccc/index/css/loanlist.css">
 <!--<script language="javascript" type="text/javascript" src="/ccc/index/js/main/ss.js"></script>-->
     <!--add by Jude start-->
-       <!--  <style type="text/css">
+        <style type="text/css">
             .dn{display: none!important;}
             .db{display: block!important;}
             .tan{position: fixed; width: 570px;top: 80px; left: 0;right: 0;margin: 0 auto;border:7px solid #1ca2ef;border-radius: 20px; background-color: #fff;z-index: 999;color: #333;font-size: 14px;line-height: 1.6em;}
@@ -27,11 +27,11 @@
             </div>
             <div class="tanDes">
                 <div class="tanW">
-                    <p>
+                    <!-- <p>
                         为了响应国家对互联网金融行业的规范号召，我们决定对<span>www.718bank.com</span>网站进行升级，树立718金融在行业内的合规标杆。届时您可能无法正常浏览该网站，给您造成的困扰深表歉意。您可以通过<span>www.718zc.com</span>继续访问。
                     </p>
-                    <p>718金融将给您账户打入500元投资红包作为补偿，以便您在投资中使用，对于给您造成的困扰再次表示歉意。在此期间，手机客户端将会短暂升级，请您根据网站提示信息更新下载最新版本</p>
-                    <p>如有问题您可以拨打4001-718-718， 会有专人为您解答疑问。718金融带给您：新金融！新生活！新生态！</p>
+                    <p>718金融将给您账户打入500元投资红包作为补偿，以便您在投资中使用，对于给您造成的困扰再次表示歉意。在此期间，手机客户端将会短暂升级，请您根据网站提示信息更新下载最新版本</p> -->
+                    <p>因近期客服电话升级无法使用，请您拨打<span>15011523818</span>进行咨询。</p>
 
                 </div>
                 <div class="tanClose">
@@ -39,7 +39,7 @@
                 </div>
 
             </div>
-        </div> -->
+        </div>
         <script type="text/javascript">
             //cookie start
             function setCookie(name,value)
@@ -59,12 +59,12 @@
             }
 
             jQuery(function(){
-                if(getCookie('dd')==null){
+                if(getCookie('pnc')==null){
                     jQuery('.tan').removeClass('dn').addClass('db');
                     jQuery('.mask').removeClass('dn').addClass('db');
                     tanClose('.tan .tanClose');
                     tanClose('.tanW p span');
-                    setCookie('dd','22');
+                    setCookie('pnc','22');
                 }
             })
 
