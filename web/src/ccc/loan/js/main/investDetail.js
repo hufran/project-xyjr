@@ -874,18 +874,8 @@ var recordRactive = new Ractive({
             list[i].submitTime = moment(list[i].submitTime)
                 .format('YYYY-MM-DD HH:mm:ss');
 
-            if (/^ZQJR_/.test(list[i].userLoginName)) {
-                list[i].userLoginName = list.userLoginName.replace('ZQJR_', '手机用户');
-            } else if (list[i].userLoginName.indexOf('手机用户') === 0) {
-                var _name = list[i].userLoginName.substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2');
-            } else {
-                if (list[i].userLoginName.length === 2) {
-                    var _name = mask(list[i].userLoginName, 1);
-                } else {
-                    var _name = mask(list[i].userLoginName, 2);
-                }
-            }
-
+            list[i].userLoginName=(list[i].userLoginName).replace('/[^0-9]/ig,""').replace('_','');
+            var _name = (list[i].userLoginName).substring(4).replace(/(\d{2})\d{7}(\d{2})/, '$1*******$2'); 
             list[i].userLoginName = _name;
         }
         return list;
