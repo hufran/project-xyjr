@@ -113,7 +113,7 @@ do (_, angular, moment, Array) ->
                     moment(date.format 'YYYY-MM-DD').unix() * 1000
 
                 query_set = {
-                    type: _.split 'INVEST WITHDRAW DEPOSIT INVEST_REPAY FEE_WITHDRAW TRANSFER'
+                    type: _.split 'INVEST WITHDRAW DEPOSIT INVEST_REPAY FEE_WITHDRAW TRANSFER OFFLINE_DEPOSIT'
                     allStatus: false
                     allOperation: true
                     startDate: convert_to_day moment().subtract 1, 'y'
