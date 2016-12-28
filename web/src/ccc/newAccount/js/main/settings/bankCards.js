@@ -58,18 +58,45 @@ var ractive = new Ractive({
         });
     }
 });
-request('GET','/api/v2/jdpay/banks').end().
-    then(function (r) {
 
-        banksList=r.body;
-        for (var i in banksList) {
-            name=banksList[i];
-            banks.push({'name': name});
-        };
-        ractive.set('banks', banks);
-        console.log('#####bank');
-        console.log(banks);
-    });
+//判断是什么业务显示不同的银行卡列表
+changeSeverName();
+$('select[name="severName"]').on('change',function(){
+    changeSeverName();
+})
+function changeSeverName(){
+    if ($('select[name="severName"]').val()=='融资借款') {//融资借款
+        request('GET','/api/v2/jdpay/banks4AppServer').end().
+            then(function (r) {
+                banks=[];
+                banksList=r.body;
+                for (var i in banksList) {
+                    name=banksList[i];
+                    banks.push({'name': name});
+                };
+                ractive.set('banks', banks);
+                console.log('#####bank');
+                console.log(banks);
+            });
+    }else{//理财
+        request('GET','/api/v2/jdpay/banks').end().
+            then(function (r) {
+                banks=[];
+                banksList=r.body;
+                for (var i in banksList) {
+                    name=banksList[i];
+                    banks.push({'name': name});
+                };
+                ractive.set('banks', banks);
+                console.log('#####bank');
+                console.log(banks);
+            });
+    };
+}
+
+
+
+
 
 // var banks = _.filter(LLPBANKS, function (r) {
 //     return r.enable === true;
