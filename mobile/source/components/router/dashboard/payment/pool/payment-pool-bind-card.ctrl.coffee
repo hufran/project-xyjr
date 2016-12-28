@@ -71,6 +71,15 @@ do (_, angular) ->
 
                 @$scope.store.cardNo = parseInt(cardNo)
 
+            on_change_business_type: ->
+
+                if @$scope.store.businessType == '1'
+                    @api.get_available_bank4App_list().then (data) =>
+                        @$scope.banks = data
+                else
+                    @api.get_available_bank_list().then (data2) =>
+                        @$scope.banks = data2
+
             on_change_bank_name: ->
 
                 return if @need_location()
