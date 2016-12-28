@@ -524,6 +524,13 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
+            get_available_bank4App_list: ->
+
+                @$http.get '/api/v2/jdpay/banks4AppServer', cache: true
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
 
             get_province_list: ->
 
