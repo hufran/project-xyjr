@@ -12,6 +12,7 @@ do (_, angular) ->
                     banks:null
                     province: null
                     city: null
+                    businessNull:false
                 }
 
                 @back_path = @$routeParams.back
@@ -76,11 +77,14 @@ do (_, angular) ->
                 if @$scope.store.businessType == '1'
                     @api.get_available_bank4App_list().then (data) =>
                         @$scope.banks = data
+                        @$scope.businessNull = true;
                 else if @$scope.store.businessType == '0'
                     @api.get_available_bank_list().then (data2) =>
                         @$scope.banks = data2
+                        @$scope.businessNull = true;
                 else
                     @$scope.banks = null
+                    @$scope.businessNull = false;
 
             on_change_bank_name: ->
 
@@ -88,10 +92,27 @@ do (_, angular) ->
 
                 _.split('province city branchName').forEach (key) =>
                     _.set @$scope.store, key, ''
+            clickOpenBank: ->
+
+                @error.on = true
+                @error.message = '请选择业务类型'
+                @error.timer = @$timeout =>
+                    @error.on = false
+                , @error.timeout
 
 
-            bind_card: ({bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha}) ->
+            bind_card: ({bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha,businessType}) ->
 
+                if cardNo != undefined
+                    if businessType == '0' || businessType == '1'
+
+                    else
+                        @error.on = true
+                        @error.message = '请选择业务类型'
+                        @error.timer = @$timeout =>
+                            @error.on = false
+                        , @error.timeout
+                        return false
                 @submit_sending = true
 
                 check_input = (data) =>
@@ -109,7 +130,6 @@ do (_, angular) ->
                 (@$q.resolve(@need_location())
 
                     .then (location_needed) ->
-
                         return check_input({cardNo}) unless !!cardNo
                         return check_input({bankName}) unless !!bankName
                         return check_input({city, province}) if location_needed
