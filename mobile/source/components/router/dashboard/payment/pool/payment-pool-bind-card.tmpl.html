@@ -79,7 +79,7 @@
                 </div>
                 <div class="form-group merge">
                     <label for="bank-name">开户银行</label>
-                    <select name="bankName" class="form-control input-sm"
+                    <select ng-if="businessNull" name="bankName" class="form-control input-sm"
                             id="bank-name"
                             ng-model="store.bankName"
                             ng-change="self.on_change_bank_name()"
@@ -87,6 +87,9 @@
                     >
                         <option value="">请选择开户银行</option>
                     </select>
+                    <div ng-if="!businessNull" style="padding:16px 0 16px 10px;" ng-click="self.clickOpenBank()">
+                        请选择开户银行
+                    </div>
                 </div>
 
                 <div class="form-group merge" ng-show="self.need_location()">
@@ -109,6 +112,7 @@
                     >
                         <option value="">...选择市</option>
                     </select>
+
                 </div>
 
                 <div class="form-group merge" ng-show="self.need_location()" x-gyro-comment>
