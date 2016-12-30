@@ -60,7 +60,7 @@ var ractive = new Ractive({
 });
 
 //判断是什么业务显示不同的银行卡列表
-changeSeverName();
+//changeSeverName();
 $('select[name="severName"]').on('change',function(){
     changeSeverName();
 })
@@ -165,7 +165,14 @@ ractive.on("bind-card-submit", function (e) {
     var city = this.get('myCity');
     var branchName = this.get('branchName');
     var smsCaptcha = this.get('smsCaptcha');
-    
+    //选择业务类型
+    if ($('select[name="severName"]').val()==''){
+        showErrorIndex('showErrorMessagea0','errorMessagea0','* 请选择业务类型');
+        return false;
+    }else{
+        clearErrorIndex('showErrorMessagea0','errorMessagea0');
+    } 
+
     if ($('select[name="bankName"]').val()=='请选择开户银行'){
         showErrorIndex('showErrorMessagea1','errorMessagea1','* 请选择开户银行');
         return false;
