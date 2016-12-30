@@ -9,7 +9,7 @@ do (_, angular) ->
                 @$window.scrollTo 0, 0
 
                 angular.extend @$scope, {
-                    banks
+                    banks:null
                     province: null
                     city: null
                 }
@@ -76,9 +76,11 @@ do (_, angular) ->
                 if @$scope.store.businessType == '1'
                     @api.get_available_bank4App_list().then (data) =>
                         @$scope.banks = data
-                else
+                else if @$scope.store.businessType == '0'
                     @api.get_available_bank_list().then (data2) =>
                         @$scope.banks = data2
+                else
+                    @$scope.banks = null
 
             on_change_bank_name: ->
 

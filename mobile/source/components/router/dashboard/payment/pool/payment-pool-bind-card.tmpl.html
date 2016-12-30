@@ -63,16 +63,19 @@
                     >
                     <!--^(\d{16}|\d{19})$-->
                 </div>
-                <div class="form-group merge">
+                <div class="form-group merge" style="height:2rem;position:relative">
                     <label for="business-type">选择业务</label>
-                    <select name="busniessType" class="form-control input-sm"
-                            id="business-type"
-                            ng-model="store.businessType"
-                            ng-change="self.on_change_business_type()"
+                    <div><select name="busniessType" class="form-control input-sm"
+                                 id="business-type"
+                                 ng-model="store.businessType"
+                                 ng-change="self.on_change_business_type()"
                     ><!--ng-change="changeBusinessType()"-->
-                        <option value="">投资理财</option>
+                        <option value="">请选择投资理财或者融资借款</option>
+                        <option value="0">投资理财</option>
                         <option value="1">融资借款</option>
                     </select>
+                        <p style="color: red"> *办理借款时须选择融资借款业务！</p>
+                    </div>
                 </div>
                 <div class="form-group merge">
                     <label for="bank-name">开户银行</label>
