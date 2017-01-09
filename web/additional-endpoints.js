@@ -189,7 +189,7 @@ module.exports = function (router, auth) {
 
     //绑卡选择业务
     router.get('/api/mermaid/users/checkUserLogin', auth.pass());
-    router.post('/api/v2/auth/updateUserLoginMess/:userId', auth.pass());
+    router.post('/api/v2/auth/updateUserLoginMess/:userId', auth.user());
 
     //单点登录
 
