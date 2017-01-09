@@ -188,5 +188,9 @@ module.exports = function (router, auth) {
     router.post('/api/mermaid/users/changePassword',auth.pass());
 
     //绑卡选择业务
-    router.get('/api/v2/jdpay/banks4AppServer', auth.pass());
+    router.get('/api/mermaid/users/checkUserLogin', auth.pass());
+    router.post('/api/v2/auth/updateUserLoginMess/:userId', auth.pass());
+
+    //单点登录
+
 };
