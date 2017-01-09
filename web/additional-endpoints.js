@@ -192,7 +192,7 @@ module.exports = function (router, auth) {
     
     //单点登录
     router.get('/api/mermaid/users/checkUserLogin', auth.pass());
-    router.post('/api/v2/auth/updateUserLoginMess/:userId', auth.pass());
+    router.post('/api/v2/auth/updateUserLoginMess/:userId', auth.user());
 
     
 
