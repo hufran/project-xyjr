@@ -12,6 +12,7 @@ do (_, angular) ->
                 @next_path = @$routeParams.next or 'dashboard'
 
                 @submit_sending = false
+                @$scope.openId = @$routeParams.openId
 
                 @error = {timer: null, timeout: 2000, message: '', on: false}
 

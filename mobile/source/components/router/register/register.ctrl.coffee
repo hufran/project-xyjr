@@ -13,6 +13,7 @@ do (_, angular) ->
                         _.first _.compact [UID]
 
                 @$scope.back_path = @$routeParams.back
+                @$scope.openId = @$routeParams.openId
 
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
@@ -109,8 +110,12 @@ do (_, angular) ->
                             @$q.reject data.error
 
                     .then (data) =>
-                        @$window.alert @$scope.msg.SUCCEED
-                        @$location.path 'dashboard'
+
+                        if @$scope.openId != undefined
+                            window.location.href = "http://localhost:5001/lend/login/?openId="+@$scope.openId
+                        else
+                            @$window.alert @$scope.msg.SUCCEED
+                            @$location.path 'dashboard'
 
                     .catch (data) =>
                         key = _.get data, '[0].message'

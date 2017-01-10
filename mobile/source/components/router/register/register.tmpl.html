@@ -1,14 +1,13 @@
 
 <div id="register">
 
-    <nav class="container page-nav">
+    <nav class="container page-nav" ng-show="openId == undefined">
     <div class="row">
         <a class="col-xs-3 back" ng-href="{{ back_path || './' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
         <span class="col-xs-6 title">注册</span>
         <a class="col-xs-3 text-right actions text-muted hidden" href="login">登录</a>
     </div>
     </nav>
-
 	<div class="carousel-inner" ng-transclude="">
 		<div class="item text-center ng-isolate-scope active" style="">
 			<a ng-href="/h5/announcement" target="_self" class="ng-scope" href="/h5/announcement">
@@ -252,7 +251,8 @@
                 我阅读并同意 <a href="#" ng-click="self.agreement('新毅金融用户注册协议')">《新毅金融注册服务协议》</a>
             </label>
         </div>
-
+<!--{{openId == ""}}-&#45;&#45;openId <br>-->
+<!--{{openId == undefined}}-&#45;&#45;openId-->
         <p class="container">
             <button type="button" class="btn btn-theme btn-block btn-lg"
                     ng-click="self.signup(store)"
