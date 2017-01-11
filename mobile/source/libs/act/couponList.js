@@ -1,3 +1,25 @@
+var wxChatUrl = "http://10.4.33.251:5001";
+function GetRequest(item) {
+	var indexq = window.location.href.indexOf("?");
+	if(indexq!=-1){
+		var url = window.location.href.substr(indexq);
+		var theRequest = new Object();
+		if (url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			strs = str.split("&");
+			for(var i = 0; i < strs.length; i ++) {
+				theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+			}
+		}
+		return theRequest[item];
+	}else{
+		console.log("没有参数");
+		return "";
+	}
+}
+
+
+
 function selectTab(index,obj,id){
 	jQuery("ul.tabs li").removeClass("active").eq(index).addClass("active");
 	jQuery("#tabContent section").removeClass("show").eq(index).addClass("show");

@@ -9,6 +9,7 @@ do (_, angular) ->
                 @$window.scrollTo 0, 0
 
                 @$scope.bank_account = _.clone @user.bank_account
+                @$scope.openId = @$routeParams.openId
 
                 return unless @$scope.bank_account
                 @api.get_available_bank_list().then (data) =>
