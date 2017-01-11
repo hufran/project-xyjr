@@ -33,8 +33,11 @@ do (_, angular) ->
                         @user.info.name = user_name
                         @user.info.idNumber = id_number
                         @user.has_payment_account = true
-
-                        @$location.path @next_path
+                        if @$scope.openId != undefined
+#                            alert(wxChatUrl);
+                            window.location.href = wxChatUrl+"/lend/";
+                        else
+                            @$location.path @next_path
 
                     .catch (data) =>
                         @submit_sending = false

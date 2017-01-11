@@ -13,10 +13,15 @@ do (_, angular) ->
                     province: null
                     city: null
                     businessNull:false
+                    openId:@$routeParams.openId
                 }
 
                 @back_path = @$routeParams.back
-                @next_path = @$routeParams.next or 'dashboard'
+                #如果是微信端跳转过来的，增加返回微信端地址
+                if @$scope.openId != undefined
+                    @next_path = wxChatUrl+"/lend/";
+                else
+                    @next_path = @$routeParams.next or 'dashboard'
 
                 @submit_sending = false
 
@@ -144,9 +149,12 @@ do (_, angular) ->
                     .then (data) =>
                         @mg_alert _.get data, 'data', 'wow...'
                             .result.finally =>
-                                @$location
-                                    .path @next_path
-                                    .search t: _.now()
+                                    if @$scope.openId != undefined
+                                        window.location.href = @next_path
+                                    else
+                                        @$location
+                                        .path @next_path
+                                        .search t: _.now()
 
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()

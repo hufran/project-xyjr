@@ -314,24 +314,27 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .catch (user) ->
                                             return unless user
 
-                                            switch
-                                                when user.has_payment_account isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/register'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/payment/bind-card'
+                                            if GetRequest('openId') != ""
 
-                                                when user.has_payment_password isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/password'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/payment/bind-card'
+                                            else
+                                                switch
+                                                    when user.has_payment_account isnt true
+                                                        $location
+                                                            .replace()
+                                                            .path 'dashboard/payment/register'
+                                                            .search
+                                                                back: 'dashboard'
+                                                                next: 'dashboard/payment/bind-card'
 
-                                            return $q.reject()
+                                                    when user.has_payment_password isnt true
+                                                        $location
+                                                            .replace()
+                                                            .path 'dashboard/payment/password'
+                                                            .search
+                                                                back: 'dashboard'
+                                                                next: 'dashboard/payment/bind-card'
+
+                                                return $q.reject()
                     }
 
                     .when '/dashboard/payment/password/:type?', {
