@@ -297,6 +297,14 @@ module.exports = function(router) {
         res.render('/newAccount/fund', {});
 
     });
+
+
+    // jd回跳地址
+    router.post('/fund/:name', function(req, res, next) {
+        res.expose(req.params.name, 'loanl.urlname');
+        res.render('/newAccount/fund', {});
+
+    });
     
     //邮箱验证
     router.get('/authenticateEmail', function (req, res, next) {
