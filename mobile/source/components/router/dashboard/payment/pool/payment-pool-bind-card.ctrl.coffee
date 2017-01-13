@@ -13,13 +13,13 @@ do (_, angular) ->
                     province: null
                     city: null
                     businessNull:false
-                    openId:@$routeParams.openId
+                    sourceId:@$routeParams.sourceId
                 }
 
                 @back_path = @$routeParams.back
                 #如果是微信端跳转过来的，增加返回微信端地址
-                if @$scope.openId != undefined
-                    @next_path = wxChatUrl+"/lend/";
+                if @$scope.sourceId != undefined
+                    @next_path = wxChatUrl+"/lend/homeA";
                 else
                     @next_path = @$routeParams.next or 'dashboard'
 

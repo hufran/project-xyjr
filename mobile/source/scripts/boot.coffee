@@ -314,7 +314,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .catch (user) ->
                                             return unless user
 
-                                            if GetRequest('openId') != ""
+                                            if GetRequest('sourceId') != ""
 
                                             else
                                                 switch
