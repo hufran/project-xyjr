@@ -35,7 +35,7 @@ do (_, angular) ->
                         @user.has_payment_account = true
                         if @$scope.openId != undefined
 #                            alert(wxChatUrl);
-                            window.location.href = wxChatUrl+"/lend/";
+                            window.location.href = wxChatUrl+"/lend/homeA";
                         else
                             @$location.path @next_path
 

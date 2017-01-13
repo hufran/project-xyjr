@@ -112,7 +112,7 @@ do (_, angular) ->
                     .then (data) =>
 
                         if @$scope.openId != undefined
-                            window.location.href = wxChatUrl+"/lend/login/?openId="+@$scope.openId
+                            window.location.href = wxChatUrl+"/lend/loginA/?openId="+@$scope.openId
                         else
                             @$window.alert @$scope.msg.SUCCEED
                             @$location.path 'dashboard'

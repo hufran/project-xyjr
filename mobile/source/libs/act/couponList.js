@@ -1,4 +1,4 @@
-var wxChatUrl = "http://10.4.33.251:5001";
+var wxChatUrl = "http://10.4.33.251/xyjrpc";
 function GetRequest(item) {
 	var indexq = window.location.href.indexOf("?");
 	if(indexq!=-1){
