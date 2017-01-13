@@ -14,6 +14,7 @@ do (_, angular) ->
 
                 @$scope.back_path = @$routeParams.back
                 @$scope.openId = @$routeParams.openId
+                @$scope.sourceId = @$routeParams.sourceId
 
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
@@ -113,6 +114,8 @@ do (_, angular) ->
 
                         if @$scope.openId != undefined
                             window.location.href = wxChatUrl+"/lend/loginA/?openId="+@$scope.openId
+                        else if  @$scope.sourceId != undefined
+                            window.location.href = wxChatUrl+"/lend/loginA"
                         else
                             @$window.alert @$scope.msg.SUCCEED
                             @$location.path 'dashboard'
