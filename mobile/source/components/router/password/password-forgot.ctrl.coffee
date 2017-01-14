@@ -10,7 +10,7 @@ do (_, angular) ->
 
                 @$scope.store = {}
 #                console.log @$routeParams.openId
-                @$scope.openId = @$routeParams.openId
+                @$scope.sourceId = @$routeParams.sourceId
 
 
             fetch_new_captcha: ->
