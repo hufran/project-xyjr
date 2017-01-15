@@ -66,12 +66,16 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @mg_alert @$scope.msg.SUCCEED
-                            .result.finally =>
-                                @$location.path '/login'
 
-                        @$scope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
+                        if  @$scope.sourceId != undefined
+                            window.location.href = wxChatUrl+"/lend/loginA"
+                        else
+                            @mg_alert @$scope.msg.SUCCEED
+                                .result.finally =>
+                                    @$location.path '/login'
+
+                            @$scope.$on '$locationChangeSuccess', =>
+                                @$window.location.reload()
 
                     .catch (data) =>
                         error = _.get data, 'error[0].message', 'UNKNOWN'
