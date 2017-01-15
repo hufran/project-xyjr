@@ -9,7 +9,6 @@ do (_, angular) ->
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
                 @$scope.store = {}
-#                console.log @$routeParams.openId
                 @$scope.sourceId = @$routeParams.sourceId
 
 

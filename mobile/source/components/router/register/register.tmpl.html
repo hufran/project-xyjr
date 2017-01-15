@@ -1,7 +1,7 @@
 
 <div id="register">
 
-    <nav class="container page-nav" ng-show="openId == undefined">
+    <nav class="container page-nav" ng-show="openId == undefined && sourceId == undefined">
     <div class="row">
         <a class="col-xs-3 back" ng-href="{{ back_path || './' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
         <span class="col-xs-6 title">注册</span>
@@ -15,7 +15,6 @@
 			</a>
 		</div>
 	</div>
-
     <div>
       <param ng-model="msg" ng-init="msg = {
           MOBILE_EXISTS: '手机号已被占用',
