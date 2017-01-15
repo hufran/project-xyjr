@@ -17,11 +17,8 @@ do (_, angular) ->
                 }
 
                 @back_path = @$routeParams.back
-                #如果是微信端跳转过来的，增加返回微信端地址
-                if @$scope.sourceId != undefined
-                    @next_path = wxChatUrl+"/lend/homeA";
-                else
-                    @next_path = @$routeParams.next or 'dashboard'
+
+                @next_path = @$routeParams.next or 'dashboard'
 
                 @submit_sending = false
 
@@ -147,18 +144,18 @@ do (_, angular) ->
                         return data
 
                     .then (data) =>
-                        @mg_alert _.get data, 'data', 'wow...'
-                            .result.finally =>
-                                    if @$scope.openId != undefined
-                                        window.location.href = @next_path
-                                    else
+                        if @$scope.sourceId != undefined
+                            window.location.href = wxChatUrl+"/lend/homeA";
+                        else
+                            @mg_alert _.get data, 'data', 'wow...'
+                                .result.finally =>
                                         @$location
                                         .path @next_path
                                         .search t: _.now()
 
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location.href = new_path
+                            @$scope.$on '$locationChangeStart', (event, new_path) =>
+                                event.preventDefault()
+                                @$window.location.href = new_path
 
                     .catch (data) =>
                         @submit_sending = false
