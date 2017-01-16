@@ -14,7 +14,6 @@ function GetRequest(item) {
 		}
 		return theRequest[item];
 	}else{
-		console.log("没有参数");
 		return "";
 	}
 }
