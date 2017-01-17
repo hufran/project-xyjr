@@ -1,4 +1,5 @@
-var wxChatUrl = "http://10.4.33.251/xyjrpc";
+//var wxChatUrl = "http://10.4.33.251/xyjrpc";
+var wxChatUrl = "http://www.718bank.com/xyjrpc";
 function GetRequest(item) {
 	var indexq = window.location.href.indexOf("?");
 	if(indexq!=-1){
@@ -13,7 +14,6 @@ function GetRequest(item) {
 		}
 		return theRequest[item];
 	}else{
-		console.log("没有参数");
 		return "";
 	}
 }
