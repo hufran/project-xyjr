@@ -109,7 +109,7 @@ var _hmt = _hmt || [];
 				</div>
             </a>
             {{/if}}
-            <a href="/logout" class="text" style="color:#999;margin-right:5px;">退出&nbsp;&nbsp;|</a>
+            <a href="javascript:void(0);" class="text logout" style="color:#999;margin-right:5px;">退出&nbsp;&nbsp;|</a>
 			{{#if user.name}}
             	<a href="/newAccount/home"><div id='head-ractive-container' style="color:#009ada;position:relative;bottom:1px;" class="text"></div></a>
 			{{else}}
@@ -314,3 +314,10 @@ var _hmt = _hmt || [];
 
 <script src="/ccc/global/js/main/header.js" async defer></script>
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<script type="text/javascript">
+if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE6.0" || navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE7.0" || navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE8.0" || navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE9.0")
+{
+    alert('您的浏览器版本过低，请下载ie9版本以上浏览器');
+}
+</script>
+
