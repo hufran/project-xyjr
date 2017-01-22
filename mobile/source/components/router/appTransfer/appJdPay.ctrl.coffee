@@ -31,14 +31,13 @@ do (_, angular) ->
 
 
         @submitForm()
-
+      test:(userId,token) ->
+#        console.log 1
+        isUsefulToken(userId,token);
       submitForm: ->
 
 #        console.log 1
         a();
-      test:(userId,token) ->
 
-#        console.log 1
-        isUsefulToken(userId,token);
 
 
