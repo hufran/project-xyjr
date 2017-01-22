@@ -209,3 +209,15 @@ function isWeiXin(){
 		return false;
 	}
 }
+
+
+//判断token是否过期
+function isUsefulToken(userId,token){
+	console.log('userId='+userId+'&token='+token);
+	$.get("/api/mermaid/users/checkToken?userId="+userId+'&token='+token, function(res){
+	    console.log(res);
+	    	if (res.status!=0) {
+	    		alert('请重新登录');
+	    	};
+	});
+}

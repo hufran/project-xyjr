@@ -7,7 +7,8 @@ do (_, angular) ->
       constructor: (@api, @user, @$scope, @$location, @$window, map_loan_summary, @$routeParams) ->
 
         @$window.scrollTo 0, 0
-
+        console.log @$routeParams.id
+        @test(@$routeParams.id,@$routeParams.token)
         filter_type = @$routeParams.type
 
         angular.extend @$scope, {
@@ -35,5 +36,9 @@ do (_, angular) ->
 
 #        console.log 1
         a();
+      test:(userId,token) ->
+
+#        console.log 1
+        isUsefulToken(userId,token);
 
 
