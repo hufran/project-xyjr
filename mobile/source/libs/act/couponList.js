@@ -217,7 +217,7 @@ function isUsefulToken(userId,token){
 	$.get("/api/mermaid/users/checkToken?userId="+userId+'&token='+token, function(res){
 	    console.log(res);
 	    	if (res.status!=0) {
-	    		alert('请重新登录');
+	    		alert(res.msg);
 	    	};
 	});
 }
