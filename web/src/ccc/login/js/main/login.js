@@ -66,37 +66,22 @@ $('#loginForm').submit(function (e) {
     request.post('/api/web/login').type('form').send($this.serialize()).end().get('body').then(function (r) {
         if (r.success) {
             $postBtn.text('登录成功');
-            $.ajax({//把token传给后端
-              type: 'POST',
-              url: '/api/v2/auth/updateUserLoginMess/'+r.user.id,
-              data: {
-                'userId':r.user.id,
-                'token':r.access_token
-              },
-              success: function(res){
-                if (res.status==0) {
-                    console.log(res);
-                    var url = /(loan)/;
-                    var url2 = /(investCredit)/;
-                    var url3 = /(invest)/;
-                    var url4 = /(rongzi)/;
-                    var url5 = /(userKnow)/;
-                    var url6 = /(creditDetail)/;
-                    if (url.test(document.referrer) || url2.test(document.referrer) || url3.test(document.referrer) || url4.test(document.referrer) || url5.test(document.referrer) || url6.test(document.referrer)) {
-                        location.href = document.referrer;
-                        return;
-                    }
-                    if (CC.user.enterprise) {
-                        location.pathname = "/newAccount/home";
-                    } else {
-                        location.href = (r.redirect) ? r.redirect : '/';
-                    }
-                };
-                
-              }
-            });
-                        
-            
+            var url = /(loan)/;
+            var url2 = /(investCredit)/;
+            var url3 = /(invest)/;
+            var url4 = /(rongzi)/;
+            var url5 = /(userKnow)/;
+            var url6 = /(creditDetail)/;
+            if (url.test(document.referrer) || url2.test(document.referrer) || url3.test(document.referrer) || url4.test(document.referrer) || url5.test(document.referrer) || url6.test(document.referrer)) {
+                location.href = document.referrer;
+                return;
+            }
+            if (CC.user.enterprise) {
+                location.pathname = "/newAccount/home";
+            } else {
+                location.href = (r.redirect) ? r.redirect : '/';
+            }
+                    
         } else {
             $error.text(errorMaps[r.error_description.result]);
             $postBtn.removeClass('disabled').text('登录');
