@@ -217,7 +217,9 @@ function isUsefulToken(userId,token){
 	$.get("/api/mermaid/users/checkToken?userId="+userId+'&token='+token, function(res){
 	    console.log(res);
 	    	if (res.status!=0) {
-	    		alert(res.msg);
+	    		console.log($('#jumpToJd').html());
+	    		$('#jumpToJd').html(res.msg);
+	    		console.log(11111+$('#jumpToJd').html());
 	    	};
 	});
 }
