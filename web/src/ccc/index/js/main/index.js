@@ -51,33 +51,7 @@ IndexService.getLoanSummary(function (list) {
      }
 
     listLCZQ = [listXJB[0],listXNB[0],listFB[0]];
-    console.log('理财专区');
-    //console.log(listLCZQ );
-    //var listLCZQTimeLeft=[listXJB[0].timeLeft,listXNB[0].timeLeft,listXNB[0].timeLeft];
-    var maxTimeLeftList={};
-    for(var i = 0 ;i<listLCZQ.length;i++){
-        if(listLCZQ[i] == "" || typeof(listLCZQ[i]) == "undefined"){
-                listLCZQ.splice(i,1);
-                i= i-1;
-              
-        }
-                  
-    }
-    for (var i = 0; i < listLCZQ.length-1; i++) {
-        console.log(listLCZQ.length);
-        console.log(listLCZQ[i].timeLeft);
-        if (listLCZQ[i].timeLeft>listLCZQ[i+1].timeLeft) {
-            maxTimeLeftList=listLCZQ[i];
-            listLCZQ.splice(i,1);
-        }else{
-            maxTimeLeftList=listLCZQ[i+1];
-            listLCZQ.splice(i+1,1);
-        };
-    };
-    console.log('理财专区000');
-    console.log(maxTimeLeftList);
-    listLCZQ.unshift(maxTimeLeftList);
-
+    
     for(var i=0; i<listLCZQ.length; i++){
         if(listLCZQ[i] == undefined || listLCZQ[i] == ''){
             listLCZQ.splice(i,1);
