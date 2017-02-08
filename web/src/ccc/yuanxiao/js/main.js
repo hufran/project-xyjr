@@ -9,7 +9,10 @@ var userId = CC.user.id;
 $(document).ready(function(){
     //加载列表，加载可以抽奖次数，页面数据初始化
     initPage();
-    setInterval('AutoScroll(".scroll")',3000)
+    setInterval('AutoScroll(".scroll")',3000);
+    $(".know").click(function(){
+        close();
+    })
 })
 //初始化页面的数据
 function initPage(){
@@ -28,10 +31,11 @@ function initPage(){
 }
 //开始抽奖
 function start(){
-    if(count <= 0){
-        alert("抽奖次数已用完！");
-    }
-    if(animal && count>0){
+    //if(count <= 0){
+    //    alert("抽奖次数已用完！");
+    //}
+    //if(animal && count>0){
+    if(animal){
         var activeIndex = $(".active").attr("id");
         if(activeIndex == undefined){
             tag = -1;
@@ -74,8 +78,10 @@ function zanting(num){
         if(timesRun == num+8-tmp){
             clearInterval(interval);
             animal = true;
-            var priseName  = $("#prise-"+num).html();
-            setTimeout("alert('恭喜您抽中"+priseName+"')",600);
+            //var priseName  = $("#prise-"+num).attr("value");;
+            //setTimeout("alert('恭喜您抽中"+priseName+"')",600);
+             setTimeout("showPrise("+num+")",600);
+
         }
         console.log(tag);
         $("ul.abc li").removeClass("active");
@@ -87,7 +93,20 @@ function zanting(num){
     }, 500);
 //修改可抽奖次数,充值中奖列表，并设置抽奖按钮是否可用
     initDatas(count,prizeList);
-
+}
+function showPrise(n){
+    if(n>=5){
+        $(".successDiv img").attr("class","cardPng")
+    }else{
+        $(".successDiv img").attr("class","couponPng")
+    }
+    $(".priseCur").html($("#prise-"+num).attr("value"));
+    $(".transparentBody").show();
+}
+function close(){
+    $(".transparentBody").hide();
+    $(".priseCur").html("");
+    $(".successDiv img").removeAttr("class");
 }
 //初始化以及抽奖完成数据相关更新
 function initDatas(times,list){
@@ -98,7 +117,7 @@ function initDatas(times,list){
     var tmpName = "";
     for(var i = 0;i<list.length;i++){
         tmpName = list[i].prize;
-        $li += '<li><div>'+list[i].mobile+ '</div><div>'+list[i].time+'</div><div>抽到'+$("#prise-"+tmpName).html()+'</div></li>';
+        $li += '<li><div>'+list[i].mobile+ '</div><div>'+list[i].time+'</div><div class="right">抽到'+$("#prise-"+tmpName).attr("value")+'</div></li>';
     }
     $(".scroll").html($li);
 }
@@ -115,7 +134,7 @@ function changeStyle(){
 //公告简单滚动
 function AutoScroll(obj){
     $(obj).animate({
-        marginTop:(parseInt($(obj).css("marginTop"))-30)+"px"
+        marginTop:(parseInt($(obj).css("marginTop"))-75)+"px"
     },1000,function(){
         $(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
     });
