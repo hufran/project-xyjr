@@ -1,0 +1,4 @@
+ul.abc{font-size:0;width:570px;}
+ul.abc li{display:inline-table;width:180px; height:180px;line-height:180px; background-color:#D3D3D3;margin-right:3px;margin-bottom:3px;font-size:12px; vertical-align:middle; text-align:center}
+ul.abc li.active{background-color:#666}
+ul.scroll li div{display:inline-block}

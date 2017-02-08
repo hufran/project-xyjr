@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>元宵节抽奖</title>
+    <script>
+        {{{ state }}};
+    </script>
+    <link rel="stylesheet" href="/ccc/yuanxiao/css/style.css">
+</head>
+
+<body>
+<div style="width:570px; margin:100px auto; ">
+    <ul class="abc">
+        <li id="prise-0">20元返现红包</li>
+        <li id="prise-1">50元返现红包</li>
+        <li id="prise-2">100元返现券红包</li>
+        <li id="prise-7">500元味多美提货卡</li>
+        <li onClick="start()" style="font-size:30px; color:black;line-height:90px">开始<br>抽奖</li>
+        <li id="prise-3">200元返现券红包</li>
+        <li id="prise-6">200元味多美提货卡</li>
+        <li id="prise-5">100元味多美提货卡</li>
+        <li id="prise-4">500元返现券红包</li>
+    </ul>
+    您可以抽奖次数为 <labe id="prizeTimes">0</labe>
+    <!--<button onClick="zanting()">模拟后台传回中奖号码</button>-->
+    <br>
+    <div style="height:150px;overflow:hidden;">
+        <ul class="scroll" style="line-height:30px; list-style-type: none">
+        </ul>
+    </div>
+
+</div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="/ccc/yuanxiao/js/main.js"></script>
+</body>
+</html>
