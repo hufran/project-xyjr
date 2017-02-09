@@ -19,7 +19,7 @@ ul.abc li.active{background-color:#666}
 ul.abc li .tranBg{display:none}
 ul.abc li.active{background-color:#666;position:relative}
 ul.abc li.active .tranBg{background-color:rgba(0,0,0,0.8);position:absolute; left:0; top:0;width:241px; height:194px; display:block}
-
+ul.scroll{margin-top:0}
 
 .transparentBody{background-color:rgba(0,0,0,0.5);height:100%;width:100%;position:fixed;z-index:100}
 button.know{width:448px; height:108px;border:1px solid #802015;

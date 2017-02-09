@@ -100,11 +100,11 @@ function zanting(num){
 }
 function showPrise(n){
     if(n>=4 || n == 0){
-        $(".successDiv img").attr("class","couponPng")
+        $(".successDiv img").attr("class","couponPng");
     }else{
         $(".successDiv img").attr("class","cardPng");
     }
-    $(".priseCur").html($("#prise-"+num).attr("value"));
+    $(".priseCur").html("获得"+$("#prise-"+num).attr("value"));
     $(".transparentBody").show();
 }
 function close(){
