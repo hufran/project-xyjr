@@ -99,10 +99,10 @@ function zanting(num){
     initDatas(count,prizeList);
 }
 function showPrise(n){
-    if(n>=5){
-        $(".successDiv img").attr("class","cardPng")
-    }else{
+    if(n>=4 || n == 0){
         $(".successDiv img").attr("class","couponPng")
+    }else{
+        $(".successDiv img").attr("class","cardPng");
     }
     $(".priseCur").html($("#prise-"+num).attr("value"));
     $(".transparentBody").show();
