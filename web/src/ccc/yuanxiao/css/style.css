@@ -1,9 +1,8 @@
 body{background:#8f030c url(/ccc/yuanxiao/img/bg.jpg) center center no-repeat;background-size:cover;padding:0; margin:0;}
 ul.abc{font-size:0;width:854px;height:748px;margin:0 auto;}
-ul.abc li{display:inline-table;width:242px; height:193px;background-color:#D3D3D3;margin-right:3px;margin-bottom:3px;vertical-align:middle; text-align:center;margin:0 30px 40px 0;border:5px solid #861600;border-radius:4px;}
-ul.abc li.active{background-color:#666}
+ul.abc li{display:inline-table;width:242px; height:193px;background-color:#f983a1;margin-right:3px;margin-bottom:3px;vertical-align:middle; text-align:center;margin:0 30px 40px 0;border:5px solid #861600;border-radius:4px;}
 .hTitle{width:1235px; margin:0 auto;margin-top:-240px;padding-top:240px; background-color:#8f030c;}
-.hTitle .couponStyle{width:1151px; min-height:1320px;padding:553px 42px 500px; margin:0 auto; background:url(/ccc/yuanxiao/img/yx.png) center top no-repeat;}
+.hTitle .couponStyle{width:1151px; min-height:1320px;padding:540px 42px 500px; margin:0 auto; background:url(/ccc/yuanxiao/img/yx.png) center top no-repeat;}
 .priseCount{text-align:center; line-height:180px;font-size:36px; font-family:'Microsoft YaHei UI',Arial;color:#fff;}
 .priseCount span{color:#faff05;}
 .activeTitle{background:url(/ccc/yuanxiao/img/guizeBg.png) center center no-repeat; line-height:48px; font-size:48px; font-family:'Microsoft YaHei UI',Arial;color:#faff05; text-align:center;}
@@ -15,13 +14,14 @@ ul.abc li.active{background-color:#666}
 .priseListMid ul li div{display:inline-block;margin-right:60px}
 .priseListMid ul li div.right{margin:0;}
 .priseListFoot{background:url(/ccc/yuanxiao/img/border-f.png) center center no-repeat; width:1144px; height:93px}
-.footers{margin-top:-450px;}
+
 ul.abc li .tranBg{display:none}
-ul.abc li.active{background-color:#666;position:relative}
-ul.abc li.active .tranBg{background-color:rgba(0,0,0,0.8);position:absolute; left:0; top:0;width:241px; height:194px; display:block}
+ul.abc li.active{background-color:#f983a1;position:relative}
+/*ul.abc li.active .tranBg{background-color:rgba(0,0,0,0.8);position:absolute; left:0; top:0;width:241px; height:194px; display:block}*/
+ul.abc li.active .tranBg{background-color:transparent;position:absolute; left:0; top:0;width:219px; height:172px; display:block;border:11px solid #ffff00;}
 ul.scroll{margin-top:0}
 
-.transparentBody{background-color:rgba(0,0,0,0.5);height:100%;width:100%;position:fixed;z-index:100}
+.transparentBody{background-color:rgba(0,0,0,0.8);height:100%;width:100%;position:fixed;z-index:100}
 button.know{width:224px; height:54px;border:1px solid #802015;
     color:#fff;
     line-height:54px;
@@ -38,3 +38,5 @@ button.know{width:224px; height:54px;border:1px solid #802015;
 .successDiv img.couponPng{background:url(/ccc/yuanxiao/img/coupon.png);width:205px; height:118px;}
 .successDiv p{font-size:50px;color:#ffe915;margin-bottom:10px;margin-top:25px;}
 .successDiv .priseCur{font-size:24px; color:#fff; margin-bottom:30px;}
+
+.footers{margin-top:-427px;}

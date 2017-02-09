@@ -15,6 +15,8 @@ $(document).ready(function(){
     $(".know").click(function(){
         close();
     })
+    //console.log($(".footers img").height()/2);
+    //$(".footers").css("margin-top","-"+$(".footers").height()/2+"px");
 })
 //初始化页面的数据
 function initPage(){
@@ -61,7 +63,7 @@ function start(){
                     num = d.data.prize;
                     count = d.data.count;
                     prizeList = d.data.userLotteryList;
-                    setTimeout("zanting("+num+")",3000);
+                    setTimeout("zanting("+num+")",2000);
                 }else{
                     clearInterval(timer1);
                     alert(d.msg);
