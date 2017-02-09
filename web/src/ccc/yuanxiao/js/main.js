@@ -1,4 +1,3 @@
-console.log(CC.user.id);
 var tag = 0;
 var timer1 = "";
 var animal = true;
@@ -10,6 +9,9 @@ $(document).ready(function(){
     //加载列表，加载可以抽奖次数，页面数据初始化
     initPage();
     setInterval('AutoScroll(".scroll")',3000);
+    $(".clickStart").click(function(){
+        start();
+    })
     $(".know").click(function(){
         close();
     })
@@ -31,11 +33,16 @@ function initPage(){
 }
 //开始抽奖
 function start(){
-    //if(count <= 0){
-    //    alert("抽奖次数已用完！");
-    //}
-    //if(animal && count>0){
-    if(animal){
+    if(userId == undefined){
+        //未登录
+        alert("请先登录再抽奖吧！");
+    }else{
+        if(count <= 0){
+            alert("参与投资可以获得更多抽奖次数！");
+        }
+    }
+    if(animal && count>0){
+    //if(animal){//正式需要注释
         var activeIndex = $(".active").attr("id");
         if(activeIndex == undefined){
             tag = -1;
@@ -51,11 +58,13 @@ function start(){
             cache: false,
             success: function(d){
                 if(d.status == 0){
-                //console.log(d.data)
                     num = d.data.prize;
                     count = d.data.count;
                     prizeList = d.data.userLotteryList;
                     setTimeout("zanting("+num+")",3000);
+                }else{
+                    clearInterval(timer1);
+                    alert("参与投资就有机会获得抽奖机会！");
                 }
             }
         });
@@ -74,16 +83,11 @@ function zanting(num){
     var timesRun = 0;
     var interval = setInterval(function(){
         timesRun += 1;
-        console.log(timesRun+"---"+(num+8-tmp));
         if(timesRun == num+8-tmp){
             clearInterval(interval);
             animal = true;
-            //var priseName  = $("#prise-"+num).attr("value");;
-            //setTimeout("alert('恭喜您抽中"+priseName+"')",600);
              setTimeout("showPrise("+num+")",600);
-
         }
-        console.log(tag);
         $("ul.abc li").removeClass("active");
         tag = tag*1+1;
         if(tag >= 8){
@@ -110,8 +114,7 @@ function close(){
 }
 //初始化以及抽奖完成数据相关更新
 function initDatas(times,list){
-    //times === d.data.count
-    //list === d.data.userLotteryList;
+    times = times*1 < 0?0:times;
     $("#prizeTimes").html(times);
     var $li = "";
     var tmpName = "";
