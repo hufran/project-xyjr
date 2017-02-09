@@ -64,7 +64,7 @@ function start(){
                     setTimeout("zanting("+num+")",3000);
                 }else{
                     clearInterval(timer1);
-                    alert("参与投资就有机会获得抽奖机会！");
+                    alert(d.msg);
                 }
             }
         });
