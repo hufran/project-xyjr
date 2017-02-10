@@ -138,8 +138,6 @@ function initDatas(times,list){
     var tmpName = "";
     for(var i = 0;i<list.length;i++){
         tmpName = list[i].prize;
-        console.log(tmpName);
-        console.log($("#prise-"+tmpName).attr("value"));
         $li += '<li><div>'+list[i].mobile+ '</div><div>'+list[i].time+'</div><div class="right">抽到'+$("#prise-"+tmpName).attr("value")+'</div></li>';
     }
     $(".scroll").html($li);
