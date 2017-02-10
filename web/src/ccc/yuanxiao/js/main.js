@@ -25,6 +25,7 @@ $(window).resize(function() {
     var hTitleH = $(".hTitle").height()+$(".hTitle").css("padding-top");
     $(".hTitle").css("margin-top",(headerH-280)*1+"px");
     $(".footers").css("top",(hTitleH+headerH-280)*1+"px");
+    $(".transparentBody").css("margin-top","-"+(headerH-280)*1+"px");
 
 });
 //初始化页面的数据

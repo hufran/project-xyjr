@@ -46,3 +46,4 @@ button.know{width:224px; height:54px;border:1px solid #802015;
 /*html{zoom:0.85;transform:scale(0.85)}*/
 .hTitle{width:1235px; margin:0 auto;margin-top:0;padding-top:240px; background-color:#8f030c;}
 .footers{position:absolute; top: 3782px;left:0 ;z-index:200;width:100%;}
+.transparentBody{z-index:201;height:120%}
