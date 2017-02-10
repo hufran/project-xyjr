@@ -5,6 +5,7 @@ var num = "";
 var count=0;
 var prizeList = [];
 var userId = CC.user.id;
+var alertMsg = "";
 $(document).ready(function(){
     //加载列表，加载可以抽奖次数，页面数据初始化
     initPage();
@@ -17,18 +18,32 @@ $(document).ready(function(){
     })
     //console.log($(".footers img").height()/2);
     //$(".footers").css("margin-top","-"+$(".footers").height()/2+"px");
+   // $(window).resize();
 })
+$(window).resize(function() {
+    var headerH = $("#headerHeight").height();
+    var hTitleH = $(".hTitle").height()+$(".hTitle").css("padding-top");
+    $(".hTitle").css("margin-top",(headerH-280)*1+"px");
+    $(".footers").css("top",(hTitleH+headerH-280)*1+"px");
+
+});
 //初始化页面的数据
 function initPage(){
 //抽奖列表和次数
         $.ajax({
             url: "http://10.4.33.251/show/rest/userLottery/showLottery/"+userId,
             cache: false,
+            crossDomain: true == !(document.all),
             success: function(d){
                 if(d.status == 0){
                     count = d.data.count;
                     prizeList = d.data.userLotteryList;
                     initDatas(count,prizeList);
+                }else if(d.status == -1){
+                    alertMsg = "您还有0次抽奖机会！";
+                }else{
+                    //d.status == -2
+                    alertMsg = "本次抽奖活动已结束！";
                 }
             }
         });
@@ -37,10 +52,10 @@ function initPage(){
 function start(){
     if(userId == undefined){
         //未登录
-        alert("请先登录再抽奖吧！");
+        alert("请先登录，投资获取抽奖机会后参加抽奖！");
     }else{
         if(count <= 0){
-            alert("参与投资可以获得更多抽奖次数！");
+            alert(alertMsg);
         }
     }
     if(animal && count>0){
