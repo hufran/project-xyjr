@@ -29,7 +29,7 @@ $(window).resize(function() {
 function initPage(){
 //抽奖列表和次数
         $.ajax({
-            url: "http://10.4.33.251/show/rest/userLottery/showLottery/"+userId,
+            url: "/show/rest/userLottery/showLottery/"+userId,
             cache: false,
             crossDomain: true == !(document.all),
             success: function(d){
@@ -77,7 +77,7 @@ function start(){
         timer1 = setInterval("changeStyle()",100);
         //请求后台获奖情况
         $.ajax({
-            url: "http://10.4.33.251/show/rest/userLottery/draw/"+userId,
+            url: "/show/rest/userLottery/draw/"+userId,
             cache: false,
             success: function(d){
                 if(d.status == 0){
