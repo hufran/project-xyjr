@@ -25,6 +25,7 @@ $(window).resize(function() {
     var hTitleH = $(".hTitle").height()+$(".hTitle").css("padding-top");
     $(".hTitle").css("margin-top",(headerH-280)*1+"px");
     $(".footers").css("top",(hTitleH+headerH-280)*1+"px");
+    $(".transparentBody").css("margin-top","-"+(headerH-280)*1+"px");
 
 });
 //初始化页面的数据
@@ -137,6 +138,8 @@ function initDatas(times,list){
     var tmpName = "";
     for(var i = 0;i<list.length;i++){
         tmpName = list[i].prize;
+        console.log(tmpName);
+        console.log($("#prise-"+tmpName).attr("value"));
         $li += '<li><div>'+list[i].mobile+ '</div><div>'+list[i].time+'</div><div class="right">抽到'+$("#prise-"+tmpName).attr("value")+'</div></li>';
     }
     $(".scroll").html($li);
