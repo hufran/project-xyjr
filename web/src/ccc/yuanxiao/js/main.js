@@ -41,11 +41,9 @@ function initPage(){
                     prizeList = d.data.userLotteryList;
                     initDatas(count,prizeList);
                 }else if(d.status == -1){
-                    count = 0;
                     alertMsg = "您还有0次抽奖机会！";
                 }else{
                     //d.status == -2
-                    count = 0;
                     alertMsg = "本次抽奖活动已结束！";
                 }
             }
@@ -57,9 +55,6 @@ function start(){
         //未登录
         alert("请先登录，投资获取抽奖机会后参加抽奖！");
     }else{
-        if(count == 0){
-            alertMsg = "您还有0次抽奖机会！";
-        }
         if(count <= 0){
             alert(alertMsg);
         }
