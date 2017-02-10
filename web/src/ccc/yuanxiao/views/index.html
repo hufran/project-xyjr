@@ -1,10 +1,17 @@
 <!doctype html>
-<html>
+<html style="height:100%;">
 <head>
     <meta charset="utf-8">
     <title>元宵节抽奖</title>
     <script>
         {{{ state }}};
+        document.onreadystatechange = loadOver;//当页面加载状态改变的时候执行这个方法.
+        function loadOver()
+        {
+            if(document.readyState == "complete"){ //当页面加载状态
+                $(window).resize();
+            }
+        }
     </script>
     <link rel="stylesheet" href="/ccc/yuanxiao/css/style.css">
 </head>
@@ -17,7 +24,8 @@
         <button class="know">知道了</button>
     </div>
 </div>
-<div><img src="/ccc/yuanxiao/img/header.png"  width="100%"></div>
+<!--<div style="margin-top:-100px;"><img src="/ccc/yuanxiao/img/header.png"  width="100%"></div>缩放-->
+<div style="position:absolute; top: 0;left:0 ;z-index:200;width:100%;" id="headerHeight"><img src="/ccc/yuanxiao/img/header.png"  width="100%"></div>
 <div class="hTitle">
     <div class="couponStyle">
     <ul class="abc">
@@ -36,7 +44,7 @@
         <div class="activeTDiv">
             <ul>
                 <li>1、活动时间：2017-02-10至2017-02-15，活动结束抽奖机会清零。</li>
-                <li>2、抽奖次数：每投资5000元可获取一次抽奖机会。</li>
+                <li>2、抽奖次数：单笔每投资5000元可获取一次抽奖机会。</li>
                 <li>3、中奖几率：100%中奖。</li>
                 <li>4、红包直接返到用户账户中，提货卡活动结束后统一邮寄。</li>
                 <li>5、本活动最终解释权归新毅金融所有。</li>
@@ -51,8 +59,8 @@
         <div class="priseListFoot"></div>
     </div>
 </div>
-<div class="footers"><img src="/ccc/yuanxiao/img/footer.png"  width="100%"></div>
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<div class="footers" ><img src="/ccc/yuanxiao/img/footer.png"  width="100%"></div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="/ccc/yuanxiao/js/main.js"></script>
 </body>
 </html>

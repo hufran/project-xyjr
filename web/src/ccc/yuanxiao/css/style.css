@@ -1,4 +1,4 @@
-body{background:#8f030c url(/ccc/yuanxiao/img/bg.jpg) center center no-repeat;background-size:cover;padding:0; margin:0;}
+body{background:#8f030c url(/ccc/yuanxiao/img/bg.jpg) center center repeat-y;background-size:cover;padding:0; margin:0;}
 ul.abc{font-size:0;width:854px;height:748px;margin:0 auto;}
 ul.abc li{display:inline-table;width:242px; height:193px;background-color:#f983a1;margin-right:3px;margin-bottom:3px;vertical-align:middle; text-align:center;margin:0 30px 40px 0;border:5px solid #861600;border-radius:4px;}
 .hTitle{width:1235px; margin:0 auto;margin-top:-240px;padding-top:240px; background-color:#8f030c;}
@@ -40,3 +40,9 @@ button.know{width:224px; height:54px;border:1px solid #802015;
 .successDiv .priseCur{font-size:24px; color:#fff; margin-bottom:30px;}
 
 .footers{margin-top:-427px;}
+
+
+.hTitle{zoom:0.85;transform:scale(0.85);margin-top:0}
+/*html{zoom:0.85;transform:scale(0.85)}*/
+.hTitle{width:1235px; margin:0 auto;margin-top:0;padding-top:240px; background-color:#8f030c;}
+.footers{position:absolute; top: 3782px;left:0 ;z-index:200;width:100%;}
