@@ -38,14 +38,22 @@ function initPage(){
             success: function(d){
                 if(d.status == 0){
                     count = d.data.count;
-                    prizeList = d.data.userLotteryList;
-                    initDatas(count,prizeList);
+                    if(count == 0){
+                        alertMsg = "您还有0次抽奖机会！";
+                    }
+                    //prizeList = d.data.userLotteryList;
+                    //initDatas(count,prizeList);
                 }else if(d.status == -1){
                     alertMsg = "您还有0次抽奖机会！";
+                    count = 0;
                 }else{
                     //d.status == -2
                     alertMsg = "本次抽奖活动已结束！";
+                    count = 0;
+                    $(".priseCount").html("本次抽奖活动已结束！");
                 }
+                prizeList = d.data.userLotteryList;
+                initDatas(count,prizeList);
             }
         });
 }
@@ -78,6 +86,9 @@ function start(){
                 if(d.status == 0){
                     num = d.data.prize;
                     count = d.data.count;
+                    if(count == 0){
+                        alertMsg = "您还有0次抽奖机会！";
+                    }
                     prizeList = d.data.userLotteryList;
                     setTimeout("zanting("+num+")",2000);
                 }else{
