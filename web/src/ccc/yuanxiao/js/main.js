@@ -16,9 +16,6 @@ $(document).ready(function(){
     $(".know").click(function(){
         close();
     })
-    //console.log($(".footers img").height()/2);
-    //$(".footers").css("margin-top","-"+$(".footers").height()/2+"px");
-   // $(window).resize();
 })
 $(window).resize(function() {
     var headerH = $("#headerHeight").height();
@@ -124,8 +121,6 @@ function zanting(num){
         }
         $("#prise-"+tag).addClass("active");
     }, 500);
-//修改可抽奖次数,充值中奖列表，并设置抽奖按钮是否可用
-    initDatas(count,prizeList);
 }
 function showPrise(n){
     if(n>=4 || n == 0){
@@ -135,6 +130,8 @@ function showPrise(n){
     }
     $(".priseCur").html("获得"+$("#prise-"+num).attr("value"));
     $(".transparentBody").show();
+    //修改可抽奖次数,充值中奖列表，并设置抽奖按钮是否可用
+    initDatas(count,prizeList);
 }
 function close(){
     $(".transparentBody").hide();
