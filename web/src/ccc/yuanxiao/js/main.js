@@ -73,6 +73,7 @@ function start(){
             //获取最后一位
             tag = activeIndex.substr(activeIndex.length-1,1);
         }
+        animal = false;
         //循环开始
         timer1 = setInterval("changeStyle()",100);
         //请求后台获奖情况
