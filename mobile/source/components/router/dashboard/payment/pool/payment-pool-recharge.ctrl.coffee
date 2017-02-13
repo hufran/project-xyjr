@@ -36,7 +36,8 @@ do (angular) ->
 
             modify_amonut:  ->
 
-                @$scope.amountNew = parseInt(@$scope.amount*100);
+#                console.log Number( (@$scope.amount*100 ).toFixed(0) )
+                @$scope.amountNew = Math.round(@$scope.amount*100);
 
 
             submit: (event, amount, return_url) ->

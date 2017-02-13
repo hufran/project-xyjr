@@ -65,6 +65,7 @@ function start(){
         }
     }
     if(animal && count>0){
+        animal = false;
     //if(animal){//正式需要注释
         var activeIndex = $(".active").attr("id");
         if(activeIndex == undefined){
