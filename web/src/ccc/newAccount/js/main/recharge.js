@@ -189,7 +189,7 @@ ractive.on('recharge_submit', function (e){
     var amount = this.get('amount');
     var actionName=this.get('action');
     this.set('amountNew',amount);
-    
+
     this.set('msg', {
         BANK_NULL: false,
         AMOUNT_NULL: false,
@@ -226,7 +226,8 @@ ractive.on('recharge_submit', function (e){
 
     }
     if (actionName=='/api/v2/yeepay/onlineBankDeposit/'+CC.user.id &&amount!='') {
-            amount = parseFloat(amount)*100;
+            //amount = parseFloat(amount)*100;
+            amount = Math.round(amount*100);
             this.set('amountNew',amount);
     };
 
