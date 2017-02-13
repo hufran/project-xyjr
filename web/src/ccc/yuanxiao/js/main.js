@@ -65,6 +65,7 @@ function start(){
         }
     }
     if(animal && count>0){
+        animal = false;
     //if(animal){//正式需要注释
         var activeIndex = $(".active").attr("id");
         if(activeIndex == undefined){
@@ -73,7 +74,6 @@ function start(){
             //获取最后一位
             tag = activeIndex.substr(activeIndex.length-1,1);
         }
-        animal = false;
         //循环开始
         timer1 = setInterval("changeStyle()",100);
         //请求后台获奖情况
