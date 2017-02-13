@@ -32,7 +32,6 @@ do (_, angular) ->
 
         @submitForm()
       test:(userId,token) ->
-#        console.log 1
         isUsefulToken(userId,token);
       submitForm: ->
 
