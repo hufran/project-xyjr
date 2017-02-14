@@ -181,7 +181,7 @@ ractive.on('checkAmount',function(){
     inp.val(inp.val().replace(/\.{2,}/g,"."));
     inp.val(inp.val().replace(".","$#$").replace(/\./g,"").replace("$#$","."));
     inp.val(inp.val().replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'));
-    if (inp.val().length>2&&inp.val().substr(1,1)!='.') {
+    if (inp.val().length>2&&inp.val().substr(1,1)!='.'&& inp.val().indexOf(".")<2) {
         inp.val(inp.val().replace(/\b(0+)/gi,""))
     }
 })
