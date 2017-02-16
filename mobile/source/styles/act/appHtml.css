@@ -1,0 +1,9 @@
+.publicNum{text-align:center;font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif,'宋体'}
+.publicNum h1{font-size:0.4rem;}
+.publicNum h2{font-size:0.32rem;border-radius:0.2rem;background-color:#5ca0f9;color:#fff; line-height:0.45333rem;display:inline-block;padding:1px 5px;margin:0.1rem}
+.ng-isolate-scope{display:none}
+.publicNum img{width: 4.6rem;margin:0.9rem auto;}
+.publicNum .publicDetail{color:#5ca0f9;font-size:0.4rem}
+dl.follow{width: 8.2rem;margin:2rem auto;font-size:0.26666667rem; color:#777777; font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif,'宋体'}
+dl.follow dt,dl.follow dd{padding:0.1rem 0;}
+dl.follow dd span{color:#5ca0f9;}
