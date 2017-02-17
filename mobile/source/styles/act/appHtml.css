@@ -7,3 +7,7 @@
 dl.follow{width: 8.2rem;margin:2rem auto;font-size:0.26666667rem; color:#777777; font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif,'宋体'}
 dl.follow dt,dl.follow dd{padding:0.1rem 0;}
 dl.follow dd span{color:#5ca0f9;}
+#firmSecurity{margin-top:0.266667rem;background-color:#fff;padding:0.3rem 0 0.8rem 0;}
+#firmSecurity h2{font-size:0.32rem;color:#000;text-align: center}
+#firmSecurity p{color:#777;font-size:0.2666667rem;line-height:0.7rem; text-indent: 0;margin-bottom:0.5rem;padding:0 0.5rem;}
+#firmSecurity img{display:block;margin:0.53rem auto 0.4rem;}
