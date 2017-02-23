@@ -195,6 +195,9 @@ module.exports = function (router, auth) {
     router.post('/api/v2/auth/updateUserLoginMess/:userId', auth.user());
     router.post('/api/v2/auth/userLoginOut/:userId', auth.user());
      
-
+    router.post('/api/v2/users/sendEmailCode/:userId', auth.user());
+    router.post('/api/v2/user/authenticateEmail4App', auth.user());
+    router.get('/api/v2/message/markAsReadByUserId/:userId', auth.user());
+    router.get('/api/v2/message/markAsRead4App/:messageId', auth.user());
 
 };
