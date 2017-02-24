@@ -227,18 +227,7 @@ function isUsefulToken(userId,token){
 //新增app端页面js
 //pulicnumber页面调试
 function publicTest(){
-	var slider = [];
-	for(var i = 0;i<6;i++){
-		var a1 = parseFloat($("#swiper-container3 .slide-"+(i+1)).height());
-		var a2 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-top").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-top").length-2));
-		var a3 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").length-2));
-		if(i==0 || i==3){
-			slider[i] = a1+a2+a3+500;
-		}else{
-				slider[i] = a1+a2+a3;
-		}
-	}
-	$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[0]+"px");
+
 	var mySwiper2 = new Swiper('#swiper-container2',{
 		watchSlidesProgress : true,
 		watchSlidesVisibility : true,
@@ -276,7 +265,10 @@ function publicTest(){
 		onSlideChangeStart: function(){
 			updateNavPosition()
 		}
-	})
+	});
+
+	setTimeout("c1()",1000);
+
 	function updateNavPosition(){
 		$('#swiper-container2 .active-nav').removeClass('active-nav')
 		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
@@ -296,3 +288,15 @@ function publicTest(){
 		}
 	}
 }
+//获取各个tab的高度记录
+var slider = [];
+function c1(){
+	for(var i = 0;i<6;i++){
+		var a1 = parseFloat($("#swiper-container3 .slide-"+(i+1)).height());
+		var a2 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-top").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-top").length-2));
+		var a3 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").length-2));
+		slider[i] = a1+a2+a3+50;
+	}
+	$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[0]+"px");
+}
+
