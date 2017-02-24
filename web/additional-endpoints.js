@@ -199,5 +199,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/user/authenticateEmail4App', auth.user());
     router.get('/api/v2/message/markAsReadByUserId/:userId', auth.user());
     router.get('/api/v2/message/markAsRead4App/:messageId', auth.user());
+    
+    router.get('/api/v2/jdpay/banksInLimit/:bank', auth.pass());
+    router.get('/api/v2/jdpay/banksOutLimit/:bank', auth.pass());
 
 };
