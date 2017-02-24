@@ -8,7 +8,7 @@ do (_, angular) ->
 
         @$window.scrollTo 0, 0
 #        console.log @$routeParams.id
-        @test()
+#        @test()
 #        filter_type = @$routeParams.type
 
         angular.extend @$scope, {

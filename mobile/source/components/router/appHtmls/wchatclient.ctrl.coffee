@@ -7,7 +7,7 @@ do (_, angular) ->
       constructor: (@api, @user, @$scope, @$location, @$window, map_loan_summary, @$routeParams) ->
 
         @$window.scrollTo 0, 0
-        @test()
+#        @test()
 
         angular.extend @$scope, {
 #          filter_type
