@@ -192,6 +192,12 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/activity/activity.tmpl.html'
                     }
 
+
+                    .when '/womensday', {
+                        controller: 'WomensDayCtrl as self'
+                        templateUrl: 'components/router/activity/womensDay.tmpl.html'
+                    }
+
                     .when '/announcement', {
                         controller: 'AnnouncementCtrl as self'
                         templateUrl: 'components/router/announcement/announcement.tmpl.html'
