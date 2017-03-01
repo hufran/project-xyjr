@@ -95,12 +95,18 @@ function submitForm(){
     }
     var subStr = "token";
     var index = location.href.indexOf(subStr);
+    if(index==-1){
+        var  tokenV = getCookie('ccat');
+    }else{
+        var tokenV = $("#isClientValue").val();
+    };
     $.ajax({
         type: "POST",
         url: "/api/v2/users/userQuestion",
         data:{
             userId:userId,
-            mark:mark
+            mark:mark,
+            token:tokenV
         },
         success: function(data){
             if(data.status == 0){
@@ -141,6 +147,17 @@ function ReEvaluation(){
     $("#questionPage ul li").eq(0).show();
     $("#result").hide();
     $("#questions").show();
+}
+//获取cookie
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
 }
 function goBack(){
     window.location.href = "loan/"+$("#loanId").val();
