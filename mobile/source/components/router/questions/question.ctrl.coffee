@@ -18,6 +18,7 @@ do (_, angular) ->
           clientUserId: @$routeParams.uid
           loan: map_loan_summary @loan
           loading: true
+          showPay:@$routeParams.showPay
         }
 
         (@api.get_loan_list_by_config(filter_type, 20, false)
