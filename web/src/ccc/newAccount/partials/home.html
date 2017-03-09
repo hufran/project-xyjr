@@ -4,14 +4,14 @@
 		<div class="home-avaliable">
 			<span class="home-tab-info">账户余额：</span>
 			<span class="home-tab-amount"><span class="money">{{avaAmount}}.</span><span class="more-amount">{{morAmount}}</span>
-			元	
+			元
 		</div>
 		<div class="home-bottomBar">
 			<a href="/newAccount/withdraw"><div class="home-withdraw-btn">提现</div></a>
 			<!--<a href="/newAccount/recharge"><div class="home-recharge-btn">充值</div></a>-->
-			<a href="javascript:showErrorIndex('showErrorMessagea','errorMessagea','因近期我司与支付平台系统进行调整，充值、提现业务暂停，给您带来不便敬请谅解');"><div class="home-recharge-btn">充值</div></a>
+			<a href="#" onclick= "javascript:showErrorIndex('showErrorMessagea','errorMessagea','因近期我司与支付平台系统进行调整，充值、提现业务暂停，给您带来不便敬请谅解');"><div class="home-recharge-btn">充值</div></a>
 		</div>
-	</div>	
+	</div>
 	<div class="home-top-container">
 		<div class="home-yesterday">
 			<div class="home-tab-info">昨日收益</div>
@@ -25,7 +25,7 @@
 			<div class="home-tab-info">总资产<span class="wh tips-top" data-original-title="总资产=可用余额+待收本息+冻结资金 {{cTotalAmount}} = {{cAmount}} + {{dueInAmount}} + {{frozenAmount}}"></span></div>
 			<div class="home-tab-amount"><span class="money">{{totalAmount}}.</span><span class="more-amount">{{moreAmount}}</span>&nbsp;元</div>
 		</div>
-		
+
 		<div class="clearfix"></div>
 	</div>
 	<div class="clearfix"></div>
