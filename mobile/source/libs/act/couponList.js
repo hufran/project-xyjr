@@ -267,7 +267,7 @@ function publicTest(){
 		}
 	});
 
-	setTimeout("c1()",1000);
+	setTimeout("c1()",300);
 
 	function updateNavPosition(){
 		$('#swiper-container2 .active-nav').removeClass('active-nav')
@@ -298,5 +298,6 @@ function c1(){
 		slider[i] = a1+a2+a3+50;
 	}
 	$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[0]+"px");
+	$("#swiper-container3.swiper-container").css("overflow","hidden");
 }
 
