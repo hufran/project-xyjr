@@ -16,6 +16,7 @@ do (_, angular) ->
                     sourceId:@$routeParams.sourceId
                 }
 
+                @pay_type = 'lianlianPay'
                 @back_path = @$routeParams.back
 
                 @next_path = @$routeParams.next or 'dashboard'
@@ -81,9 +82,14 @@ do (_, angular) ->
                         @$scope.banks = data
                         @$scope.businessNull = true;
                 else if @$scope.store.businessType == '0'
-                    @api.get_available_bank_list().then (data2) =>
-                        @$scope.banks = data2
-                        @$scope.businessNull = true;
+                    if @pay_type == 'lianlianPay'
+                        @api.get_LianLian_bank_list().then (data1) =>
+                            @$scope.banks = data1
+                            @$scope.businessNull = true;
+                    else
+                        @api.get_available_bank_list().then (data2) =>
+                            @$scope.banks = data2
+                            @$scope.businessNull = true;
                 else
                     @$scope.banks = null
                     @$scope.businessNull = false;

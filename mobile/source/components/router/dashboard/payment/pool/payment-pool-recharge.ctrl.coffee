@@ -11,6 +11,7 @@ do (angular) ->
 
                 @back_path = @$routeParams.back
                 @next_path = @$routeParams.next
+                @pay_type = 'lianlianPay'
 
                 @$scope.bank_account = _.clone @user.bank_account
 
@@ -21,10 +22,14 @@ do (angular) ->
 
                     return_url:'http://www.718bank.com/h5/dashboard/funds'
                     action1:'/api/v2/jdpay/onlineBankDeposit4Wap/'+@user.fund.userId
+                    action2:'/api/v2/lianlianpay/deposit/'+@user.fund.userId
                     token:@$cookies.get 'ccat'
 
                 }
-
+                if  @pay_type == 'lianlianPay'
+                    @$scope.action = @$scope.action2
+                else
+                    @$scope.action = @$scope.action1
                 if +@$routeParams.amount > 0
                     @$scope.amount = @$routeParams.amount // 100 * 100 + 100
 
@@ -37,7 +42,10 @@ do (angular) ->
             modify_amonut:  ->
 
 #                console.log Number( (@$scope.amount*100 ).toFixed(0) )
-                @$scope.amountNew = Math.round(@$scope.amount*100);
+                if  @pay_type == 'lianlianPay'
+                    @$scope.amountNew = @$scope.amount
+                else
+                    @$scope.amountNew = Math.round(@$scope.amount*100)
 
 
             submit: (event, amount, return_url) ->
