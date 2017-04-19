@@ -531,6 +531,13 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
+            get_LianLian_bank_list: ->
+
+                @$http.get '/api/v2/lianlianpay/banks', cache: true
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
 
             get_province_list: ->
 

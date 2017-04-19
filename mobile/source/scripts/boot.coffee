@@ -49,6 +49,17 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
                     }
 
+                    .when '/lianPay/:id', {
+                        controller: 'LianPayCtrl as self'
+                        templateUrl: 'components/router/appTransfer/lianPay.tmpl.html'
+                        resolve:
+                            loan: _.ai 'api, $location, $route, $q',
+                                (       api, $location, $route, $q) ->
+                                    api.get_loan_detail($route.current.params.id, false).catch ->
+                                        $location.path '/'
+                                        do $q.reject
+                    }
+
 
                     .when '/login', {
                         controller: 'LoginCtrl as self'

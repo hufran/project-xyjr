@@ -267,7 +267,7 @@ function publicTest(){
 		}
 	});
 
-	setTimeout("c1()",300);
+	setTimeout("c1()",500);
 
 	function updateNavPosition(){
 		$('#swiper-container2 .active-nav').removeClass('active-nav')
