@@ -108,6 +108,7 @@ var ractive = new Ractive({
         $(".bankwrap").delegate('.bankItem', 'click', function () {
 
             var classMap = ['jd1025','jd1051','jd103','jd3080','jd104','jd312','jd305','jd313','jd3061','jd307','jd311','jd3230','jd310'];
+            var classNewMap=['jd01020000','jd01050000','jd01040000','jd01030000','jd03010000','jd03080000','jd03020000','jd03050000','jd03090000','jd03100000','jd01000000','jd03030000','jd03070000','jd03040000','jd04031000','jd03060000','jd04012900','jd05083000','jd03110000','jd03160000','jd04721460'];
 
             var code = 'jd'+$(this).data('cc');
             if ($.inArray(code,classMap) == -1) {
@@ -247,7 +248,7 @@ ractive.on('recharge_submit', function (e){
         }
 
     }
-    if (actionName==quickBaseUrl+CC.user.id &&amount!='') {
+    if (actionName=='/api/v2/yeepay/onlineBankDeposit/'+CC.user.id &&amount!='') {
             //amount = parseFloat(amount)*100;
             amount = Math.round(amount*100);
             this.set('amountNew',amount);
