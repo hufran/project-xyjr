@@ -20,11 +20,11 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
 if(payMethod==="lianlianpay"){
     cyberBankBaseUrl="/api/v2/lianlianpay/onlineBankDeposit/";
-    quickBaseUrl="/api/v2/lianlianpay/deposit/"；
+    quickBaseUrl="/api/v2/lianlianpay/deposit/";
     bankListAPI="/api/v2/lianlianpay/banks4pc";
 }else{
     cyberBankBaseUrl="/api/v2/jdpay/gateway/deposit/";
-    quickBaseUrl="/api/v2/yeepay/onlineBankDeposit/"；
+    quickBaseUrl="/api/v2/yeepay/onlineBankDeposit/";
     bankListAPI="/fish/api/v3/jdpay/bank/list";
 }
 
