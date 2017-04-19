@@ -12,6 +12,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lianlianpay/withdraw/:userId', auth.user());
     router.post('/api/v2/lianlianpay/depositReturn', auth.pass());
     router.get('/api/v2/lianlianpay/banks', auth.user());
+    router.post('/api/v2/lianlianpay/banks4pc', auth.user());
     router.get('/api/v2/lianlianpay/bankCodes', auth.user());
     router.get('/api/v2/lianlianpay/provinceCodes', auth.user());
     router.get('/api/v2/lianlianpay/provinceCityCodes/:provinceName', auth.user());

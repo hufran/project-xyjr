@@ -16,6 +16,17 @@ var corBanks=[
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+//新增支付方式判断
+var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
+if(payMethod==="lianlianpay"){
+    cyberBankBaseUrl="/api/v2/lianlianpay/onlineBankDeposit/";
+    quickBaseUrl="/api/v2/lianlianpay/deposit/"；
+    bankListAPI="/api/v2/lianlianpay/banks4pc";
+}else{
+    cyberBankBaseUrl="/api/v2/jdpay/gateway/deposit/";
+    quickBaseUrl="/api/v2/yeepay/onlineBankDeposit/"；
+    bankListAPI="/fish/api/v3/jdpay/bank/list";
+}
 
 var ractive = new Ractive({
     el: '#ractive-container',
@@ -42,7 +53,7 @@ var ractive = new Ractive({
         })(),
         isBankCard: CC.user.bankCards.length,
         amountValue: 10000000,
-        action:'/api/v2/jdpay/gateway/deposit/'+CC.user.id,
+        action:cyberBankBaseUrl+CC.user.id,
         showNum: 9,
         minAmount: 100
     },
@@ -122,7 +133,7 @@ var ractive = new Ractive({
 		        ractive.set('action', '/yeepay/deposit');
 		    } else {
         		ractive.set('isNormal', false);
-		        ractive.set('action', '/api/v2/jdpay/gateway/deposit/'+CC.user.id);
+		        ractive.set('action', cyberBankBaseUrl+CC.user.id);
 		    }
         });
 
@@ -154,7 +165,7 @@ var ractive = new Ractive({
                 ractive.set('action', '/yeepay/deposit');
             } else {
                 ractive.set('isNormal', false);
-                ractive.set('action', '/api/v2/yeepay/onlineBankDeposit/'+CC.user.id);
+                ractive.set('action', quickBaseUrl+CC.user.id);
             }
         });
 
@@ -167,10 +178,21 @@ var ractive = new Ractive({
 
 });
 
-request('GET','/fish/api/v3/jdpay/bank/list').end().
+request('GET',bankListAPI).end().
     then(function (r) {
+        corBanks=[];
         banks=r.body.data;
         ractive.set('banks', banks);
+        var ignore=0;
+        for(var i=0;i<banks.length;i++){
+            if(banks[i]["name"]!=="廊坊银行"){
+                corBanks[i]=banks[i]; 
+            }else{
+                ignore=i;
+            }
+        }
+        corBanks.splice(ignore,1);
+        ractive.set('corBanks', corBanks);
     });
 ractive.parseData();
 
@@ -225,7 +247,7 @@ ractive.on('recharge_submit', function (e){
         }
 
     }
-    if (actionName=='/api/v2/yeepay/onlineBankDeposit/'+CC.user.id &&amount!='') {
+    if (actionName==quickBaseUrl+CC.user.id &&amount!='') {
             //amount = parseFloat(amount)*100;
             amount = Math.round(amount*100);
             this.set('amountNew',amount);
@@ -251,7 +273,7 @@ ractive.on('changeMethod', function (event) {
         ractive.set('action', '/yeepay/deposit');
     } else {
         ractive.set('isNormal', false);
-        ractive.set('action','/api/v2/jdpay/gateway/deposit/'+CC.user.id);
+        ractive.set('action',cyberBankBaseUrl+CC.user.id);
     }
 });
 ractive.on('showAll', function () {

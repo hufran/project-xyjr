@@ -18,6 +18,12 @@ if (CC.user.account) {
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
+var payMethod="lianlianpay",financingAPI;
+if(payMethod==="lianlianpay"){
+    financingAPI="/api/v2/lianlianpay/banks";
+}else{
+    financingAPI="/api/v2/jdpay/banks";
+}
 
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -79,7 +85,7 @@ function changeSeverName(){
                 console.log(banks);
             });
     }else{//理财
-        request('GET','/api/v2/jdpay/banks').end().
+        request('GET',financingAPI).end().
             then(function (r) {
                 banks=[];
                 banksList=r.body;
