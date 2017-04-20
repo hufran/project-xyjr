@@ -8,24 +8,24 @@ do (_, angular) ->
 
         @$window.scrollTo 0, 0
         console.log @$routeParams.id
+        @pay_type = 'lianlianPay'
         @test(@$routeParams.id,@$routeParams.token)
         filter_type = @$routeParams.type
 
         angular.extend @$scope, {
           filter_type
-#          page_path: @$location.path()[1..]
-#          back_path: @$routeParams.back
-#          isClient: @$routeParams.token
-#          clientUserId: @$routeParams.uid
-#          loan: map_loan_summary @loan
-#          loading: true
           userId: @$routeParams.id
           amount: @$routeParams.amount
           retUrl: @$routeParams.retUrl.toString()
           bankCode: @$routeParams.bankCode
           token:@$routeParams.token
-          action1:'/api/v2/jdpay/onlineBankDeposit4Wap/'+@$routeParams.id
         }
+        if @pay_type == 'lianlianPay'
+          @$scope.action = '/api/v2/lianlianpay/deposit/'+@$routeParams.id
+          @$scope.payPlat = '连连'
+        else
+          @$scope.action = '/api/v2/jdpay/onlineBankDeposit4Wap/'+@$routeParams.id
+          @$scope.payPlat = '京东'
 
 
 
