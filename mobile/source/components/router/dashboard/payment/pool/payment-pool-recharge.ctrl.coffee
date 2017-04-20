@@ -22,7 +22,7 @@ do (angular) ->
 
                     return_url:'http://www.718bank.com/h5/dashboard/funds'
                     action1:'/api/v2/jdpay/onlineBankDeposit4Wap/'+@user.fund.userId
-                    action2:'/api/v2/lianlianpay/deposit/'+@user.fund.userId
+                    action2:'http://61.50.101.198/api/v2/lianlianpay/deposit/'+@user.fund.userId
                     token:@$cookies.get 'ccat'
 
                 }
