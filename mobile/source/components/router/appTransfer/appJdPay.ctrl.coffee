@@ -21,7 +21,7 @@ do (_, angular) ->
           token:@$routeParams.token
         }
         if @pay_type == 'lianlianPay'
-          @$scope.action = 'http://61.50.101.198/api/v2/lianlianpay/deposit/'+@$routeParams.id
+          @$scope.action = '/api/v2/lianlianpay/deposit/'+@$routeParams.id
           @$scope.payPlat = '连连'
           @$scope.amount = @$routeParams.amount/100
         else
