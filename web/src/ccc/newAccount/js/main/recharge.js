@@ -19,6 +19,7 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 //新增支付方式判断
 var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
 if(payMethod==="lianlianpay"){
+    //临时应付线下测试，添加IP地址，上线前需要删除
     cyberBankBaseUrl="http://61.50.101.198/api/v2/lianlianpay/onlineBankDeposit/";
     quickBaseUrl="http://61.50.101.198/api/v2/lianlianpay/deposit/";
     bankListAPI="/api/v2/lianlianpay/banks4pc";
@@ -184,7 +185,7 @@ request('GET',bankListAPI).end().
         corBanks=[];
         banks=r.body.data;
         ractive.set('banks', banks);
-        var ignore=0;
+        var ignore;
         for(var i=0;i<banks.length;i++){
             if(banks[i]["name"]!=="廊坊银行"){
                 corBanks[i]=banks[i]; 
@@ -192,7 +193,10 @@ request('GET',bankListAPI).end().
                 ignore=i;
             }
         }
-        corBanks.splice(ignore,1);
+        if(!isNaN(ignore)&&ignore>=0){
+            corBanks.splice(ignore,1);
+        }
+        
         ractive.set('corBanks', corBanks);
     });
 ractive.parseData();
