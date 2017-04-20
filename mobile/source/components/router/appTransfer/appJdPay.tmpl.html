@@ -30,15 +30,15 @@
     <div ng-if="payPlat == '连连'">
         <input type="text" name="userId" value="{{userId}}"  >
         <input type="text" name="amount" value="{{amount}}"><br>
-        <input type="text" name="notifyUrl" value="{{retUrl}}"><br>
-        <!--<input type="text" name="notifyUrl" value="http://www.718bank.com/h5/dashboard/funds"><br>-->
+        <input type="text" name="retUrl" value="{{retUrl}}"><br>
         <input type="text" name="isWAP" value="true"><br>
+        <input type="text" name="notifyUrl" value=""><br>
     </div>
     <div ng-if="payPlat == '京东'">
     <input type="text" name="amount" value="{{amount}}"><br>
     <input type="text" name="retUrl" value="{{retUrl}}"><br>
     <input type="text" name="bankCode" value="{{bankCode}}"><br>
-    <input type="text" name="token" value="{{token}}"  >
+    <input type="text" name="token" value="{{token}}">
     </div>
     <input type="submit" value="submit">
 </form>
