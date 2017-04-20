@@ -23,6 +23,7 @@ do (_, angular) ->
         if @pay_type == 'lianlianPay'
           @$scope.action = '/api/v2/lianlianpay/deposit/'+@$routeParams.id
           @$scope.payPlat = '连连'
+          @$scope.amount = @$routeParams.amount/100
         else
           @$scope.action = '/api/v2/jdpay/onlineBankDeposit4Wap/'+@$routeParams.id
           @$scope.payPlat = '京东'

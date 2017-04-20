@@ -79,61 +79,21 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/platform', {
                         controller: 'PlatformintroCtrl as self'
                         templateUrl: 'components/router/appHtmls/platform-intro.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user()
-
-                                        .then ->
-                                            $location.path '/'
-                                            return $q.reject()
-
-                                        .catch $q.resolve
                     }
 
                     .when '/public', {
                         controller: 'PublicnumberCtrl as self'
                         templateUrl: 'components/router/appHtmls/publicnumber.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user()
-
-                                        .then ->
-                                            $location.path '/'
-                                            return $q.reject()
-
-                                        .catch $q.resolve
                     }
 
                     .when '/wchat', {
                         controller: 'WchatClientCtrl as self'
                         templateUrl: 'components/router/appHtmls/wchatclient.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user()
-
-                                        .then ->
-                                            $location.path '/'
-                                            return $q.reject()
-
-                                        .catch $q.resolve
                     }
 
                     .when '/security', {
                         controller: 'MultipleSecurityCtrl as self'
                         templateUrl: 'components/router/appHtmls/multiple-security.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $q',
-                                (       api, $location, $q) ->
-                                    api.fetch_current_user()
-
-                                        .then ->
-                                            $location.path '/'
-                                            return $q.reject()
-
-                                        .catch $q.resolve
                     }
                     .when '/register', {
                         controller: 'RegisterCtrl as self'
