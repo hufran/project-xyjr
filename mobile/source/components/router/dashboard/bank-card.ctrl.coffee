@@ -14,6 +14,9 @@ do (_, angular) ->
                 return unless @$scope.bank_account
                 @api.get_available_bank_list().then (data) =>
                     @$scope.bank_account.bank_code = @$scope.bank_account.bank
+                    data["CIB"]="兴业银行";
+                    data["CMBC"]="中国民生银行";
+                    data["ABC"]="中国农业银行";
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
 
