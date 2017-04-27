@@ -266,8 +266,8 @@ ractive.loadData = function (obj) {
 function parseList(date){
     for(var i=0;i<date.length;i++){
         date[i].transactionType=nameMap[date[i].type];
-        date[i].description=/^[\u4e00-\u9fa5]+$/.test(date[i].description)?date[i].description:"失败";
-        date[i].hint=/^[\u4e00-\u9fa5]+$/.test(date[i].hint)?date[i].hint:"失败";
+        date[i].description=(!date[i].description||(/^[\u4e00-\u9fa5]+$/.test(date[i].description)))?date[i].description:"失败";
+        date[i].hint=(!date[i].hint||(/^[\u4e00-\u9fa5]+$/.test(date[i].hint))?date[i].hint:"失败";
     }
     return date;
 }
