@@ -20,8 +20,8 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
 if(payMethod==="lianlianpay"){
     //临时应付线下测试，添加IP地址，上线前需要删除
-    cyberBankBaseUrl="http://61.50.101.198/api/v2/lianlianpay/onlineBankDeposit/";
-    quickBaseUrl="http://61.50.101.198/api/v2/lianlianpay/deposit/";
+    cyberBankBaseUrl="/api/v2/lianlianpay/onlineBankDeposit/";
+    quickBaseUrl="/api/v2/lianlianpay/deposit/";
     bankListAPI="/api/v2/lianlianpay/banks4pc";
 }else{
     cyberBankBaseUrl="/api/v2/jdpay/gateway/deposit/";
