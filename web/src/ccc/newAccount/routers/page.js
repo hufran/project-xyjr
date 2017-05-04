@@ -10,7 +10,7 @@ module.exports = function(router) {
     });
     // 未登录访问account下的页面,跳转到 /
     router.get('/*', function(req, res, next) {
-        if (!res.locals.user || (!res.locals.user.id)) {
+        if (!res.locals.user || (!res.locals.user.id) || (!req.cookies.ccat)) {
             res.redirect('/login');
             return;
         }
