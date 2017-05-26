@@ -40,6 +40,15 @@ margin-bottom: 96px;
 }
 .advantage{
     height: 207px;
+    min-height:207px;
+    clear:both;
+    overflow: hidden;
+}
+.advantage:after{
+    display: block;
+    content: '';
+    clear:both;
+    overflow: hidden;
 }
 .advantage .advantage-right-other{
     margin-left: 114px;
