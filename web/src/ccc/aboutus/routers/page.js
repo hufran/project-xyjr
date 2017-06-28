@@ -122,9 +122,9 @@ module.exports = function (router) {
         //  res.locals.description = '奇乐融经营报告为用户提供奇乐融最新运营数据信息。';};
 
          if(tab.text=='安全保障'){
-             res.locals.title = '安全保障_718金融理财平台';
+             res.locals.title = '安全保障_718金融平台';
              res.locals.keywords = '投资风险、风险控制、风控、安全保障、投资安全、安全机制';
-             res.locals.description = '718金融理财平台与各大投资公司的战略合作以及多年的风险控制经验使得投资理财有了安全保障，拥有成熟完善的安全保障机制。';
+             res.locals.description = '718金融平台与各大投资公司的战略合作以及多年的风险控制经验使得P2P投资有了安全保障，拥有成熟完善的安全保障机制。';
   }
 //        else{
 //             res.locals.keywords = '奇乐融'+tab.text;
