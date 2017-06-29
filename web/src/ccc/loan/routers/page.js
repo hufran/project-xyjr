@@ -71,9 +71,9 @@ router.get('/:id',
                     result.userId = result.loanRequest.userId;
                     result.requestId = result.loanRequest.id;
                     result.productName=r.productName;
-                    res.locals.keywords = '理财产品、投资、理财投资、个人理财、理财新品、新能宝、活动专享、新手专享';
-                    res.locals.title = r.productName+'_'+result.title+'理财产品_718金融理财平台';
-                    res.locals.description = r.productName+'是'+result.title+'系列理财产品的一种，预期年化收益率达'+result.rate+'，无手续费。';
+                    res.locals.keywords = '投资产品、投资、P2P投资、个人投资、投资新品、新能宝、活动专享、新手专享';
+                    res.locals.title = r.productName+'_'+result.title+'_投资产品_718金融平台';
+                    res.locals.description = r.productName+'是'+result.title+'系列P2P投资产品的一种，协议年化利率达'+result.rate+'，无手续费。';
                     return result;
 
 

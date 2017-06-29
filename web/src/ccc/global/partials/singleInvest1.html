@@ -22,9 +22,9 @@
     <table> 
             <tr>
                {{#if deductionRate>0}}
-               <td rowspan="2" style="width:252px; font-size:16px;">预期年化收益<span style="margin-left:10px;font-size:32px;color:#f06f2e;">{{ basicRate }}</span><em style="color:#f06f2e;">%+</em><span style="margin-left:10px;font-size:50px;color:#f06f2e;">{{deductionRate}}</span><em style="color:#f06f2e;">%</em></td>
+               <td rowspan="2" style="width:252px; font-size:16px;">协议年化利率<span style="margin-left:10px;font-size:32px;color:#f06f2e;">{{ basicRate }}</span><em style="color:#f06f2e;">%+</em><span style="margin-left:10px;font-size:50px;color:#f06f2e;">{{deductionRate}}</span><em style="color:#f06f2e;">%</em></td>
                {{else}}
-                <td rowspan="2" style="width:252px; font-size:16px;">预期年化收益<span style="margin-left:10px;font-size:50px;color:#f06f2e;">{{ basicRate }}</span><em style="color:#f06f2e;">%</em></td>
+                <td rowspan="2" style="width:252px; font-size:16px;">协议年化利率<span style="margin-left:10px;font-size:50px;color:#f06f2e;">{{ basicRate }}</span><em style="color:#f06f2e;">%</em></td>
                {{/if}}
                 <td style="width: 200px;">投资期限:{{fduration}}{{fdurunit}}</td>
                 <td style="width: 200px;">可投金额:{{balance}}{{amountUnit}}</td>
