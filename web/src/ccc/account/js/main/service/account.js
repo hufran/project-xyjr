@@ -16,7 +16,7 @@ exports.accountService = {
             });
     },
     bindAgrement: function(agreementList,next) {
-        request('POST', '/api/v2/upayment/bindAgreement/MYSELF')
+        request('POST', '/api/v2/upayment//bindAgreementMYSELF')
             .type('form')
             .send({agreementList: agreementList})
             .end()
