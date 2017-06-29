@@ -301,14 +301,14 @@ function publicTest(){
 	setTimeout("c1()",500);
 
 	function updateNavPosition(){
-		$('#swiper-container2 .active-nav').removeClass('active-nav')
-		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');alert(0);
+		$('#swiper-container2 .active-nav').removeClass('active-nav');
+		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
 		console.log(activeNav);
 		if (!activeNav.hasClass('swiper-slide-visible')) {
-			if (activeNav.index()>mySwiper2.activeIndex) {alert(1);
-				var thumbsPerNav = Math.floor(mySwiper2.width/activeNav.width())-1
+			if (activeNav.index()>mySwiper2.activeIndex) {
+				var thumbsPerNav = Math.floor(mySwiper2.width/activeNav.width())-1;
 				mySwiper2.slideTo(activeNav.index()-thumbsPerNav);
-			}else {alert(2);
+			}else {
 				mySwiper2.slideTo(activeNav.index())
 			}
 		}else{
