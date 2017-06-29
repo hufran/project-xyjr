@@ -302,7 +302,7 @@ function publicTest(){
 
 	function updateNavPosition(){
 		$('#swiper-container2 .active-nav').removeClass('active-nav')
-		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
+		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');alert(0);
 		if (!activeNav.hasClass('swiper-slide-visible')) {
 			if (activeNav.index()>mySwiper2.activeIndex) {alert(1);
 				var thumbsPerNav = Math.floor(mySwiper2.width/activeNav.width())-1
