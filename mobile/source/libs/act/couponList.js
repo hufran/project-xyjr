@@ -311,7 +311,10 @@ function publicTest(){
 			}else {alert(2);
 				mySwiper2.slideTo(activeNav.index())
 			}
+		}else{
+            mySwiper2.slideTo(mySwiper3.activeIndex)
 		}
+
 		window.scrollTo(0,0);
 		if(mySwiper3.activeIndex == 0 || mySwiper3.activeIndex == 3){
 			$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[mySwiper3.activeIndex]+"px");
