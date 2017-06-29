@@ -264,8 +264,6 @@ function publicTest(){
 		watchSlidesVisibility : true,
 		slidesPerView : 3,
 		slideToClickedSlide:true,
-        hashnav:true,
-        hashnavWatchState:true,
 		onTap: function(){
 			mySwiper3.slideTo(mySwiper2.clickedIndex);
 			window.scrollTo(0,0);
@@ -303,17 +301,16 @@ function publicTest(){
 	setTimeout("c1()",500);
 
 	function updateNavPosition(){
-		window.location.hash="slide"+(mySwiper3.activeIndex+1);
-		/*$('#swiper-container2 .active-nav').removeClass('active-nav')
+		$('#swiper-container2 .active-nav').removeClass('active-nav')
 		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
 		if (!activeNav.hasClass('swiper-slide-visible')) {
-			if (activeNav.index()>mySwiper2.activeIndex) {
+			if (activeNav.index()>mySwiper2.activeIndex) {alert(1);
 				var thumbsPerNav = Math.floor(mySwiper2.width/activeNav.width())-1
 				mySwiper2.slideTo(activeNav.index()-thumbsPerNav);
-			}else {
+			}else {alert(2);
 				mySwiper2.slideTo(activeNav.index())
 			}
-		}*/
+		}
 		window.scrollTo(0,0);
 		if(mySwiper3.activeIndex == 0 || mySwiper3.activeIndex == 3){
 			$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[mySwiper3.activeIndex]+"px");
