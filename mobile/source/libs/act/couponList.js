@@ -301,16 +301,20 @@ function publicTest(){
 	setTimeout("c1()",500);
 
 	function updateNavPosition(){
-		$('#swiper-container2 .active-nav').removeClass('active-nav')
+		$('#swiper-container2 .active-nav').removeClass('active-nav');
 		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
+		console.log(activeNav);
 		if (!activeNav.hasClass('swiper-slide-visible')) {
 			if (activeNav.index()>mySwiper2.activeIndex) {
-				var thumbsPerNav = Math.floor(mySwiper2.width/activeNav.width())-1
+				var thumbsPerNav = Math.floor(mySwiper2.width/activeNav.width())-1;
 				mySwiper2.slideTo(activeNav.index()-thumbsPerNav);
 			}else {
 				mySwiper2.slideTo(activeNav.index())
 			}
+		}else{
+            mySwiper2.slideTo(mySwiper3.activeIndex)
 		}
+
 		window.scrollTo(0,0);
 		if(mySwiper3.activeIndex == 0 || mySwiper3.activeIndex == 3){
 			$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[mySwiper3.activeIndex]+"px");
