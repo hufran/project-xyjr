@@ -46,7 +46,7 @@ new Ractive({
             self.set('list', self.parseData(o));
             self.set('loading', false);
         });
-         $.get(rewardApi, function (o) {
+        $.get(rewardApi, function (o) {
          self.set('rewardlist', self.parseRewardListData(o));
         });
     },

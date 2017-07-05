@@ -78,7 +78,8 @@ if (tab.ractive === null) {
 						datas[i].Frate = utils.format.percent(o.rate/100, 2);
 						datas[i].Famount = utils.format.amount(o.amount, 2);
 						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
-            datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
+						datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
+            			datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 					case 'INHAND':
 						datas[i].Fduration = utils.format.duration(o.duration);
@@ -86,6 +87,7 @@ if (tab.ractive === null) {
 						datas[i].Famount = utils.format.amount(o.amount, 2);
 						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
 						datas[i].FrepayMethod = utils.i18n.RepaymentMethod[o.repayMethod][0];
+						datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 					case 'CLEARED':
@@ -93,6 +95,7 @@ if (tab.ractive === null) {
 						datas[i].Frate = utils.format.percent(o.rate/100, 2);
 						datas[i].Famount = utils.format.amount(o.amount, 2);
 						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
+						datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 				}

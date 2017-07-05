@@ -20,7 +20,7 @@ do (_, angular) ->
                         }
 
                 return
-
+                
                 if item.status in _.split 'SETTLED CLEARED OVERDUE BREACH'
                     @api.get_invest_contract(item.id).then (url) =>
                         @$scope.contract_url = url

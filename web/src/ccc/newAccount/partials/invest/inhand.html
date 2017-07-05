@@ -24,7 +24,7 @@
 			<td style="color:#999999">{{Fstatus}}</td>
             <td class="align-center">
                 {{#if hasContract}}
-				<a href="/invest/allContracts/{{id}}" class="btn btn-smaller btn-light btn-contract" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff" rel="nofollow" >查看合同</a>
+				<a href="{{contract_url}}" class="btn btn-smaller btn-light btn-contract" target="_blank" style="background:#009ada;border:1px #009ada solid;color:#fff" rel="nofollow" >查看合同</a>
 				{{else}}
 					{{#if status === 'CANCELED'}}
 					<i class="fa fa-ban text-muted size-16 tips-top tooltip-error" title="已被取消"></i>
