@@ -161,10 +161,11 @@
                         <input style="display:none" type="password" placeholder="请输入交易密码" />
                         <p class="agree-box" style="text-align:left;line-height: 30px;">
                             <input type="checkbox" class="agree" checked id="agree" />
-                            <span>我同意
-                                         <a href="/agreement/mobile/protocol?key={{loan.productName}}用户投资服务协议" id="protocol" target="_blank">《{{loan.productName}}用户投资服务协议》</a> &nbsp;
-                                         <a href="/agreement/mobile/protocol?key=电子签章授权委托协议" id="protocol1" target="_blank">《电子签章授权委托协议》</a>
-                                    </span>
+                            <span>我同意 <p style="float:left;padding-left:55px;margin:-25px 0 10px 0;line-height:20px;">
+                                            <a href="/agreement/mobile/protocol?key={{loan.productName}}用户投资服务协议" id="protocol" target="_blank">《{{loan.productName}}用户投资服务协议》</a><br>
+                                            <a href="/agreement/mobile/protocol?key=电子签章授权委托协议" id="protocol1" target="_blank">《电子签章授权委托协议》</a>
+                                        </p>
+                            </span>
                         </p>
                         <p class="agree-error"></p>
                         <input type="submit" class="btn btn-warning invest-button" value="确认投资" />

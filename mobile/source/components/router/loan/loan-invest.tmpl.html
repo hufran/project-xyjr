@@ -6,6 +6,7 @@
         box-shadow: none;
         opacity: .15;
     }
+    p.twoProtols{display:inline-block;text-align:left;vertical-align:top;padding-top:0.1rem}
 </style>
 <div id="loan-invest">
 
@@ -169,7 +170,9 @@
         <div class="text-center agreement">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                我同意 <a href="#" ng-click="self.agreement(agreement_name+'用户投资服务协议')">《{{loan.title}}用户投资服务协议》</a><a href="#" ng-click="self.agreement('电子签章授权委托协议')">《电子签章授权委托协议》</a>
+                我同意 <p class="twoProtols">
+                <a href="#" ng-click="self.agreement(agreement_name+'用户投资服务协议')">《{{loan.title}}用户投资服务协议》</a><br><a href="#" ng-click="self.agreement('电子签章授权委托协议')">《电子签章授权委托协议》</a>
+            </p>
             </label>
         </div>
 
