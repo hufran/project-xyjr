@@ -166,7 +166,7 @@ if (tab.ractive === null) {
 				var $this=$(e.node);
 				var dataUrl=$this.attr("data-url");
 				console.log("dataUrl111：",dataUrl);
-				if(dataUrl.indexOf('，')!==-1){
+				if(dataUrl.indexOf('，')===-1){
 					console.log("不存在，");
 					return false;
 				}
