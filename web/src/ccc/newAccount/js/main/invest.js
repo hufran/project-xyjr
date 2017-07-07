@@ -99,7 +99,7 @@ if (tab.ractive === null) {
 				//临时测试使用开始
 				datas[i].contractUrl=["http://xiazai.xiazaiba.com/Soft/F/FileGeePersonal_9.8.9_XiaZaiBa.zip","http://xiazai.xiazaiba.com/Soft/9/5KPlayer_4.3.0_XiaZaiBa.zip"];
 				//临时测试使用结束
-				datas[i].contract_url=datas[i].contractUrl[0].length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
+				datas[i].contract_url=datas[i].contractUrl[0].length>0?JSON.stringify(datas[i].contractUrl):"/account/invest/allContracts/"+datas[i].id;
 				datas[i].contract_href=datas[i].contractUrl[0].length>0?"javascript:void(0);":"/account/invest/allContracts/"+datas[i].id;
 
                 //前台不展示逾期,逾期标的展示给投资者时状态为已结算
@@ -165,7 +165,7 @@ if (tab.ractive === null) {
 			this.on('download-file',function(e){
 				var $this=$(e.node);
 				console.log($this);
-				var dataUrl=$this.attr("data-url");
+				var dataUrl=JSON.parse($this.attr("data-url"));
 				if(Object.prototype.toString.call(dataUrl)==="[object Array]"){
 					//数组形式
 					var length=dataUrl.length;
