@@ -99,7 +99,7 @@ if (tab.ractive === null) {
 				//临时测试使用开始
 				datas[i].contractUrl=["http://xiazai.xiazaiba.com/Soft/F/FileGeePersonal_9.8.9_XiaZaiBa.zip","http://xiazai.xiazaiba.com/Soft/9/5KPlayer_4.3.0_XiaZaiBa.zip"];
 				//临时测试使用结束
-				datas[i].contract_url=datas[i].contractUrl[0].length>0?JSON.stringify(datas[i].contractUrl):"/account/invest/allContracts/"+datas[i].id;
+				datas[i].contract_url=datas[i].contractUrl[0].length>0?datas[i].contractUrl.join('，'):"/account/invest/allContracts/"+datas[i].id;
 				datas[i].contract_href=datas[i].contractUrl[0].length>0?"javascript:void(0);":"/account/invest/allContracts/"+datas[i].id;
 
                 //前台不展示逾期,逾期标的展示给投资者时状态为已结算
@@ -165,20 +165,23 @@ if (tab.ractive === null) {
 			this.on('download-file',function(e){
 				var $this=$(e.node);
 				console.log($this);
-				var dataUrl=JSON.parse($this.attr("data-url"));
-				if(Object.prototype.toString.call(dataUrl)==="[object Array]"){
-					//数组形式
-					var length=dataUrl.length;
-					for(var i=0;i<length;i++){
-						if(dataUrl[i]&&dataUrl[i].length>0){
-							if(!window.frames[i]){
-								$(document).append("<iframe src='' style='display:none;'></iframe>");
-							}
-							window.frames[i].location.href=dataUrl[i];	
-						}
-					}
-					
+				var dataUrl=$this.attr("data-url");
+				if(dataUrl.indexOf('，')!==-1){
+					return false;
 				}
+				dataUrl=dataUrl.split('，');
+				//数组形式
+				var length=dataUrl.length;
+				for(var i=0;i<length;i++){
+					if(dataUrl[i]&&dataUrl[i].length>0){
+						if(!window.frames[i]){
+							$(document).append("<iframe src='' style='display:none;'></iframe>");
+						}
+						window.frames[i].location.href=dataUrl[i];	
+					}
+				}
+					
+				
 				console.log("type:",typeof dataUrl," dataUrl:",dataUrl);
 				alert(1);
 
