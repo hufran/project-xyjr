@@ -2,6 +2,7 @@
 module.exports = function (router, auth) {
     router.get('/api/v2/fdd/invest/:investId/contract', auth.pass());
     router.get('/api/v2/fdd/returnUrl',auth.pass());
+    router.get('/api/v2/fdd/user/:userId/contract', auth.pass());
     router.get('/api/v0/hello/world', auth.pass());
     router.get('/api/v2/message/notifications/:page/:userId', auth.owner());
     router.get('/api/v2/cms/appBootPage', auth.pass());

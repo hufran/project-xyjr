@@ -96,7 +96,7 @@ if (tab.ractive === null) {
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 				}
-				datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
+				datas[i].contract_url=datas[i].contractUrl[0].length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
 
                 //前台不展示逾期,逾期标的展示给投资者时状态为已结算
                 if( o.status === 'OVERDUE' ){
@@ -162,6 +162,23 @@ if (tab.ractive === null) {
 				var $this=$(e.node);
 				console.log($this);
 				var dataUrl=$this.attr("data-url");
+				if(Object.prototype.toString.call(dataUrl)==="[object String]"){
+					//原有合同，字符串形式
+					if(!window.frames[0]){
+						$(document).append("<iframe src='' style='display:none;'></iframe>");
+					}
+					window.frames[0].location.href=dataUrl;
+				}else if(Object.prototype.toString.call(dataUrl)==="[object Array]"){
+					//数组形式
+					var length=dataUrl.length;
+					for(var i=0;i<length;i++){
+						if(!window.frames[i]){
+							$(document).append("<iframe src='' style='display:none;'></iframe>");
+						}
+						window.frames[i].location.href=dataUrl[i];
+					}
+					
+				}
 				console.log("type:",typeof dataUrl," dataUrl:",dataUrl);
 				alert(1);
 
