@@ -78,7 +78,6 @@ if (tab.ractive === null) {
 						datas[i].Frate = utils.format.percent(o.rate/100, 2);
 						datas[i].Famount = utils.format.amount(o.amount, 2);
 						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
-						datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
             			datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 					case 'INHAND':
@@ -87,7 +86,6 @@ if (tab.ractive === null) {
 						datas[i].Famount = utils.format.amount(o.amount, 2);
 						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
 						datas[i].FrepayMethod = utils.i18n.RepaymentMethod[o.repayMethod][0];
-						datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 					case 'CLEARED':
@@ -95,10 +93,10 @@ if (tab.ractive === null) {
 						datas[i].Frate = utils.format.percent(o.rate/100, 2);
 						datas[i].Famount = utils.format.amount(o.amount, 2);
 						datas[i].Fstatus = utils.i18n.InvestStatus[o.status];
-						datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 				}
+				datas[i].contract_url=datas[i].contractUrl.length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
 
                 //前台不展示逾期,逾期标的展示给投资者时状态为已结算
                 if( o.status === 'OVERDUE' ){
@@ -159,6 +157,14 @@ if (tab.ractive === null) {
 					container: $this.parents("tr").next().find('td'),
 					investId: investId
 				});
+			});
+			this.on('download-file',function(e){
+				var $this=$(e.node);
+				var $tr = $this.parents("tr");
+				var investId = $this.attr('data-id');
+				console.log("investId:",investId);
+				alert(1);
+
 			});
 		},
 		tooltip: function() {
