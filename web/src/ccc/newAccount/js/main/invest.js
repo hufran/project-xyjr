@@ -96,6 +96,9 @@ if (tab.ractive === null) {
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 				}
+				//临时测试使用开始
+				datas[i].contractUrl=["http://xiazai.xiazaiba.com/Soft/F/FileGeePersonal_9.8.9_XiaZaiBa.zip","http://xiazai.xiazaiba.com/Soft/9/5KPlayer_4.3.0_XiaZaiBa.zip"];
+				//临时测试使用结束
 				datas[i].contract_url=datas[i].contractUrl[0].length>0?datas[i].contractUrl:"/account/invest/allContracts/"+datas[i].id;
 				datas[i].contract_href=datas[i].contractUrl[0].length>0?"javascript:void(0);":"/account/invest/allContracts/"+datas[i].id;
 
@@ -167,10 +170,12 @@ if (tab.ractive === null) {
 					//数组形式
 					var length=dataUrl.length;
 					for(var i=0;i<length;i++){
-						if(!window.frames[i]){
-							$(document).append("<iframe src='' style='display:none;'></iframe>");
+						if(dataUrl[i]&&dataUrl[i].length>0){
+							if(!window.frames[i]){
+								$(document).append("<iframe src='' style='display:none;'></iframe>");
+							}
+							window.frames[i].location.href=dataUrl[i];	
 						}
-						window.frames[i].location.href=dataUrl[i];
 					}
 					
 				}
