@@ -145,7 +145,7 @@ if (tab.ractive === null) {
 			// init plan
 			var plan = new Plan();
 
-			this.on('show-repayments', function(e) {alert(2);
+			this.on('show-repayments', function(e) {
 				var $this = $(e.node);
 				var $tr = $this.parents("tr");
 				var investId = $this.attr('data-id');
@@ -160,9 +160,8 @@ if (tab.ractive === null) {
 			});
 			this.on('download-file',function(e){
 				var $this=$(e.node);
-				var $tr = $this.parents("tr");
-				var investId = $this.attr('data-id');
-				console.log("investId:",investId);
+				console.log($this);
+				$this
 				alert(1);
 
 			});
