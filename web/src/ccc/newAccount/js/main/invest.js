@@ -97,10 +97,8 @@ if (tab.ractive === null) {
 						break;
 				}
 
-				datas[i].contractUrl=["https://www.fadada.com/user/downLoadContractTemplate?contractTemplateId=164",""];
 				datas[i].contract_url=datas[i].contractUrl&&datas[i].contractUrl[0].length>0?datas[i].contractUrl.join('，'):"/account/invest/allContracts/"+datas[i].id;
 				datas[i].contract_href=datas[i].contractUrl&&datas[i].contractUrl[0].length>0?"javascript:void(0);":"/account/invest/allContracts/"+datas[i].id;
-				console.log("length:",datas[i].contractUrl&&datas[i].contractUrl[0].length>0);
                 //前台不展示逾期,逾期标的展示给投资者时状态为已结算
                 if( o.status === 'OVERDUE' ){
                     datas[i].Fstatus = utils.i18n.InvestStatus.SETTLED;
