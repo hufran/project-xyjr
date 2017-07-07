@@ -164,12 +164,13 @@ if (tab.ractive === null) {
 			});
 			this.on('download-file',function(e){
 				var $this=$(e.node);
-				console.log($this);
 				var dataUrl=$this.attr("data-url");
+				console.log("dataUrl111：",dataUrl);
 				if(dataUrl.indexOf('，')!==-1){
 					console.log("不存在，");
 					return false;
 				}
+				console.log("dataUr2222：",dataUrl);
 				dataUrl=dataUrl.split('，');
 				//数组形式
 				var length=dataUrl.length;
