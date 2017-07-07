@@ -161,7 +161,8 @@ if (tab.ractive === null) {
 			this.on('download-file',function(e){
 				var $this=$(e.node);
 				console.log($this);
-				$this
+				var dataUrl=$this.attr("data-url");
+				console.log("type:",typeof dataUrl," dataUrl:",dataUrl);
 				alert(1);
 
 			});
