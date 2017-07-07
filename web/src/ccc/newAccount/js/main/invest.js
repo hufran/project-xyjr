@@ -162,18 +162,17 @@ if (tab.ractive === null) {
 			this.on('download-file',function(e){
 				var $this=$(e.node);
 				var dataUrl=$this.attr("data-url");
-				if(dataUrl.indexOf('，')===-1){
-					return false;
-				}
-				dataUrl=dataUrl.split('，');
-				//数组形式
-				var length=dataUrl.length;
-				for(var i=0;i<length;i++){
-					if(dataUrl[i]&&dataUrl[i].length>0){
-						if(!window.frames[i]){
-							$(document).append("<iframe src='' style='display:none;'></iframe>");
+				if(dataUrl.indexOf('，')!==-1){
+					dataUrl=dataUrl.split('，');
+					//数组形式
+					var length=dataUrl.length;
+					for(var i=0;i<length;i++){
+						if(dataUrl[i]&&dataUrl[i].length>0){
+							if(!window.frames[i]){
+								$(document).append("<iframe src='' style='display:none;'></iframe>");
+							}
+							window.frames[i].location.href=dataUrl[i];	
 						}
-						window.frames[i].location.href=dataUrl[i];	
 					}
 				}
 			});
