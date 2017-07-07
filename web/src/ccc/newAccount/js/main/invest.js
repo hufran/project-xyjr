@@ -96,6 +96,8 @@ if (tab.ractive === null) {
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 				}
+
+				datas[i].contractUrl=["https://www.fadada.com/user/downLoadContractTemplate?contractTemplateId=164",""];
 				datas[i].contract_url=datas[i].contractUrl[0].length>0?datas[i].contractUrl.join('，'):"/account/invest/allContracts/"+datas[i].id;
 				datas[i].contract_href=datas[i].contractUrl[0].length>0?"javascript:void(0);":"/account/invest/allContracts/"+datas[i].id;
 
