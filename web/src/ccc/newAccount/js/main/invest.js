@@ -96,9 +96,6 @@ if (tab.ractive === null) {
 						datas[i].hasContract = ($.inArray(o.status, STATUS) !== -1) ? true:false;
 						break;
 				}
-				//临时测试使用开始
-				datas[i].contractUrl=["http://xiazai.xiazaiba.com/Soft/F/FileGeePersonal_9.8.9_XiaZaiBa.zip","http://xiazai.xiazaiba.com/Soft/9/5KPlayer_4.3.0_XiaZaiBa.zip"];
-				//临时测试使用结束
 				datas[i].contract_url=datas[i].contractUrl[0].length>0?datas[i].contractUrl.join('，'):"/account/invest/allContracts/"+datas[i].id;
 				datas[i].contract_href=datas[i].contractUrl[0].length>0?"javascript:void(0);":"/account/invest/allContracts/"+datas[i].id;
 
@@ -165,12 +162,9 @@ if (tab.ractive === null) {
 			this.on('download-file',function(e){
 				var $this=$(e.node);
 				var dataUrl=$this.attr("data-url");
-				console.log("dataUrl111：",dataUrl);
 				if(dataUrl.indexOf('，')===-1){
-					console.log("不存在，");
 					return false;
 				}
-				console.log("dataUr2222：",dataUrl);
 				dataUrl=dataUrl.split('，');
 				//数组形式
 				var length=dataUrl.length;
@@ -182,11 +176,6 @@ if (tab.ractive === null) {
 						window.frames[i].location.href=dataUrl[i];	
 					}
 				}
-					
-				
-				console.log("type:",typeof dataUrl," dataUrl:",dataUrl);
-				alert(1);
-
 			});
 		},
 		tooltip: function() {
