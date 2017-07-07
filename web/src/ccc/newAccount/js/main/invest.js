@@ -167,6 +167,7 @@ if (tab.ractive === null) {
 				console.log($this);
 				var dataUrl=$this.attr("data-url");
 				if(dataUrl.indexOf('，')!==-1){
+					console.log("不存在，");
 					return false;
 				}
 				dataUrl=dataUrl.split('，');
