@@ -97,8 +97,7 @@ if (tab.ractive === null) {
 						break;
 				}
 
-				datas[i].contract_url=datas[i].contractUrl&&(datas[i].contractUrl[0].length>0||datas[i].contractUrl[1].length>0)?datas[i].contractUrl.join('，'):"/account/invest/allContracts/"+datas[i].id;
-				datas[i].contract_href=datas[i].contractUrl&&(datas[i].contractUrl[0].length>0||datas[i].contractUrl[1].length>0)?"javascript:void(0);":"/account/invest/allContracts/"+datas[i].id;
+				datas[i].contract_url=datas[i].contractUrl&&(datas[i].contractUrl[0].length>0)?datas[i].contractUrl[0]:"/account/invest/allContracts/"+datas[i].id;
                 //前台不展示逾期,逾期标的展示给投资者时状态为已结算
                 if( o.status === 'OVERDUE' ){
                     datas[i].Fstatus = utils.i18n.InvestStatus.SETTLED;
@@ -158,23 +157,6 @@ if (tab.ractive === null) {
 					container: $this.parents("tr").next().find('td'),
 					investId: investId
 				});
-			});
-			this.on('download-file',function(e){
-				var $this=$(e.node);
-				var dataUrl=$this.attr("data-url");
-				if(dataUrl.indexOf('，')!==-1){
-					dataUrl=dataUrl.split('，');
-					//数组形式
-					var length=dataUrl.length;
-					for(var i=0;i<length;i++){
-						if(dataUrl[i]&&dataUrl[i].length>0){
-							if(!window.frames[i]){
-								$(document).append("<iframe src='' style='display:none;'></iframe>");
-							}
-							window.frames[i].location.href=dataUrl[i];	
-						}
-					}
-				}
 			});
 		},
 		tooltip: function() {
