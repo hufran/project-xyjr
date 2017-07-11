@@ -101,7 +101,6 @@ var homeRactive = new Ractive({
 });
 homeRactive.parseData();
 homeRactive.on("showRisk",function(){
-	console.log(11111111111111)
     // 问卷start
     jQuery('.wenjuan').removeClass('dn').addClass('db');
     jQuery('.radioW').click(function(){
@@ -160,6 +159,7 @@ homeRactive.on("showRisk",function(){
                     jQuery('.questionBox input[type=radio]').prop('checked',false);
                     jQuery('.questionTip').removeClass('db').addClass('dn');
                     jQuery(document).scrollTop(0);
+                    window.location.href="/invest"
                 })
                                                     
             }
