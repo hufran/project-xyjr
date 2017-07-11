@@ -100,6 +100,85 @@ var homeRactive = new Ractive({
 	}
 });
 homeRactive.parseData();
+homeRactive.on("showRisk",function(){
+	console.log(11111111111111)
+    // 问卷start
+    jQuery('.wenjuan').removeClass('dn').addClass('db');
+    jQuery('.radioW').click(function(){
+        var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
+        jQuery('input[name="'+radioName+'"]').prop('checked',false);
+        jQuery(this).siblings('input[type="radio"]').prop('checked',true);
+
+    })
+    jQuery('input.questionBtn').click(function(){
+        var r=true;
+        var mark=0;
+        for (var i = 1; i < 11; i++) {
+            if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
+                r=false;
+            }else{
+                mark=mark+parseInt(jQuery('input[name="Q'+i+'"]:checked').attr('data-value'));
+            };
+            if (!r) {
+                jQuery('.questionTip').removeClass('dn').addClass('db');
+                return false;
+            }
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v2/users/userQuestion',
+            data: {
+                userId:CC.user.userId,
+                mark:mark
+            },
+            success: function(){
+                jQuery('.questionBox').removeClass('db').addClass('dn');
+                jQuery(document).scrollTop(0);
+                jQuery('.questionTit').addClass('result');
+                jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
+                if (mark>=10&&mark<=16) {
+                    jQuery('.resultInfor span').html("一级（保守型）");
+                }else if(mark>=17&&mark<=23){
+                    jQuery('.resultInfor span').html("二级（中庸保守型）");
+                }else if(mark>=24&&mark<=31){
+                    jQuery('.resultInfor span').html("三级（中庸型）");
+                }else if(mark>=32&&mark<=38){
+                    jQuery('.resultInfor span').html("四级（中庸进取型）");
+                }else if(mark>=39&&mark<=45){
+                    jQuery('.resultInfor span').html("五级（进取型）");
+                };
+                // setCookie('question','questionTrue');
+                jQuery('.returnWenjuan').click(function(){
+                    jQuery('.questionTit').removeClass('result');
+                    jQuery('.resultInfor').removeClass('db').addClass('dn');
+                    jQuery('.questionBox input[type=radio]').prop('checked',false);
+                    jQuery('.questionTip').removeClass('db').addClass('dn');
+                    jQuery('.questionBox').removeClass('dn').addClass('db');
+                })
+                jQuery('.returnPay').click(function(){
+                    jQuery('.wenjuan').removeClass('db').addClass('dn');
+                    jQuery('.questionBox input[type=radio]').prop('checked',false);
+                    jQuery('.questionTip').removeClass('db').addClass('dn');
+                    jQuery(document).scrollTop(0);
+                })
+                                                    
+            }
+        });
+    })
+    jQuery('.questionBtn.false').click(function(){
+        jQuery('.wenjuan').removeClass('db').addClass('dn');
+        jQuery('.questionBox input[type=radio]').prop('checked',false);
+        jQuery('.questionTip').removeClass('db').addClass('dn');
+        jQuery(document).scrollTop(0);
+    })
+    jQuery('.wenjuanClose').click(function(){
+        jQuery('.wenjuan').removeClass('db').addClass('dn');
+        jQuery('.questionBox input[type=radio]').prop('checked',false);
+        jQuery('.questionTip').removeClass('db').addClass('dn');
+        jQuery(document).scrollTop(0);
+    })
+// 问卷end
+})
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
