@@ -1,6 +1,7 @@
 <style>
  .appDown {position: fixed;z-index: 9;bottom: 0;left: 0;right: 0;max-height: 44px; width: 100%;height:1.2rem;line-height:1.2rem;font-size:22px;font-family:'Microsoft YaHei UI',Arial, Helvetica, sans-serif; background-color:#626262; color:#fff;text-align: center;opacity: 0.75
     }
+    .investNotice{color:#777;margin:0 0 0.4rem -0.05rem;font-size:0.26rem;}
 
 </style>
 <header x-gyro-header data-user="self.user"></header>
@@ -13,8 +14,8 @@
          data-delay-in-seconds="4"
          ng-style="{ height: carousel_height + 'px' }"
     ></div>
-
     <nav class="nav-page container text-center">
+        <div class="text-left investNotice">市场有风险，投资需谨慎</div>
         <ul class="list-unstyled u-off-margin-bottom nav-page-list">
             <li><a href="dashboard"><param class="icon icon-user">我的账户</a></li>
             <li><a href="list"><param class="icon icon-usd">P2P投资</a></li>

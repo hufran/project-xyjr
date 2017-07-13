@@ -7,6 +7,8 @@ function goNext(obj,direction) {
     var $ul = $("ul");
     var $li = $("ul li");
     var currentRadio = $li.eq(i).find('input:radio:checked');
+    var sourcePage = location.href.indexOf("comeIn");
+
     if(currentRadio.length == 0 && direction == 1){
      alert("请选择！")
         return;
@@ -14,6 +16,7 @@ function goNext(obj,direction) {
     $("#index").val(i * 1 + direction);
     $li.eq(i).hide().end().eq(i * 1 + direction).show();
     if (i * 1 + direction == 0) {
+        //返回到第一题
         $(".aButtons a").eq(0).html("跳过调查问卷");
         $(obj).removeAttr("onclick").unbind("click");
         $(obj).bind("click", function () {
@@ -22,11 +25,16 @@ function goNext(obj,direction) {
             if(index!=-1){
                 funSurveyResults(3);
             }else{
-                $(obj).attr("href","loan/"+$("#loanId").val()+"/invest");
+                if(sourcePage != -1){
+                    $(obj).attr("href","/dashboard");
+                }else{
+                    $(obj).attr("href","loan/"+$("#loanId").val()+"/invest");
+                }
             }
         })
 
     } else if (i * 1 + direction >= 9) {
+        //最后一道题提交
         $(obj).removeAttr("onclick").unbind("click");
         $(".aButtons a").eq(1).html("提&nbsp;交");
         $(".aButtons a").eq(1).unbind("click").bind("click", function () {
@@ -39,6 +47,7 @@ function goNext(obj,direction) {
             }
         })
     } else {
+        //正常流程的上一步和下一步的转换
         if (i * 1 + direction == 1 && direction == 1) {
             $(".aButtons a").eq(0).html("上一步");
             $(".aButtons a").eq(0).removeAttr("onclick").removeAttr("href").unbind("click");
@@ -111,6 +120,7 @@ function submitForm(){
         success: function(data){
             if(data.status == 0){
                 if(index!=-1){
+                    //客户端需要监听到事件关闭页面
                     $("#questions").hide();
                     $("#lastMark").html(investType);
                     $("#result").show();
@@ -123,6 +133,7 @@ function submitForm(){
                     $("#mark").val(mark);
                 }
             }else{
+                //提交分数没有成功也要告知关闭页面
                 alert(data.msg);
                 if(index!=-1){
                     funSurveyResults(2)
@@ -131,18 +142,80 @@ function submitForm(){
         }
     });
 }
+//获取分数依据显示状态页面还是做题页面
+function getMark(userId){
+    //走这条线路的是个人中心的入口，或者是客户端入口的，在url中包含uid的
+    var oldMark = "";
+    var subStr = "token";
+    var index = location.href.indexOf(subStr);
+    var investType="";
+    $.ajax({
+        type: "GET",
+        url: "/api/v2/users/userQuestion/getMark/"+userId,
+        async:false,
+        success: function(res){
+            if(res.status == 0){
+                if(res.data == null){
+                    //用户不存在
+                    alert(res.msg);
+                }else if(res.data.point == null){
+                    //用户存在没做过题目，没有分数
+                }else{
+                    //有分数
+                    oldMark =res.data.point;
+                    if(oldMark>=10 && oldMark<=16){
+                        investType = "（一级）保守型";
+                    }else if(oldMark>=17 && oldMark<=23){
+                        investType = "（二级）中庸保守型";
+                    }else if(oldMark>=24 && oldMark<=31){
+                        investType = "（三级）中庸型";
+                    }else if(oldMark>=32 && oldMark<=38){
+                        investType = "（四级）中庸进取型";
+                    }else if(oldMark>=39 && oldMark<=45){
+                        investType = "（五级）进取型";
+                    }
+                    //设置页面展示状态显示分数评估
+                    if(index!=-1){
+                        //客户端需要监听到事件关闭页面
+                        $("#questions").hide();
+                        $("#lastMark").html(investType);
+                        $("#result").show();
+                        $("#mark").val(oldMark);
+                        funSurveyResults(4);
+                    }else{
+                        //h5端
+                        $("#questions").hide();
+                        $("#lastMark").html(investType);
+                        $("#result").show();
+                        $("#mark").val(oldMark);
+                    }
+                }
+            }else{
+                alert(res.msg);
+                if(index!=-1){
+                    funSurveyResults(2)
+                }
+            }
+        }
+    })
+}
 function ReEvaluation(){
+    var sourcePage = location.href.indexOf("comeIn");
     $("#formQues")[0].reset();
     $("#questionPage ul li").hide();
     var loanId = $("#loanId").val();
     $("#index").val("0");
     var aHref = "";
-    if(loanId == ""){
-        aHref = "loan/client"
+    if(sourcePage != -1){
+        aHref = "/dashboard"
     }else{
-        aHref = "loan/"+loanId+"/invest";
+        if(loanId == ""){
+            aHref = "loan/client"
+        }else{
+            aHref = "loan/"+loanId+"/invest";
+        }
     }
-    //提交过
+    //提交过，充值跳过调查问卷，下一步，显示第一道题目，隐藏结果页面
     $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
     $("#questionPage ul li").eq(0).show();
     $("#result").hide();
