@@ -131,7 +131,6 @@ homeRactive.on("showRisk",function(){
     jQuery('input.questionBtn').click(function(){
         var r=true;
         var mark=0;
-        var arr=[];
         for (var i = 1; i < 11; i++) {
             if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
                 r=false;
@@ -166,6 +165,7 @@ homeRactive.on("showRisk",function(){
                 }else if(mark>=39&&mark<=45){
                     jQuery('.resultInfor span').html("五级（进取型）");
                 };
+                oldmark = mark;
             }
         });
     })
