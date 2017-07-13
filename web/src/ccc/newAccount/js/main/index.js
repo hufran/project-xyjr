@@ -164,24 +164,15 @@ homeRactive.on("showRisk",function(){
                 }else if(mark>=39&&mark<=45){
                     jQuery('.resultInfor span').html("五级（进取型）");
                 };
-                // setCookie('question','questionTrue');
-                jQuery('.returnWenjuan').click(function(){
-                    jQuery('.questionTit').removeClass('result');
-                    jQuery('.resultInfor').removeClass('db').addClass('dn');
-                    jQuery('.questionBox input[type=radio]').prop('checked',false);
-                    jQuery('.questionTip').removeClass('db').addClass('dn');
-                    jQuery('.questionBox').removeClass('dn').addClass('db');
-                })
-                // jQuery('.returnPay').click(function(){
-                //     jQuery('.wenjuan').removeClass('db').addClass('dn');
-                //     jQuery('.questionBox input[type=radio]').prop('checked',false);
-                //     jQuery('.questionTip').removeClass('db').addClass('dn');
-                //     jQuery(document).scrollTop(0);
-                //     window.location.href="/invest"
-                // })
-                                                    
             }
         });
+    })
+    jQuery('.returnWenjuan').click(function(){
+        jQuery('.questionTit').removeClass('result');
+        jQuery('.resultInfor').removeClass('db').addClass('dn');
+        jQuery('.questionBox input[type=radio]').prop('checked',false);
+        jQuery('.questionTip').removeClass('db').addClass('dn');
+        jQuery('.questionBox').removeClass('dn').addClass('db');
     })
     jQuery('.questionBtn.false').click(function(){
         jQuery('.wenjuan').removeClass('db').addClass('dn');
