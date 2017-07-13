@@ -102,6 +102,23 @@ var homeRactive = new Ractive({
 homeRactive.parseData();
 homeRactive.on("showRisk",function(){
     // 问卷start
+    if(CC.user.priv){
+        jQuery('.questionBox').removeClass('db').addClass('dn');
+        jQuery(document).scrollTop(0);
+        jQuery('.questionTit').addClass('result');
+        jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
+        if (CC.user.priv>=10&&CC.user.priv<=16) {
+            jQuery('.resultInfor span').html("一级（保守型）");
+        }else if(CC.user.priv>=17&&CC.user.priv<=23){
+            jQuery('.resultInfor span').html("二级（中庸保守型）");
+        }else if(CC.user.priv>=24&&CC.user.priv<=31){
+            jQuery('.resultInfor span').html("三级（中庸型）");
+        }else if(CC.user.priv>=32&&CC.user.priv<=38){
+            jQuery('.resultInfor span').html("四级（中庸进取型）");
+        }else if(CC.user.priv>=39&&CC.user.priv<=45){
+            jQuery('.resultInfor span').html("五级（进取型）");
+        };
+    }
     jQuery('.wenjuan').removeClass('dn').addClass('db');
     jQuery('.radioW').click(function(){
         var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
@@ -112,10 +129,11 @@ homeRactive.on("showRisk",function(){
     jQuery('input.questionBtn').click(function(){
         var r=true;
         var mark=0;
+        var arr=[];
         for (var i = 1; i < 11; i++) {
             if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
                 r=false;
-            }else{
+            }else{               
                 mark=mark+parseInt(jQuery('input[name="Q'+i+'"]:checked').attr('data-value'));
             };
             if (!r) {
@@ -154,13 +172,13 @@ homeRactive.on("showRisk",function(){
                     jQuery('.questionTip').removeClass('db').addClass('dn');
                     jQuery('.questionBox').removeClass('dn').addClass('db');
                 })
-                jQuery('.returnPay').click(function(){
-                    jQuery('.wenjuan').removeClass('db').addClass('dn');
-                    jQuery('.questionBox input[type=radio]').prop('checked',false);
-                    jQuery('.questionTip').removeClass('db').addClass('dn');
-                    jQuery(document).scrollTop(0);
-                    window.location.href="/invest"
-                })
+                // jQuery('.returnPay').click(function(){
+                //     jQuery('.wenjuan').removeClass('db').addClass('dn');
+                //     jQuery('.questionBox input[type=radio]').prop('checked',false);
+                //     jQuery('.questionTip').removeClass('db').addClass('dn');
+                //     jQuery(document).scrollTop(0);
+                //     window.location.href="/invest"
+                // })
                                                     
             }
         });

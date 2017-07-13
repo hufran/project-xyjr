@@ -307,7 +307,8 @@ setTimeout((function () {
 
 					if (document.getElementById('agree').checked == true){
                          // 问卷start
-                        if (CC.user.priv==null&&getCookie('question')==null) {
+                         // if (CC.user.priv==null&&getCookie('question')==null)
+                        if (CC.user.priv==null) {
                             jQuery('.wenjuan').removeClass('dn').addClass('db');
                             jQuery('.radioW').click(function(){
                                 var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
