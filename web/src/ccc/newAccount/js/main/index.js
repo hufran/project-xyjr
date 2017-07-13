@@ -100,22 +100,24 @@ var homeRactive = new Ractive({
 	}
 });
 homeRactive.parseData();
+var oldmark;
 homeRactive.on("showRisk",function(){
     // 问卷start
-    if(CC.user.priv){
+    if(oldmark){
         jQuery('.questionBox').removeClass('db').addClass('dn');
         jQuery(document).scrollTop(0);
         jQuery('.questionTit').addClass('result');
         jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
-        if (CC.user.priv>=10&&CC.user.priv<=16) {
+        console.log("oldmark:" + oldmark)
+        if (oldmark>=10&&oldmark<=16) {
             jQuery('.resultInfor span').html("一级（保守型）");
-        }else if(CC.user.priv>=17&&CC.user.priv<=23){
+        }else if(oldmark>=17&&oldmark<=23){
             jQuery('.resultInfor span').html("二级（中庸保守型）");
-        }else if(CC.user.priv>=24&&CC.user.priv<=31){
+        }else if(oldmark>=24&&oldmark<=31){
             jQuery('.resultInfor span').html("三级（中庸型）");
-        }else if(CC.user.priv>=32&&CC.user.priv<=38){
+        }else if(oldmark>=32&&oldmark<=38){
             jQuery('.resultInfor span').html("四级（中庸进取型）");
-        }else if(CC.user.priv>=39&&CC.user.priv<=45){
+        }else if(oldmark>=39&&oldmark<=45){
             jQuery('.resultInfor span').html("五级（进取型）");
         };
     }
@@ -216,6 +218,7 @@ var infoRactive = new Ractive({
 		});
 		accountService.checkAuthenticate(function (r) {
 			accountService.getUserInfo(function (res) {
+                oldmark = res.user.prvi;
 				infoRactive.set('user', res.user);
 				infoRactive.set('emailAuthenticated', r.emailAuthenticated);
 
