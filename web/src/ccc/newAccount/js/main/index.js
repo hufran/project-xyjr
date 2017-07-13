@@ -103,12 +103,12 @@ homeRactive.parseData();
 var oldmark;
 homeRactive.on("showRisk",function(){
     // 问卷start
+    console.log("oldmark:" + oldmark)
     if(oldmark){
         jQuery('.questionBox').removeClass('db').addClass('dn');
         jQuery(document).scrollTop(0);
         jQuery('.questionTit').addClass('result');
-        jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
-        console.log("oldmark:" + oldmark)
+        jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);        
         if (oldmark>=10&&oldmark<=16) {
             jQuery('.resultInfor span').html("一级（保守型）");
         }else if(oldmark>=17&&oldmark<=23){
@@ -218,7 +218,7 @@ var infoRactive = new Ractive({
 		});
 		accountService.checkAuthenticate(function (r) {
 			accountService.getUserInfo(function (res) {
-                oldmark = res.user.prvi;
+                oldmark = res.user.priv;
 				infoRactive.set('user', res.user);
 				infoRactive.set('emailAuthenticated', r.emailAuthenticated);
 
