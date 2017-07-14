@@ -307,10 +307,14 @@ setTimeout((function () {
 
 					if (document.getElementById('agree').checked == true){
                          // 问卷start
+<<<<<<< HEAD
                          // &&getCookie('question')==null 之前逻辑中会判断
                          // if (CC.user.priv==null&&getCookie('question')==null) {
                          // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
                          // 其他账号不需要测评的情况，因此去掉
+=======
+                         // if (CC.user.priv==null&&getCookie('question')==null)
+>>>>>>> 0bc9e525c69bfc52f36b5e50806039c0b191230c
                         if (CC.user.priv==null) {
                             jQuery('.wenjuan').removeClass('dn').addClass('db');
                             jQuery('.radioW').click(function(){

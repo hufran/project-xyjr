@@ -55,3 +55,26 @@
 .ccc-tab-panels .tab-panel .table .btn-success:hover{
      background: #0287be;
 }
+
+.wenjuan{position: absolute;top: 0;background: #fff;margin: auto;left: 0;right: 0;z-index: 10001; background-color: rgb(234, 225, 206);}
+
+.questionTit{width: 100%;height: 44px;background-position: center;background-repeat: no-repeat;background-image: url(/ccc/loan/img/questionTit.png);}
+.questionList{background-color: #fff;width: 987px;margin:0 auto;margin-top: 25px;-moz-box-shadow: 0px 2px 5px #888888; box-shadow: 0px 2px 5px #888888;}
+.questionTitL{background-color: #f2f2f2;color: #666666;font-size: 14px;padding: 7px 15px; font-weight: bold;}
+.questionBox,.resultInfor{border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4;padding: 27px 45px;font-size: 16px;color: #666666;line-height: 38px;}
+.questionBox li{border-bottom: 1px dashed #e4e4e4;padding: 10px 32px;}
+.questionBox li:first-child{border-top: 1px dashed #e4e4e4;}
+.questionBtn{display: inline-block;-webkit-appearance:none;appearance:none; border: 0;padding: 10px 40px;background-color: #e43c3f;color: #fff; font-size: 18px;border-radius: 5px;line-height: 18px;margin: 0 62px;cursor: pointer;}
+.questionBtn.false{background-color: #9a9a9a;}
+.questionBtns{text-align: center;margin-top: 50px;}
+.dn{display: none!important;}
+.db{display: block!important;}
+.questionTip{color: red;float: right;margin-left: -300px;margin-right: 50px;}
+
+.questionTip:before{content: "";background-repeat: no-repeat; display: inline-block;width:18px;height: 18px;vertical-align: middle;margin-right: 10px;background-image: url(/ccc/loan/img/error.png);}
+.resultW{padding-bottom: 20px; border-bottom: 1px dashed #e4e4e4;}
+.returnBtn{text-align: center;margin-top: 20px;color: #fff;}
+.returnWenjuan,.returnPay{padding: 10px 40px;  background-color: #e43c3f;margin: 0 auto;line-height: 18px;display: inline-block;border-radius: 5px; cursor: pointer;}
+
+.questionTit.result{background-image: url(/ccc/loan/img/questionTitResult.png);}
+.wenjuanClose{cursor: pointer;font-size: 0; width: 50px;height: 50px;position: absolute;top: 0;background-repeat: no-repeat;background-position: center;right:70px;background-image: url(/ccc/loan/img/questionClose.png);}
