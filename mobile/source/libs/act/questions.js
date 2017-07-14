@@ -233,7 +233,12 @@ function getCookie(cname) {
     return "";
 }
 function goBack(){
-    window.location.href = "loan/"+$("#loanId").val();
+    var sourcePage = location.href.indexOf("comeIn");
+    if(sourcePage != -1){
+        window.location.href = "/dashboard";
+    }else {
+        window.location.href = "loan/" + $("#loanId").val();
+    }
 }
 function refreshPage(){
     var subStr = "source";
