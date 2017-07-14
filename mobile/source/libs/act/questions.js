@@ -26,7 +26,7 @@ function goNext(obj,direction) {
                 funSurveyResults(3);
             }else{
                 if(sourcePage != -1){
-                    $(obj).attr("href","/dashboard");
+                    $(obj).attr("href","dashboard");
                 }else{
                     $(obj).attr("href","loan/"+$("#loanId").val()+"/invest");
                 }
@@ -207,7 +207,7 @@ function ReEvaluation(){
     $("#index").val("0");
     var aHref = "";
     if(sourcePage != -1){
-        aHref = "/dashboard"
+        aHref = "dashboard"
     }else{
         if(loanId == ""){
             aHref = "loan/client"
@@ -235,7 +235,7 @@ function getCookie(cname) {
 function goBack(){
     var sourcePage = location.href.indexOf("comeIn");
     if(sourcePage != -1){
-        window.location.href = "/dashboard";
+        window.location.href = "dashboard";
     }else {
         window.location.href = "loan/" + $("#loanId").val();
     }
