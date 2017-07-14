@@ -152,20 +152,22 @@ setTimeout((function () {
             timeSettled:nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
+            var self = this;
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
+
             loanService.getInvestNum(function (res) {
               var list = res.results;
               var investNum = false;
               for (var i = 0; i < list.length; i++) {
 
-                  if(list[i].product.productKey=='XSZX'){
+                  if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
                       investNum=true;
                       break;
                   }
               }
-              this.set('isnew', investNum);
+              self.set('isnew', investNum);
 
           });
         }
