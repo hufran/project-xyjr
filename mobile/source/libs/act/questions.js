@@ -200,6 +200,7 @@ function getMark(userId){
     })
 }
 function ReEvaluation(){
+    $("#goHistory").val(1);
     var sourcePage = location.href.indexOf("comeIn");
     $("#formQues")[0].reset();
     $("#questionPage ul li").hide();
@@ -234,10 +235,16 @@ function getCookie(cname) {
 }
 function goBack(){
     var sourcePage = location.href.indexOf("comeIn");
-    if(sourcePage != -1){
-        window.location.href = "dashboard";
-    }else {
-        window.location.href = "loan/" + $("#loanId").val();
+    if($("#goHistory").val() == 1){
+        $("#result").show();
+        $("#questions").hide();
+        $("#goHistory").val(0);
+    }else{
+        if(sourcePage != -1){
+            window.location.href = "dashboard";
+        }else {
+            window.location.href = "loan/" + $("#loanId").val();
+        }
     }
 }
 function refreshPage(){
