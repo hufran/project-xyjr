@@ -16,7 +16,12 @@ do (_, angular) ->
                     daily: @user.statistics.yesterdayIncome
                     total_interest: @user.statistics.investInterestAmount
                 }
+                (@api
+                    .get_loan_list()
 
+                    .then (data) =>
+                        @$scope.curLoanId = data.settled[0].id || '8DF05DB9-D483-4584-A390-2E1D7CCD5C2C'
+                )
                 (@api
                     .fetch_user_coupons()
 
