@@ -95,7 +95,9 @@ module.exports = function (options) {
                 },
                 onrender: function () {},
                 oncomplete: function () {
-                    o.complete();
+                    if(typeof o.complete==="function"){
+                        o.complete();
+                    } 
                 }
             });
         },
