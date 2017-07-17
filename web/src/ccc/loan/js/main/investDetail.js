@@ -642,26 +642,28 @@ setTimeout((function () {
                 msg: ''
             });
     }
-    function showSelect(amount,id) {
-        console.log("id:",id);
+    function showSelect(amount) {
             $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
-            loanService.getMyCoupon(amount, months, function (coupon) {                
-                if (coupon.success) {
-                    var list=parsedata(coupon.data);
-                    list.sort(function(a,b){
-                        return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
-                    });
-                    investRactive.set('selectOption', list); 
-                }
-            });
+            if(CC.user){
+                loanService.getMyCoupon(amount, months, function (coupon) {                
+                    if (coupon.success) {
+                        var list=parsedata(coupon.data);
+                        list.sort(function(a,b){
+                            return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
+                        });
+                        investRactive.set('selectOption', list); 
+                    }
+                });
+            }
+            
         }
 
 
         //初始化选项
-    showSelect(CC.loan.rule.min,"我曹");
+    showSelect(CC.loan.rule.min);
 
     investRactive.on('getCoupon', function () {
         var inputNum = this.get('inputNum');
