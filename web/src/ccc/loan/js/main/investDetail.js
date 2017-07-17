@@ -162,7 +162,7 @@ setTimeout((function () {
                     var investNum = false;
                     for (var i = 0; i < list.length; i++) {
 
-                        if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
+                        if(list[i].product&&list[i].product.productKey=='XSZX'){
                             investNum=true;
                             break;
                         }
@@ -221,7 +221,7 @@ setTimeout((function () {
         var indexnum=couponSelection.indexOf("最低投资额：");
         var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
         if (investRactive.get('user').totalInvest > 0) {
-          if (CC.loan.productKey === 'XSZX') {
+          if (CC.loan&&CC.loan.productKey === 'XSZX') {
               showErrors('只有新手可以投');
               return false;
           }
