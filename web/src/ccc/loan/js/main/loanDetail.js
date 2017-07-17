@@ -279,7 +279,6 @@ investRactive.on('getCoupon', function () {
       var inputNum = this.get('inputNum');
       var inum = this.get('inum');
       if (parseFloat(inputNum) !== parseFloat(inum)) {
-        console.log("CC.user111111111:",CC.user);
          showSelect(inputNum);
       }
     }
