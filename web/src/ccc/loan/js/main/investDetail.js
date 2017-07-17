@@ -642,7 +642,8 @@ setTimeout((function () {
                 msg: ''
             });
     }
-    function showSelect(amount) {
+    function showSelect(amount,id) {
+        console.log("id:",id);
             $('#couponSelection').val('');
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
@@ -660,7 +661,7 @@ setTimeout((function () {
 
 
         //初始化选项
-    showSelect(CC.loan.rule.min);
+    showSelect(CC.loan.rule.min,"我曹");
 
     investRactive.on('getCoupon', function () {
         var inputNum = this.get('inputNum');
@@ -698,7 +699,6 @@ setTimeout((function () {
 
 
 $('.investInput').on('keyup', function () {
-    console.log("showSelect555555555:",CC.user);
         showSelect($(this).val());
 });
 
