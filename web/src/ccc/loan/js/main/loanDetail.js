@@ -244,7 +244,6 @@ function showSelect(amount) {
     }
     //初始化选项
 if(!!CC.user) {
-    console.log("CC.user111111111:",CC.user);
     showSelect(CC.loan.rule.balance);
 };
 
@@ -280,6 +279,7 @@ investRactive.on('getCoupon', function () {
       var inputNum = this.get('inputNum');
       var inum = this.get('inum');
       if (parseFloat(inputNum) !== parseFloat(inum)) {
+        console.log("CC.user111111111:",CC.user);
          showSelect(inputNum);
       }
     }
