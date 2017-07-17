@@ -663,7 +663,6 @@ setTimeout((function () {
     showSelect(CC.loan.rule.min);
 
     investRactive.on('getCoupon', function () {
-        console.log("showSelect44444:",CC.user);
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
         jQuery('.totalInterestRebate').css('display','none');
@@ -699,6 +698,7 @@ setTimeout((function () {
 
 
 $('.investInput').on('keyup', function () {
+    console.log("showSelect555555555:",CC.user);
         showSelect($(this).val());
 });
 
