@@ -464,7 +464,6 @@ setTimeout((function () {
         var months = CC.loan.duration;
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
-        console.log("showSelect333333333333333:",CC.user);
         loanService.getMyCoupon(amount, months, function (coupon) {
             if (coupon.success) {
                 investRactive.set('selectOption', parsedata(
