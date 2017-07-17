@@ -30,6 +30,7 @@ ds.request(app, config.urlBackend);
 var Data = require('@ds/data');
 app.use(function(req,res,next){
     req.data = new Data(req);
+    res.setHeader("X-Frame-Options", "SAMEORIGIN");
     next();
 });
 app.use('/api/web', ds.loader('api'));
