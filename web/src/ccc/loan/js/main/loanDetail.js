@@ -244,6 +244,7 @@ function showSelect(amount) {
     }
     //初始化选项
 if(!!CC.user) {
+    console.log("CC.user111111111:",CC.user);
     showSelect(CC.loan.rule.balance);
 };
 
