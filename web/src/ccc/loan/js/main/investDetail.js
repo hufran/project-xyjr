@@ -156,20 +156,22 @@ setTimeout((function () {
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
+            if(CC.user){
+                loanService.getInvestNum(function (res) {
+                    var list = res.results;
+                    var investNum = false;
+                    for (var i = 0; i < list.length; i++) {
 
-            loanService.getInvestNum(function (res) {
-              var list = res.results;
-              var investNum = false;
-              for (var i = 0; i < list.length; i++) {
+                        if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
+                            investNum=true;
+                            break;
+                        }
+                    }
+                    self.set('isnew', investNum);
 
-                  if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
-                      investNum=true;
-                      break;
-                  }
-              }
-              self.set('isnew', investNum);
-
-          });
+                });
+            }
+            
         }
     });
       function nextDate(timestr){
