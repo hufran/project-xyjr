@@ -647,7 +647,6 @@ setTimeout((function () {
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
-            console.log("showSelect333333333333333:",CC.user);
             loanService.getMyCoupon(amount, months, function (coupon) {                
                 if (coupon.success) {
                     var list=parsedata(coupon.data);
@@ -664,6 +663,7 @@ setTimeout((function () {
     showSelect(CC.loan.rule.min);
 
     investRactive.on('getCoupon', function () {
+        console.log("showSelect44444:",CC.user);
         var inputNum = this.get('inputNum');
         var inum = this.get('inum');
         jQuery('.totalInterestRebate').css('display','none');
