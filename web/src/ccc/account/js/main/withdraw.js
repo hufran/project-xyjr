@@ -6,6 +6,7 @@ var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;
+var filterXSS = require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
@@ -73,7 +74,7 @@ var ractive = new Ractive({
 		});
 
 		this.on('checkPassword', function () {
-			var password = this.get('paymentPassword');
+			var password = filterXSS(this.get('paymentPassword'));
 
 			if (password === '') {
 				self.set('submitMessage', '请输入交易密码');
@@ -175,7 +176,7 @@ ractive.on('withdrawForm', function (e) {
 	this.set('submitMessage', null);
 	var isAcess = false;
 	var amount = this.get('amount');
-	var pass = this.get('paymentPassword');
+	var pass = filterXSS(this.get('paymentPassword'));
 
 	if (amount === '') {
 		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));

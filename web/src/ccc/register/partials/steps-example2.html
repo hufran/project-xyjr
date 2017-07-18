@@ -4,7 +4,7 @@
 <RInput field="loginName">
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">用户名</label>
-    <input id="{{rinputId}}" value="{{value}}">
+    <input id="{{rinputId}}" value="{{value}}" autocomplete="off">
     {{#loading}}loading...{{/loading}}
     {{#errMsg}}{{errMsg}}{{/errMsg}}
 </div>
@@ -12,7 +12,7 @@
 <RInput field="email">
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">邮箱</label>
-    <input id="{{rinputId}}" value="{{value}}">
+    <input id="{{rinputId}}" value="{{value}}" autocomplete="off">
     {{#loading}}loading...{{/loading}}
     {{#errMsg}}{{errMsg}}{{/errMsg}}
 </div>
@@ -20,7 +20,7 @@
 <RInput field="password" valueStableDuration=200>
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">密码</label>
-    <input id="{{rinputId}}" value="{{value}}">
+    <input id="{{rinputId}}" value="{{value}}" autocomplete="off">
     {{#loading}}loading...{{/loading}}
     {{#errMsg}}{{errMsg}}{{/errMsg}}
     {{{strength}}}
@@ -29,7 +29,7 @@
 <RInput field="repassword" valueStableDuration=200>
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">重复密码</label>
-    <input id="{{rinputId}}" value="{{value}}">
+    <input id="{{rinputId}}" value="{{value}}" autocomplete="off">
     {{#loading}}loading...{{/loading}}
     {{#errMsg}}{{errMsg}}{{/errMsg}}
     {{{strength}}}
@@ -53,7 +53,7 @@
 <RInput field="mobile">
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号</label>
-    <input id="{{rinputId}}" value="{{value}}">
+    <input id="{{rinputId}}" value="{{value}}" autocomplete="off">
     {{#loading}}loading...{{/loading}}
     {{#errMsg}}{{errMsg}}{{/errMsg}}
 </div>
@@ -61,7 +61,7 @@
 <RInput field="smsCaptcha">
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码</label>
-    <input id="{{rinputId}}" value="{{value}}">
+    <input id="{{rinputId}}" value="{{value}}" autocomplete="off">
     rm:{{smsCaptchaReady}}
     <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
         {{#if smsCaptchaCountDown}}

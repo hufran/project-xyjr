@@ -14,7 +14,7 @@
                 <img src="/assets/img/loading.gif">
             </p>
         </div>
-        <form action="{{postUrl}}" id="form" method="POST">
+        <form action="{{postUrl}}" id="form" method="POST" autocomplete="off">
 			{{#data:key}}
        			<input type="hidden" name="{{{key}}}" value="{{.}}">
 			{{/data}}

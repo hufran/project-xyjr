@@ -75,7 +75,7 @@
         {{/if}}
         
         {{#if invest.status === "INVESTING"}}
-            <form action="#" class="invest-form" on-submit="invest-submit">
+            <form action="#" class="invest-form" on-submit="invest-submit" autocomplete="off">
                 <div class="form-group invest-input-wrapper">
                     <span class="rmb-symbol">￥</span>
                     <input type="text" class="form-control invest-input" placeholder="快给钱吧..." value="{{ inputNum }}" />

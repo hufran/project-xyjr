@@ -162,7 +162,7 @@ setTimeout((function () {
                   var investNum = false;
                   for (var i = 0; i < list.length; i++) {
 
-                      if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
+                      if(list[i].product&&list[i].product.productKey=='XSZX'){
                           investNum=true;
                           break;
                       }

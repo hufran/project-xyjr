@@ -6,6 +6,7 @@ var accountService = require('ccc/account/js/main/service/account')
     .accountService;
 var template = require('ccc/account/partials/feedback/feedback.html');
 var utils = require('ccc/global/js/lib/utils');
+var filterXSS = require('ccc/xss.min');
 
 var feedbackRactive = new Ractive({
     el: '.feedback-ractive-container',
@@ -55,7 +56,7 @@ feedbackRactive.on('submit', function (e) {
     var params = {
         userId: CC.user.id,
         name: CC.user.name,
-        feedback: this.get('user.advice')
+        feedback: filterXSS(this.get('user.advice'))
     };
     
     accountService.feedback(CC.user.id, params, function (

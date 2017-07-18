@@ -13,7 +13,7 @@
     <input type="text" class="form-control col-sm-8 form_input loanmoney" {{#if loan.status=="FINISHED"
     ||loan.status=="SETTLED" || loan.status=="CLEARED" }} disabled{{/if}} placeholder="请输入投资金额"
     style="width:274px;border: 0;border-radius: 0;box-shadow:none;text-align:left;height:38px;"
-    /><span>元&nbsp;&nbsp;</span>
+     autocomplete="off"/><span>元&nbsp;&nbsp;</span>
 </div>
 <p class="finished-money">预计收益&nbsp;&nbsp;&nbsp;<span style="color:#ff7200;">0.00</span><span style="font-size:14px;">元</span></p>
 {{#if loan.status == "FINISHED"}}
@@ -52,7 +52,7 @@
                     <div class="calculator">
                         <!-- <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span> -->
                         <input type="hidden" name="loanId" value="{{loan.id}}">
-                        <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}">
+                        <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}" autocomplete="off">
                         <!-- <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span> -->
                     </div>
                     <!-- <span class="topAmount" on-click="maxNumber">最大可投金额</span> -->
@@ -89,7 +89,7 @@
                 <div class="calculator">
                     <!-- <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span> -->
                     <input type="hidden" name="loanId" value="{{loan.id}}">
-                    <input placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon"
+                    <input placeholder="请输入投资金额" name="amount" type="text" value="{{ inputNum }}" on-blur="getCoupon" autocomplete="off"
                     />
                     <!-- <span class="glyphicon glyphicon-plus" style="top:0;" on-click="add"></span> -->
                 </div>
@@ -110,7 +110,7 @@
             </div>
             <div class="input">
                 <form action="/lianlianpay/tender" name="investForm" method="POST" class="invest-form"
-                target="_blank" on-submit="invest-submit">
+                target="_blank" on-submit="invest-submit" autocomplete="off">
                     <div class="calculatorBox">
                         <div class="calculator">
                             <!-- <span class="glyphicon glyphicon-minus" style="top:0;" on-click="reduce"></span> -->
@@ -195,7 +195,7 @@
 
             <div class="calculatorBox">
                 <div class="calculator">
-                    <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}">
+                    <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}" autocomplete="off">
                 </div>
             </div>
             <p class="totalInterest">最大可投<span>{{loan.rule.max}}</span>元，预计收益<span> {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}}</span>元</p>
