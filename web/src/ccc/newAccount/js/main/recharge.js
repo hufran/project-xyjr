@@ -19,7 +19,6 @@ var accountService = require('ccc/newAccount/js/main/service/account').accountSe
 //新增支付方式判断
 var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
 if(payMethod==="lianlianpay"){
-    //临时应付线下测试，添加IP地址，上线前需要删除
     cyberBankBaseUrl="/api/v2/lianlianpay/onlineBankDeposit/";
     quickBaseUrl="/api/v2/lianlianpay/deposit/";
     bankListAPI="/api/v2/lianlianpay/banks4pc";
