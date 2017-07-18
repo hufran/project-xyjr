@@ -75,11 +75,6 @@ var ractive = new Ractive({
 
 		this.on('checkPassword', function () {
 			var password = filterXSS(this.get('paymentPassword'));
-<<<<<<< HEAD
-		   
-=======
-
->>>>>>> master
 			if (password === '') {
 				self.set('submitMessage', '请输入交易密码');
 				return;

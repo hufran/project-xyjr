@@ -158,22 +158,6 @@ setTimeout((function () {
             }
             if(CC.user){
                 loanService.getInvestNum(function (res) {
-<<<<<<< HEAD
-                    var list = res.results;
-                    var investNum = false;
-                    for (var i = 0; i < list.length; i++) {
-
-                        if(list[i].product&&list[i].product.productKey=='XSZX'){
-                            investNum=true;
-                            break;
-                        }
-                    }
-                    self.set('isnew', investNum);
-
-                });
-            }
-            
-=======
                   var list = res.results;
                   var investNum = false;
                   for (var i = 0; i < list.length; i++) {
@@ -186,7 +170,6 @@ setTimeout((function () {
                   self.set('isnew', investNum);
                 });
             }
->>>>>>> master
         }
     });
       function nextDate(timestr){
@@ -679,10 +662,6 @@ setTimeout((function () {
                     }
                 });
             }
-<<<<<<< HEAD
-            
-=======
->>>>>>> master
         }
 
 
