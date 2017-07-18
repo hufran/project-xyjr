@@ -30,7 +30,7 @@ $(".wap-close").click(function(){
     $('.wap').css('display','none');
 });
 
-if(CC.user){
+if(!utils.tool.checkObjectIsEmpty(CC.user)){
     accountService.getUserInfo(function (res) {
         if(!res.user){
             res.user={};

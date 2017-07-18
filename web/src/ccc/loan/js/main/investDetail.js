@@ -156,20 +156,22 @@ setTimeout((function () {
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
+            if(CC.user){
+                loanService.getInvestNum(function (res) {
+                    var list = res.results;
+                    var investNum = false;
+                    for (var i = 0; i < list.length; i++) {
 
-            loanService.getInvestNum(function (res) {
-              var list = res.results;
-              var investNum = false;
-              for (var i = 0; i < list.length; i++) {
+                        if(list[i].product&&list[i].product.productKey=='XSZX'){
+                            investNum=true;
+                            break;
+                        }
+                    }
+                    self.set('isnew', investNum);
 
-                  if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
-                      investNum=true;
-                      break;
-                  }
-              }
-              self.set('isnew', investNum);
-
-          });
+                });
+            }
+            
         }
     });
       function nextDate(timestr){
@@ -219,7 +221,7 @@ setTimeout((function () {
         var indexnum=couponSelection.indexOf("最低投资额：");
         var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
         if (investRactive.get('user').totalInvest > 0) {
-          if (CC.loan.productKey === 'XSZX') {
+          if (CC.loan&&CC.loan.productKey === 'XSZX') {
               showErrors('只有新手可以投');
               return false;
           }
@@ -647,15 +649,18 @@ setTimeout((function () {
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
-            loanService.getMyCoupon(amount, months, function (coupon) {                
-                if (coupon.success) {
-                    var list=parsedata(coupon.data);
-                    list.sort(function(a,b){
-                        return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
-                    });
-                    investRactive.set('selectOption', list); 
-                }
-            });
+            if(CC.user){
+                loanService.getMyCoupon(amount, months, function (coupon) {                
+                    if (coupon.success) {
+                        var list=parsedata(coupon.data);
+                        list.sort(function(a,b){
+                            return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
+                        });
+                        investRactive.set('selectOption', list); 
+                    }
+                });
+            }
+            
         }
 
 

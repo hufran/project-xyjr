@@ -572,6 +572,17 @@ module.exports = (function () {
                     callback();
                 };
             }
+        },
+
+        checkObjectIsEmpty:function(object){
+            if(Object.prototype.toString.call(object)==="[object Object]"){
+                for(var key in object){
+                    return false;
+                }
+                return true;
+            }else{
+                return true;
+            }
         }
     };
 
