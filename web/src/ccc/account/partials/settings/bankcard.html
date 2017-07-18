@@ -23,7 +23,7 @@
         {{/if}}
     </div>
 
-    <form action="/lianlianpay/bindCard" method="POST" on-submit="bind-card-submit" target="_blank">
+    <form action="/lianlianpay/bindCard" method="POST" on-submit="bind-card-submit" target="_blank" autocomplete="off">
         <div class="banks-container control-group">
             <div class="space space-30"></div>
             
@@ -99,7 +99,7 @@
             </div>
         </div>
     {{/each}}
-    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;">
+    <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;" autocomplete="off">
         <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
         {{#if ifDel}}
         <div class="inwr">

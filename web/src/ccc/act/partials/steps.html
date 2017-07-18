@@ -6,7 +6,7 @@
 				<RInput field="mobile">
                     <div class="inforDiv">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号:</label>
-                        <input class="phoneNum" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="请输入手机号">
+                        <input class="phoneNum" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="请输入手机号" autocomplete="off">
                         <span class="tip-loading">{{#loading}}<img src='/ccc/act/img/loading-2.gif' style="background:transparent;width:16px;height:16px"/>{{/loading}}
                         </span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
@@ -15,7 +15,7 @@
 				<RInput field="imgCaptcha">
                     <div class="inforDiv">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">验证码:</label>
-                        <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码">
+                        <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码" autocomplete="off">
                         <span on-click='changeImgCaptcha'>
                             <img src="{{imgCaptchaBase64}}" alt="">
                         </span>
@@ -29,7 +29,7 @@
 				<RInput field="smsCaptcha">
                     <div class="inforDiv">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码:</label>
-                        <input id="{{rinputId}}" value="{{value}}" placeholder="请输入短信验证码" class="message-brame">
+                        <input id="{{rinputId}}" value="{{value}}" placeholder="请输入短信验证码" class="message-brame" autocomplete="off">
                         {{#if !smsCaptchaReady}}
                             <button on-click='sendSmsCaptcha' id="get-message" class="get-message">
                                 短信验证码
@@ -47,7 +47,7 @@
 				<RInput field="password" valueStableDuration=200>
                     <div class="inforDiv">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">密码:</label>
-                        <input class="passWord" id="{{rinputId}}" type="password" value="{{value}}" placeholder="请输入密码" maxlength="16">
+                        <input class="passWord" id="{{rinputId}}" type="password" value="{{value}}" placeholder="请输入密码" maxlength="16" autocomplete="off">
                         <span class="tip-loading">{{#loading}}<img src='/ccc/act/img/loading-2.gif' style="background:transparent;width:16px;height:16px"/>{{/loading}}</span>
                         <span class="tip">
 							{{#errMsg}}{{errMsg}}{{/errMsg}}
@@ -57,7 +57,7 @@
 				<RInput field="reftf">
                     <div class="inforDiv" style="display:none">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
-                        <input id="{{rinputId}}" name="reftf" value="{{value}}" placeholder="请输入推荐码或手机号，可不填">
+                        <input id="{{rinputId}}" name="reftf" value="{{value}}" placeholder="请输入推荐码或手机号，可不填" autocomplete="off">
                         <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>
@@ -66,7 +66,7 @@
 				<RInput field="channel" >
                     <div class="rinput" style="display:none">
                         <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">来源</label>
-                        <input id="{{rinputId}}" name="channel" value="{{value}}" placeholder="请输入推荐码或手机号，可不填">
+                        <input id="{{rinputId}}" name="channel" value="{{value}}" placeholder="请输入推荐码或手机号，可不填" autocomplete="off">
                         <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
                         <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                     </div>

@@ -15,6 +15,7 @@ var maskLayer = require('assets/js/lib/maskLayer');
 var utils = require('assets/js/lib/utils');
 var formValidator = utils.formValidator;
 var bus = require('ccc/reactive/js/lib/bus');
+var filterXSS = require('ccc/xss.min');
 exports.popupLogin = {
     instance: false,
     init: function () {
@@ -50,16 +51,18 @@ exports.popupLogin = {
         popupLoginRactive.on('doLogin', function (e) {
             e.original.preventDefault();
             var self = this;
-
-            formValidator.checkLoginName(self.get('loginName'), function (
+            var loginName = filterXSS(self.get('loginName'));
+            var password = filterXSS(self.get('password'));
+            console.log("filterXSS"+filterXSS);
+            console.log("password"+password);
+            console.log("loginName"+loginName);
+            formValidator.checkLoginName(loginName, function (
                 bool, error) {
                 if (bool) {
-                    formValidator.checkPassword(self.get('password'),
+                    formValidator.checkPassword(password,
                         function (bool, error) {
                             if (bool) {
-                                LoginService.doLogin(self.get(
-                                    'loginName'), self.get(
-                                    'password'), function (err,
+                                LoginService.doLogin(loginName, password, function (err,
                                     body) {
                                     self.set('password', '');
                                     if (body.success) {

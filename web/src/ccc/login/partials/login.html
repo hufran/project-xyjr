@@ -3,7 +3,7 @@
     <div class="row login-form">
         <h3>欢迎回来老朋友</h3>
         <div class="close" on-click="close"></div>
-        <form role="form" class="form" on-enter="doLogin">
+        <form role="form" class="form" on-enter="doLogin" autocomplete="off">
             <div class="errors">
                 {{#if errors.visible }}
                 <div class="content">

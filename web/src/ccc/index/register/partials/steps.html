@@ -5,7 +5,7 @@
 <RInput field="mobile">
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号码</label>
-    <input id="{{rinputId}}" value="{{value}}">
+    <input id="{{rinputId}}" value="{{value}}" autocomplete="off">
     <span class="tip">
         {{#loading}}loading...{{/loading}}
         {{#errMsg}}{{errMsg}}{{/errMsg}}
@@ -49,7 +49,7 @@
 <RInput field="password" valueStableDuration=200>
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">登录密码</label>
-    <input id="{{rinputId}}" type="password" value="{{value}}">
+    <input id="{{rinputId}}" type="password" value="{{value}}" autocomplete="off">
     <span class="tip">
         {{#loading}}loading...{{/loading}}
         {{#errMsg}}{{errMsg}}{{/errMsg}}
@@ -59,7 +59,7 @@
 <RInput field="repassword" valueStableDuration=200>
 <div class="rinput">
     <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">重复密码</label>
-    <input id="{{rinputId}}" type="password" value="{{value}}">
+    <input id="{{rinputId}}" type="password" value="{{value}}" autocomplete="off">
     <span class="tip">
         {{#loading}}loading...{{/loading}}
         {{#errMsg}}{{errMsg}}{{/errMsg}}
@@ -71,7 +71,7 @@
     <div class="yz">
     <div class="rinput-1">
         <label for="{{rinputId}}" class="pi-placeholder-1 {{#if value}}pi-placeholder__filled{{/if}}">验证码</label>
-        <input class="rinputYz" id="{{rinputId}}" type="verificationCode" value="{{value}}">
+        <input class="rinputYz" id="{{rinputId}}" type="verificationCode" value="{{value}}" autocomplete="off">
         <span class="tip">
             {{#loading}}loading...{{/loading}}
             {{#errMsg}}{{errMsg}}{{/errMsg}}
@@ -107,7 +107,7 @@
     <div class="stepTwo">
         <div class="rinput message-confirm message-confirm1" >
             <label for="{{rinputId}}"  class="pi-placeholder pi-placeholder2 {{#if value}}pi-placeholder__filled{{/if}}" >验证码</label>
-            <input class="input01" id="{{rinputId}}" value="{{value}}">
+            <input class="input01" id="{{rinputId}}" value="{{value}}" autocomplete="off">
         </div>
         <button on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
                 {{#if smsCaptchaCountDown}}
