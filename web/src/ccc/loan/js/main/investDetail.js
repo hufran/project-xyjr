@@ -152,22 +152,24 @@ setTimeout((function () {
             timeSettled:nextDate(CC.loan.timeSettled),
         },
         oninit: function () {
+            var self = this;
             if (CC.loan.rule.balance < CC.loan.rule.min) {
                 this.set('inputNum', CC.loan.rule.balance);
             }
-            loanService.getInvestNum(function (res) {
-              var list = res.results;
-              var investNum = false;
-              for (var i = 0; i < list.length; i++) {
+            if(CC.user){
+                loanService.getInvestNum(function (res) {
+                  var list = res.results;
+                  var investNum = false;
+                  for (var i = 0; i < list.length; i++) {
 
-                  if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
-                      investNum=true;
-                      break;
+                      if(list[i].product.productKey&&list[i].product.productKey=='XSZX'){
+                          investNum=true;
+                          break;
+                      }
                   }
-              }
-              this.set('isnew', investNum);
-
-          });
+                  self.set('isnew', investNum);
+                });
+            }
         }
     });
       function nextDate(timestr){
@@ -192,10 +194,11 @@ setTimeout((function () {
     }
 
 
-
+    var mark;
     if (CC.user) {
         accountService.getUserInfo(function (res) {
             investRactive.set('name', res.user.name);
+            mark = res.user.priv;
         });
     }
 
@@ -216,7 +219,7 @@ setTimeout((function () {
         var indexnum=couponSelection.indexOf("最低投资额：");
         var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
         if (investRactive.get('user').totalInvest > 0) {
-          if (CC.loan.productKey&&CC.loan.productKey === 'XSZX') {
+          if (CC.loan&&CC.loan.productKey === 'XSZX') {
               showErrors('只有新手可以投');
               return false;
           }
@@ -306,16 +309,14 @@ setTimeout((function () {
 
 
 					if (document.getElementById('agree').checked == true){
-                         // 问卷start
-<<<<<<< HEAD
-                         // &&getCookie('question')==null 之前逻辑中会判断
-                         // if (CC.user.priv==null&&getCookie('question')==null) {
-                         // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
-                         // 其他账号不需要测评的情况，因此去掉
-=======
-                         // if (CC.user.priv==null&&getCookie('question')==null)
->>>>>>> 0bc9e525c69bfc52f36b5e50806039c0b191230c
-                        if (CC.user.priv==null) {
+                        // 问卷start
+                        // &&getCookie('question')==null 之前逻辑中会判断
+                        // if (CC.user.priv==null&&getCookie('question')==null) {
+                        // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
+                        // 其他账号不需要测评的情况，因此去掉
+                        // if (CC.user.priv==null&&getCookie('question')==null)
+                        if (!mark) {
+
                             jQuery('.wenjuan').removeClass('dn').addClass('db');
                             jQuery('.radioW').click(function(){
                                 var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
@@ -650,15 +651,17 @@ setTimeout((function () {
             var months = CC.loan.duration;
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
-            loanService.getMyCoupon(amount, months, function (coupon) {                
-                if (coupon.success) {
-                    var list=parsedata(coupon.data);
-                    list.sort(function(a,b){
-                        return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
-                    });
-                    investRactive.set('selectOption', list); 
-                }
-            });
+            if(CC.user){
+                loanService.getMyCoupon(amount, months, function (coupon) {                
+                    if (coupon.success) {
+                        var list=parsedata(coupon.data);
+                        list.sort(function(a,b){
+                            return a.couponPackage.timeExpire-b.couponPackage.timeExpire;
+                        });
+                        investRactive.set('selectOption', list); 
+                    }
+                });
+            }
         }
 
 

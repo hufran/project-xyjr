@@ -379,7 +379,7 @@ function couponInfData(Id,callback,errorFn){
 	// 	});
 }
 function getcouponId(event){
-	$('.checkInforBtn').click(function(){
+	$('.checkInforBtn').click(function(event){
 		var couponId='';
 		console.log('youmeiyou');
 		couponId=jQuery(this).siblings('.couponId').text();

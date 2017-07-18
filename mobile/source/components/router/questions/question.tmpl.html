@@ -83,7 +83,9 @@
         <!--题目列表end-->
          <!--{{self.user}}-->
         <div class="aButtons">
-            <a href="loan/{{loan.id}}/invest" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a>
+            <a href="loan/{{loan.id}}/invest" onclick="igNore(3)" ng-if="!qusComeIn">跳过调查问卷</a>
+            <a href="dashboard" onclick="igNore(3)" ng-if="qusComeIn">跳过调查问卷</a>
+            <a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a>
             <div class="clearBoth"></div>
         </div>
         </div>
@@ -103,5 +105,7 @@
     <input type="hidden" value="{{self.user.info.id||clientUserId}}" id="userId">
     <input type="hidden" value="{{loan.id}}" id="loanId">
     <input type="hidden" value="{{isClient}}" id="isClientValue">
-    <input type="hidden" id="mark"></div>
+    <input type="hidden" id="mark">
+    <input type="hidden" id="goHistory" value="0">
+</div>
 </div>
