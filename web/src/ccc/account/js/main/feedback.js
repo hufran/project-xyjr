@@ -56,7 +56,7 @@ feedbackRactive.on('submit', function (e) {
     var params = {
         userId: CC.user.id,
         name: CC.user.name,
-        feedback: filterXSS(this.get('user.advice'));
+        feedback: filterXSS(this.get('user.advice'))
     };
     
     accountService.feedback(CC.user.id, params, function (
