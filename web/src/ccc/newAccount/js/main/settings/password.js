@@ -4,7 +4,7 @@ var utils = require('ccc/global/js/lib/utils');
 var CccOk = require('ccc/global/js/modules/cccOk');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common.js').CommonService;
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
@@ -261,7 +261,7 @@ $("#newPassword").keyup(function(){
 $("#oldPassword").blur(function(){
     var oldPassword=$("#oldPassword").val().trim();
     console.log(filterXSS);
-    var pp = filterXSS.filterXSS(oldPassword);
+    var pp = filterXSS(oldPassword);
     console.log("password:"+pp);
     accountService.checkPassword(filterXSS(oldPassword),function(r){
         if(!r){
