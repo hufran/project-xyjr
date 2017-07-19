@@ -382,10 +382,10 @@ function initailEasyPieChart() {
 initselect();
 function initselect(){
     var path=CC.product;
-    if(path){
-        $('.no-warry').removeClass('active');
-        $('.no-warry[data-product='+path+']').addClass('active');
-        $('.sItem li').removeClass('s__is-selected');
+    $('.no-warry').removeClass('active');
+    $('.sItem li').removeClass('s__is-selected');
+    if(path){       
+        $('.no-warry[data-product='+path+']').addClass('active');        
         $('.sItem li[data-productkey='+path+']').addClass('s__is-selected');
     }    
 }
