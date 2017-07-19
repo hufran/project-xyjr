@@ -1,6 +1,6 @@
 "use strict";
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/userInfo.html'),

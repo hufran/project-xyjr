@@ -15,7 +15,7 @@ var maskLayer = require('assets/js/lib/maskLayer');
 var utils = require('assets/js/lib/utils');
 var formValidator = utils.formValidator;
 var bus = require('ccc/reactive/js/lib/bus');
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 exports.popupLogin = {
     instance: false,
     init: function () {

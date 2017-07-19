@@ -19,7 +19,7 @@ var popupServiceAgreement = require('./serviceAgreement')
 var popupRegistAgreement = require('./registAgreement')
     .popupRegistAgreement;
 var bus = require('ccc/global/js/lib/bus');
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 
 exports.popupRegister = {
     instance: false,

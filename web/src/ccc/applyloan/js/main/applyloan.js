@@ -2,7 +2,7 @@ var applyLoanService = require('../service/applyloan').applyLoanService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var validate = require('ccc/global/js/lib/jquery.validate.min');
 var Box = require('ccc/global/js/modules/cccBox');
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 var applyLoan = new Ractive({
     el: '#applyloan-page',
     template: require('../../partials/applyloan.html'),

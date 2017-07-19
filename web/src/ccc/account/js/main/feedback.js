@@ -6,7 +6,7 @@ var accountService = require('ccc/account/js/main/service/account')
     .accountService;
 var template = require('ccc/account/partials/feedback/feedback.html');
 var utils = require('ccc/global/js/lib/utils');
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 
 var feedbackRactive = new Ractive({
     el: '.feedback-ractive-container',

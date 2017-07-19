@@ -7,7 +7,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;

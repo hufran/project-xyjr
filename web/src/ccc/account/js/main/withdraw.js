@@ -6,7 +6,7 @@ var UMPBANKS = require('ccc/global/js/modules/cccUmpBanks');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/account/js/main/service/account')
     .accountService;
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;

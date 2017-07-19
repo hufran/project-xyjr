@@ -2,7 +2,7 @@
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 
 var resetPasswordRactive = new Ractive({
 	el: '#ractive-container',

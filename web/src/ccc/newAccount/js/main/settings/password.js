@@ -260,9 +260,6 @@ $("#newPassword").keyup(function(){
 });
 $("#oldPassword").blur(function(){
     var oldPassword=$("#oldPassword").val().trim();
-    console.log(filterXSS);
-    var pp = filterXSS(oldPassword);
-    console.log("password:"+pp);
     accountService.checkPassword(filterXSS(oldPassword),function(r){
         if(!r){
             showError("原始密码错误！");

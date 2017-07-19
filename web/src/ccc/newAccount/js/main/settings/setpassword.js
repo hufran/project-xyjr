@@ -1,5 +1,5 @@
 "use strict";
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 var resetPasswordRactive = new Ractive({
     el: '#ractive-container',
     template: require('ccc/newAccount/partials/settings/setpassword.html'),

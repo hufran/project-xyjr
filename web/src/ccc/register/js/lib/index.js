@@ -13,7 +13,7 @@ var LoginService = require('ccc/login/js/lib/service')
     .LoginService;
 var maskLayer = require('ccc/global/js/lib/maskLayer');
 var formValidator = utils.formValidator;
-var filterXSS = require('ccc/xss.min');
+require('ccc/xss.min');
 
 var popupServiceAgreement = require('./serviceAgreement')
     .popupServiceAgreement;
