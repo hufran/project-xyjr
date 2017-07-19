@@ -52,11 +52,7 @@ exports.popupLogin = {
             e.original.preventDefault();
             var self = this;
             var loginName = filterXSS(self.get('loginName'));
-            var password = filterXSS(self.get('password'));
-            console.log("filterXSS"+filterXSS);
-            console.log("password"+password);
-            console.log("loginName"+loginName);
-            alert(11);
+            var password = filterXSS(self.get('password'));            
             formValidator.checkLoginName(loginName, function (
                 bool, error) {
                 if (bool) {
