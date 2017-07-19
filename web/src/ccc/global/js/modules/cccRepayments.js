@@ -97,7 +97,7 @@ module.exports = function (options) {
                 oncomplete: function () {
                     if(typeof o.complete==="function"){
                         o.complete();
-                    } 
+                    }
                 }
             });
         },

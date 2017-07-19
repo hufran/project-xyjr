@@ -573,7 +573,6 @@ module.exports = (function () {
                 };
             }
         },
-
         checkObjectIsEmpty:function(object){
             if(Object.prototype.toString.call(object)==="[object Object]"){
                 for(var key in object){
