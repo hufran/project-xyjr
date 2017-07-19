@@ -15,6 +15,11 @@ static_path = path.join __dirname, '../source'
 
 app = express()
 
+app.use (req,res,next) ->
+    res.setHeader 'x-Frame-Options','SAMEORIGIN'
+    next()
+    return
+
 try
     require('./router').call app, '
 

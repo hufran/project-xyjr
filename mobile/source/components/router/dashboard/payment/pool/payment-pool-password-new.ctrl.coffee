@@ -75,7 +75,9 @@ do (_, angular) ->
 
                 unless confirm_new_password is new_password
                     return @mg_alert @$scope.msg.NOT_MATCH_UP
-
+                new_password = filterXSS(new_password)
+                old_password = filterXSS(old_password)
+                mobile_captcha = filterXSS(mobile_captcha)
                 func = {
                     set: @api.payment_password_set.bind @api, new_password
                     change: @api.payment_password_change.bind @api, old_password, new_password

@@ -19,6 +19,10 @@ do (_, angular) ->
 
             open_payment_account: (user_name, id_number) ->
 
+                user_name = filterXSS(user_name)
+
+                id_number = filterXSS(id_number)
+
                 return unless !!user_name and !!id_number
 
                 @submit_sending = true
