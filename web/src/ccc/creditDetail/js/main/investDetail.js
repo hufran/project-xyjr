@@ -300,7 +300,7 @@ setTimeout((function () {
                 msg: ''
             });
         var creditassignid=this.get('creditassign.creditassign.id');
-        var num = parseFloat(this.get('inputNum'); // 输入的值
+        var num = parseFloat(this.get('inputNum')); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
          if(CC.user.userId== this.get('creditassign.creditassign.userId')){
