@@ -5,7 +5,9 @@ var accountService = require('ccc/account/js/main/service/account').accountServi
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var i18n = require('@ds/i18n')['zh-cn'];
-var format = require('@ds/format')
+var format = require('@ds/format');
+var filterXSS = require('ccc/xss.min');
+
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
 require('bootstrap/js/carousel');
@@ -289,7 +291,7 @@ setTimeout((function () {
             showErrors('请输入交易密码!');
             return false;
         } else {
-            accountService.checkPassword(paymentPassword, function (r) {
+            accountService.checkPassword(filterXSS(paymentPassword), function (r) {
                 if (!r) {
                     showErrors('请输入正确的交易密码!');
                 } else {
@@ -402,9 +404,9 @@ setTimeout((function () {
                                 //alert('222');
                                 var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
                                 $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
-                                    amount : num,
-                                    loanId : investRactive.get('loan.id'),
-                                    paymentPassword : investRactive.get('paymentPassword'),
+                                    amount : filterXSS(num),
+                                    loanId : filterXSS(investRactive.get('loan.id')),
+                                    paymentPassword : filterXSS(investRactive.get('paymentPassword')),
                                     rebateAmount:thisRebate
                                 }, function (res) {
                                     if (res.success) {
@@ -460,10 +462,10 @@ setTimeout((function () {
                             else{
                                 investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
                                 $.post('/lianlianpay/tender', {
-                                    amount : num,
-                                    loanId : investRactive.get('loan.id'),
-                                    placementId : investRactive.get('coupon'),
-                                    paymentPassword : investRactive.get('paymentPassword')
+                                    amount : filterXSS(num),
+                                    loanId : filterXSS(investRactive.get('loan.id')),
+                                    placementId : filterXSS(investRactive.get('coupon')),
+                                    paymentPassword : filterXSS(investRactive.get('paymentPassword'))
                                 }, function (res) {
                                     if (res.success) {
                                         CccOk.create({
@@ -646,10 +648,11 @@ setTimeout((function () {
     }
     function showSelect(amount) {
             $('#couponSelection').val('');
-            var months = CC.loan.duration;
+            var months = CC.loan.duration;           
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
             if(CC.user){
+                 amount = filterXSS(amount);
                 loanService.getMyCoupon(amount, months, function (coupon) {                
                     if (coupon.success) {
                         var list=parsedata(coupon.data);

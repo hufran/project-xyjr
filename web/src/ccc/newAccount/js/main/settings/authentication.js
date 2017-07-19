@@ -5,6 +5,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var format = require('@ds/format');
+var filterXSS = require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
@@ -66,8 +67,8 @@ ractive.on('checkIdNumber',function(){
     });
 });
 ractive.on("register-account-submit", function () {
-    var name = this.get("name");
-    var idNumber = this.get("idNumber");
+    var name = filterXSS(this.get("name"));
+    var idNumber = filterXSS(this.get("idNumber"));
     var that=this;
     this.fire('checkName');
     this.fire('checkIdNumber');

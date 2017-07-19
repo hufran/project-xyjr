@@ -7,6 +7,7 @@ var CccBox = require('ccc/global/js/modules/cccBox');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format')
 var Confirm = require('ccc/global/js/modules/cccConfirm');
+var filterXSS = require('ccc/xss.min');
 var investRactive = new Ractive({
     el: ".do-invest-wrapper",
     template: require('ccc/loan/partials/doInvestOnDetail.html'),
@@ -118,7 +119,7 @@ investRactive.on("invest-submit", function (e) {
         showErrors('请输入交易密码!');
         return false;
     } else {
-        accountService.checkPassword(paymentPassword, function (r) {
+        accountService.checkPassword(filterXSS(paymentPassword), function (r) {
             if (!r) {
                 showErrors('请输入正确的交易密码!');
             } else {
@@ -232,6 +233,7 @@ function showSelect(amount) {
         var months = CC.loan.duration;
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
+        amount = filterXSS(amount);
         loanService.getMyCoupon(amount, months, function (coupon) {
             if(coupon.success) {
                 var canUseCoupon = _.filter(coupon.data, function (r) {

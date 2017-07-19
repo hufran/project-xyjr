@@ -2,6 +2,7 @@
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var filterXSS = require('ccc/xss.min');
 
 var resetPasswordRactive = new Ractive({
 	el: '#ractive-container',
@@ -46,9 +47,9 @@ resetPasswordRactive.on('checksms',function(){
   }
 });
 resetPasswordRactive.on('resetPassword', function () {
-    var pwd = this.get('password');
+    var pwd = filterXSS(this.get('password'));
     var repwd = this.get('repassword');
-    var smsCaptcha = this.get('smsCaptcha');
+    var smsCaptcha = filterXSS(this.get('smsCaptcha'));
 		var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
     resetPasswordRactive.fire('checkpwd');
     resetPasswordRactive.fire('checkrepwd');

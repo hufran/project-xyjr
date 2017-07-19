@@ -7,7 +7,7 @@ var CccBox = require('ccc/global/js/modules/cccBox');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format')
 var Confirm = require('ccc/global/js/modules/cccConfirm');
-
+var filterXSS = require('ccc/xss.min');
 var investRactive = new Ractive({
     el: ".do-invest-wrapper",
     template: require('ccc/loan/partials/doInvestOnDetail.html'),
@@ -60,7 +60,7 @@ investRactive.on("invest-submit", function (e) {
     var num = parseInt(this.get('inputNum'), 10); // 输入的值
     var loanId = this.get('loan.id');
     var placementId = this.get('coupon');
-    var paymentPassword = this.get('paymentPassword');
+    var paymentPassword = filterXSS(this.get('paymentPassword'));
     if(CC.loan.userId===CC.user.userId){
         showErrors('该标为您本人借款，无法投标 ');
         return false;
@@ -131,10 +131,10 @@ investRactive.on("invest-submit", function (e) {
                 if (!self.get('tendering')) {
                   self.set('tendering', true);
                   $.post('/lianlianpay/tender', {
-                      amount : num,
-                      loanId : investRactive.get('loan.id'),
-                      placementId : investRactive.get('coupon'),
-                      paymentPassword : investRactive.get('paymentPassword')
+                      amount : filterXSS(num),
+                      loanId : filterXSS(investRactive.get('loan.id')),
+                      placementId : filterXSS(investRactive.get('coupon')),
+                      paymentPassword : filterXSS(investRactive.get('paymentPassword'))
                   }, function (res) {
                       if (res.success) {
                           CccOk.create({
@@ -233,6 +233,7 @@ function showSelect(amount) {
         var months = CC.loan.duration;
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
+        amount = filterXSS(amount);
         loanService.getMyCoupon(amount, months, function (coupon) {
             if(coupon.success) {
                 var canUseCoupon = _.filter(coupon.data, function (r) {
@@ -256,7 +257,7 @@ investRactive.on('getCoupon', function () {
         return false;
     }
     var args = {
-        amountValue : self.get('inputNum'),
+        amountValue : filterXSS(self.get('inputNum')),
         dueYear : CC.loan.dueYear,
         dueMonth : CC.loan.dueMonth,
         dueDay : CC.loan.dueDay,

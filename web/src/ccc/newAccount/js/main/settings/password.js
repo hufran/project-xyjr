@@ -4,6 +4,7 @@ var utils = require('ccc/global/js/lib/utils');
 var CccOk = require('ccc/global/js/modules/cccOk');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common.js').CommonService;
+var filterXSS = require('ccc/xss.min');
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
@@ -85,7 +86,7 @@ passwordRactive.on('initialPassword', function () {
     };
     console.log('isAcess'+isAcess);
     if(isAcess) {
-        accountService.initialPassword(pwd, function (r) {
+        accountService.initialPassword(filterXSS(pwd), function (r) {
             if (r.success) {
                 CccOk.create({
                     msg: msg,
@@ -163,8 +164,8 @@ return false;
 }
 passwordRactive.on('updatePassword', function () {
 
-  var oldpwd = this.get('oldPassword');
-  var newPwd = this.get('newPassword');
+  var oldpwd = filterXSS(this.get('oldPassword'));
+  var newPwd = filterXSS(this.get('newPassword'));
   var reNewPwd = this.get('reNewPassword');
     passwordRactive.fire('checkoldpwd');
     passwordRactive.fire('checknewpwd');
@@ -219,7 +220,7 @@ passwordRactive.on('resetPassword', function () {
 	    }
 
 	    if(isAcess) {
-	        accountService.resetPassword(pwd, function (r) {
+	        accountService.resetPassword(filterXSS(pwd), function (r) {
 	            if (r) {
 	                CccOk.create({
 	                    msg: '交易密码重置成功！',
@@ -260,7 +261,7 @@ $("#newPassword").keyup(function(){
 $("#oldPassword").blur(function(){
     var oldPassword=$("#oldPassword").val().trim();
 
-    accountService.checkPassword(oldPassword,function(r){
+    accountService.checkPassword(filterXSS(oldPassword),function(r){
         if(!r){
             showError("原始密码错误！");
         }else{
@@ -356,7 +357,7 @@ passwordRactive.on("submit-modify-password", function (event) {
 
       return false;
     }
-    CommonService.checkCaptcha(passwordRactive.get('captcha'), function (res) {
+    CommonService.checkCaptcha(filterXSS(passwordRactive.get('captcha')), function (res) {
         if (res.success) {
             if(currentPassword===newPassword){
                return showErrorIndex('showErrorMessaged','errorMessaged','新密码不能与原始密码相同');
@@ -366,9 +367,9 @@ passwordRactive.on("submit-modify-password", function (event) {
             request.post("/newAccount/change_password")
                 .type("form")
                 .send({
-                    currentPassword: currentPassword,
-                    newPassword: newPassword,
-                    captcha: captcha
+                    currentPassword: filterXSS(currentPassword),
+                    newPassword: filterXSS(newPassword),
+                    captcha: filterXSS(captcha)
                 })
                 .end(function (err, res) {
                     res = JSON.parse(res.text);

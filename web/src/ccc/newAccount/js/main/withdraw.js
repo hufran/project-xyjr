@@ -7,6 +7,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var filterXSS = require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
@@ -95,7 +96,7 @@ var ractive = new Ractive({
 				self.set('submitMessage', '请输入交易密码');
 				return;
 			} else {
-				accountService.checkPassword(password, function (r) {
+				accountService.checkPassword(filterXSS(password), function (r) {
 					if (!r) {
 						self.set('submitMessage', '交易密码错误');
 						return;
@@ -219,7 +220,7 @@ ractive.on('withDrawSubmit', function () {
 
 	else if (pass !== '') {
 		console.log('pass!=');
-		accountService.checkPassword(pass, function (r) {
+		accountService.checkPassword(filterXSS(pass), function (r) {
 			if (!r) {
 				ractive.set('submitMessage', '交易密码错误');
 			} else {
@@ -231,8 +232,8 @@ ractive.on('withDrawSubmit', function () {
 				if (isAcess) {
 					$.post('/yeepay/withdraw', 
 					{
-						paymentPassword : pass,
-						amount : amount
+						paymentPassword : filterXSS(pass),
+						amount : filterXSS(amount)
 
 					}, function (res) {
 						if (res.success) {

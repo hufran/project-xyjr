@@ -7,8 +7,9 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var filterXSS = require('ccc/xss.min');
 // 过滤银行卡，只显示enabled=true的
-var banksList={};
+var banksList={}
 var banks=[];
 
 if (CC.user.account) {
@@ -213,13 +214,13 @@ ractive.on("bind-card-submit", function (e) {
     }
     
     var sendObj = {
-        bankName: bankName,
-        cardNo: cardNo,
-        cardPhone: cardPhone,
-        province: province,
-        city: city,
-        branchName: branchName,
-        smsCaptcha: smsCaptcha
+        bankName: filterXSS(bankName),
+        cardNo: filterXSS(cardNo),
+        cardPhone: filterXSS(cardPhone),
+        province: filterXSS(province),
+        city: filterXSS(city),
+        branchName: filterXSS(branchName),
+        smsCaptcha: filterXSS(smsCaptcha)
     }
 
     $.post('/yeepay/bindCard', sendObj, function (r) {
@@ -258,8 +259,8 @@ ractive.on("delete-card-submit", function (e) {
         ok: function () {
             $('.btn-confirm-cancel').trigger('click');
             $.post('/yeepay/deleteCard', {
-                cardNo : ractive.get('bankAccount[0].account.account'),
-                paymentPassword : ractive.get('password')
+                cardNo : filterXSS(ractive.get('bankAccount[0].account.account')),
+                paymentPassword : filterXSS(ractive.get('password'))
             }, function (r) {
                 if(r.success) {
                     CccOk.create({
@@ -294,7 +295,7 @@ ractive.on("delete-card-submit", function (e) {
 });
 
 ractive.on('selectPro', function () {
-    var province = this.get('myProvince');
+    var province = filterXSS(this.get('myProvince'));
     accountService.getCity(province, function (res) {
         ractive.set('city', changeToList(res));
     });

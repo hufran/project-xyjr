@@ -56,6 +56,7 @@ exports.popupLogin = {
             console.log("filterXSS"+filterXSS);
             console.log("password"+password);
             console.log("loginName"+loginName);
+            alert(11);
             formValidator.checkLoginName(loginName, function (
                 bool, error) {
                 if (bool) {

@@ -13,6 +13,7 @@ var LoginService = require('ccc/login/js/lib/service')
     .LoginService;
 var maskLayer = require('ccc/global/js/lib/maskLayer');
 var formValidator = utils.formValidator;
+var filterXSS = require('ccc/xss.min');
 
 var popupServiceAgreement = require('./serviceAgreement')
     .popupServiceAgreement;
@@ -80,28 +81,26 @@ exports.popupRegister = {
         });
         popupRegisterRactive.on('doNext', function () {
             var self = this;
-
-            formValidator.checkRegisterName(self.get('user.loginName'),
+            var loginName = filterXSS(self.get('user.loginName'));
+            var password = filterXSS(self.get('user.password'));
+            var repassword = filterXSS(self.get('user.repassword'));
+            formValidator.checkRegisterName(loginName,
                 function (
                     bool, error) {
                     if (bool) {
-                        RegisterService.checkLoginName(self.get(
-                                'user.loginName'),
+                        RegisterService.checkLoginName(loginName,
                             function (bool, error) {
                                 if (!bool) {
                                     showErrors(error[0].message);
                                     return;
                                 } else {
 
-                                    formValidator.checkPassword(self.get(
-                                            'user.password'),
+                                    formValidator.checkPassword(password,
                                         function (bool, error) {
                                             if (bool) {
                                                 formValidator.checkRePassword(
-                                                    self.get(
-                                                        'user.password'),
-                                                    self.get(
-                                                        'user.repassword'),
+                                                    password,
+                                                    repassword,
                                                     function (
                                                         bool,
                                                         error) {
@@ -157,21 +156,22 @@ exports.popupRegister = {
         popupRegisterRactive.on('doRegister', function (e) {
             e.original.preventDefault();
             var self = this;
-            formValidator.checkMobile(self.get('user.mobile'),
+            var mobile = filterXSS(self.get('user.mobile'));
+            formValidator.checkMobile(mobile,
                 function (
                     bool, error) {
                     var user = {};
                     var _user = self.get('user');
                     if (bool) {
-                        RegisterService.checkMobile(_user.mobile,
+                        RegisterService.checkMobile(mobile,
                             function (
                                 bool, error) {
                                 if (bool) {
                                     user = {
-                                        loginName: $.trim(_user.loginName),
-                                        password: $.trim(_user.password),
-                                        mobile_captcha: $.trim(_user.smsCaptcha),
-                                        mobile: $.trim(_user.mobile)
+                                        loginName: filterXSS($.trim(_user.loginName)),
+                                        password: filterXSS($.trim(_user.password)),
+                                        mobile_captcha: filterXSS($.trim(_user.smsCaptcha)),
+                                        mobile: filterXSS($.trim(_user.mobile))
                                     };
                                     RegisterService.doRegister(user,
                                         function (
@@ -180,27 +180,27 @@ exports.popupRegister = {
                                             if (body.success) {
                                                 var params =
                                                     'code=' +
-                                                    self.get(
+                                                    filterXSS(self.get(
                                                         'user.invitation'
-                                                ) +
+                                                )) +
                                                     '&settoused=1&associator=' +
-                                                    popupRegisterRactive
+                                                    filterXSS(popupRegisterRactive
                                                     .get(
                                                         'user.loginName'
-                                                );
+                                                ));
                                                 RegisterService.checkInvitation(
                                                     params, function () {
                                                         bus('session:user')
                                                             .push(body.user);
                                                         LoginService.doLogin(
-                                                            popupRegisterRactive
+                                                            filterXSS(popupRegisterRactive
                                                             .get(
                                                                 'user.loginName'
-                                                            ),
-                                                            popupRegisterRactive
+                                                            )),
+                                                            filterXSS(popupRegisterRactive
                                                             .get(
                                                                 'user.password'
-                                                            ));
+                                                            )));
                                                         popupRegisterRactive
                                                             .set(
                                                                 'step1',
@@ -234,19 +234,17 @@ exports.popupRegister = {
 
         popupRegisterRactive.on('getSmsCaptcha', function () {
             var self = this;
-
-            formValidator.checkMobile(self.get('user.mobile'),
+            var mobile = filterXSS(self.get('user.mobile'));
+            formValidator.checkMobile(mobile,
                 function (
                     bool, error) {
 
                     if (bool) {
-                        RegisterService.checkMobile(self.get(
-                                'user.mobile'),
+                        RegisterService.checkMobile(mobile,
                             function (bool, error) {
                                 if (bool) {
                                     CommonService.getSmsCaptcha(
-                                        self.get(
-                                            'user.mobile'),
+                                        mobile,
                                         function (body) {
                                             if (body.success) {
                                                 countDown();

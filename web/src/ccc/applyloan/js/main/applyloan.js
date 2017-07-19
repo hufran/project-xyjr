@@ -2,6 +2,7 @@ var applyLoanService = require('../service/applyloan').applyLoanService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var validate = require('ccc/global/js/lib/jquery.validate.min');
 var Box = require('ccc/global/js/modules/cccBox');
+var filterXSS = require('ccc/xss.min');
 var applyLoan = new Ractive({
     el: '#applyloan-page',
     template: require('../../partials/applyloan.html'),
@@ -194,17 +195,17 @@ $('#sendApplyloan').click(function () {
     }
     var loan = {};
 
-    loan.coporationName = $("#companyName").val().trim();
-    loan.mobile = parseInt($("#mobilePhone").val().trim());
-    loan.amount = parseInt($("#loanMoney").val().trim());
-    loan.loanType = $("#loanType").find("option:selected").val();
+    loan.coporationName = filterXSS($("#companyName").val().trim());
+    loan.mobile = filterXSS(parseInt($("#mobilePhone").val().trim()));
+    loan.amount = filterXSS(parseInt($("#loanMoney").val().trim()));
+    loan.loanType = filterXSS($("#loanType").find("option:selected").val());
 //    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
-    loan.loanPurposeCustomized = $("#loanPurpos").val().trim();
-    var months = parseInt($("#months").val().trim());
+    loan.loanPurposeCustomized = filterXSS($("#loanPurpos").val().trim());
+    var months = filterXSS(parseInt($("#months").val().trim()));
     loan.months = months;
     loan.year = parseInt(months / 12);
-    loan.name = $("#personName").val();
-    loan.address = $("#companyAddress").val();
+    loan.name = filterXSS($("#personName").val());
+    loan.address = filterXSS($("#companyAddress").val());
     loan.status = 'PROPOSED';
 
 

@@ -1,5 +1,6 @@
 "use strict";
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+var filterXSS = require('ccc/xss.min');
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/userInfo.html'),
@@ -158,11 +159,11 @@ $(function (){
 });
 
 ractive.on('submit',function() {
-    var male = $('#male').val();
-    var companyIndustry  = this.get('companyIndustry');
-    var educationLevel = this.get('educationLevel');
-    var salary = this.get('salary');
-    var maritalStatus  = this.get('maritalStatus');
+    var male = filterXSS($('#male').val());
+    var companyIndustry  = filterXSS(this.get('companyIndustry'));
+    var educationLevel = filterXSS(this.get('educationLevel'));
+    var salary = filterXSS(this.get('salary'));
+    var maritalStatus  = filterXSS(this.get('maritalStatus'));
     accountService.updatePersonalInfo(male,educationLevel,maritalStatus,function(r) {
         if (!r.error) {
             accountService.updateCareerInfo(companyIndustry,salary,function(r) {

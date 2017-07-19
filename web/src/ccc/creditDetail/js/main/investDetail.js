@@ -8,7 +8,8 @@ var CommonService = require('ccc/global/js/modules/common')
     .CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var i18n = require('@ds/i18n')['zh-cn'];
-var format = require('@ds/format')
+var format = require('@ds/format');
+var filterXSS = require('ccc/xss.min');
 
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/lib/jquery.easy-pie-chart.js');
@@ -299,7 +300,7 @@ setTimeout((function () {
                 msg: ''
             });
         var creditassignid=this.get('creditassign.creditassign.id');
-        var num = parseFloat(this.get('inputNum')); // 输入的值
+        var num = parseFloat(this.get('inputNum'); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
         var paymentPassword = this.get('paymentPassword');
          if(CC.user.userId== this.get('creditassign.creditassign.userId')){
@@ -311,7 +312,7 @@ setTimeout((function () {
             showErrors('此债转只能一次全额转让');
             return false;
         }
-        accountService.checkPassword(paymentPassword,
+        accountService.checkPassword(filterXSS(paymentPassword),
             function (r) {
                 if (!r) {
                     showErrors('请输入正确的交易密码!');
@@ -328,8 +329,8 @@ setTimeout((function () {
                             ok: function () {
                                 $('.dialog').hide();
                                 var cparams={
-                                    creditAssignId:creditassignid,
-                                    principalAmount:num,
+                                    creditAssignId:filterXSS(creditassignid),
+                                    principalAmount:filterXSS(num),
                                 };
                                 loanService.sendAutoAssign(cparams,function(r){
                                     if(r.body=='SUCCESSFUL'){
@@ -461,9 +462,10 @@ setTimeout((function () {
     function showSelect(amount) {
         $('#couponSelection')
             .val('');
-        var months = CC.loan.duration;
+        var months = CC.loan.duration;        
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
+        amount = filterXSS(amount);
         loanService.getMyCoupon(amount, months, function (coupon) {
             if (coupon.success) {
                 investRactive.set('selectOption', parsedata(
@@ -486,8 +488,7 @@ setTimeout((function () {
 
 $('.investInput')
     .on('keyup', function () {
-        showSelect($(this)
-            .val());
+        showSelect($(this).val());
     });
 loanService.getLoanProof(CC.loan.requestId, function (r1) {
     loanService.getCareerProof(CC.loan.userId, function (r2) {
