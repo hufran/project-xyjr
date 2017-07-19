@@ -260,8 +260,8 @@ $("#newPassword").keyup(function(){
 });
 $("#oldPassword").blur(function(){
     var oldPassword=$("#oldPassword").val().trim();
-    console.log("filterXSS"+filterXSS);
-    var pp = filterXSS(oldPassword);
+    console.log(filterXSS);
+    var pp = filterXSS.filterXSS(oldPassword);
     console.log("password:"+pp);
     accountService.checkPassword(filterXSS(oldPassword),function(r){
         if(!r){
