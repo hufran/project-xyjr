@@ -219,7 +219,7 @@ ractive.on("bind-card-submit", function (e) {
         cardPhone: filterXSS(cardPhone),
         province: filterXSS(province),
         city: filterXSS(city),
-        branchName: filterXSS(branchName),
+        branchName: branchName,
         smsCaptcha: filterXSS(smsCaptcha)
     }
 

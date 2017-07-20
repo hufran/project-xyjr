@@ -63,7 +63,6 @@ $('#loginForm').submit(function (e) {
 
     $postBtn.addClass('disabled').html('登录中...');
 
-    var data="loginName="+filterXSS($loginName.val())+"&password="+filterXSS($password.val())+"&backUrl=";
     request.post('/api/web/login').type('form').send({loginName:filterXSS($loginName.val()),password:filterXSS($password.val()),backUrl:""}).end().get('body').then(function (r) {
         if (r.success) {
             $postBtn.text('登录成功');
