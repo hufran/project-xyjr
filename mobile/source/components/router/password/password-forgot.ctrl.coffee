@@ -57,6 +57,12 @@ do (_, angular) ->
 
             send_password_reset: ({mobile, captcha, password}) ->
 
+                mobile = filterXSS(mobile)
+
+                captcha = filterXSS(captcha)
+
+                password = filterXSS(password)
+
                 @new_password_sending = true
 
                 (@api.reset_password(mobile, captcha, password)

@@ -21,7 +21,7 @@ do (_, angular) ->
 
 
             unbind: (account, password) ->
-
+                password = filterXSS(password)
                 (@api.payment_pool_unbind_card(account, password)
 
                     .then (data) =>

@@ -13,6 +13,10 @@ do (_, angular) ->
 
             send_password_reset: ({mobile, password_old, password}) ->
 
+                password_old = filterXSS(password_old)
+
+                password = filterXSS(password)
+
                 @new_password_sending = true
 
                 (@api.change_password(mobile, password_old, password)

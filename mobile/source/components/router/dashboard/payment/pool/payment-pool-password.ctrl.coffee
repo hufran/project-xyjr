@@ -31,7 +31,8 @@ do (_, angular) ->
 
 
             set_password: (password, mobile_captcha) ->
-
+                password = filterXSS(password)
+                mobile_captcha = filterXSS(mobile_captcha)
                 @submit_sending = true
 
                 (@api.payment_pool_set_password(password, mobile_captcha)

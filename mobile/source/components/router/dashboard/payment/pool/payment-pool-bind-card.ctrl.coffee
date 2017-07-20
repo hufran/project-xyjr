@@ -110,7 +110,8 @@ do (_, angular) ->
 
 
             bind_card: ({bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha,businessType}) ->
-
+                cardNo = filterXSS(cardNo)
+                smsCaptcha = filterXSS(smsCaptcha)
                 if cardNo != undefined
                     if businessType == '0' || businessType == '1'
 

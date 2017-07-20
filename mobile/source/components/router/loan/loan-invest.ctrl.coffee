@@ -219,6 +219,8 @@ do (_, angular, Math) ->
 
                 @submit_sending = true
 
+                password = filterXSS(password)
+                amount = filterXSS(amount)
                 if coupon != undefined and coupon.id == null
 
                     #console.log 123

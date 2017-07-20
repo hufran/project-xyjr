@@ -81,7 +81,9 @@ do (_, angular) ->
 
 
             signup: ({password, mobile, mobile_captcha, referral, channel}) ->
-
+                password = filterXSS(password)
+                mobile = filterXSS(mobile)
+                mobile_captcha = filterXSS(mobile_captcha)
                 @submit_sending = true
 
                 optional = {}

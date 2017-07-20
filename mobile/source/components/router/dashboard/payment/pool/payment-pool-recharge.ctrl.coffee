@@ -47,6 +47,7 @@ do (angular) ->
 
 
       submit: (event, amount, return_url) ->
+        amount = filterXSS(amount)
         @api.payment_get_recharge_url amount, return_url
         .then (data) =>
           @$window.location.href = data.message

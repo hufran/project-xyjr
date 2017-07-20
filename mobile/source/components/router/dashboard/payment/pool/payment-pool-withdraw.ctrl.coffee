@@ -24,7 +24,8 @@ do (angular) ->
 
 
             submit: (amount = @$scope.amount or 0, password) ->
-
+                amount = filterXSS(amount)
+                password = filterXSS(amount)
                 @submit_sending = true
 
                 (@api.payment_pool_check_password(password)
