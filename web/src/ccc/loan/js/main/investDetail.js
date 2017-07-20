@@ -406,7 +406,7 @@ setTimeout((function () {
                                 //alert('222');
                                 var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
                                 $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
-                                    amount : filterXSS(num),
+                                    amount : num,
                                     loanId : filterXSS(investRactive.get('loan.id')),
                                     paymentPassword : filterXSS(investRactive.get('paymentPassword')),
                                     rebateAmount:thisRebate
@@ -464,7 +464,7 @@ setTimeout((function () {
                             else{
                                 investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
                                 $.post('/lianlianpay/tender', {
-                                    amount : filterXSS(num),
+                                    amount : num,
                                     loanId : filterXSS(investRactive.get('loan.id')),
                                     placementId : filterXSS(investRactive.get('coupon')),
                                     paymentPassword : filterXSS(investRactive.get('paymentPassword'))
@@ -654,7 +654,7 @@ setTimeout((function () {
             investRactive.set('inum', parseFloat(amount));
             disableErrors();
             if(CC.user){
-                 amount = filterXSS(amount);
+                 amount = parseFloat(amount);
                 loanService.getMyCoupon(amount, months, function (coupon) {                
                     if (coupon.success) {
                         var list=parsedata(coupon.data);
