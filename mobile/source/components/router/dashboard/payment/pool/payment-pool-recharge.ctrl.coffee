@@ -41,13 +41,12 @@ do (angular) ->
 
 #                console.log Number( (@$scope.amount*100 ).toFixed(0) )
         if  @pay_type == 'lianlianPay'
-          @$scope.amountNew = @$scope.amount
+          @$scope.amountNew = filterXSS(@$scope.amount.toString())
         else
-          @$scope.amountNew = Math.round(@$scope.amount * 100)
+          @$scope.amountNew = filterXSS((Math.round(@$scope.amount * 100)).toString())
 
 
       submit: (event, amount, return_url) ->
-        amount = filterXSS(amount)
         @api.payment_get_recharge_url amount, return_url
         .then (data) =>
           @$window.location.href = data.message

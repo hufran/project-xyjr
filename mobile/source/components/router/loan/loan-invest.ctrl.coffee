@@ -218,9 +218,9 @@ do (_, angular, Math) ->
                 return unless good_to_go
 
                 @submit_sending = true
-
                 password = filterXSS(password)
-                amount = filterXSS(amount)
+                amount = filterXSS(amount.toString())
+
                 if coupon != undefined and coupon.id == null
 
                     #console.log 123
