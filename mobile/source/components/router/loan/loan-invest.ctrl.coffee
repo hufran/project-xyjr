@@ -196,6 +196,8 @@ do (_, angular, Math) ->
                 (if amount > loan_available
                     good_to_go = false
                     @mg_alert "当前剩余可投#{ loan_available }元"
+                else if loan_available < loan_minimum
+                    good_to_go = true
 
                 else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
                     good_to_go = false
