@@ -2,7 +2,7 @@
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var captChaImg = $('.captcha-img');
 var captcha = {};
-
+require('ccc/xss.min');
 
 getCaptCha();
 
