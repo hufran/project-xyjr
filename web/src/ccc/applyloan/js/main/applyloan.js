@@ -196,12 +196,12 @@ $('#sendApplyloan').click(function () {
     var loan = {};
 
     loan.coporationName = filterXSS($("#companyName").val().trim());
-    loan.mobile = filterXSS(parseInt($("#mobilePhone").val().trim()));
-    loan.amount = filterXSS(parseInt($("#loanMoney").val().trim()));
+    loan.mobile = parseInt($("#mobilePhone").val().trim());
+    loan.amount = parseInt($("#loanMoney").val().trim());
     loan.loanType = filterXSS($("#loanType").find("option:selected").val());
 //    loan.loanPurpose = $("#loanPurpose").find("option:selected").val();
     loan.loanPurposeCustomized = filterXSS($("#loanPurpos").val().trim());
-    var months = filterXSS(parseInt($("#months").val().trim()));
+    var months = parseInt($("#months").val().trim());
     loan.months = months;
     loan.year = parseInt(months / 12);
     loan.name = filterXSS($("#personName").val());

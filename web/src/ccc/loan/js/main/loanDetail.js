@@ -233,7 +233,7 @@ function showSelect(amount) {
         var months = CC.loan.duration;
         investRactive.set('inum', parseFloat(amount));
         disableErrors();
-        amount = filterXSS(amount);
+        amount = filterXSS(amount.toString());
         loanService.getMyCoupon(amount, months, function (coupon) {
             if(coupon.success) {
                 var canUseCoupon = _.filter(coupon.data, function (r) {

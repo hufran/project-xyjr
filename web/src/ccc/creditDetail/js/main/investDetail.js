@@ -330,7 +330,7 @@ setTimeout((function () {
                                 $('.dialog').hide();
                                 var cparams={
                                     creditAssignId:filterXSS(creditassignid),
-                                    principalAmount:filterXSS(num),
+                                    principalAmount:num,
                                 };
                                 loanService.sendAutoAssign(cparams,function(r){
                                     if(r.body=='SUCCESSFUL'){
