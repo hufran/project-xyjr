@@ -49,7 +49,7 @@ resetPasswordRactive.on('checksms',function(){
 resetPasswordRactive.on('resetPassword', function () {
     var pwd = encodeURIComponent(filterXSS(this.get('password')));
     var repwd = this.get('repassword');
-    var smsCaptcha = encodeURIComponent(filterXSS(this.get('smsCaptcha')));
+    var smsCaptcha = filterXSS(this.get('smsCaptcha'));
 	var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
     resetPasswordRactive.fire('checkpwd');
     resetPasswordRactive.fire('checkrepwd');
@@ -77,7 +77,6 @@ resetPasswordRactive.on('resetPassword', function () {
         // }
 
         if(isAcess) {
-            console.log("pwd1111111:",pwd);
 			accountService.checkPassword(pwd,function(r){
 	        if(r){
                 showErrorIndex('showErrorMessagea','errorMessagea','与原密码相同');

@@ -164,7 +164,7 @@ return false;
 }
 passwordRactive.on('updatePassword', function () {
 
-  var oldpwd = filterXSS(this.get('oldPassword'));
+  var oldpwd = encodeURIComponent(filterXSS(this.get('oldPassword')));
   var newPwd = filterXSS(this.get('newPassword'));
   var reNewPwd = this.get('reNewPassword');
     passwordRactive.fire('checkoldpwd');
@@ -260,7 +260,7 @@ $("#newPassword").keyup(function(){
 });
 $("#oldPassword").blur(function(){
     var oldPassword=$("#oldPassword").val().trim();
-    accountService.checkPassword(filterXSS(oldPassword),function(r){
+    accountService.checkPassword(encodeURIComponent(filterXSS(oldPassword)),function(r){
         if(!r){
             showError("原始密码错误！");
         }else{
@@ -356,7 +356,7 @@ passwordRactive.on("submit-modify-password", function (event) {
 
       return false;
     }
-    CommonService.checkCaptcha(filterXSS(passwordRactive.get('captcha')), function (res) {
+    CommonService.checkCaptcha(encodeURIComponent(filterXSS(passwordRactive.get('captcha'))), function (res) {
         if (res.success) {
             if(currentPassword===newPassword){
                return showErrorIndex('showErrorMessaged','errorMessaged','新密码不能与原始密码相同');

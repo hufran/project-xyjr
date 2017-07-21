@@ -96,7 +96,7 @@ var ractive = new Ractive({
 				self.set('submitMessage', '请输入交易密码');
 				return;
 			} else {
-				accountService.checkPassword(filterXSS(password), function (r) {
+				accountService.checkPassword(encodeURIComponent(filterXSS(password)), function (r) {
 					if (!r) {
 						self.set('submitMessage', '交易密码错误');
 						return;
@@ -220,7 +220,7 @@ ractive.on('withDrawSubmit', function () {
 
 	else if (pass !== '') {
 		console.log('pass!=');
-		accountService.checkPassword(filterXSS(pass), function (r) {
+		accountService.checkPassword(encodeURIComponent(filterXSS(pass)), function (r) {
 			if (!r) {
 				ractive.set('submitMessage', '交易密码错误');
 			} else {
