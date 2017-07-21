@@ -99,8 +99,8 @@ exports.popupRegister = {
                                         function (bool, error) {
                                             if (bool) {
                                                 formValidator.checkRePassword(
-                                                    password,
-                                                    repassword,
+                                                    self.get('user.password'),
+                                                    self.get('user.repassword'),
                                                     function (
                                                         bool,
                                                         error) {
@@ -180,14 +180,14 @@ exports.popupRegister = {
                                             if (body.success) {
                                                 var params =
                                                     'code=' +
-                                                    filterXSS(self.get(
+                                                    encodeURIComponent(filterXSS(self.get(
                                                         'user.invitation'
-                                                )) +
+                                                ))) +
                                                     '&settoused=1&associator=' +
-                                                    filterXSS(popupRegisterRactive
+                                                    encodeURIComponent(filterXSS(popupRegisterRactive
                                                     .get(
                                                         'user.loginName'
-                                                ));
+                                                )));
                                                 RegisterService.checkInvitation(
                                                     params, function () {
                                                         bus('session:user')
@@ -240,7 +240,7 @@ exports.popupRegister = {
                     bool, error) {
 
                     if (bool) {
-                        RegisterService.checkMobile(mobile,
+                        RegisterService.checkMobile(filterXSS(mobile),
                             function (bool, error) {
                                 if (bool) {
                                     CommonService.getSmsCaptcha(

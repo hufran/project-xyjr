@@ -119,7 +119,7 @@ investRactive.on("invest-submit", function (e) {
         showErrors('请输入交易密码!');
         return false;
     } else {
-        accountService.checkPassword(filterXSS(paymentPassword), function (r) {
+        accountService.checkPassword(encodeURIComponent(filterXSS(paymentPassword)), function (r) {
             if (!r) {
                 showErrors('请输入正确的交易密码!');
             } else {

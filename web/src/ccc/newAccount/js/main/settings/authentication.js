@@ -72,14 +72,14 @@ ractive.on("register-account-submit", function () {
     var that=this;
     this.fire('checkName');
     this.fire('checkIdNumber');
-    utils.formValidator.checkName(name, function (bool, error) {
+    utils.formValidator.checkName(this.get("name"), function (bool, error) {
         if (!bool) {
             ractive.set({
                 showErrorMessageName: true,
                 errorMessageName: utils.errorMsg[error]
             });
         } else {
-            utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
+            utils.formValidator.checkIdNumber(this.get("idNumber"), function (bool, error) {
                 if (!bool) {
                     ractive.set({
                         showErrorMessageId: true,

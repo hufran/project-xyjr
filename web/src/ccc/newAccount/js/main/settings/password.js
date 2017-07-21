@@ -164,7 +164,7 @@ return false;
 }
 passwordRactive.on('updatePassword', function () {
 
-  var oldpwd = encodeURIComponent(filterXSS(this.get('oldPassword')));
+  var oldpwd = filterXSS(this.get('oldPassword'));
   var newPwd = filterXSS(this.get('newPassword'));
   var reNewPwd = this.get('reNewPassword');
     passwordRactive.fire('checkoldpwd');
@@ -175,7 +175,7 @@ passwordRactive.on('updatePassword', function () {
 
     if(isAcess) {
 
-         accountService.checkPassword(oldpwd,function(r){
+         accountService.checkPassword(encodeURIComponent(oldpwd),function(r){
         if(!r){
             // showError("原始密码错误！");
             showErrorIndex('showErrorMessage0','errorMessage0','原始密码错误!');

@@ -7,6 +7,7 @@
 	var CommonService = require('ccc/global/js/modules/common')
 	    .CommonService;
 	var registerService = require('ccc/register/js/lib/service').RegisterService
+	require('ccc/xss.min');
 	var returnMap = {
 	    'INVALID_CAPTCHA': '验证码不正确',
 	    'MOBILE_NAME_NOT_MATCH': '用户名和手机号码不匹配'
@@ -67,17 +68,17 @@
 	    // alert(1);
 	    e.original.preventDefault();
 	    var user = {
-	        loginName: 'zqjr_' + this.get('user.mobile'),
-	        mobile: this.get('user.mobile'),
-	        captcha: this.get('captcha.text'),
-	        token: this.get('captcha.token')
+	        loginName: 'zqjr_' + filterXSS(this.get('user.mobile')),
+	        mobile: filterXSS(this.get('user.mobile')),
+	        captcha: filterXSS(this.get('captcha.text')),
+	        token: filterXSS(this.get('captcha.token'))
 	    };
-	    utils.formValidator.checkLoginName(user.loginName, function (err, msg) {
+	    utils.formValidator.checkLoginName(this.get('user.mobile'), function (err, msg) {
 	        if (!err) {
 	            showErrors(msg);
 	            return false;
 	        }
-	        utils.formValidator.checkMobile(user.mobile, function (err, msg) {
+	        utils.formValidator.checkMobile(this.get('user.mobile'), function (err, msg) {
 	            if (!err) {
 	                showErrors(msg);
 	                return false;
@@ -107,8 +108,8 @@
 	rePassword.on('next', function (e) {
 	    e.original.preventDefault();
 	    var user = {
-	        mobile: this.get('user.mobile'),
-	        captcha: this.get('phone'),
+	        mobile: filterXSS(this.get('user.mobile')),
+	        captcha: filterXSS(this.get('phone')),
 	        smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
 	    };
 
@@ -118,7 +119,7 @@
 	    }
 
         var bMobile = false;
-	    utils.formValidator.checkMobile(user.mobile, function (ok, msg) {
+	    utils.formValidator.checkMobile(this.get('user.mobile'), function (ok, msg) {
             if (ok) {
                 disableErrors();
                 registerService.checkMobile(user.mobile, function (err, msg) {
@@ -212,7 +213,14 @@
 	    }
 
 	    if (isVer) {
-	        rePasswordService.doResetPassword(user, function (err, msg) {
+	    	var _user = {
+		        newPassword: filterXSS(this.get('newPass')),
+		        rePass: filterXSS(this.get('rePass')),
+		        mobile: filterXSS(this.get('user.mobile')),
+		        captcha: filterXSS(this.get('phone')),
+		        smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
+		    };
+	        rePasswordService.doResetPassword(_user, function (err, msg) {
 	            if (!err) {
 	                showErrors(msg);
 	            } else {
@@ -257,7 +265,7 @@
 
 	    utils.formValidator.checkMobile(mobile, function (ok, msg) {
 	        if (ok) {
-                registerService.checkMobile(mobile, function (err, msg) {
+                registerService.checkMobile(filterXSS(mobile), function (err, msg) {
 
                     if (err) {
                         rePassword.set('errors', {
@@ -265,7 +273,7 @@
                             msg: '未注册的手机号码'
                         });
                     }else{
-                        CommonService.getSmsCaptchaForResetPassword(mobile, function (r) {
+                        CommonService.getSmsCaptchaForResetPassword(encodeURIComponent(filterXSS(mobile)), function (r) {
                             if (r.success) {
                                 countDown();
                             }
@@ -320,7 +328,7 @@
 	    utils.formValidator.checkMobile(mobile, function (ok, msg) {
 	        if (ok) {
 	            disableErrors();
-	            registerService.checkMobile(mobile, function (err, msg) {
+	            registerService.checkMobile(filterXSS(mobile), function (err, msg) {
 
 	                if (err) {
 	                    rePassword.set('errors', {

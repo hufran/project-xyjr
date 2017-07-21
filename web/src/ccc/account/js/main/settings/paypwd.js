@@ -3,7 +3,7 @@ require('ccc/global/js/modules/cccTab');
 var utils = require('ccc/global/js/lib/utils');
 var CccOk = require('ccc/global/js/modules/cccOk');
 var accountService = require('../service/account').accountService;
-
+require('ccc/xss.min');
 var CommonService = require('ccc/global/js/modules/common.js').CommonService;
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -30,7 +30,7 @@ ractive.on('initialPassword', function () {
     }
 
     if(isAcess) {
-        accountService.initialPassword(pwd, function (r) {
+        accountService.initialPassword(filterXSS(pwd), function (r) {
             if (r.success) {
                 CccOk.create({
                     msg: '交易密码初始化成功！',
@@ -71,13 +71,13 @@ ractive.on('updatePassword', function () {
     
    
     if(isAcess) {
-         accountService.checkPassword(oldpwd,function(r){
+         accountService.checkPassword(encodeURIComponent(filterXSS(oldpwd)),function(r){
         if(!r){
             showError("原始密码错误！");
            
         }else{
            
-         accountService.updatePassword(oldpwd, newPwd, function (r) {
+         accountService.updatePassword(filterXSS(oldpwd), filterXSS(newPwd), function (r) {
             if (r.success) {
                 CccOk.create({
                     msg: '交易密码修改成功！',
@@ -118,7 +118,7 @@ ractive.on('resetPassword', function () {
     }
 
     if(isAcess) {
-        accountService.resetPassword(pwd, function (r) {
+        accountService.resetPassword(filterXSS(pwd), function (r) {
             if (r) {
                 CccOk.create({
                     msg: '交易密码重置成功！',
@@ -164,7 +164,7 @@ $("#newPassword").keyup(function(){
 $("#oldPassword").blur(function(){
     var oldPassword=$("#oldPassword").val().trim();
     
-    accountService.checkPassword(oldPassword,function(r){
+    accountService.checkPassword(encodeURIComponent(filterXSS(oldPassword)),function(r){
         if(!r){
             showError("原始密码错误！");
         }else{
