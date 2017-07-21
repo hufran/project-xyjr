@@ -82,6 +82,7 @@ resetPasswordRactive.on('resetPassword', function () {
 			        showErrorIndex('showErrorMessagea','errorMessagea','与原密码相同');
 	             }else{
             accountService.resetPassword(pwd, smsCaptcha, function (r) {
+
                 if (r) {
                     CccOk.create({
                         msg: '交易密码重置成功！',
