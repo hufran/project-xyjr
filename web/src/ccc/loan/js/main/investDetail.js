@@ -289,7 +289,7 @@ setTimeout((function () {
             showErrors('请输入交易密码!');
             return false;
         } else {
-            accountService.checkPassword(filterXSS(paymentPassword), function (r) {
+            accountService.checkPassword(encodeURIComponent(filterXSS(paymentPassword)), function (r) {
                 if (!r) {
                     showErrors('请输入正确的交易密码!');
                 } else {
@@ -406,7 +406,7 @@ setTimeout((function () {
                                 //alert('222');
                                 var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
                                 $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
-                                    amount : num,
+                                    amount : filterXSS(num),
                                     loanId : filterXSS(investRactive.get('loan.id')),
                                     paymentPassword : filterXSS(investRactive.get('paymentPassword')),
                                     rebateAmount:thisRebate
@@ -424,10 +424,13 @@ setTimeout((function () {
                                             }
                                         });
                                     } else {
-                                        var errType = res.error && res.error[0] && res.error[0].message || '';
+                                        var errType = res.error && res.error[0] && res.error[0].message || '';                                        
                                         var errMsg = {
                                             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
                                         }[errType] || errType;
+                                        if(errType != "TOO_CROWD"){
+                                            errMsg = "有多条投资记录符合投资条件,无法进行返现";
+                                        }
                                         CccOk.create({
                                             msg: '投资失败' + errMsg,
                                             okText: '确定',
@@ -464,7 +467,7 @@ setTimeout((function () {
                             else{
                                 investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
                                 $.post('/lianlianpay/tender', {
-                                    amount : num,
+                                    amount : filterXSS(num),
                                     loanId : filterXSS(investRactive.get('loan.id')),
                                     placementId : filterXSS(investRactive.get('coupon')),
                                     paymentPassword : filterXSS(investRactive.get('paymentPassword'))

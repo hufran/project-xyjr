@@ -1,4 +1,5 @@
 'use strict';
+require('ccc/xss.min');
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/account/partials/settings/safety.html'),
@@ -52,7 +53,7 @@ $(function (){
         } else {
             $('.errors').text('');
             $.post('/api/v2/users/creditEmail/MYSELF', {
-                email : email
+                email : filterXSS(email)
             }, function(o){
                 //console.log(o);
                 if (o.success) {

@@ -6,6 +6,7 @@ var popupInvestRactive = require('ccc/agreement/js/main/quickInvest').popupInves
 var accountService = require('../service/account').accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var format = require('@ds/format');
+require('ccc/xss.min');
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/account/partials/settings/umpay.html'),
@@ -68,8 +69,8 @@ ractive.on("register-account-submit", function () {
                 }
 
                 var user = {
-                    name: $.trim(name),
-                    idNumber: $.trim(idNumber)
+                    name: filterXSS($.trim(name)),
+                    idNumber: filterXSS($.trim(idNumber))
                 };
 
                 accountService.authenticateUser(user,
