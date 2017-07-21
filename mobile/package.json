@@ -1,7 +1,7 @@
 {
     "name": "xyjr-mobile",
     "scripts": {
-        "start": "cd dist/ && ecstatic -H 'x-Frame-Options:SAMEORIGIN'",
+        "start": "cd dist/ && ecstatic --header 'x-Frame-Options: SAMEORIGIN'",
         "build": "./build.sh",
         "test": "echo 'no test yet' && exit 0",
         "reload": "echo 'served as static site so nothing to do here.'"
