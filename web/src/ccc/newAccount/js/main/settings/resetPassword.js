@@ -47,10 +47,10 @@ resetPasswordRactive.on('checksms',function(){
   }
 });
 resetPasswordRactive.on('resetPassword', function () {
-    var pwd = filterXSS(this.get('password'));
+    var pwd = encodeURIComponent(filterXSS(this.get('password')));
     var repwd = this.get('repassword');
-    var smsCaptcha = filterXSS(this.get('smsCaptcha'));
-		var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
+    var smsCaptcha = encodeURIComponent(filterXSS(this.get('smsCaptcha')));
+	var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
     resetPasswordRactive.fire('checkpwd');
     resetPasswordRactive.fire('checkrepwd');
 		resetPasswordRactive.fire('checksms');
@@ -77,11 +77,11 @@ resetPasswordRactive.on('resetPassword', function () {
         // }
 
         if(isAcess) {
-					accountService.checkPassword(pwd,function(r){
-	       if(r){
-			        showErrorIndex('showErrorMessagea','errorMessagea','与原密码相同');
-	             }else{
-            accountService.resetPassword(pwd, smsCaptcha, function (r) {
+			accountService.checkPassword(pwd,function(r){
+	        if(r){
+                showErrorIndex('showErrorMessagea','errorMessagea','与原密码相同');
+	        }else{
+                accountService.resetPassword(pwd, smsCaptcha, function (r) {
                 if (r) {
                     CccOk.create({
                         msg: '交易密码重置成功！',
@@ -95,11 +95,11 @@ resetPasswordRactive.on('resetPassword', function () {
                         }
                     });
                     return;
-                }
-								else{
-									showErrorIndex('showErrorMessagec','errorMessagec','短信验证码错误');
-								}
-            });}});
+                }else{
+			         showErrorIndex('showErrorMessagec','errorMessagec','短信验证码错误');
+				}
+            }
+            );}});
         }
 
     // }
