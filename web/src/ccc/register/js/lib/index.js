@@ -81,21 +81,21 @@ exports.popupRegister = {
         });
         popupRegisterRactive.on('doNext', function () {
             var self = this;
-            var loginName = filterXSS(self.get('user.loginName'));
-            var password = filterXSS(self.get('user.password'));
-            var repassword = filterXSS(self.get('user.repassword'));
-            formValidator.checkRegisterName(self.get('user.loginName'),
+            var loginName = self.get('user.loginName');
+            var password = self.get('user.password');
+            var repassword = self.get('user.repassword');
+            formValidator.checkRegisterName(loginName,
                 function (
                     bool, error) {
                     if (bool) {
-                        RegisterService.checkLoginName(loginName,
+                        RegisterService.checkLoginName(filterXSS(loginName),
                             function (bool, error) {
                                 if (!bool) {
                                     showErrors(error[0].message);
                                     return;
                                 } else {
 
-                                    formValidator.checkPassword(self.get('user.password'),
+                                    formValidator.checkPassword(password,
                                         function (bool, error) {
                                             if (bool) {
                                                 formValidator.checkRePassword(
@@ -156,14 +156,14 @@ exports.popupRegister = {
         popupRegisterRactive.on('doRegister', function (e) {
             e.original.preventDefault();
             var self = this;
-            var mobile = filterXSS(self.get('user.mobile'));
-            formValidator.checkMobile(self.get('user.mobile'),
+            var mobile = self.get('user.mobile');
+            formValidator.checkMobile(mobile,
                 function (
                     bool, error) {
                     var user = {};
                     var _user = self.get('user');
                     if (bool) {
-                        RegisterService.checkMobile(mobile,
+                        RegisterService.checkMobile(filterXSS(mobile),
                             function (
                                 bool, error) {
                                 if (bool) {
@@ -234,13 +234,13 @@ exports.popupRegister = {
 
         popupRegisterRactive.on('getSmsCaptcha', function () {
             var self = this;
-            var mobile = filterXSS(self.get('user.mobile'));
-            formValidator.checkMobile(self.get('user.mobile'),
+            var mobile = self.get('user.mobile');
+            formValidator.checkMobile(mobile,
                 function (
                     bool, error) {
 
                     if (bool) {
-                        RegisterService.checkMobile(mobile,
+                        RegisterService.checkMobile(filterXSS(mobile),
                             function (bool, error) {
                                 if (bool) {
                                     CommonService.getSmsCaptcha(
