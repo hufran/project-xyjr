@@ -424,12 +424,13 @@ setTimeout((function () {
                                             }
                                         });
                                     } else {
-                                        var errType = res.error && res.error[0] && res.error[0].message || '';
+                                        var errType = res.error && res.error[0] && res.error[0].message || '';                                        
                                         var errMsg = {
                                             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
                                         }[errType] || errType;
-                                        console.log(errMsg);
-                                        console.log(errType);
+                                        if(errType != "TOO_CROWD"){
+                                            errMsg = "有多条投资记录符合投资条件,无法进行返现";
+                                        }
                                         CccOk.create({
                                             msg: '投资失败' + errMsg,
                                             okText: '确定',
