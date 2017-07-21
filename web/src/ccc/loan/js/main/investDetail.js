@@ -406,7 +406,7 @@ setTimeout((function () {
                                 //alert('222');
                                 var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
                                 $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
-                                    amount : num,
+                                    amount : filterXSS(num),
                                     loanId : filterXSS(investRactive.get('loan.id')),
                                     paymentPassword : filterXSS(investRactive.get('paymentPassword')),
                                     rebateAmount:thisRebate
@@ -428,6 +428,8 @@ setTimeout((function () {
                                         var errMsg = {
                                             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
                                         }[errType] || errType;
+                                        console.log(errMsg);
+                                        console.log(errType);
                                         CccOk.create({
                                             msg: '投资失败' + errMsg,
                                             okText: '确定',
@@ -464,7 +466,7 @@ setTimeout((function () {
                             else{
                                 investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
                                 $.post('/lianlianpay/tender', {
-                                    amount : num,
+                                    amount : filterXSS(num),
                                     loanId : filterXSS(investRactive.get('loan.id')),
                                     placementId : filterXSS(investRactive.get('coupon')),
                                     paymentPassword : filterXSS(investRactive.get('paymentPassword'))
