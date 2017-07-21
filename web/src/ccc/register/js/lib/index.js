@@ -180,14 +180,14 @@ exports.popupRegister = {
                                             if (body.success) {
                                                 var params =
                                                     'code=' +
-                                                    filterXSS(self.get(
+                                                    encodeURIComponent(filterXSS(self.get(
                                                         'user.invitation'
-                                                )) +
+                                                ))) +
                                                     '&settoused=1&associator=' +
-                                                    filterXSS(popupRegisterRactive
+                                                    encodeURIComponent(filterXSS(popupRegisterRactive
                                                     .get(
                                                         'user.loginName'
-                                                ));
+                                                )));
                                                 RegisterService.checkInvitation(
                                                     params, function () {
                                                         bus('session:user')

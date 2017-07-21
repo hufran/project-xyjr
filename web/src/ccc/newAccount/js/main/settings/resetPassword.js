@@ -77,7 +77,7 @@ resetPasswordRactive.on('resetPassword', function () {
         // }
 
         if(isAcess) {
-					accountService.checkPassword(pwd,function(r){
+					accountService.checkPassword(encodeURIComponent(pwd),function(r){
 	       if(r){
 			        showErrorIndex('showErrorMessagea','errorMessagea','与原密码相同');
 	             }else{

@@ -296,7 +296,7 @@ ractive.on("delete-card-submit", function (e) {
 
 ractive.on('selectPro', function () {
     var province = filterXSS(this.get('myProvince'));
-    accountService.getCity(province, function (res) {
+    accountService.getCity(encodeURIComponent(province), function (res) {
         ractive.set('city', changeToList(res));
     });
 });
