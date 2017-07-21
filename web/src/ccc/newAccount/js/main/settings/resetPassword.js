@@ -53,7 +53,7 @@ resetPasswordRactive.on('resetPassword', function () {
 	var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
     resetPasswordRactive.fire('checkpwd');
     resetPasswordRactive.fire('checkrepwd');
-		resetPasswordRactive.fire('checksms');
+	resetPasswordRactive.fire('checksms');
     // if (pwd === "") {
     //     return showError('请填写交易密码');
     // } else if (pwd.indexOf(" ") >=0) {
@@ -77,6 +77,7 @@ resetPasswordRactive.on('resetPassword', function () {
         // }
 
         if(isAcess) {
+            console.log("pwd1111111:",pwd);
 			accountService.checkPassword(pwd,function(r){
 	        if(r){
                 showErrorIndex('showErrorMessagea','errorMessagea','与原密码相同');
