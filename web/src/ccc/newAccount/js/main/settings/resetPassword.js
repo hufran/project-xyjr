@@ -50,10 +50,10 @@ resetPasswordRactive.on('resetPassword', function () {
     var pwd = filterXSS(this.get('password'));
     var repwd = this.get('repassword');
     var smsCaptcha = filterXSS(this.get('smsCaptcha'));
-		var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
+	var isAcess=this.get('isAcessa')&&this.get('isAcessb')&&this.get('isAcessc');
     resetPasswordRactive.fire('checkpwd');
     resetPasswordRactive.fire('checkrepwd');
-		resetPasswordRactive.fire('checksms');
+	resetPasswordRactive.fire('checksms');
     // if (pwd === "") {
     //     return showError('请填写交易密码');
     // } else if (pwd.indexOf(" ") >=0) {
@@ -95,11 +95,11 @@ resetPasswordRactive.on('resetPassword', function () {
                         }
                     });
                     return;
-                }
-								else{
-									showErrorIndex('showErrorMessagec','errorMessagec','短信验证码错误');
-								}
-            });}});
+                }else{
+			         showErrorIndex('showErrorMessagec','errorMessagec','短信验证码错误');
+				}
+            }
+            );}});
         }
 
     // }

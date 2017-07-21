@@ -2,7 +2,7 @@
 require('ccc/global/js/modules/cccTab');
 var utils = require('ccc/global/js/lib/utils');
 var CccOk = require('ccc/global/js/modules/cccOk');
-
+require('ccc/xss.min');
 var CommonService = require('ccc/global/js/modules/common.js').CommonService;
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -76,8 +76,8 @@ ractive.on("submit-modify-password", function () {
             request.post("/account/change_password")
                 .type("form")
                 .send({
-                    currentPassword: currentPassword,
-                    newPassword: newPassword,
+                    currentPassword: filterXSS(currentPassword),
+                    newPassword: filterXSS(newPassword),
                     captcha: captcha
                 })
                 .end(function (err, res) {

@@ -368,7 +368,7 @@ passwordRactive.on("submit-modify-password", function (event) {
                 .send({
                     currentPassword: filterXSS(currentPassword),
                     newPassword: filterXSS(newPassword),
-                    captcha: captcha
+                    captcha: filterXSS(captcha.toString())
                 })
                 .end(function (err, res) {
                     res = JSON.parse(res.text);

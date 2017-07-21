@@ -53,10 +53,10 @@ exports.popupLogin = {
             var self = this;
             var loginName = filterXSS(self.get('loginName'));
             var password = filterXSS(self.get('password'));            
-            formValidator.checkLoginName(loginName, function (
+            formValidator.checkLoginName(self.get('loginName'), function (
                 bool, error) {
                 if (bool) {
-                    formValidator.checkPassword(password,
+                    formValidator.checkPassword(self.get('password'),
                         function (bool, error) {
                             if (bool) {
                                 LoginService.doLogin(loginName, password, function (err,

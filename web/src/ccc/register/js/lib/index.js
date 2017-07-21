@@ -84,7 +84,7 @@ exports.popupRegister = {
             var loginName = filterXSS(self.get('user.loginName'));
             var password = filterXSS(self.get('user.password'));
             var repassword = filterXSS(self.get('user.repassword'));
-            formValidator.checkRegisterName(loginName,
+            formValidator.checkRegisterName(self.get('user.loginName'),
                 function (
                     bool, error) {
                     if (bool) {
@@ -95,12 +95,12 @@ exports.popupRegister = {
                                     return;
                                 } else {
 
-                                    formValidator.checkPassword(password,
+                                    formValidator.checkPassword(self.get('user.password'),
                                         function (bool, error) {
                                             if (bool) {
                                                 formValidator.checkRePassword(
-                                                    password,
-                                                    repassword,
+                                                    self.get('user.password'),
+                                                    self.get('user.repassword'),
                                                     function (
                                                         bool,
                                                         error) {
@@ -157,7 +157,7 @@ exports.popupRegister = {
             e.original.preventDefault();
             var self = this;
             var mobile = filterXSS(self.get('user.mobile'));
-            formValidator.checkMobile(mobile,
+            formValidator.checkMobile(self.get('user.mobile'),
                 function (
                     bool, error) {
                     var user = {};
@@ -235,7 +235,7 @@ exports.popupRegister = {
         popupRegisterRactive.on('getSmsCaptcha', function () {
             var self = this;
             var mobile = filterXSS(self.get('user.mobile'));
-            formValidator.checkMobile(mobile,
+            formValidator.checkMobile(self.get('user.mobile'),
                 function (
                     bool, error) {
 
