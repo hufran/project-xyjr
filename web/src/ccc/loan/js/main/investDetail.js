@@ -428,11 +428,13 @@ setTimeout((function () {
                                         var errMsg = {
                                             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
                                         }[errType] || errType;
-                                        if(errType != "TOO_CROWD"){
-                                            errMsg = "有多条投资记录符合投资条件,无法进行返现";
-                                        }
+                                        errMsg = errMsg.replace(/\=+[A-Za-z0-9\-\:]+/g," ");
+                                        if(errMsg.indexOf("投资失败")>-1 || errMsg.indexOf("投资成功")>-1)  {                                          
+                                        }else{
+                                            errMsg = '投资失败' + errMsg;
+                                        }                                     
                                         CccOk.create({
-                                            msg: '投资失败' + errMsg,
+                                            msg: errMsg,
                                             okText: '确定',
                                             // cancelText: '重新登录',
                                             ok: function () {
