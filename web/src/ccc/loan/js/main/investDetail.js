@@ -429,7 +429,8 @@ setTimeout((function () {
                                             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
                                         }[errType] || errType;
                                         errMsg = errMsg.replace(/\=+[A-Za-z0-9\-\:]+/g," ");
-                                        if(errMsg.indexOf("投资失败")>-1 || errMsg.indexOf("投资成功")>-1)  {
+                                        if(errMsg.indexOf("投资失败")>-1 || errMsg.indexOf("投资成功")>-1)  {                                          
+                                        }else{
                                             errMsg = '投资失败' + errMsg;
                                         }                                     
                                         CccOk.create({
