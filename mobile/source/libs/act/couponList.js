@@ -48,58 +48,77 @@ function loadCoupon(index,id){
 //构造结构
 function getStructs(index,data){
 	var data = data.results;
-	var tmp = '';
+	console.log(data.length == 0);
+	var tmp = '',couponName='';
+	switch(index){
+		case 0:
+			couponName = "返现"
+			break;
+		case 1:
+			couponName = "增值";
+			break;
+		case 2:
+			couponName = "加息";
+			break;
+		default:
+			break;
+
+	}
 	if($("#tabContent section").eq(index).html()!=''){
 		return;
 	}else{
-	switch(index)
-	{
-		case 0:            
-		$.each(data,function(n,item){
-			if(n == 0){
-				tmp += '<div class="hongB"><div class="layout">';
-				tmp += '<div class="floatR noUseMoney">'+parseFloat(item.actualAmount).toFixed(2)+'<span> 元</span></div>';
-				tmp += '<div class="floatR canUseMoney">'+parseFloat(item.priv).toFixed(2)+'<span> 元</span></div>';
-				tmp += '<div class="clearLF"></div></div></div><div class="returnDetail">红包返现金额＝（投资金额＊天数／365）＊0.5%</div>';
-			}else{
-				tmp += '<div class="money"><div class="titleH"';
-				tmp += (item.couponPackage.displayName.length > 4)?'style=" padding-top:0.3rem">':'>';
-				tmp += item.couponPackage.displayName+'</div>';
-				tmp += '<div class="floatR moneyDetail">';
-				tmp += '<div class="floatR setWidth">已用金额 （元）<br><span>'+item.actualAmount.toFixed(2)+'</span></div>'
-				tmp += '<div class="floatR setWidth">可用金额 （元）<br><span>'+(item.couponPackage.parValue-item.actualAmount).toFixed(2)+'</span></div>';	
-				tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div>';
-				tmp += '</div><div class="clearLF"></div></div>';
+		if(data.length == 0){
+			$("#tabContent section").eq(index).append("<div style='padding:1rem;text-align:center'>暂无"+couponName+"券！</div>");
+		}else{
+			switch(index)
+			{
+				case 0:
+				$.each(data,function(n,item){
+					if(n == 0){
+						tmp += '<div class="hongB"><div class="layout">';
+						tmp += '<div class="floatR noUseMoney">'+parseFloat(item.actualAmount).toFixed(2)+'<span> 元</span></div>';
+						tmp += '<div class="floatR canUseMoney">'+parseFloat(item.priv).toFixed(2)+'<span> 元</span></div>';
+						tmp += '<div class="clearLF"></div></div></div><div class="returnDetail">红包返现金额＝（投资金额＊天数／365）＊0.5%</div>';
+					}else{
+						tmp += '<div class="money"><div class="titleH"';
+						tmp += (item.couponPackage.displayName.length > 4)?'style=" padding-top:0.3rem">':'>';
+						tmp += item.couponPackage.displayName+'</div>';
+						tmp += '<div class="floatR moneyDetail">';
+						tmp += '<div class="floatR setWidth">已用金额 （元）<br><span>'+item.actualAmount.toFixed(2)+'</span></div>'
+						tmp += '<div class="floatR setWidth">可用金额 （元）<br><span>'+(item.couponPackage.parValue-item.actualAmount).toFixed(2)+'</span></div>';
+						tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div>';
+						tmp += '</div><div class="clearLF"></div></div>';
+					}
+				})
+				break;
+				case 1:
+				$.each(data,function(n,item){
+					var useStatus = "";
+					tmp += '<div class="money"><div class="titleH"';
+					tmp += (item.couponPackage.displayName.length > 4)?'style=" padding-top:0.3rem">':'>';
+					tmp += item.couponPackage.displayName+'</div>';
+					tmp += '<div class="floatR moneyDetail"><div>';
+					tmp += '<span class="h3">'+item.couponPackage.parValue+'</span> <span class="h4">元</span><br>最低投资'+item.couponPackage.minimumInvest+'元，起投期限0个月</div>'
+					tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
+
+					tmp += '<div class="clearLF"></div></div>'
+				})
+				  break;
+				default:
+				$.each(data,function(n,item){
+					tmp += '<div class="money"><div class="titleH"';
+					tmp += (item.couponPackage.displayName.length > 4)?'style=" padding-top:0.3rem">':'>';
+					tmp += item.couponPackage.displayName+'</div>';
+					tmp += '<div class="floatR moneyDetail"><div>';
+					tmp += '<span class="h4">加息</span> <span class="h3">'+item.couponPackage.friendlyParValue+'</span><br>最低投资'+item.couponPackage.minimumInvest+'元，起投期限0个月</div>'
+					tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
+
+					tmp += '<div class="clearLF"></div></div>'
+				})
+				  break;
 			}
-		})
-		break;
-		case 1:
-		$.each(data,function(n,item){
-			var useStatus = "";
-			tmp += '<div class="money"><div class="titleH"';
-			tmp += (item.couponPackage.displayName.length > 4)?'style=" padding-top:0.3rem">':'>';
-			tmp += item.couponPackage.displayName+'</div>';
-			tmp += '<div class="floatR moneyDetail"><div>';
-			tmp += '<span class="h3">'+item.couponPackage.parValue+'</span> <span class="h4">元</span><br>最低投资'+item.couponPackage.minimumInvest+'元，起投期限0个月</div>'
-			tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
-			
-			tmp += '<div class="clearLF"></div></div>'	
-		})
-		  break;
-		default:		
-		$.each(data,function(n,item){
-			tmp += '<div class="money"><div class="titleH"';
-			tmp += (item.couponPackage.displayName.length > 4)?'style=" padding-top:0.3rem">':'>';
-			tmp += item.couponPackage.displayName+'</div>';
-			tmp += '<div class="floatR moneyDetail"><div>';
-			tmp += '<span class="h4">加息</span> <span class="h3">'+item.couponPackage.friendlyParValue+'</span><br>最低投资'+item.couponPackage.minimumInvest+'元，起投期限0个月</div>'
-			tmp += '<div class="clearLF useTime">使用时间：'+getStartToEndTime(item.timePlaced,item.timeExpire)+'<span class="floatR">'+getStatus(item.status)+'</span></div></div>';
-			
-			tmp += '<div class="clearLF"></div></div>'
-		})
-		  break;
-	}	
-	$("#tabContent section").eq(index).append(tmp);
+			$("#tabContent section").eq(index).append(tmp);
+		}
 	}
 }
 function getStatus(type){
