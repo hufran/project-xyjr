@@ -173,8 +173,8 @@ function init (type) {
 				console.log("o");	
 				console.log(o);
 				for(var k=0;k<o.length;k++){
-					if(o && o[i] && o[i].id){
-						list.push(o[i]);
+					if(o && o[k] && o[k].id){
+						list.push(o[k]);
 					}
 				}
 				var totalSize = Math.ceil(self.get('total') / 6);			
