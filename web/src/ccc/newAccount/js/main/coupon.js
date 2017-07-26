@@ -7,7 +7,7 @@ require('ccc/global/js/modules/cccTab');
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
 
 var pagesize = 10000;
-var page = 0;
+var page = 1;
 var totalPage = 1;
 
 var getCurrentType = function() {
