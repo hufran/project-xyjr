@@ -383,6 +383,8 @@ function getcouponId(){
 		var couponId='';
 		console.log('youmeiyou');
 		couponId=jQuery(this).siblings('.couponId').text();
+		console.log(event);
+		console.log(jQuery('#'+couponId).parents('.xiangxi').hasClass('dn'))
 		if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
 			console.log(111+"   "+couponId);
 			couponInfData(couponId,function(o){
