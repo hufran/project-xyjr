@@ -6,7 +6,7 @@ require('ccc/global/js/modules/cccTab');
 
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
 
-var pagesize = 6;
+var pagesize = 10000;
 var page = 1;
 var totalPage = 1;
 
@@ -43,6 +43,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 function init (type) {
+	var parseResult;
 	console.log(type);
 	if (type) {
 		var couponRactive = new Ractive ({
@@ -86,7 +87,7 @@ function init (type) {
 					self.getCouponData(function (o){
 						self.set('total',o.totalSize);
 						self.actualAmount(o.results);
-						var parseResult = self.parseData(o.results);
+						parseResult = self.parseData(o.results);
 						console.log('parseResult-----',parseResult);
 						self.setData(parseResult);
 						jQuery('.xiangxi').removeClass('dtr').addClass('dn');
@@ -129,7 +130,7 @@ function init (type) {
 					couponPackageId=jQuery('#huoqu-REBATE').find("option:selected").val();
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:(self.page - 1),
+						page:1,
 						pageSize: self.size,
 						couponPackageId:couponPackageId,
 						status:statusCha
@@ -140,7 +141,7 @@ function init (type) {
 				}else{
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:(self.page - 1),
+						page:1,
 						pageSize: self.size,
 						status:statusCha
 					},function(z){
@@ -154,7 +155,7 @@ function init (type) {
 				var self = this;
 				$.post(self.api,{
 					type:type,
-					page: (self.page - 1) ,
+					page: 1 ,
 					pageSize: self.size
 				},function (o){
 					if (o.results.length>0) {
@@ -165,8 +166,12 @@ function init (type) {
 			},
 			setData: function(o) {
 				var self = this;
+				var listData = [];
+				for(var i=(self.page-1)*6+1;i<=self.page*6;i++){
+                     listData[i] = o[i]
+				}
 				self.set('loading', false);
-				self.set('list', o);
+				self.set('list', listData);
 				self.renderPager();
 			},
 			actualAmount:function(o){
@@ -273,7 +278,8 @@ function init (type) {
 						return false
 					} else {
 						self.page = self.page - 1;
-						self.onrender();
+						// self.onrender();
+						couponRactive.setData(parseResult);
 					}
 				});
 
@@ -282,7 +288,8 @@ function init (type) {
 						return false
 					} else {
 						self.page = self.page + 1;
-						self.onrender();
+						// self.onrender();
+						couponRactive.setData(parseResult);
 					}
 				});
 			},
@@ -326,7 +333,8 @@ function init (type) {
 					current -= 1;
 					this.set('current', current);
 					couponRactive.page = current;
-					couponRactive.onrender();
+					// couponRactive.onrender();
+					couponRactive.setData(parseResult);
 				}
 			});
 
@@ -339,7 +347,8 @@ function init (type) {
 				}
 				this.set('current', current);
 				couponRactive.page = current;
-				couponRactive.onrender();
+				// couponRactive.onrender();
+				couponRactive.setData(parseResult);
 
 			});
 			pagerRactive.on('next', function (e) {
@@ -350,7 +359,8 @@ function init (type) {
 					current += 1;
 					this.set('current', current);
 					couponRactive.page = current;
-					couponRactive.onrender();
+					// couponRactive.onrender();
+					couponRactive.setData(parseResult);
 				}
 			});
 		}
