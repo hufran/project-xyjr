@@ -48,7 +48,6 @@ function loadCoupon(index,id){
 //构造结构
 function getStructs(index,data){
 	var data = data.results;
-	console.log(data.length == 0);
 	var tmp = '',couponName='';
 	switch(index){
 		case 0:
