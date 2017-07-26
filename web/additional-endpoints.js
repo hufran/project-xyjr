@@ -6,6 +6,7 @@ module.exports = function (router, auth) {
     router.get('/api/v0/hello/world', auth.pass());
     router.get('/api/v2/message/notifications/:page/:userId', auth.owner());
     router.get('/api/v2/cms/appBootPage', auth.pass());
+    router.get('/api/v2/fdd/user/:userId/invest/:investId/contractUrl', auth.user());
     //dada add
     // 支付相关
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
