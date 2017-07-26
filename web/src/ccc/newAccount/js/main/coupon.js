@@ -168,11 +168,25 @@ function init (type) {
 			setData: function(o) {
 				var self = this;
 				var listData = [];
-				for(var i=(self.page-1)*6+1;i<=self.page*6;i++){
-                     listData.push(o[i]);
+				console.log('oooo'+ o);
+				if(self.page == 1 && type!=="REBATE"){
+					listData.push(o[0]);
 				}
+				var totalSize = Math.ceil(self.get('total') / 6);
+				if(self.page >=1 && self.page < totalSize){
+                    for(var i=(self.page-1)*6+1;i<=self.page*6;i++){
+                        listData.push(o[i]);
+				    }
+				}
+                if(self.page == totalSize){
+                    for(var j=(totalSize-1)*6+1;j<=self.get('total');j++){
+                    	listData.push(o[j]);
+                    }   
+                }
+				
 				self.set('loading', false);
 				self.set('list', listData);
+				console.log(listData);
 				self.renderPager();
 			},
 			actualAmount:function(o){
@@ -369,7 +383,8 @@ function init (type) {
 		couponRactive.on("showData",function(e){
 		    var couponId='';
 			console.log('youmeiyou');
-			couponId=jQuery(this).siblings('.couponId').text();		
+			couponId=jQuery(this).siblings('.couponId').text();
+			console.log(couponId)		
 			if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
 				console.log(111+"   "+couponId);
 				couponInfData(couponId,function(o){
