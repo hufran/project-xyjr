@@ -378,7 +378,7 @@ function couponInfData(Id,callback,errorFn){
 	// 		callback(o);
 	// 	});
 }
-function getcouponId(event){
+function getcouponId(){
 	$('.checkInforBtn').click(function(event){
 		var couponId='';
 		console.log('youmeiyou');
