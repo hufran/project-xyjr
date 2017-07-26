@@ -103,6 +103,7 @@ function init (type) {
 					isClick=true;
 					self.getCouponCond(function(z){
 						self.set('total',z.totalSize);
+						self.page =1;
 						console.log(z);
 						console.log(z.totalSize);
 						chaxun = self.parseData(z.results);
@@ -181,7 +182,9 @@ function init (type) {
 				}
                 if(self.page == totalSize){
                     for(var j=(totalSize-1)*6+1;j<=self.get('total');j++){
-                    	listData.push(o[j]);
+                    	if(o[j]){
+                    		listData.push(o[j]);
+                    	}                   	
                     }   
                 }
 				
@@ -431,7 +434,7 @@ function couponInfData(Id,callback,errorFn){
 }
 
 function getcouponId(){
-	$('.checkInforBtn').click(function(event){
+	$('.checkInforBtn').on("click",function(event){
 		var couponId='';
 		console.log('youmeiyou');
 		couponId=jQuery(this).siblings('.couponId').text();		
