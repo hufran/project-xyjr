@@ -44,6 +44,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
 
 function init (type) {
 	var parseResult;
+	var chaxun
 	console.log(type);
 	if (type) {
 		var couponRactive = new Ractive ({
@@ -104,7 +105,7 @@ function init (type) {
 						self.set('total',z.totalSize);
 						console.log(z);
 						console.log(z.totalSize);
-						var chaxun = self.parseData(z.results);
+						chaxun = self.parseData(z.results);
 						var getcouponIdClick=true;
 						self.setData(chaxun);
 						if(getcouponIdClick){
@@ -168,7 +169,7 @@ function init (type) {
 				var self = this;
 				var listData = [];
 				for(var i=(self.page-1)*6+1;i<=self.page*6;i++){
-                     listData[i] = o[i]
+                     listData.push(o[i]);
 				}
 				self.set('loading', false);
 				self.set('list', listData);
