@@ -7,7 +7,7 @@ require('ccc/global/js/modules/cccTab');
 var couponTpl = require('ccc/newAccount/partials/coupon/coupon.html');
 
 var pagesize = 10000;
-var page = 1;
+var page = 0;
 var totalPage = 1;
 
 var getCurrentType = function() {
@@ -130,7 +130,7 @@ function init (type) {
 					couponPackageId=jQuery('#huoqu-REBATE').find("option:selected").val();
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:1,
+						page:0,
 						pageSize: self.size,
 						couponPackageId:couponPackageId,
 						status:statusCha
@@ -141,7 +141,7 @@ function init (type) {
 				}else{
 					$.post("/api/v2/rebateCounpon/getUserCouponPlacementsByCond/"+CC.user.userId,{
 						type:type,
-						page:1,
+						page:0,
 						pageSize: self.size,
 						status:statusCha
 					},function(z){
@@ -155,7 +155,7 @@ function init (type) {
 				var self = this;
 				$.post(self.api,{
 					type:type,
-					page: 1 ,
+					page: 0 ,
 					pageSize: self.size
 				},function (o){
 					if (o.results.length>0) {
