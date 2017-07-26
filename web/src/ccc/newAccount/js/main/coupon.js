@@ -297,7 +297,7 @@ function init (type) {
 				var self = this;
 				var totalSize = self.get('total');
 				if (totalSize != 0) {
-					self.totalPage = Math.ceil(totalSize / self.size);
+					self.totalPage = Math.ceil(totalSize / 6);
 				}else{
 					self.totalPage=1;
 				}
