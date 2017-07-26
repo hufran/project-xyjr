@@ -172,7 +172,7 @@ function init (type) {
 				var list =[];
 				console.log("o");	
 				console.log(o);
-				for(k=0;k<o.length;k++){
+				for(var k=0;k<o.length;k++){
 					if(o && o[i] && o[i].id){
 						list.push(o[i]);
 					}
