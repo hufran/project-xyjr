@@ -168,8 +168,9 @@ function init (type) {
 			setData: function(o) {
 				var self = this;
 				var listData = [];
-				console.log('oooo'+ o);
-				if(self.page == 1 && type!=="REBATE"){
+				console.log("o");	
+				console.log(o);				
+				if(o[0].id){
 					listData.push(o[0]);
 				}
 				var totalSize = Math.ceil(self.get('total') / 6);
@@ -186,6 +187,7 @@ function init (type) {
 				
 				self.set('loading', false);
 				self.set('list', listData);
+				console.log("listData");
 				console.log(listData);
 				self.renderPager();
 			},
@@ -380,29 +382,29 @@ function init (type) {
 			});
 		}
 
-		couponRactive.on("showData",function(e){
-		    var couponId='';
-			console.log('youmeiyou');
-			couponId=jQuery(this).siblings('.couponId').text();
-			console.log(couponId)		
-			if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
-				console.log(111+"   "+couponId);
-				couponInfData(couponId,function(o){
-					var trHtml="";
-					console.log(111+" ===   "+couponId);
-					for (var i = 0; i < o.data.length; i++) {
-						o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
-						o.data[i].amount=o.data[i].amount;
-						trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
-					}
-					jQuery('#'+couponId).html(trHtml);
-					jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
-				},function(){console.log('ajaxerror')});
-			}else{
-				jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
-			}
-			e.original.stopPropagation();
-	    })
+		// couponRactive.on("showData",function(e){
+		//     var couponId='';
+		// 	console.log('youmeiyou');
+		// 	couponId=jQuery(this).siblings('.couponId').text();
+		// 	console.log(couponId)		
+		// 	if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
+		// 		console.log(111+"   "+couponId);
+		// 		couponInfData(couponId,function(o){
+		// 			var trHtml="";
+		// 			console.log(111+" ===   "+couponId);
+		// 			for (var i = 0; i < o.data.length; i++) {
+		// 				o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
+		// 				o.data[i].amount=o.data[i].amount;
+		// 				trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
+		// 			}
+		// 			jQuery('#'+couponId).html(trHtml);
+		// 			jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
+		// 		},function(){console.log('ajaxerror')});
+		// 	}else{
+		// 		jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
+		// 	}
+		// 	e.original.stopPropagation();
+	 //    })
 	}
 }
 
@@ -429,28 +431,28 @@ function couponInfData(Id,callback,errorFn){
 }
 
 function getcouponId(){
-	// $('.checkInforBtn').click(function(event){
-	// 	var couponId='';
-	// 	console.log('youmeiyou');
-	// 	couponId=jQuery(this).siblings('.couponId').text();		
-	// 	if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
-	// 		console.log(111+"   "+couponId);
-	// 		couponInfData(couponId,function(o){
-	// 			var trHtml="";
-	// 			console.log(111+" ===   "+couponId);
-	// 			for (var i = 0; i < o.data.length; i++) {
-	// 				o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
-	// 				o.data[i].amount=o.data[i].amount;
-	// 				trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
-	// 			}
-	// 			jQuery('#'+couponId).html(trHtml);
-	// 			jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
-	// 		},function(){console.log('ajaxerror')});
-	// 	}else{
-	// 		jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
-	// 	}
-	// 	event.stopPropagation();
-	// })
+	$('.checkInforBtn').click(function(event){
+		var couponId='';
+		console.log('youmeiyou');
+		couponId=jQuery(this).siblings('.couponId').text();		
+		if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
+			console.log(111+"   "+couponId);
+			couponInfData(couponId,function(o){
+				var trHtml="";
+				console.log(111+" ===   "+couponId);
+				for (var i = 0; i < o.data.length; i++) {
+					o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
+					o.data[i].amount=o.data[i].amount;
+					trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
+				}
+				jQuery('#'+couponId).html(trHtml);
+				jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
+			},function(){console.log('ajaxerror')});
+		}else{
+			jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
+		}
+		event.stopPropagation();
+	})
 
 }
 
