@@ -90,8 +90,7 @@ function init (type) {
 						self.actualAmount(o.results);
 						parseResult = self.parseData(o.results);
 						console.log('parseResult-----',parseResult);
-						self.setData(parseResult);
-						jQuery('.xiangxi').removeClass('dtr').addClass('dn');
+						self.setData(parseResult);						
 						jQuery('td[colspan="7"] tbody').html('');
 						getcouponId();
 					});
@@ -194,6 +193,7 @@ function init (type) {
 				console.log("listData");
 				console.log(listData);
 				self.renderPager();
+				jQuery('.xiangxi').removeClass('dtr').addClass('dn');
 			},
 			actualAmount:function(o){
 				jQuery('#actualAmount').html(o[0].actualAmount);
