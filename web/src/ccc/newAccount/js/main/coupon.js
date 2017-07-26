@@ -108,10 +108,10 @@ function init (type) {
 						chaxun = self.parseData(z.results);
 						var getcouponIdClick=true;
 						self.setData(chaxun);
-						if(getcouponIdClick){
-							getcouponId();
-							getcouponIdClick=false;
-						}
+						// if(getcouponIdClick){
+						// 	getcouponId();
+						// 	getcouponIdClick=false;
+						// }
 					})
 				})
 				//点击查询红包按钮 end
@@ -170,7 +170,7 @@ function init (type) {
 				var listData = [];
 				console.log("o");	
 				console.log(o);				
-				if(o[0].id){
+				if(o && o[0] && o[0].id){
 					listData.push(o[0]);
 				}
 				var totalSize = Math.ceil(self.get('total') / 6);
