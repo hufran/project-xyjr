@@ -169,22 +169,23 @@ function init (type) {
 			setData: function(o) {
 				var self = this;
 				var listData = [];
+				var list =[];
 				console.log("o");	
-				console.log(o);				
-				if(o && o[0] && o[0].id){
-					listData.push(o[0]);
+				console.log(o);
+				for(k=0;k<o.length;k++){
+					if(o && o[i] && o[i].id){
+						list.push(o[i]);
+					}
 				}
-				var totalSize = Math.ceil(self.get('total') / 6);
+				var totalSize = Math.ceil(self.get('total') / 6);			
 				if(self.page >=1 && self.page < totalSize){
-                    for(var i=(self.page-1)*6+1;i<=self.page*6;i++){
-                        listData.push(o[i]);
+                    for(var i=(self.page-1)*6;i<self.page*6;i++){
+                        listData.push(list[i]);
 				    }
 				}
                 if(self.page == totalSize){
-                    for(var j=(totalSize-1)*6+1;j<=self.get('total');j++){
-                    	if(o[j]){
-                    		listData.push(o[j]);
-                    	}                   	
+                    for(var j=(totalSize-1)*6;j<self.get('total');j++){
+                        listData.push(list[j]);
                     }   
                 }
 				
@@ -389,7 +390,7 @@ function init (type) {
 		    var couponId='';
 			console.log('youmeiyou');
 			console.log(e)
-			couponId=jQuery(this).siblings('.couponId').text();
+			couponId=jQuery(e.original.target).siblings('.couponId').text();
 			console.log(couponId)		
 			if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
 				console.log(111+"   "+couponId);
