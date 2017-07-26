@@ -263,7 +263,7 @@ do (_, angular, moment, Array) ->
                     .all api_type_list.map (type) =>
 
                         @$http
-                            .post '/api/v2/coupon/MYSELF/coupons', {type, page: 1, size: 40}
+                            .post '/api/v2/coupon/MYSELF/coupons', {type, page: 1, size: 100}
 
                     .then (response) =>
 
