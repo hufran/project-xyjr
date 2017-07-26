@@ -385,29 +385,30 @@ function init (type) {
 			});
 		}
 
-		// couponRactive.on("showData",function(e){
-		//     var couponId='';
-		// 	console.log('youmeiyou');
-		// 	couponId=jQuery(this).siblings('.couponId').text();
-		// 	console.log(couponId)		
-		// 	if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
-		// 		console.log(111+"   "+couponId);
-		// 		couponInfData(couponId,function(o){
-		// 			var trHtml="";
-		// 			console.log(111+" ===   "+couponId);
-		// 			for (var i = 0; i < o.data.length; i++) {
-		// 				o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
-		// 				o.data[i].amount=o.data[i].amount;
-		// 				trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
-		// 			}
-		// 			jQuery('#'+couponId).html(trHtml);
-		// 			jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
-		// 		},function(){console.log('ajaxerror')});
-		// 	}else{
-		// 		jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
-		// 	}
-		// 	e.original.stopPropagation();
-	 //    })
+		couponRactive.on("showData",function(e){
+		    var couponId='';
+			console.log('youmeiyou');
+			console.log(e)
+			couponId=jQuery(this).siblings('.couponId').text();
+			console.log(couponId)		
+			if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
+				console.log(111+"   "+couponId);
+				couponInfData(couponId,function(o){
+					var trHtml="";
+					console.log(111+" ===   "+couponId);
+					for (var i = 0; i < o.data.length; i++) {
+						o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
+						o.data[i].amount=o.data[i].amount;
+						trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
+					}
+					jQuery('#'+couponId).html(trHtml);
+					jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
+				},function(){console.log('ajaxerror')});
+			}else{
+				jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
+			}
+			e.original.stopPropagation();
+	    })
 	}
 }
 
@@ -434,28 +435,29 @@ function couponInfData(Id,callback,errorFn){
 }
 
 function getcouponId(){
-	$('.checkInforBtn').on("click",function(event){
-		var couponId='';
-		console.log('youmeiyou');
-		couponId=jQuery(this).siblings('.couponId').text();		
-		if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
-			console.log(111+"   "+couponId);
-			couponInfData(couponId,function(o){
-				var trHtml="";
-				console.log(111+" ===   "+couponId);
-				for (var i = 0; i < o.data.length; i++) {
-					o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
-					o.data[i].amount=o.data[i].amount;
-					trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
-				}
-				jQuery('#'+couponId).html(trHtml);
-				jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
-			},function(){console.log('ajaxerror')});
-		}else{
-			jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
-		}
-		event.stopPropagation();
-	})
+	// console.log($('.checkInforBtn'));
+	// $('.checkInforBtn').on("click",function(event){
+	// 	var couponId='';
+	// 	console.log('youmeiyou');
+	// 	couponId=jQuery(this).siblings('.couponId').text();		
+	// 	if (jQuery('#'+couponId).parents('.xiangxi').hasClass('dn')) {
+	// 		console.log(111+"   "+couponId);
+	// 		couponInfData(couponId,function(o){
+	// 			var trHtml="";
+	// 			console.log(111+" ===   "+couponId);
+	// 			for (var i = 0; i < o.data.length; i++) {
+	// 				o.data[i].useTimeDate=(new Date(o.data[i].useTime)).Format("yyyy-MM-dd");
+	// 				o.data[i].amount=o.data[i].amount;
+	// 				trHtml=trHtml+'<tr><td style="text-indent:20px;">'+o.data[i].useTimeDate+'</td><td>'+o.data[i].amount+'</td><td>'+'投资'+'</td></tr>';
+	// 			}
+	// 			jQuery('#'+couponId).html(trHtml);
+	// 			jQuery('#'+couponId).parents('.xiangxi').removeClass('dn').addClass('dtr');
+	// 		},function(){console.log('ajaxerror')});
+	// 	}else{
+	// 		jQuery('#'+couponId).parents('.xiangxi').removeClass('dtr').addClass('dn');
+	// 	}
+	// 	event.stopPropagation();
+	// })
 
 }
 
