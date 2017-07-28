@@ -418,10 +418,9 @@ function init (type) {
 init(getCurrentType());
 
 //点击查看红包详情
-window.onload=function(){
-	console.log("111111111111111")
+// window.onload=function(){
 	CouponPackage();
-}
+// }
 function couponInfData(Id,callback,errorFn){
 	$.ajax({
 	  	url: "/api/v2/rebateCounpon/getRebateCouponRecordsByCouponId/"+Id,
@@ -473,14 +472,12 @@ function getcouponId(){
 
 //奖券获取原因下来列表
 function getUsingCouponPackage(callback){
-	console.log("33333333333333333333333")
 	$.get("/api/v2/rebateCounpon/getUsingCouponPackage",
 		function(o){
 			callback(o);
 		});
 }
 function CouponPackage(){
-	console.log("22222222222222")
 	getUsingCouponPackage(function(o){
 		var optionHtml='<option value="">全部</option>';
 		for (var i = 0; i < o.data.length; i++) {
