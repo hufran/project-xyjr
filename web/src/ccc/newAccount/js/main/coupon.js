@@ -105,9 +105,9 @@ function init (type) {
 						self.page =1;
 						console.log(z);
 						console.log(z.totalSize);
-						chaxun = self.parseData(z.results);
+						parseResult = self.parseData(z.results);
 						var getcouponIdClick=true;
-						self.setData(chaxun);
+						self.setData(parseResult);
 						// if(getcouponIdClick){
 						// 	getcouponId();
 						// 	getcouponIdClick=false;
