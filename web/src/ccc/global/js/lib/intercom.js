@@ -54,7 +54,12 @@ var Intercom = module.exports = (function() {
 	
 	// --- lib/localstorage.js ---
 	
-	var localStorage = window.localStorage;
+	var localStorage;
+	try{
+		localStorage = window.localStorage;
+	}catch(e){
+		console.log(e);
+	}
 	if (typeof localStorage === 'undefined') {
 		localStorage = {
 			getItem    : function() {},
