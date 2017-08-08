@@ -171,19 +171,25 @@ module.exports = (function () {
                 "3", "2"
             ];
             
-            if (idNumber[17] != validEnding[_.reduce(factor,
-                function (r, n, i) {
-                    return r + n * ~~idNumber[i];
-                }, 0) % 11]) {
-                if (next) {
-                    next(false, 'IDNUMBER_INVALID');
-                    return;
-                } else {
-                    return {
-                        success: false,
-                        data: 'IDNUMBER_INVALID'
-                    };
-                }
+            // if (idNumber[17] != validEnding[_.reduce(factor,
+            //     function (r, n, i) {
+            //         return r + n * ~~idNumber[i];
+            //     }, 0) % 11]) {
+            //     if (next) {
+            //         next(false, 'IDNUMBER_INVALID');
+            //         return;
+            //     } else {
+            //         return {
+            //             success: false,
+            //             data: 'IDNUMBER_INVALID'
+            //         };
+            //     }
+            // }
+            if(!(/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/).test(idNumber) || (/^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx]$/).test(idNumber) ){
+                return {
+                    success: false,
+                    data: 'IDNUMBER_INVALID'
+                };
             }
             if (next) {
                 next(true, null);
@@ -200,8 +206,12 @@ module.exports = (function () {
                 next(false, 'NAME_NULL');
                 return;
             }
-            if (!('' + name)
-                .match(/[\u4E00-\u9FBF]{2,15}/)) {
+            // if (!('' + name)
+            //     .match(/[\u4E00-\u9FBF]{2,15}/)) {
+            //     next(false, 'NAME_INVALID');
+            //     return;
+            // }
+            if (!(/^[\u4e00-\u9fa5]+((·|•|●)[\u4e00-\u9fa5]+)*$/.test(name)) || name.length <2 || name.length>10) {
                 next(false, 'NAME_INVALID');
                 return;
             }
@@ -248,7 +258,7 @@ module.exports = (function () {
         NAME_INVALID: '真实姓名错误，应为2-15位中文汉字',
         EMAIL_NULL: '请填写电子邮箱',
         EMAIL_INVALID: '请输入正确的邮箱',
-        IDNUMBER_INVALID: '请正确填写 18 位身份证号码',
+        IDNUMBER_INVALID: '请正确填写 18 位或15位身份证号码',
         LOGIN_INVALID: '手机号或密码错误',
         INVALID_CAPTCHA: '验证码错误',
         LOGINNAME_NOT_MATCH: '手机号码与登录名不匹配',
