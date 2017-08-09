@@ -238,9 +238,13 @@ ractive.on("bind-card-submit", function (e) {
         } else {
             if(r.error[0].message){
                 var error = r.error[0].message
+                if(error.indexOf("绑卡失败")>-1)  {                                          
+                    }else{
+                        error = '绑卡失败' + error;
+                }
             }
             CccOk.create({
-                msg: '绑卡失败，' + error,
+                msg: error,
                 okText: '确定',
                 ok: function () {
                     window.location.reload();
