@@ -200,11 +200,62 @@ do (_, angular) ->
             factor = '68947310526894731'.split('').map (n) -> ~~n + 1
             reduce = (func) -> factor.reduce func, 0
 
+            pcode = [];
+            pcode.push("11")
+            pcode.push("12")
+            pcode.push("13")
+            pcode.push("14")
+            pcode.push("15")
+            pcode.push("21")
+            pcode.push("22")
+            pcode.push("23")
+            pcode.push("31")
+            pcode.push("32")
+            pcode.push("33")
+            pcode.push("34")
+            pcode.push("35")
+            pcode.push("36")
+            pcode.push("37")
+            pcode.push("41")
+            pcode.push("42")
+            pcode.push("43")
+            pcode.push("44")
+            pcode.push("45")
+            pcode.push("46")
+            pcode.push("50")
+            pcode.push("51")
+            pcode.push("52")
+            pcode.push("53")
+            pcode.push("54")
+            pcode.push("61")
+            pcode.push("62")
+            pcode.push("63")
+            pcode.push("64")
+            pcode.push("65")
+#            if (!~pcode.indexOf(idNumber.substring(0, 2)))
+#              if (next)
+#                  //next(false, 'IDNUMBER_INVALID');
+#                  return;
+#            else
+#                return
+#                    success: false,
+#                    data: 'IDNUMBER_INVALID'
+#            }
             (id) ->
-                id_str = "#{ id ? '' }"
-                mark = id_str[factor.length] or '-'
+                if(id != undefined)
+                    twoStr = id.substring(0,2)
+                    if(id.length >= 2 && !~pcode.indexOf(twoStr))
+#                        不是有效身份证
+                        return false
+                    else
+#                        省份验证通过
+                        if(!(/^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx]$/).test(id) )
+                            id_str = "#{ id ? '' }"
+                            mark = id_str[factor.length] or '-'
+                            return mark is mask[reduce((s, n, i) -> s + n * parseInt(id_str[i])) % mask.length]
+                        else
+                            return true
 
-                return mark is mask[reduce((s, n, i) -> s + n * parseInt(id_str[i])) % mask.length]
 
 
 

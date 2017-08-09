@@ -48,7 +48,7 @@
                                    ng-model="user_name"
                                    minlength="2"
                                    maxlength="15"
-                                   pattern="[\u4E00-\u9FBF]{2,15}"
+                                   pattern="^[\u4e00-\u9fa5]+((·|•|●)[\u4e00-\u9fa5]+)*$"
                                    placeholder="填写真实姓名"
                                    required
                             >
@@ -56,7 +56,7 @@
                                  ng-show="form.user_name.$invalid && form.user_name.$dirty"
                             >
                                 <span ng-show="form.user_name.$error.required">必须填写</span>
-                                <span ng-show="form.user_name.$error.pattern">2 至 15 位中文</span>
+                                <span ng-show="(form.user_name.$error.pattern || form.user_name.$invalid) && form.user_name.$viewValue.length != 0">2 至 15 位中文</span>
                             </div>
                         </div>
                 </div>
@@ -69,7 +69,7 @@
                             <input id="id-number" class="form-control input-target input-lg" type="text"
                                    name="id_number"
                                    ng-model="id_number"
-                                   minlength="18"
+                                   minlength="15"
                                    maxlength="18"
                                    placeholder="填写身份证号"
                                    required
@@ -79,7 +79,7 @@
                                  ng-show="form.id_number.$invalid && form.id_number.$dirty"
                             >
                                 <span ng-show="form.id_number.$error.required">必须填写</span>
-                                <span ng-show="form.id_number.$viewValue && form.id_number.$error.id_number">请填写正确的 18 位身份证号码</span>
+                                <span ng-show="form.id_number.$viewValue && form.id_number.$error.id_number">请填写正确的15或18位身份证号码</span>
                             </div>
                         </div>
                 </div>
