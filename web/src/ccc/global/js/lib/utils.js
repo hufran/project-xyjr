@@ -170,32 +170,24 @@ module.exports = (function () {
                 "6", "5", "4",
                 "3", "2"
             ];
-            
-            // if (idNumber[17] != validEnding[_.reduce(factor,
-            //     function (r, n, i) {
-            //         return r + n * ~~idNumber[i];
-            //     }, 0) % 11]) {
-            //     if (next) {
-            //         next(false, 'IDNUMBER_INVALID');
-            //         return;
-            //     } else {
-            //         return {
-            //             success: false,
-            //             data: 'IDNUMBER_INVALID'
-            //         };
-            //     }
-            // }
-            if(!(/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/).test(idNumber) && !(/^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx]$/).test(idNumber) ){
-                if (next) {
-                    next(false, 'IDNUMBER_INVALID');
-                    return;
-                } else {
-                    return {
-                        success: false,
-                        data: 'IDNUMBER_INVALID'
-                    };
+
+            if(!(/^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx]$/).test(idNumber) ){
+                if (idNumber[17] != validEnding[_.reduce(factor,
+                    function (r, n, i) {
+                        return r + n * ~~idNumber[i];
+                    }, 0) % 11]) {
+                    if (next) {
+                        next(false, 'IDNUMBER_INVALID');
+                        return;
+                    } else {
+                        return {
+                            success: false,
+                            data: 'IDNUMBER_INVALID'
+                        };
+                    }
                 }
             }
+                                   
             if (next) {
                 next(true, null);
                 return;
@@ -216,7 +208,7 @@ module.exports = (function () {
             //     next(false, 'NAME_INVALID');
             //     return;
             // }
-            if (!(/^[\u4e00-\u9fa5]+((·|•|●)[\u4e00-\u9fa5]+)*$/.test(name)) || name.length <2 || name.length>10) {
+            if (!(/^[\u4e00-\u9fa5]+((·|•|●)[\u4e00-\u9fa5]+)*$/.test(name)) || name.length <2 || name.length>15) {
                 next(false, 'NAME_INVALID');
                 return;
             }
