@@ -19,9 +19,18 @@ do (_, angular) ->
 
             open_payment_account: (user_name, id_number) ->
 
-                user_name = filterXSS(user_name)
-
-                id_number = filterXSS(id_number)
+                if user_name != undefined
+                    user_name = filterXSS(user_name)
+                else
+                    @error.on = true
+                    @error.message =  '真实姓名为2 至 15 位中文！'
+                    return;
+                if id_number != undefined
+                    id_number = filterXSS(id_number)
+                else
+                    @error.on = true
+                    @error.message = '身份证号码不能为空！'
+                    return
 
                 return unless !!user_name and !!id_number
 
