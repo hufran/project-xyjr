@@ -24,12 +24,20 @@ do (_, angular) ->
                 else
                     @error.on = true
                     @error.message =  '真实姓名为2 至 15 位中文！'
+
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
                     return;
                 if id_number != undefined
                     id_number = filterXSS(id_number)
                 else
                     @error.on = true
                     @error.message = '身份证号码不能为空！'
+
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
                     return
 
                 return unless !!user_name and !!id_number
