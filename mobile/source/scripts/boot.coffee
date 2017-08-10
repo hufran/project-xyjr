@@ -349,8 +349,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                         .catch (user) ->
                                             return unless user
-
-                                            if GetRequest('sourceId') != ""
+                                            if GetRequest('sourceId') != "" and  GetRequest('sourceId') != undefined
 
                                             else
                                                 switch
