@@ -1,5 +1,5 @@
 <style>
-    .yesterdayInterest{height: 3.6rem;width:100%; text-align: center;color:#ffffff; margin:0.3rem auto; line-height:1rem;}
+    .yesterdayInterest{height: 3.6rem;width:100%; text-align: center;color:#ffffff; margin:0.3rem auto 0; line-height:1rem;}
     .gradientGloria{
         background: -moz-linear-gradient(top, #3e9fd6 0%, #76ccfe 100%);
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3e9fd6), color-stop(100%,#76ccfe));
@@ -9,6 +9,9 @@
         background: linear-gradient(to bottom, #3e9fd6 0%,#76ccfe 100%);
     }
     .gradientGloria span{font-size:0.8rem;font-weight:bold}
+    ul.buttonOperate{display: flex;background-color:#fff;margin:0;list-style-type: none;padding:0.2rem; text-align:center;font-size:0.5rem; line-height: 0.8rem;color:#5B9DFF;font-weight:bold;}
+    ul.buttonOperate li{flex:1;-webkit-box-flex:1;webkit-flex:1; -ms-flex:1;}
+    ul.buttonOperate li:last-child{border-left:1px solid #8ba6c1}
 </style>
 <div id="dashboard">
 
@@ -27,6 +30,10 @@
         昨日收益（元）<br>
         <span>{{yesterdayIncome | number:2}}</span>
     </div>
+    <ul class="buttonOperate">
+        <li><a href="dashboard/recharge">充值</a></li>
+        <li><a href="dashboard/withdraw">提现</a></li>
+    </ul>
     <section class="c-list-panel info-list">
         <div class="item">
             <img class="user-icon" width="14" src="assets/image/dashboard-user-icon.png">
@@ -39,14 +46,14 @@
             <img width="17" src="assets/image/dashboard-profit-icon.png">
             <span class="name">累计收益</span>
             <span class="value">&yen; {{ fund.total_interest | number: 2 }}</span>
-            <a class="btn btn-sm btn-withdraw pull-right" href="dashboard/withdraw">提现</a>
+            <!--<a class="btn btn-sm btn-withdraw pull-right">提现</a>-->
         </div>
 
         <div class="item">
             <img width="17" src="assets/image/dashboard-available-icon.png">
             <span class="name">可用余额</span>
             <span class="value">&yen; {{ fund.available | number: 2 }}</span>
-            <a class="btn btn-sm btn-recharge pull-right" href="dashboard/recharge">充值</a>
+            <!--<a class="btn btn-sm btn-recharge pull-right" href="">充值</a>-->
         </div>
 
         <a href="dashboard/total-assets" class="item">
