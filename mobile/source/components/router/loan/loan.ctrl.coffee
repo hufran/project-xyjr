@@ -11,7 +11,9 @@ do (_ ,angular, moment, Math, Date) ->
                 angular.extend @$scope, {
                     back_path: @$routeParams.back
                     loan: map_loan_summary @loan
+                    stopDate:null
                 }
+                @getStopDate()
 
                 @api.get_loan_investors(@loan.id).then (data) =>
 
@@ -49,6 +51,17 @@ do (_ ,angular, moment, Math, Date) ->
 
                     @$window.location.reload()
 
+            getStopDate:() =>
+                dateSeconds = new Date(@loan.endTime)
+                if dateSeconds.getMonth()+1 < 10
+                    tmpMonth = "0" + (dateSeconds.getMonth()+1)
+                else
+                    tmpMonth = dateSeconds.getMonth()+1
+                if dateSeconds.getDate() < 10
+                    tmpDate = "0" + dateSeconds.getDate()
+                else
+                    tmpDate = dateSeconds.getDate()
+                @$scope.stopDate = dateSeconds.getFullYear() + "-"+tmpMonth+"-"+tmpDate
 
             agreement: (segment) ->
 
