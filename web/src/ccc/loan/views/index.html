@@ -72,6 +72,7 @@
 <!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
                             <li>还款方式：{{loans.method}}</li>
                             <li>投资限额：{{loans.loanRequest.investRule.maxAmount}}元</li>
+                            <li>投标截止日期: {{loans.endTime}}</li>
                         </ul>
                     </div>
                                           <div class="progress-wp">
@@ -480,6 +481,7 @@
     if('{{loans.timeFinished}}'){
         CC.loan.timeFinished='{{loans.timeFinished}}';
     }
+    console.log(loans);
 </script>
 <script src="/ccc/loan/js/main/investDetail.js"></script>
 <script src="/ccc/loan/js/main/img.js"></script>
