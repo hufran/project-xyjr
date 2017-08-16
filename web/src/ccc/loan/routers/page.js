@@ -229,6 +229,11 @@ function parseLoan(loan) {
         }
     }
 
+    if(loan.endTime){
+        loan.endTime = moment(loan.endTime)
+        .format('YYYY-MM-DD');
+    }
+
     return loan;
 }
 
