@@ -107,16 +107,17 @@
 
 	rePassword.on('next', function (e) {
 	    e.original.preventDefault();
+	    console.log(this.get('user.mobile'))
+	    if (!this.get('user.mobile')) {
+	        showErrors("MOBILE_NULL");
+	        return false;
+	    }
+	    
 	    var user = {
 	        mobile: filterXSS(this.get('user.mobile')),
 	        captcha: filterXSS(this.get('phone')),
 	        smsType: 'CONFIRM_CREDITMARKET_CHANGE_LOGIN_PASSWORD'
 	    };
-
-	    if (user.mobile == '') {
-	        showErrors("MOBILE_NULL");
-	        return false;
-	    }
 
         var bMobile = false;
 	    utils.formValidator.checkMobile(this.get('user.mobile'), function (ok, msg) {
