@@ -33,8 +33,14 @@ do (_, angular) ->
 
 
             login: ({username, password} = {}) ->
-                username = filterXSS(username)
-                password = filterXSS(password)
+                if username != undefined
+                    username = filterXSS(username)
+                else
+                    do @error_message_flash
+                if password != undefined
+                    password = filterXSS(password)
+                else
+                    do @error_message_flash
                 unless username and password
                     return do @error_message_flash
 
