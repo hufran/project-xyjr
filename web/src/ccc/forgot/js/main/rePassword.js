@@ -112,6 +112,11 @@
 	        showErrors("MOBILE_NULL");
 	        return false;
 	    }
+
+	    if (this.get('phone') == null || this.get('phone').toString().trim() === "") {
+	        showErrors("MOBILE_CAPTCHA_NULL");
+	        return false;
+	    }
 	    
 	    var user = {
 	        mobile: filterXSS(this.get('user.mobile')),
@@ -143,10 +148,7 @@
         }
 
 
-        if (user.captcha == null || user.captcha.toString().trim() === "") {
-	        showErrors("MOBILE_CAPTCHA_NULL");
-	        return false;
-	    }
+        
 
 	    rePasswordService.verifyMobileCaptcha(user, function (err, msg) {
 	        if (!err) {
