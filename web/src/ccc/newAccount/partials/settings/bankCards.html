@@ -10,16 +10,16 @@
 <div class="row">
 	<div class="space space-30"></div>
 	<div class="col-md-12 align-center">
-		<p class="text-warning" style="color:#009ada">您还没有实名认证，实名后才能绑定银行卡</p>
+		<p class="text-warning" style="color:#009ada">您还没有开通银行存管，开通后才能绑定银行卡</p>
 		<div class="space space-40"></div>
 		<p>
-			<a href="/newAccount/settings/authentication" style="width: 230px;background-color:#009ada" class="btn btn-orange">立即认证</a>
+			<a href="/newAccount/settings/authentication" style="width: 230px;background-color:#009ada" class="btn btn-orange">开通银行存管</a>
 		</p>
 	</div>
 </div>
 {{else}}
 <!--要绑定银行卡-->
-{{#if status === 0}}
+{{#if status === 3}}
 <div class="bind-card-wrapper">
     <form action="" method="POST" on-submit="bind-card-submit" autocomplete="off">
         <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">

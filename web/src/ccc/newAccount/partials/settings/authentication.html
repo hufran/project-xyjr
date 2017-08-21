@@ -4,7 +4,7 @@
 <div class="open-account-wrapper">
 
     <div class="errorNotOpenedYet" style="text-align:center">
-        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：实名认证操作关系到您的切身利益，请保护好帐号安全
+        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：开通银行存管操作关系到您的切身利益，请保护好帐号安全
     </div>
 
     <div class="account-form-wrapper">
@@ -37,8 +37,50 @@
                  </div>
                  {{/if}}
             </div>
+            <div class="userIdNumber">
+                <label for="bankNumber" class="">银行卡号</label>
+                 <input type="text" class="check-name" id="bankNumber" name="bankNumber" value="{{bankNumber}}" on-blur="checkIdNumber"/>
+                 {{#if showErrorMessageId}}
+                 <div class="error-message nameAndId">
+                     {{ errorMessageId }}
+                 </div>
+                 {{/if}}
+            </div>
+            <div class="userIdNumber">
+                <div class="row">
+                    <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户银行：</div>
+                    <select name="bankName" class="select" value="{{bankName}}" style="font-size: 12px;">
+                        <option value="请选择开户银行">请选择开户银行</option>
+                        {{#each banks}}
+                            <option value="{{name}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                    <span class="error">{{errorMessagea1}}</span>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+            <div class="userIdNumber">
+                <label for="bankPhone" class="">银行预留手机号</label>
+                 <input type="text" class="check-name" id="bankPhone" name="bankPhone" value="{{idNumber}}" on-blur="checkIdNumber"/>
+                 {{#if showErrorMessageId}}
+                 <div class="error-message nameAndId">
+                     {{ errorMessageId }}
+                 </div>
+                 {{/if}}
+            </div>
+            <div class="userIdNumber">
+                <label for="messageTxt" class="">短信验证码</label>
+                 <input type="text" class="check-name" id="messageTxt" name="messageTxt" value="{{idNumber}}" on-blur="checkIdNumber"/>
+                 <a href="javascript:;"  class="u-btn-blue getcaptcha" on-click="sendTelCode">获取</a>
+                 {{#if showErrorMessageId}}
+                 <div class="error-message nameAndId">
+                     {{ errorMessageId }}
+                 </div>
+                 {{/if}}
+            </div>
             <div class="account-submit">
-                <input type="button" value="立即认证" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;check-name"  />
+                <input type="button" value="确认开通" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
             </div>
             <div style="background-color: #f4fcff;padding: 10px;width:700px;margin: 0 auto;text-align: left;margin-top: 50px;">
                 <p class="tips" style="color:#f58220">温馨提示：</p>
@@ -51,7 +93,7 @@
 <!-- 已绑定 -->
 <div class="account-opened-notice">
     <div class="ftips">
-        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：实名认证操作关系到您的切身利益，请保护好帐号安全
+        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：开通银行存管操作关系到您的切身利益，请保护好帐号安全
     </div>
 </div>
 <div class="space-20"></div>
@@ -64,6 +106,18 @@
     <div class="account-info-row">
         <label for="" class="text">身份证号：</label>
         <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">银行卡号：</label>
+        <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">所属银行：</label>
+        <span class="value">招商银行</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">银行预留手机号：</label>
+        <span class="value">{{authenticateInfo.idNumber.substr(0,3)}}****{{authenticateInfo.idNumber.substr(-3)}}</span>
     </div>
 </div>
 <div class="space-30"></div>

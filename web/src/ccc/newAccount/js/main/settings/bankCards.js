@@ -62,7 +62,7 @@ var ractive = new Ractive({
             accountService.getCity(fProvince, function (res) {
                 ractive.set('city', changeToList(res));
             });
-        });
+        });        
     }
 });
 
