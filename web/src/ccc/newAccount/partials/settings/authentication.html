@@ -1,6 +1,6 @@
 <div class="space-30"></div>
 <div class="space-20"></div>
-{{#if !authenticateInfo.idNumber}}
+{{#if !bank}}
 <div class="open-account-wrapper">
 
     <div class="errorNotOpenedYet" style="text-align:center">
@@ -18,6 +18,7 @@
                     {{/if}}
                 </div>
             </div>
+            {{#if !authenticateInfo.idNumber}}
             <div class="trueName">
                 <label for="trueName" class="">真实姓名</label>
                 <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName" maxlength="15"/>
@@ -37,6 +38,16 @@
                  </div>
                  {{/if}}
             </div>
+            {{else}}
+                <div class="account-info-row">
+                    <label for="" class="text">真实姓名：</label>
+                    <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+                </div>
+                <div class="account-info-row">
+                    <label for="" class="text">身份证号：</label>
+                    <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
+                </div>
+            {{/if}}
             <div class="userIdNumber">
                 <label for="bankNumber" class="">银行卡号</label>
                  <input type="text" class="check-name" id="bankNumber" name="bankNumber" value="{{bankNumber}}" on-blur="checkIdNumber"/>

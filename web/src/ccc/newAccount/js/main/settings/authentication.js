@@ -96,9 +96,6 @@ ractive.on("register-account-submit", function () {
                 var msg,link;
                 if (that.get('bank') && that.get('paymentPasswordHasSet')) {
                     msg = "恭喜您，认证成功！";
-                } else if (!that.get('bank') && that.get('paymentPasswordHasSet')) {
-                    msg = "认证成功，请绑定银行卡！";
-                    link = '/newAccount/settings/bankCards';
                 } else {
                     msg = "认证成功，请开通交易密码";
                     link = '/newAccount/settings/password';
