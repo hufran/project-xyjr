@@ -7,6 +7,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var Message = require('ccc/global/js/modules/cccMessage');
 require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
@@ -225,9 +226,31 @@ ractive.on('withDrawSubmit', function () {
 				ractive.set('submitMessage', '交易密码错误');
 			} else {
 				ractive.set('submitMessage', null);
-				if (ractive.confirm(amount)) {
-					isAcess = true;
-				}
+				if(this.get('banksabled')) {
+                    var phoneNumber = CC.user.bankCards[0].account.account;
+                        phoneNumber = phoneNumber.substr(0,3) + '****' + phoneNumber.substr(-3)
+                    Message.create({
+                        msg: '短信验证码已发送至'+phoneNumber,
+                        okText: '下一步',
+                        ok: function() {
+                            isAcess = true;
+                            console.log('aaaaaa')
+                        },
+                        cancel: function() {
+                            isAcess = false;
+                            console.log('bbbbbbb')
+                        }
+                    })
+                }else{
+                    ractive.set('submitMessage', '您尚未开通银行存管');
+                    isAcess = false;
+                }
+                if(!isAcess){return}
+                if (ractive.confirm(amount)) {
+                    isAcess = true;
+                }else{
+                    isAcess = false;
+                }
 				
 				if (isAcess) {
 					$.post('/yeepay/withdraw', 
