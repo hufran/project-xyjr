@@ -5,6 +5,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
 var format = require('@ds/format');
+var CommonService = require('ccc/global/js/modules/common').CommonService;
 require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
@@ -66,12 +67,80 @@ ractive.on('checkIdNumber',function(){
         }
     });
 });
-ractive.on("register-account-submit", function () {
-    var name = filterXSS(this.get("name"));
-    var idNumber = filterXSS(this.get("idNumber"));
+
+reactive.on('checkbankNumber', function(){
+    var bankNumber = this.get("bankNumber");
+    this.set('showErrorbankNumber',false);
+    if(!bankNumber){
+        var error = 'BANK_NULL'
+    }else{
+        var error = 'BANK_ERR'
+    }
+    if (!/^\d*$/.test(bankNumber)) {        
+        ractive.set({
+            showErrorbankNumber: true,
+            errorbankNumber: utils.errorMsg[error]
+        });
+    }else{
+        this.set('showErrorbankNumber',false);
+    }
+})
+
+reactive.on('checkbankPhone', function(){
+    var bankPhone = this.get("bankPhone");
+    this.set('showErrorbankPhone',false);   
+    if(!bankPhone){
+        var error = 'MOBILE_NULL'
+    }else{
+        var error = 'MOBILE_INVALID'
+    }
+    if (!/^\d*$/.test(bankPhone)) {        
+        ractive.set({
+            showErrorbankPhone: true,
+            errorbankPhone: utils.errorMsg[error]
+        });
+    }else{
+        this.set('showErrorbankPhone',false);
+    }
+})
+
+reactive.on('checkmessageTxt', function(){
+    var messageTxt = this.get("messageTxt"); 
+    this.set('showErrormessageTxt',false);   
+    if(!messageTxt){
+        var error = 'SMSCAPTCHA_NULL'
+    }else{
+        var error = 'SMSCAPTCHA_INVALID'
+    }
+    if (!/^\d{6}$/.test(messageTxt)) {        
+        ractive.set({
+            showErrormessageTxt: true,
+            errormessageTxt: utils.errorMsg[error]
+        });
+    }else{
+        this.set('showErromessageTxt',false);
+    }
+})
+
+ractive.on("register-account-submit", function () {   
     var that=this;
     this.fire('checkName');
     this.fire('checkIdNumber');
+    this.fire('checkbankNumber');
+    this.fire('checkbankPhone');
+    this.fire('checkmessageTxt');
+    if ($('select[name="bankName"]').val()=='请选择开户银行') {
+        ractive.set({
+            showErrorbankName: true,
+            errorbankName: '请选择开户银行'
+        });
+        return false;
+    }
+    if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrobankNumber') || this.get('showErrobankPhone') || this.get('showErromessageTxt')) {
+        return false;
+    }
+    var name = filterXSS(this.get("name"));
+    var idNumber = filterXSS(this.get("idNumber"));
     utils.formValidator.checkName(that.get("name"), function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -176,3 +245,37 @@ ractive.on('continue-open', function () {
 ractive.on('agreement-check', function () {
     return false;
 });
+
+ractive.on('sendTelCode', function (){
+    var $captchaBtn = $(".getcaptcha");
+    if ($captchaBtn.hasClass('disabled')) {
+        return;
+    }
+    var smsType = 'CREDITMARKET_CAPTCHA';
+    CommonService.getMessage(smsType, function (r) {
+        if (r.success) {
+            countDown();
+        }
+    });
+});
+
+function countDown() {
+    $('.getcaptcha')
+        .addClass('disabled');
+    var previousText = '获取验证码';
+    var msg = '$秒后重新发送';
+
+    var left = 120;
+    var interval = setInterval((function () {
+        if (left > 0) {
+            $('.getcaptcha')
+                .html(msg.replace('$', left--));
+        } else {
+            $('.getcaptcha')
+                .html(previousText);
+            $('.getcaptcha')
+                .removeClass('disabled');
+            clearInterval(interval);
+        }
+    }), 1000);
+}
