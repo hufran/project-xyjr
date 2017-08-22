@@ -48,7 +48,7 @@ function CccMeassage(options) {
             overlay: config.overlay,
             showed: function(ele, box) {
                 // click ok
-                $(ele).find('.btn-confirm-ok').on('click', function{
+                $(ele).find('.btn-confirm-ok').on('click', function(){
                     utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').value,function(err,msgg){
                         if (!err) {
                             $(ele).find('.errMess')
