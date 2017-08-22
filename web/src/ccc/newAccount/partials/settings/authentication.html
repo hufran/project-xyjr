@@ -50,7 +50,7 @@
             {{/if}}
             <div class="userIdNumber">
                 <label for="bankNumber" class="">银行卡号</label>
-                 <input type="text" class="check-name" id="bankNumber" name="bankNumber" value="{{bankNumber}}" on-blur="checkIdNumber"/>
+                 <input type="text" class="check-name" id="bankNumber" name="bankNumber" value="{{bankNumber}}" on-blur="checkbankNumber"/>
                  {{#if showErrorMessageId}}
                  <div class="error-message nameAndId">
                      {{ errorMessageId }}
@@ -73,7 +73,7 @@
             </div>
             <div class="userIdNumber">
                 <label for="bankPhone" class="">银行预留手机号</label>
-                 <input type="text" class="check-name" id="bankPhone" name="bankPhone" value="{{idNumber}}" on-blur="checkIdNumber"/>
+                 <input type="text" class="check-name" id="bankPhone" name="bankPhone" value="{{bankPhone}}" on-blur="checkbankPhone"/>
                  {{#if showErrorMessageId}}
                  <div class="error-message nameAndId">
                      {{ errorMessageId }}
@@ -82,7 +82,7 @@
             </div>
             <div class="userIdNumber">
                 <label for="messageTxt" class="">短信验证码</label>
-                 <input type="text" class="check-name" id="messageTxt" name="messageTxt" value="{{idNumber}}" on-blur="checkIdNumber"/>
+                 <input type="text" class="check-name" id="messageTxt" name="messageTxt" value="{{messageTxt}}" on-blur="checkmessageTxt"/>
                  <a href="javascript:;"  class="u-btn-blue getcaptcha" on-click="sendTelCode">获取</a>
                  {{#if showErrorMessageId}}
                  <div class="error-message nameAndId">
