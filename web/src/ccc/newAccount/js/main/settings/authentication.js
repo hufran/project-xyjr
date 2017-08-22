@@ -20,13 +20,13 @@ var ractive = new Ractive({
         isQuickCheck: true,
         authenticateInfo: {
             name: CC.user.name || '',
-            idNumber: '',
-            bankNumber: '',
-            bankMobile: ''
+            idNumber: ''
         },
         bank: banksabled.length? true:false,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
-        format: format
+        format: format,
+        bankNumber: '',
+        bankMobile: ''
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -35,10 +35,8 @@ var ractive = new Ractive({
                 idNumber: res.user.idNumber,
             });
             if(ractive.get('bank')) {
-                ractive.set('authenticateInfo', {
-                    bankNumber: CC.user.bankCards[0].account.account,
-                    bankMobile: CC.user.bankCards[0].account.bankMobile
-                });
+                ractive.set('bankNumber', CC.user.bankCards[0].account.account)
+                ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
             }
         });
     }

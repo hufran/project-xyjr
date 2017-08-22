@@ -46,7 +46,7 @@ var ractive = new Ractive({
                     percent += 25;
                 }
 
-                if(CC.user.bankCards.lenght) {
+                if(CC.user.bankCards.length) {
                     ractive.set('bankNumber', true);
                 }
                 if (CC.user.paymentPasswordHasSet) {
