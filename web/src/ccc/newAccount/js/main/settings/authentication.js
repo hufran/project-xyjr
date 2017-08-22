@@ -79,17 +79,22 @@ ractive.on('checkbankNumber', function(){
     this.set('showErrorbankNumber',false);
     if(!bankNumber){
         var error = 'BANK_NULL'
-    }else{
-        var error = 'BANK_ERR'
-    }
-    if (!/^\d*$/.test(bankNumber)) {        
         ractive.set({
             showErrorbankNumber: true,
             errorbankNumber: utils.errorMsg[error]
         });
-    }else{
-        this.set('showErrorbankNumber',false);
+    }else{        
+        if (!/^\d*$/.test(bankNumber)) {  
+            var error = 'BANK_ERR'      
+            ractive.set({
+                showErrorbankNumber: true,
+                errorbankNumber: utils.errorMsg[error]
+            });
+        }else{
+            this.set('showErrorbankNumber',false);
+        }
     }
+    
 })
 
 ractive.on('checkbankPhone', function(){
@@ -101,17 +106,17 @@ ractive.on('checkbankPhone', function(){
             showErrorbankPhone: true,
             errorbankPhone: utils.errorMsg[error]
         });
-    }else{
-        var error = 'MOBILE_INVALID'
-    }
-    if (!/^\d*$/.test(bankPhone)) {        
-        ractive.set({
-            showErrorbankPhone: true,
-            errorbankPhone: utils.errorMsg[error]
-        });
-    }else{
-        this.set('showErrorbankPhone',false);
-    }
+    }else{        
+        if (!/^\d*$/.test(bankPhone)) {
+            var error = 'MOBILE_INVALID'        
+            ractive.set({
+                showErrorbankPhone: true,
+                errorbankPhone: utils.errorMsg[error]
+            });
+        }else{
+            this.set('showErrorbankPhone',false);
+        }
+    }   
 })
 
 ractive.on('checkmessageTxt', function(){
@@ -124,16 +129,16 @@ ractive.on('checkmessageTxt', function(){
             errormessageTxt: utils.errorMsg[error]
         });
     }else{
-        var error = 'SMSCAPTCHA_INVALID'
-    }
-    if (!/^\d{6}$/.test(messageTxt)) {        
-        ractive.set({
-            showErrormessageTxt: true,
-            errormessageTxt: utils.errorMsg[error]
-        });
-    }else{
-        this.set('showErromessageTxt',false);
-    }
+        if (!/^\d{6}$/.test(messageTxt)) {
+            var error = 'SMSCAPTCHA_INVALID'        
+            ractive.set({
+                showErrormessageTxt: true,
+                errormessageTxt: utils.errorMsg[error]
+            });
+        }else{
+            this.set('showErromessageTxt',false);
+        }
+    }    
 })
 
 ractive.on("register-account-submit", function () {   
