@@ -77,25 +77,25 @@
                     </td>
                 </tr>
                 <tr>
-                    {{#if idNumber}}
+                    {{#if bankNumber}}
                    <td>
                         <span class="glyphicon glyphicon-ok"></span> &nbsp;银行存管：
                    </td>
                     <td>
-                        {{idNumber}}
+                        <a style="color:#009ada" href="/newAccount/settings/authentication">查看详情</a>
                     </td>
                     <td class="align-center">
-                        <span class="status">已认证</span>
+                        <span class="status">已开通</span>
                     </td>
                     {{else}}
                     <td>
-                        <span class="glyphicon glyphicon-remove"></span> &nbsp;实名认证：
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;银行存管：
                     </td>
                     <td>
-                        <span class="status-no">未认证!</span>
+                        <span class="status-no">未开通!</span>
                     </td>
                     <td class="align-center">
-                        <a href="/newAccount/settings/authentication" class="btn" rel="nofollow" >去认证</a>
+                        <a href="/newAccount/settings/authentication" class="btn" rel="nofollow" >去开通</a>
                     </td>
                     {{/if}}
                 </tr>
