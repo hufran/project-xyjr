@@ -21,7 +21,8 @@ var ractive = new Ractive({
         authenticateInfo: {
             name: CC.user.name || '',
             idNumber: '',
-            bankNumber: ''
+            bankNumber: '',
+            bankMobile: ''
         },
         bank: banksabled.length? true:false,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
@@ -36,7 +37,7 @@ var ractive = new Ractive({
             if(ractive.get('bank')) {
                 ractive.set('authenticateInfo', {
                     bankNumber: CC.user.bankCards[0].account.account,
-                    bankMobile: CC.iser.bankCards[0].account.bankMobile
+                    bankMobile: CC.user.bankCards[0].account.bankMobile
                 });
             }
         });
@@ -75,7 +76,7 @@ ractive.on('checkIdNumber',function(){
     });
 });
 
-reactive.on('checkbankNumber', function(){
+ractive.on('checkbankNumber', function(){
     var bankNumber = this.get("bankNumber");
     this.set('showErrorbankNumber',false);
     if(!bankNumber){
@@ -93,7 +94,7 @@ reactive.on('checkbankNumber', function(){
     }
 })
 
-reactive.on('checkbankPhone', function(){
+ractive.on('checkbankPhone', function(){
     var bankPhone = this.get("bankPhone");
     this.set('showErrorbankPhone',false);   
     if(!bankPhone){
@@ -111,7 +112,7 @@ reactive.on('checkbankPhone', function(){
     }
 })
 
-reactive.on('checkmessageTxt', function(){
+ractive.on('checkmessageTxt', function(){
     var messageTxt = this.get("messageTxt"); 
     this.set('showErrormessageTxt',false);   
     if(!messageTxt){
