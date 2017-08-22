@@ -33,10 +33,10 @@ var ractive = new Ractive({
                 name: res.user.name,
                 idNumber: res.user.idNumber,
             });
-            if(this.get('bank')) {
+            if(ractive.get('bank')) {
                 ractive.set('authenticateInfo', {
-                    bankNumber: res.user.bankCards[0].account.account,
-                    bankMobile: res.iser.bankCards[0].account.bankMobile
+                    bankNumber: CC.user.bankCards[0].account.account,
+                    bankMobile: CC.iser.bankCards[0].account.bankMobile
                 });
             }
         });

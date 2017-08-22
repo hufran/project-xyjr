@@ -44,10 +44,9 @@ var ractive = new Ractive({
                     var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
                     ractive.set('idNumber', idNumber);
                     percent += 25;
-                    console.log(userinfo)
                 }
 
-                if(userinfo.user.bankCards.lenght) {
+                if(CC.user.bankCards.lenght) {
                     ractive.set('bankNumber', true);
                 }
                 if (CC.user.paymentPasswordHasSet) {
