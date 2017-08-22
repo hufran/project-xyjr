@@ -226,7 +226,7 @@ ractive.on('withDrawSubmit', function () {
 				ractive.set('submitMessage', '交易密码错误');
 			} else {
 				ractive.set('submitMessage', null);
-				if(this.get('banksabled')) {
+				if(banksabled.length) {
                     var phoneNumber = CC.user.bankCards[0].account.account;
                         phoneNumber = phoneNumber.substr(0,3) + '****' + phoneNumber.substr(-3)
                     Message.create({

@@ -47,11 +47,11 @@ function CccMeassage(options) {
             showed: function(ele, box) {
                 // click ok
                 $(ele).find('.btn-confirm-ok').on('click', function(){
-                    var $captchaBtn = $(".getcaptcha");
+                    var $captchaBtn = $(ele).find(".getcaptcha");
                     if ($captchaBtn.hasClass('disabled')) {
                         return;
                     }
-                    utils.formValidator.checkSmsCaptcha($('.msmcaptcha').value,function(err,msg){
+                    utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').value,function(err,msgg){
                         if (!err) {
                             console.log('验证码错误')
                             return false;
@@ -80,20 +80,20 @@ function CccMeassage(options) {
 
                 config.complete(ele, box);
                 function countDown() {
-                    $('.getcaptcha')
+                    $(ele).find('.getcaptcha')
                         .addClass('disabled');
                     var previousText = '获取验证码';
-                    var msg = '$秒后重新发送';
+                    var mssg = '$秒后重新发送';
 
                     var left = 60;
                     var interval = setInterval((function () {
                         if (left > 0) {
-                            $('.getcaptcha')
-                                .html(msg.replace('$', left--));
+                            $(ele).find('.getcaptcha')
+                                .html(mssg.replace('$', left--));
                         } else {
-                            $('.getcaptcha')
+                            $(ele).find('.getcaptcha')
                                 .html(previousText);
-                            $('.getcaptcha')
+                            $(ele).find('.getcaptcha')
                                 .removeClass('disabled');
                             clearInterval(interval);
                         }
