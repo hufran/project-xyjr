@@ -83,7 +83,7 @@
     "gulp": "gulp",
     "postinstall": "mkdir -p src/ccc/global/img/fonts && cp node_modules/bootstrap/fonts/* src/ccc/global/img/fonts/ && cp node_modules/font-awesome/fonts/* src/ccc/global/img/fonts/ && gulp init",
     "reload": "NODE_ENV=production PORT=8000 rc-service",
-    "start": "NODE_ENV=production PORT=8000 rc-service",
+    "start": "rc-service NODE_ENV=production PORT=8000 ",
     "start-uat": "NODE_APP_INSTANCE=uat NODE_ENV=production PORT=8000 rc-service",
     "stop": "rc-service stop"
   }

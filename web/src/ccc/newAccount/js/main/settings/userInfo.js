@@ -19,7 +19,8 @@ var ractive = new Ractive({
         email: false,
         percent: 25,
         levelText:'弱',
-        isEnterprise: CC.user.enterprise
+        isEnterprise: CC.user.enterprise,
+        bankNumber: false
     },
     init: function() {
         var percent = 25;
@@ -43,6 +44,10 @@ var ractive = new Ractive({
                     var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
                     ractive.set('idNumber', idNumber);
                     percent += 25;
+                }
+
+                if(CC.user.bankCards.length) {
+                    ractive.set('bankNumber', true);
                 }
                 if (CC.user.paymentPasswordHasSet) {
                     percent += 25;
