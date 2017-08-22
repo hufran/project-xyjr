@@ -97,6 +97,10 @@ ractive.on('checkbankPhone', function(){
     this.set('showErrorbankPhone',false);   
     if(!bankPhone){
         var error = 'MOBILE_NULL'
+        ractive.set({
+            showErrorbankPhone: true,
+            errorbankPhone: utils.errorMsg[error]
+        });
     }else{
         var error = 'MOBILE_INVALID'
     }
@@ -115,6 +119,10 @@ ractive.on('checkmessageTxt', function(){
     this.set('showErrormessageTxt',false);   
     if(!messageTxt){
         var error = 'SMSCAPTCHA_NULL'
+        ractive.set({
+            showErrormessageTxt: true,
+            errormessageTxt: utils.errorMsg[error]
+        });
     }else{
         var error = 'SMSCAPTCHA_INVALID'
     }
@@ -269,7 +277,7 @@ function countDown() {
     $('.getcaptcha')
         .addClass('disabled');
     var previousText = '获取验证码';
-    var msg = '$秒后重新发送';
+    var msg = '$秒';
 
     var left = 120;
     var interval = setInterval((function () {

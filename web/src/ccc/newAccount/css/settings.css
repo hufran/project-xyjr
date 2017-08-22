@@ -544,3 +544,7 @@ margin-left: 264px;
    border-radius: 5px;
    text-align: center;
 }
+
+.btn-blue:hover{
+  text-decoration: none;
+}
