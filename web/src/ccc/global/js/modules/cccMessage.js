@@ -9,7 +9,7 @@ function CccMeassage(options) {
         title: '请输入短信验证码',
         tpl: tpl,
         width: 400,
-        height: 150,
+        height: 170,
         overlay: false,
         msg: '确定要这么做？',
         complete: function() {},
@@ -46,14 +46,11 @@ function CccMeassage(options) {
             overlay: config.overlay,
             showed: function(ele, box) {
                 // click ok
-                $(ele).find('.btn-confirm-ok').on('click', function(){
-                    var $captchaBtn = $(ele).find(".getcaptcha");
-                    if ($captchaBtn.hasClass('disabled')) {
-                        return;
-                    }
+                $(ele).find('.btn-confirm-ok').on('click', function
                     utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').value,function(err,msgg){
                         if (!err) {
-                            console.log('验证码错误')
+                            $(ele).find('.errMess')
+                                .html('验证码错误');
                             return false;
                         }
                         
@@ -75,6 +72,10 @@ function CccMeassage(options) {
                 //getCaptcha
                 $(ele).find('.getcaptcha').on('click', function() {
                     console.log('获取验证码')
+                    var $captchaBtn = $(ele).find(".getcaptcha");
+                    if ($captchaBtn.hasClass('disabled')) {
+                        return;
+                    }
                     countDown()
                 })
 

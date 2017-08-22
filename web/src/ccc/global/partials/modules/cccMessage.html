@@ -1,14 +1,15 @@
 <div class="ccc-confirm-wrap">
     <div class="space space-30"></div>
-    <div class="align-center">
-        <p>{{msg}}</p>
+    <div style="margin-left: 30px">
+        <p style="margin-bottom: 10px;">{{msg}}</p>
         <span>验证码</span>
         <input type="text" class="msmcaptcha" autocomplete="off" />
-        <a href="javascript:;"  class="u-btn-blue getcaptcha">获取短信验证码</a>
+        <a href="javascript:;"  class="btn-blue getcaptcha">获取短信验证码</a>
+        <span class="errMess"></span>
     </div>
     <div class="space space-30"></div>
-    <div class="row">
-        <div class="col-md-12 align-center">
+    <div>
+        <div style="width: 80px;height: 37px;margin: 0 auto;">
             <button class="btn btn-success btn-confirm-ok">{{okText}}</button>
         </div>
     </div>

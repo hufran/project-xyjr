@@ -10738,4 +10738,31 @@ a.text-danger:hover {
 .cols.from-right > * {
   float: right;
 }
+
+.btn-blue{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #009ada;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.btn-blue:hover,.btn-blue:focus{
+   text-decoration: none;
+}
+
+.msmcaptcha{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+    vertical-align: bottom;
+}
+
+.errMess{
+  color: red;
+}
 /*# sourceMappingURL=/ccc/global/css/base.css.map */

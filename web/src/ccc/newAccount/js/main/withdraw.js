@@ -227,8 +227,8 @@ ractive.on('withDrawSubmit', function () {
 			} else {
 				ractive.set('submitMessage', null);
 				if(banksabled.length) {
-                    var phoneNumber = CC.user.bankCards[0].account.account;
-                        phoneNumber = phoneNumber.substr(0,3) + '****' + phoneNumber.substr(-3)
+                    var phoneNumber = CC.user.bankCards[0].account.bankMobile;
+                        phoneNumber = phoneNumber.substr(0,3) + '****' + phoneNumber.substr(-4)
                     Message.create({
                         msg: '短信验证码已发送至'+phoneNumber,
                         okText: '下一步',
@@ -236,7 +236,7 @@ ractive.on('withDrawSubmit', function () {
                             isAcess = true;
                             console.log('aaaaaa')
                         },
-                        cancel: function() {
+                        close: function() {
                             isAcess = false;
                             console.log('bbbbbbb')
                         }
