@@ -20,7 +20,7 @@ var ractive = new Ractive({
         percent: 25,
         levelText:'弱',
         isEnterprise: CC.user.enterprise,
-        bankNumber: false;
+        bankNumber: false
     },
     init: function() {
         var percent = 25;

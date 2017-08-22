@@ -20,7 +20,8 @@ var ractive = new Ractive({
         isQuickCheck: true,
         authenticateInfo: {
             name: CC.user.name || '',
-            idNumber: ''
+            idNumber: '',
+            bankNumber: ''
         },
         bank: banksabled.length? true:false,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
@@ -30,8 +31,14 @@ var ractive = new Ractive({
         accountService.getUserInfo(function (res) {
             ractive.set('authenticateInfo', {
                 name: res.user.name,
-                idNumber: res.user.idNumber
+                idNumber: res.user.idNumber,
             });
+            if(this.get('bank')) {
+                ractive.set('authenticateInfo', {
+                    bankNumber: res.user.bankCards[0].account.account,
+                    bankMobile: res.iser.bankCards[0].account.bankMobile
+                });
+            }
         });
     }
 });
