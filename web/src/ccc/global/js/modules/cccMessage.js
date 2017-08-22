@@ -19,6 +19,7 @@ function CccMeassage(options) {
         cancel: function() {},
         close:function(){},
         debug: false,
+        test: '123'
     };
 
     var config = {};
@@ -31,6 +32,7 @@ function CccMeassage(options) {
     var before = function() {
         config.tpl = config.tpl.replace('{{okText}}', config.okText);
         config.tpl = config.tpl.replace('{{msg}}', config.msg);
+        config.tpl = config.tpl.replace('{{test}}', config.test);
     };
 
     var initialize = function() {
