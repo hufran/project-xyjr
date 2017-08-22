@@ -223,6 +223,13 @@ do (_, angular, moment, Array) ->
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
+            get_article: (category,name, cache = false) ->
+
+                @$http
+                    .get "/api/v2/cms/category/#{ category }/name/"+name, {cache}
+
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
 
             fetch_invest_analyse: ({amountValue, dueDay, dueMonth, dueYear, annualRate, paymentMethod}) ->
