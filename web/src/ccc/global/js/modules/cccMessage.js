@@ -54,10 +54,11 @@ function CccMeassage(options) {
                             $(ele).find('.errMess')
                                 .html('验证码错误');
                             return false;
+                        }else{
+                            config.ok($(this), ele, box);
                         }
                         
-                    })
-                    config.ok($(this), ele, box);                   
+                    })                                       
                 });
                 
 
