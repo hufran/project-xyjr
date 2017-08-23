@@ -48,7 +48,6 @@ function CccMeassage(options) {
             overlay: config.overlay,
             showed: function(ele, box) {
                 // click ok
-                console.log(config.phone1)
                 $(ele).find('.btn-confirm-ok').on('click', function(){
                     utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').val(),function(err,msgg){
                         if (!err) {

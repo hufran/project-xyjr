@@ -279,9 +279,11 @@ ractive.on('withDrawSubmit', function () {
                                 $('.post-btn').removeClass('disabled');
                                 ractive.set('submitText','确认提现');
                             }
+                            $('.dialog').hide();
                         },
                         close: function() {
-                            
+                            $('.post-btn').removeClass('disabled');
+                            ractive.set('submitText','确认提现');
                         }
                     })
                 }else{
