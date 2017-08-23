@@ -10,7 +10,7 @@ var pageSize = 10;
                 //定义数组顺序
                 for(indexValue=length-1;indexValue>=0;indexValue--){
                     if(r.body[i].category===category){
-                        riskMap.push({id:r.body[indexValue].id,name:r.body[indexValue].name,url:"/"+urlName+"/riskEducation/"+r.body[indexValue].id});
+                        riskMap.push({id:r.body[indexValue].id,name:r.body[indexValue].name,url:"/newmodel/"+urlName+"/"+r.body[indexValue].id});
                     }
                 }
                 
@@ -24,6 +24,7 @@ var pageSize = 10;
                             break;
                         }
                     }
+                    res.render('index',{riskMap:riskMap});return;
                     if(name){
                        req.uest('/api/v2/cms/category/'+category+'/name/' + encodeURIComponent(name) + '?sort' + 'PUBDATE')
                         .end().then(function (r) {
