@@ -13,22 +13,7 @@ var pageSize = 10;
                         riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/"+urlName+"/riskEducation/"+r.body[i].id});
                     }
                 }
-                res.render('index', {
-                    titleName:titleName,
-                    tabs: riskMap,
-                    currentTab: "t6ttttt",
-                    tabIndex: 0,
-                    tab: {
-                        name: req.params
-                            .id,
-                        text: "t6ttttt",
-                        type:0
-                    },
-                    contents: [],
-                    // isList: isList
-                });
-                return;
-
+                
                 var length=riskMap.length;
                 if(length>0){
                     var name,currentIndex,i;
