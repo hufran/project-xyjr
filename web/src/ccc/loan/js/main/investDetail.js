@@ -393,9 +393,10 @@ setTimeout((function () {
                                 jQuery('.questionTip').removeClass('db').addClass('dn');
                                 jQuery(document).scrollTop(0);
                             })
-                         };
+                        }
                         // 问卷end
 						$('.agree-error').css('visibility','hidden');
+
                         Message.create({
                             msg: '短信验证码已发送至',
                             okText: '下一步',
@@ -518,15 +519,13 @@ setTimeout((function () {
                                     cancel: function () {
                                        $('.dialog').hide();
                                     }
-                                })            
+                                })
                             },
                             cancel: function() {
 
                             }
                         })
-
                     	
-                    });
 					}else{
 						$('.agree-error').css('visibility','visible');
 						$('.agree-error').html('请先同意新毅用户投资服务协议');
