@@ -232,6 +232,7 @@ ractive.on('withDrawSubmit', function () {
                     isAcess = false;
                 }
 				if(banksabled.length) {
+                    if(!isAcess){return}
                     var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
                     var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
                     Message.create({
