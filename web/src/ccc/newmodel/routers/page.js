@@ -16,7 +16,6 @@ var pageSize = 10,riskMap=[],disclosureMap=[];
         }
     });
     function renderPage(riskMap,titleName){
-        console.log("进入111111111111111");
         var length=riskMap.length;
         if(length>0){
             var name,currentIndex,i;
@@ -95,92 +94,13 @@ var pageSize = 10,riskMap=[],disclosureMap=[];
                 }); 
             }
             
+        }else{
+            res.render('../../404/views/404/index');
         }
     };
     router.get('/riskEducation/:id', function (req, res) {
         //风险教育
-        //renderPage(riskMap,"风险教育");
-        //
-        console.log("进入111111111111111");
-        var length=riskMap.length;
-        if(length>0){
-            var name,currentIndex,i;
-            for(i=0;i<length;i++){
-                if(req.params.id==riskMap[i].id){
-                    name=riskMap[i].name;
-                    currentIndex=riskMap[i];
-                    break;
-                }
-            }
-            if(name){
-               req.uest('/api/v2/cms/category/FXJY/name/' + encodeURIComponent(name) + '?sort' + 'PUBDATE')
-                .end().then(function (r) {
-                    formatNews(r);
-                    var contents = r.body.length >
-                            0 ? r.body : null;
-                    if (contents.length >= 1) {
-                        var current = (req.query.page === undefined) ? 1 : req.query.page;
-                        var len=contents.length,results=[];
-                        for(var i=0;i<len;i++){
-                            if(contents[i].id==req.params.id){
-                                results.push(contents[i]);
-                            }
-                        }
-
-                        var startIndex=(current-1)*pageSize,endIndex=startIndex+(pageSize-1),resultArray;
-                        if(results.length%10<=current){
-                            if(results.length<endIndex){
-                                endIndex=results.length;
-                            };
-                            resultArray=results.splice(startIndex,endIndex);
-                        }else{
-                            resultArray=[];
-                        }
-                        
-                        res.render('index', {
-                            totalPage: createList(
-                                Math
-                                .ceil(resultArray.length /
-                                    pageSize)),
-                            current: parseInt(
-                                current,
-                                10),
-                            titleName:"风险教育",
-                            tabs: riskMap,
-                            currentTab: currentIndex["name"],
-                            tabIndex: i,
-                            tab: {
-                                name: req.params
-                                    .id,
-                                text: currentIndex["name"],
-                                type:1
-                            },
-                            contents: resultArray.length>0?resultArray:null,
-                            // isList: isList
-                        });
-
-
-                    }else{
-                        
-                        res.render('index', {
-                            titleName:"风险教育",
-                            tabs: riskMap,
-                            currentTab: currentIndex["name"],
-                            tabIndex: i,
-                            tab: {
-                                name: req.params
-                                    .id,
-                                text: currentIndex["name"],
-                                type:0
-                            },
-                            contents: contents,
-                            // isList: isList
-                        });
-                    }
-                }); 
-            }
-            
-        }
+        renderPage(riskMap,"风险教育");
     });
     router.get('/disclosure/:id', function (req, res) {
         //信息披露
