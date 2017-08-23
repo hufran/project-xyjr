@@ -334,14 +334,17 @@ setTimeout((function () {
                                     cancel: function(){
                                         $('.dialog').hide();
                                         jQuery('.questionTit').removeClass('result');
+                                        jQuery('.wenjuan').removeClass('dn').addClass('db');
                                         jQuery('.resultInfor').removeClass('db').addClass('dn');
                                         jQuery('.questionBox input[type=radio]').prop('checked',false);
                                         jQuery('.questionTip').removeClass('db').addClass('dn');
                                         jQuery('.questionBox').removeClass('dn').addClass('db');
                                     }
                                 })
+                            }else{
+                                jQuery('.wenjuan').removeClass('dn').addClass('db'); 
                             }   
-                            jQuery('.wenjuan').removeClass('dn').addClass('db');                         
+                                                    
                             jQuery('.radioW').click(function(){
                                 var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
                                 jQuery('input[name="'+radioName+'"]').prop('checked',false);
@@ -418,7 +421,8 @@ setTimeout((function () {
                         }
                         // 问卷end
 						$('.agree-error').css('visibility','hidden');
-
+                        var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
+                        var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
                         Message.create({
                             msg: '短信验证码已发送至',
                             okText: '下一步',
