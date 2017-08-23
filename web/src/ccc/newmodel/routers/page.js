@@ -13,7 +13,7 @@ var pageSize = 10;
                         riskMap.push({id:r.body[indexValue].id,name:r.body[indexValue].name,url:"/newmodel/"+urlName+"/"+r.body[indexValue].id});
                     }
                 }
-                
+                res.render('index',{riskMap:riskMap});return;
                 var length=riskMap.length;
                 if(length>0){
                     var name,currentIndex,i;
@@ -24,7 +24,7 @@ var pageSize = 10;
                             break;
                         }
                     }
-                    res.render('index',{riskMap:riskMap});return;
+                    
                     if(name){
                        req.uest('/api/v2/cms/category/'+category+'/name/' + encodeURIComponent(name) + '?sort' + 'PUBDATE')
                         .end().then(function (r) {
