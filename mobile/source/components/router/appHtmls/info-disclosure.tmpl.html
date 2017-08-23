@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息披露</title>
+    <link rel="stylesheet" href="styles/act/swiper.min.css">
+    <link rel="stylesheet" href="styles/act/appHtml.css">
+</head>
+<body>
+<!-- Demo styles -->
+<style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 0.32rem;;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+        background:#eeefef;
+    }
+    #swiper-container2 .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-container-horizontal>.swiper-scrollbar{bottom:0px;}
+    #swiper-container2 .swiper-slide{
+        line-height:2 !important;
+        color:#666 !important;
+        font-size:14px !important;
+        background:#eee !important;
+
+    }
+    #swiper-container3 .swiper-slide{
+        padding-top:1.3rem;
+        /*font-family: 'Microsoft YaHei UI', 'Arial Unicode MS', Arial;*/
+        background-color:#fff;
+    }
+    #swiper-container2{position:fixed;z-index:1000;height:1rem;font-size:0.32rem}
+    #swiper-container2 .active-nav{
+        /*background:#ddd !important;*/
+        color:#5ca0f9!important;
+    }
+
+    /*配合修改*/
+    .slide-1,.slide-2,.slide-3,.slide-4,.slide-5,.slide-6{padding-bottom:3rem}
+    #swiper-container3 .swiper-slide h2{font-size:0.32rem;color:#5ca0f9; text-align: center}
+    #swiper-container3 .swiper-slide article,#swiper-container3 .swiper-slide p{color:#777;font-size:0.2666667rem;line-height:0.7rem; text-indent: 2em;margin-bottom:0.5rem;padding:0 0.5rem;}
+    #swiper-container3 .swiper-slide h3{font-size:0.2666667rem;color:#000;text-align: left;padding:0 0.5rem }
+    #swiper-container3 .swiper-slide img{text-align:center;margin:0.3rem auto;display:block}
+    #swiper-container3 .swiper-slide p{text-indent:0;}
+    .slide-1{heigth:55rem}
+    /*pilu*/
+    .swiper-slide ul{list-style-type: none;padding:0.3rem;font-size:0.24rem;}
+    .swiper-slide ul li{display: -webkit-flex; display: flex;
+        line-height:0.5rem;margin-bottom:0.2rem}
+    .swiper-slide ul li span{color:#818181;width:1.4rem;}
+    .swiper-slide ul li div{color:#000;flex:1;}
+    #swiper-container3 .swiper-slide h3{font-size:0.32rem;color:#5ca0f9; text-align: center; font-weight:bold;color:#818181}
+
+    table tr td{border-left:1px solid #b3b3b2;border-top:1px solid #b3b3b2;padding:0.1rem;text-align: center;}
+    table tr th{ text-align: center;border-left:1px solid #b3b3b2;border-top:1px solid #b3b3b2;}
+    table tr td:first-child{text-align:left;}
+
+    .leaders{width: 8.5rem;margin:0 auto;}
+    .leaders img{width:1.68rem;float:left; display:inline-block;margin:0.2rem}
+    .leaders .infos{float:right;width:6.4rem;font-size:0.24rem;line-height: 0.3rem;}
+    #swiper-container3 .swiper-slide .leaders .infos h3{margin-top:0.3rem;font-size:0.24rem;margin-bottom:0.1rem;text-align:left;padding-left:0.15rem;color:#000}
+    #swiper-container3 .swiper-slide .leaders .infos article{font-size:0.24rem;line-height:0.3rem;padding:0 0.15rem;margin-bottom:0.3rem}
+    #swiper-container3 .swiper-slide .leaders:after{content: "\0020"; display: block; height: 0; clear: both;}
+
+    .slide-3 ol,.slide-3 ol li span{width:90%;font-size:0.32rem;color:#000; list-style-type: none;display:block;line-height:0.3rem}
+    .slide-3 ol li span{font-weight:bold;}
+    .slide-3 ol li{color:#818181; font-size:0.24rem;margin-bottom:0.3rem;line-height:0.4rem;}
+    .slide-5 table tr td{text-align:left;padding:0.15rem 0.3rem;line-height:0.56rem}
+    .slide-5 table tr td:first-child{text-align:center}
+    .slide-4 table tr td{color:#818181;}
+    .slide-4 table {color:#818181;}
+    .slide-4 table tr td:first-child{text-align:center;padding:0.2rem}
+    .slide-4 table tr td:last-child{text-align:left;padding:0.2rem}
+    #swiper-container3 .slide-5 table tr td img{margin:0;}
+</style>
+<div class="swiper-container" id="swiper-container2">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide active-nav">
+            公司信息</div>
+        <div class="swiper-slide">
+            治理信息</div>
+        <div class="swiper-slide">
+            风险体系</div>
+        <div class="swiper-slide">
+            运营信息</div>
+        <div class="swiper-slide">
+            平台信息</div>
+        <div class="swiper-slide">
+            财务信息</div>
+        <div class="swiper-slide">
+        重大事件</div>
+    </div>
+</div>
+<div class="swiper-container" id="swiper-container3">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide slide-1">
+            <!--ng-bind-html="plateIntro"-->
+            <ul>
+                <li>
+                <span>公司名称:</span>
+                <div>新毅网络科技有限公司（简称：新毅金融）</div>
+                </li>
+                <li>
+                <span>注册资本:</span>
+                <div>10000万元</div>
+                </li>
+                <li>
+                <span>实缴资本:</span>
+                <div>5500万元</div>
+                </li>
+                <li>
+                    <span>注册地址:</span>
+                    <div>北京市海淀区苏州街1号3层120</div>
+                </li>
+                <li>
+                    <span>注册时间:</span>
+                    <div>2015年9月16日</div>
+                </li>
+                <li>
+                <span>法人代表:</span>
+                <div>郭伟</div>
+                </li>
+                <li>
+                    <span>经营范围:</span>
+                    <div>技术开发、技术服务、技术咨询、技术转让；接受金融机构委托从事金融信息技术外包；接受金融机构委托从事金融业务流程外包；接受 金融机构委托从事金融知识流程外包；投资管理；企业管理咨询；企业策划；计算机系统服务；基础软件服务；应用软件服务；设计、制  作、代理、发布广告（企业依法自主选择经营项目，开展经营活动；
+                    依法须经批准的项目，经相关部门批准后依批准的内容开展经营活动；不得从事本市产业政策禁止和限制类项目的经营活动。） </div>
+                </li>
+                <li>
+                    <span>办公地址:</span>
+                    <div>北京市西城区广安门外大街168号朗琴国际大厦A座20层</div>
+                </li>
+                <li>
+                    <span>客服热线:</span>
+                    <div>4001-718-718</div>
+                </li>
+                <li>
+                    <span>注册协议:</span>
+                    <div><a href="#" ng-click="self.agreement('新毅金融用户注册协议')">点击查看</a></div>
+
+                </li>
+                <li>
+                    <span>存管情况:</span>
+                    <div>目前正在对接恒丰银行存管系统</div>
+                </li>
+            </ul>
+        </div>
+        <div class="swiper-slide slide-2">
+            <img src="assets/image/act/info1.png" width="85%">
+            <h3>股东名单</h3>
+            <table width="85%" border="0" cellspacing="0" cellpadding="0" style="font-size:0.24rem;border-bottom:1px solid #b3b3b2;border-right:1px solid #b3b3b2;margin:0 auto">
+                <tr style="color:#b3b3b2;" >
+                    <th>股东名称</th>
+                    <th width="20%">持股比例</th>
+                    <th width="22%">认缴出资金额 <br>（万元）</th>
+                    <th width="22%">实缴出资金额 <br>（万元）</th>
+                    </tr>
+                <tbody>
+                <tr>
+                    <td>新毅控股有限公司</td>
+                    <td>70.00%</td>
+                    <td>7,000.00</td>
+                    <td>2,500.00</td>
+                </tr>
+                <tr>
+                    <td>宿迁新元恒联股权投资基金合伙企业（有限合伙）</td>
+                    <td>30.00%</td>
+                    <td>3,000.00</td>
+                    <td>3,000.00</td>
+                </tr>
+                <tr>
+                    <td>合计</td>
+                    <td>100.00%</td>
+                    <td>10,000.00</td>
+                    <td>5,500.00</td>
+                </tr>
+                </tbody>
+            </table>
+            <div style="color:#818181;font-size:0.24rem;margin-left:0.8rem; line-height:1rem">公司未设董事会，执行董事为郭伟，监事为姚春蕾。</div>
+            <h3>高管简介</h3>
+            <div class="leaders">
+                <img alt="" src="https://creditmanager.b0.upaiyun.com/23abbe3be7a94b249a58728836b2e9a1">
+                <div class="infos"><h3>郭伟 高级合伙人 高级副总裁</h3>
+                    <article>北京大学光华管理学院MBA、兰州大学哲学系哲学学士，曾历任中央直属机关人事局人事政策研究；和君创业管理咨询公司管理咨询；新奥集团首席人资总监；中国远大集团人资总监；华夏基石管理咨询公司业务副总裁、高级合伙人。郭伟先生在人力资源方面，具有非常接地气的实战管理经验，对企业品牌文化建设、人力资源架构设计、绩效薪资管理体系等方面经验丰富。</article>
+                </div>
+            </div>
+            <div class="leaders">
+                <img alt="" src="https://creditmanager.b0.upaiyun.com/6974fa68c0ad832f8b24cd8c36a1b088" >
+                <div class="infos"><h3>尚明轩 合伙人 首席财务官（CFO）</h3>
+                    <article>天津财经大学财政学专业毕业，历任新奥集团信息化项目部项目经理、部门经理；新奥财务有限责任公司主管会计；新奥投资基金管理（北京）有限公司财务经理，在财务管理方面具有丰富的专业经验。其人做事严谨、谨慎、仔细、细心，为公司财务管理做了很多实实在在的工作。</article>
+                </div>
+            </div>
+            <div class="leaders">
+                <img alt=""  src="https://creditmanager.b0.upaiyun.com/50a42c456645505ec02b5ace5289d4f1" >
+                <div class="infos"><h3>安宏斌 合伙人 首席法务官（CLO）</h3>
+                    <article>西北政法大学法学学士，律师，曾在廊坊银行从事信贷工作；曾历任新奥置业集团法律总监、北部湾旅游股份法律总监、新奥能源法律总监。安宏斌先生拥有15年的企业法律风险防范与管理经验，拥有金融、房地产、旅游与能源行业丰富从业经验，在大型企业集团法律风险防范体系建设、争议纠纷解决及法务团队建设等方面经验丰富。</article>
+                </div>
+            </div>
+            <div class="leaders">
+                <img alt="" src="https://creditmanager.b0.upaiyun.com/c96bf7424fc0780bc694e88a7d16acf8">
+                <div class="infos"><h3>章昌斌 合伙人 首席产品官（CPO）</h3>
+                    <article>武汉大学企业管理硕士，有十余年金融从业经验，曾先后就职于农业银行、中诚信、中融国际信托、平安集团陆金所、民生易贷、万达电商。熟悉银行信托业务及风险管理体系；有互联网金融产品及模式设计、开发、升级和业务拓展的丰富工作经验。</article>
+                </div>
+            </div>
+            <h3>机构从业人员数量及背景</h3>
+            <article>截至目前，在职人员人数：40人，研究生及以上7人，本科33人，大专及以下1人，专业技术人员6人。</article>
+        </div>
+        <div class="swiper-slide slide-3">
+            <h3>风控结构</h3>
+            <img src="assets/image/act/info2.png" width="85%">
+            <h3>风控措施</h3>
+            <ol>
+                <li><span>1、事前控制</span> <br> 就客户申请地区、客户年龄、收入、学历、单位所属行业及性质等相关要素做
+                    相关控制，现阶段目标客户主要为大型集团公司的内部员工，客户通过APP端
+                    注册，登录后填写个人基本信息、单位信息、辅助信息进行贷款申请。</li>
+                <li><span>2、事中控制</span> <br> 调用第三方大数据公司的数据、反欺诈规则及线下人工审核进行风险把控，就
+                    客户的还款能力、还款意愿、整体资质进行审核，通过评分建模、信贷业务系
+                    统、征信系统对借款人进行风险控制和风险提示。客户所填写的基本信息，影
+                    像资料及签署的协议均保存在我司系统中，具备严格的保密机制。</li>
+                <li><span>3、事后控制</span> <br> 利用第三方大数据公司及我司贷后管理系统对风险客户的借款、还款情况进行
+                    实时监控，针对已逾期的客户，由718金融平台启动风险准备金先行赔付投资
+                    人，后由贷后催收人员对逾期客户进行催收，并根据客户逾期时间的长短，分
+                    别进行电话、上门及委外催收，催收的回款，需先支付到风险准备金账户。</li>
+            </ol>
+        </div>
+        <div class="swiper-slide slide-4">
+            <table width="85%" border="0" cellspacing="0" cellpadding="0" style="margin:auto;border-bottom:1px solid #818181;border-right:1px solid #818181">
+                <tr>
+                    <td width="50%">交易总额</td>
+                    <td width="50%">17853294  元</td>
+                </tr>
+                <tr>
+                    <td>交易总笔数</td>
+                    <td>489  笔</td>
+                </tr>
+                <tr>
+                    <td>投资人总数</td>
+                    <td>199  人</td>
+                </tr>
+                <tr>
+                    <td>融资人总数</td>
+                    <td>12   个</td>
+                </tr>
+                <tr>
+                    <td>待偿金额</td>
+                    <td>6298000  元</td>
+                </tr>
+                <tr>
+                    <td>逾期金额</td>
+                    <td>0  元</td>
+                </tr>
+                <tr>
+                    <td>项目逾期率</td>
+                    <td>0%</td>
+                </tr>
+                <tr>
+                    <td>金额逾期率</td>
+                    <td>0%</td>
+                </tr>
+                <tr>
+                    <td>逾期项目数</td>
+                    <td>0 笔</td>
+                </tr>
+                <tr>
+                    <td>人均累计融资金额</td>
+                    <td>1487775  元</td>
+                </tr>
+                <tr>
+                    <td>人均累计投资金额</td>
+                    <td>89715  元</td>
+                </tr>
+                <tr>
+                    <td>笔均融资金额</td>
+                    <td>446332  元</td>
+                </tr>
+                <tr>
+                    <td>最大单户融资余额占比</td>
+                    <td>14%</td>
+                </tr>
+                <tr>
+                    <td>最大十户融资余额占比</td>
+                    <td>97%</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="swiper-slide slide-5">
+            <table width="85%" border="0" cellspacing="0" cellpadding="0" style="font-size:0.24rem;border-bottom:1px solid #b3b3b2;border-right:1px solid #b3b3b2;margin:0 auto;color:#818181;">
+                <tr>
+                    <td width="50%">平台网址</td>
+                    <td width="50%">PC站点：www.718bank.com <br>H5站点：www.718bank.com/h5 </td>
+                </tr>
+                <tr>
+                    <td>平台名称</td>
+                    <td>718金融理财平台</td>
+                </tr>
+                <tr>
+                    <td>上线时间</td>
+                    <td>2016年2月1日正式上线</td>
+                </tr>
+                <tr>
+                    <td>电信业务经营许可信息</td>
+                    <td>京ICP证160795号</td>
+                </tr>
+                <tr>
+                    <td>ICP备案号</td>
+                    <td>京ICP备15059004号-1</td>
+                </tr>
+                <tr>
+                    <td>移动APP应用</td>
+                    <td><img src="assets/image/act/app.png" style="width: 1.05rem;"></td>
+                </tr>
+                <tr>
+                    <td>公众订阅号</td>
+                    <td><img src="assets/image/appHtml/pubNum.png" style="width: 1.05rem;"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="swiper-slide slide-6">
+            <h2>审计报告</h2>
+            <img src="assets/image/act/s1.jpg" width="90%">
+            <img src="assets/image/act/s2.jpg" width="90%">
+            <img src="assets/image/act/s3.jpg" width="90%">
+            <img src="assets/image/act/s21.jpg" width="90%">
+            <img src="assets/image/act/s22.jpg" width="90%">
+            <h2>合规报告</h2>
+            <img src="assets/image/act/hg.jpg" width="90%">
+            <h2>信息安全</h2>
+            <img src="assets/image/act/xxaq.jpg" width="90%">
+        </div>
+        <div class="swiper-slide slide-7">
+            <img src="assets/image/act/info3.png" width="85%">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<script type="text/ng-template" id="ngt-register-agreement.tmpl">
+    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-block btn-theme" ng-click="$close()">
+            已阅读此协议
+        </button>
+    </div>
+</script>
