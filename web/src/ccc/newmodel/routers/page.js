@@ -4,6 +4,7 @@ var pageSize = 10;
     function renderPage(req,res,next,category,titleName,urlName){
         var riskMap=[];
         req.uest("/api/v2/cms/channels").end().then(function(r){
+            res.render('index',{riskMap:r.body});return;
             if(r.body.length >= 1){
 
                 var length=r.body.length,indexValue;
@@ -13,7 +14,7 @@ var pageSize = 10;
                         riskMap.push({id:r.body[indexValue].id,name:r.body[indexValue].name,url:"/newmodel/"+urlName+"/"+r.body[indexValue].id});
                     }
                 }
-                res.render('index',{riskMap:riskMap});return;
+                
                 var length=riskMap.length;
                 if(length>0){
                     var name,currentIndex,i;
