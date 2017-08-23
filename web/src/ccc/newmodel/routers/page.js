@@ -6,11 +6,11 @@ var pageSize = 10;
         req.uest("/api/v2/cms/channels").end().then(function(r){
             if(r.body.length >= 1){
 
-                var length=r.body.length,i;
+                var length=r.body.length,indexValue;
                 //定义数组顺序
-                for(i=length-1;i>=0;i--){
+                for(indexValue=length-1;indexValue>=0;indexValue--){
                     if(r.body[i].category===category){
-                        riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/"+urlName+"/riskEducation/"+r.body[i].id});
+                        riskMap.push({id:r.body[indexValue].id,name:r.body[indexValue].name,url:"/"+urlName+"/riskEducation/"+r.body[indexValue].id});
                     }
                 }
                 
@@ -60,7 +60,7 @@ var pageSize = 10;
                                     titleName:titleName,
                                     tabs: riskMap,
                                     currentTab: currentIndex["name"],
-                                    tabIndex: i,
+                                    tabIndex: indexValue,
                                     tab: {
                                         name: req.params
                                             .id,
@@ -78,7 +78,7 @@ var pageSize = 10;
                                     titleName:titleName,
                                     tabs: riskMap,
                                     currentTab: currentIndex["name"],
-                                    tabIndex: i,
+                                    tabIndex: indexValue,
                                     tab: {
                                         name: req.params
                                             .id,
@@ -91,7 +91,6 @@ var pageSize = 10;
                             }
                         }); 
                     }else{
-                    
                         return next();
                     }
                     
@@ -107,11 +106,11 @@ var pageSize = 10;
     };
     router.get('/riskEducation/:id', function (req, res, next) {
         //风险教育
-        renderPage(req, res, next,"XXPL","风险教育","riskEducation");
+        renderPage(req, res, next,"FXJY","风险教育","riskEducation");
     });
     router.get('/disclosure/:id', function (req, res, next) {
         //信息披露
-        renderPage(req, res, next,"FXJY","信息披露","disclosure");
+        renderPage(req, res, next,"XXPL","信息披露","disclosure");
     });
 
 
