@@ -5,19 +5,7 @@ var pageSize = 10;
         var riskMap=[];
         req.uest("/api/v2/cms/channels").end().then(function(r){
             if(r.body.length >= 1){
-                res.render('index', {
-                    titleName:"88",
-                    tabs: riskMap,
-                    currentTab: "s",
-                    tabIndex: 0,
-                    tab: {
-                        name: "242795E0-E912-4D9D-AC3D-D99577E55BB8",
-                        text: "sss",
-                        type:0
-                    },
-                    contents: null,
-                    // isList: isList
-                });return;
+
                 var length=r.body.length,i;
                 //定义数组顺序
                 for(i=length-1;i>=0;i--){
@@ -25,6 +13,21 @@ var pageSize = 10;
                         riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/"+urlName+"/riskEducation/"+r.body[i].id});
                     }
                 }
+                res.render('index', {
+                    titleName:titleName,
+                    tabs: riskMap,
+                    currentTab: "t6ttttt",
+                    tabIndex: 0,
+                    tab: {
+                        name: req.params
+                            .id,
+                        text: "t6ttttt",
+                        type:0
+                    },
+                    contents: [],
+                    // isList: isList
+                });
+                return;
 
                 var length=riskMap.length;
                 if(length>0){
