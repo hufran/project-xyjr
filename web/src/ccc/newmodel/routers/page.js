@@ -16,6 +16,7 @@ var pageSize = 10,riskMap=[],disclosureMap=[];
         }
     });
     function renderPage(riskMap,titleName){
+        console.log("进入111111111111111");
         var length=riskMap.length;
         if(length>0){
             var name,currentIndex,i;
