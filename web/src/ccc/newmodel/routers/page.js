@@ -5,6 +5,19 @@ var pageSize = 10;
         var riskMap=[];
         req.uest("/api/v2/cms/channels").end().then(function(r){
             if(r.body.length >= 1){
+                res.render('index', {
+                    titleName:"88",
+                    tabs: riskMap,
+                    currentTab: "s",
+                    tabIndex: 0,
+                    tab: {
+                        name: "242795E0-E912-4D9D-AC3D-D99577E55BB8",
+                        text: "sss",
+                        type:0
+                    },
+                    contents: null,
+                    // isList: isList
+                });return;
                 var length=r.body.length,i;
                 //定义数组顺序
                 for(i=length-1;i>=0;i--){
@@ -91,8 +104,6 @@ var pageSize = 10;
                         }); 
                     }
                     
-                }else{
-                    res.render('../../404/views/404/index');
                 }
 
             }
