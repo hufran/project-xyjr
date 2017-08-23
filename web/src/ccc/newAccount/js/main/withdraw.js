@@ -230,8 +230,9 @@ ractive.on('withDrawSubmit', function () {
                     var phoneNumber = CC.user.bankCards[0].account.bankMobile;
                         phoneNumber = phoneNumber.substr(0,3) + '****' + phoneNumber.substr(-4)
                     Message.create({
-                        msg: '短信验证码已发送至'+phoneNumber,
+                        msg: '短信验证码已发送至',
                         okText: '下一步',
+                        phone: phoneNumber,
                         ok: function() {
                             isAcess = true;
                             console.log('aaaaaa')
