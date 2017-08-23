@@ -15,7 +15,7 @@ var pageSize = 10;
                         riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/newmodel/"+urlName+"/"+r.body[i].id});
                     }
                 }
-                res.render('index',{riskMap:JSON.stringify(riskMap),category:category,titleName:titleName});return;
+                
                 var length=riskMap.length;
                 if(length>0){
                     var name,currentIndex,indexValue;
@@ -30,9 +30,11 @@ var pageSize = 10;
                     if(name){
                        req.uest('/api/v2/cms/category/'+category+'/name/' + encodeURIComponent(name) + '?sort' + 'PUBDATE')
                         .end().then(function (r) {
+
                             formatNews(r);
                             var contents = r.body.length >
                                     0 ? r.body : null;
+                            res.render('index',{riskMap:JSON.stringify(contents),category:category,titleName:titleName});return;
                             if (contents.length >= 1) {
                                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                                 var len=contents.length,results=[];
