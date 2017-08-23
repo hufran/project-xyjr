@@ -230,6 +230,8 @@ ractive.on('withDrawSubmit', function () {
                     isAcess  = true;
                 }else{
                     isAcess = false;
+                    $('.post-btn').removeClass('disabled');
+                    ractive.set('submitText','确认提现');
                 }
 				if(banksabled.length) {
                     if(!isAcess){return}

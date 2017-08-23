@@ -4,6 +4,7 @@ var utils = require('ccc/global/js/lib/utils');
 var accountService = require('ccc/account/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var Message = require('ccc/global/js/modules/Message');
 var i18n = require('@ds/i18n')['zh-cn'];
 var format = require('@ds/format');
 require('ccc/xss.min');
@@ -317,9 +318,30 @@ setTimeout((function () {
                         // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
                         // 其他账号不需要测评的情况，因此去掉
                         // if (CC.user.priv==null&&getCookie('question')==null)
-                        if (!mark) {
-
+                        if (!mark || (mark>=10&&mark<=16)) {
                             jQuery('.wenjuan').removeClass('dn').addClass('db');
+                            if(mark>=10&&mark<=16){
+                                Confirm.create({
+                                    msg: '您的风险评级较低，是否确认投资?',
+                                    okText: '确认',
+                                    cancelText: '重新评级',
+                                    ok: function(){
+                                        $('.dialog').hide();
+                                        jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                        jQuery('.questionTip').removeClass('db').addClass('dn');
+                                        jQuery(document).scrollTop(0);
+                                    },
+                                    cancel: function(){
+                                        $('.dialog').hide();
+                                        jQuery('.questionTit').removeClass('result');
+                                        jQuery('.resultInfor').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                        jQuery('.questionTip').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox').removeClass('dn').addClass('db');
+                                    }
+                                })
+                            }                            
                             jQuery('.radioW').click(function(){
                                 var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
                                 jQuery('input[name="'+radioName+'"]').prop('checked',false);
@@ -355,13 +377,13 @@ setTimeout((function () {
                                         if (mark>=10&&mark<=16) {
                                             jQuery('.resultInfor span').html("一级（保守型）");
                                         }else if(mark>=17&&mark<=23){
-                                            jQuery('.resultInfor span').html("二级（中庸保守型）");
+                                            jQuery('.resultInfor span').html("二级（稳健型）");
                                         }else if(mark>=24&&mark<=31){
-                                            jQuery('.resultInfor span').html("三级（中庸型）");
+                                            jQuery('.resultInfor span').html("三级（平衡型）");
                                         }else if(mark>=32&&mark<=38){
-                                            jQuery('.resultInfor span').html("四级（中庸进取型）");
+                                            jQuery('.resultInfor span').html("四级（积极型）");
                                         }else if(mark>=39&&mark<=45){
-                                            jQuery('.resultInfor span').html("五级（进取型）");
+                                            jQuery('.resultInfor span').html("五级（激进型）");
                                         };
                                         setCookie('question','questionTrue');
                                         jQuery('.returnWenjuan').click(function(){
