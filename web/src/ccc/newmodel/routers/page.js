@@ -7,21 +7,22 @@ var pageSize = 10;
 
             if(r.body.length >= 1){
 
-                var length=r.body.length,indexValue;
+                var length=r.body.length,i;
                 //定义数组顺序
-                for(indexValue=length-1;indexValue>=0;indexValue--){
+                res.render('index',{riskMap:r.body[5],category:category,titleName:titleName});return;
+                for(i=length-1;i>=0;i--){
                     if(r.body[i].category===category){
-                        riskMap.push({id:r.body[indexValue].id,name:r.body[indexValue].name,url:"/newmodel/"+urlName+"/"+r.body[indexValue].id});
+                        riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/newmodel/"+urlName+"/"+r.body[i].id});
                     }
                 }
-                res.render('index',{riskMap:r.body,category:category,titleName:titleName});return;
+                
                 var length=riskMap.length;
                 if(length>0){
-                    var name,currentIndex,i;
-                    for(i=0;i<length;i++){
-                        if(req.params.id==riskMap[i].id){
-                            name=riskMap[i].name;
-                            currentIndex=riskMap[i];
+                    var name,currentIndex,indexValue;
+                    for(indexValue=0;indexValue<length;indexValue++){
+                        if(req.params.id==riskMap[indexValue].id){
+                            name=riskMap[indexValue].name;
+                            currentIndex=riskMap[indexValue];
                             break;
                         }
                     }
