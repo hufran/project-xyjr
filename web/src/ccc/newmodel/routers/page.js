@@ -1,7 +1,8 @@
 'use strict';
+var proagent = require('promisingagent');
 module.exports = function (router) {
 var pageSize = 10,riskMap=[],disclosureMap=[];
-    req.uest("/api/v2/cms/channels").end().then(function(r){
+    proagent("/api/v2/cms/channels").end().then(function(r){
         if(r.body.length >= 1){
             var length=r.body.length,i;
             //定义数组顺序
