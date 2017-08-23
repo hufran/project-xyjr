@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (router) {
 var pageSize = 10;
-    function renderPage(req, res,category,titleName,urlName){
+    function renderPage(req,res,next,category,titleName,urlName){
         var riskMap=[];
         var err;
         err = new Error('Resource not found.');
@@ -109,13 +109,13 @@ var pageSize = 10;
         });
         
     };
-    router.get('/riskEducation/:id', function (req, res) {
+    router.get('/riskEducation/:id', function (req, res, next) {
         //风险教育
-        renderPage(req, res,"XXPL","风险教育","riskEducation");
+        renderPage(req, res, next,"XXPL","风险教育","riskEducation");
     });
-    router.get('/disclosure/:id', function (req, res) {
+    router.get('/disclosure/:id', function (req, res, next) {
         //信息披露
-        renderPage(req, res,"FXJY","信息披露","disclosure");
+        renderPage(req, res, next,"FXJY","信息披露","disclosure");
     });
 
 
