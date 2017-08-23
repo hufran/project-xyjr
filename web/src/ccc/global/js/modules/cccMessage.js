@@ -49,8 +49,8 @@ function CccMeassage(options) {
             showed: function(ele, box) {
                 // click ok
                 $(ele).find('.btn-confirm-ok').on('click', function(){
-                    console.log($(ele).find('.msmcaptcha').value())
-                    utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').value(),function(err,msgg){
+                    console.log($(ele).find('.msmcaptcha').val())
+                    utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').val(),function(err,msgg){
                         console.log(err)
                         if (!err) {
                             $(ele).find('.errMess')
