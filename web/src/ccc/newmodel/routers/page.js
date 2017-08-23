@@ -3,10 +3,6 @@ module.exports = function (router) {
 var pageSize = 10;
     function renderPage(req,res,next,category,titleName,urlName){
         var riskMap=[];
-        var err;
-        err = new Error('Resource not found.');
-        err.code = 'invalid_request';
-        err.status = 404;
         req.uest("/api/v2/cms/channels").end().then(function(r){
             if(r.body.length >= 1){
 
@@ -96,15 +92,15 @@ var pageSize = 10;
                         }); 
                     }else{
                     
-                        return next(err);
+                        return next();
                     }
                     
                 }else{
-                    return next(err);
+                    return next();
                 }
 
             }else{
-                return next(err);
+                return next();
             }
         });
         
