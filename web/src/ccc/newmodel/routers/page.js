@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (router) {
 var pageSize = 10;
-    function renderPage(category,titleName,urlName){
+    function renderPage(req, res,category,titleName,urlName){
         var riskMap=[];
         req.uest("/api/v2/cms/channels").end().then(function(r){
             if(r.body.length >= 1){
@@ -115,11 +115,11 @@ var pageSize = 10;
     };
     router.get('/riskEducation/:id', function (req, res) {
         //风险教育
-        renderPage("XXPL","风险教育","riskEducation");
+        renderPage(req, res,"XXPL","风险教育","riskEducation");
     });
     router.get('/disclosure/:id', function (req, res) {
         //信息披露
-        renderPage("FXJY","信息披露","disclosure");
+        renderPage(req, res,"FXJY","信息披露","disclosure");
     });
 
 
