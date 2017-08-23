@@ -49,11 +49,7 @@ function CccMeassage(options) {
             showed: function(ele, box) {
                 // click ok
                 $(ele).find('.btn-confirm-ok').on('click', function(){
-<<<<<<< HEAD
-                    utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').value,function(err,msgg){
-=======
                     utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').val(),function(err,msgg){
->>>>>>> fei
                         if (!err) {
                             $(ele).find('.errMess')
                                 .html('验证码错误');
