@@ -234,63 +234,60 @@ ractive.on('withDrawSubmit', function () {
                         okText: '下一步',
                         phone: phoneNumber,
                         phone1: phoneNumber1,
-                        ok: function() {
-                            isAcess = true;
+                        ok: function() {                            
                             console.log('aaaaaa')
+                            if (ractive.confirm(amount)) {
+                                isAcess  = true;
+                            }else{
+                                isAcess = false;
+                            }
+                            if (isAcess) {
+                                $.post('/yeepay/withdraw', 
+                                {
+                                    paymentPassword : filterXSS(pass),
+                                    amount : filterXSS(amount)
+
+                                }, function (res) {
+                                    if (res.success) {
+                                        CccOk.create({
+                                            msg: '提现申请提交成功，等待审核中!',
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        CccOk.create({
+                                            msg: '提现申请失败!',
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }
+                                });
+                            }else{
+                                $('.post-btn').removeClass('disabled');
+                                ractive.set('submitText','确认提现');
+                            }
                         },
                         close: function() {
-                            isAcess = false;
-                            console.log('bbbbbbb')
+                            
                         }
                     })
                 }else{
                     ractive.set('submitMessage', '您尚未开通银行存管');
-                    isAcess = false;
                 }
-                if(!isAcess){return}
-                if (ractive.confirm(amount)) {
-                    isAcess = true;
-                }else{
-                    isAcess = false;
-                }
-				
-				if (isAcess) {
-					$.post('/yeepay/withdraw', 
-					{
-						paymentPassword : filterXSS(pass),
-						amount : filterXSS(amount)
-
-					}, function (res) {
-						if (res.success) {
-                            CccOk.create({
-                                msg: '提现申请提交成功，等待审核中!',
-                                okText: '确定',
-                                // cancelText: '重新登录',
-                                ok: function () {
-                                    window.location.reload();
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                }
-                            });
-                        } else {
-                            CccOk.create({
-                                msg: '提现申请失败!',
-                                okText: '确定',
-                                // cancelText: '重新登录',
-                                ok: function () {
-                                    window.location.reload();
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                }
-                            });
-                        }
-					});
-				}else{
-					$('.post-btn').removeClass('disabled');
-					ractive.set('submitText','确认提现');
-				}
+                
+                						
 			}
 		});
 	}

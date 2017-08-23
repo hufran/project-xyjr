@@ -58,8 +58,7 @@ function CccMeassage(options) {
                         }
                         
                     })
-                    config.ok($(this), ele, box);
-                    box.hide();
+                    config.ok($(this), ele, box);                   
                 });
                 
 
