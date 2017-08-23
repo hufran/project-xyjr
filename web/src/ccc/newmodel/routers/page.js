@@ -13,10 +13,9 @@ var pageSize = 10;
                 for(i=length-1;i>=0;i--){
                     if(r.body[i].category===category){
                         riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/newmodel/"+urlName+"/"+r.body[i].id});
-                        res.render('index',{riskMap:JSON.stringify(riskMap),category:category,titleName:titleName});return;
                     }
                 }
-                
+                res.render('index',{riskMap:JSON.stringify(riskMap),category:category,titleName:titleName});return;
                 var length=riskMap.length;
                 if(length>0){
                     var name,currentIndex,indexValue;
