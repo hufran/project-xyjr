@@ -9,10 +9,11 @@ var pageSize = 10;
 
                 var length=r.body.length,i;
                 //定义数组顺序
-                res.render('index',{riskMap:r.body[5],category:category,titleName:titleName});return;
+                
                 for(i=length-1;i>=0;i--){
                     if(r.body[i].category===category){
                         riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/newmodel/"+urlName+"/"+r.body[i].id});
+                        res.render('index',{riskMap:JSON.stringify(riskMap),category:category,titleName:titleName});return;
                     }
                 }
                 
