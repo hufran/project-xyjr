@@ -3,6 +3,10 @@ module.exports = function (router) {
 var pageSize = 10;
     function renderPage(req, res,category,titleName,urlName){
         var riskMap=[];
+        var err;
+        err = new Error('Resource not found.');
+        err.code = 'invalid_request';
+        err.status = 404;
         req.uest("/api/v2/cms/channels").end().then(function(r){
             if(r.body.length >= 1){
 
@@ -25,7 +29,7 @@ var pageSize = 10;
                         }
                     }
                     if(name){
-                       req.uest('/api/v2/cms/category/FXJY/name/' + encodeURIComponent(name) + '?sort' + 'PUBDATE')
+                       req.uest('/api/v2/cms/category/'+category+'/name/' + encodeURIComponent(name) + '?sort' + 'PUBDATE')
                         .end().then(function (r) {
                             formatNews(r);
                             var contents = r.body.length >
@@ -90,10 +94,17 @@ var pageSize = 10;
                                 });
                             }
                         }); 
+                    }else{
+                    
+                        return next(err);
                     }
                     
+                }else{
+                    return next(err);
                 }
 
+            }else{
+                return next(err);
             }
         });
         
