@@ -2,10 +2,8 @@
 <link rel="stylesheet" href="/ccc/aboutus/css/help2.css">
 <div class="nav-shadow"></div>
 <div class="page-guide">
-    {{JSON.stringify(riskMap)}}
-    {{category}}
-    {{titleName}}
-    <!-- <p id="aboutus-title"><a href="/">首页</a> >{{titleName}}>{{tab.text}}</p>
+
+    <p id="aboutus-title"><a href="/">首页</a> >{{titleName}}>{{tab.text}}</p>
     <div id="help-left" class="pull-left">
 
         {{>list}}
@@ -13,9 +11,9 @@
     
 
     <div id="help-right" class="pull-right">
-        <div class="invest-container"> -->
+        <div class="invest-container">
 <!--{{#if contents.length===1}}-->
-        <!--     {{#if tab.type==0}}
+            {{#if tab.type==0}}
                 <div id="help-right" class="pull-right">
                     <div class="invest-container">
                         <div class="invest-wrapper">
@@ -24,7 +22,7 @@
                                 <div class="line"></div>
                             </div>
                             <div class="invest-wrapper">
-                                {{{contents[0].content}}}
+                                {{{JSON.parse(contents)[0].content}}}
                             </div>
                         </div>
                     </div>
@@ -39,7 +37,7 @@
                                 <div class="line"></div>
                             </div>
                             <div class="invest-wrapper">
-                                {{#each contents}}
+                                {{#each JSON.parse(contents)}}
                                 <div class="news-box">
                                     <div class="news-brame">
                                         <a href="/cms/p/{{this.id}}">
@@ -59,7 +57,7 @@
 
                         {{/if}}
                 </div>
-            </div> -->
+            </div>
 
 
 

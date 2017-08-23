@@ -34,7 +34,6 @@ var pageSize = 10;
                             formatNews(r);
                             var contents = r.body.length >
                                     0 ? r.body : null;
-                            res.render('index',{riskMap:JSON.stringify(contents),category:category,titleName:titleName});return;
                             if (contents.length >= 1) {
                                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                                 var len=contents.length,results=[];
@@ -63,7 +62,7 @@ var pageSize = 10;
                                         current,
                                         10),
                                     titleName:titleName,
-                                    tabs: riskMap,
+                                    tabs: JSON.stringify(riskMap),
                                     currentTab: currentIndex["name"],
                                     tabIndex: indexValue,
                                     tab: {
@@ -72,7 +71,7 @@ var pageSize = 10;
                                         text: currentIndex["name"],
                                         type:1
                                     },
-                                    contents: resultArray.length>0?resultArray:null,
+                                    contents: resultArray.length>0?JSON.stringify(resultArray):null,
                                     // isList: isList
                                 });
 
@@ -81,7 +80,7 @@ var pageSize = 10;
                                 
                                 res.render('index', {
                                     titleName:titleName,
-                                    tabs: riskMap,
+                                    tabs: JSON.stringify(riskMap),
                                     currentTab: currentIndex["name"],
                                     tabIndex: indexValue,
                                     tab: {
@@ -90,7 +89,7 @@ var pageSize = 10;
                                         text: currentIndex["name"],
                                         type:0
                                     },
-                                    contents: contents,
+                                    contents: JSON.stringify(contents),
                                     // isList: isList
                                 });
                             }

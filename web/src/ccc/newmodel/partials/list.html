@@ -4,7 +4,7 @@
         {{titleName}}
     </li> 
     
-    {{#each tabs.slice(0,10)}}
+    {{#each JSON.parse(tabs).slice(0,10)}}
     <li class="{{#if tabIndex === @index }}active{{/if}}">
         <a href="{{ url }}">{{ name }}</a>
     </li>
