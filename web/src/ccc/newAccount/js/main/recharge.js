@@ -213,6 +213,7 @@ ractive.on('checkAmount',function(){
     }
 })
 ractive.on('recharge_submit', function (e){
+    e.original.preventDefault();
     var amount = this.get('amount');
     var actionName=this.get('action');
     this.set('amountNew',amount);

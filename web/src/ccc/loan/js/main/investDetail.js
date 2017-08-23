@@ -318,7 +318,8 @@ setTimeout((function () {
                         // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
                         // 其他账号不需要测评的情况，因此去掉
                         // if (CC.user.priv==null&&getCookie('question')==null)
-                        if (!mark || (mark>=10&&mark<=16)) {                           
+                        if (!mark || (mark>=10&&mark<=16)) {
+                            console.log(mark)                           
                             if(mark>=10&&mark<=16){
                                 Confirm.create({
                                     msg: '您的风险评级较低，是否确认投资?',
@@ -354,7 +355,7 @@ setTimeout((function () {
                             })
                             jQuery('input.questionBtn').click(function(){
                                 var r=true;
-                                var mark=0;
+                                mark=0;
                                 for (var i = 1; i < 11; i++) {
                                     if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
                                         r=false;
