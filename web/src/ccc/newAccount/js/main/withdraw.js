@@ -226,6 +226,11 @@ ractive.on('withDrawSubmit', function () {
 				ractive.set('submitMessage', '交易密码错误');
 			} else {
 				ractive.set('submitMessage', null);
+                if (ractive.confirm(amount)) {
+                    isAcess  = true;
+                }else{
+                    isAcess = false;
+                }
 				if(banksabled.length) {
                     var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
                     var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
@@ -236,11 +241,7 @@ ractive.on('withDrawSubmit', function () {
                         phone1: phoneNumber1,
                         ok: function() {                            
                             console.log('aaaaaa')
-                            if (ractive.confirm(amount)) {
-                                isAcess  = true;
-                            }else{
-                                isAcess = false;
-                            }
+                            
                             if (isAcess) {
                                 $.post('/yeepay/withdraw', 
                                 {
