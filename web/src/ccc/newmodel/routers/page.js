@@ -43,12 +43,16 @@ var pageSize = 10;
                                     }
                                 }
 
+                                res.render('index', {
+                                    contents:JSON.stringify(results)
+                                });return;
                                 var startIndex=(current-1)*pageSize,endIndex=startIndex+(pageSize-1),resultArray;
                                 if(results.length/pageSize<=current){
                                     if(results.length<endIndex){
                                         endIndex=results.length;
                                     };
                                     resultArray=results.splice(startIndex,endIndex);
+
                                 }else{
                                     resultArray=[];
                                 }
