@@ -7,7 +7,7 @@ var pageSize = 10;var riskList=["公司简介","治理信息","风控体系","�
 
             if(r.body.length >= 1){
 
-                var length=r.body.length,i,,infoList;listLength;
+                var length=r.body.length,i,infoList,listLength;
                 //定义数组顺序
                 
                 if(category=="FXJY"){
