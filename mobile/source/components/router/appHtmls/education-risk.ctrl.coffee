@@ -8,8 +8,7 @@ do (_, angular) ->
 
         @$window.scrollTo 0, 0
 
-        console.log "test"
-        console.log @$routeParams.name
+        console.log @$routeParams.category
         angular.extend @$scope, {
 #          filter_type
 #          userId: @$routeParams.id
@@ -18,7 +17,7 @@ do (_, angular) ->
 #          bankCode: @$routeParams.bankCode
 #          token:@$routeParams.token
           riskName:@$routeParams.name
-          category:'FXJY'
+          category:@$routeParams.category
           articles: null
         }
         @api.get_article(@$scope.category,encodeURI(@$scope.riskName)).then (data) =>
