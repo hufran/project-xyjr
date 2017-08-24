@@ -276,7 +276,6 @@ function isUsefulToken(userId,token){
 //新增app端页面js
 //pulicnumber页面调试
 function publicTest(){
-
 	var mySwiper2 = new Swiper('#swiper-container2',{
 		watchSlidesProgress : true,
 		watchSlidesVisibility : true,
@@ -315,7 +314,8 @@ function publicTest(){
 			updateNavPosition()
 		}
 	});
-
+	;
+	setTimeout(function(){mySwiper2.onResize(),mySwiper3.onResize();$("#swiper-container2 .swiper-wrapper").css("transform","translate3d(0px, 0px, 0px)")},500);
 	setTimeout("c1()",1000);
 
 	function updateNavPosition(){
@@ -345,11 +345,13 @@ function publicTest(){
 var slider = [];
 function c1(){
 	var sliderLength = $("#swiper-container2 .swiper-wrapper .swiper-slide").length;
+	console.log("长度："+sliderLength)
 	for(var i = 0;i<sliderLength;i++){
 		var a1 = parseFloat($("#swiper-container3 .slide-"+(i+1)).height());
 		var a2 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-top").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-top").length-2));
 		var a3 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").length-2));
 		slider[i] = a1+a2+a3+50;
+		console.log(i);
 	}
 	$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[0]+"px");
 	$("#swiper-container3.swiper-container").css("overflow","hidden");
