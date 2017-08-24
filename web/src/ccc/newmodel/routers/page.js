@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function (router) {
 var pageSize = 10;
-    function renderPage(req,res,next,category,titleName,urlName){
+    function renderPage(req,res,next,category,titleName,urlName,type){
         var riskMap=[];
         req.uest("/api/v2/cms/channels").end().then(function(r){
 
@@ -69,7 +69,7 @@ var pageSize = 10;
                                         name: req.params
                                             .id,
                                         text: currentIndex["name"],
-                                        type:1
+                                        type:type
                                     },
                                     contents: resultArray.length>0?JSON.stringify(resultArray):null,
                                     // isList: isList
@@ -87,7 +87,7 @@ var pageSize = 10;
                                         name: req.params
                                             .id,
                                         text: currentIndex["name"],
-                                        type:0
+                                        type:type
                                     },
                                     contents: JSON.stringify(contents),
                                     // isList: isList
@@ -110,11 +110,11 @@ var pageSize = 10;
     };
     router.get('/riskEducation/:id', function (req, res, next) {
         //风险教育
-        renderPage(req, res, next,"FXJY","风险教育","riskEducation");
+        renderPage(req, res, next,"FXJY","风险教育","riskEducation",1);
     });
     router.get('/disclosure/:id', function (req, res, next) {
         //信息披露
-        renderPage(req, res, next,"XXPL","信息披露","disclosure");
+        renderPage(req, res, next,"XXPL","信息披露","disclosure",0);
     });
 
 
