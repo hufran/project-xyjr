@@ -7,16 +7,19 @@ do (_, angular) ->
     constructor: (@api, @$scope, @$window, @$routeParams) ->
 
       @$window.scrollTo 0, 0
-
+      console.log "sssssssssssssssssss"
       params = {
         XXPL: '信息披露',
         FXJY:'风险教育'
       }
+      search=filterXSS(@$window.location.search).split("=")[1]
+      
       angular.extend @$scope, {
         category:@$routeParams.category
         categoryName:params[@$routeParams.category]
+        hideHeader:search
       }
-
+#     hideHeader:@$location.search().app
 #      @api.get_article(@$scope.category,encodeURI(@$scope.riskName)).then (data) =>
 ##          console.log data[0].content
 #        @$scope.articles = data
