@@ -33,34 +33,20 @@ do (_, angular) ->
              switch data1[0].title
                when "公司信息" then _articleContent[0] = [data1[0].title,data1[0].content]
                when "治理信息" then _articleContent[1] = [data1[0].title,data1[0].content]
-               when "运营信息" then _articleContent[2] = [data1[0].title,data1[0].content]
-               when "平台信息" then _articleContent[3] = [data1[0].title,data1[0].content]
-               when "信息安全" then _articleContent[4] = [data1[0].title,data1[0].content]
-               when "重大事件" then _articleContent[5] = [data1[0].title,data1[0].content]
-               when "风控体系" then _articleContent[6] = [data1[0].title,data1[0].content]
-               when "审计报告" then _articleContent[7] = [data1[0].title,data1[0].content]
-               when "合规报告" then _articleContent[8] = [data1[0].title,data1[0].content]
+               when "风控体系" then _articleContent[2] = [data1[0].title,data1[0].content]
+               when "运营信息" then _articleContent[3] = [data1[0].title,data1[0].content]
+               when "平台信息" then _articleContent[4] = [data1[0].title,data1[0].content]
+               when "审计报告" then _articleContent[5] = [data1[0].title,data1[0].content]
+               when "合规报告" then _articleContent[6] = [data1[0].title,data1[0].content]
+               when "信息安全" then _articleContent[7] = [data1[0].title,data1[0].content]
+               when "重大事件" then _articleContent[8] = [data1[0].title,data1[0].content]
 #               else break
 #             _articleContent.push([data1[0].title,data1[0].content])
-#           _results.push(item)
 
-       console.log _articleContent
        @$scope.articles = _articleContent
 
 
-#       @$scope.plateIntro = _results
-#       for list in _results
-#         @api.get_article(list.category,encodeURI(list.name)).then (data1) =>
-#           _articleContent.push([data1[0].title,data1[0].content])
-#       @$scope.articles = _articleContent
-#       console.log @$scope.articles
-
-
-
-
-
        @test()
-#       @$scope.$watch "plateIntro",-> equals("publicTest()")
 
 
 
