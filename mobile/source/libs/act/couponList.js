@@ -276,7 +276,6 @@ function isUsefulToken(userId,token){
 //新增app端页面js
 //pulicnumber页面调试
 function publicTest(){
-
 	var mySwiper2 = new Swiper('#swiper-container2',{
 		watchSlidesProgress : true,
 		watchSlidesVisibility : true,
@@ -315,13 +314,13 @@ function publicTest(){
 			updateNavPosition()
 		}
 	});
-
+	setTimeout(function(){mySwiper2.onResize(),mySwiper3.onResize();$("#swiper-container2 .swiper-wrapper").css("transform","translate3d(0px, 0px, 0px)")},500);
 	setTimeout("c1()",1000);
 
 	function updateNavPosition(){
 		$('#swiper-container2 .active-nav').removeClass('active-nav');
 		var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
-		console.log(activeNav);
+		//console.log(activeNav);
 		if (!activeNav.hasClass('swiper-slide-visible')) {
 			if (activeNav.index()>mySwiper2.activeIndex) {
 				var thumbsPerNav = Math.floor(mySwiper2.width/activeNav.width())-1;

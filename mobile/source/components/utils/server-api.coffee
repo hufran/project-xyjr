@@ -224,10 +224,18 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
             get_article: (category,name, cache = false) ->
-
+#                console.log category
+#                console.log name
                 @$http
                     .get "/api/v2/cms/category/#{ category }/name/"+name, {cache}
 
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            get_category: (category, cache = false) ->
+
+                @$http
+                    .get "/api/v2/cms/channels", {cache}
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 

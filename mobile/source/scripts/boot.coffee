@@ -76,12 +76,12 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .catch $q.resolve
                     }
 
-                    .when '/education', {
+                    .when '/education/:category', {
                         controller: 'EducationCtrl as self'
                         templateUrl: 'components/router/appHtmls/education.tmpl.html'
                     }
 
-                    .when '/educationRisk', {
+                    .when '/educationRisk/:category', {
                         controller: 'EducationRiskCtrl as self'
                         templateUrl: 'components/router/appHtmls/education-risk.tmpl.html'
                     }
