@@ -44,7 +44,7 @@ var pageSize = 10;
                                 }
 
                                 var startIndex=(current-1)*pageSize,endIndex=startIndex+(pageSize-1),resultArray;
-                                if(results.length%10<=current){
+                                if(results.length/pageSize<=current){
                                     if(results.length<endIndex){
                                         endIndex=results.length;
                                     };
