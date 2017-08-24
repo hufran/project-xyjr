@@ -259,32 +259,47 @@ ractive.on('recharge_submit', function (e){
             this.set('amountNew',amount);
     };
 
-    var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
-    var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
-    
-    Message.create({
-        msg: '短信验证码已发送至',
-        okText: '下一步',
-        phone: phoneNumber,
-        phone1: phoneNumber1,
-        ok: function() { 
-            $('.dialog').hide();
-            Confirm.create({
-                msg: '充值是否成功？',
-                okText: '充值成功',
-                cancelText: '充值失败',
-                ok: function () {
-                    window.location.href = '/newAccount/fund/loanDeal';
-                },
-                cancel: function () {
-                    window.location.reload();
-                }
-            });
-        },
-        cancel: function() {
+    if(CC.user.bankCards.length>0){
+        var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
+        var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
+        
+        Message.create({
+            msg: '短信验证码已发送至',
+            okText: '下一步',
+            phone: phoneNumber,
+            phone1: phoneNumber1,
+            ok: function() { 
+                $('.dialog').hide();
+                Confirm.create({
+                    msg: '充值是否成功？',
+                    okText: '充值成功',
+                    cancelText: '充值失败',
+                    ok: function () {
+                        window.location.href = '/newAccount/fund/loanDeal';
+                    },
+                    cancel: function () {
+                        window.location.reload();
+                    }
+                });
+            },
+            cancel: function() {
 
-        }
-    })    
+            }
+        })
+    }else{
+        Confirm.create({
+            msg: '您尚未开通银行托管，是否去开通？',
+            okText: '去开通',
+            cancelText: '取消',
+            ok: function () {
+                window.location.href = '/newAccount/settings/authentication';
+            },
+            cancel: function () {
+                window.location.reload();
+            }
+        });
+    }
+        
 });
 
 ractive.on('changeMethod', function (event) {
