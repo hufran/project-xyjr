@@ -177,10 +177,11 @@ function safeAttrValue (tag, name, value) {
 }
 
 // 正则表达式
-var REGEXP_LT = /</g;
-var REGEXP_GT = />/g;
-var REGEXP_QUOTE = /"/g;
+var REGEXP_LT = /<|&#60;|%3C|\u003c/g;
+var REGEXP_GT = />|&#62;|%3E|\u003e/g;
+var REGEXP_QUOTE = /"|&#34;/g;
 var REGEXP_QUOTE_2 = /&quot;/g;
+var REGEXP_QUOTE_SINGLE=/'|&#39;|\u0027/g;
 var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/img;
 var REGEXP_ATTR_VALUE_COLON = /&colon;?/img;
 var REGEXP_ATTR_VALUE_NEWLINE = /&newline;?/img;
@@ -210,6 +211,16 @@ function escapeQuote (str) {
  */
 function unescapeQuote (str) {
   return str.replace(REGEXP_QUOTE_2, '"');
+}
+
+/**
+ * 对单引号进行转义
+ *
+ * @param {String} str
+ * @return {String} str
+ */
+function escapeSingleQuote (str) {
+  return str.replace(REGEXP_QUOTE_SINGLE,"/'");
 }
 
 /**
@@ -273,6 +284,7 @@ function friendlyAttrValue (str) {
  */
 function escapeAttrValue (str) {
   str = escapeQuote(str);
+  str = escapeSingleQuote(str);
   str = escapeHtml(str);
   return str;
 }
@@ -357,6 +369,7 @@ exports.safeAttrValue = safeAttrValue;
 exports.escapeHtml = escapeHtml;
 exports.escapeQuote = escapeQuote;
 exports.unescapeQuote = unescapeQuote;
+exports.escapeSingleQuote = escapeSingleQuote;
 exports.escapeHtmlEntities = escapeHtmlEntities;
 exports.escapeDangerHtml5Entities = escapeDangerHtml5Entities;
 exports.clearNonPrintableCharacter = clearNonPrintableCharacter;

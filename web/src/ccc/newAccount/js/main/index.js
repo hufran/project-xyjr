@@ -112,13 +112,13 @@ homeRactive.on("showRisk",function(){
         if (oldmark>=10&&oldmark<=16) {
             jQuery('.resultInfor span').html("一级（保守型）");
         }else if(oldmark>=17&&oldmark<=23){
-            jQuery('.resultInfor span').html("二级（中庸保守型）");
+            jQuery('.resultInfor span').html("二级（稳健型）");
         }else if(oldmark>=24&&oldmark<=31){
-            jQuery('.resultInfor span').html("三级（中庸型）");
+            jQuery('.resultInfor span').html("三级（平衡型）");
         }else if(oldmark>=32&&oldmark<=38){
-            jQuery('.resultInfor span').html("四级（中庸进取型）");
+            jQuery('.resultInfor span').html("四级（积极型）");
         }else if(oldmark>=39&&oldmark<=45){
-            jQuery('.resultInfor span').html("五级（进取型）");
+            jQuery('.resultInfor span').html("五级（激进型）");
         };
     }
     jQuery('.wenjuan').removeClass('dn').addClass('db');

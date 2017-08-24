@@ -7,6 +7,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account')
     .accountService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var Message = require('ccc/global/js/modules/cccMessage');
 require('ccc/xss.min');
 
 var banksabled = _.filter(CC.user.bankCards, function (r) {
@@ -225,47 +226,74 @@ ractive.on('withDrawSubmit', function () {
 				ractive.set('submitMessage', '交易密码错误');
 			} else {
 				ractive.set('submitMessage', null);
-				if (ractive.confirm(amount)) {
-					isAcess = true;
-				}
-				
-				if (isAcess) {
-					$.post('/yeepay/withdraw', 
-					{
-						paymentPassword : filterXSS(pass),
-						amount : filterXSS(amount)
+                if (ractive.confirm(amount)) {
+                    isAcess  = true;
+                }else{
+                    isAcess = false;
+                    $('.post-btn').removeClass('disabled');
+                    ractive.set('submitText','确认提现');
+                }
+				if(banksabled.length) {
+                    if(!isAcess){return}
+                    var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
+                    var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
+                    Message.create({
+                        msg: '短信验证码已发送至',
+                        okText: '下一步',
+                        phone: phoneNumber,
+                        phone1: phoneNumber1,
+                        ok: function() {                            
+                            console.log('aaaaaa')
+                            
+                            if (isAcess) {
+                                $.post('/yeepay/withdraw', 
+                                {
+                                    paymentPassword : filterXSS(pass),
+                                    amount : filterXSS(amount)
 
-					}, function (res) {
-						if (res.success) {
-                            CccOk.create({
-                                msg: '提现申请提交成功，等待审核中!',
-                                okText: '确定',
-                                // cancelText: '重新登录',
-                                ok: function () {
-                                    window.location.reload();
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                }
-                            });
-                        } else {
-                            CccOk.create({
-                                msg: '提现申请失败!',
-                                okText: '确定',
-                                // cancelText: '重新登录',
-                                ok: function () {
-                                    window.location.reload();
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                }
-                            });
+                                }, function (res) {
+                                    if (res.success) {
+                                        CccOk.create({
+                                            msg: '提现申请提交成功，等待审核中!',
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        CccOk.create({
+                                            msg: '提现申请失败!',
+                                            okText: '确定',
+                                            // cancelText: '重新登录',
+                                            ok: function () {
+                                                window.location.reload();
+                                            },
+                                            cancel: function () {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }
+                                });
+                            }else{
+                                $('.post-btn').removeClass('disabled');
+                                ractive.set('submitText','确认提现');
+                            }
+                            $('.dialog').hide();
+                        },
+                        close: function() {
+                            $('.post-btn').removeClass('disabled');
+                            ractive.set('submitText','确认提现');
                         }
-					});
-				}else{
-					$('.post-btn').removeClass('disabled');
-					ractive.set('submitText','确认提现');
-				}
+                    })
+                }else{
+                    ractive.set('submitMessage', '您尚未开通银行存管');
+                }
+                
+                						
 			}
 		});
 	}

@@ -76,6 +76,21 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .catch $q.resolve
                     }
 
+                    .when '/education', {
+                        controller: 'EducationCtrl as self'
+                        templateUrl: 'components/router/appHtmls/education.tmpl.html'
+                    }
+
+                    .when '/educationRisk', {
+                        controller: 'EducationRiskCtrl as self'
+                        templateUrl: 'components/router/appHtmls/education-risk.tmpl.html'
+                    }
+
+                    .when '/inforshow', {
+                        controller: 'InfoDisclosureCtrl as self'
+                        templateUrl: 'components/router/appHtmls/info-disclosure.tmpl.html'
+                    }
+
                     .when '/platform', {
                         controller: 'PlatformintroCtrl as self'
                         templateUrl: 'components/router/appHtmls/platform-intro.tmpl.html'
