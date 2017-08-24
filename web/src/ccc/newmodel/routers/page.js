@@ -38,14 +38,11 @@ var pageSize = 10;
                                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                                 var len=contents.length,results=[];
                                 for(var i=0;i<len;i++){
-                                    if(contents[i].id==req.params.id){
+                                    if(contents[i].channelId==req.params.id){
                                         results.push(contents[i]);
                                     }
                                 }
 
-                                res.render('index', {
-                                    contents:JSON.stringify(results)
-                                });return;
                                 var startIndex=(current-1)*pageSize,endIndex=startIndex+(pageSize-1),resultArray;
                                 if(results.length/pageSize<=current){
                                     if(results.length<endIndex){
