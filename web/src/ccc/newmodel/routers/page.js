@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function (router) {
-var pageSize = 10;var riskList=["公司简介","治理信息","风控体系","运营信息","平台信息","审计报告","合规报告","信息安全","重大事件"],disclosureList=["法律法规","借贷知识普及","出借人风险教育"];
+var pageSize = 10;var riskList=["公司信息","治理信息","风控体系","运营信息","平台信息","审计报告","合规报告","信息安全","重大事件"],disclosureList=["法律法规","借贷知识普及","出借人风险教育"];
     function renderPage(req,res,next,category,titleName,urlName,type){
         var riskMap=[];
         req.uest("/api/v2/cms/channels").end().then(function(r){
