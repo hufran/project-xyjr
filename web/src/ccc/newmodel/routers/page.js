@@ -31,7 +31,7 @@ var pageSize = 10;
                        req.uest('/api/v2/cms/category/'+category+'/name/' + encodeURIComponent(name) + '?sort' + 'PUBDATE')
                         .end().then(function (r) {
 
-                            formatNews(r);
+                            formatNews(r.body);
                             var contents = r.body.length >
                                     0 ? r.body : null;
                             if (contents.length > 1) {
