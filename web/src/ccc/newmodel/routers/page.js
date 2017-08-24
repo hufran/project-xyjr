@@ -34,7 +34,7 @@ var pageSize = 10;
                             formatNews(r);
                             var contents = r.body.length >
                                     0 ? r.body : null;
-                            if (contents.length >= 1) {
+                            if (contents.length > 1) {
                                 var current = (req.query.page === undefined) ? 1 : req.query.page;
                                 var len=contents.length,results=[];
                                 for(var i=0;i<len;i++){
