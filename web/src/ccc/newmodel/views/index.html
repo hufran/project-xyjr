@@ -13,6 +13,7 @@
     <div id="help-right" class="pull-right">
         <div class="invest-container">
 <!--{{#if contents.length===1}}-->
+        {{JSON.parse(contents)}}
             {{#if tab.type==0}}
                 <div id="help-right" class="pull-right">
                     <div class="invest-container">
@@ -28,7 +29,7 @@
                     </div>
                 </div>
             {{else}}
-
+                11111111111111111111111111
                 <div id="help-right" class="pull-right">
                     <div class="invest-container">
                         <div class="invest-wrapper">
@@ -37,7 +38,7 @@
                                 <div class="line"></div>
                             </div>
                             <div class="invest-wrapper">
-                                {{contents}}
+
                                 {{#each JSON.parse(contents)}}
                                 <div class="news-box">
                                     <div class="news-brame">
