@@ -71,7 +71,7 @@ var pageSize = 10;
                                         text: currentIndex["name"],
                                         type:type
                                     },
-                                    contents: resultArray.length>0?JSON.stringify(resultArray):null,
+                                    contents: JSON.stringify(resultArray),
                                     // isList: isList
                                 });
 
