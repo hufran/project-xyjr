@@ -1,18 +1,28 @@
 'use strict';
 module.exports = function (router) {
-var pageSize = 10;
+var pageSize = 10;var riskList=["公司简介","治理信息","风控体系","运营信息","平台信息","审计报告","合规报告","信息安全","重大事件"],disclosureList=["法律法规","借贷知识普及","出借人风险教育"];
     function renderPage(req,res,next,category,titleName,urlName,type){
         var riskMap=[];
         req.uest("/api/v2/cms/channels").end().then(function(r){
 
             if(r.body.length >= 1){
 
-                var length=r.body.length,i;
+                var length=r.body.length,i,,infoList;listLength;
                 //定义数组顺序
                 
-                for(i=length-1;i>=0;i--){
-                    if(r.body[i].category===category){
-                        riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/newmodel/"+urlName+"/"+r.body[i].id});
+                if(category=="FXJY"){
+                    //风险教育
+                    infoList=disclosureList;
+                }else if(category=="XXPL"){
+                    //信息纰漏
+                    infoList=riskList;
+                }
+                listLength=infoList.length;
+                for(var j=0;j<listLength;j++){
+                    for(i=0;i<length;i++){
+                        if(r.body[i].category===category&&infoList[j]==r.body[i].name){
+                            riskMap.push({id:r.body[i].id,name:r.body[i].name,url:"/newmodel/"+urlName+"/"+r.body[i].id});
+                        }
                     }
                 }
                 

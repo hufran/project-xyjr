@@ -258,6 +258,7 @@
        margin-left:60px;
      margin-right:60px;
      margin-bottom: 120px;
+     padding-bottom:15px;
      border: none;
      font-size:15px;
      color:#666666;
@@ -393,4 +394,18 @@
         
     color: #fff;
   
+}
+.invest-wrapper .platInfo td,.invest-wrapper .manage td{
+    padding:20px 0;
+}
+.invest-wrapper .platInfo a{
+    color:#36A9CE;
+}
+.invest-wrapper .platInfo img{
+    margin-top:70px;
+}
+.invest-wrapper .opertion td{
+    padding:20px 0;
+    border-left: 1px solid #eeefef;
+    border-top: 1px solid #eeefef;
 }
