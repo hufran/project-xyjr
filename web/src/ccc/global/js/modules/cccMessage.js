@@ -19,7 +19,7 @@ function CccMeassage(options) {
         cancel: function() {},
         close:function(){},
         debug: false,
-        test: '123'
+        phone: '123'
     };
 
     var config = {};
@@ -32,7 +32,7 @@ function CccMeassage(options) {
     var before = function() {
         config.tpl = config.tpl.replace('{{okText}}', config.okText);
         config.tpl = config.tpl.replace('{{msg}}', config.msg);
-        config.tpl = config.tpl.replace('{{test}}', config.test);
+        config.tpl = config.tpl.replace('{{phone}}', config.phone);
     };
 
     var initialize = function() {
@@ -49,15 +49,16 @@ function CccMeassage(options) {
             showed: function(ele, box) {
                 // click ok
                 $(ele).find('.btn-confirm-ok').on('click', function(){
-                    utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').value,function(err,msgg){
+                    utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').val(),function(err,msgg){
                         if (!err) {
                             $(ele).find('.errMess')
                                 .html('验证码错误');
                             return false;
+                        }else{
+                            config.ok($(this), ele, box);
                         }
                         
-                    })
-                    config.ok($(this), ele, box);
+                    })                                       
                 });
                 
 
@@ -86,7 +87,7 @@ function CccMeassage(options) {
                     $(ele).find('.getcaptcha')
                         .addClass('disabled');
                     var previousText = '获取验证码';
-                    var mssg = '$秒后重新发送';
+                    var mssg = '$秒';
 
                     var left = 60;
                     var interval = setInterval((function () {

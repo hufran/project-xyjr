@@ -15,6 +15,7 @@ var corBanks=[
 ];
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
+var Message = require('ccc/global/js/modules/cccMessage');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 //新增支付方式判断
 var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
@@ -212,6 +213,7 @@ ractive.on('checkAmount',function(){
     }
 })
 ractive.on('recharge_submit', function (e){
+    e.original.preventDefault();
     var amount = this.get('amount');
     var actionName=this.get('action');
     this.set('amountNew',amount);
@@ -257,17 +259,32 @@ ractive.on('recharge_submit', function (e){
             this.set('amountNew',amount);
     };
 
-    Confirm.create({
-        msg: '充值是否成功？',
-        okText: '充值成功',
-        cancelText: '充值失败',
-        ok: function () {
-            window.location.href = '/newAccount/fund/loanDeal';
+    var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
+    var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
+    
+    Message.create({
+        msg: '短信验证码已发送至',
+        okText: '下一步',
+        phone: phoneNumber,
+        phone1: phoneNumber1,
+        ok: function() { 
+            $('.dialog').hide();
+            Confirm.create({
+                msg: '充值是否成功？',
+                okText: '充值成功',
+                cancelText: '充值失败',
+                ok: function () {
+                    window.location.href = '/newAccount/fund/loanDeal';
+                },
+                cancel: function () {
+                    window.location.reload();
+                }
+            });
         },
-        cancel: function () {
-            window.location.reload();
+        cancel: function() {
+
         }
-    });
+    })    
 });
 
 ractive.on('changeMethod', function (event) {
