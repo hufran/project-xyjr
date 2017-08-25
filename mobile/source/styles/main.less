@@ -44,9 +44,17 @@ body {
 a {
     color: @color-theme-main;
     text-decoration: none;
-
+    &:link {
+        text-decoration: none;
+    }
+    &:visited {
+        text-decoration: none;
+    }
     &:hover {
         color: @color-theme-main;
+        text-decoration: none;
+    }
+    &:active {
         text-decoration: none;
     }
 }
@@ -2712,6 +2720,9 @@ a {
         &-body {
             margin-left: 8px;
             margin-right: 8px;
+        }
+        a{
+            outline:0;
         }
     }
 }

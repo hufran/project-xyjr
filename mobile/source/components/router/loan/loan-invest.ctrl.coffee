@@ -15,7 +15,6 @@ do (_, angular, Math) ->
                     @$scope.agreement_name = data.productName
 
 
-
                 @page_path = @$location.path()[1..]
                 @page_path_origin = ARRAY_JOIN_SLASH.call ['loan', @loan.id, 'invest']
                 arrList = [@user.fund.availableAmount*1,@loan.balance*1,@loan.loanRequest.investRule.minAmount*1,@loan.loanRequest.investRule.maxAmount*1]
@@ -177,10 +176,9 @@ do (_, angular, Math) ->
 
 
             submit: (event) ->
-
-                good_to_go = true
                 do event.preventDefault  # submitting via AJAX
 
+                good_to_go = true
                 loan = @$scope.loan
 
                 {password} = @$scope.store
@@ -335,6 +333,7 @@ do (_, angular, Math) ->
                     @$location
                         .path new_path
                         .search next: @page_path
+
 
 
             agreement: (name) ->
