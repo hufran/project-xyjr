@@ -1,6 +1,5 @@
 var Box = require('ccc/global/js/modules/cccBox');
 var tpl = require('ccc/global/partials/modules/cccMessage.html');
-var utils = require('ccc/global/js/lib/utils');
 
 function CccMeassage(options) {
 
@@ -48,17 +47,26 @@ function CccMeassage(options) {
             overlay: config.overlay,
             showed: function(ele, box) {
                 // click ok
-                $(ele).find('.btn-confirm-ok').on('click', function(){
-                    utils.formValidator.checkSmsCaptcha($(ele).find('.msmcaptcha').val(),function(err,msgg){
-                        if (!err) {
-                            $(ele).find('.errMess')
+                $(ele).find('.btn-confirm-ok').on('click', function(){                    
+                    var msmcaptcha = $(ele).find('.msmcaptcha').val();
+                    if(!/^\d{6}$/.test(msmcaptcha)) {
+                        $(ele).find('.errMess')
                                 .html('验证码错误');
                             return false;
-                        }else{
-                            config.ok($(this), ele, box);
-                        }
-                        
-                    })                                       
+                    } else {
+                        $.post('/CreditMarket/api/v2/lccb/sendMsg/' + CC.user.userId, {
+                            transtype: config.transtype,
+                            cardnbr: CC.user.bankCards[0].account.account
+                        }, function(res) {
+                            if(res.status == 0) {
+                                config.ok($(this), ele, box, res.data, msmcaptcha);
+                            }else{
+                                $(ele).find('.errMess')
+                                .html('发送失败');
+                            return false;
+                            }
+                        })
+                    }                                      
                 });
                 
 
