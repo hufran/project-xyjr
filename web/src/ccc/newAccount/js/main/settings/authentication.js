@@ -142,7 +142,7 @@ ractive.on('checkmessageTxt', function(){
                 errormessageTxt: utils.errorMsg[error]
             });
         }else{
-            this.set('showErromessageTxt',false);
+            this.set('showErrormessageTxt',false);
         }
     }    
 })
@@ -161,11 +161,13 @@ ractive.on("register-account-submit", function () {
         });
         return false;
     }
-    if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrobankNumber') || this.get('showErrobankPhone') || this.get('showErromessageTxt')) {
+    if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrorbankNumber') || this.get('showErrorbankPhone') || this.get('showErrormessageTxt')) {
         return false;
     }
-    var name = filterXSS(this.get("name"));
-    var idNumber = filterXSS(this.get("idNumber"));
+
+    console.log(this.get("authenticateInfo"));
+    var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
+    var idNumber = filterXSS(this.get("idNumber") || this.get("authenticateInfo").idNumber);
     var bankNumber = filterXSS(this.get("bankNumber"));
     var bankName = filterXSS(this.get("bankName"));
     var bankPhone = filterXSS(this.get("bankPhone"));
@@ -282,7 +284,7 @@ ractive.on('sendTelCode', function (){
     if ($captchaBtn.hasClass('disabled')) {
         return;
     }
-    if(!this.get('showErrobankNumber')){
+    if(this.get('showErrorbankNumber')){
         return;
     }
     var smsType = '800001';
@@ -326,7 +328,5 @@ function SeverName(){
                 banks.push({'name': name});
             };
             ractive.set('banks', banks);
-            console.log('#####bank');
-            console.log(banks);
         });
 }
