@@ -160,8 +160,15 @@ ractive.on("register-account-submit", function () {
             errorbankName: '请选择开户银行'
         });
         return false;
+    }else{
+        ractive.set("showErrorbankName", false);
     }
     if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrorbankNumber') || this.get('showErrorbankPhone') || this.get('showErrormessageTxt')) {
+        console.log(this.get('showErrorMessageName'))
+        console.log(this.get('showErrorMessageId'))
+        console.log(this.get('showErrorbankNumber'))
+        console.log(this.get('showErrorbankPhone'))
+        console.log(this.get('showErrormessageTxt'))
         return false;
     }
 

@@ -47,6 +47,7 @@ function CccMeassage(options) {
             overlay: config.overlay,
             showed: function(ele, box) {
                 // click ok
+                var data;
                 $(ele).find('.btn-confirm-ok').on('click', function(){                    
                     var msmcaptcha = $(ele).find('.msmcaptcha').val();
                     if(!/^\d{6}$/.test(msmcaptcha)) {
@@ -54,18 +55,7 @@ function CccMeassage(options) {
                                 .html('验证码错误');
                             return false;
                     } else {
-                        $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
-                            transtype: config.transtype,
-                            cardnbr: CC.user.bankCards[0].account.account
-                        }, function(res) {
-                            if(res.status == 0) {
-                                config.ok($(this), ele, box, res.data, msmcaptcha);
-                            }else{
-                                $(ele).find('.errMess')
-                                .html('发送失败');
-                            return false;
-                            }
-                        })
+                        config.ok($(this), ele, box, data, msmcaptcha);
                     }                                      
                 });
                 
@@ -87,7 +77,20 @@ function CccMeassage(options) {
                     if ($captchaBtn.hasClass('disabled')) {
                         return;
                     }
-                    countDown()
+                    $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
+                            transtype: config.transtype,
+                            cardnbr: CC.user.bankCards[0].account.account
+                        }, function(res) {
+                            if(res.status == 0) {
+                                data = res.data;
+                                countDown();
+                            }else{
+                                $(ele).find('.errMess')
+                                .html('发送失败');
+                            return false;
+                            }
+                        })
+                    
                 })
 
                 config.complete(ele, box);
