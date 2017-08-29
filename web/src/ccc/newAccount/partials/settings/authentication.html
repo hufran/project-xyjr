@@ -63,7 +63,7 @@
                     <select name="bankName" class="check-name" value="{{bankName}}" style="width: 150px;">
                         <option value="请选择开户银行">请选择开户银行</option>
                         {{#each banks}}
-                            <option value="{{name}}" data-code="code">{{name}}</option>
+                            <option value="{{name}}" data-code="{{code}}">{{name}}</option>
                         {{/each}}
                     </select>
                     {{#if showErrorbankName}}
