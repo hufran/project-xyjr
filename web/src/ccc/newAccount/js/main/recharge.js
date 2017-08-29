@@ -204,7 +204,7 @@ ractive.parseData();
 
 ractive.on('checkAmount',function(){
     var inp=jQuery('#rechargeValue');
-    var choose =$('#paynet').prop('checked');
+    
     inp.val(inp.val().replace(/[^\d.]/g,"")); //清除"数字"和"."以外的字符
     inp.val(inp.val().replace(/^\./g,""));
     inp.val(inp.val().replace(/\.{2,}/g,"."));
@@ -218,6 +218,7 @@ ractive.on('recharge_submit', function (e){
     e.original.preventDefault();
     var amount = this.get('amount');
     var actionName=this.get('action');
+    var choose =$('#paynet').prop('checked');
     this.set('amountNew',amount);
 
     this.set('msg', {
@@ -275,7 +276,8 @@ ractive.on('recharge_submit', function (e){
                 console.log(e)
                 console.log(f)
                 if(choose){
-                    $.post('/CreditMarket/api/v2/lccb/deposit/'+ CC.user.userId,{
+                    //网银充值
+                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,
@@ -292,7 +294,8 @@ ractive.on('recharge_submit', function (e){
                         });                    
                     })
                 }else {
-                    $.post('/CreditMarket/api/v2/lccb/deposit/'+ CC.user.userId,{
+                    // 快捷支付
+                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,

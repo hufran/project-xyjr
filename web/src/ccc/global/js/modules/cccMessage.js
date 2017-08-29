@@ -54,7 +54,7 @@ function CccMeassage(options) {
                                 .html('验证码错误');
                             return false;
                     } else {
-                        $.post('/CreditMarket/api/v2/lccb/sendMsg/' + CC.user.userId, {
+                        $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
                             transtype: config.transtype,
                             cardnbr: CC.user.bankCards[0].account.account
                         }, function(res) {

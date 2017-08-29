@@ -39,6 +39,9 @@ var ractive = new Ractive({
                 ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
             }
         });
+    },
+    oncomplete: function () {
+       SeverName()       
     }
 });
 
@@ -160,6 +163,11 @@ ractive.on("register-account-submit", function () {
     }
     var name = filterXSS(this.get("name"));
     var idNumber = filterXSS(this.get("idNumber"));
+    var bankNumber = filterXSS(this.get("bankNumber"));
+    var bankName = filterXSS(this.get("bankName"));
+    var bankPhone = filterXSS(this.get("bankPhone"));
+    var messageTxt = filterXSS(this.get("messageTxt"));
+    var smsid = '800001'
     utils.formValidator.checkName(that.get("name"), function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -297,4 +305,19 @@ function countDown() {
             clearInterval(interval);
         }
     }), 1000);
+}
+
+function SeverName(){
+    request('GET',"/api/v2/lianlianpay/banks").end().
+        then(function (r) {
+            banks=[];
+            banksList=r.body;
+            for (var i in banksList) {
+                name=banksList[i];
+                banks.push({'name': name});
+            };
+            ractive.set('banks', banks);
+            console.log('#####bank');
+            console.log(banks);
+        });
 }

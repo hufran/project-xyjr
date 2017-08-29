@@ -39,11 +39,11 @@
                  {{/if}}
             </div>
             {{else}}
-                <div class="account-info-row">
+                <div class="userIdNumber">
                     <label for="" class="text">真实姓名：</label>
                     <span class="value">{{format.mask(authenticateInfo.name)}}</span>
                 </div>
-                <div class="account-info-row">
+                <div class="userIdNumber">
                     <label for="" class="text">身份证号：</label>
                     <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
                 </div>
