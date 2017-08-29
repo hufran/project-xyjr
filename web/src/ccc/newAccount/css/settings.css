@@ -557,4 +557,7 @@ margin-left: 264px;
   width: 30px;
   height: 30px;
   display: inline-block;
+  vertical-align: middle;
+  background-size: 100%;
+  margin-left: 15px;
 }

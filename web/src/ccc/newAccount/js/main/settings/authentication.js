@@ -47,7 +47,7 @@ var ractive = new Ractive({
        SeverName() 
        if(ractive.get('bank')) {
           var bankcode = CC.user.bankCards[0].account.bank
-          $(".bankpic").css('background','url(ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')
+          $(".bankpic").css('background','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')
        }      
     }
 });
