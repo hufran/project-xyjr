@@ -271,10 +271,10 @@ ractive.on('recharge_submit', function (e){
             okText: '下一步',
             phone: phoneNumber,
             transtype: '800002',
-            ok: function(a,b,c,d,e,f) { 
+            ok: function(a,b,c,d,e) { 
                 $('.dialog').hide();
                 console.log(e)
-                console.log(f)
+                console.log(d)
                 if(choose){
                     //网银充值
                     $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{

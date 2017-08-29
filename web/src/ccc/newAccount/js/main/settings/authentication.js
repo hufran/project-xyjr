@@ -11,6 +11,9 @@ require('ccc/xss.min');
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
+var banksList={}
+var banks=[];
+var smsid;
 
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -167,7 +170,6 @@ ractive.on("register-account-submit", function () {
     var bankName = filterXSS(this.get("bankName"));
     var bankPhone = filterXSS(this.get("bankPhone"));
     var messageTxt = filterXSS(this.get("messageTxt"));
-    var smsid = '800001'
     utils.formValidator.checkName(that.get("name"), function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -274,13 +276,20 @@ ractive.on('agreement-check', function () {
 });
 
 ractive.on('sendTelCode', function (){
+    this.fire('checkbankNumber');
     var $captchaBtn = $(".getcaptcha");
+    var cardnbr = this.get("bankNumber");
     if ($captchaBtn.hasClass('disabled')) {
         return;
     }
-    var smsType = 'CREDITMARKET_CAPTCHA';
-    CommonService.getMessage(smsType, function (r) {
-        if (r.success) {
+    if(!this.get('showErrobankNumber')){
+        return;
+    }
+    var smsType = '800001';
+    var userId = CC.user.userId;
+    CommonService.getMessage2(smsType, userId, cardnbr,function (r) {
+        if (r.status == 0) {
+            smsid = r.data;
             countDown();
         }
     });

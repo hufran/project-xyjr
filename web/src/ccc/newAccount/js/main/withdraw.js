@@ -241,10 +241,8 @@ ractive.on('withDrawSubmit', function () {
                         msg: '短信验证码已发送至',
                         okText: '下一步',
                         phone: phoneNumber,
-                        phone1: phoneNumber1,
-                        ok: function() {                            
-                            console.log('aaaaaa')
-                            
+                        transtype: '800003',
+                        ok: function(a,b,c,d,e) {
                             if (isAcess) {
                                 $.post('/yeepay/withdraw', 
                                 {

@@ -430,8 +430,8 @@ setTimeout((function () {
                             msg: '短信验证码已发送至',
                             okText: '下一步',
                             phone: phoneNumber,
-                            phone1: phoneNumber1,
-                            ok: function() { 
+                            transtype: '800004',
+                            ok: function(a,b,c,d,e) { 
                                 $('.dialog').hide();
                                 Confirm.create({
                                     msg: '您本次投资的金额为' + num + '元，'+ couponText +'是否确认投资？',
