@@ -44,7 +44,11 @@ var ractive = new Ractive({
         });
     },
     oncomplete: function () {
-       SeverName()       
+       SeverName() 
+       if(ractive.get('bank')) {
+          var bankcode = CC.user.bankCards[0].account.bank
+          $(".bankpic").css('background','url(ccc/newAccount/img/bankIcons/'+ bankCode + '.png)')
+       }      
     }
 });
 
@@ -58,6 +62,7 @@ ractive.on('maskDepositAgreement', function (e) {
 ractive.on('checkName',function(){
     var name = this.get("name");
     this.set('showErrorMessageName',false);
+    if(!this.get('bankNumber')){return}
     utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -70,6 +75,7 @@ ractive.on('checkName',function(){
 ractive.on('checkIdNumber',function(){
     var idNumber = this.get("idNumber");
     this.set('showErrorMessageId',false);
+    if(!this.get('bankNumber')){return}
     utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -147,6 +153,11 @@ ractive.on('checkmessageTxt', function(){
     }    
 })
 
+$('select[name="bankName"]').on("change", function() {
+    var code = $(this).find("option:selected").getAttribute('data-code');
+    console.log(code);
+    $(".bankpic").css("background","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
+})
 ractive.on("register-account-submit", function () {   
     var that=this;
     this.fire('checkName');
@@ -332,8 +343,9 @@ function SeverName(){
             banksList=r.body;
             for (var i in banksList) {
                 name=banksList[i];
-                banks.push({'name': name});
+                banks.push({'name': name,'code': i});
             };
             ractive.set('banks', banks);
+            console.log(banks)
         });
 }

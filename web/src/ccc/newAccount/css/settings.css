@@ -552,3 +552,9 @@ margin-left: 264px;
 .btn-blue:focus{
   text-decoration: none;
 }
+
+.bankpic{
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
