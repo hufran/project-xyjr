@@ -47,7 +47,7 @@ var ractive = new Ractive({
        SeverName() 
        if(ractive.get('bank')) {
           var bankcode = CC.user.bankCards[0].account.bank
-          $(".bankpic").css('background','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')
+          $(".bankpic").css('background-image','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')
        }      
     }
 });
@@ -156,7 +156,7 @@ ractive.on('checkmessageTxt', function(){
 $('select[name="bankName"]').on("change", function() {
     var code = $(this).find("option:selected").attr('data-code');
     console.log(code);
-    $(".bankpic").css("background","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
+    $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
 })
 ractive.on("register-account-submit", function () {   
     var that=this;

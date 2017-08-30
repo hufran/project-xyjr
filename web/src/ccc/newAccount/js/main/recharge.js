@@ -281,8 +281,8 @@ ractive.on('recharge_submit', function (e){
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,
-                        Smsid: e,
-                        validatemsg : f
+                        Smsid: d,
+                        validatemsg : e
                     },function(res) {
                         console.log(res)
                         CccOK.create({
@@ -299,8 +299,8 @@ ractive.on('recharge_submit', function (e){
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,
-                        Smsid: e,
-                        validatemsg : f 
+                        Smsid: d,
+                        validatemsg : e 
                     },function(res) {
                         console.log(res)
                         CccOK.create({
