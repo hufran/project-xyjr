@@ -11,7 +11,7 @@ module.exports = function (router, auth) {
     // 支付相关
     router.post('/api/v2/lccb/sendMsg/:userId', auth.pass());
     router.post('/api/v2/lccb/deposit/:userId', auth.user());
-    router.post('/api/v2/yeepay/bindCard/:userId', auth.user());
+    router.post('/api/v2/lccb/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());
     router.post('/api/v2/lianlianpay/onlineBankDeposit/:userId', auth.user());

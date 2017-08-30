@@ -62,7 +62,7 @@ ractive.on('maskDepositAgreement', function (e) {
 ractive.on('checkName',function(){
     var name = this.get("name");
     this.set('showErrorMessageName',false);
-    if(!this.get('bankNumber')){return}
+    if(!this.get('bank')){return}
     utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -75,7 +75,7 @@ ractive.on('checkName',function(){
 ractive.on('checkIdNumber',function(){
     var idNumber = this.get("idNumber");
     this.set('showErrorMessageId',false);
-    if(!this.get('bankNumber')){return}
+    if(!this.get('bank')){return}
     utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -208,8 +208,14 @@ ractive.on("register-account-submit", function () {
                 }
 
                 var user = {
-                    name: $.trim(name),
-                    idNumber: $.trim(idNumber)
+                    userId: CC.user.id,
+                    realName: $.trim(name),
+                    idNumber: $.trim(idNumber),
+                    bankName: bankName,
+                    cardNo: bankNumber,
+                    cardPhone: bankPhone,
+                    smsCaptcha: messageTxt,
+                    smsid: smsid
                 };
                 var msg,link;
                 if (that.get('bank') && that.get('paymentPasswordHasSet')) {
@@ -220,6 +226,7 @@ ractive.on("register-account-submit", function () {
                 }
                 accountService.authenticateUser(user,
                     function (res) {
+                        console.log(res)
                         if (res.success) {
                             CccOk.create({
                                 msg: msg,
