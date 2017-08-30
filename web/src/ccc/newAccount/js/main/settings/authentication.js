@@ -175,29 +175,24 @@ ractive.on("register-account-submit", function () {
         ractive.set("showErrorbankName", false);
     }
     if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrorbankNumber') || this.get('showErrorbankPhone') || this.get('showErrormessageTxt')) {
-        console.log(this.get('showErrorMessageName'))
-        console.log(this.get('showErrorMessageId'))
-        console.log(this.get('showErrorbankNumber'))
-        console.log(this.get('showErrorbankPhone'))
-        console.log(this.get('showErrormessageTxt'))
         return false;
     }
 
     console.log(this.get("authenticateInfo"));
     var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
-    var idNumber = filterXSS(this.get("idNumber") || this.get("authenticateInfo").idNumber);
+    var idNumber = filterXSS(this.get("idNumber")) || this.get("authenticateInfo").idNumber;
     var bankNumber = filterXSS(this.get("bankNumber"));
     var bankName = filterXSS(this.get("bankName"));
     var bankPhone = filterXSS(this.get("bankPhone"));
     var messageTxt = filterXSS(this.get("messageTxt"));
-    utils.formValidator.checkName(that.get("name"), function (bool, error) {
+    utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
                 showErrorMessageName: true,
                 errorMessageName: utils.errorMsg[error]
             });
         } else {
-            utils.formValidator.checkIdNumber(that.get("idNumber"), function (bool, error) {
+            utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
                 if (!bool) {
                     ractive.set({
                         showErrorMessageId: true,
