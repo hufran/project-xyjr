@@ -444,7 +444,7 @@ setTimeout((function () {
             msg: '短信验证码已发送至',
             okText: '下一步',
             phone: phoneNumber,
-            phone1: phoneNumber1,
+            transtype: '800004',
             ok: function(a,b,c,d,e) { 
                 $('.dialog').hide();
                 Confirm.create({

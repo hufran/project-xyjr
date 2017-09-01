@@ -172,6 +172,10 @@ var ractive = new Ractive({
             }
         });
 
+        if (CC.user.bankCards.length>0) {
+            this.set('bankName',CC.user.bankCards[0].account.bank);
+        };
+
 
     },
 
