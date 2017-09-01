@@ -55,7 +55,6 @@ function CccMeassage(options) {
                                 .html('验证码错误');
                             return false;
                     } else {
-                        data = 1234;
                         config.ok($(this), ele, box, data, msmcaptcha);
                     }                                      
                 });
