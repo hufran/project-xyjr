@@ -1,16 +1,19 @@
 do (angular) ->
   angular.module('controller').controller 'RechargeCtrl',
 
-    _.ai '            @user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams', class
-      constructor: (@user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams) ->
+    _.ai '            @user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval', class
+      constructor: (@user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval) ->
         EXTEND_API @api
         @$window.scrollTo 0, 0
 
         @back_path = @$routeParams.back
         @next_path = @$routeParams.next
-        @pay_type = 'lianlianPay'
+#        @pay_type = 'lianlianPay'    #连连支付
+        @pay_type = 'depository'     #银行存管
 
         @$scope.bank_account = _.clone @user.bank_account
+        
+
 
         angular.extend @$scope, {
           bank_account: _.clone @user.bank_account
@@ -21,10 +24,11 @@ do (angular) ->
           action1: '/api/v2/jdpay/onlineBankDeposit4Wap/' + @user.fund.userId
           action2: '/api/v2/lianlianpay/deposit/' + @user.fund.userId
           token: @$cookies.get 'ccat'
-
         }
         if  @pay_type == 'lianlianPay'
           @$scope.action = @$scope.action2
+        else if @pay_type == 'depository'
+          @$scope.action = ""
         else
           @$scope.action = @$scope.action1
         if +@$routeParams.amount > 0
@@ -35,7 +39,7 @@ do (angular) ->
           @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
 
-
+        
 
       modify_amonut: ->
 
@@ -46,10 +50,131 @@ do (angular) ->
           @$scope.amountNew = filterXSS((Math.round(@$scope.amount * 100)).toString())
 
 
+      paySubmit: (event, amount)->
+        event.preventDefault()
+        console.log "amount:",amount
+        @paymentPoint amount
+
       submit: (event, amount, return_url) ->
         @api.payment_get_recharge_url amount, return_url
         .then (data) =>
           @$window.location.href = data.message
+
+      paymentPoint:(amount)->
+        payment=@$uibModal.open {
+            size: 'sm'
+            keyboard: false
+            backdrop: 'static'
+            windowClass: 'center ngt-share-coupon'
+            animation: true
+            templateUrl: 'ngt-pool-recharge.tmpl'
+
+            controller: _.ai '$scope', ($scope) =>
+                self=@
+                angular.extend $scope, {
+                  bankNumber:@user.bank_account.bankMobile.substring(0,3)+"****"+@user.bank_account.bankMobile.substring(7),
+                  cell_buffering_count:120.119,
+                  cell_buffering:false,
+                  mobile_verification_code_has_sent:true,
+                  amount:amount,
+                  send_verification_code: () ->
+                      $scope.mobile_verification_code_has_sent = true
+                      if !self.user.bank_account||!self.user.bank_account.bankMobile
+                          self.$window.alert '您需要开通银行存管才可操作！'
+                          self.$location
+                              .replace()
+                              .path "dashboard/payment/register"
+                          return
+                      else
+                          phonenumber=filterXSS self.user.bank_account.bankMobile
+
+                      if !self.user.bank_account||!self.user.bank_account.account
+                          self.$window.alert '您需要开通银行存管才可操作！'
+                          self.$location
+                              .replace()
+                              .path "dashboard/payment/register"
+                          return
+                      else
+                          cardnbr=filterXSS self.user.bank_account.account
+
+                      return unless !!phonenumber and !!cardnbr
+
+                      
+                      transtype='800002'
+                      
+                      (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr)
+
+                        .then (data) =>
+                            return self.$q.reject(data) unless data.status is 1
+                            return data
+
+                        .then (data) =>
+                            console.log data
+                            status=_.get data,'status'
+                            if status!=1
+                              self.smsid=data.data
+                              timer = self.$interval =>
+                                $scope.cell_buffering_count -= 1
+                                
+                                if $scope.cell_buffering_count < 1
+                                    self.$interval.cancel timer
+                                    console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count%1
+                                    $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
+                                    $scope.cell_buffering = false
+                                    
+                              , 1000
+                              $scope.cell_buffering = true
+                            else
+                              self.$window.alert "发送短信失败,"+data.msg
+                              $scope.cell_buffering = false
+
+                            $scope.mobile_verification_code_has_sent = false
+
+                        .catch (data) =>
+                            key = _.get data, 'msg'
+                            self.$window.alert "短信发送失败,"+key
+
+                            $scope.mobile_verification_code_has_sent = false
+                      )
+                }
+                
+        }
+        payment.result.catch ({amount, mobile_captcha}) =>
+      
+          if typeof amount=="undefined"||!amount
+            @$window.alert "请填写充值金额！"
+            return
+          else
+            amount=filterXSS amount.toString()
+          if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
+            @$window.alert "请填写验证码！"
+            return
+          else
+            mobile_captcha=filterXSS mobile_captcha
+          if !@smsid
+            @$window.alert "请发送验证码后操作！"
+            return
+          if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
+            @$window.alert "您尚未开通存管，请开通后在操作"
+            @$window.location.href="/dashboard/payment/register"
+            return
+
+          return unless !!mobile_captcha and !!@smsid and !!amount
+
+          @api.payment_pool_recharge(@user.info.id, @user.bank_account.bank, @user.bank_account.account, amount, @smsid, mobile_captcha)
+
+            .then (data) =>
+              return @$q.reject(data) unless data.status is 1
+              return data
+
+            .then (data) =>
+                console.log data
+                if !data.status
+                  @$window.location.href="/dashboard"
+                else
+                  @$window.alert "充值失败,"+data.msg
+            .catch (data) =>
+              @$window.alert "充值失败,"+data.msg
 
 
   EXTEND_API = (api) ->
