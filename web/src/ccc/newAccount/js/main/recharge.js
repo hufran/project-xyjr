@@ -285,7 +285,7 @@ ractive.on('recharge_submit', function (e){
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,
-                        Smsid: d,
+                        smsid: d,
                         validatemsg : e
                     },function(res) {
                         console.log(res)
@@ -303,7 +303,7 @@ ractive.on('recharge_submit', function (e){
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,
-                        Smsid: d,
+                        smsid: d,
                         validatemsg : e 
                     },function(res) {
                         console.log(res)
