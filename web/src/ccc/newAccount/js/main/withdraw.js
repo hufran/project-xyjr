@@ -244,9 +244,11 @@ ractive.on('withDrawSubmit', function () {
                         transtype: '800003',
                         ok: function(a,b,c,d,e) {
                             if (isAcess) {
-                                $.post('/yeepay/withdraw', 
+                                $.post('/yeepay/withdraw'+ CC.user.userId, 
                                 {
                                     paymentPassword : filterXSS(pass),
+                                    smsid: d,
+                                    validatemsg: e,
                                     amount : filterXSS(amount)
 
                                 }, function (res) {

@@ -79,7 +79,9 @@ function CccMeassage(options) {
                     }
                     $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
                             transtype: config.transtype,
-                            cardnbr: CC.user.bankCards[0].account.account
+                            cardnbr: CC.user.bankCards[0].account.account,
+                            cardPhone: CC.user.bankCards[0].account.bankMobile,
+                            username: CC.user.bankCards[0].account.name
                         }, function(res) {
                             if(res.status == 0) {
                                 data = res.data;

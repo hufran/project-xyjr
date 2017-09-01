@@ -62,7 +62,7 @@ ractive.on('maskDepositAgreement', function (e) {
 ractive.on('checkName',function(){
     var name = this.get("name");
     this.set('showErrorMessageName',false);
-    if(!this.get('bank')){return}
+    if(this.get("authenticateInfo").name){return}
     utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -75,7 +75,7 @@ ractive.on('checkName',function(){
 ractive.on('checkIdNumber',function(){
     var idNumber = this.get("idNumber");
     this.set('showErrorMessageId',false);
-    if(!this.get('bank')){return}
+    if(this.get("authenticateInfo").idNumber){return}
     utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -299,17 +299,25 @@ ractive.on('agreement-check', function () {
 
 ractive.on('sendTelCode', function (){
     this.fire('checkbankNumber');
+    this.fire('checkbankPhone');
+    
     var $captchaBtn = $(".getcaptcha");
     var cardnbr = this.get("bankNumber");
+    var cardPhone = this.get("bankPhone");
+    var username = this.get("name") || this.get("authenticateInfo").name;
     if ($captchaBtn.hasClass('disabled')) {
         return;
     }
-    if(this.get('showErrorbankNumber')){
+    if(this.get('showErrorbankNumber') || this.get('showErrorbankPhone')){
         return;
     }
+    if(!username){
+        this.fire('checkName');
+        return
+    }
     var smsType = '800001';
-    var userId = CC.user.userId;
-    CommonService.getMessage2(smsType, userId, cardnbr,function (r) {
+    var userId = CC.user.userId;    
+    CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
         if (r.status == 0) {
             smsid = r.data;
             countDown();

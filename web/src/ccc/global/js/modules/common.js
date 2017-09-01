@@ -78,10 +78,10 @@ exports.CommonService = {
                 next(res.body);
             });
     },
-    getMessage2: function (transtype, userid, cardnbr, next) {
+    getMessage2: function (transtype, userid, cardnbr, cardPhone, username, next) {
         request('POST', '/api/v2/lccb/sendMsg/' + userid)
             .type('form')
-            .send({transtype: transtype, cardnbr: cardnbr})
+            .send({transtype: transtype, cardnbr: cardnbr, cardPhone: cardPhone, username: username})
             .end()
             .then(function (res) {
                 next(res.body);

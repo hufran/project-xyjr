@@ -446,7 +446,9 @@ setTimeout((function () {
                                                 amount : filterXSS(num),
                                                 loanId : filterXSS(investRactive.get('loan.id')),
                                                 paymentPassword : filterXSS(investRactive.get('paymentPassword')),
-                                                rebateAmount:thisRebate
+                                                rebateAmount:thisRebate,
+                                                smsid: d,
+                                                validatemsg: e
                                             }, function (res) {
                                                 if (res.success) {
                                                     CccOk.create({
@@ -509,7 +511,9 @@ setTimeout((function () {
                                                 amount : filterXSS(num),
                                                 loanId : filterXSS(investRactive.get('loan.id')),
                                                 placementId : filterXSS(investRactive.get('coupon')),
-                                                paymentPassword : filterXSS(investRactive.get('paymentPassword'))
+                                                paymentPassword : filterXSS(investRactive.get('paymentPassword')),
+                                                smsid: d,
+                                                validatemsg: e
                                             }, function (res) {
                                                 if (res.success) {
                                                     CccOk.create({
