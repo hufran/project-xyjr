@@ -27,9 +27,8 @@ do (_, angular) ->
                 console.log @user
                 console.log banks
 
-            send_mobile_captcha: (phonenumber,cardnbr)->
-
-                if !phonenumber || !/^([1][3|5|7|8][0-9]{9})$/.test(phonenumber)
+            send_mobile_captcha: (phonenumber,cardnbr,username)->
+                if !phonenumber || !(/^([1][3|5|7|8][0-9]{9})$/.test(phonenumber))
                     @$timeout.cancel @error.timer
                     @error.on = true
                     @error.message = '手机号不正确！'
@@ -51,7 +50,17 @@ do (_, angular) ->
                 else
                     cardnbr=filterXSS cardnbr
 
-                return unless !!phonenumber and !!cardnbr
+                if !username || !(/^[\u4e00-\u9fa5]+((·|•|●)[\u4e00-\u9fa5]+)*$/.test(username))
+                    @$timeout.cancel @error.timer
+                    @error.on = true
+                    @error.message = '用户名不正确！'
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+                else
+                    username=filterXSS username
+                return unless !!phonenumber and !!cardnbr and !!username
 
                 if @user.info.lccbUserId && @user.bank_account
                     #换卡
@@ -60,36 +69,24 @@ do (_, angular) ->
                     #开户
                     transtype='800001'
 
-                @api.payment_pool_send_captcha(@user.info.id,transtype,phonenumber,cardnbr)
+                @api.payment_pool_send_captcha(@user.info.id,transtype,phonenumber,cardnbr,username)
                     .then (data) =>
-                        return @$q.reject(data) unless data.status is 1
+                        return @$q.reject(data) unless data.status is 0
                         return data
                     .then (data) =>
-                        status=_.get data,'status'
-                        if status == 0
-                            @smsid=data.data
-                            @captcha.timer = @$interval =>
-                                @captcha.count -= 1
+                        
+                        @smsid=data.data
+                        @captcha.timer = @$interval =>
+                            @captcha.count -= 1
 
-                                if @captcha.count < 1
-                                    @$interval.cancel @captcha.timer
-                                    @captcha.count = @captcha.count_default
-                                    @captcha.buffering = false
-                            , 1000
+                            if @captcha.count < 1
+                                @$interval.cancel @captcha.timer
+                                @captcha.count = @captcha.count_default
+                                @captcha.buffering = false
+                        , 1000
 
-                            @captcha.has_sent = @captcha.buffering = true
+                        @captcha.has_sent = @captcha.buffering = true
 
-
-                        else
-                            @submit_sending = false
-                            @$timeout.cancel @error.timer
-
-                            @error.on = true
-                            @error.message = data.msg
-
-                            @error.timer = @$timeout =>
-                                @error.on = false
-                            , @error.timeout
 
                     .catch (data) =>
                         @submit_sending = false

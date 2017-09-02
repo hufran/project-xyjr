@@ -491,9 +491,9 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
-            payment_pool_send_captcha: (userid,transtype,cardPhone,cardnbr)->
+            payment_pool_send_captcha: (userid,transtype,cardPhone,cardnbr,username)->
                 @$http
-                    .post '/api/v2/lccb/sendMsg/'+userid,{transtype:transtype,cardPhone:cardPhone,cardnbr:cardnbr}
+                    .post '/api/v2/lccb/sendMsg/'+userid,{transtype:transtype,cardPhone:cardPhone,cardnbr:cardnbr,username:username}
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 

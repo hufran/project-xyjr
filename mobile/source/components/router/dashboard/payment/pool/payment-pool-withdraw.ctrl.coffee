@@ -70,36 +70,39 @@ do (angular) ->
                           else
                               cardnbr=filterXSS self.user.bank_account.account
 
-                          return unless !!phonenumber and !!cardnbr
+                          if !self.user.bank_account||!self.user.bank_account.name
+                              self.mg_alert '您需要开通银行存管才可操作！'
+                              self.$location
+                                  .replace()
+                                  .path "dashboard/payment/register"
+                              return
+                          else 
+                              username=filterXSS self.user.bank_account.name
+
+                          return unless !!phonenumber and !!cardnbr and !!username
 
                           
                           transtype='800003'
                           
-                          (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr)
+                          (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
 
                             .then (data) =>
-                                return self.$q.reject(data) unless data.status is 1
+                                return self.$q.reject(data) unless data.status is 0
                                 return data
 
                             .then (data) =>
-                                console.log data
-                                status=_.get data,'status'
-                                if status!=1
-                                  self.smsid=data.data
-                                  timer = self.$interval =>
-                                    $scope.cell_buffering_count -= 1
-                                    
-                                    if $scope.cell_buffering_count < 1
-                                        self.$interval.cancel timer
-                                        $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
-                                        $scope.cell_buffering = false
-                                        
-                                  , 1000
-                                  $scope.cell_buffering = true
-                                else
-                                  self.mg_alert "发送短信失败,"+data.msg
-                                  $scope.cell_buffering = false
                                 
+                                self.smsid=data.data
+                                timer = self.$interval =>
+                                  $scope.cell_buffering_count -= 1
+                                  
+                                  if $scope.cell_buffering_count < 1
+                                      self.$interval.cancel timer
+                                      $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
+                                      $scope.cell_buffering = false
+                                      
+                                , 1000
+                                $scope.cell_buffering = true
                                 $scope.mobile_verification_code_has_sent = false
 
                             .catch (data) =>
@@ -150,7 +153,7 @@ do (angular) ->
                     .then (data) => @api.payment_pool_custody_withdraw(@amount, @password, @smsid, mobile_captcha)
 
                     .then (data) =>
-                        return @$q.reject(data) unless data.success is true
+                        return @$q.reject(data) unless data.status is 0
                         return data
 
                     .then (data) =>
@@ -161,10 +164,11 @@ do (angular) ->
                         @$scope.$on '$locationChangeStart', (event, new_path) =>
                             event.preventDefault()
                             @$window.location = new_path
+                        
 
                     .catch (data) =>
                         @submit_sending = false
-                        key = _.get data, 'error[0].message'
+                        key = _.get data, 'msg'
                         @mg_alert @$scope.msg[key] or key
 
                     .finally =>

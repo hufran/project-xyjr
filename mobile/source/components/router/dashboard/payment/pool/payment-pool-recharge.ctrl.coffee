@@ -1,8 +1,8 @@
 do (angular) ->
   angular.module('controller').controller 'RechargeCtrl',
 
-    _.ai '            @user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval', class
-      constructor: (@user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval) ->
+    _.ai '            @user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval, @$q', class
+      constructor: (@user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval, @$q) ->
         EXTEND_API @api
         @$window.scrollTo 0, 0
 
@@ -97,37 +97,40 @@ do (angular) ->
                       else
                           cardnbr=filterXSS self.user.bank_account.account
 
-                      return unless !!phonenumber and !!cardnbr
+                      if !self.user.bank_account||!self.user.bank_account.name
+                          self.$window.alert '您需要开通银行存管才可操作！'
+                          self.$location
+                              .replace()
+                              .path "dashboard/payment/register"
+                          return
+                      else 
+                          username=filterXSS self.user.bank_account.name
+                          
+                      return unless !!phonenumber and !!cardnbr and !!username
 
                       
                       transtype='800002'
                       
-                      (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr)
+                      (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
 
                         .then (data) =>
-                            return self.$q.reject(data) unless data.status is 1
+                            return self.$q.reject(data) unless data.status is 0
                             return data
 
                         .then (data) =>
-                            console.log data
-                            status=_.get data,'status'
-                            if status!=1
-                              self.smsid=data.data
-                              timer = self.$interval =>
-                                $scope.cell_buffering_count -= 1
-                                
-                                if $scope.cell_buffering_count < 1
-                                    self.$interval.cancel timer
-                                    console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count%1
-                                    $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
-                                    $scope.cell_buffering = false
-                                    
-                              , 1000
-                              $scope.cell_buffering = true
-                            else
-                              self.$window.alert "发送短信失败,"+data.msg
-                              $scope.cell_buffering = false
-
+                            
+                            self.smsid=data.data
+                            timer = self.$interval =>
+                              $scope.cell_buffering_count -= 1
+                              
+                              if $scope.cell_buffering_count < 1
+                                  self.$interval.cancel timer
+                                  console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count%1
+                                  $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
+                                  $scope.cell_buffering = false
+                                  
+                            , 1000
+                            $scope.cell_buffering = true
                             $scope.mobile_verification_code_has_sent = false
 
                         .catch (data) =>
@@ -164,15 +167,12 @@ do (angular) ->
           @api.payment_pool_recharge(@user.info.id, @user.bank_account.bank, @user.bank_account.account, amount, @smsid, mobile_captcha)
 
             .then (data) =>
-              return @$q.reject(data) unless data.status is 1
+              return @$q.reject(data) unless data.status is 0
               return data
 
             .then (data) =>
-                console.log data
-                if !data.status
-                  @$window.location.href="/dashboard"
-                else
-                  @$window.alert "充值失败,"+data.msg
+                @$window.alert "充值成功！"
+                @$window.location.href="/dashboard"
             .catch (data) =>
               @$window.alert "充值失败,"+data.msg
 

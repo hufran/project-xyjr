@@ -196,7 +196,7 @@ do (_, angular, Math) ->
                 else
                     phonenumber=filterXSS @user.bank_account.bankMobile
 
-                if !@user.bank_account||!@user.bank_account.account
+                if !@user.bank_account||!@user.bank_account.account || !@user.bank_account.name
                     @mg_alert '您需要开通银行存管才可操作！'
                     @$location
                         .replace()
@@ -204,35 +204,34 @@ do (_, angular, Math) ->
                     return
                 else
                     cardnbr=filterXSS @user.bank_account.account
+                    username=filterXSS  @user.bank_account.name
 
-                return unless !!phonenumber and !!cardnbr and !!@user.bank_account
+
+                return unless !!phonenumber and !!cardnbr and !!@user.bank_account !!username
             
                 transtype='800004'
 
-                (@api.payment_pool_send_captcha(@user.info.id,transtype,phonenumber,cardnbr)
+                (@api.payment_pool_send_captcha(@user.info.id,transtype,phonenumber,cardnbr,username)
 
                     .then (data) =>
-                      return @$q.reject(data) unless data.status is 1
+                      return @$q.reject(data) unless data.status is 0
                       return data
 
                     .then (data) =>
-                        status=_.get data,'status'
-                        if status == 0
-                            @smsid=data.data
-                            timer = @$interval =>
-                              @cell_buffering_count -= 1
+                        
+                        @smsid=data.data
+                        timer = @$interval =>
+                          @cell_buffering_count -= 1
 
-                              if @cell_buffering_count < 1
-                                  @$interval.cancel timer
-                                  @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
-                                  @cell_buffering = false
-                                  
-                            , 1000
+                          if @cell_buffering_count < 1
+                              @$interval.cancel timer
+                              @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
+                              @cell_buffering = false
+                              
+                        , 1000
 
-                            @cell_buffering = true
-                        else
-                            @mg_alert data.msg
-                            @cell_buffering = false
+                        @cell_buffering = true
+                        
                         @mobile_verification_code_has_sent = false
                     .catch (data) =>
 
