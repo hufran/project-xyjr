@@ -719,6 +719,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 return update_user_funds()
                     }
 
+                    .when '/protocol/:name', {
+                        controller : 'ProtocolCtrl as self'
+                        templateUrl : 'components/router/protocol/protocol.tmpl.html'
+                    }
+
                     .otherwise redirectTo: '/'
 
 
