@@ -504,16 +504,16 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
-            payment_pool_recharge: (userid, bankcode, cardnbr, transamt, Smsid, validatemsg)->
+            payment_pool_recharge: (userid, bankcode, cardnbr, transamt, smsid, validatemsg)->
                 @$http
                     .post '/api/v2/lccb/deposit/'+userid,
-                        _.compact {bankcode,cardnbr,transamt,Smsid,validatemsg}
+                        _.compact {bankcode,cardnbr,transamt,smsid,validatemsg}
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
-            payment_pool_custody_withdraw:(amount, paymentPassword, Smsid, validatemsg)->
+            payment_pool_custody_withdraw:(amount, paymentPassword, smsid, validatemsg)->
                 @$http
-                    .post '/api/v2/lccb/withdraw/MYSELF',{amount, paymentPassword, Smsid, validatemsg}
+                    .post '/api/v2/lccb/withdraw/MYSELF',{amount, paymentPassword, smsid, validatemsg}
 
                         .then TAKE_RESPONSE_DATA
                         .catch TAKE_RESPONSE_ERROR
@@ -537,17 +537,17 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '',Smsid,validatemsg) ->
+            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '',smsid,validatemsg) ->
 
                 @$http
                     .post '/api/v2/invest/tender/MYSELF',
-                        _.compact {loanId, paymentPassword, amount, placementId,Smsid,validatemsg}
+                        _.compact {loanId, paymentPassword, amount, placementId,smsid,validatemsg}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_rebeat: (loanId, paymentPassword, amount, id, rebateAmount, Smsid, validatemsg) ->
+            payment_pool_rebeat: (loanId, paymentPassword, amount, id, rebateAmount, smsid, validatemsg) ->
 
                 @$http
                     .post "/api/v2/invest/tenderUseRebate/#{ id }", {loanId, paymentPassword, amount, rebateAmount, smsid, validatemsg}

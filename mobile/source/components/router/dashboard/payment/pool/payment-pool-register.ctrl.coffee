@@ -210,6 +210,32 @@ do (_, angular) ->
                     @$window.alert "暂未开通该方法!"
 
 
+            agreement: (segment) ->
+
+                prompt = @$uibModal.open {
+                    size: 'lg'
+                    backdrop: 'static'
+                    windowClass: 'center'
+                    animation: true
+                    templateUrl: 'ngt-register-agreement.tmpl'
+
+                    resolve: {
+                        content: _.ai '$http', ($http) ->
+                            $http
+                                .get "/api/v2/cms/category/DECLARATION/name/#{ segment }", {cache: true}
+                                .then (response) -> _.get response.data, '[0].content'
+                    }
+
+                    controller: _.ai '$scope, content',
+                        (             $scope, content) ->
+                            angular.extend $scope, {content}
+                }
+
+                once = @$scope.$on '$locationChangeStart', ->
+                    prompt?.dismiss()
+                    do once
+
+
 
 
 
