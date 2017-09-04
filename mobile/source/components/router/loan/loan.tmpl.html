@@ -72,9 +72,9 @@
 
         <div ng-switch-when="OPENED">
             <a style="color:#FFFFFF" class="btn btn-block btn-theme btn-lg"
-               ng-href="loan/{{ loan.id }}/invest"
+                ng-click="self.pointMsg()"
                ng-if="self.user.has_logged_in && !!self.user.info.priv"
-            >立即投资</a>
+            >立即投资</a><!--ng-href="loan/{{ loan.id }}/invest"-->
             <a style="color:#FFFFFF" class="btn btn-block btn-theme btn-lg"
                ng-href="questions/{{ loan.id }}"
                ng-if="self.user.has_logged_in && !self.user.info.priv"
@@ -177,3 +177,27 @@
     </section>
 
 </div>
+<script type="text/ng-template" id="ngt-invest-confirm.tmpl">
+    <div class="modal-header text-center">
+        <h3 class="modal-title">提示</h3>
+    </div>
+
+    <div class="modal-body text-center">
+        您的风险评级较低，是否确认投资？
+    </div>
+
+    <div class="modal-footer container">
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-default" ng-click="$dismiss()">
+                    重新评估
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-theme" ng-click="$close()">
+                    确认
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
