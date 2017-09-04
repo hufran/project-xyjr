@@ -321,13 +321,13 @@ ractive.on('sendTelCode', function (){
     if ($captchaBtn.hasClass('disabled')) {
         return;
     }
-    if(this.get('showErrorbankNumber') || this.get('showErrorbankPhone')){
-        return;
-    }
     if(!username){
         this.fire('checkName');
-        return
     }
+    if(this.get('showErrorbankNumber') || this.get('showErrorbankPhone') || this.get('showErrorMessageName')){
+        return;
+    }
+    
     var smsType = '800001';
     var userId = CC.user.userId;    
     CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
@@ -360,7 +360,7 @@ function countDown() {
 }
 
 function SeverName(){
-    request('GET',"/api/v2/lianlianpay/banks").end().
+    request('GET',"/api/v2/lccb/banks").end().
         then(function (r) {
             banks=[];
             banksList=r.body;
