@@ -13,7 +13,7 @@ do (_, angular) ->
         angular.extend @$scope, {
           protocolTitle:null,
           content:null,
-          hideHeader:searchArr[0]=="app"&&searchArr[1]?true:false
+          hideHeader:searchArr[0]=="app"&&searchArr[1]
         }
 
         requestList={
