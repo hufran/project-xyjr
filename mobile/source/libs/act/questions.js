@@ -94,13 +94,13 @@ function submitForm(){
     if(mark>=10 && mark<=16){
         investType = "（一级）保守型";
     }else if(mark>=17 && mark<=23){
-        investType = "（二级）中庸保守型";
+        investType = "（二级）稳健型";
     }else if(mark>=24 && mark<=31){
-        investType = "（三级）中庸型";
+        investType = "（三级）平衡型";
     }else if(mark>=32 && mark<=38){
-        investType = "（四级）中庸进取型";
+        investType = "（四级）积极型";
     }else if(mark>=39 && mark<=45){
-        investType = "（五级）进取型";
+        investType = "（五级）激进型";
     }
     var subStr = "token";
     var index = location.href.indexOf(subStr);
@@ -166,13 +166,13 @@ function getMark(userId){
                     if(oldMark>=10 && oldMark<=16){
                         investType = "（一级）保守型";
                     }else if(oldMark>=17 && oldMark<=23){
-                        investType = "（二级）中庸保守型";
+                        investType = "（二级）稳健型";
                     }else if(oldMark>=24 && oldMark<=31){
-                        investType = "（三级）中庸型";
+                        investType = "（三级）平衡型";
                     }else if(oldMark>=32 && oldMark<=38){
-                        investType = "（四级）中庸进取型";
+                        investType = "（四级）积极型";
                     }else if(oldMark>=39 && oldMark<=45){
-                        investType = "（五级）进取型";
+                        investType = "（五级）激进型";
                     }
                     //设置页面展示状态显示分数评估
                     if(index!=-1){

@@ -206,6 +206,10 @@ do (_, angular, moment, Array) ->
                 @$http.get('/api/v2/loan/' + id, {cache})
                       .then TAKE_RESPONSE_DATA
 
+            get_protocol_detail: (name) ->
+                
+                @$http.get('/api/v2/cms/category/DECLARATION/name/' + name)
+                    .then TAKE_RESPONSE_DATA
 
             get_repayment_detail: (id, cache = false) ->
 
