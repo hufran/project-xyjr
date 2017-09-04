@@ -260,7 +260,7 @@ ractive.on('withDrawSubmit', function () {
                                             ok: function () {
                                                 window.location.reload();
                                             },
-                                            cancel: function () {
+                                            close: function () {
                                                 window.location.reload();
                                             }
                                         });
@@ -272,7 +272,7 @@ ractive.on('withDrawSubmit', function () {
                                             ok: function () {
                                                 window.location.reload();
                                             },
-                                            cancel: function () {
+                                            close: function () {
                                                 window.location.reload();
                                             }
                                         });
