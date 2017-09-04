@@ -8,7 +8,7 @@ do (_, angular) ->
 
         @$window.scrollTo 0, 0
 
-        searchArr=@$window.location.search.split("=")
+        searchArr=@$window.location.search.substring(1,@$window.location.search.length).split("=")
         console.log "@$routeParams：",@$routeParams.name
         angular.extend @$scope, {
           protocolTitle:null,
