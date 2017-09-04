@@ -259,7 +259,7 @@ ractive.on("register-account-submit", function () {
                           setTimeout(function(){
                             window.location.reload();
                           },5000);
-                            if (!res.error[0] && !res.error[0].message) {
+                            if (!(res.error[0] && res.error[0].message)) {
                                 res.error[0].message = "银行存管开通失败";
                             }
                             CccOk.create({
