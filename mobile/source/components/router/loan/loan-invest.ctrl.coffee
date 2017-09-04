@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @$interval', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @$interval) ->
 
                 @$window.scrollTo 0, 0
 
@@ -22,8 +22,12 @@ do (_, angular, Math) ->
                 arrList.sort(sortNumer)
                 @$scope.maxMoney = arrList[1]
                 @$scope.minMoney = arrList[0]
+                @cell_buffering = false
+                @cell_buffering_count = 119.119
 
                 console.log @coupon
+
+                
 
                 angular.extend @$scope, {
                     store: {}
@@ -177,118 +181,65 @@ do (_, angular, Math) ->
 
             submit: (event) ->
                 do event.preventDefault  # submitting via AJAX
+                do @paymentPoint
 
-                good_to_go = true
-                loan = @$scope.loan
+                
 
-                {password} = @$scope.store
-                coupon = @$scope.store?.coupon
-                amount = @$scope.store.amount or 0
-                loan_minimum = loan.raw.loanRequest.investRule.minAmount
-                loan_maximum = loan.raw.loanRequest.investRule.maxAmount
-                loan_available = loan.balance
-                loan_step = loan.raw.loanRequest.investRule.stepAmount
-                user_available = @user.fund.availableAmount
-                coupon_minimum = @$scope.store.coupon?.minimum
-
-                (if amount > loan_available
-                    good_to_go = false
-                    @mg_alert "当前剩余可投#{ loan_available }元"
-                else if loan_available < loan_minimum
-                    good_to_go = true
-
-                else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
-                    good_to_go = false
-                    @mg_alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
-
-                else if amount > loan_maximum and loan_maximum != 0
-                    good_to_go = false
-                    @mg_alert "单笔最多可投 #{ loan_maximum }元"
-
-                else if user_available <= 0 or amount > user_available
-                    good_to_go = false
-                    do @prompt_short_of_balance
-
-                else if coupon_minimum and amount < coupon_minimum
-                    good_to_go = false
-                    @mg_alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
-                )
-
-
-                return unless good_to_go
-
-                @submit_sending = true
-                password = filterXSS(password)
-                amount = filterXSS(amount.toString())
-
-                if coupon != undefined and coupon.id == null
-
-                    #console.log 123
-                    (@api.payment_pool_rebeat(loan.id, password, amount, @user.fund.userId, @$scope.earning1)
-
-                    .then @api.process_response
-                    .then @api.TAKE_RESPONSE_DATA
-
-                    .then ({userShare, tenderResult}) =>
-                        return true unless userShare?.id
-
-                        @prompt_coupon_sharing(userShare.id).catch =>
-                            @$q.resolve false
-
-                    .then (alert_success) =>
-
-                        if alert_success
-                            @mg_alert '投标成功'
-                            .result.finally =>
-                                @$location.path "/loan/#{ @loan.id }"
-
-                        @$location.path "/loan/#{ @loan.id }"
-
-                        @$scope.$on '$locationChangeSuccess', =>
-                            @$window.location.reload()
-
-                    .catch (data) =>
-                        message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
-                        @mg_alert message
-
-                    .finally =>
-                        @submit_sending = false
-                    )
-
+            get_verification_code: () ->
+                @mobile_verification_code_has_sent = true
+                if !@user.bank_account||!@user.bank_account.bankMobile
+                    @mg_alert '您需要开通银行存管才可操作！'
+                    @$location
+                        .replace()
+                        .path "dashboard/payment/register"
+                    return
                 else
+                    phonenumber=filterXSS @user.bank_account.bankMobile
+
+                if !@user.bank_account||!@user.bank_account.account || !@user.bank_account.name
+                    @mg_alert '您需要开通银行存管才可操作！'
+                    @$location
+                        .replace()
+                        .path "dashboard/payment/register"
+                    return
+                else
+                    cardnbr=filterXSS @user.bank_account.account
+                    username=filterXSS  @user.bank_account.name
 
 
-                    (@api.payment_pool_tender(loan.id, password, amount, coupon?.id)
+                return unless !!phonenumber and !!cardnbr and !!@user.bank_account !!username
+            
+                transtype='800004'
 
-                        .then @api.process_response
-                        .then @api.TAKE_RESPONSE_DATA
+                (@api.payment_pool_send_captcha(@user.info.id,transtype,phonenumber,cardnbr,username)
 
-                        .then ({userShare, tenderResult}) =>
-                            return true unless userShare?.id
+                    .then (data) =>
+                      return @$q.reject(data) unless data.status is 0
+                      return data
 
-                            @prompt_coupon_sharing(userShare.id).catch =>
-                                @$q.resolve false
+                    .then (data) =>
+                        
+                        @smsid=data.data
+                        timer = @$interval =>
+                          @cell_buffering_count -= 1
 
-                        .then (alert_success) =>
+                          if @cell_buffering_count < 1
+                              @$interval.cancel timer
+                              @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
+                              @cell_buffering = false
+                              
+                        , 1000
 
-                            if alert_success
-                                @mg_alert '投标成功'
-                                    .result.finally =>
-                                        @$location.path "/loan/#{ @loan.id }"
+                        @cell_buffering = true
+                        
+                        @mobile_verification_code_has_sent = false
+                    .catch (data) =>
 
-                            @$location.path "/loan/#{ @loan.id }"
+                      key = _.get data, 'msg'
+                      @mg_alert "短信发送失败,"+key
 
-                            @$scope.$on '$locationChangeSuccess', =>
-                                @$window.location.reload()
-
-                        .catch (data) =>
-                            message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
-                            @mg_alert message
-
-                        .finally =>
-                            @submit_sending = false
-                    )
-
+                      @mobile_verification_code_has_sent = false
+                )
 
             prompt_coupon_sharing: (id) ->
 
@@ -360,6 +311,151 @@ do (_, angular, Math) ->
                 }
 
 
+            paymentPoint:()->
+                payment=@$uibModal.open {
+                    size: 'sm'
+                    keyboard: false
+                    backdrop: 'static'
+                    windowClass: 'center ngt-share-coupon'
+                    animation: true
+                    templateUrl: 'ngt-pool-recharge.tmpl'
+
+                    controller: _.ai '$scope', ($scope) =>
+                        console.log $scope
+                        angular.extend $scope, {
+                          bankNumber:@user.bank_account.bankMobile.substring(0,3)+"****"+@user.bank_account.bankMobile.substring(7),
+                          send_verification_code:@get_verification_code.bind(@),
+                          cell_buffering: @cell_buffering
+                          cell_buffering_count:@cell_buffering_count
+                          errMsg:false,
+                          errMsgContent:""
+                        }
+                        
+                }
+                payment.result.catch (mobile_captcha) =>
+                
+                    if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
+                        @mg_alert "验证码不正确!"
+                        return
+                    if !@smsid
+                        @mg_alert "请获取验证码后在操作!"
+                        return
+                    
+                    return unless !!mobile_captcha and !!@smsid
+                    good_to_go = true
+                    loan = @$scope.loan
+
+                    {password} = @$scope.store
+                    coupon = @$scope.store?.coupon
+                    amount = @$scope.store.amount or 0
+                    loan_minimum = loan.raw.loanRequest.investRule.minAmount
+                    loan_maximum = loan.raw.loanRequest.investRule.maxAmount
+                    loan_available = loan.balance
+                    loan_step = loan.raw.loanRequest.investRule.stepAmount
+                    user_available = @user.fund.availableAmount
+                    coupon_minimum = @$scope.store.coupon?.minimum
+                    
+                    (if amount > loan_available
+                        good_to_go = false
+                        @mg_alert "当前剩余可投#{ loan_available }元"
+                    else if loan_available < loan_minimum
+                        good_to_go = true
+
+                    else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
+                        good_to_go = false
+                        @mg_alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
+
+                    else if amount > loan_maximum and loan_maximum != 0
+                        good_to_go = false
+                        @mg_alert "单笔最多可投 #{ loan_maximum }元"
+
+                    else if user_available <= 0 or amount > user_available
+                        good_to_go = false
+                        do @prompt_short_of_balance
+
+                    else if coupon_minimum and amount < coupon_minimum
+                        good_to_go = false
+                        @mg_alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
+                    )
+
+
+                    return unless good_to_go
+
+                    @submit_sending = true
+                    password = filterXSS(password)
+                    amount = filterXSS(amount.toString())
+                    
+                    if coupon != undefined and coupon.id == null
+
+                        #console.log 123
+                        (@api.payment_pool_rebeat loan.id, password, amount, @user.fund.userId, @$scope.earning1, @smsid, mobile_captcha
+
+                            .then @api.process_response
+                            .then @api.TAKE_RESPONSE_DATA
+
+                            .then ({userShare, tenderResult}) =>
+                                return true unless userShare?.id
+
+                                @prompt_coupon_sharing(userShare.id).catch =>
+                                    @$q.resolve false
+
+                            .then (alert_success) =>
+
+                                if alert_success
+                                    @mg_alert '投标成功'
+                                    .result.finally =>
+                                        @$location.path "/loan/#{ @loan.id }"
+
+                                @$location.path "/loan/#{ @loan.id }"
+
+                                @$scope.$on '$locationChangeSuccess', =>
+                                    @$window.location.reload()
+
+                            .catch (data) =>
+                                message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
+                                @mg_alert message
+
+                            .finally =>
+                                @submit_sending = false
+                        )
+
+                    else
+
+
+                        (@api.payment_pool_tender(loan.id, password, amount, coupon?.id, @smsid, mobile_captcha)
+
+                            .then @api.process_response
+                            .then @api.TAKE_RESPONSE_DATA
+
+                            .then ({userShare, tenderResult}) =>
+                                return true unless userShare?.id
+
+                                @prompt_coupon_sharing(userShare.id).catch =>
+                                    @$q.resolve false
+
+                            .then (alert_success) =>
+
+                                if alert_success
+                                    @mg_alert '投标成功'
+                                        .result.finally =>
+                                            @$location.path "/loan/#{ @loan.id }"
+
+                                @$location.path "/loan/#{ @loan.id }"
+
+                                @$scope.$on '$locationChangeSuccess', =>
+                                    @$window.location.reload()
+
+                            .catch (data) =>
+                                message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
+                                @mg_alert message
+
+                            .finally =>
+                                @submit_sending = false
+                        )
+                    
+                
+
+                  
 
 
 
