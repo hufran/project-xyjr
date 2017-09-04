@@ -15,12 +15,15 @@ do (_, angular) ->
                 @$scope.back_path = @$routeParams.back
                 @$scope.openId = @$routeParams.openId
                 @$scope.sourceId = @$routeParams.sourceId
+                @$scope.custody = true
 
                 @cell_buffering = false
                 @cell_buffering_count = 59.59
 
                 @$scope.has_referral = !!@$scope.store.referral
                 @submit_sending = false
+                @bind_weixin = !!@$routeParams.bind_social_weixin and
+                               /MicroMessenger/.test @$window.navigator.userAgent
 
 
             get_verification_code: ({mobile, captcha}) ->
@@ -86,6 +89,7 @@ do (_, angular) ->
                 mobile_captcha = filterXSS(mobile_captcha)
                 @submit_sending = true
 
+                console.log @$scope.msg
                 optional = {}
 
                 do (optional, referral) ->
@@ -114,13 +118,32 @@ do (_, angular) ->
 
                     .then (data) =>
 
-                        if @$scope.openId != undefined
-                            window.location.href = wxChatUrl+"/lend/loginA/?openId="+@$scope.openId
-                        else if  @$scope.sourceId != undefined
-                            window.location.href = wxChatUrl+"/lend/loginA"
-                        else
-                            @$window.alert @$scope.msg.SUCCEED
-                            @$location.path 'dashboard'
+                        (@api.login(mobile, password)
+                            .then (data) =>
+                                return @$q.reject(data) unless data?.success is true
+                                return data
+
+                            .then (data, {bind_social_weixin} = @$routeParams) =>
+                                if @bind_weixin
+                                    @api.bind_social 'WEIXIN', bind_social_weixin
+
+                                return data
+
+                            .then (data) =>
+                                @api.fetch_current_user().then =>
+                                    
+                                    @$window.alert @$scope.msg.SUCCEED
+                                    @$scope.custody = false
+
+                            .catch (data) =>
+                                result = _.get data, 'error_description.result'
+
+                                if result in _.split 'TOO_MANY_ATTEMPT USER_DISABLED'
+                                    @mg_alert @$scope.msg.DISABLED
+                                else
+                                    @mg_alert "登录失败"
+                        )
+                        
 
                     .catch (data) =>
                         key = _.get data, '[0].message'
