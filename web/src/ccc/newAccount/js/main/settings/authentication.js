@@ -259,11 +259,11 @@ ractive.on("register-account-submit", function () {
                           setTimeout(function(){
                             window.location.reload();
                           },5000);
-                            if (res.error[0].message == '认证失败') {
-                                res.error[0].message = "";
+                            if (!res.error[0] && !res.error[0].message) {
+                                res.error[0].message = "银行存管开通失败";
                             }
                             CccOk.create({
-                                msg: '实名认证失败，' + res.error[0].message,
+                                msg: res.error[0].message,
                                 okText: '确定',
                                 cancelText: '',
                                 ok: function () {
