@@ -64,10 +64,8 @@ do (_ ,angular, moment, Math, Date) ->
                 @$scope.stopDate = dateSeconds.getFullYear() + "-"+tmpMonth+"-"+tmpDate
 
             pointMsg:()=>
-                if parseInt(@user.info.priv) < 16
+                if parseInt(@user.info.priv) < 30
                     do @confirmLevel
-                else 
-                     @$window.location.href='./loan/'+@loan.id+'/invest'
                 
 
             agreement: (segment) ->

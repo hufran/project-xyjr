@@ -14,8 +14,7 @@ do (_, angular) ->
 
                 @bind_weixin = !!@$routeParams.bind_social_weixin and
                                /MicroMessenger/.test @$window.navigator.userAgent
-                               
-                console.log "routeParams:",@$routeParams
+
 
             error_message_flash: ->
                 @flashing_error_message = true
