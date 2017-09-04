@@ -19,16 +19,16 @@
         }">
     </div>
 
-    <div class="alert alert-info u-off-border-radius" ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)">
+    <div class="alert alert-info u-off-border-radius">
         <param class="glyphicon glyphicon-exclamation-sign">
-        您尚未开通银行存管，未开通银行存管将无法进行，绑卡、充值、提现、投资等操作。
+        您尚未进行实名认证，未实名认证将无法进行，绑卡、充值、提现、投资等操作。
     </div>
 
     <section>
 
         <form class="form-flatten form-horizontal"
               name="form"
-              ng-submit="self.open_payment_account(store.user_name, store.id_number, store.card_no, store.bank_name, store.card_phone, form.mobile_captcha.$viewValue)"
+              ng-submit="self.open_payment_account(user_name, id_number, inner_user_code)"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -39,13 +39,13 @@
                      ng-class="{'has-error': form.user_name.$invalid && form.user_name.$dirty}"
                     >
                     <label>真实姓名</label>
-                        <div class="form-control-wrap" ng-if="!user.info||!user.info.name">
+                        <div class="form-control-wrap">
                             <input id="user-name" class="form-control input-target input-lg" type="text"
                                    name="user_name"
                                    autocapitalize="none"
                                    autocomplete="off"
                                    autocorrect="off"
-                                   ng-model="store.user_name"
+                                   ng-model="user_name"
                                    minlength="2"
                                    maxlength="15"
                                    pattern="^[\u4e00-\u9fa5]+((·|•|●)[\u4e00-\u9fa5]+)*$"
@@ -59,21 +59,16 @@
                                 <span ng-show="(form.user_name.$error.pattern || form.user_name.$invalid) && form.user_name.$viewValue.length != 0">2 至 15 位中文</span>
                             </div>
                         </div>
-                        <div class="form-control-wrap" ng-if="user.info&&user.info.name">
-                          <div class="show-name" ng-init="store.user_name=user.info.name">
-                            {{user.info.name}}
-                          </div>
-                        </div>
                 </div>
 
                 <div class="form-group merge"
                      ng-class="{'has-error': form.id_number.$invalid && form.id_number.$dirty}"
                 >
                     <label>身份证号</label>
-                        <div class="form-control-wrap" ng-if="!user.info||!user.info.idNumber">
+                        <div class="form-control-wrap">
                             <input id="id-number" class="form-control input-target input-lg" type="text"
                                    name="id_number"
-                                   ng-model="store.id_number"
+                                   ng-model="id_number"
                                    minlength="15"
                                    maxlength="18"
                                    placeholder="填写身份证号"
@@ -87,143 +82,10 @@
                                 <span ng-show="form.id_number.$viewValue && form.id_number.$error.id_number">请填写正确的15或18位身份证号码</span>
                             </div>
                         </div>
-                        <div class="form-control-wrap" ng-if="user.info&&user.info.idNumber">
-                          <div class="show-name" ng-init="store.id_number=user.info.idNumber">
-                            {{user.info.idNumber}}
-                          </div>
-                        </div>
                 </div>
-                <div class="form-group merge"
-                     ng-class="{'has-error': form.card_no.$invalid && form.card_no.$dirty}"
-                    >
-                    <label>银行卡号</label>
-                    <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.account">
-                        <input id="card_no" class="form-control input-target input-lg" type="text"
-                               name="card_no"
-                               autocapitalize="none"
-                               autocomplete="off"
-                               autocorrect="off"
-                               ng-model="store.card_no"
-                               minlength="16"
-                               maxlength="19"
-                               pattern="^\d{16,19}$"
-                               placeholder="填写银行卡号"
-                               required
-                        >
-                        <div class="help-block"
-                             ng-show="form.card_no.$invalid && form.card_no.$dirty"
-                        >
-                            <span ng-show="form.card_no.$error.required">必须填写</span>
-                            <span ng-show="(form.card_no.$error.pattern || form.card_no.$invalid) && form.card_no.$viewValue.length != 0">请填写正确的银行卡号</span>
-                        </div>
-                    </div>
-                    <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.account">
-                      <div class="show-name" ng-init="store.card_no=user.bank_account.account">
-                        {{user.bank_account.account}}
-                      </div>
-                    </div>
-                </div>
-                <div class="form-group merge"
-                     ng-class="{'has-error': form.bank_name.$invalid && form.bank_name.$dirty}" style="overflow: hidden;"
-                    >
-                    <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BOCOM','上海银行':'BOS','中国建设银行':'CCB','光大银行':'CEB','中信银行':'CITIC','招商银行':'CMB','中国民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGAN','上海浦东发展银行':'SPDB'}" />
-                    <label for="bank_name">所属银行</label>
-                    <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.bank">
-                        <span ng-if="businessNull" class="{{bankLists[store.bank_name]}} ownedBank"></span>
-                        <select ng-if="businessNull" name="bank_name" class="form-control input-sm"
-                                id="bank_name"
-                                ng-model="store.bank_name"
-                                ng-options="name for (code, name) in banks"
-                                required
-                        >
-                            <option value="">请选择开户银行</option>
-                        </select>
-                        <div class="help-block" ng-show="form.bank_name.$invalid && form.bank_name.$dirty" ng-if="!store.bank_name" style="padding:16px 0 16px 10px;">
-                            <span ng-show="form.card_no.$error.required">请选择开户银行</span>
-                        </div>
-                    </div>
-                    <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.bank">
-                      <div class="show-name" ng-init="store.bank_name=user.bank_account.bank">
-                        {{user.bank_account.bank}}
-                      </div>
-                    </div>
-                </div>
-                <div class="form-group merge"
-                     ng-class="{'has-error': form.card_phone.$invalid && form.card_phone.$dirty}"
-                >
-                    <label for="card_phone">银行预留手机号</label>
-                    <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.bankMobile">
-                        <input id="card_phone" class="form-control input-target input-lg" type="text"
-                               name="card_phone"
-                               ng-model="store.card_phone"
-                               pattern="^([1][3|5|7|8][0-9]{9})$"
-                               placeholder="填写银行预留手机号"
-                               required
-                        >
-                        <div class="help-block"
-                             ng-show="form.card_phone.$invalid && form.card_phone.$dirty"
-                        >
-                            <span ng-show="form.card_phone.$error.required">必须填写</span>
-                            <span ng-show="(form.card_phone.$error.pattern || form.card_phone.$invalid) && form.card_phone.$viewValue.length != 0">请填写正确的手机号码</span>
-                        </div>
-                    </div>
-                    <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.bankMobile">
-                      <div class="show-name" ng-init="store.card_phone=user.bank_account.bankMobile">
-                        {{user.bank_account.bankMobile}}
-                      </div>
-                    </div>
-                </div>
+            </div>
 
-                <div class="form-group merge mobile-captcha"
-                     ng-class="{
-                        'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
-                        init: !self.captcha.has_sent,
-                     }"
-                     ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)"
-                >
-                    <label for="mobile_captcha">验证码</label>
-                    <input class="form-control input-target input-lg captcha" type="tel"
-                           id="mobile_captcha"
-                           name="mobile_captcha"
-                           ng-model="store.smsCaptcha"
-                           pattern="^\d{6}$"
-                           autocapitalize="none"
-                           autocomplete="off"
-                           autocorrect="off"
-                           placeholder="请输入短信验证码"
-                           maxlength="6"
-                           required
-                    >
-                    <button class="btn btn-sm btn-action btn-theme" type="button"
-                            ng-click="self.send_mobile_captcha(store.card_phone,store.card_no,store.user_name)"
-                            ng-disabled="self.captcha.buffering"
-                    >
-                        <span class="text">获取</span>
-                        <span class="count" ng-show="self.captcha.buffering">
-                            {{ self.captcha.count | number: 0 }}
-                        </span>
-                        <span class="icon" ng-hide="self.captcha.buffering">重发</span>
-                    </button>
-                    <div class="help-block"
-                         ng-show="form.smsCaptcha.$invalid && form.smsCaptcha.$dirty"
-                    >
-                        <span ng-show="form.mobile_captcha.$error.required">必须填写</span>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="form-group merge protocol"
-                 ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)"
-            >
-                <label for=""><input type="checkbox" name="protocol" ng-model="store.protocol" required /><span>我同意<a href="javascript:void(0);" ng-click="self.agreement('廊坊银行网络借贷交易资金存管业务三方协议')">《廊坊银行网络借贷交易资金存管业务三方协议》</a></span></label>
-                <div class="help-block"
-                         ng-show="form.protocol.$invalid && form.protocol.$dirty"
-                  >
-                      <span ng-show="form.protocol.$error.required">您需要同意协议方可注册</span>
-                  </div>
-                
-            </div>
-            <div class="container" ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)">
+            <div class="container">
                 <div class="form-group container">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="form.$invalid || self.submit_sending"
@@ -245,17 +107,8 @@
         <h2 class="title">温馨提示：</h2>
         <ol class="list">
             <li><p>718金融用户须是年满18周岁的具有完全民事行为能力的自然人。
-            <li><p>填写的姓名、身份证号码、银行卡、银行的预留手机号须一致。
+            <li><p>填写的姓名和身份证号码须与您用于提现的银行卡信息一致。
         </ol>
     </section>
 
 </div>
-<script type="text/ng-template" id="ngt-register-agreement.tmpl">
-    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
-
-    <div class="modal-footer">
-        <button class="btn btn-block btn-theme" ng-click="$close()">
-            已阅读此协议
-        </button>
-    </div>
-</script>
