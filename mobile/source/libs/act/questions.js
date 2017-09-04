@@ -1,7 +1,7 @@
 /**
  * Created by Gloria on 2016/5/9.
  */
-function goNext(obj,direction) {
+function goNext(obj,direction,loanDemand) {
     window.scrollTo(0,0);
     var i = $("#index").val()*1;
     var $ul = $("ul");
@@ -17,7 +17,12 @@ function goNext(obj,direction) {
     $li.eq(i).hide().end().eq(i * 1 + direction).show();
     if (i * 1 + direction == 0) {
         //返回到第一题
-        $(".aButtons a").eq(0).html("跳过调查问卷");
+        if(loanDemand){
+            $(".aButtons a").eq(0).hide();
+        }else{
+           $(".aButtons a").eq(0).html("跳过调查问卷"); 
+        }
+        
         $(obj).removeAttr("onclick").unbind("click");
         $(obj).bind("click", function () {
             var subStr = "token";
@@ -35,6 +40,9 @@ function goNext(obj,direction) {
 
     } else if (i * 1 + direction >= 9) {
         //最后一道题提交
+        if(loanDemand){
+            $(".aButtons a").eq(0).show();
+        }
         $(obj).removeAttr("onclick").unbind("click");
         $(".aButtons a").eq(1).html("提&nbsp;交");
         $(".aButtons a").eq(1).unbind("click").bind("click", function () {
@@ -48,11 +56,20 @@ function goNext(obj,direction) {
         })
     } else {
         //正常流程的上一步和下一步的转换
+        if(loanDemand){
+            $(".aButtons a").eq(0).show();
+        }
         if (i * 1 + direction == 1 && direction == 1) {
             $(".aButtons a").eq(0).html("上一步");
             $(".aButtons a").eq(0).removeAttr("onclick").removeAttr("href").unbind("click");
             $(".aButtons a").eq(0).bind("click", function () {
-                goNext(this,-1)
+                console.log("index:",i);
+                if(i==0&&loanDemand){
+                    goNext(this,-1,true)
+                }else{
+                    goNext(this,-1)
+                }
+                
             });
         }
         if (i == 9) {
@@ -199,7 +216,7 @@ function getMark(userId){
         }
     })
 }
-function ReEvaluation(){
+function ReEvaluation(loanDemand){
     $("#goHistory").val(1);
     var sourcePage = location.href.indexOf("comeIn");
     $("#formQues")[0].reset();
@@ -217,7 +234,11 @@ function ReEvaluation(){
         }
     }
     //提交过，充值跳过调查问卷，下一步，显示第一道题目，隐藏结果页面
-    $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    if(loanDemand){
+        $(".aButtons").html('<a href="'+aHref+'" style="display:none;" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    }else{
+        $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+    }
     $("#questionPage ul li").eq(0).show();
     $("#result").hide();
     $("#questions").show();
