@@ -244,7 +244,7 @@ ractive.on('withDrawSubmit', function () {
                         transtype: '800003',
                         ok: function(a,b,c,d,e) {
                             if (isAcess) {
-                                $.post('/yeepay/withdraw'+ CC.user.userId, 
+                                $.post('/api/v2/lccb/withdraw/'+ CC.user.userId, 
                                 {
                                     paymentPassword : filterXSS(pass),
                                     smsid: d,
@@ -260,7 +260,7 @@ ractive.on('withDrawSubmit', function () {
                                             ok: function () {
                                                 window.location.reload();
                                             },
-                                            cancel: function () {
+                                            close: function () {
                                                 window.location.reload();
                                             }
                                         });
@@ -272,7 +272,7 @@ ractive.on('withDrawSubmit', function () {
                                             ok: function () {
                                                 window.location.reload();
                                             },
-                                            cancel: function () {
+                                            close: function () {
                                                 window.location.reload();
                                             }
                                         });
