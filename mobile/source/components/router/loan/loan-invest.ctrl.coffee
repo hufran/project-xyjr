@@ -22,10 +22,8 @@ do (_, angular, Math) ->
                 arrList.sort(sortNumer)
                 @$scope.maxMoney = arrList[1]
                 @$scope.minMoney = arrList[0]
-                @cell_buffering = false
-                @cell_buffering_count = 119.119
 
-                console.log @coupon
+                console.log "user:",@user
 
                 
 
@@ -185,62 +183,6 @@ do (_, angular, Math) ->
 
                 
 
-            get_verification_code: () ->
-                @mobile_verification_code_has_sent = true
-                if !@user.bank_account||!@user.bank_account.bankMobile
-                    @mg_alert '您需要开通银行存管才可操作！'
-                    @$location
-                        .replace()
-                        .path "dashboard/payment/register"
-                    return
-                else
-                    phonenumber=filterXSS @user.bank_account.bankMobile
-
-                if !@user.bank_account||!@user.bank_account.account || !@user.bank_account.name
-                    @mg_alert '您需要开通银行存管才可操作！'
-                    @$location
-                        .replace()
-                        .path "dashboard/payment/register"
-                    return
-                else
-                    cardnbr=filterXSS @user.bank_account.account
-                    username=filterXSS  @user.bank_account.name
-
-
-                return unless !!phonenumber and !!cardnbr and !!@user.bank_account !!username
-            
-                transtype='800004'
-
-                (@api.payment_pool_send_captcha(@user.info.id,transtype,phonenumber,cardnbr,username)
-
-                    .then (data) =>
-                      return @$q.reject(data) unless data.status is 0
-                      return data
-
-                    .then (data) =>
-                        
-                        @smsid=data.data
-                        timer = @$interval =>
-                          @cell_buffering_count -= 1
-
-                          if @cell_buffering_count < 1
-                              @$interval.cancel timer
-                              @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
-                              @cell_buffering = false
-                              
-                        , 1000
-
-                        @cell_buffering = true
-                        
-                        @mobile_verification_code_has_sent = false
-                    .catch (data) =>
-
-                      key = _.get data, 'msg'
-                      @mg_alert "短信发送失败,"+key
-
-                      @mobile_verification_code_has_sent = false
-                )
-
             prompt_coupon_sharing: (id) ->
 
                 prompt = @$uibModal.open {
@@ -321,14 +263,67 @@ do (_, angular, Math) ->
                     templateUrl: 'ngt-pool-recharge.tmpl'
 
                     controller: _.ai '$scope', ($scope) =>
-                        console.log $scope
+                        self=@
                         angular.extend $scope, {
                           bankNumber:@user.bank_account.bankMobile.substring(0,3)+"****"+@user.bank_account.bankMobile.substring(7),
-                          send_verification_code:@get_verification_code.bind(@),
-                          cell_buffering: @cell_buffering
-                          cell_buffering_count:@cell_buffering_count
-                          errMsg:false,
-                          errMsgContent:""
+                          mobile_verification_code_has_sent:true,
+                          cell_buffering : false,
+                          cell_buffering_count : 119.119,
+                          get_verification_code: () ->
+                            $scope.mobile_verification_code_has_sent = true
+                            if !self.user.bank_account||!self.user.bank_account.bankMobile
+                                self.mg_alert '您需要开通银行存管才可操作！'
+                                self.$location
+                                    .replace()
+                                    .path "dashboard/payment/register"
+                                return
+                            else
+                                phonenumber=filterXSS self.user.bank_account.bankMobile
+
+                            if !self.user.bank_account||!self.user.bank_account.account || !self.user.bank_account.name
+                                self.mg_alert '您需要开通银行存管才可操作！'
+                                self.$location
+                                    .replace()
+                                    .path "dashboard/payment/register"
+                                return
+                            else
+                                cardnbr=filterXSS self.user.bank_account.account
+                                username=filterXSS  self.user.bank_account.name
+
+
+                            return unless !!phonenumber and !!cardnbr and !!self.user.bank_account and !!username
+
+                            transtype='800004'
+
+                            (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
+
+                                .then (data) =>
+                                  return self.$q.reject(data) unless data.status is 0
+                                  return data
+
+                                .then (data) =>
+                                    console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count
+                                    self.smsid=data.data
+                                    timer = self.$interval =>
+                                      $scope.cell_buffering_count -= 1
+
+                                      if $scope.cell_buffering_count < 1
+                                          @$interval.cancel timer
+                                          $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
+                                          $scope.cell_buffering = false
+                                          
+                                    , 1000
+
+                                    $scope.cell_buffering = true
+                                    
+                                    $scope.mobile_verification_code_has_sent = false
+                                .catch (data) =>
+
+                                  key = _.get data, 'msg'
+                                  self.mg_alert "短信发送失败,"+key
+
+                                  $scope.mobile_verification_code_has_sent = false
+                            )
                         }
                         
                 }

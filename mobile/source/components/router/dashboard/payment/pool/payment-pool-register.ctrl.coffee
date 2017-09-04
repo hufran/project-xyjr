@@ -192,7 +192,9 @@ do (_, angular) ->
                                     .replace()
                                     .path wxChatUrl+"/lend/homeA"
                             else
-                                @$location.path @next_path
+                                @$location
+                                    .replace()
+                                    .path @next_path
 
                         .catch (data) =>
                             @submit_sending = false
