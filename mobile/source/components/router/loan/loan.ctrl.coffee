@@ -63,6 +63,11 @@ do (_ ,angular, moment, Math, Date) ->
                     tmpDate = dateSeconds.getDate()
                 @$scope.stopDate = dateSeconds.getFullYear() + "-"+tmpMonth+"-"+tmpDate
 
+            pointMsg:()=>
+                if parseInt(@user.info.priv) < 30
+                    do @confirmLevel
+                
+
             agreement: (segment) ->
 
                 prompt = @$uibModal.open {
@@ -90,7 +95,27 @@ do (_ ,angular, moment, Math, Date) ->
 
 
 
+            confirmLevel: ->
+                confirmValue=@$uibModal.open {
+                    size: 'sm'
+                    keyboard: false
+                    backdrop: 'static'
+                    windowClass: 'center'
+                    animation: true
+                    templateUrl: 'ngt-invest-confirm.tmpl'
 
+                    controller: _.ai '$scope', ($scope) =>
+                        
+                }
+
+                confirmValue.result.then ()=>
+                    @$window.location.href='./loan/'+@loan.id+'/invest'
+                confirmValue.result.catch (new_path) =>
+                    console.log "saadsfadf"
+                    @$window.location.href='./questions/'+@loan.id
+
+                
+                
 
 
 

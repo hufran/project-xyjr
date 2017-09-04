@@ -39,11 +39,11 @@
                  {{/if}}
             </div>
             {{else}}
-                <div class="account-info-row">
+                <div class="userIdNumber">
                     <label for="" class="text">真实姓名：</label>
                     <span class="value">{{format.mask(authenticateInfo.name)}}</span>
                 </div>
-                <div class="account-info-row">
+                <div class="userIdNumber">
                     <label for="" class="text">身份证号：</label>
                     <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
                 </div>
@@ -59,10 +59,11 @@
             </div>
             <div class="userIdNumber">
                     <label class="">开户银行</label>
-                    <select name="bankName" class="check-name" value="{{bankName}}">
+                    <span class="bankpic"></span>
+                    <select name="bankName" class="check-name" value="{{bankName}}" style="width: 150px;">
                         <option value="请选择开户银行">请选择开户银行</option>
                         {{#each banks}}
-                            <option value="{{name}}">{{name}}</option>
+                            <option value="{{name}}" data-code="{{code}}">{{name}}</option>
                         {{/each}}
                     </select>
                     {{#if showErrorbankName}}
@@ -90,6 +91,14 @@
                  </div>
                  {{/if}}
             </div>
+            <p class="userIdNumber" style="text-align:left;line-height: 30px;">
+                    <input type="checkbox" class="agree" checked id="agree" />
+                    <span>我同意 <p style="display:inline-block;vertical-align:top;line-height:20px;padding:5px 0 10px 5px">
+                                    <a href="" id="protocol" target="_blank" style="color:#009ada">《廊坊银行网络借贷交易资金存管业务三方协议》</a><br>
+                                </p>
+                    </span>
+            </p>
+            <p class="agree-error userIdNumber" style="color:red;margin-left: 350px;"></p>
             <div class="account-submit">
                 <input type="button" value="确认开通" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
             </div>
@@ -124,7 +133,8 @@
     </div>
     <div class="account-info-row">
         <label for="" class="text">所属银行：</label>
-        <span class="value">招商银行</span>
+        <span class="bankpic"></span>
+        <span class="value" style="width: 250px;">招商银行</span>
     </div>
     <div class="account-info-row">
         <label for="" class="text">银行预留手机号：</label>

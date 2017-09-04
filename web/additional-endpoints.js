@@ -9,6 +9,12 @@ module.exports = function (router, auth) {
     router.get('/api/v2/fdd/user/:userId/invest/:investId/contractUrl', auth.user());
     //dada add
     // 支付相关
+    router.post('/api/v2/lccb/sendMsg/:userId', auth.pass());
+    router.post('/api/v2/lccb/deposit/:userId', auth.user());
+    router.post('/api/v2/lccb/bindCard/:userId', auth.user());
+    router.post('/api/v2/lccb/withdraw/:userId', auth.user());
+    router.post('/api/v2/lccb/mermaid/bindCard', auth.pass());
+    
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());
     router.post('/api/v2/lianlianpay/onlineBankDeposit/:userId', auth.user());

@@ -47,21 +47,21 @@
             <div class="space-20"></div>
             <div class="row">
                 <div class="methodwr" data-type="net">
-                    <div style="display:inline-block;">
+                    <!-- <div style="display:inline-block;">
                         <input type="radio" id="paynet" name="payType" checked on-click="choosePayType">
                         <label for="paynet" on-click="choosePayType">网银充值</label>
-                    </div>
+                    </div> -->
                     {{#if !isEnterpriseUser}}
                     <div style="display:inline-block;margin-left: 20px;">
-                        <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType">
+                        <input type="radio" id="fastpaynet" name="payType" checked on-click="choosePayType">
                         <label for="fastpaynet" on-click="choosePayType">快捷支付</label>
                     </div>
                     {{/if}}
                     
                 </div>
                 <div class="space space-30"></div>
-                <div class="bankwrap">
-                    {{#if !isEnterpriseUser}}<!--个人账户-->
+                <!-- <div class="bankwrap">
+                    {{#if !isEnterpriseUser}}个人账户
                         {{#banks:index}}
                         {{#if index
                     < showNum}} <span class="bankItem jd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}"
@@ -72,20 +72,20 @@
                         {{#if index == showNum}}
                         <span class="bankItem more" on-click="showAll"></span> 
                         {{/if}}
-                        {{/banks}}
-                    {{else}}<!--企业账户-->
-                        {{#each corBanks}}
+                        {{/banks}} -->
+                    <!-- {{else}}企业账户 -->
+                        <!-- {{#each corBanks}} -->
                         <!-- <div class="corBanks">{{corBanks}}</div> -->
-                        <span class="bankItem cjd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
+                        <!-- <span class="bankItem cjd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
 
                            <span class="check"></span>
 
                         </span>
 
                         {{/each}} {{/if}}
-                </div>
+                </div> -->
 
-                <div class="fastbankwrap" style="display:none;">
+                <div class="fastbankwrap">  <!-- style="display:none;" -->
                     {{#if !isEnterpriseUser}}
                         {{#if isBankCard > 0}}
                         <span class="bankItem {{bankName}}" data-cc="{{bankName}}" data-code="{{bankCode}}"
