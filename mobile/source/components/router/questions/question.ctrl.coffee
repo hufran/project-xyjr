@@ -20,6 +20,7 @@ do (_, angular) ->
           loading: true
           showPay:@$routeParams.showPay
           qusComeIn:@$routeParams.comeIn
+          
         }
 
         (@api.get_loan_list_by_config(filter_type, 20, false)
