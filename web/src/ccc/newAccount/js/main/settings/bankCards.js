@@ -47,7 +47,7 @@ var ractive = new Ractive({
         mobile: CC.user.mobile,
         realName: CC.user.name,
         isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false,
-        authenticated: CC.user.authenticates.idauthenticated || false
+        authenticated: banksabled.length ? true : false
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {

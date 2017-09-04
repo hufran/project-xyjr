@@ -41,7 +41,7 @@ exports.accountService = {
             });
     },
     authenticateUser: function(user, next) {
-        request('POST', '/api/v2/guozhengtong/authenticateUser/'+CC.user.id)
+        request('POST', '/api/v2/lccb/bindCard/'+CC.user.id)
             .type('form')
             .send(user)
             .end()

@@ -9,7 +9,8 @@ module.exports = function (router) {
             assignInvest: '债权转让协议',
             noviceInvest: '新手专享协议',
             employeeInvest: '员工专享协议',
-            net: '网络交易资金存管协议'
+            net: '网络交易资金存管协议',
+            bank: '廊坊银行网络借贷交易资金存管业务三方协议'
         };
 
         if (!tabMap[param]) {

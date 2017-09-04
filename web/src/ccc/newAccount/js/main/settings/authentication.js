@@ -11,6 +11,9 @@ require('ccc/xss.min');
 var banksabled = _.filter(CC.user.bankCards, function (r) {
     return r.deleted === false;
 });
+var banksList={}
+var banks=[];
+var smsid;
 
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -39,6 +42,13 @@ var ractive = new Ractive({
                 ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
             }
         });
+    },
+    oncomplete: function () {
+       SeverName() 
+       if(ractive.get('bank')) {
+          var bankcode = CC.user.bankCards[0].account.bank
+          $(".bankpic").css('background-image','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')
+       }      
     }
 });
 
@@ -52,6 +62,7 @@ ractive.on('maskDepositAgreement', function (e) {
 ractive.on('checkName',function(){
     var name = this.get("name");
     this.set('showErrorMessageName',false);
+    if(this.get("authenticateInfo").name){return}
     utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -64,6 +75,7 @@ ractive.on('checkName',function(){
 ractive.on('checkIdNumber',function(){
     var idNumber = this.get("idNumber");
     this.set('showErrorMessageId',false);
+    if(this.get("authenticateInfo").idNumber){return}
     utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
         if (!bool) {
             ractive.set({
@@ -136,11 +148,22 @@ ractive.on('checkmessageTxt', function(){
                 errormessageTxt: utils.errorMsg[error]
             });
         }else{
-            this.set('showErromessageTxt',false);
+            this.set('showErrormessageTxt',false);
         }
     }    
 })
 
+$('select[name="bankName"]').on("change", function() {
+    var code = $(this).find("option:selected").attr('data-code');
+    console.log(code);
+    $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
+})
+
+$('#agree').on('click', function() {
+    if($(this).attr("checked")){
+        $('.agree-error').html('');
+    }
+})
 ractive.on("register-account-submit", function () {   
     var that=this;
     this.fire('checkName');
@@ -154,20 +177,35 @@ ractive.on("register-account-submit", function () {
             errorbankName: '请选择开户银行'
         });
         return false;
+    }else{
+        ractive.set("showErrorbankName", false);
     }
-    if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrobankNumber') || this.get('showErrobankPhone') || this.get('showErromessageTxt')) {
+    if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrorbankNumber') || this.get('showErrorbankPhone') || this.get('showErrormessageTxt')) {
         return false;
     }
-    var name = filterXSS(this.get("name"));
-    var idNumber = filterXSS(this.get("idNumber"));
-    utils.formValidator.checkName(that.get("name"), function (bool, error) {
+
+    if (document.getElementById('agree').checked == true){
+        $('.agree-error').html('');
+    }else{
+        $('.agree-error').html('请先同意开通银行存管协议');
+        return;
+    }
+
+    console.log(this.get("authenticateInfo"));
+    var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
+    var idNumber = filterXSS(this.get("idNumber")) || this.get("authenticateInfo").idNumber;
+    var bankNumber = filterXSS(this.get("bankNumber"));
+    var bankName = filterXSS(this.get("bankName"));
+    var bankPhone = filterXSS(this.get("bankPhone"));
+    var messageTxt = filterXSS(this.get("messageTxt"));
+    utils.formValidator.checkName(name, function (bool, error) {
         if (!bool) {
             ractive.set({
                 showErrorMessageName: true,
                 errorMessageName: utils.errorMsg[error]
             });
         } else {
-            utils.formValidator.checkIdNumber(that.get("idNumber"), function (bool, error) {
+            utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
                 if (!bool) {
                     ractive.set({
                         showErrorMessageId: true,
@@ -178,8 +216,14 @@ ractive.on("register-account-submit", function () {
                 }
 
                 var user = {
-                    name: $.trim(name),
-                    idNumber: $.trim(idNumber)
+                    userId: CC.user.id,
+                    realName: $.trim(name),
+                    idNumber: $.trim(idNumber),
+                    bankName: bankName,
+                    cardNo: bankNumber,
+                    cardPhone: bankPhone,
+                    smsCaptcha: messageTxt,
+                    smsid: smsid
                 };
                 var msg,link;
                 if (that.get('bank') && that.get('paymentPasswordHasSet')) {
@@ -190,6 +234,7 @@ ractive.on("register-account-submit", function () {
                 }
                 accountService.authenticateUser(user,
                     function (res) {
+                        console.log(res)
                         if (res.success) {
                             CccOk.create({
                                 msg: msg,
@@ -266,13 +311,28 @@ ractive.on('agreement-check', function () {
 });
 
 ractive.on('sendTelCode', function (){
+    this.fire('checkbankNumber');
+    this.fire('checkbankPhone');
+    
     var $captchaBtn = $(".getcaptcha");
+    var cardnbr = this.get("bankNumber");
+    var cardPhone = this.get("bankPhone");
+    var username = this.get("name") || this.get("authenticateInfo").name;
     if ($captchaBtn.hasClass('disabled')) {
         return;
     }
-    var smsType = 'CREDITMARKET_CAPTCHA';
-    CommonService.getMessage(smsType, function (r) {
-        if (r.success) {
+    if(this.get('showErrorbankNumber') || this.get('showErrorbankPhone')){
+        return;
+    }
+    if(!username){
+        this.fire('checkName');
+        return
+    }
+    var smsType = '800001';
+    var userId = CC.user.userId;    
+    CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
+        if (r.status == 0) {
+            smsid = r.data;
             countDown();
         }
     });
@@ -297,4 +357,18 @@ function countDown() {
             clearInterval(interval);
         }
     }), 1000);
+}
+
+function SeverName(){
+    request('GET',"/api/v2/lianlianpay/banks").end().
+        then(function (r) {
+            banks=[];
+            banksList=r.body;
+            for (var i in banksList) {
+                name=banksList[i];
+                banks.push({'name': name,'code': i});
+            };
+            ractive.set('banks', banks);
+            console.log(banks)
+        });
 }

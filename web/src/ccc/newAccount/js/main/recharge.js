@@ -15,6 +15,7 @@ var corBanks=[
 ];
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
+var CccOK = require('ccc/global/js/modules/cccOk');
 var Message = require('ccc/global/js/modules/cccMessage');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 //新增支付方式判断
@@ -171,6 +172,10 @@ var ractive = new Ractive({
             }
         });
 
+        if (CC.user.bankCards.length>0) {
+            this.set('bankName',CC.user.bankCards[0].account.bank);
+        };
+
 
     },
 
@@ -203,6 +208,7 @@ ractive.parseData();
 
 ractive.on('checkAmount',function(){
     var inp=jQuery('#rechargeValue');
+    
     inp.val(inp.val().replace(/[^\d.]/g,"")); //清除"数字"和"."以外的字符
     inp.val(inp.val().replace(/^\./g,""));
     inp.val(inp.val().replace(/\.{2,}/g,"."));
@@ -216,6 +222,7 @@ ractive.on('recharge_submit', function (e){
     e.original.preventDefault();
     var amount = this.get('amount');
     var actionName=this.get('action');
+    var choose =$('#paynet').prop('checked');
     this.set('amountNew',amount);
 
     this.set('msg', {
@@ -267,20 +274,49 @@ ractive.on('recharge_submit', function (e){
             msg: '短信验证码已发送至',
             okText: '下一步',
             phone: phoneNumber,
-            phone1: phoneNumber1,
-            ok: function() { 
+            transtype: '800002',
+            ok: function(a,b,c,d,e) { 
                 $('.dialog').hide();
-                Confirm.create({
-                    msg: '充值是否成功？',
-                    okText: '充值成功',
-                    cancelText: '充值失败',
-                    ok: function () {
-                        window.location.href = '/newAccount/fund/loanDeal';
-                    },
-                    cancel: function () {
-                        window.location.reload();
-                    }
-                });
+                console.log(e)
+                console.log(d)
+                if(choose){
+                    //网银充值
+                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
+                        bankcode: CC.user.bankCards[0].account.bank,
+                        cardnbr: CC.user.bankCards[0].account.account,
+                        transamt: amount,
+                        smsid: d,
+                        validatemsg : e
+                    },function(res) {
+                        console.log(res)
+                        CccOK.create({
+                            msg: res.msg,
+                            okText: '确定',
+                            ok: function () {
+                                window.location.reload();
+                            }
+                        });                    
+                    })
+                }else {
+                    // 快捷支付
+                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
+                        bankcode: CC.user.bankCards[0].account.bank,
+                        cardnbr: CC.user.bankCards[0].account.account,
+                        transamt: amount,
+                        smsid: d,
+                        validatemsg : e 
+                    },function(res) {
+                        console.log(res)
+                        CccOK.create({
+                            msg: res.msg,
+                            okText: '确定',
+                            ok: function () {
+                                window.location.reload();
+                            }
+                        });                    
+                    })
+                }
+                
             },
             cancel: function() {
 
