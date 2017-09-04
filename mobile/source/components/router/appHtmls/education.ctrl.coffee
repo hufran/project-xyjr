@@ -3,11 +3,10 @@ do (_, angular) ->
 
  angular.module('controller').controller 'EducationCtrl',
 
-   _.ai '            @api, @$scope, @$window, @$routeParams', class
-    constructor: (@api, @$scope, @$window, @$routeParams) ->
+   _.ai '            @api, @$scope, @$window, @$routeParams,@$location', class
+    constructor: (@api, @$scope, @$window, @$routeParams,@$location) ->
 
       @$window.scrollTo 0, 0
-      console.log "sssssssssssssssssss"
       params = {
         XXPL: '信息披露',
         FXJY:'风险教育'
