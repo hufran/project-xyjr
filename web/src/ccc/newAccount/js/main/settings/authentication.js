@@ -158,6 +158,12 @@ $('select[name="bankName"]').on("change", function() {
     console.log(code);
     $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
 })
+
+$('#agree').on('click', function() {
+    if($(this).attr("checked")){
+        $('.agree-error').html('');
+    }
+})
 ractive.on("register-account-submit", function () {   
     var that=this;
     this.fire('checkName');
@@ -179,7 +185,7 @@ ractive.on("register-account-submit", function () {
     }
 
     if (document.getElementById('agree').checked == true){
-         $('.agree-error').html('');
+        $('.agree-error').html('');
     }else{
         $('.agree-error').html('请先同意开通银行存管协议');
         return;

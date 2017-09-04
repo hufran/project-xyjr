@@ -102,7 +102,7 @@ function CccMeassage(options) {
                     var previousText = '获取验证码';
                     var mssg = '$秒';
 
-                    var left = 60;
+                    var left = 120;
                     var interval = setInterval((function () {
                         if (left > 0) {
                             $(ele).find('.getcaptcha')
