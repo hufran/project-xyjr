@@ -178,6 +178,13 @@ ractive.on("register-account-submit", function () {
         return false;
     }
 
+    if (document.getElementById('agree').checked == true){
+         $('.agree-error').html('');
+    }else{
+        $('.agree-error').html('请先同意开通银行存管协议');
+        return;
+    }
+
     console.log(this.get("authenticateInfo"));
     var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
     var idNumber = filterXSS(this.get("idNumber")) || this.get("authenticateInfo").idNumber;
