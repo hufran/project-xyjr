@@ -119,7 +119,7 @@ ractive.on('checkbankPhone', function(){
             errorbankPhone: utils.errorMsg[error]
         });
     }else{        
-        if (!/^\d*$/.test(bankPhone)) {
+        if (!/^1\d{10}$/.test(bankPhone)) {
             var error = 'MOBILE_INVALID'        
             ractive.set({
                 showErrorbankPhone: true,

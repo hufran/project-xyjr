@@ -186,6 +186,13 @@ module.exports = (function () {
                         };
                     }
                 }
+
+                if(idNumber.length != 18) {
+                    return {
+                        success: false,
+                        data: 'IDNUMBER_INVALID'
+                    }
+                }
             }
                                    
             if (next) {
