@@ -96,7 +96,7 @@ ractive.on('checkbankNumber', function(){
             errorbankNumber: utils.errorMsg[error]
         });
     }else{        
-        if (!/^\d*$/.test(bankNumber)) {  
+        if (!/^\d{5,40}$/.test(bankNumber)) {  
             var error = 'BANK_ERR'      
             ractive.set({
                 showErrorbankNumber: true,
@@ -160,9 +160,7 @@ $('select[name="bankName"]').on("change", function() {
 })
 
 $('#agree').on('click', function() {
-    if($(this).attr("checked")){
-        $('.agree-error').html('');
-    }
+    $('.agree-error').html('');
 })
 ractive.on("register-account-submit", function () {   
     var that=this;

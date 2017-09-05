@@ -457,7 +457,7 @@ setTimeout((function () {
                         paymentPassword : filterXSS(investRactive.get('paymentPassword')),
                         rebateAmount:thisRebate,
                         smsid: d,
-                        validatemsg: e
+                        smsCaptcha: e
                     }, function (res) {
                         if (res.success) {
                             CccOk.create({
@@ -522,7 +522,7 @@ setTimeout((function () {
                         placementId : filterXSS(investRactive.get('coupon')),
                         paymentPassword : filterXSS(investRactive.get('paymentPassword')),
                         smsid: d,
-                        validatemsg: e
+                        smsCaptcha: e
                     }, function (res) {
                         if (res.success) {
                             CccOk.create({
