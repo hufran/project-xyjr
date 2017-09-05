@@ -252,7 +252,7 @@ ractive.on('withDrawSubmit', function () {
                                     amount : amount
 
                                 }, function (res) {
-                                    if (res.success) {
+                                    if (res.status == 0) {
                                         CccOk.create({
                                             msg: '提现申请提交成功，等待审核中!',
                                             okText: '确定',
