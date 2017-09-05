@@ -399,8 +399,12 @@ var FilterXSS = require('./xss');
  * @return {String}
  */
 function filterXSS (html, options) {
-  var xss = new FilterXSS(options);
-  return xss.process(html);
+  if(html||html==""){
+      var xss = new FilterXSS(options);
+      return xss.process(html);
+  }else{
+      return html;
+  }
 }
 
 
