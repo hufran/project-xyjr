@@ -322,7 +322,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/payment/register'
                                         return $q.reject()
-                            banks: _.ai 'api', (api) -> api.get_available_bank_list()
+                            banks: _.ai 'api', (api) -> api.payment_pool_banks()
                     }
 
                     .when '/dashboard/payment/agreement', {

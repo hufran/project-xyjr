@@ -18,10 +18,7 @@ do (angular) ->
                 
 
 
-                @api.get_available_bank_list().then (data) =>
-                    data["CIB"]="兴业银行";
-                    data["CMBC"]="中国民生银行";
-                    data["ABC"]="中国农业银行";
+                @api.payment_pool_banks().then (data) =>
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
 
@@ -157,6 +154,7 @@ do (angular) ->
                         return data
 
                     .then (data) =>
+                        @smsid=null
                         @mg_alert @$scope.msg.SUCCEED
                             .result.finally =>
                                 @$location.path 'dashboard'
@@ -167,6 +165,7 @@ do (angular) ->
                         
 
                     .catch (data) =>
+                        @smsid=null
                         @submit_sending = false
                         key = _.get data, 'error[0].message'|| _.get data, 'msg'
                         @mg_alert @$scope.msg[key] or key

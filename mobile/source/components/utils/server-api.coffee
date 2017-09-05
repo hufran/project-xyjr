@@ -521,6 +521,11 @@ do (_, angular, moment, Array) ->
 
                         .then TAKE_RESPONSE_DATA
                         .catch TAKE_RESPONSE_ERROR
+            payment_pool_banks:()->
+                @$http
+                    .get '/api/v2/lccb/banks'
+                        .then TAKE_RESPONSE_DATA
+                        .catch TAKE_RESPONSE_ERROR
 
             payment_pool_bind_card: (bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha) ->
 
@@ -541,20 +546,20 @@ do (_, angular, moment, Array) ->
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '',smsid,validatemsg) ->
+            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '',smsid,smsCaptcha) ->
 
                 @$http
                     .post '/api/v2/invest/tender/MYSELF',
-                        _.compact {loanId, paymentPassword, amount, placementId,smsid,validatemsg}
+                        _.compact {loanId, paymentPassword, amount, placementId,smsid,smsCaptcha}
 
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_rebeat: (loanId, paymentPassword, amount, id, rebateAmount, smsid, validatemsg) ->
+            payment_pool_rebeat: (loanId, paymentPassword, amount, id, rebateAmount, smsid, smsCaptcha) ->
 
                 @$http
-                    .post "/api/v2/invest/tenderUseRebate/#{ id }", {loanId, paymentPassword, amount, rebateAmount, smsid, validatemsg}
+                    .post "/api/v2/invest/tenderUseRebate/#{ id }", {loanId, paymentPassword, amount, rebateAmount, smsid, smsCaptcha}
                         #_.compact {loanId, paymentPassword, amount, placementId}
 
                     .then TAKE_RESPONSE_DATA

@@ -34,8 +34,7 @@ do (angular) ->
         if +@$routeParams.amount > 0
           @$scope.amount = @$routeParams.amount // 100 * 100 + 100
 
-        @api.get_available_bank_list().then (data) =>
-          data["CIB"] = "兴业银行";
+        @api.payment_pool_banks().then (data) =>
           @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
 
@@ -47,7 +46,7 @@ do (angular) ->
         if  @pay_type == 'lianlianPay'
           @$scope.amountNew = filterXSS(@$scope.amount.toString())
         else
-          @$scope.amountNew = filterXSS((Math.round(@$scope.amount * 100)).toString())
+          @$scope.amountNew = filterXSS((Math.round(@$scope.amount)).toString())
 
 
       paySubmit: (event, amount)->
@@ -172,8 +171,10 @@ do (angular) ->
 
             .then (data) =>
                 @$window.alert "充值成功！"
+                @smsid=null
                 @$window.location.href="/dashboard"
             .catch (data) =>
+              @smsid=null
               @$window.alert "充值失败,"+data.msg
 
 

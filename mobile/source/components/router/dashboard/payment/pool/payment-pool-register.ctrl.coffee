@@ -22,8 +22,8 @@ do (_, angular) ->
                 @captcha = {timer: null, count: 120, count_default: 120, has_sent: false, buffering: false}
                 @$scope.user=@user
                 @cell_buffering = false
-                @cell_buffering_count = 119.59
-                
+                @cell_buffering_count = 119.119
+
                 console.log @user
                 console.log banks
 
@@ -186,6 +186,7 @@ do (_, angular) ->
                             @user.info.name = user_name
                             @user.info.idNumber = id_number
                             @user.has_payment_account = true
+                            @smsid=null
                             if @$scope.sourceId != undefined
     #                           alert(wxChatUrl);
                                 @$location
@@ -197,6 +198,7 @@ do (_, angular) ->
                                     .path @next_path
 
                         .catch (data) =>
+                            @smsid=null
                             @submit_sending = false
                             @$timeout.cancel @error.timer
 

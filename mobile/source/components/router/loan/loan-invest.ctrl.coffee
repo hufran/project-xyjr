@@ -411,6 +411,7 @@ do (_, angular, Math) ->
                                 @mg_alert message
 
                             .finally =>
+                                @smsid=null
                                 @submit_sending = false
                         )
 
@@ -445,6 +446,7 @@ do (_, angular, Math) ->
                                 @mg_alert message
 
                             .finally =>
+                                @smsid=null
                                 @submit_sending = false
                         )
                     
