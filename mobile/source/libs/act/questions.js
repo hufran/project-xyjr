@@ -235,9 +235,9 @@ function ReEvaluation(loanDemand){
     }
     //提交过，充值跳过调查问卷，下一步，显示第一道题目，隐藏结果页面
     if(loanDemand){
-        $(".aButtons").html('<a href="'+aHref+'" style="display:none;" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+        $(".aButtons").html('<a href="'+aHref+'" style="display:none;" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1,true)">下一步</a><div class="clearBoth"></div>');
     }else{
-        $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1)">下一步</a><div class="clearBoth"></div>');
+        $(".aButtons").html('<a href="'+aHref+'" onclick="igNore(3)">跳过调查问卷</a><a href="javascript:void(0)" onclick="goNext(this,1,true)">下一步</a><div class="clearBoth"></div>');
     }
     $("#questionPage ul li").eq(0).show();
     $("#result").hide();
