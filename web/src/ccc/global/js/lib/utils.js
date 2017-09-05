@@ -274,7 +274,7 @@ module.exports = (function () {
         INVITATION_INVALID: 'H码无效',
         INVITATION_NULL: 'H码为空',
         PAYMENT_ACCOUNT_CREATE_ERROR: '国政通实名认证校验未通过',
-        SMSCAPTCHA_INVALID: '验证码为6位',
+        SMSCAPTCHA_INVALID: '验证码错误',
         SMSCAPTCHA_NULL: '验证码不能为空',
         IDNUMBER_NULL: '身份证号不能为空',
         BANK_NULL: '银行卡号不能为空',
