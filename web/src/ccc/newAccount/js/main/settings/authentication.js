@@ -96,7 +96,7 @@ ractive.on('checkbankNumber', function(){
             errorbankNumber: utils.errorMsg[error]
         });
     }else{        
-        if (!/^\d*$/.test(bankNumber)) {  
+        if (!/^\d{5,40}$/.test(bankNumber)) {  
             var error = 'BANK_ERR'      
             ractive.set({
                 showErrorbankNumber: true,
@@ -119,7 +119,7 @@ ractive.on('checkbankPhone', function(){
             errorbankPhone: utils.errorMsg[error]
         });
     }else{        
-        if (!/^\d*$/.test(bankPhone)) {
+        if (!/^1\d{10}$/.test(bankPhone)) {
             var error = 'MOBILE_INVALID'        
             ractive.set({
                 showErrorbankPhone: true,
@@ -160,12 +160,18 @@ $('select[name="bankName"]').on("change", function() {
 })
 
 $('#agree').on('click', function() {
-    if($(this).attr("checked")){
-        $('.agree-error').html('');
-    }
+    $('.agree-error').html('');
 })
 ractive.on("register-account-submit", function () {   
     var that=this;
+    if(!smsid){
+        var error = 'SMSCAPTCHA_INVALID'        
+        ractive.set({
+            showErrormessageTxt: true,
+            errormessageTxt: utils.errorMsg[error]
+        });
+        return
+    }
     this.fire('checkName');
     this.fire('checkIdNumber');
     this.fire('checkbankNumber');
@@ -313,7 +319,7 @@ ractive.on('agreement-check', function () {
 ractive.on('sendTelCode', function (){
     this.fire('checkbankNumber');
     this.fire('checkbankPhone');
-    
+    this.set('showErrormessageTxt',false);
     var $captchaBtn = $(".getcaptcha");
     var cardnbr = this.get("bankNumber");
     var cardPhone = this.get("bankPhone");
