@@ -52,7 +52,7 @@ function CccMeassage(options) {
                 $(ele).find('.btn-confirm-ok').on('click', function(){
                     if(!sms){
                         $(ele).find('.errMess')
-                                .html('请先获取验证码');
+                                .html('验证码错误');
                             return false;
                     }                    
                     var msmcaptcha = $(ele).find('.msmcaptcha').val();
@@ -79,11 +79,12 @@ function CccMeassage(options) {
                 //getCaptcha
                 $(ele).find('.getcaptcha').on('click', function() {
                     console.log('获取验证码')
-                    sms = true;
+                    sms = true;                    
                     var $captchaBtn = $(ele).find(".getcaptcha");
                     if ($captchaBtn.hasClass('disabled')) {
                         return;
                     }
+                    $(ele).find('.errMess').html('');
                     $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
                             transtype: config.transtype,
                             cardnbr: CC.user.bankCards[0].account.account,

@@ -164,6 +164,14 @@ $('#agree').on('click', function() {
 })
 ractive.on("register-account-submit", function () {   
     var that=this;
+    if(!smsid){
+        var error = 'SMSCAPTCHA_INVALID'        
+        ractive.set({
+            showErrormessageTxt: true,
+            errormessageTxt: utils.errorMsg[error]
+        });
+        return
+    }
     this.fire('checkName');
     this.fire('checkIdNumber');
     this.fire('checkbankNumber');
@@ -311,7 +319,7 @@ ractive.on('agreement-check', function () {
 ractive.on('sendTelCode', function (){
     this.fire('checkbankNumber');
     this.fire('checkbankPhone');
-    
+    this.set('showErrormessageTxt',false);
     var $captchaBtn = $(".getcaptcha");
     var cardnbr = this.get("bankNumber");
     var cardPhone = this.get("bankPhone");

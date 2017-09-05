@@ -278,7 +278,7 @@ module.exports = (function () {
         SMSCAPTCHA_NULL: '验证码不能为空',
         IDNUMBER_NULL: '身份证号不能为空',
         BANK_NULL: '银行卡号不能为空',
-        BANK_ERR: '银行卡号只能由数字组成'
+        BANK_ERR: '银行卡号只能由5-40位数字组成'
     };
 
     var CountDown = function () {};
