@@ -424,7 +424,7 @@ setTimeout((function () {
                         // 问卷end
 						$('.agree-error').css('visibility','hidden');
                         
-                    if(!(mark>=10&&mark<=16)) {
+                    if(!(mark>=10&&mark<=16) && !mark) {
                         toPay(num, couponText)
                      }
                     	
