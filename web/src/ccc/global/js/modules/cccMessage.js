@@ -48,7 +48,13 @@ function CccMeassage(options) {
             showed: function(ele, box) {
                 // click ok
                 var data;
-                $(ele).find('.btn-confirm-ok').on('click', function(){                    
+                var sms = false;
+                $(ele).find('.btn-confirm-ok').on('click', function(){
+                    if(!sms){
+                        $(ele).find('.errMess')
+                                .html('请先获取验证码');
+                            return false;
+                    }                    
                     var msmcaptcha = $(ele).find('.msmcaptcha').val();
                     if(!/^\d{6}$/.test(msmcaptcha)) {
                         $(ele).find('.errMess')
@@ -73,6 +79,7 @@ function CccMeassage(options) {
                 //getCaptcha
                 $(ele).find('.getcaptcha').on('click', function() {
                     console.log('获取验证码')
+                    sms = true;
                     var $captchaBtn = $(ele).find(".getcaptcha");
                     if ($captchaBtn.hasClass('disabled')) {
                         return;
@@ -86,11 +93,10 @@ function CccMeassage(options) {
                             if(res.status == 0) {
                                 data = res.data;
                                 countDown();
-                            }else{
-                                $(ele).find('.errMess')
-                                .html('发送失败');
-                            return false;
+                                return;
                             }
+                            $(ele).find('.errMess')
+                                .html('发送失败');
                         })
                     
                 })
