@@ -83,9 +83,9 @@
         <!--题目列表end-->
          <!--{{self.user}}-->
         <div class="aButtons">
-            <a href="loan/{{loan.id}}/invest" onclick="igNore(3)" style="display:none;" ng-if="!self.qusComeIn">跳过调查问卷</a>
-            <a href="dashboard" onclick="igNore(3)" ng-if="self.qusComeIn">跳过调查问卷</a>
-            <a href="javascript:void(0)" onclick="goNext(this,1,!self.qusComeIn)">下一步</a>
+            <a href="loan/{{loan.id}}/invest" onclick="igNore(3)" style="display:none;" ng-if="!qusComeIn">跳过调查问卷</a>
+            <a href="dashboard" onclick="igNore(3)" style="display:none;" ng-if="qusComeIn">跳过调查问卷</a>
+            <a href="javascript:void(0)" onclick="goNext(this,1,true)">下一步</a>
             <div class="clearBoth"></div>
         </div>
         </div>
@@ -93,8 +93,8 @@
             尊敬的客户：<br>
             您当前的风险承受能力评价：<span id="lastMark">三级（平衡型）</span>
             <div class="buttonOperator">
-            <a href="javascript:ReEvaluation(!self.qusComeIn)" ng-if="!showPay">重新评估</a>
-            <a href="javascript:ReEvaluation()" ng-if="showPay" style="margin:0;width:90%">重新评估</a>
+            <a href="javascript:ReEvaluation(true)" ng-if="!showPay">重新评估</a>
+            <a href="javascript:ReEvaluation(true)" ng-if="showPay" style="margin:0;width:90%">重新评估</a>
                 <a href="loan/{{loan.id}}/invest?source" onclick="igNore(1)" ng-if="!showPay">马上支付</a>
             </div>
             <div class="clearBoth"></div>
