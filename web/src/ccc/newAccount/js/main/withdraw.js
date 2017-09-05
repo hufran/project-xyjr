@@ -249,7 +249,7 @@ ractive.on('withDrawSubmit', function () {
                                     paymentPassword : filterXSS(pass),
                                     smsid: d,
                                     validatemsg: e,
-                                    amount : filterXSS(amount)
+                                    amount : amount
 
                                 }, function (res) {
                                     if (res.success) {
