@@ -399,7 +399,7 @@ var FilterXSS = require('./xss');
  * @return {String}
  */
 function filterXSS (html, options) {
-  if(html||html==""){
+  if(html||html!=""||typeof html!="number"){
       var xss = new FilterXSS(options);
       return xss.process(html);
   }else{
