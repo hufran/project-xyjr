@@ -187,7 +187,7 @@ module.exports = function (router, auth) {
 
     //jd银行列表
     router.get('/fish/api/v3/jdpay/bank/list',auth.pass());
-    router.get('/api/v2/jdpay/banks', auth.pass());
+    router.get('/api/v2/lccb/banks', auth.pass());
 
     //新H5充值
     router.post('/api/v2/jdpay/onlineBankDeposit4Wap/:userId', auth.pass());
@@ -212,7 +212,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/message/markAsReadByUserId/:userId', auth.user());
     router.get('/api/v2/message/markAsRead4App/:messageId', auth.user());
     
-    router.get('/api/v2/jdpay/banksInLimit/:bank', auth.pass());
-    router.get('/api/v2/jdpay/banksOutLimit/:bank', auth.pass());
+    router.get('/api/v2/lccb/banksInLimit/:bank', auth.pass());
+    router.get('/api/v2/lccb/banksOutLimit/:bank', auth.pass());
 
 };
