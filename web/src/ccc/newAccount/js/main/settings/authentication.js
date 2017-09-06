@@ -13,7 +13,7 @@ var banksabled = _.filter(CC.user.bankCards, function (r) {
 });
 var banksList={}
 var banks=[];
-var smsid;
+var smsid, accountNames;
 
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -29,7 +29,8 @@ var ractive = new Ractive({
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
         format: format,
         bankNumber: '',
-        bankMobile: ''
+        bankMobile: '',
+        accountName: ''
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -39,7 +40,7 @@ var ractive = new Ractive({
             });
             if(ractive.get('bank')) {
                 ractive.set('bankNumber', CC.user.bankCards[0].account.account)
-                ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
+                ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile
             }
         });
     },
@@ -47,7 +48,7 @@ var ractive = new Ractive({
        SeverName() 
        if(ractive.get('bank')) {
           var bankcode = CC.user.bankCards[0].account.bank
-          $(".bankpic").css('background-image','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')
+          $(".bankpic").css('background-image','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')         
        }      
     }
 });
@@ -373,7 +374,11 @@ function SeverName(){
             for (var i in banksList) {
                 name=banksList[i];
                 banks.push({'name': name,'code': i});
+                if(CC.user.bankCards.length>0 && i == CC.user.bankCards[0].account.bank) {
+                    accountNames = name;
+                }
             };
+            ractive.set('accountName', accountNames)
             ractive.set('banks', banks);
             console.log(banks)
         });
