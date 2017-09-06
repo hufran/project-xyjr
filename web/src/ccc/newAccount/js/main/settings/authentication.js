@@ -40,7 +40,7 @@ var ractive = new Ractive({
             });
             if(ractive.get('bank')) {
                 ractive.set('bankNumber', CC.user.bankCards[0].account.account)
-                ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile
+                ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
             }
         });
     },
