@@ -246,9 +246,7 @@ ractive.on("register-account-submit", function () {
                                 msg: msg,
                                 okText: '现在开通',
                                 cancelText: '稍后再说',
-                                ok: function () {
-                                    CC.user.name = name;
-                                    CC.user.idNumber = idNumber;
+                                ok: function () {                                    
                                     if (link) {                                        
                                         window.location.href = link;
                                     } else {
@@ -260,8 +258,6 @@ ractive.on("register-account-submit", function () {
                                     window.location.reload();
                                 },
                                 close:function(){
-                                    CC.user.name = name;
-                                    CC.user.idNumber = idNumber;
                                     window.location.reload();
                                 }
                             });
