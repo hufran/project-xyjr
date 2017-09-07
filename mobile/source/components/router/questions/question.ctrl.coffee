@@ -15,6 +15,11 @@ do (_, angular) ->
         else
           @$routeParams.comeIn=0
 
+        if @$routeParams.loanType=="1"
+          @$routeParams.loanType=1
+        else
+          @$routeParams.loanType=null
+
         angular.extend @$scope, {
           filter_type
           page_path: @$location.path()[1..]
@@ -42,7 +47,7 @@ do (_, angular) ->
           @$scope.loading = false
         )
 
-        if(@$scope.clientUserId != undefined)
+        if(@$scope.clientUserId != undefined&&!@$routeParams.loanType)
           @getResult(@$scope.clientUserId)
       getResult:(id) ->
         getMark(id);
