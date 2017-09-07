@@ -15,10 +15,6 @@ do (_, angular) ->
         else
           @$routeParams.comeIn=0
 
-        if @$routeParams.loanType=="1"
-          @$routeParams.loanType=1
-        else
-          @$routeParams.loanType=null
 
         angular.extend @$scope, {
           filter_type
@@ -47,7 +43,7 @@ do (_, angular) ->
           @$scope.loading = false
         )
 
-        if(@$scope.clientUserId != undefined&&!@$routeParams.loanType)
+        if(@$scope.clientUserId != undefined)
           @getResult(@$scope.clientUserId)
       getResult:(id) ->
         getMark(id);
