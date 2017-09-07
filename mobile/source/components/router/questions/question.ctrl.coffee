@@ -10,6 +10,16 @@ do (_, angular) ->
 
         filter_type = @$routeParams.type
 
+        if @$routeParams.comeIn=="true"
+          @$routeParams.comeIn=1
+        else
+          @$routeParams.comeIn=0
+
+        if @$routeParams.loanType=="1"
+          @$routeParams.loanType=1
+        else
+          @$routeParams.loanType=null
+
         angular.extend @$scope, {
           filter_type
           page_path: @$location.path()[1..]
@@ -21,6 +31,7 @@ do (_, angular) ->
           showPay:@$routeParams.showPay
           qusComeIn:@$routeParams.comeIn
         }
+        console.log "@$routeParams.showPay:",typeof @$routeParams.showPay
 
         (@api.get_loan_list_by_config(filter_type, 20, false)
 
@@ -36,7 +47,7 @@ do (_, angular) ->
           @$scope.loading = false
         )
 
-        if(@$scope.clientUserId != undefined)
+        if(@$scope.clientUserId != undefined&&!@$routeParams.loanType)
           @getResult(@$scope.clientUserId)
       getResult:(id) ->
         getMark(id);
