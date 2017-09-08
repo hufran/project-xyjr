@@ -194,7 +194,7 @@ ractive.on('checkAmount',function(){
 
 ractive.on('withDrawSubmit', function () {
 	this.set('submitMessage', null);
-	var isAcess = false;
+	// var isAcess = false;
 	var amount = this.get('amount');
 	var pass = this.get('paymentPassword');
 	if (amount === '') {
@@ -226,15 +226,15 @@ ractive.on('withDrawSubmit', function () {
 				ractive.set('submitMessage', '交易密码错误');
 			} else {
 				ractive.set('submitMessage', null);
-                if (ractive.confirm(amount)) {
-                    isAcess  = true;
-                }else{
-                    isAcess = false;
-                    $('.post-btn').removeClass('disabled');
-                    ractive.set('submitText','确认提现');
-                }
+                // if (ractive.confirm(amount)) {
+                //     isAcess  = true;
+                // }else{
+                //     isAcess = false;
+                //     $('.post-btn').removeClass('disabled');
+                //     ractive.set('submitText','确认提现');
+                // }
 				if(banksabled.length) {
-                    if(!isAcess){return}
+                    // if(!isAcess){return}
                     var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
                     var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
                     Message.create({
@@ -243,7 +243,7 @@ ractive.on('withDrawSubmit', function () {
                         phone: phoneNumber,
                         transtype: '800003',
                         ok: function(a,b,c,d,e) {
-                            if (isAcess) {
+                            // if (isAcess) {
                                 $.post('/api/v2/lccb/withdraw/'+ CC.user.userId, 
                                 {
                                     paymentPassword : filterXSS(pass),
@@ -278,10 +278,10 @@ ractive.on('withDrawSubmit', function () {
                                         });
                                     }
                                 });
-                            }else{
-                                $('.post-btn').removeClass('disabled');
-                                ractive.set('submitText','确认提现');
-                            }
+                            // }else{
+                            //     $('.post-btn').removeClass('disabled');
+                            //     ractive.set('submitText','确认提现');
+                            // }
                             $('.dialog').hide();
                         },
                         close: function() {
