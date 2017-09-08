@@ -85,9 +85,12 @@ var ractive = new Ractive({
 			} else if (parseFloat(amount) > CC.user.availableAmount) {
 				self.set('submitMessage', self.get('msg.AMOUNT_POOR'));
 				return;
-			} else {
-				self.set('submitMessage', null);
-			}
+			} else if(amount == 0){
+				self.set('submitMessage', self.get('msg.AMOUNT_NULL'));
+                return;
+			}else {
+                self.set('submitMessage', null);
+            }
 		});
 
 		this.on('checkPassword', function () {
@@ -197,7 +200,7 @@ ractive.on('withDrawSubmit', function () {
 	// var isAcess = false;
 	var amount = this.get('amount');
 	var pass = this.get('paymentPassword');
-	if (amount === '') {
+	if (amount === '' || amount == 0) {
 		this.set('submitMessage', this.get('msg.AMOUNT_NULL'));
 	}
 	
