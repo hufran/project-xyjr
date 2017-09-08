@@ -27,6 +27,22 @@ do (_, angular) ->
                 console.log @user
                 console.log banks
 
+                if @$scope.user.info&&@$scope.user.info.name
+                    length=@$scope.user.info.name.length
+                    @$scope.user.info.name=@$scope.user.info.name.substring(0,1)+@$scope.user.info.name.substring(1,length-1).replace(/./g,"*")+@$scope.user.info.name.substring(length-1)
+
+                if @$scope.user.info&&@$scope.user.info.idNumber
+                    length=@$scope.user.info.idNumber.length
+                    @$scope.user.info.idNumber=@$scope.user.info.idNumber.substring(0,4)+@$scope.user.info.idNumber.substring(4,length-4).replace(/./g,"*")+@$scope.user.info.idNumber.substring(length-4)
+
+                if @$scope.user.bank_account&&@$scope.user.bank_account.account
+                    length=@$scope.user.bank_account.account.length
+                    @$scope.user.bank_account.account=@$scope.user.bank_account.account.substring(0,4)+@$scope.user.bank_account.account.substring(4,length-4).replace(/./g,"*")+@$scope.user.bank_account.account.substring(length-4)
+
+                if @$scope.user.bank_account&&@$scope.user.bank_account.bankMobile
+                    length=@$scope.user.bank_account.bankMobile.length
+                    @$scope.user.bank_account.bankMobile=@$scope.user.bank_account.bankMobile.substring(0,3)+@$scope.user.bank_account.bankMobile.substring(3,length-4).replace(/./g,"*")+@$scope.user.bank_account.bankMobile.substring(length-4)
+
             send_mobile_captcha: (phonenumber,cardnbr,username)->
                 if !phonenumber || !(/^([1][3|5|7|8][0-9]{9})$/.test(phonenumber))
                     @$timeout.cancel @error.timer
