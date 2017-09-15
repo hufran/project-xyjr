@@ -153,6 +153,7 @@ setTimeout((function () {
             backUrl: CC.backUrl,
             dueDate:(CC.repayments[0]||{}).dueDate,
             timeSettled:nextDate(CC.loan.timeSettled),
+            lccbId: CC.user.lccbUserId
         },
         oninit: function () {
             var self = this;
@@ -172,6 +173,12 @@ setTimeout((function () {
                   }
                   self.set('isnew', investNum);
                 });
+
+                CommonService.getLccbId(CC.user.id, function(res) {
+                    if(res.status == 0) {
+                        self.set('lccbId', res.data);
+                    }
+                })
             }
         }
     });

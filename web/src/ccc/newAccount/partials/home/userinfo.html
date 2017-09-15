@@ -21,7 +21,7 @@
 		</a>
 	</div>
 	<div class="account-bg" on-click="guide"></div>
-	{{elseif !banksabled}}
+	{{elseif !lccbId}}
 <!--注释掉引导绑定银行卡的灰色弹出层by Gloria 2016-05-05-->
 	<!--<div style="width:1100px;position:relative;margin: 0 auto">-->
 		<!--<a href="/newAccount/settings/bankCards" rel="nofollow" ><div class="bankcard-gray backcard-png">-->
@@ -32,6 +32,15 @@
 		<!--</a>-->
 	<!--</div>-->
 	<!--<div class="account-bg" on-click="guide"></div>-->
+	<div style="width:1100px;position:relative;margin: 0 auto">
+		<a href="/newAccount/settings/authentication"><div class="bankcard-gray bankcard-jihuo">
+			<div class="box-main">
+		    	<img class="rightnow" src="/ccc/newAccount/img/rightnow1.png"/>
+			</div>
+		</div>
+		</a>
+	</div>
+	<div class="account-bg" on-click="guide"></div>
 	{{/if}}
 {{/if}}
 {{/if}}

@@ -86,5 +86,12 @@ exports.CommonService = {
             .then(function (res) {
                 next(res.body);
             });
+    },
+    getLccbId: function (userid, next) {
+        request('GET', '/api/v2/lccb/getLccbId/' + userid)
+            .end()
+            .then(function (res) {
+                next(res.body);
+            });
     }
 };
