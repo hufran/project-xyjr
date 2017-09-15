@@ -79,7 +79,7 @@
     <div class="info">
 
         <div class="userBlock" id="userBlock">
-            {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if user.bankCards.length == 0}}
+            {{#if user}} {{! 已登录,但是没开第三方支付 }} {{#if user.bankCards.length == 0 || !lccbId}}
             <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" >{{user.availableAmount}}</i>
                 <a href="/newAccount/recharge" class="recharge">
                     <button>充值</button>
@@ -95,12 +95,21 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="prompt-open-3rdpay">
-                <p class="shiming">您的账户尚未开通银行存管，开通后可投资</p>
-            </div>
-            <div class="invest-button-wrapper">
-                <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/authentication">立即开通</a>
-            </div>
+                {{#if user.bankCards.length >0}}
+                    <div class="prompt-open-3rdpay">
+                        <p class="shiming">您的账户尚未激活银行存管，激活后可投资</p>
+                    </div>
+                    <div class="invest-button-wrapper">
+                        <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/authentication">立即激活</a>
+                    </div>
+                {{else}}
+                    <div class="prompt-open-3rdpay">
+                        <p class="shiming">您的账户尚未开通银行存管，开通后可投资</p>
+                    </div>
+                    <div class="invest-button-wrapper">
+                        <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/authentication">立即开通</a>
+                    </div>
+                {{/if}}
             {{else}} {{! 已登录 }} {{! 未签订无密投资}}
 
             <div class="leftMoney-open">账户余额：¥&nbsp;<i class="red" style="{{#if user.availableAmount>10000000}}font-size:16px;{{/if}}">{{user.availableAmount}}</i>

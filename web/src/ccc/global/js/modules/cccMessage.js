@@ -47,7 +47,7 @@ function CccMeassage(options) {
             overlay: config.overlay,
             showed: function(ele, box) {
                 // click ok
-                var data;
+                var data,interval;
                 var sms = false;
                 $(ele).find('.btn-confirm-ok').on('click', function(){
                     if(!sms){
@@ -84,6 +84,7 @@ function CccMeassage(options) {
                     if ($captchaBtn.hasClass('disabled')) {
                         return;
                     }
+                    countDown();
                     $(ele).find('.errMess').html('');
                     $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
                             transtype: config.transtype,
@@ -92,12 +93,16 @@ function CccMeassage(options) {
                             username: CC.user.bankCards[0].account.name
                         }, function(res) {
                             if(res.status == 0) {
-                                data = res.data;
-                                countDown();
+                                data = res.data;                                
                                 return;
                             }
                             $(ele).find('.errMess')
                                 .html('发送失败');
+                            $(ele).find('.getcaptcha')
+                                .html("获取验证码");
+                            $(ele).find('.getcaptcha')
+                                .removeClass('disabled');
+                            clearInterval(interval);
                         })
                     
                 })
@@ -110,7 +115,7 @@ function CccMeassage(options) {
                     var mssg = '$秒';
 
                     var left = 120;
-                    var interval = setInterval((function () {
+                    interval = setInterval((function () {
                         if (left > 0) {
                             $(ele).find('.getcaptcha')
                                 .html(mssg.replace('$', left--));

@@ -13,7 +13,7 @@ var banksabled = _.filter(CC.user.bankCards, function (r) {
 });
 var banksList={}
 var banks=[];
-var smsid, accountNames;
+var smsid, accountNames,interval;
 
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -30,7 +30,8 @@ var ractive = new Ractive({
         format: format,
         bankNumber: '',
         bankMobile: '',
-        accountName: ''
+        accountName: '',
+        lccbId: CC.user.lccbUserId
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -43,6 +44,12 @@ var ractive = new Ractive({
                 ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
             }
         });
+
+        CommonService.getLccbId(CC.user.id, function(res) {
+            if(res.status == 0) {
+                ractive.set('lccbId', res.data);
+            }
+        })
     },
     oncomplete: function () {
        SeverName() 
@@ -336,13 +343,91 @@ ractive.on('sendTelCode', function (){
     }
     
     var smsType = '800001';
-    var userId = CC.user.userId;    
+    var userId = CC.user.userId;
+    countDown();    
     CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
         if (r.status == 0) {
-            smsid = r.data;
-            countDown();
+            smsid = r.data;            
+        }else{
+            ractive.set({
+                showErrormessageTxt: true,
+                errormessageTxt: '发送失败'
+            });
+            $('.getcaptcha')
+                .html("获取验证码");
+            $('.getcaptcha')
+                .removeClass('disabled');
+            clearInterval(interval);
         }
     });
+});
+
+ractive.on('sendTelCode2', function (){
+    this.set('showErrormessageTxt',false);
+    var $captchaBtn = $(".getcaptcha");
+    var cardnbr = this.get("bankNumber");
+    var cardPhone = this.get("bankMobile");
+    var username = this.get("authenticateInfo").name;
+    if ($captchaBtn.hasClass('disabled')) {
+        return;
+    }
+
+    var smsType = '800001';
+    var userId = CC.user.userId;
+    countDown();    
+    CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
+        if (r.status == 0) {
+            smsid = r.data;            
+        }else{
+            ractive.set({
+                showErrormessageTxt: true,
+                errormessageTxt: '发送失败'
+            });
+            $('.getcaptcha')
+                .html("获取验证码");
+            $('.getcaptcha')
+                .removeClass('disabled');
+            clearInterval(interval);
+        }
+    });
+});
+
+ractive.on('jihuo-submit', function (){
+    if (document.getElementById('agree').checked == true){
+        $('.agree-error').html('');
+    }else{
+        $('.agree-error').html('请先同意开通银行存管协议');
+        return;
+    }
+
+    if(!smsid){
+        var error = 'SMSCAPTCHA_INVALID'        
+        ractive.set({
+            showErrormessageTxt: true,
+            errormessageTxt: utils.errorMsg[error]
+        });
+        return
+    }
+
+    this.fire('checkmessageTxt');
+    var mess = this.get("messageTxt");
+    console.log(mess)
+    $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
+        smsid: smsid,
+        smsCaptcha : mess
+    },function(res) {
+        console.log(res)
+        CccOk.create({
+            msg: res.msg,
+            okText: '确定',
+            ok: function () {
+                window.location.reload();
+            },
+            cancel: function() {
+                window.location.reload();
+            }
+        });                    
+    })
 });
 
 function countDown() {
@@ -352,7 +437,7 @@ function countDown() {
     var msg = '$秒';
 
     var left = 120;
-    var interval = setInterval((function () {
+    interval = setInterval((function () {
         if (left > 0) {
             $('.getcaptcha')
                 .html(msg.replace('$', left--));

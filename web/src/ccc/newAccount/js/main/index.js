@@ -2,6 +2,7 @@
 var utils = require('ccc/global/js/lib/utils');
 var Plan = require('ccc/global/js/modules/cccRepayments');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+var CommonService = require('ccc/global/js/modules/common').CommonService;
 var Tips = require('ccc/global/js/modules/cccTips');
 require('ccc/global/js/modules/tooltip');
 require('ccc/global/js/modules/cccPaging');
@@ -206,7 +207,8 @@ var infoRactive = new Ractive({
 		safetyProgress: 25,
 		riskText: '中',
 		vip:'普通用户',
-		showVip: true
+		showVip: true,
+        lccbId: CC.user.lccbUserId
 	},
 	
 	oninit: function () {
@@ -241,6 +243,12 @@ var infoRactive = new Ractive({
 		accountService.getGroupMedal(function (r) {
 			infoRactive.set('groupMedal', r);
 		});
+
+        CommonService.getLccbId(CC.user.id, function(res) {
+            if(res.status == 0) {
+                infoRactive.set('lccbId', res.data);
+            }
+        })
 	}
 });
 
