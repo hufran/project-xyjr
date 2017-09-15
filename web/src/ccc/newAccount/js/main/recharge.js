@@ -57,7 +57,8 @@ var ractive = new Ractive({
         amountValue: 10000000,
         action:cyberBankBaseUrl+CC.user.id,
         showNum: 9,
-        minAmount: 100
+        minAmount: 100,
+        lccbId: CC.user.lccbUserId
     },
     parseData:function(){
         var self = this;

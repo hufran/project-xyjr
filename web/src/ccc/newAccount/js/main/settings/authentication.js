@@ -336,13 +336,71 @@ ractive.on('sendTelCode', function (){
     }
     
     var smsType = '800001';
-    var userId = CC.user.userId;    
+    var userId = CC.user.userId;
+    countDown();    
     CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
         if (r.status == 0) {
-            smsid = r.data;
-            countDown();
+            smsid = r.data;            
         }
     });
+});
+
+ractive.on('sendTelCode2', function (){
+    this.set('showErrormessageTxt',false);
+    var $captchaBtn = $(".getcaptcha");
+    var cardnbr = this.get("bankNumber");
+    var cardPhone = this.get("bankMobile");
+    var username = this.get("authenticateInfo").name;
+    if ($captchaBtn.hasClass('disabled')) {
+        return;
+    }
+
+    var smsType = '800001';
+    var userId = CC.user.userId;
+    countDown();    
+    CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
+        if (r.status == 0) {
+            smsid = r.data;            
+        }
+    });
+});
+
+ractive.on('jihuo-submit', function (){
+    if (document.getElementById('agree').checked == true){
+        $('.agree-error').html('');
+    }else{
+        $('.agree-error').html('请先同意开通银行存管协议');
+        return;
+    }
+
+    if(!smsid){
+        var error = 'SMSCAPTCHA_INVALID'        
+        ractive.set({
+            showErrormessageTxt: true,
+            errormessageTxt: utils.errorMsg[error]
+        });
+        return
+    }
+
+    this.fire('checkmessageTxt');
+    var mess = this.get("messageTxt");
+    console.log(mess)
+    $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
+        smsid: smsid,
+        smsCaptcha : mess
+    },function(res) {
+        console.log(res)
+        CccOK.create({
+            msg: res.msg,
+            okText: '确定',
+            ok: function () {
+                window.location.reload();
+            },
+            cancel: function() {
+                window.location.reload();
+            }
+        });                    
+    })
 });
 
 function countDown() {

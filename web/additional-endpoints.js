@@ -15,6 +15,9 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lccb/withdraw/:userId', auth.user());
     router.post('/api/v2/lccb/mermaid/bindCard', auth.pass());
     router.get('/api/v2/lccb/banks', auth.user());
+    router.post('/api/v2/lccb/persionInit/:userId', auth.pass());
+    router.post('/api/v2/lccb/getLccbId/:userId', auth.pass());
+    
     
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());

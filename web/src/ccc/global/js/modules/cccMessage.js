@@ -84,6 +84,7 @@ function CccMeassage(options) {
                     if ($captchaBtn.hasClass('disabled')) {
                         return;
                     }
+                    countDown();
                     $(ele).find('.errMess').html('');
                     $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
                             transtype: config.transtype,
@@ -92,8 +93,7 @@ function CccMeassage(options) {
                             username: CC.user.bankCards[0].account.name
                         }, function(res) {
                             if(res.status == 0) {
-                                data = res.data;
-                                countDown();
+                                data = res.data;                                
                                 return;
                             }
                             $(ele).find('.errMess')

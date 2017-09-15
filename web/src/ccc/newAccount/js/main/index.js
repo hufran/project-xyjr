@@ -206,7 +206,8 @@ var infoRactive = new Ractive({
 		safetyProgress: 25,
 		riskText: '中',
 		vip:'普通用户',
-		showVip: true
+		showVip: true,
+        lccbId: CC.user.lccbUserId
 	},
 	
 	oninit: function () {

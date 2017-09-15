@@ -153,6 +153,7 @@ setTimeout((function () {
             backUrl: CC.backUrl,
             dueDate:(CC.repayments[0]||{}).dueDate,
             timeSettled:nextDate(CC.loan.timeSettled),
+            lccbId: CC.user.lccbUserId
         },
         oninit: function () {
             var self = this;
