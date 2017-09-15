@@ -47,7 +47,7 @@ function CccMeassage(options) {
             overlay: config.overlay,
             showed: function(ele, box) {
                 // click ok
-                var data;
+                var data,interval;
                 var sms = false;
                 $(ele).find('.btn-confirm-ok').on('click', function(){
                     if(!sms){
@@ -98,6 +98,11 @@ function CccMeassage(options) {
                             }
                             $(ele).find('.errMess')
                                 .html('发送失败');
+                            $(ele).find('.getcaptcha')
+                                .html("获取验证码");
+                            $(ele).find('.getcaptcha')
+                                .removeClass('disabled');
+                            clearInterval(interval);
                         })
                     
                 })
@@ -110,7 +115,7 @@ function CccMeassage(options) {
                     var mssg = '$秒';
 
                     var left = 120;
-                    var interval = setInterval((function () {
+                    interval = setInterval((function () {
                         if (left > 0) {
                             $(ele).find('.getcaptcha')
                                 .html(mssg.replace('$', left--));

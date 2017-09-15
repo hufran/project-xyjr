@@ -13,7 +13,7 @@ var banksabled = _.filter(CC.user.bankCards, function (r) {
 });
 var banksList={}
 var banks=[];
-var smsid, accountNames;
+var smsid, accountNames,interval;
 
 var ractive = new Ractive({
     el: "#ractive-container",
@@ -353,6 +353,11 @@ ractive.on('sendTelCode', function (){
                 showErrormessageTxt: true,
                 errormessageTxt: '发送失败'
             });
+            $('.getcaptcha')
+                .html("获取验证码");
+            $('.getcaptcha')
+                .removeClass('disabled');
+            clearInterval(interval);
         }
     });
 });
@@ -378,6 +383,11 @@ ractive.on('sendTelCode2', function (){
                 showErrormessageTxt: true,
                 errormessageTxt: '发送失败'
             });
+            $('.getcaptcha')
+                .html("获取验证码");
+            $('.getcaptcha')
+                .removeClass('disabled');
+            clearInterval(interval);
         }
     });
 });
@@ -407,7 +417,7 @@ ractive.on('jihuo-submit', function (){
         smsCaptcha : mess
     },function(res) {
         console.log(res)
-        CccOK.create({
+        CccOk.create({
             msg: res.msg,
             okText: '确定',
             ok: function () {
@@ -427,7 +437,7 @@ function countDown() {
     var msg = '$秒';
 
     var left = 120;
-    var interval = setInterval((function () {
+    interval = setInterval((function () {
         if (left > 0) {
             $('.getcaptcha')
                 .html(msg.replace('$', left--));
