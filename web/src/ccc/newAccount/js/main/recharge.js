@@ -76,9 +76,10 @@ var ractive = new Ractive({
         console.log(num);
     },
     oninit: function(){
+        var self = this;
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                this.set('lccbId', res.data);
+                self.set('lccbId', res.data);
             }
         })
     },
