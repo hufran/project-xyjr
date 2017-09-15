@@ -173,6 +173,12 @@ setTimeout((function () {
                   }
                   self.set('isnew', investNum);
                 });
+
+                CommonService.getLccbId(CC.user.id, function(res) {
+                    if(res.status == 0) {
+                        this.set('lccbId', res.data);
+                    }
+                })
             }
         }
     });

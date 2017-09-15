@@ -18,6 +18,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var CccOK = require('ccc/global/js/modules/cccOk');
 var Message = require('ccc/global/js/modules/cccMessage');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
+var CommonService = require('ccc/global/js/modules/common').CommonService;
 //新增支付方式判断
 var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
 if(payMethod==="lianlianpay"){
@@ -73,6 +74,13 @@ var ractive = new Ractive({
             })
         }
         console.log(num);
+    },
+    oninit: function(){
+        CommonService.getLccbId(CC.user.id, function(res) {
+            if(res.status == 0) {
+                this.set('lccbId', res.data);
+            }
+        })
     },
     oncomplete: function () {
         var self = this;

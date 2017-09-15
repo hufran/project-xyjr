@@ -30,7 +30,8 @@ var ractive = new Ractive({
         format: format,
         bankNumber: '',
         bankMobile: '',
-        accountName: ''
+        accountName: '',
+        lccbId: CC.user.lccbUserId
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -43,6 +44,12 @@ var ractive = new Ractive({
                 ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
             }
         });
+
+        CommonService.getLccbId(CC.user.id, function(res) {
+            if(res.status == 0) {
+                this.set('lccbId', res.data);
+            }
+        })
     },
     oncomplete: function () {
        SeverName() 
@@ -341,6 +348,11 @@ ractive.on('sendTelCode', function (){
     CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
         if (r.status == 0) {
             smsid = r.data;            
+        }else{
+            ractive.set({
+                showErrormessageTxt: true,
+                errormessageTxt: '发送失败'
+            });
         }
     });
 });
@@ -361,6 +373,11 @@ ractive.on('sendTelCode2', function (){
     CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
         if (r.status == 0) {
             smsid = r.data;            
+        }else{
+            ractive.set({
+                showErrormessageTxt: true,
+                errormessageTxt: '发送失败'
+            });
         }
     });
 });

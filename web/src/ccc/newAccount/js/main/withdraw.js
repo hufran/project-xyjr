@@ -61,6 +61,11 @@ var ractive = new Ractive({
 		userInfo.then(function(){
 			self.set('availableAmount', CC.user.availableAmount);
 		});
+        CommonService.getLccbId(CC.user.id, function(res) {
+            if(res.status == 0) {
+                self.set('lccbId', res.data);
+            }
+        })
 	},
 	oncomplete: function(){
 		var self = this;
