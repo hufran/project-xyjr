@@ -87,7 +87,7 @@ exports.CommonService = {
                 next(res.body);
             });
     },
-    getLccbId: function (userid) {
+    getLccbId: function (userid, next) {
         request('POST', '/api/v2/lccb/getLccbId/' + userid)
             .type('form')
             .send({userid: userid})
