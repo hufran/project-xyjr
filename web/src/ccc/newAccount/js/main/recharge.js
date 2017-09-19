@@ -195,25 +195,25 @@ var ractive = new Ractive({
 
 });
 
-request('GET',bankListAPI).end().
-    then(function (r) {
-        corBanks=[];
-        banks=r.body.data;
-        ractive.set('banks', banks);
-        var ignore;
-        for(var i=0;i<banks.length;i++){
-            if(banks[i]["name"]!=="廊坊银行"){
-                corBanks[i]=banks[i]; 
-            }else{
-                ignore=i;
-            }
-        }
-        if(!isNaN(ignore)&&ignore>=0){
-            corBanks.splice(ignore,1);
-        }
+// request('GET',bankListAPI).end().
+//     then(function (r) {
+//         corBanks=[];
+//         banks=r.body.data;
+//         ractive.set('banks', banks);
+//         var ignore;
+//         for(var i=0;i<banks.length;i++){
+//             if(banks[i]["name"]!=="廊坊银行"){
+//                 corBanks[i]=banks[i]; 
+//             }else{
+//                 ignore=i;
+//             }
+//         }
+//         if(!isNaN(ignore)&&ignore>=0){
+//             corBanks.splice(ignore,1);
+//         }
         
-        ractive.set('corBanks', corBanks);
-    });
+//         ractive.set('corBanks', corBanks);
+//     });
 ractive.parseData();
 
 ractive.on('checkAmount',function(){
@@ -277,6 +277,10 @@ ractive.on('recharge_submit', function (e){
     };
 
     if(CC.user.bankCards.length>0){
+        if(CC.user.enterprise){
+            console.log('企业用户')
+            return;
+        }
         var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
         var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
         
