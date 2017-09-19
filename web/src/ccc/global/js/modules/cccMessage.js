@@ -48,13 +48,15 @@ function CccMeassage(options) {
             showed: function(ele, box) {
                 // click ok
                 var data,interval;
-                var sms = false;
+                // var sms = false;
+                countDown();
+                sendMsg()
                 $(ele).find('.btn-confirm-ok').on('click', function(){
-                    if(!sms){
-                        $(ele).find('.errMess')
-                                .html('验证码错误');
-                            return false;
-                    }                    
+                    // if(!sms){
+                    //     $(ele).find('.errMess')
+                    //             .html('验证码错误');
+                    //         return false;
+                    // }                    
                     var msmcaptcha = $(ele).find('.msmcaptcha').val();
                     if(!/^\d{6}$/.test(msmcaptcha)) {
                         $(ele).find('.errMess')
@@ -79,31 +81,14 @@ function CccMeassage(options) {
                 //getCaptcha
                 $(ele).find('.getcaptcha').on('click', function() {
                     console.log('获取验证码')
-                    sms = true;                    
+                    // sms = true;                    
                     var $captchaBtn = $(ele).find(".getcaptcha");
                     if ($captchaBtn.hasClass('disabled')) {
                         return;
                     }
                     countDown();
                     $(ele).find('.errMess').html('');
-                    $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
-                            transtype: config.transtype,
-                            cardnbr: CC.user.bankCards[0].account.account,
-                            cardPhone: CC.user.bankCards[0].account.bankMobile,
-                            username: CC.user.bankCards[0].account.name
-                        }, function(res) {
-                            if(res.status == 0) {
-                                data = res.data;                                
-                                return;
-                            }
-                            $(ele).find('.errMess')
-                                .html('发送失败');
-                            $(ele).find('.getcaptcha')
-                                .html("获取验证码");
-                            $(ele).find('.getcaptcha')
-                                .removeClass('disabled');
-                            clearInterval(interval);
-                        })
+                    sendMsg()
                     
                 })
 
@@ -127,6 +112,27 @@ function CccMeassage(options) {
                             clearInterval(interval);
                         }
                     }), 1000);
+                }
+
+                function sendMsg() {
+                    $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
+                            transtype: config.transtype,
+                            cardnbr: CC.user.bankCards[0].account.account,
+                            cardPhone: CC.user.bankCards[0].account.bankMobile,
+                            username: CC.user.bankCards[0].account.name
+                        }, function(res) {
+                            if(res.status == 0) {
+                                data = res.data;                                
+                                return;
+                            }
+                            $(ele).find('.errMess')
+                                .html('发送失败');
+                            $(ele).find('.getcaptcha')
+                                .html("获取验证码");
+                            $(ele).find('.getcaptcha')
+                                .removeClass('disabled');
+                            clearInterval(interval);
+                        })
                 }
             }
         });
