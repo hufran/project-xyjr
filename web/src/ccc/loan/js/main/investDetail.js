@@ -446,6 +446,10 @@ setTimeout((function () {
     });
 
     function toPay(num, couponText) {
+        if(CC.user.enterprise){
+            console.log('企业用户')
+            return;
+        }
         var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
         var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
         Message.create({
