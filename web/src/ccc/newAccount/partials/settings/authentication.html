@@ -141,7 +141,7 @@
         <label for="" class="text">银行预留手机号：</label>
         <span class="value" style="width: 280px;">{{bankMobile.substr(0,3)}}****{{bankMobile.substr(-3)}}</span>
     </div>
-    {{#if !lccbId}}
+    {{#if !lccbId || !authority}}
     <div class="account-info-row">
         <label for="messageTxt2" class="">短信验证码</label>
          <input type="text" class="check-name" id="messageTxt2" name="messageTxt2" value="{{messageTxt}}" on-blur="checkmessageTxt" style="width: 100px" />
@@ -156,14 +156,17 @@
     <p class="account-info-row" style="text-align:left;line-height: 30px;">
         <input type="checkbox" class="agree" checked id="agree" />
         <span>我同意 <p style="display:inline-block;vertical-align:top;line-height:20px;padding:5px 0 10px 5px">
-                        <a href="/agreement/mobile/bank?key=廊坊银行网络借贷交易资金存管业务三方协议" id="protocol" target="_blank" style="color:#009ada">《廊坊银行网络借贷交易资金存管业务三方协议》</a><br>
+                    {{#if !lccbId}}
+                        <a href="/agreement/mobile/bank?key=廊坊银行网络借贷交易资金存管业务三方协议" id="protocol" target="_blank" style="color:#009ada">《廊坊银行网络借贷交易资金存管业务三方协议》</a>
+                    {{/if}}   
+                        <a href="/agreement/mobile/bank?key=廊坊银行网络借贷交易资金存管业务三方协议" id="protocol" target="_blank" style="color:#009ada">《授权协议》</a>                       
                     </p>
         </span>
     </p>
 
     <p class="agree-error userIdNumber" style="color:red;margin-left: 350px;"></p>
     <div class="account-submit">
-        <input type="button" value="立即激活" on-click="jihuo-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
+        <input type="button" value="{{buttonname}}" on-click="jihuo-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
     </div>
     {{/if}}
 </div>

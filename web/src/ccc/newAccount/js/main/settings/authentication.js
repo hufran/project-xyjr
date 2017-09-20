@@ -31,7 +31,8 @@ var ractive = new Ractive({
         bankNumber: '',
         bankMobile: '',
         accountName: '',
-        lccbId: CC.user ? CC.user.lccbUserId : ''
+        lccbId: CC.user ? CC.user.lccbUserId : '',
+        authority: ''
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -49,8 +50,10 @@ var ractive = new Ractive({
             if(res.status == 0) {
                 if(res.data == 0) {
                     ractive.set('lccbId', '');
+                    ractive.set('buttonname', '立即激活');
                 }else{
                     ractive.set('lccbId', res.data);
+                    ractive.set('buttonname', '授权投资');
                 }                
             }
         })
@@ -376,7 +379,12 @@ ractive.on('sendTelCode2', function (){
         return;
     }
 
-    var smsType = '800001';
+    if (!this.get("lccbId")) {
+        var smsType = '800001';
+    }else{
+        var smsType = '800027';
+    }
+    
     var userId = CC.user.userId;
     countDown();    
     CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
@@ -415,14 +423,26 @@ ractive.on('jihuo-submit', function (){
 
     this.fire('checkmessageTxt');
     var mess = this.get("messageTxt");
-    console.log(mess)
-    $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
-        smsid: smsid,
-        smsCaptcha : mess
-    },function(res) {
-        console.log(res)
+    if(!this.get("lccbId")){
+        $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
+            smsid: smsid,
+            smsCaptcha : mess
+        },function(res) {
+            console.log(res)
+            CccOk.create({
+                msg: res.msg,
+                okText: '确定',
+                ok: function () {
+                    window.location.reload();
+                },
+                cancel: function() {
+                    window.location.reload();
+                }
+            });                    
+        })
+    } else {
         CccOk.create({
-            msg: res.msg,
+            msg: '授权成功',
             okText: '确定',
             ok: function () {
                 window.location.reload();
@@ -430,8 +450,9 @@ ractive.on('jihuo-submit', function (){
             cancel: function() {
                 window.location.reload();
             }
-        });                    
-    })
+        });
+    }
+    
 });
 
 function countDown() {
