@@ -44,7 +44,7 @@ var ractive = new Ractive({
         province: '',
         city: '',
         ifDel: false,
-        mobile: banksabled.length ? CC.user.bankCards[0].account.bankMobile : ''
+        mobile: banksabled.length ? CC.user.bankCards[0].account.bankMobile : '',
         realName: CC.user.name,
         isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false
     },
