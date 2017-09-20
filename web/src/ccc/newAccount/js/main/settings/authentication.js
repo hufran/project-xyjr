@@ -31,7 +31,7 @@ var ractive = new Ractive({
         bankNumber: '',
         bankMobile: '',
         accountName: '',
-        lccbId: CC.user.lccbUserId
+        lccbId: CC.user ? CC.user.lccbUserId : ''
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -47,7 +47,11 @@ var ractive = new Ractive({
 
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                ractive.set('lccbId', res.data);
+                if(res.data == 0) {
+                    ractive.set('lccbId', '');
+                }else{
+                    ractive.set('lccbId', res.data);
+                }                
             }
         })
     },
