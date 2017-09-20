@@ -59,7 +59,7 @@ var ractive = new Ractive({
         action:cyberBankBaseUrl+CC.user.id,
         showNum: 9,
         minAmount: 100,
-        lccbId: CC.user.lccbUserId
+        lccbId: CC.user ? CC.user.lccbUserId : ''
     },
     parseData:function(){
         var self = this;
@@ -79,7 +79,11 @@ var ractive = new Ractive({
         var self = this;
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                self.set('lccbId', res.data);
+                if(res.data == 0){
+                    self.set('lccbId', '');
+                }else{
+                    self.set('lccbId', res.data);
+                }               
             }
         })
     },
