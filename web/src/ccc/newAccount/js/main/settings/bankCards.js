@@ -7,6 +7,7 @@ var Confirm = require('ccc/global/js/modules/cccConfirm');
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 var CommonService = require('ccc/global/js/modules/common').CommonService;
 var CccOk = require('ccc/global/js/modules/cccOk');
+var Message = require('ccc/global/js/modules/cccMessage');
 require('ccc/xss.min');
 // 过滤银行卡，只显示enabled=true的
 var banksList={}
@@ -109,11 +110,7 @@ function SeverName(){
             for (var i in banksList) {
                 name=banksList[i];
                 banks.push({'name': name,'code': i});
-                if(CC.user.bankCards.length>0 && i == CC.user.bankCards[0].account.bank) {
-                    accountNames = name;
-                }
             };
-            ractive.set('accountName', accountNames)
             ractive.set('banks', banks);
             console.log(banks)
         });
