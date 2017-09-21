@@ -22,7 +22,7 @@
 {{#if status === 3}}
 <div class="bind-card-wrapper">
     <form action="" method="POST" on-submit="bind-card-submit" autocomplete="off">
-        <div class="banks-container control-group" style="position:relative;left:50%;width:500px;margin-left:-185px;">
+        <div class="banks-container control-group" style="position:relative;left:50%;width:530px;margin-left:-185px;">
             <div class="space space-30"></div>
 
             <!--增加业务选择-->
@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">开户银行：</div>
                 <span class="bankpic"></span>
-                <select name="bankName" class="select" value="{{bankName}}" style="font-size: 12px;">
+                <select name="bankName" class="select" value="{{bankName}}" style="font-size: 12px;width: 150px;border-color: #ccc;border-radius: 4px">
                     <option value="请选择开户银行">请选择开户银行</option>
                     {{#each banks}}
                         <option value="{{name}}" data-code="{{code}}">{{name}}</option>

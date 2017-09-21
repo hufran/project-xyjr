@@ -69,9 +69,9 @@ var ractive = new Ractive({
 
 //判断是什么业务显示不同的银行卡列表
 //changeSeverName();
-$('select[name="severName"]').on('change',function(){
-    changeSeverName();
-})
+// $('select[name="severName"]').on('change',function(){
+//     changeSeverName();
+// })
 function changeSeverName(){
     if ($('select[name="severName"]').val()=='融资借款') {//融资借款
         request('GET','/api/v2/jdpay/banks4AppServer').end().
@@ -112,7 +112,6 @@ function SeverName(){
                 banks.push({'name': name,'code': i});
             };
             ractive.set('banks', banks);
-            console.log(banks)
         });
 }
 
@@ -161,7 +160,7 @@ ractive.on('checkSmsCaptcha', function () {
 });
 
 ractive.on("validatePhoneNo", function () {
-    var no = this.get("phoneNo");
+    var no = this.get("mobile");
     if (!/^1\d{10}$/.test(no)) {
         this.set("phoneNoError", true);
     } else {
@@ -332,7 +331,8 @@ ractive.on("delete-card-submit", function (e) {
                 transtype: '800006',
                 ok: function(a,b,c,d,e) {                   
                     ractive.set("status", 3)
-                    $('.dialog').hide();
+                    $('.dialog-overlay').hide()
+                    $('.dialog').hide();                   
                 },
                 close: function() {
                 }
@@ -380,9 +380,9 @@ function countDown() {
     $('.sendCode')
         .addClass('disabled');
     var previousText = '获取验证码';
-    var msg = '$秒后重新发送';
+    var msg = '$秒';
 
-    var left = 60;
+    var left = 120;
     var interval = setInterval((function () {
         if (left > 0) {
             $('.sendCode')
