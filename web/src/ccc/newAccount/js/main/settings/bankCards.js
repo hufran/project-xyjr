@@ -115,11 +115,12 @@ function SeverName(){
         });
 }
 
-$('select[name="bankName"]').on("change", function() {
-    var code = $(this).find("option:selected").attr('data-code');
-    console.log(code);
-    $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
-})
+console.log(11)
+// $('select[name="bankName"]').on("change", function() {
+//     var code = $(this).find("option:selected").attr('data-code');
+//     console.log(code);
+//     $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
+// })
 
 
 
@@ -331,6 +332,11 @@ ractive.on("delete-card-submit", function (e) {
                 transtype: '800006',
                 ok: function(a,b,c,d,e) {                   
                     ractive.set("status", 3)
+                    $('select[name="bankName"]').on("change", function() {
+                        var code = $(this).find("option:selected").attr('data-code');
+                        console.log(code);
+                        $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
+                    })
                     $('.dialog-overlay').hide()
                     $('.dialog').hide();                   
                 },
