@@ -12,7 +12,7 @@ require('ccc/xss.min');
 // 过滤银行卡，只显示enabled=true的
 var banksList={}
 var banks=[];
-vat smsid;
+var smsid;
 
 if (CC.user.account) {
     CC.user.account.Faccount = utils.bankAccount(CC.user.account.account);
