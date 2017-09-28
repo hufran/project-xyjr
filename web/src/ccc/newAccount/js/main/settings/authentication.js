@@ -32,7 +32,7 @@ var ractive = new Ractive({
         bankMobile: '',
         accountName: '',
         lccbId: CC.user ? CC.user.lccbUserId : '',
-        authority: ''
+        authority: CC.user ? CC.user.lccbAuth : ''
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -48,13 +48,14 @@ var ractive = new Ractive({
 
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                if(res.data == 0) {
+                if(res.data.lccbId == 0) {
                     ractive.set('lccbId', '');
                     ractive.set('buttonname', '立即激活');
                 }else{
-                    ractive.set('lccbId', res.data);
+                    ractive.set('lccbId', res.data.lccbId);
                     ractive.set('buttonname', '授权投资');
-                }                
+                }
+                ractive.set('authority', res.data.lccbAuth);                
             }
         })
     },
@@ -428,7 +429,6 @@ ractive.on('jihuo-submit', function (){
             smsid: smsid,
             smsCaptcha : mess
         },function(res) {
-            console.log(res)
             CccOk.create({
                 msg: res.msg,
                 okText: '确定',
@@ -441,16 +441,21 @@ ractive.on('jihuo-submit', function (){
             });                    
         })
     } else {
-        CccOk.create({
-            msg: '授权成功',
-            okText: '确定',
-            ok: function () {
-                window.location.reload();
-            },
-            cancel: function() {
-                window.location.reload();
-            }
-        });
+        $.post('/api/v2/lccb/userAuth/'+ CC.user.userId,{
+            smsid: smsid,
+            validatemsg : mess
+        },function(res) {
+            CccOk.create({
+                msg: res.msg,
+                okText: '确定',
+                ok: function () {
+                    window.location.reload();
+                },
+                cancel: function() {
+                    window.location.reload();
+                }
+            });                    
+        })
     }
     
 });

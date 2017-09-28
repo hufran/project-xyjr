@@ -95,14 +95,14 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-                {{#if user.bankCards.length >0}}
+                {{#if !lccbId}}
                     <div class="prompt-open-3rdpay">
                         <p class="shiming">您的账户尚未激活银行存管，激活后可投资</p>
                     </div>
                     <div class="invest-button-wrapper">
                         <a class="btn btn-warning open-button loginBtn" href="/newAccount/settings/authentication">立即激活</a>
                     </div>
-                {{else}}
+                {{elseif lccbId == -1}}
                     <div class="prompt-open-3rdpay">
                         <p class="shiming">您的账户尚未开通银行存管，开通后可投资</p>
                     </div>

@@ -208,7 +208,7 @@ var infoRactive = new Ractive({
 		riskText: '中',
 		vip:'普通用户',
 		showVip: true,
-        lccbId: CC.user.lccbUserId
+        lccbId: CC.user ? CC.user.lccbUserId : ''
 	},
 	
 	oninit: function () {
@@ -246,10 +246,10 @@ var infoRactive = new Ractive({
 
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                if(res.data == 0) {
+                if(res.data.lccbId == 0) {
                     infoRactive.set('lccbId', '');
                 }else{
-                    infoRactive.set('lccbId', res.data);
+                    infoRactive.set('lccbId', res.data.lccbId);
                 }
             }
         })

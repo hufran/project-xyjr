@@ -12,6 +12,7 @@ require('ccc/xss.min');
 // 过滤银行卡，只显示enabled=true的
 var banksList={}
 var banks=[];
+vat smsid;
 
 if (CC.user.account) {
     CC.user.account.Faccount = utils.bankAccount(CC.user.account.account);
@@ -47,7 +48,8 @@ var ractive = new Ractive({
         ifDel: false,
         mobile: banksabled.length ? CC.user.bankCards[0].account.bankMobile : '',
         realName: CC.user.name,
-        isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false
+        isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false,
+        lccbId: CC.user ? CC.user.lccbUserId : ''
     },
     oninit: function () {
         accountService.getUserInfo(function (o) {
@@ -63,7 +65,16 @@ var ractive = new Ractive({
         //     accountService.getCity(fProvince, function (res) {
         //         ractive.set('city', changeToList(res));
         //     });
-        // });        
+        // });
+        CommonService.getLccbId(CC.user.id, function(res) {
+            if(res.status == 0) {
+                if(res.data.lccbId == 0) {
+                    self.set('lccbId', '');
+                }else{
+                    self.set('lccbId', res.data.lccbId);
+                }                
+            }
+        })        
     }
 });
 
@@ -115,7 +126,6 @@ function SeverName(){
         });
 }
 
-console.log(11)
 // $('select[name="bankName"]').on("change", function() {
 //     var code = $(this).find("option:selected").attr('data-code');
 //     console.log(code);
@@ -183,13 +193,13 @@ ractive.on("bind-card-submit", function (e) {
     // var bankr= _.filter(CC.user.bankCards, function (r) {
     // return r.deleted === false;
     // });
-    var bankName = this.get('bankName');
+    var bankName = this.get('bankCode');
     var cardNo = this.get('cardNo');
     // var recardNo = this.get('recardNo');
     var cardPhone = this.get('mobile');
     // var province = this.get('myProvince');
     // var city = this.get('myCity');
-    var branchName = this.get('branchName');
+    // var branchName = this.get('branchName');
     var smsCaptcha = this.get('smsCaptcha');
     //选择业务类型
     // if ($('select[name="severName"]').val()==''){
@@ -233,23 +243,33 @@ ractive.on("bind-card-submit", function (e) {
     // }
     
     var sendObj = {
-        bankName: filterXSS(bankName),
-        cardNo: filterXSS(cardNo),
-        cardPhone: filterXSS(cardPhone),
-        branchName: branchName,
-        smsCaptcha: filterXSS(smsCaptcha)
+        smsid: smsid,
+        validatemsg: filterXSS(smsCaptcha)
+        userphonenum: filterXSS(cardPhone),
+        bankcode: filterXSS(bankName),
+        cardnbr: filterXSS(cardNo)        
     }
 
-    CccOk.create({
-        msg: '绑卡成功',
-        okText: '确定',
-        ok: function () {
-            window.location.reload();
-        },
-        cancel: function () {
-            window.location.reload();
+    $.post('/api/v2/lccb/userChangeBank/'+ CC.user.id, sendObj,function(r){
+        var msg;
+        if (r.status == 0) {
+           msg = '绑卡成功'
+        }else{
+            msg= '绑卡失败'
         }
-    });
+        CccOk.create({
+            msg: msg,
+            okText: '确定',
+            ok: function () {
+                window.location.reload();
+            },
+            cancel: function () {
+                window.location.reload();
+            }
+        });
+    })
+
+    
 
     // $.post('/yeepay/bindCard', sendObj, function (r) {
     //     if(r.success) {
@@ -287,6 +307,18 @@ ractive.on("bind-card-submit", function (e) {
 
 ractive.on("delete-card-submit", function (e) {
     e.original.preventDefault();
+    if(!lccbId) {
+        CccOk.create({
+            msg: '用户尚未激活，不能更换银行卡',
+            okText: '确定',
+            ok: function () {
+                window.location.reload();
+            },
+            cancel: function () {
+                window.location.reload();
+            }
+        });
+    }
     Confirm.create({
         msg: '请先确认当前的投资待还本金全部结清，再进行解绑银行卡！',
         okText: '确定解绑',
@@ -335,6 +367,7 @@ ractive.on("delete-card-submit", function (e) {
                     $('select[name="bankName"]').on("change", function() {
                         var code = $(this).find("option:selected").attr('data-code');
                         console.log(code);
+                        ractive.set('bankCode', code)
                         $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
                     })
                     $('.dialog-overlay').hide()
@@ -373,10 +406,35 @@ ractive.on('sendCode', function (){
     
     if (!this.get('isSend')) {
         this.set('isSend', true);
-        var smsType = 'CREDITMARKET_CAPTCHA';
-        CommonService.getMessage(smsType, function (r) {
-            if (r.success) {
-                countDown();
+        countDown()
+        var smsType = '800006';
+        var cardnbr = ractive.get("cardNo");
+        var cardPhone = ractive.get("mobile");
+        if(cardnbr === ''){
+            showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
+            return false;
+        }else{
+             clearErrorIndex('showErrorMessagea','errorMessagea');
+        }
+
+        if(cardPhone == '') {
+            this.set('phoneNoError', true);
+            return
+        }
+        CommonService.getMessage2(smsType, CC.user.userId, cardnbr,cardPhone, CC.user.name, function (r) {
+            if (r.status == 0) {
+                smsid = r.data;            
+            }else{
+                ractive.set({
+                    showErrormessageTxt: true,
+                    errormessageTxt: '发送失败'
+                });
+                ractive.set('isSend', false);
+                $('.getcaptcha')
+                    .html("获取验证码");
+                $('.getcaptcha')
+                    .removeClass('disabled');
+                clearInterval(interval);
             }
         });
     }
