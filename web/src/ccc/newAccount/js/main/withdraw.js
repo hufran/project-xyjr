@@ -39,7 +39,7 @@ var ractive = new Ractive({
 		isEnterpriseUser: CC.user.enterprise,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
 		banksabled : banksabled.length? true : false,
-        lccbId: CC.user.lccbUserId
+        lccbId: CC.user ? CC.user.lccbUserId : ''
 	},
     parseDataNum:function(){
         var self = this;
@@ -63,7 +63,11 @@ var ractive = new Ractive({
 		});
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                self.set('lccbId', res.data);
+                if(res.data == 0) {
+                    self.set('lccbId', '');
+                }else{
+                    self.set('lccbId', res.data);
+                }                
             }
         })
 	},
