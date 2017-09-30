@@ -4,7 +4,7 @@
     <nav class="omit-margin container page-nav" ng-show="sourceId == undefined">
     <div class="row" >
         <a class="col-xs-3 back" href="{{ self.back_path }}"><span class="glyphicon glyphicon-menu-left"></span></a>
-        <span class="col-xs-6 title">实名认证</span>
+        <span class="col-xs-6 title">银行存管</span>
         <span class="col-xs-3"
               ng-if="self.back_path !== 'register'"
         >&nbsp;</span>
@@ -19,9 +19,9 @@
         }">
     </div>
 
-    <div class="alert alert-info u-off-border-radius" ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)">
+    <div class="alert alert-info u-off-border-radius" ng-if="!(lccbUserId!=0&&lccbUserId!=-1&&lccbAuth==true)">
         <param class="glyphicon glyphicon-exclamation-sign">
-        您尚未开通银行存管，未开通银行存管将无法进行，绑卡、充值、提现、投资等操作。
+        {{(lccbUserId==0)?"您尚未激活银行存管，未激活银行存管将无法进行，绑卡、充值、提现、投资等操作。":"您尚未开通银行存管，未开通银行存管将无法进行，绑卡、充值、提现、投资等操作。"}}
     </div>
 
     <section>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-control-wrap" ng-if="user.info&&user.info.name">
                           <div class="show-name" ng-init="store.user_name=user.info.name">
-                            {{user.info.name}}
+                            {{user_name}}
                           </div>
                         </div>
                 </div>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="form-control-wrap" ng-if="user.info&&user.info.idNumber">
                           <div class="show-name" ng-init="store.id_number=user.info.idNumber">
-                            {{user.info.idNumber}}
+                            {{user_idNumber}}
                           </div>
                         </div>
                 </div>
@@ -119,14 +119,14 @@
                     </div>
                     <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.account">
                       <div class="show-name" ng-init="store.card_no=user.bank_account.account">
-                        {{user.bank_account.account}}
+                        {{user_account}}
                       </div>
                     </div>
                 </div>
                 <div class="form-group merge"
                      ng-class="{'has-error': form.bank_name.$invalid && form.bank_name.$dirty}" style="overflow: hidden;"
                     >
-                    <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BOCOM','上海银行':'BOS','中国建设银行':'CCB','光大银行':'CEB','中信银行':'CITIC','招商银行':'CMB','中国民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGAN','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'GDB','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
+                    <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BOCOM','上海银行':'BOS','建设银行':'CCB','光大银行':'CEB','中信银行':'CITIC','招商银行':'CMB','民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGAN','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'GDB','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
                     <label for="bank_name">所属银行</label>
                     <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.bank">
                         <span ng-if="businessNull" class="{{bankLists[store.bank_name]}} ownedBank"></span>
@@ -169,7 +169,7 @@
                     </div>
                     <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.bankMobile">
                       <div class="show-name" ng-init="store.card_phone=user.bank_account.bankMobile">
-                        {{user.bank_account.bankMobile}}
+                        {{user_bankMobile}}
                       </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                         'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
                         init: !self.captcha.has_sent,
                      }"
-                     ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)"
+                     ng-if="!(lccbUserId!=0&&lccbUserId!=-1&&lccbAuth==true)"
                 >
                     <label for="mobile_captcha">验证码</label>
                     <input class="form-control input-target input-lg captcha" type="tel"
@@ -213,9 +213,9 @@
                 
             </div>
             <div class="form-group merge protocol"
-                 ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)"
+                 ng-if="!(lccbUserId!=0&&lccbUserId!=-1&&lccbAuth==true)"
             >
-                <label for=""><input type="checkbox" name="protocol" ng-model="store.protocol" required /><span>我同意<a href="javascript:void(0);" ng-click="self.agreement('廊坊银行网络借贷交易资金存管业务三方协议')">《廊坊银行网络借贷交易资金存管业务三方协议》</a></span></label>
+                <label for=""><input type="checkbox" name="protocol" ng-model="store.protocol" required /><span>我同意<a href="javascript:void(0);" ng-click="self.agreement('廊坊银行网络借贷交易资金存管业务三方协议')">《廊坊银行网络借贷交易资金存管业务三方协议》</a><br /><a href="javascript:void(0);" ng-click="self.agreement('投资授权协议')">《投资授权协议》</a></span></label>
                 <div class="help-block"
                          ng-show="form.protocol.$invalid && form.protocol.$dirty"
                   >
@@ -223,11 +223,11 @@
                   </div>
                 
             </div>
-            <div class="container" ng-if="!(user.bank_account&&user.info&&user.bank_account.bankMobile&&user.bank_account.bank&&user.bank_account.account&&user.info.idNumber&&user.info.name)">
+            <div class="container" ng-if="!(lccbUserId!=0&&lccbUserId!=-1&&lccbAuth==true)">
                 <div class="form-group container">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
                             ng-disabled="form.$invalid || self.submit_sending"
-                    >立即认证</button>
+                    >{{btnContent}}</button>
                 </div>
 
                 <div class="form-group container">

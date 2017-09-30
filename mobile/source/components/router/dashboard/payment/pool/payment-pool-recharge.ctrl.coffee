@@ -37,7 +37,8 @@ do (angular) ->
         @api.payment_pool_banks().then (data) =>
           @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
-
+        @api.payment_pool_bank_limit(@$scope.bank_account.bank).then (data)=>
+          @$scope.limit=data.data
         
 
       modify_amonut: ->
@@ -67,7 +68,6 @@ do (angular) ->
             windowClass: 'center ngt-share-coupon'
             animation: true
             templateUrl: 'ngt-pool-recharge.tmpl'
-
             controller: _.ai '$scope', ($scope) =>
                 self=@
                 angular.extend $scope, {
@@ -117,7 +117,6 @@ do (angular) ->
                             return data
 
                         .then (data) =>
-                            
                             self.smsid=data.data
                             timer = self.$interval =>
                               $scope.cell_buffering_count -= 1
@@ -127,7 +126,7 @@ do (angular) ->
                                   console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count%1
                                   $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
                                   $scope.cell_buffering = false
-                                  
+
                             , 1000
                             $scope.cell_buffering = true
                             $scope.mobile_verification_code_has_sent = false
@@ -139,30 +138,44 @@ do (angular) ->
                             $scope.mobile_verification_code_has_sent = false
                       )
                 }
-                
+
         }
+
+        payment.closed.then (ttt)=>
+          console.log "@$scope.rechargeResult:",@$scope.rechargeResult
+          if @$scope.rechargeResult==1
+            @paymentPoint amount
+            console.log "amount:",amount 
+
+
         payment.result.catch ({amount, mobile_captcha}) =>
-      
+          @$scope.rechargeResult=0
           if typeof amount=="undefined"||!amount
+            @$scope.rechargeResult=1
             @$window.alert "请填写充值金额！"
             return
           else
             amount=filterXSS amount.toString()
+            @$scope.rechargeResult=0
           if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
+            @$scope.rechargeResult=1
             @$window.alert "请填写验证码！"
             return
           else
+            @$scope.rechargeResult=0
             mobile_captcha=filterXSS mobile_captcha
           if !@smsid
+            @$scope.rechargeResult=1
             @$window.alert "请发送验证码后操作！"
             return
           if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
+            @$scope.rechargeResult=1
             @$window.alert "您尚未开通存管，请开通后在操作"
             @$window.location.href="/dashboard/payment/register"
             return
 
           return unless !!mobile_captcha and !!@smsid and !!amount
-
+          @$scope.rechargeResult=0
           @api.payment_pool_recharge(@user.info.id, @user.bank_account.bank, @user.bank_account.account, amount, @smsid, mobile_captcha)
 
             .then (data) =>
@@ -170,12 +183,15 @@ do (angular) ->
               return data
 
             .then (data) =>
-                @$window.alert "充值成功！"
+                @$scope.rechargeResult=0
                 @smsid=null
+                @$window.alert "充值成功！"
                 @$window.location.href="/dashboard"
             .catch (data) =>
+              @$scope.rechargeResult=1
               @smsid=null
               @$window.alert "充值失败,"+data.msg
+          return
 
 
   EXTEND_API = (api) ->

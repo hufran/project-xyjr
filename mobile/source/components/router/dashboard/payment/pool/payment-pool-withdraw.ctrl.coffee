@@ -29,7 +29,7 @@ do (angular) ->
 
 
                 do @paymentPoint.bind @
-
+              
 
             paymentPoint:()->
                 payment=@$uibModal.open {
@@ -115,62 +115,60 @@ do (angular) ->
                       
                 }
                 payment.result.catch (mobile_captcha) =>
-                  console.log "@amount:",@amount," password:",@password," mobile_captcha:",mobile_captcha
+                    console.log "@amount:",@amount," password:",@password," mobile_captcha:",mobile_captcha
+                    if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
+                      @mg_alert "验证码不正确!"
+                      return false
+                    
+                    if !@amount||parseInt @amount <=0
+                      @mg_alert "请填写提现金额!"
+                      return false
 
-                  if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
-                    @mg_alert "验证码不正确!"
-                    return false
+                    if !@password 
+                      @mg_alert "请填写密码！"
+                      return false
+                    if !@smsid
+                      @mg_alert "请发送短信后在操作！"
+                    if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
+                      @mg_alert "您尚未开通存管，请开通后在操作"
+                      @$window.location.href="/dashboard/payment/register"
+                      return
+
+                    return unless !!mobile_captcha and !!@smsid and !!@amount and !!@password and !!@user.bank_account and !!@user.bank_account.bank
+
+                    (@api.payment_pool_check_password(@password)
+
+                      .then (data) =>
+                          return @$q.reject(data) unless data.success is true
+                          return data
+
+                      .catch (data) =>
+                          @$q.reject error: [message: 'INCORRECT_PASSWORD']
+
+
+                      .then (data) => @api.payment_pool_custody_withdraw(@amount, @password, @smsid, mobile_captcha)
+
+                      .then (data) =>
+                          return @$q.reject(data) unless data.status is 0
+                          return data
+
+                      .then (data) =>
+                          @smsid=null
+                          @mg_alert @$scope.msg.SUCCEED
+                              .result.finally =>
+                                  @$location.path 'dashboard'
+
+                          @$scope.$on '$locationChangeStart', (event, new_path) =>
+                              event.preventDefault()
+                              @$window.location = new_path
+                          
+
+                      .catch (data) =>
+                          @submit_sending = false
+                          key = _.get data, 'error[0].message'|| _.get data, 'msg'
+                          @mg_alert @$scope.msg[key] or key
+                          @smsid=null
+                      .finally =>
+                          42
+                    )
                   
-                  if !@amount||parseInt @amount <=0
-                    @mg_alert "请填写提现金额!"
-                    return false
-
-                  if !@password 
-                    @mg_alert "请填写密码！"
-                    return false
-                  if !@smsid
-                    @mg_alert "请发送短信后在操作！"
-                  if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
-                    @mg_alert "您尚未开通存管，请开通后在操作"
-                    @$window.location.href="/dashboard/payment/register"
-                    return
-
-                  return unless !!mobile_captcha and !!@smsid and !!@amount and !!@password and !!@user.bank_account and !!@user.bank_account.bank
-
-                  (@api.payment_pool_check_password(@password)
-
-                    .then (data) =>
-                        return @$q.reject(data) unless data.success is true
-                        return data
-
-                    .catch (data) =>
-                        @$q.reject error: [message: 'INCORRECT_PASSWORD']
-
-
-                    .then (data) => @api.payment_pool_custody_withdraw(@amount, @password, @smsid, mobile_captcha)
-
-                    .then (data) =>
-                        return @$q.reject(data) unless data.status is 0
-                        return data
-
-                    .then (data) =>
-                        @smsid=null
-                        @mg_alert @$scope.msg.SUCCEED
-                            .result.finally =>
-                                @$location.path 'dashboard'
-
-                        @$scope.$on '$locationChangeStart', (event, new_path) =>
-                            event.preventDefault()
-                            @$window.location = new_path
-                        
-
-                    .catch (data) =>
-                        @smsid=null
-                        @submit_sending = false
-                        key = _.get data, 'error[0].message'|| _.get data, 'msg'
-                        @mg_alert @$scope.msg[key] or key
-
-                    .finally =>
-                        42
-                )
-

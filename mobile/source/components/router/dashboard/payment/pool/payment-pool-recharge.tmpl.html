@@ -76,6 +76,7 @@
             <input type="hidden" name="isWAP" value="true">
             <input type="hidden" name="retUrl" value="{{ return_url}}">
             <input type="hidden" name="notifyUrl" value="">
+            <p class="container limit"><span ng-bind="limit"></span></p>
 
             <p class="container">
                 <button class="btn btn-theme btn-block btn-lg"
@@ -121,7 +122,7 @@
               </span>
               <span class="icon" ng-hide="cell_buffering">重发</span>
           </button>
-          <div class="help-block"
+          <div class="help-block" style="color:#f00" 
                ng-show="formConfirm.mobile_captcha.$invalid && formConfirm.mobile_captcha.$dirty"
           >
               <span ng-show="formConfirm.mobile_captcha.$error.required">必须填写</span>

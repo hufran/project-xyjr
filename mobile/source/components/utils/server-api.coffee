@@ -521,11 +521,44 @@ do (_, angular, moment, Array) ->
 
                         .then TAKE_RESPONSE_DATA
                         .catch TAKE_RESPONSE_ERROR
+            payment_pool_getLccbId:(userId)->
+                @$http
+                    .get '/api/v2/lccb/getLccbId/'+userId
+                        .then TAKE_RESPONSE_DATA
+                        .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_bank_limit:(bank)->
+                @$http
+                    .get '/api/v2/lccb/banksInLimit/'+bank
+                        .then TAKE_RESPONSE_DATA
+                        .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_persionInit:(userId,smsid,smsCaptcha)->
+                @$http
+                    .post '/api/v2/lccb/persionInit/'+userId,
+                        _.compact {smsid,smsCaptcha}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
             payment_pool_banks:()->
                 @$http
                     .get '/api/v2/lccb/banks'
                         .then TAKE_RESPONSE_DATA
                         .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_lccb_accredit:(userId,smsid,validatemsg)->
+                @$http
+                    .post '/api/v2/lccb/userAuth/'+userId,
+                        _.compact {smsid,validatemsg}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_change_card:(userId,smsid,validatemsg,userphonenum,bankcode,cardnbr)->      
+                @$http
+                    .post '/api/v2/lccb/userChangeBank/'+userId,
+                        _.compact {smsid, validatemsg, userphonenum, bankcode, cardnbr}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
 
             payment_pool_bind_card: (bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha) ->
 

@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolRegisterCtrl',
 
-        _.ai '        banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval', class
-            constructor: (banks,@user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval) ->
+        _.ai '        banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval, @$uibModal', class
+            constructor: (banks,@user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval, @$uibModal) ->
 
                 @$window.scrollTo 0, 0
 
@@ -17,6 +17,7 @@ do (_, angular) ->
                 num = (list for list of banks)
                 @$scope.businessNull = num&&num.length
                 @$scope.store={"bank_name":null}
+                @$scope.btnContent="立即认证"
 
                 @error = {timer: null, timeout: 2000, message: '', on: false}
                 @captcha = {timer: null, count: 120, count_default: 120, has_sent: false, buffering: false}
@@ -24,24 +25,40 @@ do (_, angular) ->
                 @cell_buffering = false
                 @cell_buffering_count = 119.119
 
+                @api.payment_pool_getLccbId(@user.info.id)
+                    .then (data) =>
+                        return @$q.reject(data) unless data.status is 0
+                        return data
+
+                    .then (data) =>
+                        @$scope.lccbUserId=data.data.lccbId
+                        @$scope.lccbAuth=data.data.lccbAuth
+
+                        if parseInt(@$scope.lccbUserId)==0
+                            @$scope.btnContent="立即激活"
+                        else if @$scope.lccbAuth=="false"
+                            @$scope.btnContent="立即授权"
+                    .catch (data) =>
+                        @$window.alert "获取廊坊银行用户ID失败！"
+
                 console.log @user
                 console.log banks
 
                 if @$scope.user.info&&@$scope.user.info.name
                     length=@$scope.user.info.name.length
-                    @$scope.user.info.name=@$scope.user.info.name.substring(0,1)+@$scope.user.info.name.substring(1,length-1).replace(/./g,"*")+@$scope.user.info.name.substring(length-1)
+                    @$scope.user_name=@$scope.user.info.name.substring(0,1)+@$scope.user.info.name.substring(1,length-1).replace(/./g,"*")+@$scope.user.info.name.substring(length-1)
 
                 if @$scope.user.info&&@$scope.user.info.idNumber
                     length=@$scope.user.info.idNumber.length
-                    @$scope.user.info.idNumber=@$scope.user.info.idNumber.substring(0,4)+@$scope.user.info.idNumber.substring(4,length-4).replace(/./g,"*")+@$scope.user.info.idNumber.substring(length-4)
+                    @$scope.user_idNumber=@$scope.user.info.idNumber.substring(0,4)+@$scope.user.info.idNumber.substring(4,length-4).replace(/./g,"*")+@$scope.user.info.idNumber.substring(length-4)
 
                 if @$scope.user.bank_account&&@$scope.user.bank_account.account
                     length=@$scope.user.bank_account.account.length
-                    @$scope.user.bank_account.account=@$scope.user.bank_account.account.substring(0,4)+@$scope.user.bank_account.account.substring(4,length-4).replace(/./g,"*")+@$scope.user.bank_account.account.substring(length-4)
+                    @$scope.user_account=@$scope.user.bank_account.account.substring(0,4)+@$scope.user.bank_account.account.substring(4,length-4).replace(/./g,"*")+@$scope.user.bank_account.account.substring(length-4)
 
                 if @$scope.user.bank_account&&@$scope.user.bank_account.bankMobile
                     length=@$scope.user.bank_account.bankMobile.length
-                    @$scope.user.bank_account.bankMobile=@$scope.user.bank_account.bankMobile.substring(0,3)+@$scope.user.bank_account.bankMobile.substring(3,length-4).replace(/./g,"*")+@$scope.user.bank_account.bankMobile.substring(length-4)
+                    @$scope.user_bankMobile=@$scope.user.bank_account.bankMobile.substring(0,3)+@$scope.user.bank_account.bankMobile.substring(3,length-4).replace(/./g,"*")+@$scope.user.bank_account.bankMobile.substring(length-4)
 
             send_mobile_captcha: (phonenumber,cardnbr,username)->
                 if !phonenumber || !(/^([1][3|5|7|8][0-9]{9})$/.test(phonenumber))
@@ -77,13 +94,14 @@ do (_, angular) ->
                 else
                     username=filterXSS username
                 return unless !!phonenumber and !!cardnbr and !!username
-
-                if @user.info.lccbUserId && @user.bank_account
-                    #换卡
-                    transtype='800006'
-                else
+                
+                if parseInt(@$scope.lccbUserId)==-1||parseInt(@$scope.lccbUserId)==0
                     #开户
                     transtype='800001'
+                else 
+                    #授权
+                    transtype='800027'
+
 
                 @api.payment_pool_send_captcha(@user.info.id,transtype,phonenumber,cardnbr,username)
                     .then (data) =>
@@ -109,7 +127,7 @@ do (_, angular) ->
                         @$timeout.cancel @error.timer
 
                         @error.on = true
-                        @error.message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
+                        @error.message = _.get data, 'msg', '系统繁忙，请稍后重试！'
 
                         @error.timer = @$timeout =>
                             @error.on = false
@@ -119,7 +137,7 @@ do (_, angular) ->
 
             open_payment_account: (user_name, id_number, card_no, bank_name, card_phone, smsCaptcha) ->
                 
-                if user_name != undefined
+                if typeof user_name != "undefined"
                     user_name = filterXSS user_name
                 else
                     @error.on = true
@@ -129,7 +147,7 @@ do (_, angular) ->
                         @error.on = false
                     , @error.timeout
                     return;
-                if id_number != undefined
+                if typeof id_number != "undefined"
                     id_number = filterXSS id_number
                 else
                     @error.on = true
@@ -139,7 +157,7 @@ do (_, angular) ->
                         @error.on = false
                     , @error.timeout
                     return
-                if card_no!=undefined
+                if typeof card_no!="undefined"
                     card_no=filterXSS card_no
                 else
                     @error.on = true
@@ -148,7 +166,7 @@ do (_, angular) ->
                         @error.on = false
                     , @error.timeout
                     return
-                if bank_name!=undefined
+                if typeof bank_name!="undefined"
                     bank_name=filterXSS bank_name
                 else
                     @error.on = true
@@ -157,7 +175,7 @@ do (_, angular) ->
                         @error.on = false
                     , @error.timeout
                     return
-                if card_phone!=undefined
+                if typeof card_phone!="undefined"
                     card_phone=filterXSS card_phone
                 else
                     @error.on = true
@@ -167,7 +185,7 @@ do (_, angular) ->
                     , @error.timeout
                     return
                 console.log "smsCaptcha:",smsCaptcha
-                if smsCaptcha!=undefined
+                if typeof smsCaptcha!="undefined"
                     smsCaptcha=filterXSS smsCaptcha
                 else
                     @error.on = true
@@ -177,9 +195,10 @@ do (_, angular) ->
                     , @error.timeout
                     return
 
-                if @smsid!=undefined
+                if typeof @smsid!="undefined" && @smsid!=null
                     smsid=@smsid
                 else
+
                     @error.on = true
                     @error.message = '请发送验证码后再重试！'
                     @error.timer = @$timeout =>
@@ -187,11 +206,13 @@ do (_, angular) ->
                     , @error.timeout
                     return
 
+                
                 return unless !!user_name and !!id_number and !!card_no and !!bank_name and !!card_phone and !!smsCaptcha and !!smsid
                 @submit_sending = true
 
-                if !@user.info.lccbUserId
+                if parseInt(@$scope.lccbUserId)==-1
                     #存管开户
+                    @$window.alert "存管开户"
                     (@api.payment_pool_custody_bind(@user.info.id,user_name, id_number, bank_name, card_no, card_phone, smsCaptcha, smsid)
 
                         .then (data) =>
@@ -225,10 +246,64 @@ do (_, angular) ->
                                 @error.on = false
                             , @error.timeout
                     )
-                else if @user.info.lccbUserId&&@user.info.bank_account==undefined
-                    #更换银行卡
-                    @$window.alert "暂未开通该方法!"
+                else if parseInt(@$scope.lccbUserId)==0
+                    #存管激活
+                    @$window.alert "存管激活"
+                    @api.payment_pool_persionInit(@user.info.id,smsid,smsCaptcha)
+                        .then (data) =>
+                            return @$q.reject(data) unless data.status is 0
+                            return data
+                        .then (data) =>@api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
+                        .then (data)=>
+                            return @$q.reject(data) unless data.status is 0
+                            return data
+                        .then (data)=>
+                            @smsid=null
+                            @$location
+                                .replace()
+                                .path @next_path
+                        .catch (data) =>
+                            @smsid=null
+                            @submit_sending = false
+                            @$timeout.cancel @error.timer
 
+                            @error.on = true
+                            @error.message = _.get data, 'msg', '系统繁忙，请稍后重试！'
+
+                            @error.timer = @$timeout =>
+                                @error.on = false
+                            , @error.timeout
+                    
+
+                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth=="false"
+                    #用户授权操作
+                    @$window.alert "用户授权"
+                    @api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
+                        .then (data)=>
+                            return @$q.reject(data) unless data.status is 0
+                            return data
+                        .then (data) =>
+                            @$window.alert "用户授权成功！"
+                            @smsid=null
+                            @$location
+                                .replace()
+                                .path @next_path
+                        .catch (data) =>
+                            @smsid=null
+                            @submit_sending = false
+                            @$timeout.cancel @error.timer
+
+                            @error.on = true
+                            @error.message = _.get data, 'msg', '系统繁忙，请稍后重试！'
+
+                            @error.timer = @$timeout =>
+                                @error.on = false
+                            , @error.timeout
+
+                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth=="true"
+                    #取消授权操作
+                    @$window.alert "取消授权"
+                    @window.alert "暂未开通取消授权方法"
 
             agreement: (segment) ->
 
