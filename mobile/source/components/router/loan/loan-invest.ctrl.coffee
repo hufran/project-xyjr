@@ -464,6 +464,8 @@ do (_, angular, Math) ->
                                   $scope.mobile_verification_code_has_sent = false
                             )
                         }
+                        $scope.cell_buffering=true
+                        do $scope.send_verification_code
                         
                 }
                 payment.result.catch (mobile_captcha) =>

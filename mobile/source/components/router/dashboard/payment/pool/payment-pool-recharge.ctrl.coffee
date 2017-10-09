@@ -113,6 +113,7 @@ do (angular) ->
                       (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
 
                         .then (data) =>
+                            $scope.cell_buffering=false
                             return self.$q.reject(data) unless data.status is 0
                             return data
 
@@ -138,15 +139,10 @@ do (angular) ->
                             $scope.mobile_verification_code_has_sent = false
                       )
                 }
+                $scope.cell_buffering=true
+                do $scope.send_verification_code
 
         }
-
-        payment.closed.then (ttt)=>
-          console.log "@$scope.rechargeResult:",@$scope.rechargeResult
-          if @$scope.rechargeResult==1
-            @paymentPoint amount
-            console.log "amount:",amount 
-
 
         payment.result.catch ({amount, mobile_captcha}) =>
           @$scope.rechargeResult=0
@@ -166,7 +162,8 @@ do (angular) ->
             mobile_captcha=filterXSS mobile_captcha
           if !@smsid
             @$scope.rechargeResult=1
-            @$window.alert "请发送验证码后操作！"
+            #@$window.alert "请发送验证码后操作！"
+            @paymentPoint amount
             return
           if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
             @$scope.rechargeResult=1
