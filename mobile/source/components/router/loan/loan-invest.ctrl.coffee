@@ -3,8 +3,8 @@ do (_, angular, Math) ->
 
     angular.module('controller').controller 'LoanInvestCtrl',
 
-        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams', class
-            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams) ->
+        _.ai '            @api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @$interval', class
+            constructor: (@api, @user, @loan, @coupon, @$scope, @$q, @$location, @$window, map_loan_summary, @$uibModal, @mg_alert, @$routeParams, @$interval) ->
 
                 @$window.scrollTo 0, 0
 
@@ -36,6 +36,8 @@ do (_, angular, Math) ->
                         @$window.alert "获取廊坊银行用户ID失败！"
 
                 console.log "user:",@user
+
+                
 
                 angular.extend @$scope, {
                     store: {}
@@ -193,6 +195,7 @@ do (_, angular, Math) ->
                     @paymentPoint()
                 else
                     @invest()
+                
 
             prompt_coupon_sharing: (id) ->
 
@@ -470,6 +473,10 @@ do (_, angular, Math) ->
                     @invest(mobile_captcha)
 
                   
+
+
+
+
 
 
 

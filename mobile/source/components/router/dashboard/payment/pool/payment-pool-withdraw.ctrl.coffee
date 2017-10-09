@@ -3,8 +3,8 @@ do (angular) ->
 
     angular.module('controller').controller 'WithdrawCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$window, @$q, @mg_alert', class
-            constructor: (@user, @api, @$location, @$scope, @$window, @$q, @mg_alert) ->
+        _.ai '            @user, @api, @$location, @$scope, @$window, @$q, @mg_alert, @$uibModal, @$interval', class
+            constructor: (@user, @api, @$location, @$scope, @$window, @$q, @mg_alert, @$uibModal, @$interval) ->
 
                 @$window.scrollTo 0, 0
 
@@ -15,15 +15,19 @@ do (angular) ->
                 }
 
                 @submit_sending = false
+                
+
 
                 @api.payment_pool_banks().then (data) =>
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
 
             submit: (amount = @$scope.amount or 0, password) ->
-                amount = filterXSS(amount.toString())
-                password = filterXSS(password)
+                @amount = filterXSS(amount.toString())
+                @password = filterXSS(password)
                 @submit_sending = true
+
+
                 do @paymentPoint.bind @
               
 
@@ -128,7 +132,9 @@ do (angular) ->
                       @mg_alert "请发送短信后在操作！"
                     if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
                       @mg_alert "您尚未开通存管，请开通后在操作"
-                      @$window.location.href="/dashboard/payment/register"
+                      $location
+                        .replace()
+                        .path "dashboard/payment/register"
                       return
 
                     return unless !!mobile_captcha and !!@smsid and !!@amount and !!@password and !!@user.bank_account and !!@user.bank_account.bank
