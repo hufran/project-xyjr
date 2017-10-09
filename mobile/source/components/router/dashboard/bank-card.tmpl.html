@@ -60,9 +60,12 @@
 
 
     <div class="page-content" ng-if="!self.user.has_bank_card">
-        <a href="dashboard/payment/bind-card?next=dashboard/bank-card" class="bind-card">
-            <param class="glyphicon glyphicon-plus"> 添加银行卡
-        </a>
+        <span class="bind-card">
+            <param class="glyphicon glyphicon-plus"> 暂无银行卡
+        </span>
+        <!-- <a href="dashboard/payment/bind-card?next=dashboard/bank-card" class="bind-card">
+            <param class="glyphicon glyphicon-plus"> 暂无银行卡
+        </a> -->
     </div>
 
     <section class="container notice">

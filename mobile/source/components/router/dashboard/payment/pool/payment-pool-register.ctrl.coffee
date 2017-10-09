@@ -1,3 +1,4 @@
+
 do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolRegisterCtrl',

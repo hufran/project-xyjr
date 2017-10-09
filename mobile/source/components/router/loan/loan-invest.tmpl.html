@@ -191,10 +191,12 @@
 </div>
 
 
+
 <script type="text/ng-template" id="ngt-pool-recharge.tmpl">
     <div class="modal-header text-center">
         <h3 class="modal-title">短信验证</h3>
     </div>
+
     <div class="modal-body text-center">
         <p class="point-msg">短信验证码已发送至<i ng-bind="bankNumber"></i></p>
         <form name="formConfirm" autocapitalize="none" autocomplete="off" autocorrect="off" novalidate ng-class="{init: mobile_verification_code_has_sent,sendMsg:true}">
@@ -229,6 +231,8 @@
         <div ng-show="errMsg" ng-bind="errMsgContent"></div>
     </div>
 </script>
+
+
 
 
 

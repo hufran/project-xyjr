@@ -578,11 +578,13 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
+
             payment_pool_tender: (loanId, paymentPassword, amount, placementId = '',smsid,smsCaptcha) ->
 
                 @$http
                     .post '/api/v2/invest/tender/MYSELF',
                         _.compact {loanId, paymentPassword, amount, placementId,smsid,smsCaptcha}
+
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
