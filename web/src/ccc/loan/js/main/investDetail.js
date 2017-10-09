@@ -466,7 +466,7 @@ setTimeout((function () {
                 transtype: '800004',
                 ok: function(a,b,c,d,e) { 
                     $('.dialog').hide();
-                    Authpay(num, couponText)              
+                    Authpay(num, couponText,d,e)              
                 },
                 cancel: function() {
 
@@ -478,7 +478,7 @@ setTimeout((function () {
         
     }
 
-    function Authpay(num, couponText) {
+    function Authpay(num, couponText,d,e) {
         if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g,"")=='返现券') {
                             //alert('222');
             var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);

@@ -206,25 +206,25 @@ var ractive = new Ractive({
 
 });
 
-// request('GET',bankListAPI).end().
-//     then(function (r) {
-//         corBanks=[];
-//         banks=r.body.data;
-//         ractive.set('banks', banks);
-//         var ignore;
-//         for(var i=0;i<banks.length;i++){
-//             if(banks[i]["name"]!=="廊坊银行"){
-//                 corBanks[i]=banks[i]; 
-//             }else{
-//                 ignore=i;
-//             }
-//         }
-//         if(!isNaN(ignore)&&ignore>=0){
-//             corBanks.splice(ignore,1);
-//         }
+request('GET',bankListAPI).end().
+    then(function (r) {
+        corBanks=[];
+        banks=r.body.data;
+        ractive.set('banks', banks);
+        var ignore;
+        for(var i=0;i<banks.length;i++){
+            if(banks[i]["name"]!=="廊坊银行"){
+                corBanks[i]=banks[i]; 
+            }else{
+                ignore=i;
+            }
+        }
+        if(!isNaN(ignore)&&ignore>=0){
+            corBanks.splice(ignore,1);
+        }
         
-//         ractive.set('corBanks', corBanks);
-//     });
+        ractive.set('corBanks', corBanks);
+    });
 ractive.parseData();
 
 ractive.on('checkAmount',function(){
@@ -240,11 +240,15 @@ ractive.on('checkAmount',function(){
     }
 })
 ractive.on('recharge_submit', function (e){
-    e.original.preventDefault();
+    
     var amount = this.get('amount');
     var actionName=this.get('action');
     var choose =$('#paynet').prop('checked');
     this.set('amountNew',amount);
+
+    if(!choose) {
+       e.original.preventDefault();
+    }
 
     this.set('msg', {
         BANK_NULL: false,
@@ -287,7 +291,7 @@ ractive.on('recharge_submit', function (e){
             this.set('amountNew',amount);
     };
 
-    if(CC.user.bankCards.length>0){
+    if(!choose){
         if(CC.user.enterprise){
             console.log('企业用户')
             return;
@@ -302,11 +306,7 @@ ractive.on('recharge_submit', function (e){
             transtype: '800002',
             ok: function(a,b,c,d,e) { 
                 $('.dialog').hide();
-                console.log(e)
-                console.log(d)
-                if(choose){
-                    //网银充值
-                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
+                $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,
@@ -322,25 +322,6 @@ ractive.on('recharge_submit', function (e){
                             }
                         });                    
                     })
-                }else {
-                    // 快捷支付
-                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
-                        bankcode: CC.user.bankCards[0].account.bank,
-                        cardnbr: CC.user.bankCards[0].account.account,
-                        transamt: amount,
-                        smsid: d,
-                        validatemsg : e 
-                    },function(res) {
-                        console.log(res)
-                        CccOK.create({
-                            msg: res.msg,
-                            okText: '确定',
-                            ok: function () {
-                                window.location.reload();
-                            }
-                        });                    
-                    })
-                }
                 
             },
             cancel: function() {
@@ -349,11 +330,11 @@ ractive.on('recharge_submit', function (e){
         })
     }else{
         Confirm.create({
-            msg: '您尚未开通银行托管，是否去开通？',
-            okText: '去开通',
-            cancelText: '取消',
+            msg: '',
+            okText: '充值成功',
+            cancelText: '充值失败',
             ok: function () {
-                window.location.href = '/newAccount/settings/authentication';
+                window.location.reload();
             },
             cancel: function () {
                 window.location.reload();

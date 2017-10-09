@@ -12,7 +12,7 @@ require('ccc/xss.min');
 // 过滤银行卡，只显示enabled=true的
 var banksList={}
 var banks=[];
-var smsid;
+var smsid,interval;
 
 if (CC.user.account) {
     CC.user.account.Faccount = utils.bankAccount(CC.user.account.account);
@@ -69,9 +69,9 @@ var ractive = new Ractive({
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
                 if(res.data.lccbId == 0) {
-                    self.set('lccbId', '');
+                    ractive.set('lccbId', '');
                 }else{
-                    self.set('lccbId', res.data.lccbId);
+                    ractive.set('lccbId', res.data.lccbId);
                 }                
             }
         })        
@@ -164,6 +164,7 @@ ractive.on('checkSame', function () {
 ractive.on('checkSmsCaptcha', function () {
     var smsCaptcha = this.get('smsCaptcha');
     if (!/^\d{6}$/.test(smsCaptcha)) {
+        this.set('textError', '验证码错误');
         this.set('SMS_NULL', true);
     } else {
         this.set('SMS_NULL', false);
@@ -221,6 +222,10 @@ ractive.on("bind-card-submit", function (e) {
     }else{
          clearErrorIndex('showErrorMessagea','errorMessagea');
     }
+    if(!smsid){
+        this.set('SMS_NULL', true)
+        return false;
+    }
     // if(recardNo === ''){
     //     showErrorIndex('showErrorMessageb','errorMessageb','* 确认卡号不能为空');
     //     return false;
@@ -244,7 +249,7 @@ ractive.on("bind-card-submit", function (e) {
     
     var sendObj = {
         smsid: smsid,
-        validatemsg: filterXSS(smsCaptcha)
+        validatemsg: filterXSS(smsCaptcha),
         userphonenum: filterXSS(cardPhone),
         bankcode: filterXSS(bankName),
         cardnbr: filterXSS(cardNo)        
@@ -307,7 +312,7 @@ ractive.on("bind-card-submit", function (e) {
 
 ractive.on("delete-card-submit", function (e) {
     e.original.preventDefault();
-    if(!lccbId) {
+    if(!this.get('lccbId')) {
         CccOk.create({
             msg: '用户尚未激活，不能更换银行卡',
             okText: '确定',
@@ -353,31 +358,16 @@ ractive.on("delete-card-submit", function (e) {
             //         });
             //     }
 
-            // });
-            $('.dialog').hide();
-            var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
-            var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4);
-            Message.create({
-                msg: '短信验证码已发送至',
-                okText: '确定',
-                phone: phoneNumber,
-                transtype: '800006',
-                ok: function(a,b,c,d,e) {                   
-                    ractive.set("status", 3)
-                    $('select[name="bankName"]').on("change", function() {
-                        var code = $(this).find("option:selected").attr('data-code');
-                        console.log(code);
-                        ractive.set('bankCode', code)
-                        $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
-                    })
-                    $('.dialog-overlay').hide()
-                    $('.dialog').hide();                   
-                },
-                close: function() {
-                }
+            // });                  
+            ractive.set("status", 3)
+            $('select[name="bankName"]').on("change", function() {
+                var code = $(this).find("option:selected").attr('data-code');
+                console.log(code);
+                ractive.set('bankCode', code)
+                $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
             })
-        },
-        cancel: function () {
+            $('.dialog-overlay').hide()
+            $('.dialog').hide()
         }
     });
 
@@ -405,11 +395,11 @@ function changeToList(map) {
 ractive.on('sendCode', function (){
     
     if (!this.get('isSend')) {
-        this.set('isSend', true);
-        countDown()
+        this.set('isSend', true);       
         var smsType = '800006';
         var cardnbr = ractive.get("cardNo");
         var cardPhone = ractive.get("mobile");
+        var realName = ractive.get("realName")
         if(cardnbr === ''){
             showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
             return false;
@@ -421,13 +411,14 @@ ractive.on('sendCode', function (){
             this.set('phoneNoError', true);
             return
         }
-        CommonService.getMessage2(smsType, CC.user.userId, cardnbr,cardPhone, CC.user.name, function (r) {
+        countDown()
+        CommonService.getMessage2(smsType, CC.user.userId, cardnbr,cardPhone, realName, function (r) {
             if (r.status == 0) {
                 smsid = r.data;            
             }else{
                 ractive.set({
-                    showErrormessageTxt: true,
-                    errormessageTxt: '发送失败'
+                    SMS_NULL: true,
+                    textError: '发送失败'
                 });
                 ractive.set('isSend', false);
                 $('.getcaptcha')
@@ -447,7 +438,7 @@ function countDown() {
     var msg = '$秒';
 
     var left = 120;
-    var interval = setInterval((function () {
+    interval = setInterval((function () {
         if (left > 0) {
             $('.sendCode')
                 .html(msg.replace('$', left--));

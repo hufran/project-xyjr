@@ -15,7 +15,7 @@
 <div class="ccc-banks-wrap">
     <div class="recharge-form-wrap">
         <form role="form" name="rechargeForm" action="" method="POST"
-          on-submit="recharge_submit" autocomplete="off"><!--action="{{action}}"/api/v2/gateway/deposit/BD839D6F-353B-4B4B-B87B-018367057F14-->
+          on-submit="recharge_submit" autocomplete="off" target="_blank"><!--action="{{action}}"/api/v2/gateway/deposit/BD839D6F-353B-4B4B-B87B-018367057F14-->
             <div class="space space-10"></div>
             <div class="space space-10"></div>
             <div class="row">
@@ -53,7 +53,7 @@
                     </div> -->
                     {{#if !isEnterpriseUser}}
                     <div style="display:inline-block;margin-left: 20px;">
-                        <input type="radio" id="fastpaynet" name="payType" checked on-click="choosePayType">
+                        <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType" checked>
                         <label for="fastpaynet" on-click="choosePayType">快捷支付</label>
                     </div>
                     {{/if}}
@@ -72,11 +72,11 @@
                         {{#if index == showNum}}
                         <span class="bankItem more" on-click="showAll"></span> 
                         {{/if}}
-                        {{/banks}} -->
-                    <!-- {{else}}企业账户 -->
-                        <!-- {{#each corBanks}} -->
-                        <!-- <div class="corBanks">{{corBanks}}</div> -->
-                        <!-- <span class="bankItem cjd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
+                        {{/banks}}
+                    {{else}}企业账户
+                        {{#each corBanks}}
+                         <div class="corBanks">{{corBanks}}</div> 注释的
+                        <span class="bankItem cjd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
 
                            <span class="check"></span>
 
@@ -85,20 +85,22 @@
                         {{/each}} {{/if}}
                 </div> -->
 
-                <div class="fastbankwrap">  <!-- style="display:none;" -->
+                <div class="fastbankwrap" style="display:none;">
                     {{#if !isEnterpriseUser}}
-                        {{#if isBankCard > 0}}
+                       <!--  {{#if isBankCard > 0}} -->
                            {{#if !lccbId}}
                               <div class="noCardTip">您尚未激活银行存管，<a href="/newAccount/settings/authentication">立即激活</a></div>
+                            {{elseif lccbId == -1}}
+                                <div class="noCardTip">您尚未开通银行存管，<a href="/newAccount/settings/authentication">立即开通</a></div>
                             {{else}}
                                 <span class="bankItem {{bankName}}" data-cc="{{bankName}}" data-code="{{bankCode}}"
                               on-click="selectBank">
                                 <span class="check"></span>
-                                </span>
+                                </span>                               
                             {{/if}}
-                        {{else}}
-                              <div class="noCardTip">您尚未开通银行存管，<a href="/newAccount/settings/authentication">立即开通</a></div>
-                        {{/if}}
+                        <!-- {{else}} -->
+                              <!-- <div class="noCardTip">您尚未开通银行存管，<a href="/newAccount/settings/authentication">立即开通</a></div> -->
+                        <!-- {{/if}} -->
 
                     {{/if}}
                 </div>
