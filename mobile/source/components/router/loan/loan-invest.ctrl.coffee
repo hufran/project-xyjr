@@ -408,9 +408,14 @@ do (_, angular, Math) ->
                           bankNumber:@user.bank_account.bankMobile.substring(0,3)+"****"+@user.bank_account.bankMobile.substring(7),
                           mobile_verification_code_has_sent:true,
                           cell_buffering : false,
-                          cell_buffering_count : 119.119,
+                          cell_buffering_count : 120.119,
                           get_verification_code: () ->
                             $scope.mobile_verification_code_has_sent = true
+                            if self.timer
+                                self.$interval.cancel self.timer
+                                self.timer=null
+                                $scope.cell_buffering_count =120.119
+                                $scope.cell_buffering = false
                             if !self.user.bank_account||!self.user.bank_account.bankMobile
                                 self.mg_alert '您需要开通银行存管才可操作！'
                                 self.$location
@@ -444,11 +449,12 @@ do (_, angular, Math) ->
                                 .then (data) =>
                                     console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count
                                     self.smsid=data.data
-                                    timer = self.$interval =>
+                                    self.timer = self.$interval =>
                                       $scope.cell_buffering_count -= 1
 
                                       if $scope.cell_buffering_count < 1
-                                          @$interval.cancel timer
+                                          @$interval.cancel self.timer
+                                          self.timer=null
                                           $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
                                           $scope.cell_buffering = false
                                     , 1000

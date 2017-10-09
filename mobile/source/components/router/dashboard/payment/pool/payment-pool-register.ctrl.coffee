@@ -61,6 +61,11 @@ do (_, angular) ->
                     @$scope.user_bankMobile=@$scope.user.bank_account.bankMobile.substring(0,3)+@$scope.user.bank_account.bankMobile.substring(3,length-4).replace(/./g,"*")+@$scope.user.bank_account.bankMobile.substring(length-4)
 
             send_mobile_captcha: (phonenumber,cardnbr,username)->
+                if @captcha.timer
+                    @$interval.cancel @captcha.timer
+                    @captcha.timer=null
+                    @captcha.count = @captcha.count_default
+                    @captcha.buffering = false
                 if !phonenumber || !(/^([1][3|5|7|8][0-9]{9})$/.test(phonenumber))
                     @$timeout.cancel @error.timer
                     @error.on = true
@@ -212,7 +217,6 @@ do (_, angular) ->
 
                 if parseInt(@$scope.lccbUserId)==-1
                     #存管开户
-                    @$window.alert "存管开户"
                     (@api.payment_pool_custody_bind(@user.info.id,user_name, id_number, bank_name, card_no, card_phone, smsCaptcha, smsid)
 
                         .then (data) =>
@@ -248,7 +252,6 @@ do (_, angular) ->
                     )
                 else if parseInt(@$scope.lccbUserId)==0
                     #存管激活
-                    @$window.alert "存管激活"
                     @api.payment_pool_persionInit(@user.info.id,smsid,smsCaptcha)
                         .then (data) =>
                             return @$q.reject(data) unless data.status is 0
@@ -277,7 +280,6 @@ do (_, angular) ->
 
                 else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth=="false"
                     #用户授权操作
-                    @$window.alert "用户授权"
                     @api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
                         .then (data)=>
                             return @$q.reject(data) unless data.status is 0

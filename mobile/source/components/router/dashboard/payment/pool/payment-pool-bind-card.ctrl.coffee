@@ -38,6 +38,12 @@ do (_, angular) ->
 
             send_mobile_captcha: (account,bankMobile)->
 
+                if @timer
+                    @$interval.cancel @timer
+                    @timer=null
+                    @cell_buffering_count =120.119
+                    @cell_buffering = false
+
                 if !bankMobile || !(/^([1][3|5|7|8][0-9]{9})$/.test(bankMobile))
                     
                     @$timeout.cancel @error.timer
@@ -84,10 +90,11 @@ do (_, angular) ->
                     .then (data) =>
                         
                         @smsid=data.data
-                        timer = @$interval =>
+                        @timer = @$interval =>
                           @cell_buffering_count -= 1
                           if @cell_buffering_count < 1
-                              @$interval.cancel timer
+                              @$interval.cancel @timer
+                              @timer=null
                               @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
                               @cell_buffering = false
                               
