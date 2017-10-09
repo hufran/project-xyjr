@@ -495,6 +495,70 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
+            payment_pool_send_captcha: (userid,transtype,cardPhone,cardnbr,username)->
+                @$http
+                    .post '/api/v2/lccb/sendMsg/'+userid,{transtype:transtype,cardPhone:cardPhone,cardnbr:cardnbr,username:username}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_custody_bind:(userid,realName,idNumber,bankName,cardNo,cardPhone,smsCaptcha,smsid)->
+                @$http
+                    .post '/api/v2/lccb/bindCard/'+userid,
+                        _.compact {realName,idNumber,bankName,cardNo,cardPhone,smsCaptcha,smsid,source:"H5"}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+            payment_pool_recharge: (userid, bankcode, cardnbr, transamt, smsid, validatemsg)->
+                @$http
+                    .post '/api/v2/lccb/deposit/'+userid,
+                        _.compact {bankcode,cardnbr,transamt,smsid,validatemsg}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+            payment_pool_custody_withdraw:(amount, paymentPassword, smsid, validatemsg)->
+                @$http
+                    .post '/api/v2/lccb/withdraw/MYSELF',{amount, paymentPassword, smsid, validatemsg}
+
+                        .then TAKE_RESPONSE_DATA
+                        .catch TAKE_RESPONSE_ERROR
+            payment_pool_getLccbId:(userId)->
+                @$http
+                    .get '/api/v2/lccb/getLccbId/'+userId
+                        .then TAKE_RESPONSE_DATA
+                        .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_bank_limit:(bank)->
+                @$http
+                    .get '/api/v2/lccb/banksInLimit/'+bank
+                        .then TAKE_RESPONSE_DATA
+                        .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_persionInit:(userId,smsid,smsCaptcha)->
+                @$http
+                    .post '/api/v2/lccb/persionInit/'+userId,
+                        _.compact {smsid,smsCaptcha}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_banks:()->
+                @$http
+                    .get '/api/v2/lccb/banks'
+                        .then TAKE_RESPONSE_DATA
+                        .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_lccb_accredit:(userId,smsid,validatemsg)->
+                @$http
+                    .post '/api/v2/lccb/userAuth/'+userId,
+                        _.compact {smsid,validatemsg}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_change_card:(userId,smsid,validatemsg,userphonenum,bankcode,cardnbr)->      
+                @$http
+                    .post '/api/v2/lccb/userChangeBank/'+userId,
+                        _.compact {smsid, validatemsg, userphonenum, bankcode, cardnbr}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
 
             payment_pool_bind_card: (bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha) ->
 
@@ -514,21 +578,19 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
-
-            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '') ->
+            payment_pool_tender: (loanId, paymentPassword, amount, placementId = '',smsid,smsCaptcha) ->
 
                 @$http
                     .post '/api/v2/invest/tender/MYSELF',
-                        _.compact {loanId, paymentPassword, amount, placementId}
-
+                        _.compact {loanId, paymentPassword, amount, placementId,smsid,smsCaptcha}
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
 
-            payment_pool_rebeat: (loanId, paymentPassword, amount, id, rebateAmount) ->
+            payment_pool_rebeat: (loanId, paymentPassword, amount, id, rebateAmount, smsid, smsCaptcha) ->
 
                 @$http
-                    .post "/api/v2/invest/tenderUseRebate/#{ id }", {loanId, paymentPassword, amount, rebateAmount}
+                    .post "/api/v2/invest/tenderUseRebate/#{ id }", {loanId, paymentPassword, amount, rebateAmount, smsid, smsCaptcha}
                         #_.compact {loanId, paymentPassword, amount, placementId}
 
                     .then TAKE_RESPONSE_DATA
