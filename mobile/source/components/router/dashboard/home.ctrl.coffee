@@ -57,7 +57,7 @@ do (_, angular) ->
 
                 @api.get_user_funds()
                 @api.get_user_investments()
-                @api.get_available_bank_list()
+                @api.payment_pool_banks()
 
                 (@api
                 .get_yesterday_income(@user.info.id)

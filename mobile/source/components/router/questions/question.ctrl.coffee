@@ -27,7 +27,7 @@ do (_, angular) ->
           showPay:@$routeParams.showPay
           qusComeIn:@$routeParams.comeIn
         }
-        console.log "@$routeParams.showPay:",typeof @$routeParams.showPay
+        
 
         (@api.get_loan_list_by_config(filter_type, 20, false)
 

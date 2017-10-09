@@ -96,7 +96,6 @@ var homeRactive = new Ractive({
 			console.log(this.get('moreiAmount'));
 
 			
-
 		}
 	}
 });
