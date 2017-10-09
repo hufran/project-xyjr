@@ -3,8 +3,8 @@ do (angular) ->
 
     angular.module('controller').controller 'WithdrawCtrl',
 
-        _.ai '            @user, @api, @$location, @$scope, @$window, @$q, @mg_alert', class
-            constructor: (@user, @api, @$location, @$scope, @$window, @$q, @mg_alert) ->
+        _.ai '            @user, @api, @$location, @$scope, @$window, @$q, @mg_alert, @$uibModal, @$interval', class
+            constructor: (@user, @api, @$location, @$scope, @$window, @$q, @mg_alert, @$uibModal, @$interval) ->
 
                 @$window.scrollTo 0, 0
 
@@ -15,15 +15,19 @@ do (angular) ->
                 }
 
                 @submit_sending = false
+                
+
 
                 @api.payment_pool_banks().then (data) =>
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
 
             submit: (amount = @$scope.amount or 0, password) ->
-                amount = filterXSS(amount.toString())
-                password = filterXSS(password)
+                @amount = filterXSS(amount.toString())
+                @password = filterXSS(password)
                 @submit_sending = true
+
+
                 do @paymentPoint.bind @
               
 

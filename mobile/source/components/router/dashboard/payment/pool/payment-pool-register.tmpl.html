@@ -28,7 +28,7 @@
 
         <form class="form-flatten form-horizontal"
               name="form"
-              ng-submit="self.open_payment_account(user_name, id_number, inner_user_code)"
+              ng-submit="self.open_payment_account(store.user_name, store.id_number, store.card_no, store.bank_name, store.card_phone, form.mobile_captcha.$viewValue)"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -39,13 +39,13 @@
                      ng-class="{'has-error': form.user_name.$invalid && form.user_name.$dirty}"
                     >
                     <label>真实姓名</label>
-                        <div class="form-control-wrap">
+                        <div class="form-control-wrap" ng-if="!user.info||!user.info.name">
                             <input id="user-name" class="form-control input-target input-lg" type="text"
                                    name="user_name"
                                    autocapitalize="none"
                                    autocomplete="off"
                                    autocorrect="off"
-                                   ng-model="user_name"
+                                   ng-model="store.user_name"
                                    minlength="2"
                                    maxlength="15"
                                    pattern="^[\u4e00-\u9fa5]+((·|•|●)[\u4e00-\u9fa5]+)*$"
@@ -70,10 +70,10 @@
                      ng-class="{'has-error': form.id_number.$invalid && form.id_number.$dirty}"
                 >
                     <label>身份证号</label>
-                        <div class="form-control-wrap">
+                        <div class="form-control-wrap" ng-if="!user.info||!user.info.idNumber">
                             <input id="id-number" class="form-control input-target input-lg" type="text"
                                    name="id_number"
-                                   ng-model="id_number"
+                                   ng-model="store.id_number"
                                    minlength="15"
                                    maxlength="18"
                                    placeholder="填写身份证号"
@@ -245,8 +245,17 @@
         <h2 class="title">温馨提示：</h2>
         <ol class="list">
             <li><p>718金融用户须是年满18周岁的具有完全民事行为能力的自然人。
-            <li><p>填写的姓名和身份证号码须与您用于提现的银行卡信息一致。
+            <li><p>填写的姓名、身份证号码、银行卡、银行的预留手机号须一致。
         </ol>
     </section>
 
 </div>
+<script type="text/ng-template" id="ngt-register-agreement.tmpl">
+    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-block btn-theme" ng-click="$close()">
+            已阅读此协议
+        </button>
+    </div>
+</script>

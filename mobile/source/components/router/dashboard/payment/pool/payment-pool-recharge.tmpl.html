@@ -26,7 +26,7 @@
               autocomplete="off"
               autocorrect="off"
               novalidate
-              action="{{action}}"
+              ng-submit="self.paySubmit($event,amountValue)"
               id="batchForm"
         >
             <div class="inputs container">
@@ -56,7 +56,7 @@
                     <input class="form-control input-target input-lg"
                            type="number"
                            id="amount"
-                           ng-model="amount"
+                           ng-model="amountValue"
                            max="1000000"
                            minlength="1"
                            placeholder="输入充值金额"
@@ -99,13 +99,14 @@
             <li><p>充值金额通常会在当日内转入，请及时查看您的账户余额。如充值成功后未能及时到账，请联系客服：<a href="tel:4001718718">4001-718-718</a>。
         </ol>
     </section>
-
+    
 </div>
 
 <script type="text/ng-template" id="ngt-pool-recharge.tmpl">
     <div class="modal-header text-center">
         <h3 class="modal-title">短信验证</h3>
     </div>
+
     <div class="modal-body text-center">
         <p class="point-msg">短信验证码已发送至<i ng-bind="bankNumber"></i></p>
         <form name="formConfirm" autocapitalize="none" autocomplete="off" autocorrect="off" novalidate ng-class="{init: mobile_verification_code_has_sent,sendMsg:true}">

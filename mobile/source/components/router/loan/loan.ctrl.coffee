@@ -66,6 +66,8 @@ do (_ ,angular, moment, Math, Date) ->
             pointMsg:()=>
                 if parseInt(@user.info.priv) <= 16
                     do @confirmLevel
+                else 
+                     @$window.location.href='./loan/'+@loan.id+'/invest'
                 
 
             agreement: (segment) ->

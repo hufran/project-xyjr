@@ -1,16 +1,19 @@
 do (angular) ->
   angular.module('controller').controller 'RechargeCtrl',
 
-    _.ai '            @user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams', class
-      constructor: (@user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams) ->
+    _.ai '            @user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval, @$q', class
+      constructor: (@user, @api, @baseURI, @$cookies, @$location, @$scope, @$window, @$routeParams, @$uibModal, @$interval, @$q) ->
         EXTEND_API @api
         @$window.scrollTo 0, 0
 
         @back_path = @$routeParams.back
         @next_path = @$routeParams.next
-        @pay_type = 'lianlianPay'
+#        @pay_type = 'lianlianPay'    #连连支付
+        @pay_type = 'depository'     #银行存管
 
         @$scope.bank_account = _.clone @user.bank_account
+        
+
 
         angular.extend @$scope, {
           bank_account: _.clone @user.bank_account
@@ -21,10 +24,11 @@ do (angular) ->
           action1: '/api/v2/jdpay/onlineBankDeposit4Wap/' + @user.fund.userId
           action2: '/api/v2/lianlianpay/deposit/' + @user.fund.userId
           token: @$cookies.get 'ccat'
-
         }
         if  @pay_type == 'lianlianPay'
           @$scope.action = @$scope.action2
+        else if @pay_type == 'depository'
+          @$scope.action = ""
         else
           @$scope.action = @$scope.action1
         if +@$routeParams.amount > 0
@@ -45,6 +49,11 @@ do (angular) ->
         else
           @$scope.amountNew = filterXSS((Math.round(@$scope.amount)).toString())
 
+
+      paySubmit: (event, amount)->
+        event.preventDefault()
+        console.log "amount:",amount
+        @paymentPoint amount
 
       submit: (event, amount, return_url) ->
         @api.payment_get_recharge_url amount, return_url
