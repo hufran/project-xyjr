@@ -9,7 +9,7 @@ do (_, angular) ->
                 @$window.scrollTo 0, 0
 
                 angular.extend @$scope, {
-                    banks:null
+                    banks:banks
                     province: null
                     city: null
                     businessNull:false
@@ -26,24 +26,83 @@ do (_, angular) ->
                 @error = {timer: null, timeout: 4000, message: '', on: false}
                 @captcha = {timer: null, count: 60, count_default: 60, has_sent: false, buffering: false}
 
+                @cell_buffering_count=120.119
+                @cell_buffering=false
+                @mobile_verification_code_has_sent=true
+                @captcha.has_sent=false
+
                 @api.get_province_list().then (data) =>
                     @$scope.province = data
+                console.log "user:",@user
 
 
-            send_mobile_captcha: ->
+            send_mobile_captcha: (account,bankMobile)->
 
-                do @api.payment_pool_bind_card_sent_captcha
+                if !bankMobile || !(/^([1][3|5|7|8][0-9]{9})$/.test(bankMobile))
+                    
+                    @$timeout.cancel @error.timer
+                    @error.on = true
+                    @error.message = '手机号不正确！'
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+                else
+                    bankMobile=filterXSS bankMobile
 
-                @captcha.timer = @$interval =>
-                    @captcha.count -= 1
+                if !account || !/^\d{16,19}$/.test(account)
+                    @$timeout.cancel @error.timer
+                    @error.on = true
+                    @error.message = '银行卡号不正确！'
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+                else
+                    account=filterXSS account
 
-                    if @captcha.count < 1
-                        @$interval.cancel @captcha.timer
-                        @captcha.count = @captcha.count_default
-                        @captcha.buffering = false
-                , 1000
+                if !@user.info||!@user.info.name
+                    @$timeout.cancel @error.timer
+                    @error.on = true
+                    @error.message = '用户名不正确！'
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
 
-                @captcha.has_sent = @captcha.buffering = true
+                
+                return unless !!@user.info and !!@user.info.id and !!bankMobile and !!account and !!@user.info and !!@user.info.name
+               
+                transtype='800006'
+
+                (@api.payment_pool_send_captcha(@user.info.id,transtype,bankMobile,account,@user.info.name)
+
+                    .then (data) =>
+                        return @$q.reject(data) unless data.status is 0
+                        return data
+
+                    .then (data) =>
+                        
+                        @smsid=data.data
+                        timer = @$interval =>
+                          @cell_buffering_count -= 1
+                          if @cell_buffering_count < 1
+                              @$interval.cancel timer
+                              @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
+                              @cell_buffering = false
+                              
+                        , 1000
+                        @captcha.has_sent=true
+                        @cell_buffering = true
+                        @mobile_verification_code_has_sent = false
+
+                    .catch (data) =>
+
+                        key = _.get data, 'data.msg', '系统繁忙，请稍后重试！'
+                        @mg_alert "短信发送失败,"+key
+                        @mobile_verification_code_has_sent = false
+                    
+                )
 
 
             fetch_city: (province) ->
@@ -68,7 +127,7 @@ do (_, angular) ->
 
                 return true # always need location right now
 
-                @$scope.store.bankName and @$scope.store.bankName not in @$scope.direct_paid_banks
+                @$scope.store.bankName and @$scope.store.bankName not in @$scope.banks
 
 
             detection: (cardNo) ->
@@ -109,20 +168,11 @@ do (_, angular) ->
                 , @error.timeout
 
 
-            bind_card: ({bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha,businessType}) ->
-                if smsCaptcha != undefined
-                    smsCaptcha = filterXSS(smsCaptcha)
-                if cardNo != undefined
-                    cardNo = filterXSS(cardNo)
-                    if businessType == '0' || businessType == '1'
-
-                    else
-                        @error.on = true
-                        @error.message = '请选择业务类型'
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
-                        return false
+            bind_card: ({bankName , account, cardPhone, smsCaptcha}) ->
+                if typeof smsCaptcha != "undefined"
+                    smsCaptcha = smsCaptcha
+                if typeof account != "undefined"
+                    account = account
                 @submit_sending = true
 
                 check_input = (data) =>
@@ -140,9 +190,9 @@ do (_, angular) ->
                 (@$q.resolve(@need_location())
 
                     .then (location_needed) ->
-                        return check_input({cardNo}) unless !!cardNo
+                        return check_input({cardNo}) unless !!account
                         return check_input({bankName}) unless !!bankName
-                        return check_input({city, province}) if location_needed
+                        #return check_input({city, province}) if location_needed
                         return check_input({smsCaptcha}) unless !!smsCaptcha
 
                     .then => @api.payment_pool_bind_card(bankName, branchName, cardNo, cardPhone, city, province, smsCaptcha)
@@ -177,6 +227,87 @@ do (_, angular) ->
                         , @error.timeout
                 )
 
+            change_card:({account, bankName, cardPhone, smsCaptcha})=>
+
+                @$timeout.cancel @error.timer
+                if typeof bankName=="undefined"
+                    @error.on = true
+                    @error.message = @$scope.msg["bankName"]
+
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+                if typeof account=="undefined"
+                    @error.on = true
+                    @error.message = @$scope.msg["cardNo"]
+
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+                if typeof cardPhone == "undefined"
+                    @error.on = true
+                    @error.message = @$scope.msg["cardPhone"]
+
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+
+                if typeof smsCaptcha == "undefined"
+                    @error.on = true
+                    @error.message = @$scope.msg["smsCaptcha"]
+
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+
+                if typeof @smsid == "undefined"
+                    @error.on = true
+                    @error.message = @$scope.msg["smsid"]
+
+                    @error.timer = @$timeout =>
+                        @error.on = false
+                    , @error.timeout
+                    return
+
+                return unless !!account and !!bankName and !!cardPhone and !!smsCaptcha and !!@smsid
+                @submit_sending = true
+
+                
+                (@api.payment_pool_change_card(@user.info.id, @smsid, smsCaptcha, cardPhone, bankName, account)
+
+                    .then (data) =>
+                        return @$q.reject(data) unless data.success is 0
+                        return data
+
+                    .then (data) =>
+                        if @$scope.sourceId != undefined
+                            window.location.href = wxChatUrl+"/lend/homeA";
+                        else
+                            @mg_alert _.get data, 'msg', 'wow...'
+                                .result.finally =>
+                                        @$location
+                                        .path @next_path
+                                        .search t: _.now()
+
+                            @$scope.$on '$locationChangeStart', (event, new_path) =>
+                                event.preventDefault()
+                                @$window.location.href = new_path
+
+                    .catch (data) =>
+                        @submit_sending = false
+                        @$timeout.cancel @error.timer
+
+                        @error.on = true
+                        @error.message = _.get data, 'msg', '系统繁忙，请稍后重试！'
+
+                        @error.timer = @$timeout =>
+                            @error.on = false
+                        , @error.timeout
+                )
 
 
 
