@@ -132,7 +132,9 @@ do (angular) ->
                       @mg_alert "请发送短信后在操作！"
                     if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
                       @mg_alert "您尚未开通存管，请开通后在操作"
-                      @$window.location.href="/dashboard/payment/register"
+                      $location
+                        .replace()
+                        .path "dashboard/payment/register"
                       return
 
                     return unless !!mobile_captcha and !!@smsid and !!@amount and !!@password and !!@user.bank_account and !!@user.bank_account.bank

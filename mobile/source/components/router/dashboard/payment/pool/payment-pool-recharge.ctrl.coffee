@@ -183,7 +183,9 @@ do (angular) ->
                 @$scope.rechargeResult=0
                 @smsid=null
                 @$window.alert "充值成功！"
-                @$window.location.href="/dashboard"
+                @$location
+                  .replace()
+                  .path "dashboard"
             .catch (data) =>
               @$scope.rechargeResult=1
               @smsid=null
