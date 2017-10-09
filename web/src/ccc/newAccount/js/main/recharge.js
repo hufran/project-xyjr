@@ -206,25 +206,25 @@ var ractive = new Ractive({
 
 });
 
-request('GET',bankListAPI).end().
-    then(function (r) {
-        corBanks=[];
-        banks=r.body.data;
-        ractive.set('banks', banks);
-        var ignore;
-        for(var i=0;i<banks.length;i++){
-            if(banks[i]["name"]!=="廊坊银行"){
-                corBanks[i]=banks[i]; 
-            }else{
-                ignore=i;
-            }
-        }
-        if(!isNaN(ignore)&&ignore>=0){
-            corBanks.splice(ignore,1);
-        }
+// request('GET',bankListAPI).end().
+//     then(function (r) {
+//         corBanks=[];
+//         banks=r.body.data;
+//         ractive.set('banks', banks);
+//         var ignore;
+//         for(var i=0;i<banks.length;i++){
+//             if(banks[i]["name"]!=="廊坊银行"){
+//                 corBanks[i]=banks[i]; 
+//             }else{
+//                 ignore=i;
+//             }
+//         }
+//         if(!isNaN(ignore)&&ignore>=0){
+//             corBanks.splice(ignore,1);
+//         }
         
-        ractive.set('corBanks', corBanks);
-    });
+//         ractive.set('corBanks', corBanks);
+//     });
 ractive.parseData();
 
 ractive.on('checkAmount',function(){
