@@ -90,6 +90,7 @@ do (angular) ->
                           (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
 
                             .then (data) =>
+                                $scope.cell_buffering=false
                                 return self.$q.reject(data) unless data.status is 0
                                 return data
 

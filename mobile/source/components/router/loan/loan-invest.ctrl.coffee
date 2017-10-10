@@ -443,8 +443,9 @@ do (_, angular, Math) ->
                             (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
 
                                 .then (data) =>
-                                  return self.$q.reject(data) unless data.status is 0
-                                  return data
+                                    $scope.cell_buffering=false
+                                    return self.$q.reject(data) unless data.status is 0
+                                    return data
 
                                 .then (data) =>
                                     console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count
