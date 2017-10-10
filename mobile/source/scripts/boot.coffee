@@ -322,6 +322,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .path '/login'
                                             .search next: 'dashboard/payment/register'
                                         return $q.reject()
+                            banks: _.ai 'api', (api) -> api.payment_pool_banks()
+
                     }
 
                     .when '/dashboard/payment/agreement', {
@@ -351,7 +353,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             .search next: 'dashboard/payment/bind-card'
                                         do $q.reject
 
-                            banks: _.ai 'api', (api) -> api.get_available_bank_list()
+                            banks: _.ai 'api', (api) -> api.payment_pool_banks()
 
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->
@@ -482,7 +484,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             return unless user
 
                                             switch
-                                                when user.has_payment_account isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
@@ -490,13 +492,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                             back: 'dashboard'
                                                             next: 'dashboard/recharge'
 
-                                                when user.has_bank_card isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/bind-card'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/recharge'
+                                            #    when user.has_bank_card isnt true
+                                            #        $location
+                                            #            .replace()
+                                            #            .path 'dashboard/payment/bind-card'
+                                            #            .search
+                                            #                back: 'dashboard'
+                                            #                next: 'dashboard/recharge'
 
                                             return $q.reject()
 
@@ -531,7 +533,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             return unless user
 
                                             switch
-                                                when user.has_payment_account isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
@@ -547,13 +549,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                             back: 'dashboard'
                                                             next: 'dashboard/withdraw'
 
-                                                when user.has_bank_card isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/bind-card'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/withdraw'
+                                                #when user.has_bank_card isnt true
+                                                #    $location
+                                                #        .replace()
+                                                #        .path 'dashboard/payment/bind-card'
+                                                #        .search
+                                                #            back: 'dashboard'
+                                                #            next: 'dashboard/withdraw'
 
                                             return $q.reject()
 
@@ -666,7 +668,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             return unless user
 
                                             switch
-                                                when user.has_payment_account isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
@@ -682,13 +684,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                             back: "loan/#{ $route.current.params.id }"
                                                             next: "loan/#{ $route.current.params.id }/invest"
 
-                                                when user.has_bank_card isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/bind-card'
-                                                        .search
-                                                            back: "loan/#{ $route.current.params.id }"
-                                                            next: "loan/#{ $route.current.params.id }/invest"
+                                                #when user.has_bank_card isnt true
+                                                #    $location
+                                                #        .replace()
+                                                #        .path 'dashboard/payment/bind-card'
+                                                #        .search
+                                                #            back: "loan/#{ $route.current.params.id }"
+                                                #            next: "loan/#{ $route.current.params.id }/invest"
 
                                             return $q.reject()
                                     )

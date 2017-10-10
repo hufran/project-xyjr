@@ -88,6 +88,7 @@ a {
                 color: #1A7FF2;
                 font-size: 16px;
             }
+
         }
 
         .modal-body {
@@ -843,6 +844,27 @@ a {
         }
     }
 }
+#custody {
+    .custodyClass{
+        background:#fff;
+        padding-bottom:5%;
+    }
+    
+    .pointMsg{
+        text-align:center;
+        font-size:14px;
+
+        img{
+            margin-right:0.4rem;
+        }
+    }
+    .redPacketPoint{
+        padding-top:5%;
+        img{
+            width:100%;
+        }
+    }
+}
 
 /*=============================================================================
                                                                 [Router] Log In
@@ -1352,13 +1374,55 @@ a {
             font-size: 15px;
             color: @color-gray;
         }
+        .point-msg{
+            i{
+                font-style:normal;
+                color:#5B9DFF;
+            }
+        }
+        .sendMsg{
+            &.init{
+                .icon, .count {
+                    display: none;
+                }
+            }
+            &:not(.init) {
+                .btn-action {
+                    .text {
+                        display: none;
+                    }
+                }
+            }
+            line-height: 30px;
+            display: block;
+
+        }
     }
 
-    .modal-footer .btn {
-        background-color: @color-theme-main;
-        color: #FFF;
-        border: none;
+    .modal-footer {
+        .btn {
+            background-color: @color-theme-main;
+            color: #FFF;
+            border: none;
+        }
+        .rechargeBtn{
+            float:none;
+            display:inline-block;
+        }
+        .errMsgPoint {
+            .opacity(0);
+            .transition();
+
+            padding: 6px 10px;
+
+            &.on {
+                .opacity(1);
+            }
+        }
+            
     }
+
+
 }
 
 #loan-invest {
@@ -1635,6 +1699,53 @@ a {
         .icon {
             margin-right: 20px;
         }
+        
+        .limit{
+            padding-top:10px;
+            font-size:14px;
+            color:@color-gray
+        }
+        .point-msg{
+            span{
+                padding-left:10px;
+            }
+        }
+
+        .formConfirm{
+            &.init {
+                .btn-action {
+                    .icon, .count {
+                        margin:0;
+                        display: none;
+                    }
+                }
+            }
+            &:not(.init) {
+                .btn-action {
+                    .text {
+                        display: none;
+                    }
+                    .icon{
+                        margin:0;
+                    }
+                }
+            }
+            #mobile_captcha{
+                width:130px;
+                margin-left:10px;
+                margin-right:10px;
+                font-size:14px;
+                line-height:30px;
+                height:30px;
+                padding-left:10px;
+            }
+            .help-block{
+                font-size:14px;
+                color:#f00;
+            }
+        }
+        
+        
     }
 
     .password-form {
@@ -1662,6 +1773,7 @@ a {
     .notice {
         #dashboard-recharge .notice;
     }
+    
 }
 
 /*=============================================================================
@@ -2042,11 +2154,42 @@ a {
     .form-flatten {
         #login > .form-flatten;
 
+        .protocol{
+            background:none !important;
+            label{
+                font-size:12px !important;
+                margin-left: 15px !important;
+                padding: 0 15px 10px !important;
+                overflow:hidden;
+                input{
+                    float:left;
+                    margin-right:5px;
+                    margin-top:0 !important;
+                }
+                span{
+                    float:left;
+                }
+            }
+            .help-block{
+                text-align: left !important;
+                margin-left: 15px !important;
+                padding-left: 15px !important;
+                color: rgb(169, 68, 66);
+            }
+        }
         .form-group {
 
             &.merge {
                 -webkit-flex-wrap: wrap;
                         flex-wrap: wrap;
+            }
+            img{
+                width:10%
+            }
+            select{
+                width:auto;
+                margin: 10px 16px;
+                float:left;
             }
 
             input.form-control {
@@ -2062,7 +2205,141 @@ a {
                 text-align: right;
                 padding: 2px 6px;
             }
+            .show-name{
+                padding:10px 16px;
+                font-size: 14px;
+            }
+            .ownedBank{
+                width:28px;
+                height:28px;
+                margin-top:10px;
+                float:left;
+                &.ABC{
+                    background:url("@{path-image}/bank-icons/abc.png") no-repeat;
+                    background-size:100%;
+                }
+                &.BCCB{
+                    background:url("@{path-image}/bank-icons/bccb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.BHB{
+                    background:url("@{path-image}/bank-icons/bhb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.BJRCB{
+                    background:url("@{path-image}/bank-icons/bjrcb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.BOC{
+                    background:url("@{path-image}/bank-icons/boc.png") no-repeat;
+                    background-size:100%;
+                }
+                &.BOCOM{
+                    background:url("@{path-image}/bank-icons/bocom.png") no-repeat;
+                    background-size:100%;
+                }
+                &.BOS{
+                    background:url("@{path-image}/bank-icons/bos.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CBHB{
+                    background:url("@{path-image}/bank-icons/cbhb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CCB{
+                    background:url("@{path-image}/bank-icons/ccb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CEB{
+                    background:url("@{path-image}/bank-icons/ceb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CIB{
+                    background:url("@{path-image}/bank-icons/cib.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CITIC{
+                    background:url("@{path-image}/bank-icons/citic.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CMB{
+                    background:url("@{path-image}/bank-icons/cmb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CMBC{
+                    background:url("@{path-image}/bank-icons/cmbc.png") no-repeat;
+                    background-size:100%;
+                }
+                &.CZB{
+                    background:url("@{path-image}/bank-icons/czb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.GDB{
+                    background:url("@{path-image}/bank-icons/gdb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.HXB{
+                    background:url("@{path-image}/bank-icons/hxb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.HZCB{
+                    background:url("@{path-image}/bank-icons/hzcb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.IAC{
+                    background:url("@{path-image}/bank-icons/iac.png") no-repeat;
+                    background-size:100%;
+                }
+                &.ICBC{
+                    background:url("@{path-image}/bank-icons/icbc.png") no-repeat;
+                    background-size:100%;
+                }
+                &.LTD{
+                    background:url("@{path-image}/bank-icons/ltd.png") no-repeat;
+                    background-size:100%;
+                }
+                &.MTBANK{
+                    background:url("@{path-image}/bank-icons/mtbank.png") no-repeat;
+                    background-size:100%;
+                }
+                &.NJCB{
+                    background:url("@{path-image}/bank-icons/njcb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.PINGAN{
+                    background:url("@{path-image}/bank-icons/pingan.png") no-repeat;
+                    background-size:100%;
+                }
+                &.PSBC{
+                    background:url("@{path-image}/bank-icons/psbc.png") no-repeat;
+                    background-size:100%;
+                }
+                &.SDB{
+                    background:url("@{path-image}/bank-icons/sdb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.SHB{
+                    background:url("@{path-image}/bank-icons/shb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.SPDB{
+                    background:url("@{path-image}/bank-icons/spdb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.SRCB{
+                    background:url("@{path-image}/bank-icons/srcb.png") no-repeat;
+                    background-size:100%;
+                }
+                &.ZJTLCB{
+                    background:url("@{path-image}/bank-icons/zjtlcb.png") no-repeat;
+                    background-size:100%;
+                }
+
+            }
         }
+    }
+    .form-group.mobile-captcha {
+        #register .form .form-group.mobile-captcha;
     }
 
     .alert {
@@ -2259,6 +2536,11 @@ a {
 
         input.blank {
             background-color: #FFF;
+        }
+        .limit{
+            padding-top:10px;
+            font-size:14px;
+            color:@color-gray
         }
     }
 
@@ -2731,7 +3013,7 @@ a {
                                                                   [Router] Protocol
 ----*/
 #protocolPage {
-    padding:0 15px;
+    padding:15px 15px 0;
 }
 
 

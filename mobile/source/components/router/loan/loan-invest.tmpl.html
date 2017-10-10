@@ -1,10 +1,10 @@
 <style>
     .btn.disabled, .btn[disabled], fieldset[disabled] .btn{
         cursor: not-allowed;
-        filter: alpha(opacity=15);
+        filter: alpha(opacity=65);
         -webkit-box-shadow: none;
         box-shadow: none;
-        opacity: .15;
+        opacity: .65;
     }
     p.twoProtols{display:inline-block;text-align:left;vertical-align:top;padding-top:0.1rem}
 </style>
@@ -192,7 +192,45 @@
 
 
 
+<script type="text/ng-template" id="ngt-pool-recharge.tmpl">
+    <div class="modal-header text-center">
+        <h3 class="modal-title">短信验证</h3>
+    </div>
 
+    <div class="modal-body text-center">
+        <p class="point-msg">短信验证码已发送至<i ng-bind="bankNumber"></i></p>
+        <form name="formConfirm" autocapitalize="none" autocomplete="off" autocorrect="off" novalidate ng-class="{init: mobile_verification_code_has_sent,sendMsg:true}">
+          <span>验证码:</span>
+          <input type="tel" id="mobile_captcha" name="mobile_captcha" ng-model="mobile_captcha" pattern="^\d{6}$" autocapitalize="none" autocomplete="off" autocorrect="off" placeholder="填写短信验证码" maxlength="6" required />
+          <button class="btn btn-sm btn-action btn-theme" type="button"
+                  ng-click="get_verification_code()"
+                  ng-disabled="cell_buffering"
+          >
+              <span class="text">获取</span>
+              <span class="count" ng-show="cell_buffering">
+                  {{ cell_buffering_count | number: 0 }}
+              </span>
+              <span class="icon" ng-hide="cell_buffering">重发</span>
+          </button>
+          <div class="help-block"
+               ng-show="formConfirm.mobile_captcha.$invalid && formConfirm.mobile_captcha.$dirty"
+          >
+              <span ng-show="formConfirm.mobile_captcha.$error.required">必须填写</span>
+              <span ng-show="formConfirm.mobile_captcha.$error.pattern">请输入正确的验证码！</span>
+          </div>
+        </form>
+    </div>
+    <div class="modal-footer container">
+        <div class="row" style="text-align: center">
+          <div class="col-xs-6 rechargeBtn">
+            <button class="btn btn-block btn-default" ng-click="$dismiss(formConfirm.mobile_captcha.$viewValue)" ng-disabled="!(formConfirm.mobile_captcha.$error.pattern==undefined&&formConfirm.mobile_captcha.$dirty)">
+                立即充值
+            </button>
+          </div>
+        </div>
+        <div ng-show="errMsg" ng-bind="errMsgContent"></div>
+    </div>
+</script>
 
 
 
