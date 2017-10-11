@@ -406,13 +406,15 @@ ractive.on('sendTelCode2', function (){
 });
 
 ractive.on('jihuo-submit', function (){
-    if (document.getElementById('agree').checked == true){
-        $('.agree-error').html('');
-    }else{
-        $('.agree-error').html('请先同意开通银行存管协议');
-        return;
+    if(!this.get("lccbId")) {
+        if (document.getElementById('agree').checked == true){
+            $('.agree-error').html('');
+        }else{
+            $('.agree-error').html('请先同意开通银行存管协议');
+            return;
+        }
     }
-
+    
     if(!smsid){
         var error = 'SMSCAPTCHA_INVALID'        
         ractive.set({
@@ -423,6 +425,9 @@ ractive.on('jihuo-submit', function (){
     }
 
     this.fire('checkmessageTxt');
+    if (this.get("showErrormessageTxt")) {
+        return
+    }
     var mess = this.get("messageTxt");
     if(!this.get("lccbId")){
         $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
