@@ -48,7 +48,8 @@ var ractive = new Ractive({
         ifDel: false,
         mobile: banksabled.length ? CC.user.bankCards[0].account.bankMobile : '',
         realName: CC.user.name,
-        isAuditing : CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false,
+        isAuditing : false,
+        // CC.user.fundaccountsMap.data.auditingList.length > 0 ? true : false
         lccbId: CC.user ? CC.user.lccbUserId : ''
     },
     oninit: function () {
@@ -222,7 +223,8 @@ ractive.on("bind-card-submit", function (e) {
     }else{
          clearErrorIndex('showErrorMessagea','errorMessagea');
     }
-    if(!smsid){
+    if(!smsid || !smsCaptcha){
+        this.set('textError', '验证码错误');
         this.set('SMS_NULL', true)
         return false;
     }
@@ -311,7 +313,11 @@ ractive.on("bind-card-submit", function (e) {
 });
 
 ractive.on("delete-card-submit", function (e) {
-    e.original.preventDefault();
+    e.original.preventDefault(); 
+    if (CC.user.enterprise) {
+        console.log('企业用户没有手机号')
+        return
+    }   
     if(!this.get('lccbId')) {
         CccOk.create({
             msg: '用户尚未激活，不能更换银行卡',
@@ -325,49 +331,53 @@ ractive.on("delete-card-submit", function (e) {
         });
     }
     Confirm.create({
-        msg: '请先确认当前的投资待还本金全部结清，再进行解绑银行卡！',
-        okText: '确定解绑',
-        cancelText: '取消解绑',
+        msg: '请先确认当前的投资待还本金全部结清，再进行更换银行卡！',
+        okText: '确定',
+        cancelText: '取消',
         ok: function () {
             // $('.btn-confirm-cancel').trigger('click');
             // $.post('/yeepay/deleteCard', {
-            //     cardNo : filterXSS(ractive.get('bankAccount[0].account.account')),
-            //     paymentPassword : filterXSS(ractive.get('password'))
-            // }, function (r) {
-            //     if(r.success) {
-            //         CccOk.create({
-            //             msg: '删卡申请成功，请等待审核!',
-            //             okText: '确定',
-            //             ok: function () {
-            //                 window.location.reload();
-            //             },
-            //             cancel: function () {
-            //                 window.location.reload();
-            //             }
-            //         });
-            //     } else {
-            //         CccOk.create({
-            //             msg: '删卡失败，' + r.error[0].message,
-            //             okText: '确定',
-            //             ok: function () {
-            //                 window.location.reload();
-            //             },
-            //             cancel: function () {
-            //                 window.location.reload();
-            //             }
-            //         });
-            //     }
+            $.post('/api/v2/lccb/checkIsChangeBank/' + CC.user.id, function (r) {
+                if(r.status == 0) {
+                    var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
+                    var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
+                    $('.dialog').hide()
+                    Message.create({
+                        msg: '短信验证码已发送至',
+                        okText: '下一步',
+                        phone: phoneNumber,
+                        url: '/api/v2/lccb/sms2OldMobile/'+ CC.user.id,
+                        ok: function () {
+                            ractive.set("status", 3)
+                            $('select[name="bankName"]').on("change", function() {
+                                var code = $(this).find("option:selected").attr('data-code');
+                                console.log(code);
+                                ractive.set('bankCode', code)
+                                $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
+                            })
+                            $('.dialog-overlay').hide()
+                            $('.dialog').hide()
+                            
+                        },
+                        close: function () {
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    CccOk.create({
+                        msg: '更换银行卡失败，' + r.msg,
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        },
+                        cancel: function () {
+                            window.location.reload();
+                        }
+                    });
+                }
 
-            // });                  
-            ractive.set("status", 3)
-            $('select[name="bankName"]').on("change", function() {
-                var code = $(this).find("option:selected").attr('data-code');
-                console.log(code);
-                ractive.set('bankCode', code)
-                $(".bankpic").css("background-image","url(/ccc/newAccount/img/bankIcons/"+code+".png)");
-            })
-            $('.dialog-overlay').hide()
-            $('.dialog').hide()
+            });
+                                        
         }
     });
 

@@ -62,9 +62,26 @@ function CccMeassage(options) {
                         $(ele).find('.errMess')
                                 .html('验证码错误');
                             return false;
-                    } else {
+                    } 
+                    if(config.url) {
+                        $.post('/api/v2/lccb/checkSmsCaptcha4OldMobile/' + CC.user.id, {
+                            smsCaptcha: msmcaptcha
+                        },function(r){
+                            if(r.status == 0) {
+                                if(r.data) {
+                                    config.ok($(this), ele, box);
+                                }else{
+                                    $(ele).find('.errMess').html('验证码错误');
+                                }
+                            }else{
+                                $(ele).find('.errMess').html('校验失败');
+                                return false;
+                            }
+                        })
+                    }else{
                         config.ok($(this), ele, box, data, msmcaptcha);
-                    }                                      
+                    }
+                                                         
                 });
                 
 
@@ -115,7 +132,22 @@ function CccMeassage(options) {
                 }
 
                 function sendMsg() {
-                    $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
+                    if(config.url) {
+                        $.post(config.url, function(res) {
+                            console.log(typeof res.data)
+                            if(res.status == 0 && res.data) {
+                                return;
+                            }
+                            $(ele).find('.errMess')
+                                .html('发送失败');
+                            $(ele).find('.getcaptcha')
+                                .html("获取验证码");
+                            $(ele).find('.getcaptcha')
+                                .removeClass('disabled');
+                            clearInterval(interval);
+                        })
+                    }else{
+                        $.post('/api/v2/lccb/sendMsg/' + CC.user.userId, {
                             transtype: config.transtype,
                             cardnbr: CC.user.bankCards[0].account.account,
                             cardPhone: CC.user.bankCards[0].account.bankMobile,
@@ -133,6 +165,7 @@ function CccMeassage(options) {
                                 .removeClass('disabled');
                             clearInterval(interval);
                         })
+                    }
                 }
             }
         });

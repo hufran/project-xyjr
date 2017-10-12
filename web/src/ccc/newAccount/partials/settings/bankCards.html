@@ -136,19 +136,19 @@
     {{/each}}
     <form action="/lianlianpay/deleteCard" method="POST" target="_blank" on-submit="delete-card-submit" style="margin:30px 0;text-align:center" autocomplete="off">
         <input type="hidden" name="cardNo" value="{{bankAccount[0].account.account}}">
-        {{#if ifDel}}
+        <!-- {{#if ifDel}}
         <div class="row">
             <span class="tipss">交易密码</span>
             <input type="password" name="paymentPassword" class="payInp" value="{{password}}">
             <button type="submit" class="btn btn-sm btn-success btn-change-card" style="margin:0;width:100px;line-height:28px;">确定</button>
         </div>
-        {{else}}
+        {{else}} -->
             {{#if !isAuditing}}
-            <button type="button" class="btn btn-sm btn-success btn-change-card" on-click="doDel">更换银行卡</button>
+            <button type="submit" class="btn btn-sm btn-success btn-change-card">更换银行卡</button>
             {{else}}
             <button type="button" class="btn btn-sm btn-success btn-change-card disabled" style="background:#999;border-color:#999">审核中</button>
             {{/if}}
-        {{/if}}
+        <!-- {{/if}} -->
     </form>
 
 </div>
