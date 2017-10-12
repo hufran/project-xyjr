@@ -19,7 +19,7 @@ module.exports = function (router, auth) {
     router.get('/api/v2/lccb/getLccbId/:userId', auth.pass());
     router.post('/api/v2/lccb/checkIsChangeBank/:userId', auth.pass());
     router.post('/api/v2/lccb/sms2OldMobile/:userId', auth.pass());
-    router.post('/api/v2/lccb/userAuth/:userId', auth.pass());
+    router.post('/api/v2/lccb/userChangeBank/:userId', auth.pass());
     router.post('/api/v2/lccb/checkSmsCaptcha4OldMobile/:userId', auth.pass());
     
     
