@@ -23,7 +23,7 @@ do (_, angular) ->
                 @captcha = {timer: null, count: 120, count_default: 120, has_sent: false, buffering: false}
                 @$scope.user=@user
                 @cell_buffering = false
-                @cell_buffering_count = 119.119
+                @cell_buffering_count = 120.119
 
                 @api.payment_pool_getLccbId(@user.info.id)
                     .then (data) =>
