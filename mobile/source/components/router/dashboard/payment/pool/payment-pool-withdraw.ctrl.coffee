@@ -176,8 +176,8 @@ do (angular) ->
 
                       .catch (data) =>
                           @submit_sending = false
-                          key = _.get data, 'error[0].message'|| _.get data, 'msg'
-                          @mg_alert @$scope.msg[key] or key
+                          #key = _.get data, 'error[0].message'|| _.get data, 'msg'
+                          @mg_alert _.get data, 'msg'
                           @smsid=null
                       .finally =>
                           42
