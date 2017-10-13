@@ -28,17 +28,16 @@
             </div>
         </div>
 
-        <p class="text-center" ng-show="self.clicked !== true">
-            <button class="btn btn-theme" ng-click="self.clicked = true">更换银行卡</button>
+        <p class="text-center" ng-show="clicked !== true">
+            <button class="btn btn-theme" ng-click="self.validateChangeBank()">更换银行卡</button>
         </p>
     </section>
-
-    <section class="" ng-if="self.clicked">
+    <section class="" ng-if="clicked">
         <div ng-if="!self.user.has_payment_password">
             请先设置 <a href="dashboard/payment/password" class="btn btn-link u-vb">交易密码</a>
         </div>
 
-        <form ng-if="self.user.has_payment_password"
+        <!--<form ng-if="self.user.has_payment_password"
               class="password-form"
         >
             <input class="form-control input-sm"
@@ -51,11 +50,38 @@
                     ng-click="self.changeBank(password)"
                     ng-disabled="!password"
             >确认更换</button>
+        </form>-->
+
+        <form name="changeFrom" ng-if="self.user.bank_account.bankMobile" autocomplete="off" autocorrect="off" class="formConfirm" ng-class="{init: self.mobile_verification_code_has_sent}">
+            <p class="clearfix">
+                <input style="width: 80%;display: inline-block;" class="form-control input-sm"
+                   type="tel"
+                   name="tel"
+                   ng-model="tel"
+                   placeholder="请输入手机号"
+                   ng-pattern="/^\d{6}$/"
+                >
+                <button class="btn btn-sm btn-action btn-theme" type="button"
+                    ng-click="self.send_mobile_captcha()"
+                    ng-disabled="self.cell_buffering"
+                >
+                    <span class="text">获取</span>
+                    <span class="count" ng-show="self.cell_buffering">
+                        {{ self.cell_buffering_count | number: 0 }}
+                    </span>
+                    <span class="icon" ng-hide="self.cell_buffering">重发</span>
+                </button>
+            </p>
+            <p class="align">
+                <button class="btn btn-danger btn-sm"
+                    ng-click="self.changeBank(tel)"
+                    ng-disabled="!tel||(changeFrom.tel.$error.pattern && changeFrom.tel.$invalid)"
+                >确认更换</button>
+            </p>
         </form>
     </section>
 
     </div>
-
 
 
 
