@@ -67,6 +67,15 @@ a {
             right: 10px;
             top: 50%;
             margin: 0;
+            .modal-title{
+                position:relative;
+                .closeBtn{
+                    position:absolute;
+                    top: -12px;
+                    right: 0px;
+                } 
+            }
+            
         }
 
         &.in {
@@ -782,6 +791,10 @@ a {
                         }
                     }
                 }
+                &input{
+                    border:1px solid @color-gray;
+                }
+                
             }
         }
 
@@ -1395,7 +1408,9 @@ a {
             }
             line-height: 30px;
             display: block;
-
+            input{
+                border:1px solid @color-gray;
+            }
         }
     }
 
@@ -1749,6 +1764,9 @@ a {
         }
         .gary{
             color:@color-gray
+        }
+        input{
+            border:1px solid @color-gray;
         }
     }
 
