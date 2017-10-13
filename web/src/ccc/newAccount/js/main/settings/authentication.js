@@ -31,7 +31,8 @@ var ractive = new Ractive({
         bankNumber: '',
         bankMobile: '',
         accountName: '',
-        lccbId: CC.user ? CC.user.lccbUserId : ''
+        lccbId: CC.user ? CC.user.lccbUserId : '',
+        authority: CC.user ? CC.user.lccbAuth : ''
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -47,11 +48,14 @@ var ractive = new Ractive({
 
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                if(res.data == 0) {
+                if(res.data.lccbId == 0) {
                     ractive.set('lccbId', '');
+                    ractive.set('buttonname', '立即激活');
                 }else{
-                    ractive.set('lccbId', res.data);
-                }                
+                    ractive.set('lccbId', res.data.lccbId);
+                    ractive.set('buttonname', '授权投资');
+                }
+                ractive.set('authority', res.data.lccbAuth);                
             }
         })
     },
@@ -376,7 +380,12 @@ ractive.on('sendTelCode2', function (){
         return;
     }
 
-    var smsType = '800001';
+    if (!this.get("lccbId")) {
+        var smsType = '800001';
+    }else{
+        var smsType = '800027';
+    }
+    
     var userId = CC.user.userId;
     countDown();    
     CommonService.getMessage2(smsType, userId, cardnbr,cardPhone, username, function (r) {
@@ -397,13 +406,15 @@ ractive.on('sendTelCode2', function (){
 });
 
 ractive.on('jihuo-submit', function (){
-    if (document.getElementById('agree').checked == true){
-        $('.agree-error').html('');
-    }else{
-        $('.agree-error').html('请先同意开通银行存管协议');
-        return;
+    if(!this.get("lccbId")) {
+        if (document.getElementById('agree').checked == true){
+            $('.agree-error').html('');
+        }else{
+            $('.agree-error').html('请先同意开通银行存管协议');
+            return;
+        }
     }
-
+    
     if(!smsid){
         var error = 'SMSCAPTCHA_INVALID'        
         ractive.set({
@@ -414,24 +425,44 @@ ractive.on('jihuo-submit', function (){
     }
 
     this.fire('checkmessageTxt');
+    if (this.get("showErrormessageTxt")) {
+        return
+    }
     var mess = this.get("messageTxt");
-    console.log(mess)
-    $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
-        smsid: smsid,
-        smsCaptcha : mess
-    },function(res) {
-        console.log(res)
-        CccOk.create({
-            msg: res.msg,
-            okText: '确定',
-            ok: function () {
-                window.location.reload();
-            },
-            cancel: function() {
-                window.location.reload();
-            }
-        });                    
-    })
+    if(!this.get("lccbId")){
+        $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
+            smsid: smsid,
+            smsCaptcha : mess
+        },function(res) {
+            CccOk.create({
+                msg: res.msg,
+                okText: '确定',
+                ok: function () {
+                    window.location.reload();
+                },
+                cancel: function() {
+                    window.location.reload();
+                }
+            });                    
+        })
+    } else {
+        $.post('/api/v2/lccb/userAuth/'+ CC.user.userId,{
+            smsid: smsid,
+            validatemsg : mess
+        },function(res) {
+            CccOk.create({
+                msg: res.msg,
+                okText: '确定',
+                ok: function () {
+                    window.location.reload();
+                },
+                cancel: function() {
+                    window.location.reload();
+                }
+            });                    
+        })
+    }
+    
 });
 
 function countDown() {

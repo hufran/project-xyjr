@@ -63,10 +63,10 @@ var ractive = new Ractive({
 		});
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                if(res.data == 0) {
+                if(res.data.lccbId == 0) {
                     self.set('lccbId', '');
                 }else{
-                    self.set('lccbId', res.data);
+                    self.set('lccbId', res.data.lccbId);
                 }                
             }
         })
