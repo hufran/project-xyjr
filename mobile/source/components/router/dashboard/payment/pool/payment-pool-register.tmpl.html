@@ -117,9 +117,9 @@
                             <span ng-show="(form.card_no.$error.pattern || form.card_no.$invalid) && form.card_no.$viewValue.length != 0">请填写正确的银行卡号</span>
                         </div>
                     </div>
-                    <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.account">
-                      <div class="show-name" ng-init="store.card_no=user.bank_account.account">
-                        {{user_account}}
+                    <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.account" ng-click="self.$location.path('dashboard/bank-card')">
+                      <div class="show-name" ng-init="store.card_no=user.bank_account.account" style="display: flex;justify-content:space-between;">
+                        <span>{{user_account}}</span> <span class="glyphicon glyphicon-menu-right pull-right"></span>
                       </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                     </div>
                     <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.bank">
                       <div class="show-name" ng-init="store.bank_name=user.bank_account.bank">
-                        {{banks[user.bank_account.bank]}}
+                        {{banks[user.bank_account.bank]}} 
                       </div>
                     </div>
                 </div>
