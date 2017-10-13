@@ -58,7 +58,7 @@
                    type="tel"
                    name="tel"
                    ng-model="tel"
-                   placeholder="请输入手机号"
+                   placeholder="请输入短信验证码"
                    ng-pattern="/^\d{6}$/"
                 >
                 <button class="btn btn-sm btn-action btn-theme" type="button"
@@ -72,6 +72,7 @@
                     <span class="icon" ng-hide="self.cell_buffering">重发</span>
                 </button>
             </p>
+            <p class="gary">注：短信验证码将发送至{{self.user.bank_account.bankMobile.substring(0,3)+"****"+self.user.bank_account.bankMobile.substring(7)}}</p>
             <p class="align">
                 <button class="btn btn-danger btn-sm"
                     ng-click="self.changeBank(tel)"
@@ -97,10 +98,10 @@
     <section class="container notice">
         <h2 class="title">温馨提示：</h2>
         <ol class="list">
-            <li><p>为保障您的资金安全，绑卡前请先进行实名认证。
+            <li><p>为保障您的资金安全，绑卡前请先开通银行存管。
             <li><p>您所绑定的银行卡须是借记卡，718金融严禁利用信用卡套现。
             <li><p>718金融目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。
-            <li><p>已绑定的银行卡如需更换，请联系客服：<a href="tel:4001718718">4001-718-718</a>。
+            <li><p>已绑定的银行卡如无法更换，请联系客服：<a href="tel:4001718718">4001-718-718</a>。
         </ol>
     </section>
 
