@@ -17,7 +17,7 @@ do (_, angular) ->
                     @$scope.bank_account.bank_code = @$scope.bank_account.bank
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
-                @cell_buffering_count=60.59
+                @cell_buffering_count=59.59
                 @cell_buffering=false
                 @mobile_verification_code_has_sent=true
                 @api.payment_pool_bank_limit(@$scope.bank_account.bank).then (data)=>
