@@ -332,7 +332,11 @@ do (_, angular) ->
                     prompt?.dismiss()
                     do once
 
-
+            jumpUrl: ()->
+                if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1
+                    @$location.path 'dashboard/bank-card'
+                else
+                    return false
 
 
 
