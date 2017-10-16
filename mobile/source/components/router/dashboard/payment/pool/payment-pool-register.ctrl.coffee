@@ -36,7 +36,7 @@ do (_, angular) ->
 
                         if parseInt(@$scope.lccbUserId)==0
                             @$scope.btnContent="立即激活"
-                        else if @$scope.lccbAuth=="false"
+                        else if @$scope.lccbAuth==false
                             @$scope.btnContent="立即授权"
                     .catch (data) =>
                         @$window.alert "获取廊坊银行用户ID失败！"
@@ -278,7 +278,7 @@ do (_, angular) ->
                             , @error.timeout
                     
 
-                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth=="false"
+                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth==false
                     #用户授权操作
                     @api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
                         .then (data)=>
@@ -302,7 +302,7 @@ do (_, angular) ->
                                 @error.on = false
                             , @error.timeout
 
-                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth=="true"
+                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth==true
                     #取消授权操作
                     @$window.alert "取消授权"
                     @window.alert "暂未开通取消授权方法"
