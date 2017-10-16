@@ -79,13 +79,13 @@ var ractive = new Ractive({
         var self = this;
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-                if(res.data == 0){
+                if(res.data.lccbId == 0){
                     self.set('lccbId', '');
                 }else{
-                    self.set('lccbId', res.data);
+                    self.set('lccbId', res.data.lccbId);
                 }               
             }
-        })
+        })       
     },
     oncomplete: function () {
         var self = this;
@@ -122,7 +122,7 @@ var ractive = new Ractive({
         });
 
         $(".bankwrap").delegate('.bankItem', 'click', function () {
-
+            ractive.set('showquickInfo', false);
             var classMap = ['jd1025','jd1051','jd103','jd3080','jd104','jd312','jd305','jd313','jd3061','jd307','jd311','jd3230','jd310'];
             var classNewMap=['jd01020000','jd01050000','jd01040000','jd01030000','jd03010000','jd03080000','jd03020000','jd03050000','jd03090000','jd03100000','jd01000000','jd03030000','jd03070000','jd03040000','jd04031000','jd03060000','jd04012900','jd05083000','jd03110000','jd03160000','jd04721460'];
 
@@ -159,12 +159,19 @@ var ractive = new Ractive({
             var classMap = ['ICBC','CCB','ABC','CMBCHINA','BOC','CEB','CMBC','ECITIC','GDB','PINGAN','HXB','POST','BCCB'];
 
             var code =$(this).data('cc');
-            if ($.inArray(code,classMap) == -1) {
-                ractive.set('showamountInfo', false);
-            } else {
-                ractive.set('showamountInfo', true);
-                $("#" + code).show().siblings().hide();
-            }
+            // if ($.inArray(code,classMap) == -1) {
+            //     ractive.set('showamountInfo', false);
+            // } else {
+            //     ractive.set('showamountInfo', true);
+            //     $("#" + code).show().siblings().hide();
+            // }
+            ractive.set('showamountInfo', false);
+            ractive.set('showquickInfo', true);            
+            request('GET',"/api/v2/lccb/banksInLimit/" + code).end().
+                then(function (r) {
+                    ractive.set('showquickInfo', true);
+                    ractive.set("quickInfo", r.body.data)
+                });
             $('.bankItem')
                 .removeClass('currentBank');
             $(this)
@@ -233,11 +240,15 @@ ractive.on('checkAmount',function(){
     }
 })
 ractive.on('recharge_submit', function (e){
-    e.original.preventDefault();
+    
     var amount = this.get('amount');
     var actionName=this.get('action');
     var choose =$('#paynet').prop('checked');
     this.set('amountNew',amount);
+
+    if(!choose) {
+       e.original.preventDefault();
+    }
 
     this.set('msg', {
         BANK_NULL: false,
@@ -280,7 +291,7 @@ ractive.on('recharge_submit', function (e){
             this.set('amountNew',amount);
     };
 
-    if(CC.user.bankCards.length>0){
+    if(!choose){
         if(CC.user.enterprise){
             console.log('企业用户')
             return;
@@ -295,11 +306,7 @@ ractive.on('recharge_submit', function (e){
             transtype: '800002',
             ok: function(a,b,c,d,e) { 
                 $('.dialog').hide();
-                console.log(e)
-                console.log(d)
-                if(choose){
-                    //网银充值
-                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
+                $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
                         bankcode: CC.user.bankCards[0].account.bank,
                         cardnbr: CC.user.bankCards[0].account.account,
                         transamt: amount,
@@ -315,25 +322,6 @@ ractive.on('recharge_submit', function (e){
                             }
                         });                    
                     })
-                }else {
-                    // 快捷支付
-                    $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
-                        bankcode: CC.user.bankCards[0].account.bank,
-                        cardnbr: CC.user.bankCards[0].account.account,
-                        transamt: amount,
-                        smsid: d,
-                        validatemsg : e 
-                    },function(res) {
-                        console.log(res)
-                        CccOK.create({
-                            msg: res.msg,
-                            okText: '确定',
-                            ok: function () {
-                                window.location.reload();
-                            }
-                        });                    
-                    })
-                }
                 
             },
             cancel: function() {
@@ -342,11 +330,11 @@ ractive.on('recharge_submit', function (e){
         })
     }else{
         Confirm.create({
-            msg: '您尚未开通银行托管，是否去开通？',
-            okText: '去开通',
-            cancelText: '取消',
+            msg: '',
+            okText: '充值成功',
+            cancelText: '充值失败',
             ok: function () {
-                window.location.href = '/newAccount/settings/authentication';
+                window.location.reload();
             },
             cancel: function () {
                 window.location.reload();
@@ -400,12 +388,14 @@ ractive.on('choosePayType', function (event) {
         $('.fastbankwrap').css('display','none');
         $('.bankwrap').css('display','block');
         ractive.set('showamountInfo', false);
+        ractive.set('showquickInfo', false);
         $('.bankItem').removeClass('currentBank');
         $('.bankItem').find('span.check').hide();
         ractive.set('bankCode','');
         
     }else{
         ractive.set('showamountInfo', false);
+        ractive.set('showquickInfo', false);
         $('.bankItem').removeClass('currentBank');
         $('.bankItem').find('span.check').hide();
         if (CC.user.bankCards.length>0) {
