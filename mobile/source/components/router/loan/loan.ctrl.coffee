@@ -110,8 +110,9 @@ do (_ ,angular, moment, Math, Date) ->
                         
                 }
 
-                confirmValue.result.then ()=>
-                    @$window.location.href='./loan/'+@loan.id+'/invest'
+                confirmValue.result.then (value)=>
+                    if value==true
+                        @$window.location.href='./loan/'+@loan.id+'/invest'
                 confirmValue.result.catch (new_path) =>
                     @$window.location.href='./questions/'+@loan.id
 

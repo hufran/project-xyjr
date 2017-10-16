@@ -46,7 +46,7 @@ do (_, angular) ->
 
                 if @$scope.user.info&&@$scope.user.info.name
                     length=@$scope.user.info.name.length
-                    @$scope.user_name=@$scope.user.info.name.substring(0,1)+@$scope.user.info.name.substring(1).replace(/./g,"*")
+                    @$scope.user_name=@$scope.user.info.name.substring(0,1)+@$scope.user.info.name.substring(1,length-1).replace(/./g,"*")+@$scope.user.info.name.substring(length-1)
 
                 if @$scope.user.info&&@$scope.user.info.idNumber
                     length=@$scope.user.info.idNumber.length

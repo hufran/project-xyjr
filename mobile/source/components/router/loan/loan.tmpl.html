@@ -179,7 +179,7 @@
 </div>
 <script type="text/ng-template" id="ngt-invest-confirm.tmpl">
     <div class="modal-header text-center">
-        <h3 class="modal-title">提示</h3>
+        <h3 class="modal-title">提示<span class="closeBtn" ng-click="$close(false)">×</span></h3>
     </div>
 
     <div class="modal-body text-center">
@@ -194,7 +194,7 @@
                 </button>
             </div>
             <div class="col-xs-6">
-                <button class="btn btn-block btn-theme" ng-click="$close()">
+                <button class="btn btn-block btn-theme" ng-click="$close(true)">
                     确认
                 </button>
             </div>
