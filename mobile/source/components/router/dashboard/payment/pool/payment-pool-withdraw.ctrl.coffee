@@ -123,6 +123,8 @@ do (angular) ->
                       do $scope.send_verification_code
                       
                 }
+                payment.result.then () =>
+                    @submit_sending = false
                 payment.result.catch (mobile_captcha) =>
                     console.log "@amount:",@amount," password:",@password," mobile_captcha:",mobile_captcha
                     if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)

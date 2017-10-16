@@ -452,7 +452,7 @@ do (_, angular, Math) ->
                                     self.smsid=data.data
                                     self.timer = self.$interval =>
                                       $scope.cell_buffering_count -= 1
-                                      console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count," result:",$scope.cell_buffering_count < 1
+
                                       if $scope.cell_buffering_count < 1
 
                                           self.$interval.cancel self.timer

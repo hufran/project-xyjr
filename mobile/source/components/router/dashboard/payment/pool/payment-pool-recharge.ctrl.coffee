@@ -148,7 +148,7 @@ do (angular) ->
                 do $scope.send_verification_code
 
         }
-
+        
         payment.result.catch ({amount, mobile_captcha}) =>
           @$scope.rechargeResult=0
           if typeof amount=="undefined"||!amount
