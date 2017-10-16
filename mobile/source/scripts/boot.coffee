@@ -372,7 +372,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                             else
                                                 switch
-                                                    when user.has_payment_account isnt true || user.info isnt true || user.info.lccbUserId isnt true
+                                                    when user.has_payment_account isnt true || !user.info || !user.info.lccbUserId
                                                         $location
                                                             .replace()
                                                             .path 'dashboard/payment/register'
@@ -486,7 +486,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             return unless user
 
                                             switch
-                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || user.info isnt true || user.info.lccbUserId isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || !user.info || !user.info.lccbUserId
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
@@ -537,7 +537,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             return unless user
 
                                             switch
-                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || user.info isnt true || user.info.lccbUserId isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || !user.info || !user.info.lccbUserId
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
@@ -672,9 +672,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                         .catch (user) ->
                                             return unless user
-
                                             switch
-                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || user.info isnt true || user.info.lccbUserId isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || !user.info || !user.info.lccbUserId
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
