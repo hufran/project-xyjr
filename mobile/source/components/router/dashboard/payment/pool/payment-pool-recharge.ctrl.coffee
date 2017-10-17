@@ -130,6 +130,7 @@ do (angular) ->
                               if $scope.cell_buffering_count < 1
                                   self.$interval.cancel self.timer
                                   self.timer=null
+                                  self.smsid=null
                                   $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
                                   $scope.cell_buffering = false
 
@@ -186,14 +187,13 @@ do (angular) ->
 
             .then (data) =>
                 @$scope.rechargeResult=0
-                @smsid=null
-                @$window.alert "充值成功！"
+                
+                @$window.alert "请求成功！"
                 @$location
                   .replace()
                   .path "dashboard"
             .catch (data) =>
               @$scope.rechargeResult=1
-              @smsid=null
               @$window.alert "充值失败,"+data.msg
           return
 

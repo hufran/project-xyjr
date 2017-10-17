@@ -27,9 +27,31 @@ do (angular) ->
                 @password = filterXSS(password)
                 @submit_sending = true
 
+                if !@amount||parseInt @amount <=0
+                      @mg_alert "请填写提现金额!"
+                      return false
+                if !@password 
+                  @mg_alert "请填写密码！"
+                  return false
+                if !@user.info || !@user.info.lccbUserId
+                  @mg_alert "您尚未开通存管，请开通后在操作"
+                  $location
+                    .replace()
+                    .path "dashboard/payment/register"
+                  return
+                return unless !!@amount and !!@password and !!@user.info and !!@user.info.lccbUserId
 
-                do @paymentPoint.bind @
-              
+                (@api.payment_pool_check_password(@password)
+
+                  .then (data) =>
+                      return @$q.reject(data) unless data.success is true
+                      return data
+                  .then (data) =>
+                      do @paymentPoint.bind @
+                  .catch (data) =>
+                      @submit_sending = false
+                      @mg_alert "交易密码不正确！"
+                )             
 
             paymentPoint:()->
                 payment=@$uibModal.open {
@@ -103,6 +125,7 @@ do (angular) ->
                                   if $scope.cell_buffering_count < 1
                                       self.$interval.cancel self.timer
                                       self.timer=null
+                                      self.smsid=null
                                       $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
                                       $scope.cell_buffering = false
                                       
@@ -131,42 +154,18 @@ do (angular) ->
                       @mg_alert "验证码不正确!"
                       return false
                     
-                    if !@amount||parseInt @amount <=0
-                      @mg_alert "请填写提现金额!"
-                      return false
-
-                    if !@password 
-                      @mg_alert "请填写密码！"
-                      return false
                     if !@smsid
                       @mg_alert "请发送短信后在操作！"
-                    if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
-                      @mg_alert "您尚未开通存管，请开通后在操作"
-                      $location
-                        .replace()
-                        .path "dashboard/payment/register"
-                      return
 
-                    return unless !!mobile_captcha and !!@smsid and !!@amount and !!@password and !!@user.bank_account and !!@user.bank_account.bank
+                    return unless !!mobile_captcha and !!@smsid
 
-                    (@api.payment_pool_check_password(@password)
-
-                      .then (data) =>
-                          return @$q.reject(data) unless data.success is true
-                          return data
-
-                      .catch (data) =>
-                          @$q.reject error: [message: 'INCORRECT_PASSWORD']
-
-
-                      .then (data) => @api.payment_pool_custody_withdraw(@amount, @password, @smsid, mobile_captcha)
+                    (@api.payment_pool_custody_withdraw(@amount, @password, @smsid, mobile_captcha)
 
                       .then (data) =>
                           return @$q.reject(data) unless data.status is 0
                           return data
 
                       .then (data) =>
-                          @smsid=null
                           @mg_alert @$scope.msg.SUCCEED
                               .result.finally =>
                                   @$location.path 'dashboard'
@@ -179,8 +178,8 @@ do (angular) ->
                       .catch (data) =>
                           @submit_sending = false
                           #key = _.get data, 'error[0].message'|| _.get data, 'msg'
+                          console.log "data:",data
                           @mg_alert _.get data, 'msg'
-                          @smsid=null
                       .finally =>
                           42
                     )

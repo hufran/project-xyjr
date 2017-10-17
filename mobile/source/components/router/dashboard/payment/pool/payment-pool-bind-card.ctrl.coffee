@@ -97,7 +97,7 @@ do (_, angular) ->
                               @timer=null
                               @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
                               @cell_buffering = false
-                              
+                              @smsid=null
                         , 1000
                         @captcha.has_sent=true
                         @cell_buffering = true
@@ -271,7 +271,7 @@ do (_, angular) ->
                     , @error.timeout
                     return
 
-                if typeof @smsid == "undefined"
+                if !@smsid
                     @error.on = true
                     @error.message = @$scope.msg["smsid"]
 
