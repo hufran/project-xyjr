@@ -10,10 +10,10 @@
 <div class="row">
 	<div class="space space-30"></div>
 	<div class="col-md-12 align-center">
-		<p class="text-warning" style="color:#009ada">您还没有开通银行存管</p>
+		<p class="text-warning" style="color:#009ada">您还没有{{kaitong}}银行存管</p>
 		<div class="space space-40"></div>
 		<p>
-			<a href="/newAccount/settings/authentication" style="width: 230px;background-color:#009ada" class="btn btn-orange">开通银行存管</a>
+			<a href="/newAccount/settings/authentication" style="width: 230px;background-color:#009ada" class="btn btn-orange">{{kaitong}}银行存管</a>
 		</p>
 	</div>
 </div>
@@ -44,7 +44,7 @@
                 <input on-blur="validateCardNo" type="text" name="cardNo" value="{{cardNo}}" class="payInp">
                 <span class="error">{{errorMessagea}}</span>
                 {{#if cardNoError}}
-                <span class="error">* 银行卡号只能由5-40位数字组成</span>
+                <span class="error">* 请输入正确银行卡号</span>
                 {{/if}}
                 <div class="clearfix"></div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="tipss" style="width:90px;text-align:right;margin-right: 20px;">预留手机号：</div>
                 <input on-blur="validatePhoneNo" type="text" name="cardPhone" value="{{mobile}}" class="payInp">
                 {{#if phoneNoError}}
-                <span class="error">* 手机号码只能由数字组成</span>
+                <span class="error">* 手机号码只能由11位数字组成</span>
                 {{/if}}
                 <div class="clearfix"></div>
             </div>

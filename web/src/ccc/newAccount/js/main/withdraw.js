@@ -234,11 +234,27 @@ ractive.on('withDrawSubmit', function () {
 
 	else if (pass !== '') {
 		console.log('pass!=');
-		accountService.checkPassword(encodeURIComponent(filterXSS(pass)), function (r) {
-			if (!r) {
-				ractive.set('submitMessage', '交易密码错误');
+		accountService.checkPassword2(encodeURIComponent(filterXSS(pass)), function (r) {
+			if (r.status != 0) {
+                CccOk.create({
+                    msg: '校验交易密码失败!',
+                    okText: '确定',
+                    // cancelText: '重新登录',
+                    ok: function () {
+                        window.location.reload();
+                    },
+                    close: function () {
+                        window.location.reload();
+                    }
+                });
+				
 			} else {
-				ractive.set('submitMessage', null);
+                if(r.data){
+                    ractive.set('submitMessage', null);
+                } else{
+                    ractive.set('submitMessage', r.msg);
+                }
+				
                 // if (ractive.confirm(amount)) {
                 //     isAcess  = true;
                 // }else{
@@ -246,7 +262,8 @@ ractive.on('withDrawSubmit', function () {
                 //     $('.post-btn').removeClass('disabled');
                 //     ractive.set('submitText','确认提现');
                 // }
-				if(banksabled.length) {
+                var lccbUserId = ractive.get(lccbId);
+				if(lccbUserId != 0 && lccbUserId != -1) {
                     if(CC.user.enterprise){
                         $.post('/api/v2/lccb/withdraw/'+ CC.user.userId, 
                             {

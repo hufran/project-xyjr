@@ -156,6 +156,17 @@ exports.accountService = {
                 next(r.body);
             });
     },
+    checkPassword2: function (password, next) {
+        request('POST', '/api/v2/validate/lccbWithdraw/' + CC.user.id)
+            .type('form')
+            .send({
+                paymentPassword : password
+            })
+            .end()
+            .then(function (r) {
+                next(r.body);
+            });
+    },
     getGroupMedal: function (next) {
         request('GET', '/api/v2/users/MYSELF/groupMedal')
                 .end()
