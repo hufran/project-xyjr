@@ -33,7 +33,7 @@ var ractive = new Ractive({
     template: require('ccc/newAccount/partials/settings/bankCards.html'),
 
     data: {
-        status: banksabled.length ? 1 : 0,
+        status: CC.user.lccbUserId ? 1 : 0,
         payment: CC.user.name ? true : false,
         //banks: banks,
         msg: {
@@ -71,9 +71,16 @@ var ractive = new Ractive({
             if(res.status == 0) {
                 if(res.data.lccbId == 0) {
                     ractive.set('lccbId', '');
-                }else{
+                    ractive.set('status', 0);
+                    ractive.set('kaitong', "激活");
+                } else if (res.data.lccbId == -1){
+                    ractive.set('status', 0);
+                    ractive.set('kaitong', "开通");
                     ractive.set('lccbId', res.data.lccbId);
-                }                
+                } else{
+                    ractive.set('status', 1);
+                    ractive.set('lccbId', res.data.lccbId);
+                }            
             }
         })        
     }
@@ -186,10 +193,28 @@ ractive.on('doDel', function () {
 });
 ractive.on("bind-card-submit", function (e) {
     e.original.preventDefault();
+    this.fire("validateCardNo");
     var cardNoError = this.get("cardNoError");
+    if (cardNoError) {
+        return false;
+    }
+
+    if ($('select[name="bankName"]').val()=='请选择开户银行'){
+        showErrorIndex('showErrorMessagea1','errorMessagea1','* 请选择开户银行');
+        return false;
+    }else{
+        clearErrorIndex('showErrorMessagea1','errorMessagea1');
+    } 
+    
+    this.fire("validatePhoneNo");
     var phoneNoError = this.get("phoneNoError");
+    if (phoneNoError) {
+        return false;
+    }
+
+    this.fire("checkSmsCaptcha")
     var SMS_NULL = this.get('SMS_NULL');
-    if (cardNoError || phoneNoError || SMS_NULL) {
+    if (SMS_NULL) {
         return false;
     }
     // var bankr= _.filter(CC.user.bankCards, function (r) {
@@ -211,19 +236,15 @@ ractive.on("bind-card-submit", function (e) {
     //     clearErrorIndex('showErrorMessagea0','errorMessagea0');
     // } 
 
-    if ($('select[name="bankName"]').val()=='请选择开户银行'){
-        showErrorIndex('showErrorMessagea1','errorMessagea1','* 请选择开户银行');
-        return false;
-    }else{
-        clearErrorIndex('showErrorMessagea1','errorMessagea1');
-    } 
-    if(cardNo === ''){
-        showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
-        return false;
-    }else{
-         clearErrorIndex('showErrorMessagea','errorMessagea');
-    }
-    if(!smsid || !smsCaptcha){
+    
+    // if(cardNo === ''){
+        // showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
+    //     this.set("cardNoError", true)
+    //     return false;
+    // }else{
+    //      clearErrorIndex('showErrorMessagea','errorMessagea');
+    // }
+    if(!smsid){
         this.set('textError', '验证码错误');
         this.set('SMS_NULL', true)
         return false;
@@ -338,10 +359,10 @@ ractive.on("delete-card-submit", function (e) {
             // $('.btn-confirm-cancel').trigger('click');
             // $.post('/yeepay/deleteCard', {
             $.post('/api/v2/lccb/checkIsChangeBank/' + CC.user.id, function (r) {
+                $('.dialog').hide()
                 if(r.status == 0) {
                     var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
-                    var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
-                    $('.dialog').hide()
+                    var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)                   
                     Message.create({
                         msg: '短信验证码已发送至',
                         okText: '下一步',
