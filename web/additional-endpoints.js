@@ -22,6 +22,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lccb/sms2OldMobile/:userId', auth.pass());
     router.post('/api/v2/lccb/userChangeBank/:userId', auth.pass());
     router.post('/api/v2/lccb/checkSmsCaptcha4OldMobile/:userId', auth.pass());
+    router.post('/api/v2/validate/lccbInvest/:userId', auth.pass());
+    router.post('/api/v2/validate/lccbWithdraw/:userId', auth.pass());
     
     
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());

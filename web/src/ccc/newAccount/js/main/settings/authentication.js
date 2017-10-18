@@ -151,7 +151,7 @@ ractive.on('checkmessageTxt', function(){
     var messageTxt = this.get("messageTxt"); 
     this.set('showErrormessageTxt',false);   
     if(!messageTxt){
-        var error = 'SMSCAPTCHA_NULL'
+        var error = 'SMSCAPTCHA_INVALID'
         ractive.set({
             showErrormessageTxt: true,
             errormessageTxt: utils.errorMsg[error]
@@ -180,14 +180,7 @@ $('#agree').on('click', function() {
 })
 ractive.on("register-account-submit", function () {   
     var that=this;
-    if(!smsid){
-        var error = 'SMSCAPTCHA_INVALID'        
-        ractive.set({
-            showErrormessageTxt: true,
-            errormessageTxt: utils.errorMsg[error]
-        });
-        return
-    }
+    
     this.fire('checkName');
     this.fire('checkIdNumber');
     this.fire('checkbankNumber');
@@ -213,7 +206,14 @@ ractive.on("register-account-submit", function () {
         return;
     }
 
-    console.log(this.get("authenticateInfo"));
+    if(!smsid){
+        var error = 'SMSCAPTCHA_INVALID'        
+        ractive.set({
+            showErrormessageTxt: true,
+            errormessageTxt: utils.errorMsg[error]
+        });
+        return
+    }
     var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
     var idNumber = filterXSS(this.get("idNumber")) || this.get("authenticateInfo").idNumber;
     var bankNumber = filterXSS(this.get("bankNumber"));
