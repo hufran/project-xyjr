@@ -204,7 +204,7 @@ do (_, angular) ->
                     , @error.timeout
                     return
 
-                if !@smsid
+                if @smsid
                     smsid=@smsid
                 else
 

@@ -41,16 +41,16 @@ do (angular) ->
                   return
                 return unless !!@amount and !!@password and !!@user.info and !!@user.info.lccbUserId
 
-                (@api.payment_pool_check_password(@password)
+                (@api.payment_pool_lccb_withdrawValidate(@user.info.id,@password)
 
                   .then (data) =>
-                      return @$q.reject(data) unless data.success is true
+                      return @$q.reject(data) unless data.data is true
                       return data
                   .then (data) =>
                       do @paymentPoint.bind @
                   .catch (data) =>
                       @submit_sending = false
-                      @mg_alert "交易密码不正确！"
+                      @mg_alert _.get data,"msg","系统繁忙，请稍后重试！"
                 )             
 
             paymentPoint:()->

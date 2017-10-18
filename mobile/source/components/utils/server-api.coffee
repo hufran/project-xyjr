@@ -571,6 +571,20 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
+            payment_pool_lccb_investValidate:(userId,paymentPassword)->
+                @$http
+                    .post '/api/v2/validate/lccbInvest/'+userId,
+                        _.compact {paymentPassword}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+            
+            payment_pool_lccb_withdrawValidate:(userId,paymentPassword)->
+                @$http
+                    .post '/api/v2/validate/lccbWithdraw/'+userId,
+                        _.compact {paymentPassword}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
             payment_pool_change_card:(userId,smsid,validatemsg,userphonenum,bankcode,cardnbr)->      
                 @$http
                     .post '/api/v2/lccb/userChangeBank/'+userId,

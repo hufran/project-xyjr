@@ -193,7 +193,6 @@ do (_, angular, Math) ->
                 do event.preventDefault  # submitting via AJAX
                 good_to_go = true
                 loan = @$scope.loan
-
                 {password} = @$scope.store
                 coupon = @$scope.store?.coupon
                 amount = @$scope.store.amount or 0
@@ -229,11 +228,24 @@ do (_, angular, Math) ->
 
 
                 return unless good_to_go
+                password=filterXSS password
+                amount = filterXSS amount.toString()
 
-                if @$scope.lccbAuth==false
-                    @paymentPoint(loan,password,coupon,amount)
-                else
-                    @invest(loan,password,coupon,amount)
+                (@api.payment_pool_lccb_investValidate @user.fund.userId,password
+                    .then (data) =>
+                        return @$q.reject(data) unless data.data is true
+                        return data
+
+                    .then (data) =>
+                        if @$scope.lccbAuth==false
+                            @paymentPoint(loan,password,coupon,amount)
+                        else
+                            @invest(loan,password,coupon,amount)
+                    .catch (data) =>
+                        @mg_alert _.get data,"msg","系统繁忙，请稍后重试！"
+                )
+
+               
                 
 
             prompt_coupon_sharing: (id) ->
@@ -320,8 +332,7 @@ do (_, angular, Math) ->
                 
 
                 @submit_sending = true
-                password = filterXSS(password)
-                amount = filterXSS(amount.toString())
+                
                 
                 if coupon != undefined and coupon.id == null
 
