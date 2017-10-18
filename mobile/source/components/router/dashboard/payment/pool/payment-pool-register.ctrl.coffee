@@ -8,7 +8,7 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @back_path = @$routeParams.back
+                @back_path = @$routeParams.back or 'dashboard'
                 @next_path = @$routeParams.next or 'dashboard'
 
                 @submit_sending = false
@@ -36,6 +36,8 @@ do (_, angular) ->
 
                         if parseInt(@$scope.lccbUserId)==0
                             @$scope.btnContent="立即激活"
+                        else if parseInt(@$scope.lccbUserId)==-1
+                            @$scope.btnContent="立即认证"
                         else if @$scope.lccbAuth==false
                             @$scope.btnContent="立即授权"
                     .catch (data) =>
@@ -119,7 +121,9 @@ do (_, angular) ->
                             @captcha.count -= 1
 
                             if @captcha.count < 1
+                                @smsid=null
                                 @$interval.cancel @captcha.timer
+                                @captcha.timer=null
                                 @captcha.count = @captcha.count_default
                                 @captcha.buffering = false
                         , 1000
@@ -200,7 +204,7 @@ do (_, angular) ->
                     , @error.timeout
                     return
 
-                if typeof @smsid!="undefined" && @smsid!=null
+                if @smsid
                     smsid=@smsid
                 else
 
@@ -227,7 +231,6 @@ do (_, angular) ->
                             @user.info.name = user_name
                             @user.info.idNumber = id_number
                             @user.has_payment_account = true
-                            @smsid=null
                             if @$scope.sourceId != undefined
     #                           alert(wxChatUrl);
                                 @$location
@@ -239,7 +242,6 @@ do (_, angular) ->
                                     .path @next_path
 
                         .catch (data) =>
-                            @smsid=null
                             @submit_sending = false
                             @$timeout.cancel @error.timer
 
@@ -261,12 +263,10 @@ do (_, angular) ->
                             return @$q.reject(data) unless data.status is 0
                             return data
                         .then (data)=>
-                            @smsid=null
                             @$location
                                 .replace()
                                 .path @next_path
                         .catch (data) =>
-                            @smsid=null
                             @submit_sending = false
                             @$timeout.cancel @error.timer
 
@@ -286,12 +286,10 @@ do (_, angular) ->
                             return data
                         .then (data) =>
                             @$window.alert "用户授权成功！"
-                            @smsid=null
                             @$location
                                 .replace()
                                 .path @next_path
                         .catch (data) =>
-                            @smsid=null
                             @submit_sending = false
                             @$timeout.cancel @error.timer
 
