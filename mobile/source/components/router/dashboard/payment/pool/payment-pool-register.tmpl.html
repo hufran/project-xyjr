@@ -126,7 +126,7 @@
                 <div class="form-group merge"
                      ng-class="{'has-error': form.bank_name.$invalid && form.bank_name.$dirty}" style="overflow: hidden;"
                     >
-                    <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BOCOM','上海银行':'BOS','建设银行':'CCB','光大银行':'CEB','中信银行':'CITIC','招商银行':'CMB','民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGAN','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'GDB','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
+                    <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BCM','上海银行':'BOS','建设银行':'CCB','光大银行':'CEB','中信银行':'CITICBANK','招商银行':'CMB','民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGANBANK','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'CGBC','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
                     <label for="bank_name">所属银行</label>
                     <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.bank">
                         <span ng-if="businessNull" class="{{bankLists[store.bank_name]}} ownedBank"></span>
