@@ -351,7 +351,7 @@ do (_, angular, Math) ->
                         .then (alert_success) =>
 
                             if alert_success
-                                @mg_alert '投标成功'
+                                @mg_alert '投标成功，资金被冻结'
                                 .result.finally =>
                                     @$location.path "/loan/#{ @loan.id }"
 
@@ -385,7 +385,7 @@ do (_, angular, Math) ->
                         .then (alert_success) =>
 
                             if alert_success
-                                @mg_alert '投标成功'
+                                @mg_alert '投标成功，资金被冻结'
                                     .result.finally =>
                                         @$location.path "/loan/#{ @loan.id }"
 
@@ -483,8 +483,11 @@ do (_, angular, Math) ->
                                   $scope.mobile_verification_code_has_sent = false
                             )
                         }
-                        $scope.cell_buffering=true
-                        do $scope.get_verification_code
+                        index=0
+                        if index==0
+                            $scope.cell_buffering=true
+                            do $scope.get_verification_code
+                            index=1
                         
                 }
                 payment.result.catch (mobile_captcha) =>

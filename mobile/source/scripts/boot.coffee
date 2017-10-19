@@ -354,13 +354,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
 
                             banks: _.ai 'api', (api) -> api.payment_pool_banks()
-
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then (user) ->
                                             return user if user.has_payment_account   and
-                                                           user.has_payment_password and
                                                            user.info and
                                                            user.info.lccbUserId
 
@@ -380,13 +378,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                                 back: 'dashboard'
                                                                 next: 'dashboard/payment/bind-card'
 
-                                                    when user.has_payment_password isnt true
-                                                        $location
-                                                            .replace()
-                                                            .path 'dashboard/payment/password'
-                                                            .search
-                                                                back: 'dashboard'
-                                                                next: 'dashboard/payment/bind-card'
+                                                    #when user.has_payment_password isnt true
+                                                    #    $location
+                                                    #        .replace()
+                                                    #        .path 'dashboard/payment/password'
+                                                    #        .search
+                                                    #            back: 'dashboard'
+                                                    #            next: 'dashboard/payment/bind-card'
 
                                                 return $q.reject()
                     }

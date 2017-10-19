@@ -37,7 +37,7 @@ do (_, angular) ->
                         if parseInt(@$scope.lccbUserId)==0
                             @$scope.btnContent="立即激活"
                         else if parseInt(@$scope.lccbUserId)==-1
-                            @$scope.btnContent="立即认证"
+                            @$scope.btnContent="确认开通"
                         else if @$scope.lccbAuth==false
                             @$scope.btnContent="立即授权"
                     .catch (data) =>
@@ -233,13 +233,9 @@ do (_, angular) ->
                             @user.has_payment_account = true
                             if @$scope.sourceId != undefined
     #                           alert(wxChatUrl);
-                                @$location
-                                    .replace()
-                                    .path wxChatUrl+"/lend/homeA"
+                                @$window.location.href=wxChatUrl+"/lend/homeA"
                             else
-                                @$location
-                                    .replace()
-                                    .path @next_path
+                                @$window.location.href=@next_path
 
                         .catch (data) =>
                             @submit_sending = false
@@ -263,9 +259,7 @@ do (_, angular) ->
                             return @$q.reject(data) unless data.status is 0
                             return data
                         .then (data)=>
-                            @$location
-                                .replace()
-                                .path @next_path
+                            @$window.location.href=@next_path
                         .catch (data) =>
                             @submit_sending = false
                             @$timeout.cancel @error.timer
@@ -286,9 +280,7 @@ do (_, angular) ->
                             return data
                         .then (data) =>
                             @$window.alert "用户授权成功！"
-                            @$location
-                                .replace()
-                                .path @next_path
+                            @$window.location.href=@next_path
                         .catch (data) =>
                             @submit_sending = false
                             @$timeout.cancel @error.timer
