@@ -426,22 +426,24 @@ function changeToList(map) {
 ractive.on('sendCode', function (){
     
     if (!this.get('isSend')) {
-        this.set('isSend', true);       
+        this.fire("validateCardNo");
+        var cardNoError = this.get("cardNoError");
+        if (cardNoError) {
+            return false;
+        }
+
+        this.fire("validatePhoneNo");
+        var phoneNoError = this.get("phoneNoError");
+        if (phoneNoError) {
+            return false;
+        }              
         var smsType = '800006';
         var cardnbr = ractive.get("cardNo");
         var cardPhone = ractive.get("mobile");
         var realName = ractive.get("realName")
-        if(cardnbr === ''){
-            showErrorIndex('showErrorMessagea','errorMessagea','* 卡号不能为空');
-            return false;
-        }else{
-             clearErrorIndex('showErrorMessagea','errorMessagea');
-        }
+        
 
-        if(cardPhone == '') {
-            this.set('phoneNoError', true);
-            return
-        }
+        this.set('isSend', true);
         countDown()
         CommonService.getMessage2(smsType, CC.user.userId, cardnbr,cardPhone, realName, function (r) {
             if (r.status == 0) {
