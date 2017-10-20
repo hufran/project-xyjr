@@ -253,6 +253,7 @@ ractive.on('withDrawSubmit', function () {
                     ractive.set('submitMessage', null);
                 } else{
                     ractive.set('submitMessage', r.msg);
+                    return;
                 }
 				
                 // if (ractive.confirm(amount)) {
@@ -262,7 +263,7 @@ ractive.on('withDrawSubmit', function () {
                 //     $('.post-btn').removeClass('disabled');
                 //     ractive.set('submitText','确认提现');
                 // }
-                var lccbUserId = ractive.get(lccbId);
+                var lccbUserId = ractive.get("lccbId");
 				if(lccbUserId != 0 && lccbUserId != -1) {
                     if(CC.user.enterprise){
                         $.post('/api/v2/lccb/withdraw/'+ CC.user.userId, 
