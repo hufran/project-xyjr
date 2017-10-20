@@ -254,11 +254,7 @@ do (_, angular) ->
                         .then (data) =>
                             return @$q.reject(data) unless data.status is 0
                             return data
-                        .then (data) =>@api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
-                        .then (data)=>
-                            return @$q.reject(data) unless data.status is 0
-                            return data
-                        .then (data)=>
+                        .then (data) =>
                             @$window.location.href=@next_path
                         .catch (data) =>
                             @submit_sending = false
