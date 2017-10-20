@@ -105,7 +105,7 @@ do (_, angular) ->
 
                     .catch (data) =>
 
-                        key = _.get data, 'data.msg', '系统繁忙，请稍后重试！'
+                        key = _.get data, 'msg', '系统繁忙，请稍后重试！'
                         @mg_alert "短信发送失败,"+key
                         @mobile_verification_code_has_sent = false
                     
@@ -287,7 +287,7 @@ do (_, angular) ->
                 (@api.payment_pool_change_card(@user.info.id, @smsid, smsCaptcha, cardPhone, bankName, account)
 
                     .then (data) =>
-                        return @$q.reject(data) unless data.success is 0
+                        return @$q.reject(data) unless data.status is 0
                         return data
 
                     .then (data) =>
