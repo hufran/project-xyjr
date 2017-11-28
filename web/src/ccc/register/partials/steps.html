@@ -84,17 +84,18 @@
 
                 <RInput field="agreement" valueStableDuration=100>
                     <div class="rinput agreement-div">
-                        <label class="agree-register-protocol">
+                        <label class="agree-register-protocol" style="line-height: 25px">
                             <input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}" />
                              <span>我同意<span class="i-agree"><a href="/agreement/mobile/regist?key=新毅金融用户注册协议" target="_blank" class="ccc-agreement">《新毅金融用户注册协议》</a></span></span>
                             <br>
+                            <span class="i-agree" style="display: block;width: 460px;padding-left: 5px;"><a href="/agreement/mobile/regist?key=网络借贷风险和禁止性行为提示书及资金来源合法承诺书" target="_blank" class="ccc-agreement">《网络借贷风险和禁止性行为提示书及资金来源合法承诺书》</a></span>
 
-                            <span class="tip" style="left:22px;top:35px;line-height:14px;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                            <span class="tip" style="left:12px;top:53px;line-height:14px;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
                         </label>
                         {{#if stepLoading}}
-                        <input class="next-step" type="button" value="请稍等" disabled />
+                        <input class="next-step" type="button" value="请稍等" disabled style="margin-top: 25px" />
                         {{else}}
-                        <input on-click='nextStep' class="next-step" type="button" value="立即注册" />
+                        <input on-click='nextStep' class="next-step" type="button" value="立即注册" style="margin-top: 25px;" />
                         {{/if}}
                     </div>
                 </RInput>
