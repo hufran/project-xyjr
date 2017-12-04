@@ -17,7 +17,8 @@ do (_, angular) ->
         }
 
         requestList={
-          register:'廊坊银行网络借贷交易资金存管业务三方协议'
+          register:'廊坊银行网络借贷交易资金存管业务三方协议',
+          commitment:'网络借贷风险和禁止性行为提示书及资金来源合法承诺书'
         }
 
         for list of requestList
