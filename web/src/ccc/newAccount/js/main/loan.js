@@ -2,6 +2,7 @@
 
 var utils = require('ccc/global/js/lib/utils');
 var Tips = require('ccc/global/js/modules/cccTips');
+var CccOk = require('ccc/global/js/modules/cccOk');
 require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/cccPaging');
 
@@ -53,7 +54,8 @@ function init(type) {
 			data: {
 				loading: true,
 				list: [],
-				total: 0
+				total: 0,
+				isEnterpriseUser: CC.user.enterprise
 			},
 			onrender: function() {
 				var self = this;
@@ -82,6 +84,7 @@ function init(type) {
 							datas[i].Famount = utils.format.amount(o.amount, 2);
 							datas[i].Fmethod = utils.i18n.RepaymentMethod[o.method][0];
 							datas[i].Fstatus = utils.i18n.LoanStatus[o.status];
+							datas[i].status = o.status;
 							break;
 						case 'today':
 							datas[i].Famount = utils.format.amount(o.repayment.amount, 2);
@@ -232,6 +235,36 @@ function init(type) {
 						}
 					});});
 				});
+
+				this.on("sign", function(e){
+				   var $this = $(e.node)
+				   var url = $this.attr("href")
+				   console.log(url)
+				   if(url && url.indexOf("http") == -1){
+				   	   e.original.preventDefault();
+                       CccOk.create({
+                            msg: url,
+                            okText: '确定',
+                            ok: function () {
+                                window.location.reload();
+                            },
+                            close:function(){
+                            	window.location.reload();
+                            }
+                        });
+				   }else{
+				   	  CccOk.create({
+                            msg: "完成签约操作",
+                            okText: '确定',
+                            ok: function () {
+                                window.location.reload();
+                            },
+                            close:function(){
+                            	window.location.reload();
+                            }
+                        });
+				   }
+				})
 			},
 			onchange: function() {
 				Tips.close();
@@ -281,3 +314,4 @@ function init(type) {
 	//else { console.log('type of this ractive object has init', type); }
 }
 init(getCurrentType());
+

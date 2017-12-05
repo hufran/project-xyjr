@@ -13,6 +13,30 @@
     </thead>
     {{#if list}}
     <tbody>
+       {{#if isEnterpriseUser}}
+        {{#each list}}
+        <tr>
+            <td style="text-indent:20px;">
+                <a class="loan-tit" href="/loan/{{id}}" target="_blank" style="color:#4a4a4a;text-decoration:none" rel="nofollow" >{{title}}</a>
+            </td>
+            <td >{{loanRequest.serial}}</td>
+            <td style="color:#f58220">{{Famount}}</td>
+            <td style="color:#f58220">{{rate/100}}%</td>
+            <td style="color:#f58220">{{Fduration}}</td>
+            <td>{{Fmethod}}</td>
+            <td>{{Fstatus}}</td>
+            <td>
+            {{#if status=="FINISHED"}}
+                   <a class="btn btn-smaller btn-blue-light"
+                href="{{corporationUrl}}" target="_blank" rel="nofollow" on-click="sign">签约</a>
+            {{else}}
+                <a class="btn btn-smaller btn-blue-light"
+                href="/account/loan/allContracts/{{id}}" target="_blank" rel="nofollow" >合同下载</a>
+            {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+      {{else}}
         {{#each list}}
         <tr>
             <td style="text-indent:20px;">
@@ -30,6 +54,7 @@
             </td>
         </tr>
         {{/each}}
+      {{/if}}
     </tbody>
     {{/if}}
 </table>
