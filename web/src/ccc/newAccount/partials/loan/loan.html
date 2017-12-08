@@ -29,7 +29,7 @@
             {{#if status=="SETTLED"}}
                    <a class="btn btn-smaller btn-blue-light"
                 href="{{corporationUrl}}" target="_blank" rel="nofollow" on-click="sign">签约</a>
-            {{else}}
+            {{elseif status!="FINISHED" && status!="OPENED"}}
                 <a class="btn btn-smaller btn-blue-light"
                 href="/account/loan/allContracts/{{id}}" target="_blank" rel="nofollow" >合同下载</a>
             {{/if}}
