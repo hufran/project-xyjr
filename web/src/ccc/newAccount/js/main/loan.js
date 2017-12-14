@@ -5,6 +5,7 @@ var Tips = require('ccc/global/js/modules/cccTips');
 var CccOk = require('ccc/global/js/modules/cccOk');
 require('ccc/global/js/modules/cccTab');
 require('ccc/global/js/modules/cccPaging');
+var format = require('@ds/format');
 
 var tpl = {
 	loan: require('ccc/newAccount/partials/loan/loan.html'),
@@ -50,12 +51,15 @@ function init(type) {
 			el: '.panel-loan',
 			template: tpl[type],
 			size: pageSize,
+			api2: '/api/v2/loan/$loanId/invests/$page/10',
 			api: '/api/v2/user/MYSELF/loans?page=$page&pageSize=$size&type='+type,
 			data: {
 				loading: true,
 				list: [],
 				total: 0,
-				isEnterpriseUser: CC.user.enterprise
+				isEnterpriseUser: CC.user.enterprise,
+				listStatus: 1,
+				pactlist:[]
 			},
 			onrender: function() {
 				var self = this;
@@ -265,6 +269,20 @@ function init(type) {
                         });
 				   }
 				})
+
+				this.on("showPact", function(e){
+					var self = this;
+					var $this = $(e.node)
+				    var pactId = $this.attr("data-id")
+				    this.set("loanId", pactId)
+				    self.set("listStatus", 2)
+				    this.set('loading', true);
+				    this.getPactData(function(o) {
+						self.set('total', o.totalSize);
+						self.setPactData(self.parsePactData(o.results));
+					});
+					return false;
+				})
 			},
 			onchange: function() {
 				Tips.close();
@@ -308,7 +326,48 @@ function init(type) {
 				data.Fpenalty = utils.format.amount(data.penalty, 2);
 				data.Ftotal   = utils.format.amount(data.total,   2);
 				return data;
-			}
+			},
+			getPactData: function(callback){
+				var self = this;
+				var loanId = this.get("loanId")
+				$.get(this.api2.replace('$page', 1).replace('$loanId', loanId), function(o) {
+					self.pageOnePactData = o.results;
+					callback(o);
+				});
+			},
+			setPactData: function(o){
+				this.set('loading', false);
+				this.set('pactlist', o);
+				this.renderPactPager();
+			},
+            parsePactData: function(datas){
+                for (var i=0; i<datas.length; i++){
+                   datas[i].phone=(datas[i].userLoginName).replace("_","").substring(4);
+                   datas[i].date=moment(datas[i].submitTime)
+                .format('YYYY-MM-DD HH:mm:ss');
+                   datas[i].contractUrl = datas[i].contractUrl[0]
+                }
+                console.log(datas)
+                return datas;
+            },
+            renderPactPager: function(){
+                var self = this;
+                var loanId = this.get("loanId")
+				$(this.el).find(".ccc-paging").cccPaging({
+					total: this.get('total'),
+					perpage: self.size,
+					api: this.api2.replace('$loanId', loanId),
+					params: {
+						type: 'GET',
+						error: function(o) {
+							console.warn('请求出现错误，' + o.statusText);
+						}
+					},
+					onSelect: function(p, o) {
+						self.set('pactlist', p > 1 ? self.parsePactData(o.results) : self.pageOnePactData);
+					}
+				});
+            }
 		});
 	}
 	//else { console.log('type of this ractive object has init', type); }
