@@ -1,0 +1,33 @@
+<table style="width: 100%">
+    <thead class="has-bg">
+        <tr>
+            <th style="text-indent:20px;">投标人</th>
+            <th>投标金额(元)</th>
+            <th>投标时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    {{#if list}}
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td style="text-indent:20px;">
+                {{phone.substr(0,3)}}*****{{phone.substr(-3)}}
+            </td>
+            <td>{{amount}}</td>
+            <td>{{date}}</td>
+            <td>
+                <a class="btn btn-smaller btn-blue-light"
+                href="{{contractUrl}}" target="_blank" rel="nofollow" >合同查看</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+    {{/if}}
+</table>
+
+{{#if list}}
+<div class="ccc-paging"></div>
+{{else}}
+<div class="no-loan"></div>
+{{/if}}

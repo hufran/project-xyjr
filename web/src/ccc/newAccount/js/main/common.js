@@ -15,8 +15,13 @@ var navRactive = new Ractive({
 			var tab = location[location.length-1];
 			this.set(tab, true);
 		} else {
-			var tab = location[location.length -2];
-			var menu = location[location.length -1];
+			if(location.length == 5) {
+				var tab = location[location.length -3];
+			    var menu = location[location.length -2];
+			}else{
+				var tab = location[location.length -2];
+			    var menu = location[location.length -1];
+			}			
 			this.set(tab, true);
 			this.set(menu, true);
 			if (tab === 'invest') {

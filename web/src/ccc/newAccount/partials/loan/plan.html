@@ -1,0 +1,46 @@
+<table class="table table-hover has-padding">
+    <thead class="has-bg">
+        <tr>
+            <th class="p-tit" style="text-indent:20px;">期数</th>
+            <th>还款日期</th>
+            <th class="p-amount">期初本金</th>
+            <th class="p-rate">年利率</th>
+            <th class="p-duration">本期本金</th>
+            <th class="p-method">本期利息</th>
+            <th class="p-status">本期费用</th>
+            <th class="p-status">本期应还合计</th>
+            <th class="p-status">期末本金余额</th>
+            <th class="p-status">当前状态</th>
+            <th class="p-op">操作</th>
+        </tr>
+    </thead>
+    {{#if list}}
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td style="text-indent:20px;">
+                {{title}}
+            </td>
+            <td >{{loanRequest.serial}}</td>
+            <td >{{Famount}}</td>
+            <td >{{rate/100}}%</td>
+            <td >{{Fduration}}</td>
+            <td>{{Fmethod}}</td>
+            <td>{{Fstatus}}</td>
+            <td>{{Fstatus}}</td>
+            <td>{{Fstatus}}</td>
+            <td>{{Fstatus}}</td>
+            <td>               
+                <span>账单</span>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+    {{/if}}
+</table>
+
+{{#if list}}
+<div class="ccc-paging"></div>
+{{else}}
+<div class="no-loan"></div>
+{{/if}}

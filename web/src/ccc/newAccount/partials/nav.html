@@ -12,8 +12,10 @@
 		{{/if}}
 		<span class="nav-text {{#if home}}nav-text-active{{/if}}"><a href="/newAccount/home">我的账户</a></span>
 	</li>
-	{{#if isEnterprise}}
-	<li class="nav-li">
+
+
+	{{#if !isEnterprise}}
+	<!-- <li class="nav-li">
 		{{#if loanRequest}}
 			<span class="icon-invest-active"></span>
 		{{else}}
@@ -31,45 +33,46 @@
 				<li class="{{#if overdue}}active{{/if}}"><a href="/newAccount/loanRequest/overdue">逾期及违约</a></li>
 			</ul>
 		{{/if}}
-	</li>
-	{{else}}
-		<li class="nav-li">
-		{{#if invest}}
-			<span class="icon-invest-active icon-my-invest-active"></span>
-		{{else}}
-			<span class="icon-invest icon-my-invest"></span>
-		{{/if}}
-		<span class="nav-text {{#if invest}}nav-text-active{{/if}}"><a href="/newAccount/invest/HOLDING">我的投资</a></span>
-		<span class='nav-toggle-btn {{showInvestToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showInvestToggleMenu" on-click="toggleMenu"></span>
-		<div class="clearfix"></div>
-		{{#if showInvestToggleMenu}}
-			<ul class="nav-toggle-menu">
-				<li class="{{#if HOLDING}}active{{/if}}"><a href="/newAccount/invest/HOLDING">计息中</a></li>
-				<li class="{{#if INHAND}}active{{/if}}"><a href="/newAccount/invest/INHAND">募集中</a></li>
-				<li class="{{#if CLEARED}}active{{/if}}"><a href="/newAccount/invest/CLEARED">已结清</a></li>
-			</ul>
-		{{/if}}
-	</li>
-        	<li class="nav-li">
+	</li> -->
+	    <li class="nav-li">
+			{{#if invest}}
+				<span class="icon-invest-active icon-my-invest-active"></span>
+			{{else}}
+				<span class="icon-invest icon-my-invest"></span>
+			{{/if}}
+			<span class="nav-text {{#if invest}}nav-text-active{{/if}}"><a href="/newAccount/invest/HOLDING">我的投资</a></span>
+			<span class='nav-toggle-btn {{showInvestToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showInvestToggleMenu" on-click="toggleMenu"></span>
+			<div class="clearfix"></div>
+			{{#if showInvestToggleMenu}}
+				<ul class="nav-toggle-menu">
+					<li class="{{#if HOLDING}}active{{/if}}"><a href="/newAccount/invest/HOLDING">计息中</a></li>
+					<li class="{{#if INHAND}}active{{/if}}"><a href="/newAccount/invest/INHAND">募集中</a></li>
+					<li class="{{#if CLEARED}}active{{/if}}"><a href="/newAccount/invest/CLEARED">已结清</a></li>
+				</ul>
+			{{/if}}
+		</li>
+	{{/if}}
+		
+    <li class="nav-li">
 		{{#if loanRequest}}
 			<span class="icon-invest-active"></span>
 		{{else}}
 			<span class="icon-invest"></span>
 		{{/if}}
-		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan">还款管理</a></span>
+		<span class="nav-text {{#if loanRequest}}nav-text-active{{/if}}"><a href="/newAccount/loanRequest/loan">我的借款</a></span>
 		<span class='nav-toggle-btn {{showLoanToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showLoanToggleMenu" on-click="toggleMenu"></span>
 		<div class="clearfix"></div>
 		{{#if showLoanToggleMenu}}
 			<ul class="nav-toggle-menu">
-				<li class="{{#if loan}}active{{/if}}"><a href="/newAccount/loanRequest/loan">我的借款</a></li>
-				<li class="{{#if today}}active{{/if}}"><a href="/newAccount/loanRequest/today">今日到期</a></li>
-				<li class="{{#if undue}}active{{/if}}"><a href="/newAccount/loanRequest/undue">尚未到期</a></li>
-				<li class="{{#if repayed}}active{{/if}}"><a href="/newAccount/loanRequest/repayed">已还清</a></li>
-				<li class="{{#if overdue}}active{{/if}}"><a href="/newAccount/loanRequest/overdue">逾期及违约</a></li>
+				<li class="{{#if shenpi}}active{{/if}}"><a href="/newAccount/loanRequest/shenpi">借款审批</a></li>
+				<li class="{{#if muji}}active{{/if}}"><a href="/newAccount/loanRequest/muji">借款募集</a></li>
+				<li class="{{#if guanli||plan||list }}active{{/if}}"><a href="/newAccount/loanRequest/guanli">还款管理</a></li>			
 			</ul>
 		{{/if}}
 	</li>
-	{{/if}}
+	
+
+
 	<li class="nav-li">
 		{{#if fund}}
 			<span class="icon-fund-active"></span>
