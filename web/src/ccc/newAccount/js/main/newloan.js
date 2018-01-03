@@ -15,14 +15,12 @@ var tpl = {
     list: require('ccc/newAccount/partials/loan/list.html')
 };
 
-// 还款提示
-var repayConfirmTpl = require('ccc/newAccount/partials/loan/repayConfirm.html');
+// 提前还款
+var Cpayed = require('ccc/global/js/modules/payedBefore');
 
-// 还款明细tpl
-var repayDetailTpl = require('ccc/newAccount/partials/loan/repayDetail.html');
+// 账单
+var Cplan = require('ccc/global/js/modules/planlist');
 
-// 逾期罚息tpl
-var overDueFeeTpl = require('ccc/newAccount/partials/loan/overdueFee.html');
 var location;
 function getCurrentType () {
     location = window.location.pathname.split('/');
@@ -134,12 +132,8 @@ function init(type) {
                             datas[i].status = o.status;
                             break;
                         case 'list':
-                            datas[i].Fduration = utils.format.duration(o.duration);
-                            datas[i].Frate = utils.format.percent((o.rate/100), 2);
-                            datas[i].Famount = utils.format.amount(o.amount, 2);
-                            datas[i].Fmethod = utils.i18n.RepaymentMethod[o.method][0];
-                            datas[i].Fstatus = utils.i18n.LoanStatus[o.status];
-                            datas[i].status = o.status;
+                            datas[i].date=moment(datas[i].submitTime)
+                .format('YYYY-MM-DD HH:mm:ss');
                             datas[i].phone=(datas[i].userLoginName).replace("_","").substring(4);
                             break;
                     }
@@ -200,9 +194,47 @@ function init(type) {
                         });
                    }
                 })
+                
+                //提前还款
+                this.on("payedBefore", function(e){
+                    var $this = $(e.node);
+                    Cpayed.create({
+                        amount1: 1000,
+                        amount2: 2000,
+                        amount3: 2000,
+                        amount4: 2000,
+                        amount5: 2000,
+                        amount6: 2000,
+                        amount7: 2000,
+                        date: "2017-01-02",
+                        ok: function () {
+                            console.log("提前还款")
+                        }
+                    });
+                })
+                
+                //账单
+                this.on("planlist", function(e){
+                    var $this = $(e.node);
+                    Cplan.create({
+                        title: "第2期账单",
+                        num: 3,
+                        amount: 200,
+                        lixi: 100,
+                        guanlifei: 100,
+                        faxi:100,
+                        jianmian: 100,
+                        money: 1000,
+                        date: "2017-12-02",
+                        ok: function () {
+                            console.log("账单")
+                        }
+                    });
+                })
+
             },
             onchange: function() {
-                Tips.close();
+                
             }
         });
     }

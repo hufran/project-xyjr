@@ -25,10 +25,8 @@
             <td>{{Fmethod}}</td>
             <td>{{Fstatus}}</td>
             <td>
-                <a href="/loan/{{id}}" target="_blank" rel="nofollow" >查看标的</a>
-                {{#if status=="SETTLED"}}
-                   <a href="{{corporationUrl}}" target="_blank" rel="nofollow" on-click="sign">签约</a>
-                {{/if}}
+                <a href="/loan/{{id}}" target="_blank" rel="nofollow" class="blue-col">查看标的</a>
+               <a href="{{corporationUrl}}" target="_blank" rel="nofollow" on-click="sign" class='blue-col {{#if status!=="SETTLED"}}showif{{/if}}'>签约</a>
             </td>
         </tr>
         {{/each}}

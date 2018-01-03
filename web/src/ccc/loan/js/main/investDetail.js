@@ -29,7 +29,9 @@ var statusMap = {
     OPENED: '',
     FINISHED: '',
     CLEARED: '',
-    OVERDUE: ''
+    OVERDUE: '',
+    BREACH: '',
+    FAILED:''
 };
 var template = statusMap[CC.loan.status];
 

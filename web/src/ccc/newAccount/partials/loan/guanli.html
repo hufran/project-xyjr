@@ -25,9 +25,9 @@
             <td>{{Fmethod}}</td>
             <td>{{Fstatus}}</td>
             <td>
-                <a href="/newAccount/loanRequest/plan/{{id}}" target="_blank" rel="nofollow" >还款计划</a>
-                <a href="/newAccount/loanRequest/list/{{id}}" target="_blank" rel="nofollow">查看合同</a>
-                <span>提前还款</span>
+                <a class="blue-col" href="/newAccount/loanRequest/plan/{{id}}" rel="nofollow" >还款计划</a>
+                <a class="blue-col" href="/newAccount/loanRequest/list/{{id}}" rel="nofollow">查看合同</a>
+                <span class="blue-col" on-click="payedBefore">提前还款</span>
             </td>
         </tr>
         {{/each}}

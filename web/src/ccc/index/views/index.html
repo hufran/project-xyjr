@@ -125,7 +125,7 @@
                 <!--<p class="banner-account2">活期收益的&nbsp;&nbsp;<span class="banner-account-2">34倍</span></p>-->
                 <div class="free-register">
                     {{#if user}}
-                        {{#if user.name}}
+                        {{#if user.name||userInfo.user.enterprise}}
                         <a href="/newAccount/home"><div class="btn-index">我的账户</div></a>
                         {{else}}
                         <a href="/newAccount/settings/authentication"><div class="btn-index">我的账户</div></a>
