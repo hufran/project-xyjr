@@ -1,0 +1,43 @@
+<div id="paymentBill">
+	<nav class="omit-margin container page-nav">
+	    <div class="row">
+	        <a class="col-xs-3 back" href="./dashboard/loans">
+	            <span class="glyphicon glyphicon-menu-left"></span>
+	        </a>
+	        <span class="col-xs-6 title" ng-bind="title">第2期账单</span>
+	        <span class="col-xs-3">&nbsp;</span>
+	    </div>
+    </nav>
+    <section class="c-list-panel info-list">
+    	<ul>
+    		<li>
+    			<span class="title">本金：</span><span ng-bind="principal">20000</span>
+    		</li>
+    		<li>
+    			<span class="title">利息：</span><span ng-bind="interest">1000</span>
+    		</li>
+    		<li>
+    			<span class="title">管理费：</span><span ng-bind="managementFee">500</span>
+    		</li>
+    		<li>
+    			<span class="title">违约金：</span><span ng-bind="penalty">80</span>
+    		</li>
+    		<li>
+    			<span class="title">罚息：</span><span ng-bind="defautInterest">50</span>
+    		</li>
+    		<li>
+    			<span class="title">减免：</span><span ng-bind="remission">130</span>
+    		</li>
+    		<li>
+    			<span class="title">实际应还金额：</span><span ng-bind="repay">21500</span>
+    		</li>
+    		<li>
+    			<span class="title">实际应还日期：</span><span ng-bind="repayDate">2017-05-31</span>
+    		</li>
+    		
+    	</ul>
+        <div class="btn"><button>还款</button></div>
+    </section>
+
+
+</div>
