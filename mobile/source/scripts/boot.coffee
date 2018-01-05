@@ -354,13 +354,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         do $q.reject
 
                             banks: _.ai 'api', (api) -> api.payment_pool_banks()
-
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then (user) ->
                                             return user if user.has_payment_account   and
-                                                           user.has_payment_password
+                                                           user.info and
+                                                           user.info.lccbUserId
 
                                             return $q.reject(user)
 
@@ -370,7 +370,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                             else
                                                 switch
-                                                    when user.has_payment_account isnt true
+                                                    when user.has_payment_account isnt true || !user.info || !user.info.lccbUserId
                                                         $location
                                                             .replace()
                                                             .path 'dashboard/payment/register'
@@ -378,13 +378,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                                 back: 'dashboard'
                                                                 next: 'dashboard/payment/bind-card'
 
-                                                    when user.has_payment_password isnt true
-                                                        $location
-                                                            .replace()
-                                                            .path 'dashboard/payment/password'
-                                                            .search
-                                                                back: 'dashboard'
-                                                                next: 'dashboard/payment/bind-card'
+                                                    #when user.has_payment_password isnt true
+                                                    #    $location
+                                                    #        .replace()
+                                                    #        .path 'dashboard/payment/password'
+                                                    #        .search
+                                                    #            back: 'dashboard'
+                                                    #            next: 'dashboard/payment/bind-card'
 
                                                 return $q.reject()
                     }
@@ -478,13 +478,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                 (                   api, $location, $route, $q) ->
                                     api.fetch_current_user()
                                         .then (user) ->
-                                            return user if user.has_payment_account and user.has_bank_card
+                                            return user if user.has_payment_account and user.has_bank_card and user.info and user.info.lccbUserId
                                             return $q.reject(user)
                                         .catch (user) ->
                                             return unless user
 
                                             switch
-                                                when user.has_payment_account isnt true || user.has_bank_card isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || !user.info || !user.info.lccbUserId
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
@@ -512,12 +512,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         resolve:
                             user: _.ai 'api, $location, $q',
                                 (       api, $location, $q) ->
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/withdraw'
-                                        return $q.reject()
+                                    api.fetch_current_user()
+                                        .catch ->
+                                            $location
+                                                .replace()
+                                                .path '/login'
+                                                .search next: 'dashboard/withdraw'
+                                            return $q.reject()
 
                             _payment_account: _.ai 'api, $location, $route, $q',
                                 (                   api, $location, $route, $q) ->
@@ -525,7 +526,8 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .then (user) ->
                                             return user if user.has_payment_account   and
                                                            user.has_payment_password  and
-                                                           user.has_bank_card
+                                                           user.has_bank_card and user.info and 
+                                                           user.info.lccbUserId
 
                                             return $q.reject(user)
 
@@ -533,7 +535,7 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                             return unless user
 
                                             switch
-                                                when user.has_payment_account isnt true || user.has_bank_card isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || !user.info || !user.info.lccbUserId
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'
@@ -660,15 +662,16 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                         .then (user) ->
                                             return user if user.has_payment_account   and
                                                            user.has_payment_password  and
-                                                           user.has_bank_card
+                                                           user.has_bank_card and 
+                                                           user.info and
+                                                           user.info.lccbUserId
 
                                             return $q.reject(user)
 
                                         .catch (user) ->
                                             return unless user
-
                                             switch
-                                                when user.has_payment_account isnt true || user.has_bank_card isnt true
+                                                when user.has_payment_account isnt true || user.has_bank_card isnt true || !user.info || !user.info.lccbUserId
                                                     $location
                                                         .replace()
                                                         .path 'dashboard/payment/register'

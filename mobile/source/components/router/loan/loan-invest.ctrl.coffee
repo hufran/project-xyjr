@@ -191,10 +191,61 @@ do (_, angular, Math) ->
 
             submit: (event) ->
                 do event.preventDefault  # submitting via AJAX
-                if @$scope.lccbAuth==false
-                    @paymentPoint()
-                else
-                    @invest()
+                good_to_go = true
+                loan = @$scope.loan
+                {password} = @$scope.store
+                coupon = @$scope.store?.coupon
+                amount = @$scope.store.amount or 0
+                loan_minimum = loan.raw.loanRequest.investRule.minAmount
+                loan_maximum = loan.raw.loanRequest.investRule.maxAmount
+                loan_available = loan.balance
+                loan_step = loan.raw.loanRequest.investRule.stepAmount
+                user_available = @user.fund.availableAmount
+                coupon_minimum = @$scope.store.coupon?.minimum
+                
+                (if amount > loan_available
+                    good_to_go = false
+                    @mg_alert "当前剩余可投#{ loan_available }元"
+                else if loan_available < loan_minimum
+                    good_to_go = true
+
+                else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
+                    good_to_go = false
+                    @mg_alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
+
+                else if amount > loan_maximum and loan_maximum != 0
+                    good_to_go = false
+                    @mg_alert "单笔最多可投 #{ loan_maximum }元"
+
+                else if user_available <= 0 or amount > user_available
+                    good_to_go = false
+                    do @prompt_short_of_balance
+
+                else if coupon_minimum and amount < coupon_minimum
+                    good_to_go = false
+                    @mg_alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
+                )
+
+
+                return unless good_to_go
+                password=filterXSS password
+                amount = filterXSS amount.toString()
+
+                (@api.payment_pool_lccb_investValidate @user.fund.userId,password
+                    .then (data) =>
+                        return @$q.reject(data) unless data.data is true
+                        return data
+
+                    .then (data) =>
+                        if @$scope.lccbAuth==false
+                            @paymentPoint(loan,password,coupon,amount)
+                        else
+                            @invest(loan,password,coupon,amount)
+                    .catch (data) =>
+                        @mg_alert _.get data,"msg","系统繁忙，请稍后重试！"
+                )
+
+               
                 
 
             prompt_coupon_sharing: (id) ->
@@ -266,7 +317,7 @@ do (_, angular, Math) ->
                             angular.extend $scope, {content}
                 }
 
-            invest: (mobile_captcha) ->
+            invest: (loan,password,coupon,amount,mobile_captcha) ->
 
                 if @$scope.lccbAuth==false
                     if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
@@ -278,48 +329,10 @@ do (_, angular, Math) ->
                     
                     return unless !!mobile_captcha and !!@smsid
 
-                good_to_go = true
-                loan = @$scope.loan
-
-                {password} = @$scope.store
-                coupon = @$scope.store?.coupon
-                amount = @$scope.store.amount or 0
-                loan_minimum = loan.raw.loanRequest.investRule.minAmount
-                loan_maximum = loan.raw.loanRequest.investRule.maxAmount
-                loan_available = loan.balance
-                loan_step = loan.raw.loanRequest.investRule.stepAmount
-                user_available = @user.fund.availableAmount
-                coupon_minimum = @$scope.store.coupon?.minimum
                 
-                (if amount > loan_available
-                    good_to_go = false
-                    @mg_alert "当前剩余可投#{ loan_available }元"
-                else if loan_available < loan_minimum
-                    good_to_go = true
-
-                else if amount < loan_minimum or (amount - loan_minimum) % loan_step isnt 0
-                    good_to_go = false
-                    @mg_alert "#{ loan_minimum }元起投，#{ loan_step }元递增"
-
-                else if amount > loan_maximum and loan_maximum != 0
-                    good_to_go = false
-                    @mg_alert "单笔最多可投 #{ loan_maximum }元"
-
-                else if user_available <= 0 or amount > user_available
-                    good_to_go = false
-                    do @prompt_short_of_balance
-
-                else if coupon_minimum and amount < coupon_minimum
-                    good_to_go = false
-                    @mg_alert "该优惠券需要投资额大于 #{ coupon_minimum } 方可使用"
-                )
-
-
-                return unless good_to_go
 
                 @submit_sending = true
-                password = filterXSS(password)
-                amount = filterXSS(amount.toString())
+                
                 
                 if coupon != undefined and coupon.id == null
 
@@ -338,7 +351,7 @@ do (_, angular, Math) ->
                         .then (alert_success) =>
 
                             if alert_success
-                                @mg_alert '投标成功'
+                                @mg_alert '投标成功，资金被冻结'
                                 .result.finally =>
                                     @$location.path "/loan/#{ @loan.id }"
 
@@ -352,7 +365,6 @@ do (_, angular, Math) ->
                             @mg_alert message
 
                         .finally =>
-                            @smsid=null
                             @submit_sending = false
                     )
 
@@ -373,7 +385,7 @@ do (_, angular, Math) ->
                         .then (alert_success) =>
 
                             if alert_success
-                                @mg_alert '投标成功'
+                                @mg_alert '投标成功，资金被冻结'
                                     .result.finally =>
                                         @$location.path "/loan/#{ @loan.id }"
 
@@ -387,13 +399,12 @@ do (_, angular, Math) ->
                             @mg_alert message
 
                         .finally =>
-                            @smsid=null
                             @submit_sending = false
                     )
                     
                 
 
-            paymentPoint:()->
+            paymentPoint:(loan,password,coupon,amount)->
                 payment=@$uibModal.open {
                     size: 'sm'
                     keyboard: false
@@ -408,9 +419,14 @@ do (_, angular, Math) ->
                           bankNumber:@user.bank_account.bankMobile.substring(0,3)+"****"+@user.bank_account.bankMobile.substring(7),
                           mobile_verification_code_has_sent:true,
                           cell_buffering : false,
-                          cell_buffering_count : 119.119,
+                          cell_buffering_count : 120.119,
                           get_verification_code: () ->
                             $scope.mobile_verification_code_has_sent = true
+                            if self.timer
+                                self.$interval.cancel self.timer
+                                self.timer=null
+                                $scope.cell_buffering_count =120.119
+                                $scope.cell_buffering = false
                             if !self.user.bank_account||!self.user.bank_account.bankMobile
                                 self.mg_alert '您需要开通银行存管才可操作！'
                                 self.$location
@@ -438,17 +454,20 @@ do (_, angular, Math) ->
                             (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
 
                                 .then (data) =>
-                                  return self.$q.reject(data) unless data.status is 0
-                                  return data
+                                    $scope.cell_buffering=false
+                                    return self.$q.reject(data) unless data.status is 0
+                                    return data
 
                                 .then (data) =>
                                     console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count
                                     self.smsid=data.data
-                                    timer = self.$interval =>
+                                    self.timer = self.$interval =>
                                       $scope.cell_buffering_count -= 1
 
                                       if $scope.cell_buffering_count < 1
-                                          @$interval.cancel timer
+                                          self.smsid=null
+                                          self.$interval.cancel self.timer
+                                          self.timer=null
                                           $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
                                           $scope.cell_buffering = false
                                     , 1000
@@ -464,13 +483,15 @@ do (_, angular, Math) ->
                                   $scope.mobile_verification_code_has_sent = false
                             )
                         }
-                        $scope.cell_buffering=true
-                        do $scope.send_verification_code
+                        index=0
+                        if index==0
+                            $scope.cell_buffering=true
+                            do $scope.get_verification_code
+                            index=1
                         
                 }
                 payment.result.catch (mobile_captcha) =>
-                
-                    @invest(mobile_captcha)
+                    @invest(loan,password,coupon,amount,mobile_captcha)
 
                   
 

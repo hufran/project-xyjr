@@ -3,7 +3,7 @@
 
     <nav class="omit-margin container page-nav"  ng-show="openId == undefined">
     <div class="row">
-        <a class="col-xs-3 back" href="dashboard"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <a class="col-xs-3 back" href="dashboard/payment/register"><span class="glyphicon glyphicon-menu-left"></span></a>
         <span class="col-xs-6 title">我的银行卡</span>
         <span class="col-xs-3">&nbsp;</a>
     </div>
@@ -28,17 +28,16 @@
             </div>
         </div>
 
-        <p class="text-center" ng-show="self.clicked !== true">
-            <button class="btn btn-theme" ng-click="self.clicked = true">更换银行卡</button>
+        <p class="text-center" ng-show="clicked !== true">
+            <button class="btn btn-theme" ng-click="self.validateChangeBank()">更换银行卡</button>
         </p>
     </section>
-
-    <section class="" ng-if="self.clicked">
-        <div ng-if="!self.user.has_payment_password">
+    <section class="" ng-if="clicked">
+        <!--<div ng-if="!self.user.has_payment_password">
             请先设置 <a href="dashboard/payment/password" class="btn btn-link u-vb">交易密码</a>
-        </div>
+        </div>-->
 
-        <form ng-if="self.user.has_payment_password"
+        <!--<form ng-if="self.user.has_payment_password"
               class="password-form"
         >
             <input class="form-control input-sm"
@@ -51,11 +50,39 @@
                     ng-click="self.changeBank(password)"
                     ng-disabled="!password"
             >确认更换</button>
+        </form>-->
+
+        <form name="changeFrom" ng-if="self.user.bank_account.bankMobile" autocomplete="off" autocorrect="off" class="formConfirm" ng-class="{init: self.mobile_verification_code_has_sent}">
+            <p class="clearfix">
+                <input style="width: 80%;display: inline-block;" class="form-control input-sm"
+                   type="tel"
+                   name="tel"
+                   ng-model="tel"
+                   placeholder="请输入短信验证码"
+                   ng-pattern="/^\d{6}$/"
+                >
+                <button class="btn btn-sm btn-action btn-theme" type="button"
+                    ng-click="self.send_mobile_captcha()"
+                    ng-disabled="self.cell_buffering"
+                >
+                    <span class="text">获取</span>
+                    <span class="count" ng-show="self.cell_buffering">
+                        {{ self.cell_buffering_count | number: 0 }}
+                    </span>
+                    <span class="icon" ng-hide="self.cell_buffering">重发</span>
+                </button>
+            </p>
+            <p class="gary">注：短信验证码将发送至{{self.user.bank_account.bankMobile.substring(0,3)+"****"+self.user.bank_account.bankMobile.substring(7)}}</p>
+            <p class="align">
+                <button class="btn btn-danger btn-sm"
+                    ng-click="self.changeBank(tel)"
+                    ng-disabled="!tel||(changeFrom.tel.$error.pattern && changeFrom.tel.$invalid)"
+                >确认更换</button>
+            </p>
         </form>
     </section>
 
     </div>
-
 
 
 
@@ -71,10 +98,10 @@
     <section class="container notice">
         <h2 class="title">温馨提示：</h2>
         <ol class="list">
-            <li><p>为保障您的资金安全，绑卡前请先进行实名认证。
+            <li><p>为保障您的资金安全，绑卡前请先开通银行存管。
             <li><p>您所绑定的银行卡须是借记卡，718金融严禁利用信用卡套现。
             <li><p>718金融目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。
-            <li><p>已绑定的银行卡如需更换，请联系客服：<a href="tel:4001718718">4001-718-718</a>。
+            <li><p>已绑定的银行卡如无法更换，请联系客服：<a href="tel:4001718718">4001-718-718</a>。
         </ol>
     </section>
 

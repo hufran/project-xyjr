@@ -519,19 +519,37 @@ do (_, angular, moment, Array) ->
                 @$http
                     .post '/api/v2/lccb/withdraw/MYSELF',{amount, paymentPassword, smsid, validatemsg}
 
-                        .then TAKE_RESPONSE_DATA
-                        .catch TAKE_RESPONSE_ERROR
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
             payment_pool_getLccbId:(userId)->
                 @$http
                     .get '/api/v2/lccb/getLccbId/'+userId
-                        .then TAKE_RESPONSE_DATA
-                        .catch TAKE_RESPONSE_ERROR
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
             payment_pool_bank_limit:(bank)->
                 @$http
                     .get '/api/v2/lccb/banksInLimit/'+bank
-                        .then TAKE_RESPONSE_DATA
-                        .catch TAKE_RESPONSE_ERROR
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_lccb_checkIsChangeBank:(userId)->
+                @$http
+                    .post '/api/v2/lccb/checkIsChangeBank/'+userId
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR 
+
+            payment_pool_lccb_sendOldMobile:(userId)->
+                @$http
+                    .post '/api/v2/lccb/sms2OldMobile/'+userId
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR 
+
+            payment_pool_lccb_checkOldMobile:(userId,smsCaptcha)->
+                @$http
+                    .post '/api/v2/lccb/checkSmsCaptcha4OldMobile/'+userId,{smsCaptcha:smsCaptcha}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR 
 
             payment_pool_persionInit:(userId,smsid,smsCaptcha)->
                 @$http
@@ -543,13 +561,27 @@ do (_, angular, moment, Array) ->
             payment_pool_banks:()->
                 @$http
                     .get '/api/v2/lccb/banks'
-                        .then TAKE_RESPONSE_DATA
-                        .catch TAKE_RESPONSE_ERROR
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
 
             payment_pool_lccb_accredit:(userId,smsid,validatemsg)->
                 @$http
                     .post '/api/v2/lccb/userAuth/'+userId,
                         _.compact {smsid,validatemsg}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_lccb_investValidate:(userId,paymentPassword)->
+                @$http
+                    .post '/api/v2/validate/lccbInvest/'+userId,
+                        _.compact {paymentPassword}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+            
+            payment_pool_lccb_withdrawValidate:(userId,paymentPassword)->
+                @$http
+                    .post '/api/v2/validate/lccbWithdraw/'+userId,
+                        _.compact {paymentPassword}
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 

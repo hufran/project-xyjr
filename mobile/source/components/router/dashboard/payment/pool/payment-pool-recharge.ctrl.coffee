@@ -78,6 +78,11 @@ do (angular) ->
                   amount:amount,
                   send_verification_code: () ->
                       $scope.mobile_verification_code_has_sent = true
+                      if self.timer
+                          self.$interval.cancel self.timer
+                          self.timer=null
+                          $scope.cell_buffering_count =120.119
+                          $scope.cell_buffering = false
                       if !self.user.bank_account||!self.user.bank_account.bankMobile
                           self.$window.alert '您需要开通银行存管才可操作！'
                           self.$location
@@ -119,12 +124,13 @@ do (angular) ->
 
                         .then (data) =>
                             self.smsid=data.data
-                            timer = self.$interval =>
+                            self.timer = self.$interval =>
                               $scope.cell_buffering_count -= 1
                               
                               if $scope.cell_buffering_count < 1
-                                  self.$interval.cancel timer
-                                  console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count%1
+                                  self.$interval.cancel self.timer
+                                  self.timer=null
+                                  self.smsid=null
                                   $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
                                   $scope.cell_buffering = false
 
@@ -143,7 +149,7 @@ do (angular) ->
                 do $scope.send_verification_code
 
         }
-
+        
         payment.result.catch ({amount, mobile_captcha}) =>
           @$scope.rechargeResult=0
           if typeof amount=="undefined"||!amount
@@ -181,14 +187,13 @@ do (angular) ->
 
             .then (data) =>
                 @$scope.rechargeResult=0
-                @smsid=null
-                @$window.alert "充值成功！"
+                
+                @$window.alert "请求成功！"
                 @$location
                   .replace()
                   .path "dashboard"
             .catch (data) =>
               @$scope.rechargeResult=1
-              @smsid=null
               @$window.alert "充值失败,"+data.msg
           return
 

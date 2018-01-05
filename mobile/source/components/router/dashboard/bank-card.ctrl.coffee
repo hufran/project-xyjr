@@ -10,93 +10,99 @@ do (_, angular) ->
 
                 @$scope.bank_account = _.clone @user.bank_account
                 @$scope.openId = @$routeParams.openId
-
+                @$scope.clicked=false
 
                 return unless @$scope.bank_account
                 @api.payment_pool_banks().then (data) =>
                     @$scope.bank_account.bank_code = @$scope.bank_account.bank
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]
 
-                @cell_buffering_count=120.119
+                @cell_buffering_count=59.59
                 @cell_buffering=false
                 @mobile_verification_code_has_sent=true
                 @api.payment_pool_bank_limit(@$scope.bank_account.bank).then (data)=>
                     @$scope.limit=data.data
 
-
-            changeBank: (password)->
-
-                @$scope.clicked=false
-                
-                password = filterXSS(password)
-                (@api.payment_pool_check_password(password)
+            validateChangeBank:()->
+                #验证用户是否可以更换银行卡
+                if !@user.info.id
+                    @$window.alert "用户id不能为空！"
+                    return
+                return unless !!@user.info and !!@user.info.id
+                (@api.payment_pool_lccb_checkIsChangeBank(@user.info.id)
                     .then (data) =>
-                        return @$q.reject(data) unless data.success is true
+                        return @$q.reject(data) unless data.status is 0
+                        return data
+                    .then (data) =>
+                        if data.data==true
+                            @$scope.clicked = true
+                        else
+                            @$window.alert _.get data, 'msg', 'something happened...'
+                    .catch (response) =>
+                        @$window.alert _.get response, 'msg', 'something happened...'
+                )
+
+
+
+            changeBank: (tel)->
+
+                if !@user.info.id
+                    @$window.alert "用户id不能为空！"
+                    return
+                if !tel
+                    @$window.alert "验证码不能为空"
+                    return
+                else
+                    tel = filterXSS(tel)
+                return unless !!@user.info and !!@user.info.id and !!tel
+                console.log "tel:"+tel
+                (@api.payment_pool_lccb_checkOldMobile(@user.info.id,tel)
+                    .then (data) =>
+                        return @$q.reject(data) unless data.status is 0
                         return data
 
                     .then (response) =>
-
-                        @$location
-                            .path '/dashboard/payment/bind-card'
-
+                        if response.data==true
+                            @$scope.clicked=false
+                            @$location
+                                .path '/dashboard/payment/bind-card'
+                        else
+                            @$window.alert '验证码不正确！'
                     .catch (response) =>
-                        @$window.alert _.get response, 'error[0].message', 'something happened...'
+                        @$window.alert _.get response, 'msg', 'something happened...'
 
                 )
 
             send_mobile_captcha: ()->
-                if typeof @user.bank_account=="undefined" || typeof @user.bank_account.bankMobile=="undefined"
-                    @$timeout.cancel @error.timer
-                    @error.on = true
-                    @error.message = '手机号不存在！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
-                    return
-
-                if typeof @user.bank_account=="undefined" || typeof @user.bank_account.account=="undefined"
-                    @$timeout.cancel @error.timer
-                    @error.on = true
-                    @error.message = '银行卡号不存在！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
-                    return
-            
-                if typeof @user.bank_account=="undefined" || typeof @user.bank_account.name=="undefined"
-                    @$timeout.cancel @error.timer
-                    @error.on = true
-                    @error.message = '用户名不正确！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
+                if !@user.info.id
+                    @$window.alert "用户id不能为空！"
                     return
                 
-                return unless !!@user.info and !!@user.info.id and !!@user.bank_account and !!@user.bank_account.bankMobile and !!@user.bank_account.account and !!@user.bank_account.name
-               
-                transtype='800006'
+                return unless !!@user.info and !!@user.info.id
 
-                (@api.payment_pool_send_captcha(@user.info.id,transtype,@user.bank_account.bankMobile,@user.bank_account.account,@user.bank_account.name)
+                (@api.payment_pool_lccb_sendOldMobile(@user.info.id)
 
                     .then (data) =>
                         return @$q.reject(data) unless data.status is 0
                         return data
 
                     .then (data) =>
-                        
-                        @smsid=data.data
-                        timer = @$interval =>
-                          @cell_buffering_count -= 1
-                          
-                          if @cell_buffering_count < 1
-                              @$interval.cancel timer
-                              @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
-                              @cell_buffering = false
+                        if data.data==true
+                            timer = @$interval =>
+                              @cell_buffering_count -= 1
                               
-                        , 1000
-                        @cell_buffering = true
-                        @mobile_verification_code_has_sent = false
-
+                              if @cell_buffering_count < 1
+                                  @$interval.cancel timer
+                                  @cell_buffering_count += 100 * (@cell_buffering_count % 1)
+                                  @cell_buffering = false
+                                  
+                            , 1000
+                            @cell_buffering = true
+                            @mobile_verification_code_has_sent = false
+                        else
+                            key = _.get data, 'msg'
+                            @$window.alert "短信发送失败,"+key
+                            @mobile_verification_code_has_sent = false
                     .catch (data) =>
 
                         key = _.get data, 'msg'

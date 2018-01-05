@@ -117,16 +117,16 @@
                             <span ng-show="(form.card_no.$error.pattern || form.card_no.$invalid) && form.card_no.$viewValue.length != 0">请填写正确的银行卡号</span>
                         </div>
                     </div>
-                    <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.account">
-                      <div class="show-name" ng-init="store.card_no=user.bank_account.account">
-                        {{user_account}}
+                    <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.account" ng-click="self.jumpUrl()">
+                      <div class="show-name" ng-init="store.card_no=user.bank_account.account" style="display: flex;justify-content:space-between;">
+                        <span>{{user_account}}</span> <span class="glyphicon glyphicon-menu-right pull-right" ng-show="lccbUserId!=0&&lccbUserId!=-1"></span>
                       </div>
                     </div>
                 </div>
                 <div class="form-group merge"
                      ng-class="{'has-error': form.bank_name.$invalid && form.bank_name.$dirty}" style="overflow: hidden;"
                     >
-                    <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BOCOM','上海银行':'BOS','建设银行':'CCB','光大银行':'CEB','中信银行':'CITIC','招商银行':'CMB','民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGAN','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'GDB','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
+                    <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BCM','上海银行':'BOS','建设银行':'CCB','光大银行':'CEB','中信银行':'CITICBANK','招商银行':'CMB','民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGANBANK','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'CGBC','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
                     <label for="bank_name">所属银行</label>
                     <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.bank">
                         <span ng-if="businessNull" class="{{bankLists[store.bank_name]}} ownedBank"></span>
@@ -144,7 +144,7 @@
                     </div>
                     <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.bank">
                       <div class="show-name" ng-init="store.bank_name=user.bank_account.bank">
-                        {{banks[user.bank_account.bank]}}
+                        {{banks[user.bank_account.bank]}} 
                       </div>
                     </div>
                 </div>
@@ -215,7 +215,7 @@
             <div class="form-group merge protocol"
                  ng-if="!(lccbUserId!=0&&lccbUserId!=-1&&lccbAuth==true)"
             >
-                <label for=""><input type="checkbox" name="protocol" ng-model="store.protocol" required /><span>我同意<a href="javascript:void(0);" ng-click="self.agreement('廊坊银行网络借贷交易资金存管业务三方协议')">《廊坊银行网络借贷交易资金存管业务三方协议》</a><br /><a href="javascript:void(0);" ng-click="self.agreement('投资授权协议')">《投资授权协议》</a></span></label>
+                <label for=""><input type="checkbox" name="protocol" ng-model="store.protocol" required /><span>我同意<a href="javascript:void(0);" ng-click="self.agreement('廊坊银行网络借贷交易资金存管业务三方协议')">《廊坊银行网络借贷交易资金存管业务三方协议》</a><br /></span></label>
                 <div class="help-block"
                          ng-show="form.protocol.$invalid && form.protocol.$dirty"
                   >

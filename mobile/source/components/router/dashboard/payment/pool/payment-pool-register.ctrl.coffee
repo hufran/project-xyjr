@@ -8,7 +8,7 @@ do (_, angular) ->
 
                 @$window.scrollTo 0, 0
 
-                @back_path = @$routeParams.back
+                @back_path = @$routeParams.back or 'dashboard'
                 @next_path = @$routeParams.next or 'dashboard'
 
                 @submit_sending = false
@@ -23,7 +23,7 @@ do (_, angular) ->
                 @captcha = {timer: null, count: 120, count_default: 120, has_sent: false, buffering: false}
                 @$scope.user=@user
                 @cell_buffering = false
-                @cell_buffering_count = 119.119
+                @cell_buffering_count = 120.119
 
                 @api.payment_pool_getLccbId(@user.info.id)
                     .then (data) =>
@@ -36,7 +36,9 @@ do (_, angular) ->
 
                         if parseInt(@$scope.lccbUserId)==0
                             @$scope.btnContent="立即激活"
-                        else if @$scope.lccbAuth=="false"
+                        else if parseInt(@$scope.lccbUserId)==-1
+                            @$scope.btnContent="确认开通"
+                        else if @$scope.lccbAuth==false
                             @$scope.btnContent="立即授权"
                     .catch (data) =>
                         @$window.alert "获取廊坊银行用户ID失败！"
@@ -61,6 +63,11 @@ do (_, angular) ->
                     @$scope.user_bankMobile=@$scope.user.bank_account.bankMobile.substring(0,3)+@$scope.user.bank_account.bankMobile.substring(3,length-4).replace(/./g,"*")+@$scope.user.bank_account.bankMobile.substring(length-4)
 
             send_mobile_captcha: (phonenumber,cardnbr,username)->
+                if @captcha.timer
+                    @$interval.cancel @captcha.timer
+                    @captcha.timer=null
+                    @captcha.count = @captcha.count_default
+                    @captcha.buffering = false
                 if !phonenumber || !(/^([1][3|5|7|8][0-9]{9})$/.test(phonenumber))
                     @$timeout.cancel @error.timer
                     @error.on = true
@@ -114,7 +121,9 @@ do (_, angular) ->
                             @captcha.count -= 1
 
                             if @captcha.count < 1
+                                @smsid=null
                                 @$interval.cancel @captcha.timer
+                                @captcha.timer=null
                                 @captcha.count = @captcha.count_default
                                 @captcha.buffering = false
                         , 1000
@@ -195,7 +204,7 @@ do (_, angular) ->
                     , @error.timeout
                     return
 
-                if typeof @smsid!="undefined" && @smsid!=null
+                if @smsid
                     smsid=@smsid
                 else
 
@@ -212,7 +221,6 @@ do (_, angular) ->
 
                 if parseInt(@$scope.lccbUserId)==-1
                     #存管开户
-                    @$window.alert "存管开户"
                     (@api.payment_pool_custody_bind(@user.info.id,user_name, id_number, bank_name, card_no, card_phone, smsCaptcha, smsid)
 
                         .then (data) =>
@@ -223,19 +231,13 @@ do (_, angular) ->
                             @user.info.name = user_name
                             @user.info.idNumber = id_number
                             @user.has_payment_account = true
-                            @smsid=null
                             if @$scope.sourceId != undefined
     #                           alert(wxChatUrl);
-                                @$location
-                                    .replace()
-                                    .path wxChatUrl+"/lend/homeA"
+                                @$window.location.href=wxChatUrl+"/lend/homeA"
                             else
-                                @$location
-                                    .replace()
-                                    .path @next_path
+                                @$window.location.href=@next_path
 
                         .catch (data) =>
-                            @smsid=null
                             @submit_sending = false
                             @$timeout.cancel @error.timer
 
@@ -248,22 +250,13 @@ do (_, angular) ->
                     )
                 else if parseInt(@$scope.lccbUserId)==0
                     #存管激活
-                    @$window.alert "存管激活"
                     @api.payment_pool_persionInit(@user.info.id,smsid,smsCaptcha)
                         .then (data) =>
                             return @$q.reject(data) unless data.status is 0
                             return data
-                        .then (data) =>@api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
-                        .then (data)=>
-                            return @$q.reject(data) unless data.status is 0
-                            return data
-                        .then (data)=>
-                            @smsid=null
-                            @$location
-                                .replace()
-                                .path @next_path
+                        .then (data) =>
+                            @$window.location.href=@next_path
                         .catch (data) =>
-                            @smsid=null
                             @submit_sending = false
                             @$timeout.cancel @error.timer
 
@@ -275,21 +268,16 @@ do (_, angular) ->
                             , @error.timeout
                     
 
-                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth=="false"
+                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth==false
                     #用户授权操作
-                    @$window.alert "用户授权"
                     @api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
                         .then (data)=>
                             return @$q.reject(data) unless data.status is 0
                             return data
                         .then (data) =>
                             @$window.alert "用户授权成功！"
-                            @smsid=null
-                            @$location
-                                .replace()
-                                .path @next_path
+                            @$window.location.href=@next_path
                         .catch (data) =>
-                            @smsid=null
                             @submit_sending = false
                             @$timeout.cancel @error.timer
 
@@ -300,7 +288,7 @@ do (_, angular) ->
                                 @error.on = false
                             , @error.timeout
 
-                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth=="true"
+                else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth==true
                     #取消授权操作
                     @$window.alert "取消授权"
                     @window.alert "暂未开通取消授权方法"
@@ -330,7 +318,11 @@ do (_, angular) ->
                     prompt?.dismiss()
                     do once
 
-
+            jumpUrl: ()->
+                if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1
+                    @$location.path 'dashboard/bank-card'
+                else
+                    return false
 
 
 

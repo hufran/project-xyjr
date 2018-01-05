@@ -248,7 +248,8 @@
         <div class="container agreement">
             <label>
                 <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
-                我阅读并同意 <a href="#" ng-click="self.agreement('新毅金融用户注册协议')">《新毅金融注册服务协议》</a>
+                我阅读并同意 <a href="#" ng-click="self.agreement('新毅金融用户注册协议')">《新毅金融注册服务协议》</a> 
+                <a href="#" ng-click="self.agreement('网络借贷风险和禁止性行为提示书及资金来源合法承诺书')">《网络借贷风险和禁止性行为提示书及资金来源合法承诺书》</a>
             </label>
         </div>
 <!--{{openId == ""}}-&#45;&#45;openId <br>-->
@@ -273,7 +274,7 @@
     <div class="custodyClass">
       <p class="container pointMsg"><img src="assets/image/act/gou.png" />恭喜您，注册成功！</p>
       <p class="container">
-        <a ng-href="/dashboard/payment/register?next=dashboard" class="btn btn-theme btn-block btn-lg" >开通银行存管</a>
+        <a ng-href="./dashboard/payment/register?next=dashboard" class="btn btn-theme btn-block btn-lg" >开通银行存管</a>
       </p>
       <p class="container redPacketPoint">
           <img src="assets/image/act/custody.jpg" alt="开通存管，领取红包" />

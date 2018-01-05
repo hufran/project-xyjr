@@ -194,7 +194,7 @@
 
 <script type="text/ng-template" id="ngt-pool-recharge.tmpl">
     <div class="modal-header text-center">
-        <h3 class="modal-title">短信验证</h3>
+        <h3 class="modal-title">短信验证<span class="closeBtn" ng-click="$close()">×</span></h3>
     </div>
 
     <div class="modal-body text-center">
@@ -224,7 +224,7 @@
         <div class="row" style="text-align: center">
           <div class="col-xs-6 rechargeBtn">
             <button class="btn btn-block btn-default" ng-click="$dismiss(formConfirm.mobile_captcha.$viewValue)" ng-disabled="!(formConfirm.mobile_captcha.$error.pattern==undefined&&formConfirm.mobile_captcha.$dirty)">
-                立即充值
+                立即支付
             </button>
           </div>
         </div>

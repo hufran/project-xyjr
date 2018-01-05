@@ -67,6 +67,15 @@ a {
             right: 10px;
             top: 50%;
             margin: 0;
+            .modal-title{
+                position:relative;
+                .closeBtn{
+                    position:absolute;
+                    top: -12px;
+                    right: 0px;
+                } 
+            }
+            
         }
 
         &.in {
@@ -782,13 +791,17 @@ a {
                         }
                     }
                 }
+                &input{
+                    border:1px solid @color-gray;
+                }
+                
             }
         }
 
         .agreement {
             margin: 10px auto;
             font-size: 11px;
-            text-align: center;
+            text-align: left;
             color: @color-gray-light;
 
             a {
@@ -1395,7 +1408,9 @@ a {
             }
             line-height: 30px;
             display: block;
-
+            input{
+                border:1px solid @color-gray;
+            }
         }
     }
 
@@ -1709,43 +1724,50 @@ a {
             span{
                 padding-left:10px;
             }
-        }
-
-        .formConfirm{
-            &.init {
-                .btn-action {
-                    .icon, .count {
-                        margin:0;
-                        display: none;
-                    }
+        }        
+        
+    }
+    .formConfirm{
+        &.init {
+            .btn-action {
+                .icon, .count {
+                    margin:0;
+                    display: none;
                 }
             }
-            &:not(.init) {
-                .btn-action {
-                    .text {
-                        display: none;
-                    }
-                    .icon{
-                        margin:0;
-                    }
+        }
+        &:not(.init) {
+            .btn-action {
+                .text {
+                    display: none;
+                }
+                .icon{
+                    margin:0;
                 }
             }
-            #mobile_captcha{
-                width:130px;
-                margin-left:10px;
-                margin-right:10px;
-                font-size:14px;
-                line-height:30px;
-                height:30px;
-                padding-left:10px;
-            }
-            .help-block{
-                font-size:14px;
-                color:#f00;
-            }
         }
-        
-        
+        #mobile_captcha{
+            width:130px;
+            margin-left:10px;
+            margin-right:10px;
+            font-size:14px;
+            line-height:30px;
+            height:30px;
+            padding-left:10px;
+        }
+        .help-block{
+            font-size:14px;
+            color:#f00;
+        }
+        .align{
+            text-align:center;
+        }
+        .gary{
+            color:@color-gray
+        }
+        input{
+            border:1px solid @color-gray;
+        }
     }
 
     .password-form {
@@ -2234,8 +2256,8 @@ a {
                     background:url("@{path-image}/bank-icons/boc.png") no-repeat;
                     background-size:100%;
                 }
-                &.BOCOM{
-                    background:url("@{path-image}/bank-icons/bocom.png") no-repeat;
+                &.BCM{
+                    background:url("@{path-image}/bank-icons/bcm.png") no-repeat;
                     background-size:100%;
                 }
                 &.BOS{
@@ -2258,8 +2280,8 @@ a {
                     background:url("@{path-image}/bank-icons/cib.png") no-repeat;
                     background-size:100%;
                 }
-                &.CITIC{
-                    background:url("@{path-image}/bank-icons/citic.png") no-repeat;
+                &.CITICBANK{
+                    background:url("@{path-image}/bank-icons/citicbank.png") no-repeat;
                     background-size:100%;
                 }
                 &.CMB{
@@ -2274,8 +2296,8 @@ a {
                     background:url("@{path-image}/bank-icons/czb.png") no-repeat;
                     background-size:100%;
                 }
-                &.GDB{
-                    background:url("@{path-image}/bank-icons/gdb.png") no-repeat;
+                &.CGBC{
+                    background:url("@{path-image}/bank-icons/cgbc.png") no-repeat;
                     background-size:100%;
                 }
                 &.HXB{
@@ -2306,8 +2328,8 @@ a {
                     background:url("@{path-image}/bank-icons/njcb.png") no-repeat;
                     background-size:100%;
                 }
-                &.PINGAN{
-                    background:url("@{path-image}/bank-icons/pingan.png") no-repeat;
+                &.PINGANBANK{
+                    background:url("@{path-image}/bank-icons/pinganbank.png") no-repeat;
                     background-size:100%;
                 }
                 &.PSBC{

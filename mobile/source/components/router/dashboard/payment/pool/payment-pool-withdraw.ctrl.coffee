@@ -27,9 +27,31 @@ do (angular) ->
                 @password = filterXSS(password)
                 @submit_sending = true
 
+                if !@amount||parseInt @amount <=0
+                      @mg_alert "请填写提现金额!"
+                      return false
+                if !@password 
+                  @mg_alert "请填写密码！"
+                  return false
+                if !@user.info || !@user.info.lccbUserId
+                  @mg_alert "您尚未开通存管，请开通后在操作"
+                  $location
+                    .replace()
+                    .path "dashboard/payment/register"
+                  return
+                return unless !!@amount and !!@password and !!@user.info and !!@user.info.lccbUserId
 
-                do @paymentPoint.bind @
-              
+                (@api.payment_pool_lccb_withdrawValidate(@user.info.id,@password)
+
+                  .then (data) =>
+                      return @$q.reject(data) unless data.data is true
+                      return data
+                  .then (data) =>
+                      do @paymentPoint.bind @
+                  .catch (data) =>
+                      @submit_sending = false
+                      @mg_alert _.get data,"msg","系统繁忙，请稍后重试！"
+                )             
 
             paymentPoint:()->
                 payment=@$uibModal.open {
@@ -49,6 +71,12 @@ do (angular) ->
                         mobile_verification_code_has_sent:true,
                         send_verification_code: () ->
                           $scope.mobile_verification_code_has_sent = true
+                          if self.timer
+                            self.$interval.cancel self.timer
+                            self.timer=null
+                            $scope.cell_buffering_count =120.119
+                            $scope.cell_buffering = false
+
                           if !self.user.bank_account||!self.user.bank_account.bankMobile
                               self.mg_alert '您需要开通银行存管才可操作！'
                               self.$location
@@ -84,17 +112,20 @@ do (angular) ->
                           (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
 
                             .then (data) =>
+                                $scope.cell_buffering=false
                                 return self.$q.reject(data) unless data.status is 0
                                 return data
 
                             .then (data) =>
                                 
                                 self.smsid=data.data
-                                timer = self.$interval =>
+                                self.timer = self.$interval =>
                                   $scope.cell_buffering_count -= 1
                                   
                                   if $scope.cell_buffering_count < 1
-                                      self.$interval.cancel timer
+                                      self.$interval.cancel self.timer
+                                      self.timer=null
+                                      self.smsid=null
                                       $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
                                       $scope.cell_buffering = false
                                       
@@ -115,48 +146,26 @@ do (angular) ->
                       do $scope.send_verification_code
                       
                 }
+                payment.result.then () =>
+                    @submit_sending = false
                 payment.result.catch (mobile_captcha) =>
                     console.log "@amount:",@amount," password:",@password," mobile_captcha:",mobile_captcha
                     if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
                       @mg_alert "验证码不正确!"
                       return false
                     
-                    if !@amount||parseInt @amount <=0
-                      @mg_alert "请填写提现金额!"
-                      return false
-
-                    if !@password 
-                      @mg_alert "请填写密码！"
-                      return false
                     if !@smsid
                       @mg_alert "请发送短信后在操作！"
-                    if !@user.bank_account || !@user.bank_account.bank || !@user.bank_account.account || !@user.bank_account.account
-                      @mg_alert "您尚未开通存管，请开通后在操作"
-                      $location
-                        .replace()
-                        .path "dashboard/payment/register"
-                      return
 
-                    return unless !!mobile_captcha and !!@smsid and !!@amount and !!@password and !!@user.bank_account and !!@user.bank_account.bank
+                    return unless !!mobile_captcha and !!@smsid
 
-                    (@api.payment_pool_check_password(@password)
-
-                      .then (data) =>
-                          return @$q.reject(data) unless data.success is true
-                          return data
-
-                      .catch (data) =>
-                          @$q.reject error: [message: 'INCORRECT_PASSWORD']
-
-
-                      .then (data) => @api.payment_pool_custody_withdraw(@amount, @password, @smsid, mobile_captcha)
+                    (@api.payment_pool_custody_withdraw(@amount, @password, @smsid, mobile_captcha)
 
                       .then (data) =>
                           return @$q.reject(data) unless data.status is 0
                           return data
 
                       .then (data) =>
-                          @smsid=null
                           @mg_alert @$scope.msg.SUCCEED
                               .result.finally =>
                                   @$location.path 'dashboard'
@@ -168,9 +177,9 @@ do (angular) ->
 
                       .catch (data) =>
                           @submit_sending = false
-                          key = _.get data, 'error[0].message'|| _.get data, 'msg'
-                          @mg_alert @$scope.msg[key] or key
-                          @smsid=null
+                          #key = _.get data, 'error[0].message'|| _.get data, 'msg'
+                          console.log "data:",data
+                          @mg_alert _.get data, 'msg'
                       .finally =>
                           42
                     )

@@ -38,6 +38,12 @@ do (_, angular) ->
 
             send_mobile_captcha: (account,bankMobile)->
 
+                if @timer
+                    @$interval.cancel @timer
+                    @timer=null
+                    @cell_buffering_count =120.119
+                    @cell_buffering = false
+
                 if !bankMobile || !(/^([1][3|5|7|8][0-9]{9})$/.test(bankMobile))
                     
                     @$timeout.cancel @error.timer
@@ -84,13 +90,14 @@ do (_, angular) ->
                     .then (data) =>
                         
                         @smsid=data.data
-                        timer = @$interval =>
+                        @timer = @$interval =>
                           @cell_buffering_count -= 1
                           if @cell_buffering_count < 1
-                              @$interval.cancel timer
+                              @$interval.cancel @timer
+                              @timer=null
                               @cell_buffering_count += 1000 * (@cell_buffering_count % 1)
                               @cell_buffering = false
-                              
+                              @smsid=null
                         , 1000
                         @captcha.has_sent=true
                         @cell_buffering = true
@@ -98,7 +105,7 @@ do (_, angular) ->
 
                     .catch (data) =>
 
-                        key = _.get data, 'data.msg', '系统繁忙，请稍后重试！'
+                        key = _.get data, 'msg', '系统繁忙，请稍后重试！'
                         @mg_alert "短信发送失败,"+key
                         @mobile_verification_code_has_sent = false
                     
@@ -264,7 +271,7 @@ do (_, angular) ->
                     , @error.timeout
                     return
 
-                if typeof @smsid == "undefined"
+                if !@smsid
                     @error.on = true
                     @error.message = @$scope.msg["smsid"]
 
@@ -280,7 +287,7 @@ do (_, angular) ->
                 (@api.payment_pool_change_card(@user.info.id, @smsid, smsCaptcha, cardPhone, bankName, account)
 
                     .then (data) =>
-                        return @$q.reject(data) unless data.success is 0
+                        return @$q.reject(data) unless data.status is 0
                         return data
 
                     .then (data) =>
