@@ -2,13 +2,6 @@
 do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
     eByID = document.getElementById.bind document
-    formatCookie = () ->
-        arr=document.cookie.split("; ")
-        obj={}
-        for list in arr
-            listVal=list.split("=")
-            obj[listVal[0]] = listVal[1]
-        return obj
 
     angular.module APP_NAME, modules
 
@@ -608,95 +601,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                     .when '/dashboard/return-results', {
                         controller: 'ReturnResultsCtrl as self'
                         templateUrl: 'components/router/dashboard/return-results.tmpl.html'
-                    }
-
-                    .when '/dashboard/loans?',{
-                        controller: 'LoansCtrl as self'
-                        templateUrl:'components/router/dashboard/loans.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    
-                                    objArr=do formatCookie
-                                    if $route.current.params && $route.current.params.ccat && $route.current.params.h5=="1" && typeof objArr.ccat !="undefined"
-                                        dateTime=new Date();
-                                        dateTime.setTime(dateTime.getTime()+1800000);
-                                        document.cookie="ccat="+$route.current.params.ccat+"; expire="+dateTime.toGMTString()
-
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/loans'
-                                        return $q.reject()
-                    }
-
-                    .when '/dashboard/loans/repayment',{
-                        controller: 'PaymentListCtrl as self'
-                        templateUrl:'components/router/dashboard/paymentManage/repayment.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/loans'
-                                        return $q.reject()
-                    }
-
-                    .when '/dashboard/loans/repayment/:id',{
-                        controller: 'PaymentDetailCtrl as self'
-                        templateUrl:'components/router/dashboard/paymentManage/detail.tmpl.html'
-                        resolve:
-                            user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/loans'
-                                        return $q.reject()
-                            repayment: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-
-                                    #此处需要更换接口开始
-                                    api.get_loan_detail($route.current.params.id, false).catch ->
-                                        $location.path '/'
-                                        do $q.reject
-                                    #此处需要更换接口结束
-                    }
-
-                    .when '/dashboard/loans/bill/:id',{
-                        controller: 'PaymentBillCtrl as self'
-                        templateUrl:'components/router/dashboard/paymentManage/bill.tmpl.html'
-                        resolve:
-                           user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/loans'
-                                        return $q.reject() 
-                    }
-
-                    .when '/dashboard/loans/raise', {
-                        controller: 'RaiseCtrl as self'
-                        templateUrl: 'components/router/dashboard/paymentManage/raise.tmpl.html'
-                        resolve:
-                           user: _.ai 'api, $location, $route, $q',
-                                (       api, $location, $route, $q) ->
-                                    
-                                    api.fetch_current_user().catch ->
-                                        $location
-                                            .replace()
-                                            .path '/login'
-                                            .search next: 'dashboard/loans'
-                                        return $q.reject() 
                     }
 
                     .when '/loan/:id', {
