@@ -3,16 +3,17 @@
 //var NETBANKS = require('ccc/global/js/modules/netBank');
 //var NETBANKS = require('ccc/global/js/modules/fastnetBank');
 var banks=[];
-var corBanks=[
-//{"code":"9102","name":"中国工商银行","support":true},
-{"code":"9105","name":"中国建设银行","support":true},
-{"code":"9109","name":"中国银行","support":true},
-{"code":"9103","name":"中国农业银行","support":true},
-{"code":"9104","name":"交通银行","support":true},
-{"code":"9107","name":"招商银行","support":true},
-//{"code":"9108","name":"光大银行","support":true},
-{"code":"9110","name":"平安银行","support":true},
-];
+var corBanks=[];
+// var corBanks=[
+// //{"code":"9102","name":"中国工商银行","support":true},
+// {"code":"9105","name":"中国建设银行","support":true},
+// {"code":"9109","name":"中国银行","support":true},
+// {"code":"9103","name":"中国农业银行","support":true},
+// {"code":"9104","name":"交通银行","support":true},
+// {"code":"9107","name":"招商银行","support":true},
+// //{"code":"9108","name":"光大银行","support":true},
+// {"code":"9110","name":"平安银行","support":true},
+// ];
 require('ccc/global/js/modules/cccTab');
 var Confirm = require('ccc/global/js/modules/cccConfirm');
 var CccOK = require('ccc/global/js/modules/cccOk');
@@ -22,9 +23,11 @@ var CommonService = require('ccc/global/js/modules/common').CommonService;
 //新增支付方式判断
 var payMethod="lianlianpay",quickBaseUrl,cyberBankBaseUrl,bankListAPI;
 if(payMethod==="lianlianpay"){
-    cyberBankBaseUrl="/api/v2/lianlianpay/onlineBankDeposit/";
+    // cyberBankBaseUrl="/api/v2/lianlianpay/onlineBankDeposit/";
+    cyberBankBaseUrl = "/api/v2/lccb/onlineBankDeposit/";
     quickBaseUrl="/api/v2/lianlianpay/deposit/";
-    bankListAPI="/api/v2/lianlianpay/banks4pc";
+    // bankListAPI="/api/v2/lianlianpay/banks4pc";
+    bankListAPI="/api/v2/lccb/banks";
 }else{
     cyberBankBaseUrl="/api/v2/jdpay/gateway/deposit/";
     quickBaseUrl="/api/v2/yeepay/onlineBankDeposit/";
@@ -123,10 +126,11 @@ var ractive = new Ractive({
 
         $(".bankwrap").delegate('.bankItem', 'click', function () {
             ractive.set('showquickInfo', false);
-            var classMap = ['jd1025','jd1051','jd103','jd3080','jd104','jd312','jd305','jd313','jd3061','jd307','jd311','jd3230','jd310'];
+            // var classMap = ['jd1025','jd1051','jd103','jd3080','jd104','jd312','jd305','jd313','jd3061','jd307','jd311','jd3230','jd310'];
+            var classMap = ['ABC',,'BCCB','BCM','BOC','BOS',,'CCB',,'CEB','CGBC','CIB','CITICBANK','CMB','CZB','ICBC','PINGANBANK','PSBC','SPDB'];
             var classNewMap=['jd01020000','jd01050000','jd01040000','jd01030000','jd03010000','jd03080000','jd03020000','jd03050000','jd03090000','jd03100000','jd01000000','jd03030000','jd03070000','jd03040000','jd04031000','jd03060000','jd04012900','jd05083000','jd03110000','jd03160000','jd04721460'];
 
-            var code = 'jd'+$(this).data('cc');
+            var code = $(this).data('cc');
             if ($.inArray(code,classMap) == -1) {
                 ractive.set('showamountInfo', false);
             } else {
@@ -143,15 +147,15 @@ var ractive = new Ractive({
             $(this)
             	.find('span.check')
             	.show()
-
-          	var type = $(this).parent().siblings('.methodwr').data('type');
-		    if (type !== 'net') {
-        		ractive.set('isNormal', true);
-		        ractive.set('action', '/yeepay/deposit');
-		    } else {
-        		ractive.set('isNormal', false);
-		        ractive.set('action', cyberBankBaseUrl+CC.user.id);
-		    }
+            console.log(corBanks)
+      //     	var type = $(this).parent().siblings('.methodwr').data('type');
+		    // if (type !== 'net') {
+      //   		ractive.set('isNormal', true);
+		    //     ractive.set('action', '/yeepay/deposit');
+		    // } else {
+      //   		ractive.set('isNormal', false);
+		    //     ractive.set('action', cyberBankBaseUrl+CC.user.id);
+		    // }
         });
 
         //jd快捷支付
@@ -183,14 +187,14 @@ var ractive = new Ractive({
                 .find('span.check')
                 .show()
 
-            var type = $(this).parent().siblings('.methodwr').data('type');
-            if (type !== 'net') {
-                ractive.set('isNormal', true);
-                ractive.set('action', '/yeepay/deposit');
-            } else {
-                ractive.set('isNormal', false);
-                ractive.set('action', quickBaseUrl+CC.user.id);
-            }
+            // var type = $(this).parent().siblings('.methodwr').data('type');
+            // if (type !== 'net') {
+            //     ractive.set('isNormal', true);
+            //     ractive.set('action', '/yeepay/deposit');
+            // } else {
+            //     ractive.set('isNormal', false);
+            //     ractive.set('action', quickBaseUrl+CC.user.id);
+            // }
         });
 
         if (CC.user.bankCards.length>0) {
@@ -206,25 +210,29 @@ var ractive = new Ractive({
 
 });
 
-// request('GET',bankListAPI).end().
-//     then(function (r) {
-//         corBanks=[];
-//         banks=r.body.data;
-//         ractive.set('banks', banks);
-//         var ignore;
-//         for(var i=0;i<banks.length;i++){
-//             if(banks[i]["name"]!=="廊坊银行"){
-//                 corBanks[i]=banks[i]; 
-//             }else{
-//                 ignore=i;
-//             }
-//         }
-//         if(!isNaN(ignore)&&ignore>=0){
-//             corBanks.splice(ignore,1);
-//         }
-        
-//         ractive.set('corBanks', corBanks);
-//     });
+request('GET',bankListAPI).end().
+    then(function (r) {
+        corBanks=[];
+        banks=r.body;
+        // ractive.set('banks', banks);
+        // var ignore;
+        // for(var i=0;i<banks.length;i++){
+        //     if(banks[i]["name"]!=="廊坊银行"){
+        //         corBanks[i]=banks[i]; 
+        //     }else{
+        //         ignore=i;
+        //     }
+        // }
+        // if(!isNaN(ignore)&&ignore>=0){
+        //     corBanks.splice(ignore,1);
+        // }
+        for (var i in banks) {
+           name = banks[i];
+           corBanks.push({"bankCode": i, "name": name})
+        }
+        // ractive.set('banks', corBanks);
+        ractive.set('corBanks', corBanks);
+    });
 ractive.parseData();
 
 ractive.on('checkAmount',function(){
@@ -285,11 +293,11 @@ ractive.on('recharge_submit', function (e){
         }
 
     }
-    if (actionName=='/api/v2/yeepay/onlineBankDeposit/'+CC.user.id &&amount!='') {
-            //amount = parseFloat(amount)*100;
-            amount = Math.round(amount*100);
-            this.set('amountNew',amount);
-    };
+    // if (actionName=='/api/v2/lccb/onlineBankDeposit/'+CC.user.id &&amount!='') {
+    //         //amount = parseFloat(amount)*100;
+    //         amount = Math.round(amount*100);
+    //         this.set('amountNew',amount);
+    // };
 
     if(!choose){
         if(CC.user.enterprise){
@@ -346,16 +354,16 @@ ractive.on('recharge_submit', function (e){
 
 ractive.on('changeMethod', function (event) {
     var type = event.node.getAttribute('data-type');
-    if (type !== 'net') {
-        ractive.set('isNormal', true);
-        ractive.set('action', '/yeepay/deposit');
-    } else {
-        ractive.set('isNormal', false);
-        ractive.set('action',cyberBankBaseUrl+CC.user.id);
-    }
+    // if (type !== 'net') {
+    //     ractive.set('isNormal', true);
+    //     ractive.set('action', '/yeepay/deposit');
+    // } else {
+    //     ractive.set('isNormal', false);
+    //     ractive.set('action',cyberBankBaseUrl+CC.user.id);
+    // }
 });
 ractive.on('showAll', function () {
-	this.set('showNum', banks.length);
+	this.set('showNum', corBanks.length);
 });
 
 ractive.on('selectBank', function (event) {

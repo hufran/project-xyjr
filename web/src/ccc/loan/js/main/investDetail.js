@@ -29,7 +29,9 @@ var statusMap = {
     OPENED: '',
     FINISHED: '',
     CLEARED: '',
-    OVERDUE: ''
+    OVERDUE: '',
+    BREACH: '',
+    FAILED:''
 };
 var template = statusMap[CC.loan.status];
 
@@ -212,6 +214,7 @@ setTimeout((function () {
 
 
     var mark;
+    var flag = true;
     if (CC.user) {
         accountService.getUserInfo(function (res) {
             investRactive.set('name', res.user.name);
@@ -436,22 +439,41 @@ setTimeout((function () {
                             })
                         }
                         // 问卷end
-						$('.agree-error').css('visibility','hidden');
+                        $('.agree-error').css('visibility','hidden');
                         
-                    if(!(mark>=10&&mark<=16) && mark) {
-                        console.log(mark)
-                        toPay(num, couponText)
-                     }
-                    	
-					}else{
-						$('.agree-error').css('visibility','visible');
-						$('.agree-error').html('请先同意新毅用户投资服务协议');
-					}
+                        if(!(mark>=10&&mark<=16) && mark) {
+                            console.log(mark)
+                            toPay(num, couponText)
+                         }
+                        
+                    }else{
+                        $('.agree-error').css('visibility','visible');
+                        $('.agree-error').html('请先同意新毅用户投资服务协议');
+                    }
                 }
             });
         };
     });
 
+    function tips(){
+        Confirm.create({
+            msg: '您的风险评级较低，是否确认投资?',
+            okText: '确认',
+            cancelText: '重新评级',
+            ok: function(){
+                $('.dialog').hide();                                        
+            },
+            cancel: function(){
+                $('.dialog').hide();
+                jQuery('.questionTit').removeClass('result');
+                jQuery('.wenjuan').removeClass('dn').addClass('db');
+                jQuery('.resultInfor').removeClass('db').addClass('dn');
+                jQuery('.questionBox input[type=radio]').prop('checked',false);
+                jQuery('.questionTip').removeClass('db').addClass('dn');
+                jQuery('.questionBox').removeClass('dn').addClass('db');
+            }
+        })
+    }
     function toPay(num, couponText) {
         if(CC.user.enterprise){
             console.log('企业用户')

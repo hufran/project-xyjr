@@ -14,7 +14,7 @@
  <!--{{else}}-->
 <div class="ccc-banks-wrap">
     <div class="recharge-form-wrap">
-        <form role="form" name="rechargeForm" action="" method="POST"
+        <form role="form" name="rechargeForm" action="{{action}}" method="POST"
           on-submit="recharge_submit" autocomplete="off" target="_blank"><!--action="{{action}}"/api/v2/gateway/deposit/BD839D6F-353B-4B4B-B87B-018367057F14-->
             <div class="space space-10"></div>
             <div class="space space-10"></div>
@@ -47,24 +47,24 @@
             <div class="space-20"></div>
             <div class="row">
                 <div class="methodwr" data-type="net">
-                    <!-- <div style="display:inline-block;">
+                    <div style="display:inline-block;">
                         <input type="radio" id="paynet" name="payType" checked on-click="choosePayType">
                         <label for="paynet" on-click="choosePayType">网银充值</label>
-                    </div> -->
+                    </div>
                     {{#if !isEnterpriseUser}}
                     <div style="display:inline-block;margin-left: 20px;">
-                        <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType" checked>
+                        <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType">
                         <label for="fastpaynet" on-click="choosePayType">快捷支付</label>
                     </div>
                     {{/if}}
                     
                 </div>
                 <div class="space space-30"></div>
-                <!-- <div class="bankwrap">
-                    {{#if !isEnterpriseUser}}个人账户
+                <div class="bankwrap">
+                    <!-- {{#if !isEnterpriseUser}}
                         {{#banks:index}}
                         {{#if index
-                    < showNum}} <span class="bankItem jd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}"
+                    < showNum}} <span class="bankItem {{bankCode}}" data-cc="{{bankCode}}" data-code="{{bankCode}}"
                       on-click="selectBank">
                         <span class="check"></span>
                         </span>
@@ -73,19 +73,29 @@
                         <span class="bankItem more" on-click="showAll"></span> 
                         {{/if}}
                         {{/banks}}
-                    {{else}}企业账户
+                    {{else}}
                         {{#each corBanks}}
-                         <div class="corBanks">{{corBanks}}</div> 注释的
-                        <span class="bankItem cjd{{code}}" data-cc="{{code}}" data-code="{{bankCode}}" on-click="chooseBank">
+                        <span class="bankItem {{bankCode}}" data-cc="{{bankCode}}" data-code="{{bankCode}}" on-click="chooseBank">
 
                            <span class="check"></span>
 
                         </span>
 
-                        {{/each}} {{/if}}
-                </div> -->
+                        {{/each}} {{/if}} -->
+                    {{#corBanks:index}}
+                        {{#if index
+                    < showNum}} <span class="bankItem {{bankCode}}" data-cc="{{bankCode}}" data-code="{{bankCode}}"
+                      on-click="selectBank">
+                        <span class="check"></span>
+                        </span>
+                        {{/if}} 
+                        {{#if index == showNum}}
+                        <span class="bankItem more" on-click="showAll"></span> 
+                        {{/if}}
+                        {{/corBanks}}
+                </div>
 
-                <div class="fastbankwrap"><!-- style="display:none;" -->
+                <div class="fastbankwrap" style="display:none;"><!--  -->
                     {{#if !isEnterpriseUser}}
                        <!--  {{#if isBankCard > 0}} -->
                            {{#if !lccbId}}
@@ -104,9 +114,9 @@
 
                     {{/if}}
                 </div>
-                <input type="hidden" name="amount" value="{{amountNew}}">
-                <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}">
-                <input type="hidden" name="retUrl" value="http://www.718bank.com/newAccount/fund/investDeal">
+                <input type="hidden" name="transamt" value="{{amountNew}}">
+                <!-- <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}"> -->
+                <!-- <input type="hidden" name="retUrl" value="http://www.718bank.com/newAccount/fund/investDeal"> -->
                 <input type="hidden" name="bankCode" value="{{bankCode}}" >
                 <!--value="{{bankCode}}{{bankCodeEnd}}"104-->
                 
@@ -327,13 +337,13 @@
                     <div style="border:none">中银快付</div>
                 </td>
                 <td>
-                    <div>5万</div>
+                    <div>1万</div>
                     <div>5000</div>
                     <div>5000</div>
                     <div style="border:none">1000</div>
                 </td>
                 <td>
-                    <div>50万</div>
+                    <div>20万</div>
                     <div>信用额度 （如信用额度超过50万，限额为50万）
                     </div>
                     <div>信用额度 （如信用额度超过50万，限额为50万）
@@ -441,15 +451,15 @@
                 </td>
                 <td>
                     <div>1000</div>
-                    <div>1000000</div>
+                    <div>100万</div>
                     <div>1000</div>
                     <div style="border:none">1000</div>
                 </td>
                 <td>
                     <div>5000</div>
-                    <div>1000000</div>
-                    <div>10000</div>
-                    <div style="border:none">10000</div>
+                    <div>100万</div>
+                    <div>1万</div>
+                    <div style="border:none">1万</div>
                 </td>
                 <td>95558</td>
             </tr>
@@ -468,17 +478,17 @@
                     <div style="border:none">key令</div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div>5000</div>
-                    <div>5000</div>
+                    <div>个人设置</div>
+                    <div>个人设置</div>
+                    <div>个人设置0</div>
                     <div>2000</div>
                     <div>2000</div>
                     <div style="border:none">2000</div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div>5000</div>
-                    <div>5000</div>
+                    <div>个人设置</div>
+                    <div>个人设置</div>
+                    <div>个人设置</div>
                     <div>2000</div>
                     <div>2000</div>
                     <div style="border:none">2000</div>
@@ -514,14 +524,14 @@
                     <div style="border:none">动态口令</div>
                 </td>
                 <td>
-                    <div>5万 </div>
-                    <div>5万 </div>
+                    <div>个人设置 </div>
+                    <div>个人设置 </div>
                     <div>2000 </div>
                     <div style="border:none">2000</div>
                 </td>
                 <td>
-                    <div>5万 </div>
-                    <div>5万 </div>
+                    <div>个人设置 </div>
+                    <div>个人设置 </div>
                     <div>2000 </div>
                     <div style="border:none">2000</div>
                 </td>
@@ -550,16 +560,16 @@
             <tr id="jd326">
                 <td>上海银行</td>
                 <td>
-                    <div>易签宝（USBKey证书）</div>
-                    <div style="border:none">文件证书</div>
+                    <div>E盾版网银</div>
+                    <div style="border:none">动态密码网银</div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div style="border:none">5万</div>
+                    <div>50万</div>
+                    <div style="border:none">6000</div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div style="border:none">5万</div>
+                    <div>100万</div>
+                    <div style="border:none">1万</div>
                 </td>
                 <td>95594</td>
             </tr>
@@ -600,36 +610,24 @@
             </tr>
             <tr id="ICBC">
                 <td>工商银行</td>
-                <td>借记卡和贷记卡</td>
+                <td>借记卡</td>
                 <td>
-                    <div>柜面注册存量静态密码客户</div>
-                    <div>电子银行口令客户（短信认证）</div>
-                    <div>电子银行口令客户（非短信认证）</div>
+                    <div>电子银行口令客户</div>
+                    <div>手机短信认证客户</div>
                     <div>电子密码器</div>
-                    <div>一代U盾客户（未开通短信认证）</div>
-                    <div>一代U盾客户（开通短信认证）</div>
-                    <div>二代U盾客户</div>
-                    <div style="border:none">网银互联签约客户</div>
+                    <div>U盾客户</div>
                 </td>
                 <td>
-                    <div>300</div>
-                    <div>2000</div>
                     <div>500</div>
-                    <div>20万</div>
+                    <div>2000</div>
                     <div>50万</div>
                     <div>100万</div>
-                    <div>100万</div>
-                    <div style="border:none">5000</div>
                 </td>
                 <td>
-                    <div>300</div>
-                    <div>5000</div>
                     <div>1000</div>
+                    <div>5000</div>
                     <div>100万</div>
                     <div>100万</div>
-                    <div>100万</div>
-                    <div>100万</div>
-                    <div style="border:none">5000</div>
                 </td>
                 <td>95588</td>
             </tr>
@@ -637,56 +635,25 @@
             <tr id="CCB">
                 <td>建设银行</td>
                 <td>
-                    <div style="height: 325px;line-height: 325px;"> 签约的借记卡&贷记卡</div>
-                    <div style="border:none">非签约的借记卡和贷记卡</div>
+                    <div style="height: 325px;line-height: 325px;"> 借记卡</div>
                 </td>
                 <td>
-                    <div>全部（签约）</div>
-                    <div>动态口令卡（刮刮卡）</div>
-                    <div>短信动态口令</div>
-                    <div>文件证书</div>
-                    <div>二代网银盾</div>
-                    <div>文件证书+刮刮卡</div>
-                    <div>USB Key+动态口令卡</div>
-                    <div>网银高端版</div>
-                    <div>USB Key+短信动态口令</div>
-                    <div>刮刮卡+短信动态口令</div>
-                    <div>USB Key+短信确认</div>
-                    <div>USB Key</div>
-                    <div>音频盾</div>
-                    <div style="border:none">非签约</div>
+                    <div>账号支付</div>
+                    <div>动态口令</div>
+                    <div>一代key</div>
+                    <div>二代key</div>
                 </td>
                 <td>
-                    <div>500000</div>
+                    <div>1000</div>
                     <div>5000</div>
-                    <div>5000</div>
-                    <div>0</div>
-                    <div>500000</div>
-                    <div>5000</div>
-                    <div>500000</div>
-                    <div>500000</div>
-                    <div>500000</div>
-                    <div></div>
-                    <div>500000</div>
-                    <div>500000</div>
-                    <div></div>
-                    <div style="border:none">0</div>
+                    <div>5万</div>
+                    <div>50万</div>
                 </td>
                 <td>
-                    <div>500000</div>
+                    <div>1000</div>
                     <div>5000</div>
-                    <div>5000</div>
-                    <div>0</div>
-                    <div>500000</div>
-                    <div>5000</div>
-                    <div>500000</div>
-                    <div>500000</div>
-                    <div>500000</div>
-                    <div></div>
-                    <div>500000</div>
-                    <div>500000</div>
-                    <div></div>
-                    <div style="border:none">0</div>
+                    <div>10万</div>
+                    <div>50万</div>
                 </td>
                 <!-- <tr>
             <th>非签约的借记卡和贷记卡</th>
@@ -704,50 +671,45 @@
                     <div>一代K宝</div>
                     <div>二代K宝</div>
                     <div>动态口令卡</div>
-                    <div style="border:none">K码支付</div>
                 </td>
                 <td>
                     <div>50万</div>
                     <div>100万</div>
                     <div>1000</div>
-                    <div style="border:none">1000</div>
                 </td>
                 <td>
+                    <div>50万</div>
                     <div>100万</div>
-                    <div>500万</div>
-                    <div>1000</div>
-                    <div style="border:none">3000</div>
+                    <div>3000</div>
                 </td>
                 <td>95599</td>
             </tr>
-            <tr id="CMBCHINA">
+            <tr id="CMB">
                 <td>招商银行</td>
                 <td>
                     <div style="height: 50px;line-height: 50px;">借记卡</div>
-                    <div style="border:none">信用卡</div>
                 </td>
                 <td>
-                    <div>USBkey </div>
+                    <div>专业版 </div>
                     <div>大众版</div>
-                    <div style="border:none">USBkey及大众版</div>
                 </td>
                 <td>
-                    <div>无</div>
-                    <div>5000</div>
-                    <div style="border:none">500</div>
+                    <div>无限额</div>
+                    <div>500</div>
                 </td>
                 <td>
-                    <div>无</div>
-                    <div></div>
+                    <div>无限额</div>
+                    <div>500</div>
                     <div style="border:none"></div>
                 </td>
                 <td>95555</td>
             </tr>
-            <tr id="BIC">
+            <tr id="BCM">
                 <td>交通银行</td>
+                <td>借记卡</td>
                 <td>
-                    <div>USB证书</div>
-                    <div style="border:none">短信密码</div>
+                    <div>key</div>
+                    <div style="border:none">短信</div>
                 </td>
                 <td>
                     <div>100万</div>
@@ -763,29 +725,15 @@
                 <td>中国银行</td>
                 <td>
                     <div>借记卡</div>
-                    <div>准贷记卡</div>
-                    <div>贷记卡</div>
-                    <div style="border:none">中银快付（借、贷）</div>
                 </td>
                 <td>
-                    <div>口令卡&UKEY</div>
-                    <div>口令卡&UKEY</div>
-                    <div>口令卡&UKEY</div>
-                    <div style="border:none">中银快付</div>
+                    <div style="border:none">全部方式</div>
                 </td>
                 <td>
-                    <div>5万</div>
-                    <div>5000</div>
-                    <div>5000</div>
-                    <div style="border:none">1000</div>
+                    <div>1万</div>
                 </td>
                 <td>
-                    <div>50万</div>
-                    <div>信用额度 （如信用额度超过50万，限额为50万）
-                    </div>
-                    <div>信用额度 （如信用额度超过50万，限额为50万）
-                    </div>
-                    <div style="border:none">5000</div>
+                    <div>20万</div>
                 </td>
                 <td>95566</td>
             </tr>
@@ -813,31 +761,18 @@
                 <td>光大银行</td>
                 <td>
                     <div>阳光借记卡</div>
-                    <div style="border:none">信用卡</div>
                 </td>
                 <td>
                     <div>动态密码</div>
-                    <div>阳光令牌</div>
-                    <div>PUSH支付</div>
-                    <div>动态密码</div>
-                    <div>阳光令牌</div>
-                    <div style="border:none">PUSH支付</div>
+                    <div>U盾</div>
                 </td>
                 <td>
                     <div>1万元</div>
                     <div>50万元</div>
-                    <div>1万元</div>
-                    <div>1000</div>
-                    <div>1000</div>
-                    <div style="border:none">1000</div>
                 </td>
                 <td>
                     <div>1万元</div>
                     <div>50万元</div>
-                    <div>1万元</div>
-                    <div>1万元</div>
-                    <div>50万元</div>
-                    <div style="border:none">1万元</div>
                 </td>
                 <td>95595</td>
             </tr>
@@ -874,66 +809,44 @@
                 </td>
                 <td>95568</td>
             </tr>
-            <tr id="ECITIC">
+            <tr id="CITICBANK">
                 <td>中信银行</td>
                 <td>
                     <div>借记卡</div>
-                    <div style="border:none">信用卡</div>
                 </td>
                 <td>
                     <div>动态口令</div>
                     <div>USBKey</div>
-                    <div>动态口令</div>
-                    <div style="border:none">USBkey</div>
                 </td>
                 <td>
                     <div>1000</div>
-                    <div>1000000</div>
-                    <div>1000</div>
-                    <div style="border:none">1000</div>
+                    <div>100万</div>
                 </td>
                 <td>
                     <div>5000</div>
-                    <div>1000000</div>
-                    <div>10000</div>
-                    <div style="border:none">10000</div>
+                    <div>100万</div>
                 </td>
                 <td>95558</td>
             </tr>
-            <tr id="GDB">
+            <tr id="CGBC">
                 <td>广发银行</td>
                 <td>
                     <div>借记卡</div>
-                    <div style="border:none">信用卡</div>
                 </td>
                 <td>
-                    <div>USBkey </div>
-                    <div>动态口令</div>
-                    <div>key令</div>
-                    <div>USBkey </div>
-                    <div>动态口令</div>
-                    <div style="border:none">key令</div>
+                    <div>全部方式 </div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div>5000</div>
-                    <div>5000</div>
-                    <div>2000</div>
-                    <div>2000</div>
-                    <div style="border:none">2000</div>
+                    <div>个人设置</div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div>5000</div>
-                    <div>5000</div>
-                    <div>2000</div>
-                    <div>2000</div>
-                    <div style="border:none">2000</div>
+                    <div>个人设置</div>
                 </td>
                 <td>95508</td>
             </tr>
             <tr id="SPDB">
                 <td>浦发银行</td>
+                <td>借记卡</td>
                 <td>
                     <div>签约用户（数字证书版）</div>
                     <div style="border:none">签约用户（动态密码版）</div>
@@ -948,29 +861,19 @@
                 </td>
                 <td>95528</td>
             </tr>
-            <tr id="PINGAN">
+            <tr id="PINGANBANK">
                 <td>平安银行</td>
                 <td>
                     <div>借记卡</div>
-                    <div style="border:none">信用卡</div>
                 </td>
                 <td>
-                    <div>USBkey </div>
-                    <div>动态口令 </div>
-                    <div>USBkey </div>
-                    <div style="border:none">动态口令</div>
+                    <div>全部方式 </div>
                 </td>
                 <td>
-                    <div>5万 </div>
-                    <div>5万 </div>
-                    <div>2000 </div>
-                    <div style="border:none">2000</div>
+                    <div>个人设置 </div>
                 </td>
                 <td>
-                    <div>5万 </div>
-                    <div>5万 </div>
-                    <div>2000 </div>
-                    <div style="border:none">2000</div>
+                    <div>个人设置 </div>
                 </td>
                 <td>95511</td>
             </tr>
@@ -1026,35 +929,32 @@
                 </td>
                 <td>8008303811</td>
             </tr>
-            <tr id="SH">
+            <tr id="BOS">
                 <td>上海银行</td>
+                <td>借记卡</td>
                 <td>
-                    <div>易签宝（USBKey证书）</div>
-                    <div style="border:none">文件证书</div>
+                    <div>E盾版网银</div>
+                    <div style="border:none">动态密码网银</div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div style="border:none">5万</div>
+                    <div>50万</div>
+                    <div style="border:none">6000</div>
                 </td>
                 <td>
-                    <div>5000</div>
-                    <div style="border:none">5万</div>
+                    <div>100万</div>
+                    <div style="border:none">1万</div>
                 </td>
                 <td>95594</td>
             </tr>
             <tr id="BCCB">
                 <td>北京银行</td>
                 <td>普通/仅借记卡</td>
-                <td>借记卡</td>
+                <td>全部方式</td>
                 <td>
-                    <div>普通</div>
-                    <div>动态密码</div>
-                    <div style="border:none">证书</div>
+                    <div>个人设置 </div>
                 </td>
                 <td>
-                    <div>300</div>
-                    <div>1000</div>
-                    <div style="border:none">100万</div>
+                    <div>个人设置 </div>
                 </td>
                 <td>95526</td>
             </tr>
@@ -1077,24 +977,50 @@
                 </td>
                 <td>4008896400</td>
             </tr>
+            <tr id="CIB">
+                <td>兴业银行</td> 
+                <td>借记卡</td>
+                <td>
+                    <div>全部方式</div>
+                </td>
+                <td>
+                    <div>个人设置</div>
+                </td>
+                <td>
+                    <div>个人设置</div>
+                </td>
+                <td>95561</td>
+            </tr>
+            <tr id="CZB">
+                <td>浙商银行</td> 
+                <td>借记卡</td>
+                <td>
+                    <div>全部方式</div>
+                </td>
+                <td>
+                    <div>个人设置</div>
+                </td>
+                <td>
+                    <div>个人设置</div>
+                </td>
+                <td>95561</td>
+            </tr>
             <tr id="PSBC">
                 <td>中国邮储银行</td>
+                <td>借记卡</td>
                 <td>
                     <div>手机短信客户</div>
                     <div>电子令牌+短信客户</div>
-                    <div>Ukey+短信普通客户</div>
-                    <div>Ukey+短信金卡客户</div>
-                    <div style="border:none">Ukey+短信白金卡、钻石卡客户</div>
+                    <div>Ukey+短信客户</div>
                 </td>
                 <td>
-                    <div>5万</div>
+                    <div>1万</div>
                     <div>20万</div>
                     <div>200万</div>
-                    <div>500万</div>
-                    <div style="border:none">1000万</div>
                 </td>
+                <td></td>
                 <td>
-                    <div>5万</div>
+                    <div>1万</div>
                     <div>20万</div>
                     <div>200万</div>
                     <div>500万</div>
