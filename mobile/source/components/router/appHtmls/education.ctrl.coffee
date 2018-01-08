@@ -3,8 +3,8 @@ do (_, angular) ->
 
  angular.module('controller').controller 'EducationCtrl',
 
-   _.ai '            @api, @$scope, @$window, @$routeParams,@$location', class
-    constructor: (@api, @$scope, @$window, @$routeParams,@$location) ->
+   _.ai '            @api, @$scope, @$location, @$window, @$routeParams', class
+    constructor: (@api, @$scope, @$location, @$window, @$routeParams) ->
 
       @$window.scrollTo 0, 0
       params = {
