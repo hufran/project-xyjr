@@ -424,7 +424,7 @@
     top:45%;
     width:40px;
 }
-.side-bar-box .wap{
+.side-bar-box .wap,.side-bar-box .weixin-wap{
     width: 340px;
     height: 340px;
     border: 1px solid #ccc;
@@ -432,7 +432,7 @@
     background: #fff;
     border-radius: 5px;
 }
-.wap .wap-close{
+.wap .wap-close,.weixin-wap .wap-close{
     float: right;
     margin-top:4px;
     margin-right: 10px;

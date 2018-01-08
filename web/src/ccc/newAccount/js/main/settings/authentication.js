@@ -381,7 +381,7 @@ ractive.on('sendTelCode2', function (){
     }
 
     if (!this.get("lccbId")) {
-        var smsType = '800001';
+        var smsType = '800031';
     }else{
         var smsType = '800027';
     }

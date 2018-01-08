@@ -26,8 +26,14 @@ $(".side-bar-mobile").hover(function(){
 },function(){
     $('.wap').css('display','none');
 });
+$(".side-bar-weixin").hover(function(){
+    $('.weixin-wap').css('display','block');
+},function(){
+    $('.weixin-wap').css('display','none');
+});
 $(".wap-close").click(function(){
     $('.wap').css('display','none');
+    $('.weixin-wap').css('display','none');
 });
 
 if(!utils.tool.checkObjectIsEmpty(CC.user)){
