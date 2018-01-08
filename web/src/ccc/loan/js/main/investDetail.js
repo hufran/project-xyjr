@@ -28,8 +28,7 @@ var statusMap = {
     SETTLED: '结标时间:{{timeSettled}}',
     OPENED: '',
     FINISHED: '',
-    CLEARED: '',
-    OVERDUE: ''
+    CLEARED: ''
 };
 var template = statusMap[CC.loan.status];
 
