@@ -64,10 +64,32 @@ do (_ ,angular, moment, Math, Date) ->
                 @$scope.stopDate = dateSeconds.getFullYear() + "-"+tmpMonth+"-"+tmpDate
 
             pointMsg:()=>
-                if parseInt(@user.info.priv) <= 16
+                oldMark = parseInt(@user.info.priv)
+                if oldMark>=10 && oldMark<=16
+                    @$scope.investType = "（一级）保守型";
+                    @$scope.projectList = "R1";
+                    level = "R1";
+                else if oldMark>=17 && oldMark<=23
+                    @$scope.investType = "（二级）稳健型";
+                    @$scope.projectList = "R1、R2";
+                    level = "R2";
+                else if oldMark>=24 && oldMark<=31
+                    @$scope.investType = "（三级）平衡型";
+                    @$scope.projectList = "R1、R2、R3";
+                    level = "R3";
+                else if oldMark>=32 && oldMark<=38
+                    @$scope.investType = "（四级）积极型";
+                    @$scope.projectList = "R1、R2、R3、R4";
+                    level = "R4";
+                else if oldMark>=39 && oldMark<=45
+                    @$scope.investType = "（五级）激进型";
+                    @$scope.projectList = "R1、R2、R3、R4、R5";
+                    level = "R5";
+
+                if parseInt(@user.info.priv) <= 16 || !(level is @loan.level)
                     do @confirmLevel
                 else 
-                     @$window.location.href='./loan/'+@loan.id+'/invest'
+                    @$window.location.href='./loan/'+@loan.id+'/invest'
                 
 
             agreement: (segment) ->
@@ -107,12 +129,15 @@ do (_ ,angular, moment, Math, Date) ->
                     templateUrl: 'ngt-invest-confirm.tmpl'
 
                     controller: _.ai '$scope', ($scope) =>
+                        $scope.investType=@$scope.investType
+                        $scope.projectList=@$scope.projectList;
                         
                 }
 
                 confirmValue.result.then (value)=>
                     if value==true
-                        @$window.location.href='./loan/'+@loan.id+'/invest'
+                        return false
+                        #@$window.location.href='./loan/'+@loan.id+'/invest'
                 confirmValue.result.catch (new_path) =>
                     @$window.location.href='./questions/'+@loan.id
 
