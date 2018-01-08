@@ -102,12 +102,9 @@ do (_, angular) ->
                     username=filterXSS username
                 return unless !!phonenumber and !!cardnbr and !!username
                 
-                if parseInt(@$scope.lccbUserId)==-1
+                if parseInt(@$scope.lccbUserId)==-1||parseInt(@$scope.lccbUserId)==0
                     #开户
                     transtype='800001'
-                else if parseInt(@$scope.lccbUserId)==0
-                    #激活
-                    transtype='800031'
                 else 
                     #授权
                     transtype='800027'
