@@ -1,4 +1,3 @@
-{{#if listStatus === 1}}
 <table class="table table-hover has-padding">
     <thead class="has-bg">
         <tr>
@@ -32,7 +31,7 @@
                 href="{{corporationUrl}}" target="_blank" rel="nofollow" on-click="sign">签约</a>
             {{elseif status!="FINISHED" && status!="OPENED" && status!="FAILED"}}
                 <a class="btn btn-smaller btn-blue-light"
-                href="" data-id="{{id}}" on-click="showPact">合同查看</a>
+                href="/account/loan/allContracts/{{id}}" target="_blank" rel="nofollow" >合同下载</a>
             {{/if}}
             </td>
         </tr>
@@ -59,44 +58,8 @@
     </tbody>
     {{/if}}
 </table>
-
 {{#if list}}
 <div class="ccc-paging"></div>
 {{else}}
 <div class="no-loan"></div>
 {{/if}}
-
-{{/if}}
-
-{{#if listStatus === 2}}
-<table style="width: 100%">
-    <thead class="has-bg">
-        <tr>
-            <th style="text-indent:20px;">投标人</th>
-            <th>投标金额(元)</th>
-            <th>投标时间</th>
-            <th>操作</th>
-        </tr>
-    </thead>
-    {{#if pactlist}}
-    <tbody>
-        {{#each pactlist}}
-        <tr>
-            <td style="text-indent:20px;">
-                {{phone.substr(0,3)}}*****{{phone.substr(-3)}}
-            </td>
-            <td>{{amount}}</td>
-            <td>{{date}}</td>
-            <td>
-                <a class="btn btn-smaller btn-blue-light"
-                href="{{contractUrl}}" target="_blank" rel="nofollow" >合同查看</a>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-    {{/if}}
-</table>
-
-<div class="ccc-paging"></div>
-{{/if}}
-
