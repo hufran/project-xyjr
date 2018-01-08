@@ -335,20 +335,35 @@ setTimeout((function () {
                         // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
                         // 其他账号不需要测评的情况，因此去掉
                         // if (CC.user.priv==null&&getCookie('question')==null)
-                            if (!mark) {
-                                console.log(mark)
-                                flag = false
-                                jQuery('.wenjuan').removeClass('dn').addClass('db');
-                            } 
-                            if (mark>=10&&mark<=16) {
-                                
-                            }else if(mark>=17&&mark<=23){
-                                
-                            }else if(mark>=24&&mark<=31){
-                                
-                            }else if(mark>=32&&mark<=38){
-                                
-                            };                                                     
+                        if (!mark || (mark>=10&&mark<=16)) {
+                            console.log(mark)                           
+                            if(mark>=10&&mark<=16){
+                                Confirm.create({
+                                    msg: '您的风险评级较低，是否确认投资?',
+                                    okText: '确认',
+                                    cancelText: '重新评级',
+                                    ok: function(){
+                                        $('.dialog').hide();
+                                        jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                        jQuery('.questionTip').removeClass('db').addClass('dn');
+                                        jQuery(document).scrollTop(0);
+                                        toPay(num, couponText)
+                                    },
+                                    cancel: function(){
+                                        $('.dialog').hide();
+                                        jQuery('.questionTit').removeClass('result');
+                                        jQuery('.wenjuan').removeClass('dn').addClass('db');
+                                        jQuery('.resultInfor').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                        jQuery('.questionTip').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox').removeClass('dn').addClass('db');
+                                    }
+                                })
+                            }else{
+                                jQuery('.wenjuan').removeClass('dn').addClass('db'); 
+                            }   
+                                                    
                             jQuery('.radioW').click(function(){
                                 var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
                                 jQuery('input[name="'+radioName+'"]').prop('checked',false);
@@ -422,19 +437,19 @@ setTimeout((function () {
                                 jQuery('.questionTip').removeClass('db').addClass('dn');
                                 jQuery(document).scrollTop(0);
                             })
+                        }
+                        // 问卷end
+                        $('.agree-error').css('visibility','hidden');
                         
-                            // 问卷end
-    						$('.agree-error').css('visibility','hidden');
-                            
-                            if(flag) {
-                                console.log(mark)
-                                toPay(num, couponText)
-                            }
-                    	
-					}else{
-						$('.agree-error').css('visibility','visible');
-						$('.agree-error').html('请先同意新毅用户投资服务协议');
-					}
+                        if(!(mark>=10&&mark<=16) && mark) {
+                            console.log(mark)
+                            toPay(num, couponText)
+                         }
+                        
+                    }else{
+                        $('.agree-error').css('visibility','visible');
+                        $('.agree-error').html('请先同意新毅用户投资服务协议');
+                    }
                 }
             });
         };
