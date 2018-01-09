@@ -47,20 +47,20 @@
             <div class="space-20"></div>
             <div class="row">
                 <div class="methodwr" data-type="net">
-                    <!-- <div style="display:inline-block;">
+                    <div style="display:inline-block;">
                         <input type="radio" id="paynet" name="payType" checked on-click="choosePayType">
                         <label for="paynet" on-click="choosePayType">网银充值</label>
-                    </div> -->
+                    </div>
                     {{#if !isEnterpriseUser}}
                     <div style="display:inline-block;margin-left: 20px;">
-                        <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType" checked>
+                        <input type="radio" id="fastpaynet" name="payType" on-click="choosePayType">
                         <label for="fastpaynet" on-click="choosePayType">快捷支付</label>
                     </div>
                     {{/if}}
                     
                 </div>
                 <div class="space space-30"></div>
-                <div class="bankwrap"  style="display:none;">
+                <div class="bankwrap">
                     <!-- {{#if !isEnterpriseUser}}
                         {{#banks:index}}
                         {{#if index
@@ -95,7 +95,7 @@
                         {{/corBanks}}
                 </div>
 
-                <div class="fastbankwrap"><!-- style="display:none;"  -->
+                <div class="fastbankwrap" style="display:none;"><!--   -->
                     {{#if !isEnterpriseUser}}
                        <!--  {{#if isBankCard > 0}} -->
                            {{#if !lccbId}}
