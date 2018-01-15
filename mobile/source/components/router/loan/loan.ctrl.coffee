@@ -86,7 +86,7 @@ do (_ ,angular, moment, Math, Date) ->
                     @$scope.projectList = "R1、R2、R3、R4、R5";
                     level = "R5";
 
-                if parseInt(@user.info.priv) <= 16 || !(level is @loan.level)
+                if oldMark <= 16 || !(level is @loan.loanRequest.riskRank)
                     do @confirmLevel
                 else 
                     @$window.location.href='./loan/'+@loan.id+'/invest'
