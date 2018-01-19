@@ -335,116 +335,106 @@ setTimeout((function () {
                         // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
                         // 其他账号不需要测评的情况，因此去掉
                         // if (CC.user.priv==null&&getCookie('question')==null)
-                        if (!mark || (mark>=10&&mark<=16)) {
-                            console.log(mark)                           
-                            if(mark>=10&&mark<=16){
-                                Confirm.create({
-                                    msg: '您的风险评级较低，是否确认投资?',
-                                    okText: '确认',
-                                    cancelText: '重新评级',
-                                    ok: function(){
-                                        $('.dialog').hide();
-                                        jQuery('.wenjuan').removeClass('db').addClass('dn');
-                                        jQuery('.questionBox input[type=radio]').prop('checked',false);
-                                        jQuery('.questionTip').removeClass('db').addClass('dn');
-                                        jQuery(document).scrollTop(0);
-                                        toPay(num, couponText)
-                                    },
-                                    cancel: function(){
-                                        $('.dialog').hide();
+                        if (!mark) {
+                            console.log(mark)
+                            flag = false;                                                          
+                            jQuery('.wenjuan').removeClass('dn').addClass('db');   
+                        }
+                        if ((mark>=10&&mark<=16) && CC.loan.riskRank!="R1") {
+                            var Riskmsg = "您的风险评级为保守型, 只能投资风险评级为R1的项目";
+                            flag = false;
+                        }else if((mark>=17&&mark<=23) && (CC.loan.riskRank!="R1" && CC.loan.riskRank!="R2")){
+                            var Riskmsg = "您的风险评级为稳健型, 只能投资风险评级为R 1、R2的项目";
+                            flag = false;
+                        }else if((mark>=24&&mark<=31) && (CC.loan.riskRank=="R4" || CC.loan.riskRank=="R5")){
+                            var Riskmsg = "您的风险评级为平衡型, 只能投资风险评级为R 1、R2、R3的项目";
+                            flag = false;
+                        }else if((mark>=32&&mark<=38) && CC.loan.riskRank=="R5"){
+                            var Riskmsg = "您的风险评级为积极型, 只能投资风险评级为R 1、R2、R3、R4的项目";
+                            flag = false;
+                        }                    
+                        jQuery('.radioW').click(function(){
+                            var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
+                            jQuery('input[name="'+radioName+'"]').prop('checked',false);
+                            jQuery(this).siblings('input[type="radio"]').prop('checked',true);
+
+                        })
+                        jQuery('input.questionBtn').click(function(){
+                            var r=true;
+                            mark=0;
+                            for (var i = 1; i < 11; i++) {
+                                if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
+                                    r=false;
+                                }else{
+                                    mark=mark+parseInt(jQuery('input[name="Q'+i+'"]:checked').attr('data-value'));
+                                };
+                                if (!r) {
+                                    jQuery('.questionTip').removeClass('dn').addClass('db');
+                                    return false;
+                                }
+                            };
+                            $.ajax({
+                                type: 'POST',
+                                url: '/api/v2/users/userQuestion',
+                                data: {
+                                    userId:CC.user.userId,
+                                    mark:mark
+                                },
+                                success: function(){
+                                    jQuery('.questionBox').removeClass('db').addClass('dn');
+                                    jQuery(document).scrollTop(0);
+                                    jQuery('.questionTit').addClass('result');
+                                    jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
+                                    if (mark>=10&&mark<=16) {
+                                        jQuery('.resultInfor span').html("一级（保守型）");
+                                    }else if(mark>=17&&mark<=23){
+                                        jQuery('.resultInfor span').html("二级（稳健型）");
+                                    }else if(mark>=24&&mark<=31){
+                                        jQuery('.resultInfor span').html("三级（平衡型）");
+                                    }else if(mark>=32&&mark<=38){
+                                        jQuery('.resultInfor span').html("四级（积极型）");
+                                    }else if(mark>=39&&mark<=45){
+                                        jQuery('.resultInfor span').html("五级（激进型）");
+                                    };
+                                    setCookie('question','questionTrue');
+                                    jQuery('.returnWenjuan').click(function(){
                                         jQuery('.questionTit').removeClass('result');
-                                        jQuery('.wenjuan').removeClass('dn').addClass('db');
                                         jQuery('.resultInfor').removeClass('db').addClass('dn');
                                         jQuery('.questionBox input[type=radio]').prop('checked',false);
                                         jQuery('.questionTip').removeClass('db').addClass('dn');
                                         jQuery('.questionBox').removeClass('dn').addClass('db');
-                                    }
-                                })
-                            }else{
-                                jQuery('.wenjuan').removeClass('dn').addClass('db'); 
-                            }   
-                                                    
-                            jQuery('.radioW').click(function(){
-                                var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
-                                jQuery('input[name="'+radioName+'"]').prop('checked',false);
-                                jQuery(this).siblings('input[type="radio"]').prop('checked',true);
-
-                            })
-                            jQuery('input.questionBtn').click(function(){
-                                var r=true;
-                                mark=0;
-                                for (var i = 1; i < 11; i++) {
-                                    if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
-                                        r=false;
-                                    }else{
-                                        mark=mark+parseInt(jQuery('input[name="Q'+i+'"]:checked').attr('data-value'));
-                                    };
-                                    if (!r) {
-                                        jQuery('.questionTip').removeClass('dn').addClass('db');
-                                        return false;
-                                    }
-                                };
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/api/v2/users/userQuestion',
-                                    data: {
-                                        userId:CC.user.userId,
-                                        mark:mark
-                                    },
-                                    success: function(){
-                                        jQuery('.questionBox').removeClass('db').addClass('dn');
+                                    })
+                                    jQuery('.returnPay').click(function(){
+                                        jQuery('.wenjuan').removeClass('db').addClass('dn');
+                                        jQuery('.questionBox input[type=radio]').prop('checked',false);
+                                        jQuery('.questionTip').removeClass('db').addClass('dn');
                                         jQuery(document).scrollTop(0);
-                                        jQuery('.questionTit').addClass('result');
-                                        jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
-                                        if (mark>=10&&mark<=16) {
-                                            jQuery('.resultInfor span').html("一级（保守型）");
-                                        }else if(mark>=17&&mark<=23){
-                                            jQuery('.resultInfor span').html("二级（稳健型）");
-                                        }else if(mark>=24&&mark<=31){
-                                            jQuery('.resultInfor span').html("三级（平衡型）");
-                                        }else if(mark>=32&&mark<=38){
-                                            jQuery('.resultInfor span').html("四级（积极型）");
-                                        }else if(mark>=39&&mark<=45){
-                                            jQuery('.resultInfor span').html("五级（激进型）");
-                                        };
-                                        setCookie('question','questionTrue');
-                                        jQuery('.returnWenjuan').click(function(){
-                                            jQuery('.questionTit').removeClass('result');
-                                            jQuery('.resultInfor').removeClass('db').addClass('dn');
-                                            jQuery('.questionBox input[type=radio]').prop('checked',false);
-                                            jQuery('.questionTip').removeClass('db').addClass('dn');
-                                            jQuery('.questionBox').removeClass('dn').addClass('db');
-                                        })
-                                        jQuery('.returnPay').click(function(){
-                                            jQuery('.wenjuan').removeClass('db').addClass('dn');
-                                            jQuery('.questionBox input[type=radio]').prop('checked',false);
-                                            jQuery('.questionTip').removeClass('db').addClass('dn');
-                                            jQuery(document).scrollTop(0);
-                                        })
-                                                                            
-                                    }
-                                });
-                            })
-                            jQuery('.questionBtn.false').click(function(){
-                                jQuery('.wenjuan').removeClass('db').addClass('dn');
-                                jQuery('.questionBox input[type=radio]').prop('checked',false);
-                                jQuery('.questionTip').removeClass('db').addClass('dn');
-                                jQuery(document).scrollTop(0);
-                            })
-                            jQuery('.wenjuanClose').click(function(){
-                                jQuery('.wenjuan').removeClass('db').addClass('dn');
-                                jQuery('.questionBox input[type=radio]').prop('checked',false);
-                                jQuery('.questionTip').removeClass('db').addClass('dn');
-                                jQuery(document).scrollTop(0);
-                            })
-                        }
+                                    })
+                                                                        
+                                }
+                            });
+                        })
+                        jQuery('.questionBtn.false').click(function(){
+                            jQuery('.wenjuan').removeClass('db').addClass('dn');
+                            jQuery('.questionBox input[type=radio]').prop('checked',false);
+                            jQuery('.questionTip').removeClass('db').addClass('dn');
+                            jQuery(document).scrollTop(0);
+                        })
+                        jQuery('.wenjuanClose').click(function(){
+                            jQuery('.wenjuan').removeClass('db').addClass('dn');
+                            jQuery('.questionBox input[type=radio]').prop('checked',false);
+                            jQuery('.questionTip').removeClass('db').addClass('dn');
+                            jQuery(document).scrollTop(0);
+                        })
+                        
                         // 问卷end
                         $('.agree-error').css('visibility','hidden');
                         
-                        if(!(mark>=10&&mark<=16) && mark) {
-                            console.log(mark)
+                        if(!flag) {
+                            tips(Riskmsg)
+                        }else{
                             toPay(num, couponText)
-                         }
+                        }
                         
                     }else{
                         $('.agree-error').css('visibility','visible');
@@ -455,9 +445,12 @@ setTimeout((function () {
         };
     });
 
-    function tips(){
+    function tips(Riskmsg){
+        if(!Riskmsg){
+            return
+        }
         Confirm.create({
-            msg: '您的风险评级较低，是否确认投资?',
+            msg: Riskmsg,
             okText: '确认',
             cancelText: '重新评级',
             ok: function(){
