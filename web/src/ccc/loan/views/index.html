@@ -476,7 +476,8 @@
         rate: {{loans.rate}},
         days:{{loans.duration.days}},
         durationdays: {{loans.duration.totalDays}},
-        enterprise:{{loans.loanRequest.user.enterprise}}
+        enterprise:{{loans.loanRequest.user.enterprise}},
+        riskRank: '{{loans.loanRequest.riskRank}}'
     };
     if('{{loans.timeFinished}}'){
         CC.loan.timeFinished='{{loans.timeFinished}}';
