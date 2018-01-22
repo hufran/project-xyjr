@@ -1,0 +1,27 @@
+{
+  "name": "project-demo",
+  "version": "0.0.0",
+  "description": "这个根目录下只放 @cc/node-sh 等公用脚本，其他还是放具体各子项目下",
+  "scripts": {
+    "deploy": "node-deploy",
+    "dev": "cd web/ && npm run dev",
+    "postinstall": "ds-init-sub-projects",
+    "postmerge": "cc-post-merge",
+    "prepush": "cd web/ && ccnpm run build && NODE_ENV=production PORT=`next-port 5000` node index --start-then-close"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.creditcloud.com:10022/ccfe/project-demo.git"
+  },
+  "author": "CCFE",
+  "license": "private",
+  "dependencies": {
+    "@cc/node-sh": "^3.3.7",
+    "@cc/scripts": "^2.2.0",
+    "@ccc/login": "^2.3.3",
+    "@ccc/payment": "^1.1.11",
+    "@ccc/register": "^2.4.0",
+    "@ccc/validation": "^1.0.0",
+    "husky": "^0.8.1"
+  }
+}

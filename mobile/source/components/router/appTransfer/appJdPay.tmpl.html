@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>正在跳转{{payPlat}}支付</title>
+<style>
+    html{height:100%;background-color:#fff}
+    body{background-color:#fff;}
+    .ng-isolate-scope{display:none}
+    @-webkit-keyframes rotation{
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+    }
+
+    .Rotation{
+        -webkit-transform: rotate(360deg);
+        animation: rotation 3s linear infinite;
+        -moz-animation: rotation 3s linear infinite;
+        -webkit-animation: rotation 3s linear infinite;
+        -o-animation: rotation 3s linear infinite;
+    }
+</style>
+<body>
+<div style='text-align: center;font-size:0.64rem;color:#595757;font-family: "STHeiti", "华文细黑", "Helvetica", "Arial", "Verdana", "Hiragino Sans GB", "sans-serif";font-weight:bold;'>
+    <img src="assets/image/Jdloading.png" style="margin: 2rem auto 0.5rem;width: 1.92rem;-webkit-transform: rotate(360deg);animation: rotation 3s linear infinite;
+        -moz-animation: rotation 3s linear infinite;-webkit-animation: rotation 3s linear infinite;-o-animation: rotation 3s linear infinite;" class="rotation"/><br>
+        <div id="jumpToJd">正在跳转{{payPlat}}支付</div>
+</div>
+<form action="{{action}}" method="post" id="batchForm" style="display: none;">
+    <div ng-if="payPlat == '连连'">
+        <input type="text" name="userId" value="{{userId}}"  >
+        <input type="text" name="amount" value="{{amount}}"><br>
+        <input type="text" name="retUrl" value="{{retUrl}}"><br>
+        <input type="text" name="isWAP" value="true"><br>
+        <input type="text" name="notifyUrl" value=""><br>
+    </div>
+    <div ng-if="payPlat == '京东'">
+    <input type="text" name="amount" value="{{amount}}"><br>
+    <input type="text" name="retUrl" value="{{retUrl}}"><br>
+    <input type="text" name="bankCode" value="{{bankCode}}"><br>
+    <input type="text" name="token" value="{{token}}">
+    </div>
+    <input type="submit" value="submit">
+</form>
+</div>
+</body>
+</html>
+

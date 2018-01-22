@@ -1,0 +1,46 @@
+<!-- 导航开始 -->
+<div class="s-header">
+    <div class="s-header-info">
+        <div class="s-header-info-content u-pos-r-center">
+            <img src="/assets/img/head_hotline.png" style="margin: 8px;display: inline-block;float: left;"/>
+            <span class="weiboIcon" ><a href="http://weibo.com/jiuxinfinance" target="_blank"></a></span>
+            <span class="weixinIcon"></span>   
+            <img class="dropdown" src="/assets/img/2wm.jpg" width="150" title="正奇金融" alt="正奇金融" />
+            <a href="/help/account"><span class="why"></span></a>
+            {{#if !user.loginName}}
+            <a href="/register" id="dingbuzhuce" class="text" style="border-left: 1px solid #fff;">注册</a>
+            <a href="/login" id="dingbudenglu" class="text">登录</a>
+            <!--a href="/login?url=L2FjY291bnQ=" class="account" id="wodezhanghu">我的账户</a-->
+            {{else}}
+            <a href="/account" class="text account" style="color:#b5a16b;">我的账户</a>
+            <a href="/logout" class="text" style="border-left: 1px solid #fff;">退出</a>
+            <a class="text" style="width: 200px; text-align: right; padding-right: 10px; ">欢迎您 {{user.loginName}}</a>
+            {{/if}}
+        </div>
+    </div>
+    <div class="s-header-menu">
+        <div class="s-header-menu-content u-pos-r-center">
+            <a href="/" style="float: left;" alt="正奇金融" title="正奇金融">
+                <img class="s-icon" src="/ccc/index/img/icon/logo-323-49.png">
+            </a>
+            <ul class="u-nolist-ul">
+                <li {{#if currentChannel === 'index'}}class="s__is-selected"{{/if}}><a href="/">首&nbsp;&nbsp;页</a></li>
+                <li {{#if currentChannel === 'touzi'}}class="s__is-selected"{{/if}}><a href="/touzi/list">我要投资</a></li>
+                <li {{#if currentChannel === 'safe'}}class="s__is-selected"{{/if}}><a href="/safe">安全保障</a></li>
+                <li {{#if currentChannel === 'help'}}class="s__is-selected"{{/if}}><a href="/help">新手指引</a></li>
+                <li {{#if currentChannel === 'info'}}class="s__is-selected"{{/if}}><a href="/info/index">关于我们</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 导航结束 -->
+<div class="side" id="sideFixed">
+    <ul>
+        <li>
+            <span id="BizQQWPA2"><img src="/assets/img/sqq.png" >QQ客服</span>
+        </li>
+        <li id="sideUp" class="up"><a href="#"><img src="/assets/img/stop.png"></a>
+        </li>
+    </ul>
+</div>
+<script src="/ccc/global/js/main/header.js" async defer></script>

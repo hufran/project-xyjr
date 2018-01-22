@@ -1,0 +1,111 @@
+<div id="register-wrapper" class="on-step-{{onStep}}">
+    <Step> 
+        <div class="register-step-0">
+		<span class="tit">快速注册</span>
+		<div class=infor>
+				<RInput field="mobile">
+                    <div class="inforDiv">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">手机号:</label>
+                        <input class="phoneNum" name="phone" id="{{rinputId}}" value="{{value}}" placeholder="请输入手机号" autocomplete="off">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/act/img/loading-2.gif' style="background:transparent;width:16px;height:16px"/>{{/loading}}
+                        </span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/if}}</span>
+                    </div>
+                </RInput>
+				<RInput field="imgCaptcha">
+                    <div class="inforDiv">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">验证码:</label>
+                        <input class="register-test" id="{{rinputId}}" value="{{value}}" placeholder="验证码" autocomplete="off">
+                        <span on-click='changeImgCaptcha'>
+                            <img src="{{imgCaptchaBase64}}" alt="">
+                        </span>
+                        <span on-click='changeImgCaptcha' id="refresh-captcha">换一张</span>
+                    </div>
+                    <div class="tip" id="password-pic">
+                        {{#errMsg}}{{errMsg}}{{/errMsg}}
+                    </div>
+                </RInput>
+
+				<RInput field="smsCaptcha">
+                    <div class="inforDiv">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">短信验证码:</label>
+                        <input id="{{rinputId}}" value="{{value}}" placeholder="请输入短信验证码" class="message-brame" autocomplete="off">
+                        {{#if !smsCaptchaReady}}
+                            <button on-click='sendSmsCaptcha' id="get-message" class="get-message">
+                                短信验证码
+                            </button>
+                        {{else}}
+                        <button class="get-message" on-click='sendSmsCaptcha' {{#if !smsCaptchaReady || smsCaptchaCountDown}}disabled{{/if}}>
+
+                            {{#if smsCaptchaCountDown}} {{smsCaptchaCountDown}}秒后重新发送 {{else}} 短信验证码 {{/if}}
+                        </button>
+                        {{/if}}
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/act/img/loading-2.gif' style="background:transparent;width:16px;height:16px"/>{{/loading}}</span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+				<RInput field="password" valueStableDuration=200>
+                    <div class="inforDiv">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">密码:</label>
+                        <input class="passWord" id="{{rinputId}}" type="password" value="{{value}}" placeholder="请输入密码" maxlength="16" autocomplete="off">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/act/img/loading-2.gif' style="background:transparent;width:16px;height:16px"/>{{/loading}}</span>
+                        <span class="tip">
+							{{#errMsg}}{{errMsg}}{{/errMsg}}
+						</span>
+                    </div>
+                </RInput>
+				<RInput field="reftf">
+                    <div class="inforDiv" style="display:none">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">推荐码:</label>
+                        <input id="{{rinputId}}" name="reftf" value="{{value}}" placeholder="请输入推荐码或手机号，可不填" autocomplete="off">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+
+				<RInput field="channel" >
+                    <div class="rinput" style="display:none">
+                        <label for="{{rinputId}}" class="pi-placeholder {{#if value}}pi-placeholder__filled{{/if}}">来源</label>
+                        <input id="{{rinputId}}" name="channel" value="{{value}}" placeholder="请输入推荐码或手机号，可不填" autocomplete="off">
+                        <span class="tip-loading">{{#loading}}<img src='/ccc/global/img/loading.gif' style="width:20px;"/>{{/loading}}</span>
+                        <span class="tip">{{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                    </div>
+                </RInput>
+
+
+				 <RInput field="agreement" valueStableDuration=100>
+                    <div class="inforDiv xieyi">
+                        <label class="agree-register-protocol">
+                            <input type="checkbox" name="checkbox" id="{{rinputId}}" checked="{{value}}" />
+                             <span>我同意<span class="i-agree"><a href="/agreement/mobile/regist" target="_blank" class="ccc-agreement">《新毅金融用户注册协议》</a></span></span>
+                            <br>
+
+                            <span class="tip" style="left:22px;top:35px;line-height:14px;"> {{#errMsg}}{{errMsg}}{{/errMsg}}</span>
+                        </label>
+                        {{#if stepLoading}}
+                        <input class="btn" type="button" value="请稍等" disabled />
+                        {{else}}
+                        <input on-click='nextStep' class="btn" type="button" value="立即注册" />
+                        {{/if}}
+                    </div>
+                </RInput>
+		</div>
+        </div>
+    </Step>
+
+    <Step>
+        <div class="register-step-1">
+			<div class="signSucc">
+				<p class="signSuccP1">协议年化利率<span class="signSuccP3">6%-12%</span></p>
+				<!--<p class="signSuccP1">活期收益的<span class="signSuccP2">34倍</span></p>-->
+				<a href="/newAccount/settings/authentication"><p class="btn">我的账户</p></a>
+			</div>
+        </div>
+    </Step>
+</div>
+
+<script>
+    $(".register-frame").on("click", "#get-message", function () {
+        $(".message-brame").val("");
+    })
+</script>

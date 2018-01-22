@@ -1,0 +1,142 @@
+
+<div id="dashboard-withdraw" class="">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-3 back" href="dashboard"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-6 title">提现</span>
+        <span class="col-xs-3">&nbsp;</a>
+    </div>
+    </nav>
+
+    <div>
+        <param ng-model="msg" ng-init="msg = {
+            INCORRECT_PASSWORD: '交易密码不正确',
+            USER_WITHDRAW_TIMES_OVER_STEP:'超出当日提现次数',
+            SUCCEED: '提现申请已经提交，请等待审核',
+            UNKNOWN: '提现失败',
+        }">
+    </div>
+
+    <section class="text-center balance">
+        <div class="title">可提现余额</div>
+        <div class="num">{{ available_amount | number: 2 }}</div>
+    </section>
+
+    <section class="form-wrapper">
+        <form class="form-horizontal form-flatten"
+              name="form"
+              ng-submit="self.submit(amount, password)"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              novalidate
+        >
+            <div class="inputs container">
+
+                <div class="form-group merge">
+                    <label>{{ bank_account.bank }}</label>
+                    <input class="form-control input-target input-lg blank"
+                           type="text"
+                           value="{{ bank_account.mask }}"
+                           disabled
+                    >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="withdraw">提现金额</label>
+                    <input name="withdraw"
+                           id="withdraw"
+                           ng-model="amount"
+                           type="number"
+                           class="form-control input-target input-lg"
+                           min="0.01"
+                           max="{{ available_amount }}"
+                           placeholder="请输入提现金额"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
+                           ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"
+                           required
+                    >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="password">交易密码</label>
+                    <input name="password"
+                           id="password"
+                           ng-model="password"
+                           type="password"
+                           class="form-control input-target input-lg"
+                           placeholder="请输入交易密码"
+                           required
+                    >
+                </div>
+            </div>
+
+            <p class="container"
+               ng-init="invalid = available_amount <= 0.01 || amount > available_amount"
+            >
+                <button class="btn btn-theme btn-block btn-lg"
+                        type="submit"
+                        ng-if="self.user.has_payment_account && self.user.has_bank_card"
+                        ng-disabled="form.$invalid || invalid || self.submit_sending"
+                >
+                    <span ng-if="!invalid">确认</span>
+                    <span ng-if="invalid">余额不足</span>
+                </button>
+            </p>
+        </form>
+    </section>
+
+    <section class="container notice">
+        <h2 class="title">温馨提示：</h2>
+
+        <ol class="list">
+            <li><p>运营期间提现手续费由718金融垫付。每日提现限制3次以内(含3次)。试运营2016年12月31日截止，试运营结束后提现手续费另行公告。
+            <li><p>提现到账时间：提现申请提交成功后，<span style="color: #5B9DFF">资金预计T+1工作日到账</span>，请您注意查收。
+            <li><p>据《反洗钱法》规定，718金融禁止洗钱、信用卡套现、虚假交易等行为。
+            <li><p>提现过程遇到问题，请联系客服：<a href="tel:4001718718">4001-718-718</a>。
+        </ol>
+    </section>
+
+</div>
+<script type="text/ng-template" id="ngt-pool-recharge.tmpl">
+    <div class="modal-header text-center">
+        <h3 class="modal-title">短信验证<span class="closeBtn" ng-click="$close()">×</span></h3>
+    </div>
+
+    <div class="modal-body text-center">
+        <p class="point-msg">短信验证码已发送至<i ng-bind="bankNumber"></i></p>
+        <form name="formConfirm" autocapitalize="none" autocomplete="off" autocorrect="off" novalidate ng-class="{init: mobile_verification_code_has_sent,sendMsg:true}">
+          <span>验证码:</span>
+          <input type="tel" id="mobile_captcha" name="mobile_captcha" ng-model="mobile_captcha" pattern="^\d{6}$" autocapitalize="none" autocomplete="off" autocorrect="off" placeholder="填写短信验证码" maxlength="6" required />
+          <button class="btn btn-sm btn-action btn-theme" type="button"
+                  ng-click="send_verification_code()"
+                  ng-disabled="cell_buffering"
+          >
+              <span class="text">获取</span>
+              <span class="count" ng-show="cell_buffering">
+                  {{ cell_buffering_count | number: 0 }}
+              </span>
+              <span class="icon" ng-hide="cell_buffering">重发</span>
+          </button>
+          <div class="help-block"
+               ng-show="formConfirm.mobile_captcha.$invalid && formConfirm.mobile_captcha.$dirty"
+          >
+              <span ng-show="formConfirm.mobile_captcha.$error.required">必须填写</span>
+              <span ng-show="formConfirm.mobile_captcha.$error.pattern">请输入正确的验证码！</span>
+          </div>
+        </form>
+    </div>
+    <div class="modal-footer container">
+        <div class="row" style="text-align: center">
+          <div class="col-xs-6 rechargeBtn">
+            <button class="btn btn-block btn-default" ng-click="$dismiss(formConfirm.mobile_captcha.$viewValue)" ng-disabled="!(formConfirm.mobile_captcha.$error.pattern==undefined&&formConfirm.mobile_captcha.$dirty)">
+                立即提现
+            </button>
+          </div>
+        </div>
+        <div ng-show="errMsg" ng-bind="errMsgContent"></div>
+    </div>
+</script>

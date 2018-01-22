@@ -1,0 +1,49 @@
+
+<div class="detail">
+    <h4 class="title">{{ ::loan.title }}</h4>
+
+    <div class="info-list">
+        <div class="item rate">
+            <div class="value" ng-if="loan.deduction_rate > 0">
+                <small>{{ ::loan.basic_rate }}%+</small>{{ ::loan.deduction_rate }}%
+            </div>
+            <div class="value" ng-if="loan.deduction_rate <= 0">
+                {{ ::loan.rate }}%
+            </div>
+
+            <div class="name">协议年化利率</div>
+        </div>
+
+        <div class="item duration">
+            <div class="value">
+                <span ng-if="::loan.raw.duration.days">
+                    {{ ::loan.total_days }}天
+                </span>
+                <span ng-if="::!loan.raw.duration.days">
+                    {{ ::loan.total_months }}个月
+                </span>
+            </div>
+            <div class="name">投资期限</div>
+        </div>
+
+        <div class="item status" ng-switch="::loan.status">
+            <span ng-switch-when="OPENED"
+                  class="btn btn-sm btn-invest"
+            >立即投资</span>
+            <span ng-switch-when="SCHEDULED"
+                  class="btn btn-sm btn-disabled"
+            >即将开始</span>
+            <span ng-switch-when="FINISHED"
+                  class="btn btn-sm btn-disabled"
+                  style="min-width: 70px;"
+            >已满标</span>
+            <span ng-switch-when="SETTLED"
+                  class="btn btn-sm btn-disabled"
+                  style="min-width: 70px;"
+            >已抢完</span>
+            <span ng-switch-when="CLEARED"
+                  class="btn btn-sm btn-disabled"
+            >还款结束</span>
+        </div>
+    </div>
+</div>

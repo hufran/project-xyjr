@@ -1,0 +1,29 @@
+
+<div id="help">
+
+    <nav class="omit-margin container page-nav" ng-if="!hideHeader">
+        <div class="row">
+        <span class="col-xs-3 back" x-go-back>
+            <param class="glyphicon glyphicon-menu-left">
+        </span>
+            <span class="col-xs-6 title">{{categoryName}}</span>
+            <span class="col-xs-3">&nbsp;</span>
+        </div>
+    </nav>
+
+    <section class="help-info" style="width:90%;margin:0.5rem auto">
+        <ul class="list-group" style="padding-left:0">
+            <li class="list-group-item" ng-repeat="item in categoryAll" ng-show="{{item.category == category}}"><a href="educationRisk/{{item.category}}?name={{item.name}}" style="display: inline-block;width:7rem;">{{item.name}}<param class="pull-right glyphicon ng-scope glyphicon-menu-right"></a></li>
+        </ul>
+    </section>
+
+</div>
+<param ng-model="msg" ng-init="msg = {
+            INCORRECT: '支付密码错误，请重试',
+            ONLY_NUMBERS: '必须为 6 位数字',
+            NOT_MATCH_UP: '两次密码输入不一致',
+            ACCESS_DENIED: '登录超时',
+
+            SUCCESS: '设置成功！',
+            FAILURE: '设置失败',
+        }">

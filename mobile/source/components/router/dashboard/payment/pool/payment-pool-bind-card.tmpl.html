@@ -1,0 +1,280 @@
+
+<div id="dashboard-payment-bind-card" class="">
+
+    <nav class="omit-margin container page-nav" ng-show="sourceId == undefined">
+    <div class="row">
+        <a class="col-xs-3 back" href="{{ self.back_path || 'dashboard/bank-card' }}"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <span class="col-xs-6 title">更换银行卡</span>
+        <span class="col-xs-3">&nbsp;</span>
+    </div>
+    </nav>
+    <div>
+        <param ng-model="direct_paid_banks" ng-init="direct_paid_banks = [
+            '工商银行',
+            '农业银行',
+            '中国银行',
+            '招商银行',
+            '光大银行',
+            '浦发银行',
+            '中国邮政储蓄银行',
+            '建设银行',
+        ]">
+
+        <param ng-model="msg" ng-init="msg = {
+            bankName:   '请选择开户银行',
+            branchName: '请选择支行名称',
+            cardNo:     '请输入正确的卡号',
+            city:       '请选择市区',
+            province:   '请选择省份',
+            smsCaptcha: '请输入短信验证码',
+            cardPhone:  '请输入手机号',
+            smsid:      '请获取短信验证码后在操作'
+        }">
+    </div>
+
+    <div class="alert alert-info u-off-border-radius">
+        <param class="glyphicon glyphicon-exclamation-sign">
+        重要提示：此银行卡的开户名必须为
+        <strong>{{ self.user.info.name }}</strong>
+        的借记卡，否则提现会失败。每个用户只允许绑定1张银行卡，今后仅能使用该银行卡进行快捷充值与提现；
+        绑定后如需更换，须联系客服经审核才能更换。请慎重选择！！
+    </div>
+
+    <div class="page-content">
+
+        <!--原有逻辑-->
+        <!--<form class="form-flatten form-horizontal"
+              name="form"
+              ng-submit="self.bind_card(store)"
+              novalidate
+        >
+            <div class="inputs container">
+                <div class="form-group merge">
+                    <label for="card-no">银行卡号</label>
+                    <input id="card-no" class="form-control input-target input-lg" type="tel"
+                           name="card-no"
+                           ng-model="store.cardNo"
+                           ng-model-options="{
+                               updateOn: 'blur default',
+                               debounce: {blur: 0, default: 300},
+                           }"
+                           ng-change="self.fetch_branch(city[store.city], store.cardNo)&&form.card-no.$valid&&self.detection(store.cardNo)"
+                           placeholder="填写银行卡号"
+                           ng-pattern="/^\d{16,19}$/"
+                           required
+                    >-->
+                    <!--^(\d{16}|\d{19})$-->
+          <!--      </div>
+                <div class="form-group merge" style="height:2rem;">
+                    <label for="business-type">选择业务</label>
+                    <div><select name="busniessType" class="form-control input-sm"
+                                 id="business-type"
+                                 ng-model="store.businessType"
+                                 ng-change="self.on_change_business_type()"
+                    >--><!--ng-change="changeBusinessType()"-->
+          <!--              <option value="">请选择p2p投资或者融资借款</option>
+                        <option value="0">p2p投资</option>
+                        <option value="1">融资借款</option>
+                    </select>
+                        <p style="color: red;font-size:10px;padding-left:10px;"> *办理借款时须选择融资借款业务！</p>
+                    </div>
+                </div>
+                <div class="form-group merge">
+                    <label for="bank-name">开户银行</label>
+                    <select ng-if="businessNull" name="bankName" class="form-control input-sm"
+                            id="bank-name"
+                            ng-model="store.bankName"
+                            ng-change="self.on_change_bank_name()"
+                            ng-options="name for (code, name) in banks"
+                    >
+                        <option value="">请选择开户银行</option>
+                    </select>
+                    <div ng-if="!businessNull" style="padding:16px 0 16px 10px;" ng-click="self.clickOpenBank()">
+                        请选择开户银行
+                    </div>
+                </div>
+                <div class="form-group merge" ng-show="self.need_location()">
+                    <label>选择省市</label>
+
+                    <select name="province" class="form-control input-sm"
+                            id="province"
+                            ng-model="store.province"
+                            ng-change="self.fetch_city(store.province); self.fetch_branch(city[store.city], store.cardNo)"
+                            ng-options="name as name for (name, code) in province"
+                    >
+                        <option value="">...选择省</option>
+                    </select>
+
+                    <select name="city" class="form-control input-sm"
+                            id="city"
+                            ng-model="store.city"
+                            ng-change="self.fetch_branch(city[store.city], store.cardNo)"
+                            ng-options="name as name for (name, code) in city"
+                    >
+                        <option value="">...选择市</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group merge" ng-show="self.need_location()" x-gyro-comment>
+                    <label for="branch-name">开户支行</label>
+                    <input id="branch-name" class="form-control input-target input-lg" type="text"
+                           name="branch-name"
+                           ng-model="store.branchName"
+                           placeholder="开户行（如：招商银行肥西路支行）"
+                           required
+                    >
+                </div>
+
+                <div class="form-group merge hidden">
+                    <label for="card-phone"></label>
+                    <input id="card-phone" class="form-control input-target input-lg" type="tel"
+                           name="card-phone"
+                           ng-model="store.cardPhone"
+                           ng-init="store.cardPhone = self.user.info.mobile"
+                           placeholder="预留手机号"
+                           required
+                    >
+                </div>
+
+                <div class="form-group merge mobile-captcha"
+                     ng-class="{
+                        'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
+                        init: !self.captcha.has_sent,
+                     }"
+                >
+                    <label for="mobile_captcha">验证码</label>
+                    <input class="form-control input-target input-lg captcha" type="tel"
+                           id="mobile_captcha"
+                           name="mobile_captcha"
+                           ng-model="store.smsCaptcha"
+                           pattern="^\d{6}$"
+                           autocapitalize="none"
+                           autocomplete="off"
+                           autocorrect="off"
+                           placeholder="请输入短信验证码"
+                           maxlength="6"
+                           required
+                    >
+
+                    <button class="btn btn-sm btn-action btn-theme" type="button"
+                            ng-click="self.send_mobile_captcha()"
+                            ng-disabled="self.captcha.buffering"
+                    >
+                        <span class="text">获取</span>
+                        <span class="count" ng-show="self.captcha.buffering">
+                            {{ self.captcha.count | number: 0 }}
+                        </span>
+                        <span class="icon" ng-hide="self.captcha.buffering">重发</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="form-group container">
+                    <button type="submit" class="btn btn-theme btn-block btn-lg"
+                            ng-disabled="self.submit_sending"
+                    >完成</button>
+                </div>
+
+                <div class="form-group container">
+                    <p class="flash-message alert alert-warning text-center"
+                       ng-class="{ on: self.error.on }"
+                    >
+                        {{ self.error.message }}&nbsp;
+                    </p>
+                </div>
+            </div>
+        </form>-->
+
+        <form class="form-flatten form-horizontal"
+              name="form"
+              ng-submit="self.change_card(store)"
+              novalidate
+        >
+          <div class="inputs container">
+                <div class="form-group merge">
+                  <label for="card-no">银行卡号</label>
+                  <input id="card-no" class="form-control input-target input-lg" type="tel"
+                         name="card-no"
+                         ng-model="store.account"
+                         ng-model-options="{
+                             updateOn: 'blur default',
+                             debounce: {blur: 0, default: 300},
+                         }"
+                         placeholder="填写银行卡号"
+                         ng-pattern="/^\d{16,19}$/"
+                         required
+                  >
+                </div>
+
+                <div class="form-group merge">
+                    <label for="bank-name">开户银行</label>
+                    <select name="bankName" class="form-control input-sm"
+                            id="bank-name"
+                            ng-model="store.bankName"
+                            ng-options="code as name for (code, name) in banks"
+                    >
+                        <option value="">请选择开户银行</option>
+                    </select>
+                </div>
+                <div class="form-group merge">
+                    <label for="card-phone">预留手机号</label>
+                    <input id="card-phone" class="form-control input-target input-lg" type="tel"
+                           name="card-phone"
+                           ng-pattern="/^([1][3|5|7|8][0-9]{9})$/"
+                           ng-model="store.cardPhone"
+                           placeholder="预留手机号"
+                           required
+                    >
+                </div>
+                <div class="form-group merge mobile-captcha"
+                     ng-class="{
+                        'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
+                        init: !self.captcha.has_sent,
+                     }"
+                >
+                    <label for="mobile_captcha">验证码</label>
+                    <input type="number" class="form-control input-target input-lg captcha" name="smsCaptcha" ng-model="store.smsCaptcha" pattern="^\d{6}$" autocapitalize="none" autocomplete="off" autocorrect="off" placeholder="请填写短信验证码" maxlength="6" required />
+                    <button class="btn btn-sm btn-action btn-theme" type="button"
+                            ng-click="self.send_mobile_captcha(store.account,store.cardPhone,store.bankName)"
+                            ng-disabled="self.cell_buffering"
+                    >
+                        <span class="text">获取</span>
+                        <span class="count" ng-show="self.cell_buffering">
+                            {{ self.cell_buffering_count | number: 0 }}
+                        </span>
+                        <span class="icon" ng-hide="self.cell_buffering">重发</span>
+                    </button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="form-group container">
+                    <button type="submit" class="btn btn-theme btn-block btn-lg"
+                            ng-disabled="!store.account||!store.bankName||!store.cardPhone||!store.smsCaptcha"
+                    >完成</button>
+                </div>
+
+                <div class="form-group container">
+                    <p class="flash-message alert alert-warning text-center"
+                       ng-class="{ on: self.error.on }"
+                    >
+                        {{ self.error.message }}&nbsp;
+                    </p>
+                </div>
+            </div>
+        </form>
+        <section class="container notice">
+            <h2 class="title">温馨提示：</h2>
+            <ol class="list">
+                <li><p>为保障您的资金安全，绑卡前请先进行实名认证。
+                <li><p>您所绑定的银行卡须是借记卡，718金融严禁利用信用卡套现。
+                <li><p>718金融目前只支持绑定一张银行卡，认证支付充值、提现采用同卡进出原则，即提现银行卡需与充值银行卡一致。
+                <li><p>已绑定的银行卡如需更换，请联系客服：<a href="tel:4001718718">4001-718-718</a>。
+            </ol>
+        </section>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,488 @@
+<dsBody layout={{dsLayoutPath}}>
+<link rel="stylesheet" href="/ccc/global/css/access/login.less">
+<link rel="stylesheet" href="/ccc/global/css/access/register.less">
+<link rel="stylesheet" href="/ccc/global/css/modules/cccCalculator.css">
+
+<link rel="stylesheet" href="/ccc/loan/css/detail.css">
+<!-- {{JSON.stringify(loans)}} -->
+
+<div class="">
+    <div class="current-container">
+        <p class="detailTitle"><a href="/">首页</a> > <a href="/invest">P2P投资列表 </a>> {{loans.title}}产品详情</p>
+		<div class="box-large">
+        <div class="invest-data-wrapper">
+            <div class="investContainer" style="height:384px;">
+                <div class="investTitle">
+                     {{#if loans.status == "OPENED" }}
+					<div class="time">剩余时间：<span class="time-left">{{loans.timeLeft.dd}}日{{loans.timeLeft.hh}}小时{{loans.timeLeft.mm}}分{{loans.timeLeft.ss}}</span>
+                    </div>
+                    {{/if}}
+                      {{#if loans.status == "SCHEDULED" || loans.status == "SETTLED" }}
+                    <div class="time openTime">
+                        开标时间:{{loans.timeOpen}}
+                    </div>
+                    {{/if}}
+                    <div class="title" style="height:50px;line-height:50px;"><img src="/ccc/loan/img/money.png" />{{loans.title}}</div>
+
+                </div>
+                <div class="content">
+                    <div class="inner">
+                        <div class="item itemSecond">
+                              <div class="name"><img src="/ccc/loan/img/detailRate.png" />协议年化利率:</div>
+                            {{#if loans.loanRequest.deductionRate>0}}
+                            <div class="value"><span style="font-size:24px;">{{loans.basicRate}}</span><span>%</span><span style="font-size:32px;">+{{loans.loanRequest.deductionRate}}</span><span>%</span>
+                            </div>
+                            {{else}}
+                            <div class="value"><span style="font-size:25px;">{{loans.basicRate}}</span><span>%</span>
+                            </div>
+                            {{/if}}
+                        </div>
+                        <div class="item itemThird" style="border-right:none">
+                               <div class="name"><img src="/ccc/loan/img/limit.png" />投资期限:</div>
+                            <div class="value">{{loans.fduration}}<span style="color:#4f4e4e">{{loans.fdurunit}}</span>
+                            </div>
+                        </div>
+                        <div class="item itemFirst">
+                             <div class="name"><img src="/ccc/loan/img/loanAmount.png" />可投金额:</div>
+                            <div class="value">{{loans.leftAmount}}<span>{{loans.amountUnit}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="innerBottom">
+
+<!--
+						 <div class="itemt pic">
+                                <span class="processFont">项目余额</span>
+                                <div class="process">
+        <div class="rate-chart">
+            <div class="easy-pie-chart pie " data-percent="{{ loans.investPercent }}" >
+                <span class="percentageNum"></span>
+            </div>
+        </div>
+    </div>
+                            </div>
+-->
+				       <ul class="loanMethod interestMethod">
+<!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
+                            <li>计息日：放款后第二天计息</li>
+                            <li>起投金额：{{loans.loanRequest.investRule.minAmount}}元</li>
+                            <li>是否可转让：否</li>
+                        </ul>
+                        <ul class="loanMethod">
+<!--							<li>已投人数：<span style="font-size:24px;color:#009ada;">{{loans.bidNumber}}</span>人</li>-->
+                            <li>还款方式：{{loans.method}}</li>
+                            <li>投资限额：{{loans.loanRequest.investRule.maxAmount}}元</li>
+                            <li>投标截止日期：{{loans.endTime}}</li>
+                        </ul>
+                    </div>
+                                          <div class="progress-wp">
+                                <div class="progress-num">
+                                </div>
+                                <div class="progress-line">
+                                   <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-danger" style="width:{{ loans.investPercent }}%;"></div>
+                                    </div>
+                                      <span>{{ loans.investPercent }}%</span>
+                                </div>
+                            </div>
+                    												<div class="protocol">
+								<a target="_blank" href="/loan/loanRequest/{{loans.requestId}}/contract/template">协议范本</a>
+							</div>
+                </div>
+                <div class="h20"></div>
+            </div>
+        </div>
+
+        <div class="do-invest-wrapper">
+
+        </div>
+		</div>
+
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="invest-detail-wrapper">
+    <div class="current-container scontent">
+        <ul class="nav nav-tabs">
+             <li role="presentation" class="active" data-step='0'><a href="javascript:;">项目详情</a>
+            </li>
+            <li role="presentation"  data-step='1'><a href="javascript:;">风控信息</a>
+            </li>
+            <li role="presentation" data-step='2'><a href="javascript:;">认证审核</a>
+            </li>
+            <li role="presentation" class="" data-step='3'><a href="javascript:;">投资记录</a>
+            </li>
+             <li role="presentation" class="" data-step='4'><a href="javascript:;">还款计划</a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+
+        <div class="tab-panels">
+             <div class="tab-panel  active">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                        {{{loans.loanRequest.description}}}
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-panel">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                       {{{loans.loanRequest.guaranteeInfo}}}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-panel">
+                <div class="loanInfoWrapper">
+                    <div class="loanInfo">
+                      {{{loans.loanRequest.riskInfo}}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel">
+                {{#if user}}
+                <div class="invest-record"></div>
+                <div style="height:50px;"></div>
+                <div class="" id="record-pager" style="text-align:center"></div>
+                {{else}}
+                <div class="notLogin">
+<!--                    <p>用户详情</p>-->
+                    <p>请 <a href="/login" style="color:#009ada;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="tab-panel">
+
+                {{#if user}}
+                <table class="table repay-plan repay-record">
+
+                    <thead>
+                        <th style="border-top-left-radius: 3px;">期次</th>
+                        <th>预期还款时间</th>
+                        <th>应收本息(元)</th>
+                        <th>应收本金(元)</th>
+                        <th>应收利息(元)</th>
+                        <th style="border-top-right-radius: 3px;">剩余本金(元)</th>
+                    </thead>
+
+                    {{#each replay:num}}
+                    <tr>
+                        <th>{{num + 1}}</th>
+                        <th>{{dueDate}}</th>
+                        <th class="col-current-period">{{amount}}</th>
+                        <th>{{amountPrincipal}}</th>
+                        <th>{{amountInterest}}</th>
+                        <th>{{amountOutstanding}}</th>
+                    </tr>
+                    {{/each}}
+                </table>
+                {{else}}
+                <div class="notLogin">
+                    <p>用户详情</p>
+                    <p>请 <a href="/login" style="color:#009ada;">登录</a> 或 <a href="/register" style="color:#ff6c08;">注册</a> 后查看</p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+
+    <div class="insurance-wrapper">
+    </div>
+</div>
+
+<div class="h30"></div>
+
+<div id="big-pic-container">
+
+</div>
+
+
+<!--<div style="width:600px;word-break:break-all;"></div>-->
+<!--问卷start-->
+<div class="wenjuan dn" style="z-index: 9009;">
+    <div class="questionTit"></div>
+    <div class="wenjuanClose">关闭</div>
+    <div class="questionList">
+        <div class="questionTitL">尊敬的投资者：</div>
+        <div class="questionBox db">
+            <div style="text-indent:2em;">这份问卷旨在协助您了解自己在投资时的风险偏好及对投资风险的承受度，同时也便于我们为您提供更准确的投资服务 ,问卷结果可能不能完全呈现您在面对投资风险时的真正态度，但是可提供您一些衡量自身风险属性的指标。
+            </div>
+            <ul>
+                <li>
+                    <label>1、 您的年龄？</label> 
+                    <p>
+                        <input type="radio" name="Q1" value="18—25周岁" data-value="1"/>
+                        <span class="radioW">18—25周岁</span> 
+                    </p>
+                    <p>
+                        <input type="radio" name="Q1" value="26—40周岁" data-value="2"/>
+                        <span class="radioW">26—40周岁</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q1" value="41—60周岁" data-value="3"/>
+                        <span class="radioW">41—60周岁</span>                 
+                    </p>
+                    <p>
+                        <input type="radio" name="Q1" value="60周岁以上" data-value="4"/>
+                        <span class="radioW">60周岁以上</span>
+                    </p>  
+                </li>
+                <li>
+                    <label>2、 您目前的职业状况是？</label>
+                    <p>
+                        <input type="radio" name="Q2" value="无业或已退休" data-value="1"/>
+                        <span class="radioW">无业或已退休</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q2" value="自由职业" data-value="2"/>
+                        <span class="radioW">自由职业</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q2" value="民营企业白领" data-value="3"/>
+                        <span class="radioW">民营企业白领</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q2" value="自营事业" data-value="4"/>
+                        <span class="radioW">自营事业</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q2" value="国企事业单位" data-value="5"/>
+                        <span class="radioW">国企事业单位</span>
+                    </p>
+
+                </li>
+                <li>
+                    <label>3、 您的家庭收入为（税后折合人民币）？</label> 
+                    <p>
+                        <input type="radio" name="Q3" value="5—10万元" data-value="1"/>
+                        <span class="radioW">5—10万元</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q3" value="10—20万元" data-value="2"/>
+                        <span class="radioW">10—20万元</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q3" value="20—30万元" data-value="3"/>
+                        <span class="radioW">20—30万元</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q3" value="30万元以上" data-value="4"/>
+                        <span class="radioW">30万元以上</span>
+                    </p>
+                </li>
+                <li>
+                    <label>4、 在您每年的家庭收入中，可用于金融投资（储蓄存款除外）的比例为？</label>
+                    <p>
+                        <input type="radio" name="Q4" value="小于10%" data-value="1"/>
+                        <span class="radioW">小于10%</span> 
+                    </p> 
+                    <p>
+                        <input type="radio" name="Q4" value="10%—25%" data-value="2"/>
+                        <span class="radioW">10%—25%</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q4" value="25%—50%" data-value="3"/>
+                        <span class="radioW">25%—50%</span>
+                    </p> 
+                    <p>
+                        <input type="radio" name="Q4" value="50%以上" data-value="4"/>
+                        <span class="radioW">50%以上</span>
+                    </p>
+                </li>
+                <li>
+                    <label>5、 您有多少年非保本类金融产品投资的经验？</label> 
+                    <p>
+                        <input type="radio" name="Q5" value="没有经验" data-value="1"/>
+                        <span class="radioW">没有经验</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q5" value="1—2年" data-value="2"/>
+                        <span class="radioW">1—2年</span> 
+                    </p>
+                    <p>
+                        <input type="radio" name="Q5" value="2—5年" data-value="3"/>
+                        <span class="radioW">2—5年</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q5" value="5年以上" data-value="4"/>
+                        <span class="radioW">5年以上</span>
+                    </p>
+                    
+                </li>
+                <li>
+                    <label>6、 以下哪项描述最符合您的投资态度？</label>
+                    <p>
+                        <input type="radio" name="Q6" value="厌恶风险，不希望本金损失，希望获得稳定回报" data-value="1"/>
+                        <span class="radioW">厌恶风险，不希望本金损失，希望获得稳定回报</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q6" value="保守投资，不希望本金损失，愿意承担一定幅度的收益波动" data-value="2"/>
+                        <span class="radioW">保守投资，不希望本金损失，愿意承担一定幅度的收益波动</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q6" value="寻求资金的较高收益和成长性，愿意为此承担有限本金损失" data-value="3"/>
+                        <span class="radioW">寻求资金的较高收益和成长性，愿意为此承担有限本金损失</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q6" value="希望赚取高回报，能接受为期较长期间的负面波动，包括本金损失" data-value="4"/>
+                        <span class="radioW">希望赚取高回报，能接受为期较长期间的负面波动，包括本金损失</span>
+                    </p>
+                    
+                </li>
+                <li>
+                    <label>7、 您有多少年p2p产品的投资经验？</label>
+                    <p>
+                        <input type="radio" name="Q7" value="刚刚开始" data-value="1"/>
+                        <span class="radioW">刚刚开始</span>
+                    </p> 
+                    <p>
+                        <input type="radio" name="Q7" value="半年以内" data-value="2"/>
+                        <span class="radioW">半年以内</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q7" value="一年以内" data-value="3"/>
+                        <span class="radioW">一年以内</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q7" value="一年以上" data-value="4"/>
+                        <span class="radioW">一年以上</span>
+                    </p>
+                </li>
+                <li>
+                    <label>8、 哪项能说明您的投资经验？</label>
+                    <p>
+                        <input type="radio" name="Q8" value="只投资过银行存款、国债" data-value="1"/>
+                        <span class="radioW">只投资过银行存款、国债</span> 
+                    </p> 
+                    <p>
+                        <input type="radio" name="Q8" value="大部分投资于银行存款、国债，较少投资于股票、基金等风险产品" data-value="2"/>
+                        <span class="radioW">大部分投资于银行存款、国债，较少投资于股票、基金等风险产品</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q8" value="资产均衡地分布于存款、国债、银行理财、信托、股票、基金等" data-value="3"/>
+                        <span class="radioW">资产均衡地分布于存款、国债、银行理财、信托、股票、基金等</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q8" value="大部分投资于股票、外汇、金融衍生产品等风险产品，较少投资于银行存款、国债" data-value="4"/>
+                        <span class="radioW">大部分投资于股票、外汇、金融衍生产品等风险产品，较少投资于银行存款、国债</span>
+                    </p>
+                </li>
+                <li>
+                    <label>9、您的投资目的是？</label> 
+                    <p>
+                        <input type="radio" name="Q9" value="刚刚开始" data-value="1"/>
+                        <span class="radioW">资产保值</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q9" value="半年以内" data-value="2"/>
+                        <span class="radioW">资产稳健增值</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q9" value="一年以内" data-value="3"/>
+                        <span class="radioW">资产迅速增值</span>
+                    </p>    
+                </li>
+                <li>
+                    <label>10、您投资产品的价值出现何种程度的波动时，您会呈现明显的焦虑？</label> 
+                    <p>
+                        <input type="radio" name="Q10" value="刚刚开始" data-value="1"/>
+                        <span class="radioW">本金无损失，但收益未达预期</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q10" value="半年以内" data-value="2"/>
+                        <span class="radioW">本金5%以内的损失</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q10" value="一年以内" data-value="4"/>
+                        <span class="radioW">本金5%-20%损失</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q10" value="一年以上" data-value="6"/>
+                        <span class="radioW">本金20%-50%损失</span>
+                    </p>
+                    <p>
+                        <input type="radio" name="Q10" value="一年以上" data-value="9"/>
+                        <span class="radioW">本金50%以上损失</span>
+                    </p>
+                    
+                </li>
+            </ul>
+            <div class="questionBtns">
+                <!-- <div class="questionBtn false">跳过</div> -->
+                <input type="button" class="questionBtn" value="提交">
+                <div class="questionTip dn">请您完成问卷后再提交</div>
+            </div>
+        </div>
+        <div class="resultInfor dn">
+            <div class="resultW">
+                您当前的风险承受能力评级：<span></span>
+            </div>
+            <div class="returnBtn">
+                <div class="returnWenjuan">重新评估</div>
+                <div class="returnPay">去投资</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--问卷end-->
+
+<script>
+    {{{state}}}
+</script>
+<script>
+    CC.loan = {
+        rule: {
+            min: {{loans.loanRequest.investRule.minAmount}},
+            max: {{loans.loanRequest.investRule.maxAmount}},
+            step: {{loans.loanRequest.investRule.stepAmount}},
+            balance: {{loans.balance}},
+            dw: '{{loans.amountUnit}}',
+            leftAmount: {{loans.leftAmount}},
+            amountUnit:'{{loans.amountUnit}}'
+        },
+        title: '{{loans.title}}',
+        timeSettled:'{{loans.timeSettled}}',
+        investPercent: {{loans.investPercent}},
+        originalAmount: {{loans.originalAmount}},
+        amount: {{loans.amount}},
+        cAmount: '{{loans.amount}}{{loans.aUnit}}',
+        investAmount: {{loans.investAmount}},
+        timeLeft: '{{loans.timeLeft}}',
+        status: '{{loans.status}}',
+        id: '{{loans.id}}',
+        requestId: '{{loans.loanRequest.id}}',
+        timeElapsed: '{{loans.timeElapsed}}',
+        duration: '{{loans.months}}',
+        bidNumber: {{loans.bidNumber}},
+        timeOpen: {{loans.timeOpen}},
+        totalInterest: {{totalInterest || 0}},
+        serverDate: {{loans.serverDate}},
+        userId: '{{loans.userId}}',
+        LuserId:'{{loans.loanRequest.userId}}',
+        productKey:'{{loans.loanRequest.productKey}}',
+        productName:'{{loans.productName}}',
+        rate: {{loans.rate}},
+        days:{{loans.duration.days}},
+        durationdays: {{loans.duration.totalDays}},
+        enterprise:{{loans.loanRequest.user.enterprise}},
+        riskRank: '{{loans.loanRequest.riskRank}}'
+    };
+    if('{{loans.timeFinished}}'){
+        CC.loan.timeFinished='{{loans.timeFinished}}';
+    }
+</script>
+<script src="/ccc/loan/js/main/investDetail.js"></script>
+<script src="/ccc/loan/js/main/img.js"></script>
+</dsBody>

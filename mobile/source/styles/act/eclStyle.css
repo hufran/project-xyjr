@@ -1,0 +1,60 @@
+﻿/*
+改版后全站公用css 20150923 by xiaodan
+*/
+*{ -webkit-tap-highlight-color: transparent;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;}/*去除微信链接及按钮外框*/
+body,html{width: 100%;}
+html,body,div,p,dl,ul,h1,h2,h3,h4,h5,h6,ul,li{margin:0;padding:0;}
+li{list-style: none;}
+html{color:#000; font-family: "微软雅黑",Helvetica,Arial,sans-serif;}
+.db{display: block;}
+.dn{display: none;}
+.dbox{display: -webkit-box;display: box;}
+.vsb{visibility: visible;}
+.vsh{visibility: hidden;}
+a:link,a:hover,a:visited,a:active{text-decoration: none;outline:none;white-space: nowrap;}
+a:focus,input:focus{outline: none; border: none;}
+#mask{position: fixed; top: 0;bottom: 0;left: 0;right: 0; background-color: rgba(0,0,0,.65); z-index: 88;}
+
+
+.yiXiaoXia{background-image: url(../img/Mr.E.gif);background-repeat: no-repeat; background-position: center;width: 60%;padding:42% 0; margin:auto;background-size: contain;}
+.loading,html{height: 100%;}
+.loading{text-align: center;}
+[data-dpr="1"] .loadingPage{font-size: 14px;}
+[data-dpr="2"] .loadingPage{font-size: 28px;}
+[data-dpr="3"] .loadingPage{font-size: 42px;}
+@media screen and(min-width: 401px){
+	[data-dpr="1"] .loadingPage{font-size: 28px;}
+}
+.loading .loadingPage{background-color: #f3f3f3;width:50%;margin:auto;display:inline-block;vertical-align: middle;}
+.loading:after{content: ""; height: 100%;display: inline-block;vertical-align: middle;}
+.loading .word{margin-top: 20%;}
+.loadingPage{display: none;text-align: center;margin-top: 300px;}
+.loading .page{visibility: hidden;}
+
+.f0{font-size: 0;}
+[data-dpr="1"] .f12{font-size: 12px;}
+[data-dpr="2"] .f12{font-size: 24px;}
+[data-dpr="3"] .f12{font-size: 36px;}
+@media screen and(min-width: 401px){
+	[data-dpr="1"] .f12{font-size: 24px;}
+}
+[data-dpr="1"] .f14{font-size: 14px;}
+[data-dpr="2"] .f14{font-size: 28px;}
+[data-dpr="3"] .f14{font-size: 42px;}
+@media screen and(min-width: 401px){
+	[data-dpr="1"] .f14{font-size: 28px;}
+}
+[data-dpr="1"] .f16{font-size: 16px;}
+[data-dpr="2"] .f16{font-size: 32px;}
+[data-dpr="3"] .f16{font-size: 48px;}
+@media screen and(min-width: 401px){
+	[data-dpr="1"] .f16{font-size: 32px;}
+}
+[data-dpr="1"] .f16{font-size: 16px;}
+[data-dpr="2"] .f16{font-size: 32px;}
+[data-dpr="3"] .f16{font-size: 48px;}
+@media screen and(min-width: 401px){
+	[data-dpr="1"] .f16{font-size: 32px;}
+}
+
+

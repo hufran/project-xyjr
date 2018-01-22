@@ -1,0 +1,182 @@
+<div class="space-30"></div>
+<div class="space-20"></div>
+{{#if !bank}}
+<div class="open-account-wrapper">
+
+    <div class="errorNotOpenedYet" style="text-align:center">
+        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：开通银行存管操作关系到您的切身利益，请保护好帐号安全
+    </div>
+
+    <div class="account-form-wrapper">
+        <form action="#" class="form-horizontal" style="text-align:center;" autocomplete="off">
+            <div class="">
+                <div class="" style="height:40px">
+                    {{#if showErrorMessage}}
+                    <div class="error-message">
+                        {{ errorMessage }}
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            {{#if !authenticateInfo.idNumber}}
+            <div class="trueName">
+                <label for="trueName" class="">真实姓名</label>
+                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName" maxlength="15"/>
+                {{#if showErrorMessageName}}
+                <div class="error-message nameAndId">
+                    {{ errorMessageName }}
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="userIdNumber">
+                <label for="userIdNumber" class="">身份证号</label>
+                 <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{idNumber}}" on-blur="checkIdNumber"/>
+                 {{#if showErrorMessageId}}
+                 <div class="error-message nameAndId">
+                     {{ errorMessageId }}
+                 </div>
+                 {{/if}}
+            </div>
+            {{else}}
+                <div class="userIdNumber">
+                    <label for="" class="text">真实姓名：</label>
+                    <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+                </div>
+                <div class="userIdNumber">
+                    <label for="" class="text">身份证号：</label>
+                    <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
+                </div>
+            {{/if}}
+            <div class="userIdNumber">
+                <label for="bankNumber" class="">银行卡号</label>
+                 <input type="text" class="check-name" id="bankNumber" name="bankNumber" value="{{bankNumber}}" on-blur="checkbankNumber"/>
+                 {{#if showErrorbankNumber}}
+                 <div class="error-message nameAndId">
+                     {{ errorbankNumber }}
+                 </div>
+                 {{/if}}
+            </div>
+            <div class="userIdNumber">
+                    <label class="">开户银行</label>
+                    <span class="bankpic"></span>
+                    <select name="bankName" class="check-name" value="{{bankName}}" style="width: 150px;">
+                        <option value="请选择开户银行">请选择开户银行</option>
+                        {{#each banks}}
+                            <option value="{{name}}" data-code="{{code}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                    {{#if showErrorbankName}}
+                    <div class="error-message nameAndId">
+                       {{ errorbankName }}
+                    </div>
+                    {{/if}}
+            </div>
+            <div class="userIdNumber">
+                <label for="bankPhone" class="" style="margin-left:-40px;">银行预留手机号</label>
+                 <input type="text" class="check-name" id="bankPhone" name="bankPhone" value="{{bankPhone}}" on-blur="checkbankPhone"/>
+                 {{#if showErrorbankPhone}}
+                 <div class="error-message nameAndId">
+                     {{ errorbankPhone }}
+                 </div>
+                 {{/if}}
+            </div>
+            <div class="userIdNumber">
+                <label for="messageTxt" class="" style="margin-left: -15px;">短信验证码</label>
+                 <input type="text" class="check-name" id="messageTxt" name="messageTxt" value="{{messageTxt}}" on-blur="checkmessageTxt" style="width: 100px" />
+                 <a href="javascript:;"  class="btn-blue getcaptcha" on-click="sendTelCode">获取验证码</a>
+                 {{#if showErrormessageTxt}}
+                 <div class="error-message nameAndId">
+                     {{ errormessageTxt }}
+                 </div>
+                 {{/if}}
+            </div>
+            <p class="userIdNumber" style="text-align:left;line-height: 30px;">
+                    <input type="checkbox" class="agree" checked id="agree" />
+                    <span>我同意 <p style="display:inline-block;vertical-align:top;line-height:20px;padding:5px 0 10px 5px">
+                                    <a href="/agreement/mobile/bank?key=廊坊银行网络借贷交易资金存管业务三方协议"  target="_blank" style="color:#009ada">《廊坊银行网络借贷交易资金存管业务三方协议》</a>
+                                </p>
+                    </span>
+            </p>
+            <p class="agree-error userIdNumber" style="color:red;margin-left: 350px;"></p>
+            <div class="account-submit">
+                <input type="button" value="确认开通" on-click="register-account-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
+            </div>
+            <div style="background-color: #f4fcff;padding: 10px;width:700px;margin: 0 auto;text-align: left;margin-top: 50px;">
+                <p class="tips" style="color:#f58220">温馨提示：</p>
+                <p class="tips">1、718金融用户须是年满18周岁的具有完全民事行为能力的自然人。</p>
+                <p class="tips">2、开通银行存管过程中遇到问题请联系客服：4001-718-718。</p>
+            </div>
+        </form>
+    </div>
+</div>
+{{else}}
+<!-- 已绑定 -->
+<div class="account-opened-notice">
+    <div class="ftips">
+        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#ff7200"></span> 重要提示：开通银行存管操作关系到您的切身利益，请保护好帐号安全
+    </div>
+</div>
+<div class="space-20"></div>
+<div class="account-opened-wrapper">
+
+    <div class="account-info-row">
+        <label for="" class="text">真实姓名：</label>
+        <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">身份证号：</label>
+        <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">银行卡号：</label>
+        <span class="value">{{bankNumber.substr(0,5)}}**********{{bankNumber.substr(-3)}}</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">所属银行：</label>
+        <span class="bankpic"></span>
+        <span class="value" style="width: 250px;">{{accountName}}</span>
+    </div>
+    <div class="account-info-row">
+        <label for="" class="text">银行预留手机号：</label>
+        <span class="value" style="width: 280px;">{{bankMobile.substr(0,3)}}****{{bankMobile.substr(-3)}}</span>
+    </div>
+    {{#if !lccbId || !authority}}
+    <div class="account-info-row">
+        <label for="messageTxt2" class="">短信验证码</label>
+         <input type="text" class="check-name" id="messageTxt2" name="messageTxt2" value="{{messageTxt}}" on-blur="checkmessageTxt" style="width: 100px" />
+         <a href="javascript:;"  class="btn-blue getcaptcha" on-click="sendTelCode2">获取验证码</a>
+         {{#if showErrormessageTxt}}
+         <div class="error-message nameAndId">
+             {{ errormessageTxt }}
+         </div>
+         {{/if}}
+    </div>
+
+    {{#if !lccbId}}
+    <p class="account-info-row" style="text-align:left;line-height: 30px;">
+        <input type="checkbox" class="agree" checked id="agree" />
+        <span>我同意 <p style="display:inline-block;vertical-align:top;line-height:20px;padding:5px 0 10px 5px">
+                <a href="/agreement/mobile/bank?key=廊坊银行网络借贷交易资金存管业务三方协议"  target="_blank" style="color:#009ada">《廊坊银行网络借贷交易资金存管业务三方协议》</a>
+                    </p>
+        </span>
+    </p>
+    {{/if}} 
+
+    <p class="agree-error userIdNumber" style="color:red;margin-left: 350px;"></p>
+    <div class="account-submit">
+        <input type="button" value="{{buttonname}}" on-click="jihuo-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
+    </div>
+    {{/if}}
+</div>
+<div class="space-30"></div>
+<div style="background-color: #f4fcff;padding: 10px; margin: 0 auto;">
+    <p class="tips" style="color:#f58220">温馨提示：</p>
+    <p class="tips">1、718金融用户须是年满18周岁的具有完全民事行为能力的自然人。</p>
+    <p class="tips">2、开通银行存管过程中遇到问题请联系客服：4001-718-718。</p>
+</div>
+{{/if}}
+<div id="deposit-agreement-wraper">
+
+</div>
+<div class="img-wrapperau"></div>

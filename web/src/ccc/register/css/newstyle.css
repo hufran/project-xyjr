@@ -1,0 +1,460 @@
+.reg-navinfo{
+    width: 1000px;
+    height: 45px;
+    line-height: 45px;
+    margin: 0 auto;
+}
+.container {
+    width: 1000px;
+    margin: auto;
+/*    margin-bottom: 40px;*/
+}
+.container *{
+	font-family: '微软雅黑';
+}
+.register-process-graph {
+    width: 1000px;
+    margin: auto;
+}
+
+.register-process-graph .Path {
+    overflow: hidden;
+}
+
+.register-process-graph .Path li {
+    float: left;
+}
+
+.register-process-graph .Path li,
+.register-process-graph .Path li a {
+    color: #4e90cc;
+    font-size: 13px;
+    line-height: 16px;
+    line-height: 50px;
+}
+
+.register-process-graph .transition {
+    overflow: hidden;
+}
+
+.register-process-graph .transition .firstep {
+    float: left;
+    width: 86px;
+    text-align: center;
+    margin-left: 74px;
+    color: #34acdd;
+    padding-top: 105px;
+    font-size: 13px;
+    background-image: url(/ccc/register/img/tep01.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    line-height: 13px;
+}
+
+.register-process-graph .transition .link {
+    float: left;
+    float: left;
+    background-color: #f5f5f5;
+    width: 680px;
+    height: 12px;
+    margin-top: 37px;
+}
+
+.register-process-graph .transition .sectep {
+    float: left;
+    width: 86px;
+    text-align: center;
+    color: #898989;
+    padding-top: 105px;
+    font-size: 13px;
+    background-image: url(/ccc/register/img/tep2.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    line-height: 13px;
+}
+
+.register-process-graph .division {
+    height: 2px;
+    width: 1000px;
+    background-color: #f5f5f5;
+    margin-top: 36px;
+}
+
+.container .register-body .register-body-center #register-container {
+    height: auto;
+    width: 100%;
+    background: #fff;
+}
+
+#register-wrapper .account {
+    color: #9fa0a0;
+    font-size: 13px;
+    line-height: 13px;
+    margin-left: 75px;
+    margin-bottom: 58px;
+    margin-top: 40px;
+}
+
+#register-wrapper .account a {
+    color: #34acdd;
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.rinput label {
+    color: #3c3c3c;
+    float: left;
+    height: 45px;
+    font-weight: normal;
+}
+
+.rinput label em {
+    color: #e81727;
+    line-height: 44px;
+}
+
+.rinput input {
+    width: 280px;
+    height: 44px;
+/*    border: 2px solid #d4d4d5;*/
+    padding-left: 10px;
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin-left: 12px;
+    line-height: 44px;
+   border: 1px solid #ccc;
+   -webkit-border: 1px solid #ccc;
+   -moz-border: 1px solid #ccc;
+}
+.rinput label {
+    line-height: 45px;
+}
+
+.rinput .tip {
+    color: #d2252c;
+    font-size: 14px;
+    background-image: url(/ccc/register/img/gou-bg.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    line-height: 44px;
+    padding-left: 30px;
+    float: left;
+    margin-left: 16px;
+}
+.rinput .tip-loading {
+    color: #9fa0a0;
+    font-size: 14px;
+    line-height: 44px;
+    padding-left: 30px;
+    float: left;
+    margin-left: 16px;
+        position: absolute;
+    left: 78px;
+    top: 34px;
+}
+
+.bring-in input {
+    width: 146px;
+    height: 44px;
+    border: 1px solid #c5c5c5;
+    padding-left: 10px;
+    float: left;
+}
+/*
+.rinput .mailbox{background-image: url(/ccc/register/img/_mailbox.png);}
+.rinput .password{background-image: url(/ccc/register/img/password.png);}
+.rinput .repassword{background-image: url(/ccc/register/img/password.png);}
+.rinput .phone{background-image: url(/ccc/register/img/phone.png);}
+*/
+
+.bring-in button {
+    background-color: #fff;
+    width: 120px;
+    height: 44px;
+    border: none;
+    color: #007ec5;
+    margin-left: 12px;
+    /*    margin-top: 3px;*/
+
+    border: 1px solid #007ec5;
+    border-radius: 4px;
+    line-height: 44px;
+}
+
+.bring-in label {
+    line-height: 45px;
+}
+
+.bring-in label em {
+    line-height: 34px;
+}
+
+.rinput .register {
+    width: 176px;
+    height: 44px;
+    border: none;
+    color: #fff;
+    background-color: #2ea7e0;
+    text-align: center;
+    padding-left: 0;
+    margin-left: 200px;
+    margin-top: 26px;
+    display: block;
+}
+
+.rinput .triangle {
+    background-color: #e5e7ea;
+    border: 1px solid #d8dbdf;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.agree-register-protocol p {
+    display: inline;
+}
+
+.agree-register-protocol p a {
+    color: #45b3e0;
+}
+
+.form-group {
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.form-group .clearfix {
+    float: left;
+}
+
+.form-group label {
+    color: #8d8c8c;
+    float: left;
+    width: 110px;
+    text-align: right;
+    line-height: 44px;
+}
+
+.form-group label em {
+    color: #e81727;
+}
+
+.form-group input {
+    width: 128px;
+    height: 44px;
+    border: 2px solid #d4d4d5;
+    padding-left: 4px;
+    float: left;
+    border-radius: 0;
+    margin-left: 12px;
+}
+
+.form-group .inputtest-pic {
+    float: left;
+}
+
+.form-group .inputtest-pic .pullright {
+    float: left;
+    width: 128px;
+    height: 44px;
+    border: 2px solid #d4d4d5;
+    margin-left: 21px;
+    background-image: url(/ccc/register/img/verify.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.form-group .inputtest-pic span {
+    float: left;
+    width: 26px;
+    height: 30px;
+    background-image: url(/ccc/register/img/update.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin-top: 7px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+ .success {
+/*    width: 1100px;*/
+    margin: 0 auto;
+    text-align: center;
+    color: #73bf45;
+    font-size: 26px;
+    line-height: 150px;
+}
+.success img{
+    margin-right: 30px;
+}
+
+.btn01 {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    width: 126px;
+    height: 37px;
+    line-height: 37px;
+    background-color: #3ba9da;
+    border: none;
+    margin-left: 360px;
+    margin-bottom: 100px;
+}
+
+.btn01 a {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    line-height: 37px;
+}
+
+.btn02 {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    width: 126px;
+    height: 37px;
+    line-height: 37px;
+    background-color: #50b748;
+    border: none;
+    margin-left: 10px;
+}
+
+.btn02 a {
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    line-height: 37px;
+}
+
+.picnum {
+    overflow: hidden;
+}
+
+.picnum .register-test {
+    width: 120px;
+    height: 45px;
+    padding-left: 10px;
+    float: left;
+}
+
+.picnum label {
+    float: left;
+}
+
+.picnum span {
+    width: 80px;
+    height: 45px;
+    display: block;
+    float: left;
+    /*    margin-left: 10px;*/
+}
+
+.picnum span img {
+    width: 90%;
+    margin-top: 6px;
+    margin-left: 2px;
+}
+
+.picnum #refresh-captcha {
+    /*
+    float: left;
+    width: 26px;
+    height: 30px;
+*/
+    /*    background-image: url(/ccc/register/img/update.png);*/
+    /*
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin-top: 7px;
+    margin-left: 6px;
+*/
+
+    cursor: pointer;
+    border: 0;
+    color: #0166cc;
+    line-height: 45px;
+}
+/*新加*/
+
+.register-title {
+    line-height: 46px;
+    color: #4a4a4a;
+    font-size: 14px;
+}
+
+.register-title a {
+    color: #4a4a4a;
+    font-size: 14px;
+}
+
+.register-frame {
+    width: 440px;
+    float: left;
+}
+
+.register-banner {
+    float: right;
+    width: 460px;
+    margin-right: 60px;
+    margin-top: 50px;
+}
+
+.register-banner p {
+    text-align: center;
+    color: #999999;
+}
+
+.register-banner a {
+    color: #007ec5;
+}
+
+.register-frame {
+    margin-top: 30px;
+    width: 540px;
+}
+
+.change-pic {
+    font-size: 12px;
+    color: #3c3c3c;
+}
+
+#cannot-see {
+    width: 48px;
+    line-height: 45px;
+    color: #3c3c3c;
+    font-size: 12px;
+}
+
+.agreement-div {
+    float: left;
+}
+
+.agreement-div .i-agree {
+    color: #999999;
+}
+
+.picnum {
+    margin-bottom: 25px;
+}
+.go-account{
+    background: #f68121;
+    width:280px;
+    height: 44px;
+    border: none;
+    border-radius: 5px;
+    color:#fff;
+    font-size: 24px;
+}
+.regist-left{
+    float: left;
+    margin-left: 200px;
+    margin-top: 170px;
+    margin-bottom: 150px;
+}
+.regist-right{
+  float: right;
+margin-right: 90px;
+margin-top: 100px;
+margin-bottom: 150px;
+}

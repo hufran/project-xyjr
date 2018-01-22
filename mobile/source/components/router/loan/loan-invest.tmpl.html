@@ -1,0 +1,273 @@
+<style>
+    .btn.disabled, .btn[disabled], fieldset[disabled] .btn{
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .65;
+    }
+    p.twoProtols{display:inline-block;text-align:left;vertical-align:top;padding-top:0.1rem}
+</style>
+<div id="loan-invest">
+
+    <nav class="omit-margin container page-nav">
+    <div class="row">
+        <a class="col-xs-2 back" ng-href="loan/{{loan.id}}" onclick="refreshPage()"><param class="glyphicon glyphicon-menu-left"></a>
+        <span class="col-xs-8 title">{{ loan.title }}</span>
+        <span class="col-xs-2">&nbsp;</a>
+    </div>
+    </nav>
+
+    <!--<div>-->
+        <!--<param ng-init="agreement_name = {-->
+            <!--HDZX: '活动标',-->
+            <!--XJB: '金裘保',-->
+            <!--XNB: '新能宝',-->
+            <!--FB: '新抵宝',-->
+        <!--}[loan.product_type] + '用户投资服务协议'">-->
+    <!--</div>-->
+
+    <section class="omit-margin container loan-summary">
+        <div class="rate-duration">
+            <div class="rate">
+                <div class="value">
+                    <small>{{ loan.basic_rate }}%+</small>{{ loan.deduction_rate }}%
+                </div>
+                <div class="name">协议年化利率</div>
+            </div>
+
+            <div class="duration">
+                <div class="value">
+                    <span ng-if="loan.raw.duration.days">
+                        {{ loan.total_days }}<small>天</small>
+                    </span>
+                    <span ng-if="!loan.raw.duration.days">
+                        {{ loan.total_months }}<small>个月</small>
+                    </span>
+                </div>
+                <div class="name">投资期限</div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <span class="pull-left">
+                可投金额：
+                {{ loan.balance_myriad || loan.balance }}<!--
+                --><span ng-if="loan.balance_myriad">万</span><!--
+                --><span ng-if="!loan.balance_myriad">元</span>
+            </span>
+            <span class="pull-right"
+                      ng-init="invest_rule_max_amount = loan.raw.loanRequest.investRule.maxAmount"
+            >
+                投资限额：
+                <span ng-if="invest_rule_max_amount >= 10000">
+                    {{ invest_rule_max_amount / 10000 }}万
+                </span>
+                <span ng-if="invest_rule_max_amount < 10000">
+                    {{ invest_rule_max_amount }}元
+                </span>
+            </span>
+        </div>
+    </section>
+
+    <form class="form-horizontal container form-invest"
+          name="form"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          ng-submit="self.submit($event)"
+    >
+        <div class="form-group">
+            <label class="col-xs-3">账户余额:</label>
+            <div class="col-xs-5 omit-padding available-amount">
+                <span class="num">{{ self.user.fund.availableAmount | number }}</span>元
+            </div>
+            <div class="col-xs-4 omit-padding">
+                <button type="button"
+                        class="btn btn-sm btn-polish"
+                        ng-click="store.amount = self.amount_polishing(self.user.fund.availableAmount); self.fetch_analyse(store.amount); self.fetch_analyse1(store.amount)"
+                >全投</button>
+                <a class="btn btn-sm btn-recharge" ng-href="dashboard/recharge?next={{ self.page_path }}">充值</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="amount" class="col-xs-3">投资金额:</label>
+            <div class="col-xs-5 omit-padding">
+                <input class="form-control input-sm"
+                       type="number"
+                       id="amount"
+                       name="amount"
+                       ng-model="store.amount"
+                       ng-change="form.amount.$valid&&self.detection(store.amount) && self.fetch_analyse(store.amount)&& self.fetch_analyse1(store.amount)"
+                       min="{{minMoney}}"
+                       ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"
+                       required
+                >
+            </div>
+            <div class="col-xs-4 omit-padding earning" ng-show="form.amount.$valid">
+                预期利息 <span class="num">{{ earning | number: 2 }}</span>元
+            </div>
+        </div>
+
+        <div class="form-group rule">
+            <div class="col-xs-offset-3">
+                {{ loan.raw.loanRequest.investRule.minAmount | number }}元起，
+                {{ loan.raw.loanRequest.investRule.stepAmount | number }}的倍数递增
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="coupon" class="col-xs-3">使用红包:</label>
+            <div class="col-xs-5 omit-padding">
+                <select style="padding-top:1px" name="placementId" class="form-control input-sm"
+                        id="coupon"
+                        ng-model="store.coupon"
+                        ng-options="
+                            coupon.display
+                            for coupon in coupon_list
+                            track by coupon.id
+                        "
+
+                        ng-if="coupon_list.length"
+
+                ><!--ng-change="self.changeSelect($event, store.amount)"ng-click="self.pick_up_coupon($event, store.amount)"-->
+                    <option value="">不使用红包</option>
+                </select>
+
+                <div class="coupon-tip" ng-if="!coupon_list.length">暂无红包可用</div>
+            </div>
+        </div>
+		<!--<div class="form-group rule">
+            <div class="col-xs-4 omit-padding earning" ng-show="form.amount.$valid">
+            </div>
+        </div>
+       {{loan}}-->
+       <!--{{newCoupon_list}}-->
+        <div class="form-group rule"  ng-show="form.amount.$valid && store.coupon.id === null">
+            <div class="col-xs-offset-3">
+                可用返现<span class="num">{{store.coupon.actualAm}}</span>元，本次返现<span class="num">{{ earning1 | number: 2 }}</span>元
+            </div>
+        </div>
+       <!-- {{store.coupon.id}}
+        {{store}}<br />-->
+        <!--{{store.amount}}<br />
+        !!!{{store.coupon.id}}!!!!<br />
+        {{store.coupon}}-->
+        <!--{{coupon_list}}-->
+        <div class="form-group">
+            <label for="password" class="col-xs-3">交易密码:</label>
+            <div class="col-xs-5 omit-padding">
+                <input class="form-control input-sm"
+                       type="password"
+                       id="password"
+                       name="password"
+                       ng-model="store.password"
+                       placeholder=""
+                       required
+                >
+            </div>
+        </div>
+        <div class="text-center agreement">
+            <label>
+                <input type="checkbox" ng-init="agreement = true" ng-model="agreement" required>
+                我同意 <p class="twoProtols">
+                <a href="#" ng-click="self.agreement(agreement_name+'用户投资服务协议')">《{{loan.title}}用户投资服务协议》</a><br><a href="#" ng-click="self.agreement('电子签章授权委托协议')">《电子签章授权委托协议》</a>
+            </p>
+            </label>
+        </div>
+
+       <p class="action">
+            <button type="submit" class="btn btn-invest btn-lg btn-block"
+                    ng-disabled="form.$invalid || self.submit_sending"
+            >立即支付</button>
+        </p>
+        <!--<p class="action">
+            <button type="submit" ng-class="{true: 'btn btn-lg btn-block', false: 'btn btn-invest btn-lg btn-block'}[form.$invalid]"
+                    ng-disabled="form.$invalid || self.submit_sending">立即支付</button>
+        </p>-->
+    </form>
+    <input type="hidden" value="{{loan.id}}" id="loanId">
+
+</div>
+
+
+
+<script type="text/ng-template" id="ngt-pool-recharge.tmpl">
+    <div class="modal-header text-center">
+        <h3 class="modal-title">短信验证<span class="closeBtn" ng-click="$close()">×</span></h3>
+    </div>
+
+    <div class="modal-body text-center">
+        <p class="point-msg">短信验证码已发送至<i ng-bind="bankNumber"></i></p>
+        <form name="formConfirm" autocapitalize="none" autocomplete="off" autocorrect="off" novalidate ng-class="{init: mobile_verification_code_has_sent,sendMsg:true}">
+          <span>验证码:</span>
+          <input type="tel" id="mobile_captcha" name="mobile_captcha" ng-model="mobile_captcha" pattern="^\d{6}$" autocapitalize="none" autocomplete="off" autocorrect="off" placeholder="填写短信验证码" maxlength="6" required />
+          <button class="btn btn-sm btn-action btn-theme" type="button"
+                  ng-click="get_verification_code()"
+                  ng-disabled="cell_buffering"
+          >
+              <span class="text">获取</span>
+              <span class="count" ng-show="cell_buffering">
+                  {{ cell_buffering_count | number: 0 }}
+              </span>
+              <span class="icon" ng-hide="cell_buffering">重发</span>
+          </button>
+          <div class="help-block"
+               ng-show="formConfirm.mobile_captcha.$invalid && formConfirm.mobile_captcha.$dirty"
+          >
+              <span ng-show="formConfirm.mobile_captcha.$error.required">必须填写</span>
+              <span ng-show="formConfirm.mobile_captcha.$error.pattern">请输入正确的验证码！</span>
+          </div>
+        </form>
+    </div>
+    <div class="modal-footer container">
+        <div class="row" style="text-align: center">
+          <div class="col-xs-6 rechargeBtn">
+            <button class="btn btn-block btn-default" ng-click="$dismiss(formConfirm.mobile_captcha.$viewValue)" ng-disabled="!(formConfirm.mobile_captcha.$error.pattern==undefined&&formConfirm.mobile_captcha.$dirty)">
+                立即支付
+            </button>
+          </div>
+        </div>
+        <div ng-show="errMsg" ng-bind="errMsgContent"></div>
+    </div>
+</script>
+
+
+
+
+
+<script type="text/ng-template" id="ngt-invest-agreement.tmpl">
+    <div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-block btn-theme" ng-click="$close()">
+            已阅读此协议
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ngt-loan-invest-short-of-balance.tmpl">
+    <div class="modal-header text-center">
+        <h3 class="modal-title">账户余额不足</h3>
+    </div>
+
+    <div class="modal-body text-center">
+        当前账户余额{{ balance | number }}元，最小投资额{{ minimum | number }}元
+    </div>
+
+    <div class="modal-footer container">
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-default" ng-click="$close()">
+                    调整金额
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-block btn-theme" ng-click="$dismiss('dashboard/recharge')">
+                    快速充值
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
+

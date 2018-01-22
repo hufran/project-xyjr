@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document hongbao */
+#couponSection{background-color:#FFF}
+/*ul.tabs{margin:0 0.4rem;display:block;padding:0;}*/
+ul.tabs{margin:0 auto;display:block;padding:0;width:96%;text-align:center}
+ul.tabs li{display: inline-block;width:33%;height:0.9466666666666667rem; line-height:0.9466666666666667rem;text-align:center;border-bottom:0.04rem solid #f8f8f8;}
+/*ul.tabs li{display: inline-block;width:3.066666666666667rem;height:0.9466666666666667rem; line-height:0.9466666666666667rem;text-align:center;border-bottom:0.04rem solid #f8f8f8;}*/
+ul.tabs li.active{border-bottom:0.04rem  solid #fe8006;}/*0.0266666666666667rem*/
+#tabContent{margin:0.2333333333333333rem 0.4rem;}
+#tabContent .show{display:block;}
+#tabContent > section{display:none;}
+.returnDetail{text-align:right;color:#808080;line-height:0.7466666666666667rem;height:0.7466666666666667rem;margin-bottom:0.2rem}
+.hongB{background:url(../../assets/image/act/hong.png);background-size:100%;-moz-background-size:100%; background-repeat:no-repeat;height:4.1rem;width:9.2rem;margin:0 auto;}
+.hongB .layout{margin:0 1.3rem 0 1.333333333333333rem;line-height:4.1rem;}/*margin:0 1.466666666666667rem 0 1.413333333333333rem;*/
+.hongB .floatR{font-size:0.6666666666666667rem;text-align:center;}
+.hongB .floatR span{font-size:0.3466666666666667rem}
+.hongB .noUseMoney{ width:2.6rem;color:#a51f1f;height:4.1rem;overflow:hidden}
+.hongB .canUseMoney{width:3.85rem;color:#fcf7c2;height:4.1rem;overflow:hidden}
+.clearLF{clear:both}
+.money{border:0.04rem solid #ebebeb;margin-bottom:0.4rem;}/*0.0266666666666667rem*/
+.money .titleH{height:2.9rem;width:0.5333333333333333rem;float:left;font-size:0.3466666666666667rem; word-wrap:break-word;color:#f45e5f; text-align:center;letter-spacing:0.373333333333333rem;padding:0.6rem 0.5rem 0.4rem 0.2rem;line-heigth:0.5733333333333333rem;border-right:0.04rem solid #ebebeb;overflow:hidden}/*height:2.08rem原来0.0133333333333333height:2.98rem;*/
+.floatL{float:left;}
+.floatR{float:right;}
+.moneyDetail{margin:0 0.3466666666666667rem;text-align:center;line-height:0.6666666666666667rem;}
+.moneyDetail .setWidth{width:3.8rem}
+.moneyDetail div{margin:0.3266666666666667rem 0 0.1rem 0}
+.principal .moneyDetail{width:7.7rem;}
+.principal .moneyDetail div{margin:0.3266666666666667rem 0 -.2rem 0;}
+.principal .moneyDetail span.h3{color:#fe8006;font-size:0.4rem}
+.principal .moneyDetail span.h4{color:#fe8006;font-size:0.2666666666666667rem}
+
+.moneyDetail .floatR span{color:#fe8006;font-size:0.4rem}
+.moneyDetail .useTime{border-top:dashed 1px #ebebeb;color:#808080;line-height:line-height:0.86rem;text-align:left;padding-top:0.2rem}/*0.9866666666666667rem*/

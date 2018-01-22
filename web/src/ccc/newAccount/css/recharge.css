@@ -1,0 +1,289 @@
+.bankItem {
+  width: 140px;
+  height: 58px;
+  display: inline-block;
+  border: 1px #cccccc solid;
+  margin-right: 31px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.currentBank {
+  border: 1px #f58220 solid;
+}
+.row {
+  margin: 0;
+  position: relative;
+  left: 20px;
+}
+.tipss,.ava {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  color: #999999;
+  font-size: 14px;
+  margin-right: 50px;
+  font-family: "Arial";
+}
+.ava {
+  color: #f58220;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.line {
+  border-bottom: 1px #ccc solid;
+}
+.methodwr {
+  color: #4a4a4a;
+  font-size: 14px;
+}
+.dec-li li {
+  color: #999999;
+  font-size: 14px;
+  text-align: left;
+}
+.check {
+  z-index: 99;
+  display: none;
+  position: absolute;
+  left: -1px;
+  width: 19px;
+  height: 22px;
+  background: url(/ccc/newAccount/img/checka.png) no-repeat center;
+  top: -1px;
+}
+.more {
+  display: inline-block;
+  height: 58px;
+  width: 140px;
+  background: url(/ccc/newAccount/img/more.png) no-repeat center;
+  border: none;
+}
+.llzf {
+  background: url(/ccc/newAccount/img/llzf.png) no-repeat center #fff;
+}
+.yeepay {
+  background: url(/ccc/newAccount/img/yeepay.jpg) no-repeat center #fff;
+}
+.noCardTip a{color: #f58220;}
+.noCardTip a:hover{color: #f58220;text-decoration: none;}
+
+.ICBC,.jd1025,.jd01020000 {
+  background: url(/ccc/newAccount/img/pBanks/ICBC.jpg) no-repeat center #fff;
+}
+.CZB,.jd03160000{
+  background: url(/ccc/newAccount/img/pBanks/CZB.jpg) no-repeat center #fff;
+}
+.LCCB,.jd04721460{
+  background: url(/ccc/newAccount/img/pBanks/LCCB.jpg) no-repeat center #fff;
+}
+.CCB,.jd1051,.jd01050000 {
+  background: url(/ccc/newAccount/img/pBanks/CCB.jpg) no-repeat center #fff;
+}
+
+.ABC,.jd103,.jd01030000 {
+  background: url(/ccc/newAccount/img/pBanks/ABC.jpg) no-repeat center #fff;
+}
+.CMB,.jd3080,.jd03080000 {
+  background: url(/ccc/newAccount/img/pBanks/CMBCHINA.jpg) no-repeat center #fff;
+}
+.BCM,.jd3407,.jd03010000 {
+  background: url(/ccc/newAccount/img/pBanks/BIC.jpg) no-repeat center #fff;
+}
+.BOC,.jd104,.jd01040000 {
+  background: url(/ccc/newAccount/img/pBanks/BOC.jpg) no-repeat center #fff;
+}
+.CEB,.jd312,.jd03030000 {
+  background: url(/ccc/newAccount/img/pBanks/CEB.jpg) no-repeat center #fff;
+}
+.CMBC,.jd305,.jd03050000 {
+  background: url(/ccc/newAccount/img/pBanks/CMBC.jpg) no-repeat center #fff;
+}
+.CIB,.jd309,.jd03090000 {
+  background: url(/ccc/newAccount/img/pBanks/CIB.jpg) no-repeat center #fff;
+}
+.CITICBANK,.jd313,.jd03020000 {
+  background: url(/ccc/newAccount/img/pBanks/ECITIC.jpg) no-repeat center #fff;
+}
+.CGBC,.jd3061,.jd03060000 {
+  background: url(/ccc/newAccount/img/pBanks/GDB.jpg) no-repeat center #fff;
+}
+
+.SPDB,.jd314,.jd03100000 {
+  background: url(/ccc/newAccount/img/pBanks/SPDB.jpg) no-repeat center #fff;
+}
+.PINGANBANK,.jd307,.jd03070000 {
+  background: url(/ccc/newAccount/img/pBanks/PINGAN.jpg) no-repeat center #fff;
+}
+.HXB,.jd311,.jd03040000 {
+  background: url(/ccc/newAccount/img/pBanks/HXB.jpg) no-repeat center #fff;
+}
+.NB,.jd302 {
+  background: url(/ccc/newAccount/img/pBanks/NB.jpg) no-repeat center #fff;
+}
+.DY {
+  background: url(/ccc/newAccount/img/pBanks/DY.jpg) no-repeat center #fff;
+}
+.JSB,.jd05083000{
+  background: url(/ccc/newAccount/img/pBanks/JSB.jpg) no-repeat center #fff;
+}
+.BOS,.jd326,.jd04012900 {
+  background: url(/ccc/newAccount/img/pBanks/SH.jpg) no-repeat center #fff;
+}
+.PSBC,.jd3230,.jd01000000 {
+  background: url(/ccc/newAccount/img/pBanks/POST.jpg) no-repeat center #fff;
+}
+.NJCB,.jd316 {
+  background: url(/ccc/newAccount/img/pBanks/NJ.jpg) no-repeat center #fff;
+}
+
+.SRCB,.jd343 {
+  background: url(/ccc/newAccount/img/pBanks/SHNS.jpg) no-repeat center #fff;
+}
+
+.CD,.jd336 {
+  background: url(/ccc/newAccount/img/pBanks/CD.jpg) no-repeat center #fff;
+}
+
+.BH {
+  background: url(/ccc/newAccount/img/pBanks/BH.jpg) no-repeat center #fff;
+}
+
+.BCCB,.jd310,.jd04031000 {
+  background: url(/ccc/newAccount/img/pBanks/BCCB.jpg) no-repeat center #fff;
+}
+.BJRCB,.jd335{
+  background: url(/ccc/newAccount/img/pBanks/BJNS.jpg) no-repeat center #fff;
+}
+.jd342{
+  background: url(/ccc/newAccount/img/pBanks/CQNS.jpg) no-repeat center #fff;
+}
+.jd344,.jd03110000{
+  background: url(/ccc/newAccount/img/pBanks/HF.jpg) no-repeat center #fff;
+}
+.jd401{
+  background: url(/ccc/newAccount/img/pBanks/XM.jpg) no-repeat center #fff;
+}
+.HZCB,.jd324{
+  background: url(/ccc/newAccount/img/pBanks/HZ.jpg) no-repeat center #fff;
+}
+.jd3341{
+  background: url(/ccc/newAccount/img/pBanks/QD.jpg) no-repeat center #fff;
+}
+/*企业*/
+
+.cICBC,.cjd9102,.cjd01020000 {
+  background: url(/ccc/newAccount/img/nBanks/ICBC.jpg) no-repeat center #fff;
+}
+.cCCB,.cjd9105,.cjd01050000 {
+  background: url(/ccc/newAccount/img/nBanks/CCB.jpg) no-repeat center #fff;
+}
+.cCMB,.cjd3080,.cjd03080000 {
+  background: url(/ccc/newAccount/img/nBanks/CMBCHINA.jpg) no-repeat center #fff;
+}
+.cCITIC,.cjd313,.cjd03020000 {
+  background: url(/ccc/newAccount/img/nBanks/ECITIC.jpg) no-repeat center #fff;
+}
+.cCMBC,.cjd305,.cjd03050000 {
+  background: url(/ccc/newAccount/img/nBanks/CMBC.jpg) no-repeat center #fff;
+}
+.cCIB,.cjd309,.cjd03090000 {
+  background: url(/ccc/newAccount/img/nBanks/CIB.jpg) no-repeat center #fff;
+}
+.cSPDB,.cjd314,.cjd03100000 {
+  background: url(/ccc/newAccount/img/nBanks/SPDB.jpg) no-repeat center #fff;
+}
+.cPSBC,.cjd3230,.cjd01000000 {
+  background: url(/ccc/newAccount/img/nBanks/POST.jpg) no-repeat center #fff;
+}
+.cCEB,.cjd312,.cjd03030000 {
+  background: url(/ccc/newAccount/img/nBanks/CEB.jpg) no-repeat center #fff;
+}
+.cPINGAN,.cjd307,.cjd03070000 {
+  background: url(/ccc/newAccount/img/nBanks/PINGAN.jpg) no-repeat center #fff;
+}
+.cHXB,.cjd311,.cjd03040000 {
+  background: url(/ccc/newAccount/img/nBanks/HXB.jpg) no-repeat center #fff;
+}
+.cBCCB,.cjd310,.cjd04031000 {
+  background: url(/ccc/newAccount/img/nBanks/BCCB.jpg) no-repeat center #fff;
+}
+.cGDB,.cjd3061,.cjd03060000 {
+  background: url(/ccc/newAccount/img/nBanks/GDB.jpg) no-repeat center #fff;
+}
+.cSH,.cjd326,.cjd04012900 {
+  background: url(/ccc/newAccount/img/nBanks/SH.jpg) no-repeat center #fff;
+}
+.cJSB,.cjd05083000{
+  background: url(/ccc/newAccount/img/nBanks/JSB.jpg) no-repeat center #fff;
+}
+.cHF,.cjd344,.cjd03110000{
+  background: url(/ccc/newAccount/img/nBanks/HF.jpg) no-repeat center #fff;
+}
+.cCZB,.cjd03160000{
+  background: url(/ccc/newAccount/img/nBanks/CZB.jpg) no-repeat center #fff;
+}
+.cLCCB,.cjd04721460{
+  background: url(/ccc/newAccount/img/nBanks/LCCB.jpg) no-repeat center #fff;
+}
+.cABC,.cjd9103,.cjd01030000 {
+  background: url(/ccc/newAccount/img/nBanks/ABC.jpg) no-repeat center #fff;
+}
+.cBOCOM,.jd3407,.cjd03010000{
+  background: url(/ccc/newAccount/img/nBanks/BIC.jpg) no-repeat center #fff;
+}
+.cCMB,.cjd9107 {
+  background: url(/ccc/newAccount/img/nBanks/CMBCHINA.jpg) no-repeat center #fff;
+}
+.cBOCOM,.cjd9104 {
+  background: url(/ccc/newAccount/img/nBanks/BIC.jpg) no-repeat center #fff;
+}
+.cBOC,.cjd9109,.cjd01040000 {
+  background: url(/ccc/newAccount/img/nBanks/BOC.jpg) no-repeat center #fff;
+}
+.cCEB,.cjd9108 {
+  background: url(/ccc/newAccount/img/nBanks/CEB.jpg) no-repeat center #fff;
+}
+
+.cPINGAN,.cjd9110 {
+  background: url(/ccc/newAccount/img/nBanks/PINGAN.jpg) no-repeat center #fff;
+}
+
+table.tinfo {
+  width: 850px;
+  margin: 0 auto;
+  border-color: #cccccc;
+}
+table.tinfo td,th {
+  border: 1px;
+  border-style: solid;
+  border-color: #cccccc;
+  color: #999999;
+}
+table.tinfo th,tr,td,div {
+  border-color: #cccccc;
+  color: #999999;
+}
+table.tinfo div {
+  height: 25px;
+  line-height: 25px;
+  border-bottom: 1px #cccccc solid;
+}
+th,td {
+  text-align: center;
+}
+table.tinfo tbody tr {
+  display: none;
+}
+.btn-success{
+   background-color: #f58220;
+    border-color:#f58220;
+}
+.btn-success:hover{
+    font-size: 16px;
+}
+.btn-confirm-cancel{
+    background: #d3d3d3;
+    color: white;
+}

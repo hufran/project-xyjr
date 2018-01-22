@@ -1,0 +1,62 @@
+
+<form name="regFormStep2" class="register-form" action="/register" method="POST">
+    <div id="main-container">
+        <div class="s-sign-view u-pos-r-center">
+            <div class="u-segment">
+                <img src="/assets/img/reg-2.png" />
+            </div>
+            {{#if smsSended}}
+            <p style="padding: 20px 0 50px; color:#999;">验证码短信已经发送到您的手机上，有效时间为10分钟，请及时查收。</p>
+            {{/if}}
+            <p class="get-voice">
+                <span class="get-captcha-hint">收不到验证码？</span>
+                <a href="javascript:;" class="get-voice-tigger" on-click="getvoice">立即语音获取</a>
+            </p>
+            <table>
+                <tr>
+                    <td>
+                        <label class="s__is-require"></label>手机号：</td>
+                    <td>
+                        <p class="f-mobile">{{Fmobile}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="display:inline-block;margin-bottom:8px">验证码：</span>
+                    </td>
+                    <td style="padding: 20px 0">
+                        <input type="text" name="smsCaptcha" class="input-captcha" style="width:150px!important" placeholder="请输入短信验证码" />
+                        <a href="javascript:;" class="btn1-c get-captcha-tigger" on-click="getcaptcha" style="line-height:27px;">发送验证码</a>
+                        <div class="item-msg">
+                            {{#if msg.smsCaptcha}}
+                            <span class="error">{{msg.smsCaptcha}}</span>
+                            {{/if}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2 style="padding-top:15px">
+                        <button type="submit" class="s-btn-submit previous-step" on-click="oneStep">上一步</a> &nbsp; &nbsp;
+                        <button type="submit" class="s-btn-submit post-btn-step2">下一步</button>
+                        <div class="item-msg">
+                            {{#if msg.post}}
+                            <span class="error">{{msg.post}}</span>
+                            {{/if}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="u-tabel-text-ali__cen" style="padding-top: 10px">
+                        {{#if !msg.updateErr}}
+                        <div class="item-msg">
+                            <span class="error" style="padding-left:68px;padding-top:10px">{{msg.updateErr}}</span>
+                        </div>
+                        {{/if}}
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</form>

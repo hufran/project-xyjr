@@ -1,0 +1,29 @@
+<div class="ccc-register-wrap">
+    {{#HIDE}}
+    {{#if step.show}}
+    <div class="step-img-wp">
+        {{#if step.current == 1}}
+        <img src="/assets/img/reg-1.png" />
+        {{/if}}
+        {{#if step.current == 2}}
+        <img src="/assets/img/reg-2.png" />
+        {{/if}}
+        {{#if step.current == 3}}
+        <img src="/assets/img/reg-3.png" />
+        {{/if}}
+    </div>
+    {{/if}}
+    {{/HIDE}}
+    
+    {{#if step.current == 1}}
+        {{>step1}}
+    {{/if}}
+    
+    {{#if step.current == 2}}
+        {{>step2}}
+    {{/if}}
+    
+    {{#if step.current == 3}}
+        {{>step3}}
+    {{/if}}
+</div>

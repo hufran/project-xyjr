@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息披露</title>
+    <link rel="stylesheet" href="styles/act/swiper.min.css">
+    <link rel="stylesheet" href="styles/act/appHtml.css">
+</head>
+<body>
+<!-- Demo styles -->
+<style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 0.32rem;;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+        background:#eeefef;
+    }
+    #swiper-container2 .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-container-horizontal>.swiper-scrollbar{bottom:0px;}
+    #swiper-container2 .swiper-slide{
+        line-height:2 !important;
+        color:#666 !important;
+        font-size:14px !important;
+        background:#eee !important;
+
+    }
+    #swiper-container3 .swiper-slide{
+        padding-top:1.3rem;
+        /*font-family: 'Microsoft YaHei UI', 'Arial Unicode MS', Arial;*/
+        background-color:#fff;
+    }
+    #swiper-container2{position:fixed;z-index:1000;height:1rem;font-size:0.32rem}
+    #swiper-container2 .active-nav{
+        /*background:#ddd !important;*/
+        color:#5ca0f9!important;
+    }
+
+    /*配合修改*/
+    .slide-1,.slide-2,.slide-3,.slide-4,.slide-5,.slide-6{padding-bottom:3rem}
+    #swiper-container3 .swiper-slide h2{font-size:0.32rem;color:#5ca0f9; text-align: center}
+    #swiper-container3 .swiper-slide article,#swiper-container3 .swiper-slide p{color:#777;font-size:0.2666667rem;line-height:0.7rem; text-indent: 2em;margin-bottom:0.5rem;padding:0 0.5rem;}
+    #swiper-container3 .swiper-slide h3{font-size:0.2666667rem;color:#000;text-align: left;padding:0 0.5rem }
+    #swiper-container3 .swiper-slide img{text-align:center;margin:0.3rem auto;display:block}
+    #swiper-container3 .swiper-slide p{text-indent:0;}
+    .slide-1{heigth:55rem}
+    /*pilu*/
+
+    #swiper-container3 .swiper-wrapper .swiper-slide table{width:95%;margin:0 auto}
+    #swiper-container3 .swiper-wrapper .swiper-slide p img,#swiper-container3 .swiper-wrapper .swiper-slide table.platInfo{width:95%;margin:0 auto;}
+    #swiper-container3 .swiper-wrapper .swiper-slide table tbody tr td{border-left:1px solid #eeefef; border-top:1px solid #eeefef;padding:0.2rem}
+    #swiper-container3 .swiper-wrapper .swiper-slide table tbody tr td img{width:1.68rem}
+    #swiper-container3 .swiper-wrapper .swiper-slide table{border-bottom:1px solid #eeefef; border-right:1px solid #eeefef;width:95%}
+    #swiper-container3 .swiper-wrapper .swiper-slide table.companyInfo tbody tr td:first-child{width:2rem}
+    #swiper-container3 .swiper-wrapper .swiper-slide table.platInfo tbody tr td:first-child{width:2rem}
+    p span strong,p strong span{font-size:0.36rem;color:#000}
+    p img{
+        width:95%;margin: 0 auto}
+
+    #swiper-container3 .swiper-wrapper .swiper-slide p span img{width:50%}
+</style>
+<div class="swiper-container" id="swiper-container2">
+    <div class="swiper-wrapper">
+        <div ng-class="{true: 'swiper-slide active-nav', false: 'swiper-slide'}[{{$index == 0}}]" ng-repeat="item in articles">{{item[0]}}
+            </div>
+
+    </div>
+</div>
+<div class="swiper-container" id="swiper-container3">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide slide-{{$index+1}}" ng-repeat="item in articles" ng-bind-html="item[1]">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!--<script type="text/ng-template" id="ngt-register-agreement.tmpl">-->
+    <!--<div class="modal-body" style="max-height: 300px; overflow-y: auto;" ng-bind-html="content | sanitize"></div>-->
+
+    <!--<div class="modal-footer">-->
+        <!--<button class="btn btn-block btn-theme" ng-click="$close()">-->
+            <!--已阅读此协议-->
+        <!--</button>-->
+    <!--</div>-->
+<!--</script>-->

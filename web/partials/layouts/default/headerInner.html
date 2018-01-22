@@ -1,0 +1,59 @@
+<div class="navbar-top">
+    <div class="container">
+        <div class="contact">
+            欢迎使用正奇金融
+            <span><i class="glyphicon glyphicon-earphone"></i> <span class="phone-text"> 客服电话</span> 
+            <span
+            class="phone-number">400-990-8815</span>
+                </span>
+                <div class=" navbar-login-info pull-right">
+                    {{#if user.loginName}}
+                    <span>
+                    欢迎回来, <a href="/account" class="login-name" data-uid="{{user.id}}">{{user.loginName}}</a>
+                    [<a on-click="logout" href="/logout">退出</a>]
+                </span>
+                    {{/if}} {{#if !user.loginName}}
+                    <a href="#" class="btn btn-default btn-small" on-click="maskLogin">登录</a>
+                    <a href="#" class="btn btn-success btn-small" on-click="maskRegister">注册</a>
+                    {{/if}}
+                </div>
+        </div>
+        <div class="code">
+            <p class="app_text">安卓版下载</p>
+            <div class="qr_img"><img src="/assets/img/top_qr_code.png" alt="" class="src" /></div>
+        </div>
+    </div>
+</div>
+<nav class="navbar" role="navigation">
+    <div class="navbar-wrap">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/img/logo.png" alt="logo" class="main-logo" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                   <li>
+                       <a href="/">首页</a>
+                   </li>
+                    <li><a href="/invest/list">我要理财</a>
+                    </li>
+                    <li>   
+                        {{#if !user.loginName}}
+                            <a href="#" on-click="maskLogin">我的账户</a>
+                        {{ else }}
+                            <a href="/account">我的账户</a>
+                        {{/if}}
+                    </li>
+                    <li><a href="/help">帮助中心</a>
+                    </li>
+                    <li><a href="/info/index">关于我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</nav>
+
