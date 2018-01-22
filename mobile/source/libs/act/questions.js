@@ -167,7 +167,7 @@ function getMark(userId){
     var index = location.href.indexOf(subStr);
     var investType="";
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/api/v2/users/userQuestion/getMark/"+userId,
         async:false,
         success: function(res){
