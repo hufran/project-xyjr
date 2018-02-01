@@ -10,7 +10,7 @@
 </div>
 <div class="account-bg" on-click="guide"></div>
 {{else}}
-	{{#if !paymentPasswordHasSet}}
+	<!-- {{#if !paymentPasswordHasSet}}
 	<div style="width:1100px;position:relative;margin: 0 auto">
 		<a href="/newAccount/settings/password" rel="nofollow" >
 		<div class="bankcard-gray password-png">
@@ -20,8 +20,8 @@
 		</div>
 		</a>
 	</div>
-	<div class="account-bg" on-click="guide"></div>
-	{{elseif !lccbId}}
+	<div class="account-bg" on-click="guide"></div> -->
+	<!-- {{elseif !lccbId}} -->
 <!--注释掉引导绑定银行卡的灰色弹出层by Gloria 2016-05-05-->
 	<!--<div style="width:1100px;position:relative;margin: 0 auto">-->
 		<!--<a href="/newAccount/settings/bankCards" rel="nofollow" ><div class="bankcard-gray backcard-png">-->
@@ -32,7 +32,8 @@
 		<!--</a>-->
 	<!--</div>-->
 	<!--<div class="account-bg" on-click="guide"></div>-->
-	<div style="width:1100px;position:relative;margin: 0 auto">
+	<!--注释掉引导激活的灰色弹出层-->
+	<!-- <div style="width:1100px;position:relative;margin: 0 auto">
 		<a href="/newAccount/settings/authentication"><div class="bankcard-gray bankcard-jihuo">
 			<div class="box-main">
 		    	<img class="rightnow" src="/ccc/newAccount/img/rightnow1.png"/>
@@ -41,7 +42,7 @@
 		</a>
 	</div>
 	<div class="account-bg" on-click="guide"></div>
-	{{/if}}
+	{{/if}} -->
 {{/if}}
 {{/if}}
 
@@ -125,7 +126,7 @@
 					<p class="info-tip" style="top:16px;left:30px;">点击查看银行存管</p>
 				</li>
 					{{/if}}
-					{{#if paymentPasswordHasSet}}
+					<!-- {{#if paymentPasswordHasSet}}
 				<li>
 					<a href="/newAccount/settings/password" class="mouse-enter rzpa cpass-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
 					<p class="info-tip" style="top:16px;left:90px;">点击设置交易密码</p>
@@ -137,7 +138,7 @@
 					<p class="info-tip" style="top:16px;left:90px;">点击设置交易密码</p>
 				</li>
 
-					{{/if}}
+					{{/if}} -->
 				<!-- 	{{#if banksabled}}
 				<li>
 					<a href="/newAccount/settings/bankCards" class="mouse-enter rzpa ccr-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>

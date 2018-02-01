@@ -18,7 +18,7 @@
         <div class="rows">
             <div class="col-md-12">
             <!-- action="/yeepay/withdraw" on-submit="withdrawForm" -->
-                <form role="form" name="withdrawForm"  method="POST" target="_blank"  autocomplete="off">
+                <form role="form" name="withdrawForm"  method="POST" target="_blank"  autocomplete="off" action="{{action}}" on-submit="withDrawSubmit">
                     <div class="">
                         <div class="rows">
                             <span class="tipss">账户余额</span>
@@ -36,14 +36,14 @@
 
                         </div>
                         <div class="space-20"></div>
-                        <div class="rows">
+                        <!-- <div class="rows">
                             <span class="tipss">交易密码</span>
                             <input type="password" name="paymentPassword" class="inputsMs" placeholder="" on-blur="checkPassword" autocomplete="off"  value="{{paymentPassword}}" style="width:238px;height:43px;border:1px #cccccc solid;border-radius:5px;color:#999999;text-indent:10px;line-height:43px;">
                             <span class="tipss" style="color:#009ada;font-size:14px;text-indent:5px;"><a href="/newAccount/settings/resetPassword" style="color:#009ada;text-decoration:none">忘记密码?</a></span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="space space-30"></div>
-                    <button type="button" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:102px;font-size:16px;" on-click="withDrawSubmit">{{submitText}}</button>
+                    <button type="submit" class="btn btn-warning btn-lg post-btn {{#if disabled}}disabled{{/if}}" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:102px;font-size:16px;" >{{submitText}}</button>
                 </form>
             </div>
         </div>

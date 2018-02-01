@@ -231,10 +231,9 @@ setTimeout((function () {
 
     investRactive.on("invest-submit", function (e) {
         e.original.preventDefault();
-
         var num = parseInt(this.get('inputNum'), 10); // 输入的值
         var smsCaptcha = this.get('smsCaptcha');
-        var paymentPassword = this.get('paymentPassword');
+        // var paymentPassword = this.get('paymentPassword');
            var couponSelection=$("#couponSelection").find("option:selected").text();
         var indexnum=couponSelection.indexOf("最低投资额：");
         var minnum=couponSelection.substring(indexnum+6,couponSelection.length-1);
@@ -303,14 +302,14 @@ setTimeout((function () {
         }
 
 
-        if (paymentPassword === '') {
-            showErrors('请输入交易密码!');
-            return false;
-        } else {
-            accountService.checkPassword(encodeURIComponent(filterXSS(paymentPassword)), function (r) {
-                if (!r) {
-                    showErrors('请输入正确的交易密码!');
-                } else {
+        // if (paymentPassword === '') {
+        //     showErrors('请输入交易密码!');
+        //     return false;
+        // } else {
+            // accountService.checkPassword(encodeURIComponent(filterXSS(paymentPassword)), function (r) {
+            //     if (!r) {
+            //         showErrors('请输入正确的交易密码!');
+            //     } else {
                     var num = investRactive.get('inputNum');
                     disableErrors();
                     var couponText = '';
@@ -318,23 +317,17 @@ setTimeout((function () {
                         var value = $("#couponSelection").find("option:selected").val();
 
                         if(investRactive.get('selectOption')==null){
-                        if ( value == '') {
-                            couponText = '未使用任何奖券,';
-                        } else {
+                            if ( value == '') {
+                                couponText = '未使用任何奖券,';
+                            } else {
 
-                            couponText = '将使用' + $("#couponSelection").find("option:selected").text();
-                        }
+                                couponText = '将使用' + $("#couponSelection").find("option:selected").text();
+                            }
                         }
                     }
 
 
 					// if (document.getElementById('agree').checked == true){
-     //                    // 问卷start
-     //                    // &&getCookie('question')==null 之前逻辑中会判断
-     //                    // if (CC.user.priv==null&&getCookie('question')==null) {
-     //                    // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
-     //                    // 其他账号不需要测评的情况，因此去掉
-     //                    // if (CC.user.priv==null&&getCookie('question')==null)
      //                    if (!mark) {
      //                        console.log(mark)
      //                        flag = false;                                                          
@@ -443,12 +436,6 @@ setTimeout((function () {
 
 
                     if (document.getElementById('agree').checked == true){
-                        // 问卷start
-                        // &&getCookie('question')==null 之前逻辑中会判断
-                        // if (CC.user.priv==null&&getCookie('question')==null) {
-                        // 但是验证之后，发现该参数会引起用户登录多个账号时，其中一个账号做过测评，
-                        // 其他账号不需要测评的情况，因此去掉
-                        // if (CC.user.priv==null&&getCookie('question')==null)
                         if (!mark || (mark>=10&&mark<=16)) {
                             console.log(mark)                           
                             if(mark>=10&&mark<=16){
@@ -462,7 +449,7 @@ setTimeout((function () {
                                         jQuery('.questionBox input[type=radio]').prop('checked',false);
                                         jQuery('.questionTip').removeClass('db').addClass('dn');
                                         jQuery(document).scrollTop(0);
-                                        toPay(num, couponText)
+                                        Authpay(num, couponText)
                                     },
                                     cancel: function(){
                                         $('.dialog').hide();
@@ -474,6 +461,7 @@ setTimeout((function () {
                                         jQuery('.questionBox').removeClass('dn').addClass('db');
                                     }
                                 })
+
                             }else{
                                 jQuery('.wenjuan').removeClass('dn').addClass('db'); 
                             }   
@@ -557,16 +545,16 @@ setTimeout((function () {
                         
                         if(!(mark>=10&&mark<=16) && mark) {
                             console.log(mark)
-                            toPay(num, couponText)
+                            Authpay(num, couponText,e)
                          }
                         
                     }else{
                         $('.agree-error').css('visibility','visible');
                         $('.agree-error').html('请先同意新毅用户投资服务协议');
                     }
-                }
-            });
-        };
+                // }
+            // });
+        // };
     });
 
     function tips(Riskmsg){
@@ -596,135 +584,216 @@ setTimeout((function () {
             console.log('企业用户')
             return;
         }
-        var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
-        var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
-        if (!investRactive.get('lccbAuth')) {
-            Message.create({
-                msg: '短信验证码已发送至',
-                okText: '下一步',
-                phone: phoneNumber,
-                transtype: '800004',
-                ok: function(a,b,c,d,e) { 
-                    $('.dialog').hide();
-                    Authpay(num, couponText,d,e)              
-                },
-                cancel: function() {
+        Authpay(num, couponText) 
+        // var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
+        // var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
+        // if (!investRactive.get('lccbAuth')) {
+        //     Message.create({
+        //         msg: '短信验证码已发送至',
+        //         okText: '下一步',
+        //         phone: phoneNumber,
+        //         transtype: '800004',
+        //         ok: function(a,b,c,d,e) { 
+        //             $('.dialog').hide();
+        //             Authpay(num, couponText,d,e)              
+        //         },
+        //         cancel: function() {
 
-                }
-            })
-        }else{
-            Authpay(num, couponText) 
-        }
+        //         }
+        //     })
+        // }else{
+        //     Authpay(num, couponText) 
+        // }
         
     }
 
-    function Authpay(num, couponText,d,e) {
+    function Authpay(num, couponText) {
+
         if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g,"")=='返现券') {
-                            //alert('222');
             var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
-            $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
-                amount : filterXSS(num),
-                loanId : filterXSS(investRactive.get('loan.id')),
-                paymentPassword : filterXSS(investRactive.get('paymentPassword')),
-                rebateAmount:thisRebate,
-                smsid: d,
-                smsCaptcha: e
-            }, function (res) {
-                if (res.success) {
-                    CccOk.create({
-                        msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
-                        okText: '确定',
-                        // cancelText: '重新登录',
-                        ok: function () {
-                            window.location.reload();
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
-                } else {
-                    var errType = res.error && res.error[0] && res.error[0].message || '';                                        
-                    var errMsg = {
-                        TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                    }[errType] || errType;
-                    errMsg = errMsg.replace(/\=+[A-Za-z0-9\-\:]+/g," ");
-                    if(errMsg.indexOf("投资失败")>-1 || errMsg.indexOf("投资成功")>-1)  {                                          
-                    }else{
-                        errMsg = '投资失败' + errMsg;
-                    }                                     
-                    CccOk.create({
-                        msg: errMsg,
-                        okText: '确定',
-                        // cancelText: '重新登录',
-                        ok: function () {
-                            window.location.reload();
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
+            $.ajax({
+                url: '/api/v2/lccbweb/tenderUseRebate/'+CC.user.id,
+                type: "POST",
+                data: {
+                    userId: CC.user.id,
+                    loanId: filterXSS(investRactive.get('loan.id')),
+                    amount:  filterXSS(num),
+                    rebateAmount: thisRebate
+                },
+                async: false,
+                success: function(res){
+                    if (res.status == 0) {
+                        investRactive.set('action', res.data);
+                        $("#form").submit()
+                        CccOk.create({
+                            msg: msg,
+                            okText: '请求成功',
+                            ok: function () {                                    
+                                window.location.reload();
+                            },
+                            cancel: function () {
+                                window.location.reload();
+                            }
+                        });
+                    } else {
+                        CccOk.create({
+                            msg: "请求失败",
+                            okText: '确定',
+                            ok: function () {
+                                window.location.reload();
+                            },
+                            cancel: function () {
+                                window.location.reload();
+                            }
+                        });
+                    }
                 }
             })
-            .error(function(res) {
-                var errType = res.error && res.error[0] && res.error[0].message || '';
-                    var errMsg = {
-                        TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                    }
-                     [errType] || errType;
-                    CccOk.create({
-                        msg: '投资失败'+errMsg,
-                        okText: '确定',
-                        // cancelText: '重新登录',
-                        ok: function () {
-                            window.location.reload();
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
-            });
+
+
+            // $.post('/api/v2/invest/tenderUseRebate/'+CC.user.userId, {
+            //     amount : filterXSS(num),
+            //     loanId : filterXSS(investRactive.get('loan.id')),
+            //     paymentPassword : filterXSS(investRactive.get('paymentPassword')),
+            //     rebateAmount:thisRebate,
+            //     smsid: d,
+            //     smsCaptcha: e
+            // }, function (res) {
+            //     if (res.success) {
+            //         CccOk.create({
+            //             msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+            //             okText: '确定',
+            //             // cancelText: '重新登录',
+            //             ok: function () {
+            //                 window.location.reload();
+            //             },
+            //             cancel: function () {
+            //                 window.location.reload();
+            //             }
+            //         });
+            //     } else {
+            //         var errType = res.error && res.error[0] && res.error[0].message || '';                                        
+            //         var errMsg = {
+            //             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+            //         }[errType] || errType;
+            //         errMsg = errMsg.replace(/\=+[A-Za-z0-9\-\:]+/g," ");
+            //         if(errMsg.indexOf("投资失败")>-1 || errMsg.indexOf("投资成功")>-1)  {                                          
+            //         }else{
+            //             errMsg = '投资失败' + errMsg;
+            //         }                                     
+            //         CccOk.create({
+            //             msg: errMsg,
+            //             okText: '确定',
+            //             // cancelText: '重新登录',
+            //             ok: function () {
+            //                 window.location.reload();
+            //             },
+            //             cancel: function () {
+            //                 window.location.reload();
+            //             }
+            //         });
+            //     }
+            // })
+            // .error(function(res) {
+            //     var errType = res.error && res.error[0] && res.error[0].message || '';
+            //         var errMsg = {
+            //             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+            //         }
+            //          [errType] || errType;
+            //         CccOk.create({
+            //             msg: '投资失败'+errMsg,
+            //             okText: '确定',
+            //             // cancelText: '重新登录',
+            //             ok: function () {
+            //                 window.location.reload();
+            //             },
+            //             cancel: function () {
+            //                 window.location.reload();
+            //             }
+            //         });
+            // });
                     //alert(111);
         }//使用返现劵接口end
         else{
-            investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
-            $.post('/lianlianpay/tender', {
-                amount : filterXSS(num),
-                loanId : filterXSS(investRactive.get('loan.id')),
-                placementId : filterXSS(investRactive.get('coupon')),
-                paymentPassword : filterXSS(investRactive.get('paymentPassword')),
-                smsid: d,
-                smsCaptcha: e
-            }, function (res) {
-                if (res.success) {
-                    CccOk.create({
-                        msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
-                        okText: '确定',
-                        // cancelText: '重新登录',
-                        ok: function () {
-                            window.location.reload();
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
-                } else {
-                    var errType = res.error && res.error[0] && res.error[0].message || '';
-                    var errMsg = {
-                        TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
-                    }[errType] || errType;
-                    CccOk.create({
-                        msg: '投资失败' + errMsg,
-                        okText: '确定',
-                        // cancelText: '重新登录',
-                        ok: function () {
-                            window.location.reload();
-                        },
-                        cancel: function () {
-                            window.location.reload();
-                        }
-                    });
+            $.ajax({
+                url: '/api/v2/lccbweb/tender/'+CC.user.id,
+                type: "POST",
+                data: {
+                    userId: CC.user.id,
+                    loanId: filterXSS(investRactive.get('loan.id')),
+                    amount:  filterXSS(num),
+                    placementId: filterXSS(investRactive.get('coupon'))
+                },
+                async: false,
+                success: function(res){
+                    if (res.status == 0) {
+                        investRactive.set('action', res.data);
+                        $("#form").submit()
+                        CccOk.create({
+                            msg: msg,
+                            okText: '请求成功',
+                            ok: function () {                                    
+                                window.location.reload();
+                            },
+                            cancel: function () {
+                                window.location.reload();
+                            }
+                        });
+                    } else {
+                        e.original.preventDefault();
+                        CccOk.create({
+                            msg: "请求失败",
+                            okText: '确定',
+                            ok: function () {
+                                window.location.reload();
+                            },
+                            cancel: function () {
+                                window.location.reload();
+                            }
+                        });
+                    }
                 }
-            });
+            })
+
+            // investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
+            // $.post('/lianlianpay/tender', {
+            //     amount : filterXSS(num),
+            //     loanId : filterXSS(investRactive.get('loan.id')),
+            //     placementId : filterXSS(investRactive.get('coupon')),
+            //     paymentPassword : filterXSS(investRactive.get('paymentPassword')),
+            //     smsid: d,
+            //     smsCaptcha: e
+            // }, function (res) {
+            //     if (res.success) {
+            //         CccOk.create({
+            //             msg: '投资成功，<a href="/invest" style="color:#009ada;text-decoration:none">继续浏览其他项目</a>',
+            //             okText: '确定',
+            //             // cancelText: '重新登录',
+            //             ok: function () {
+            //                 window.location.reload();
+            //             },
+            //             cancel: function () {
+            //                 window.location.reload();
+            //             }
+            //         });
+            //     } else {
+            //         var errType = res.error && res.error[0] && res.error[0].message || '';
+            //         var errMsg = {
+            //             TOO_CROWD: '投资者过多您被挤掉了，请点击投资按钮重试。'
+            //         }[errType] || errType;
+            //         CccOk.create({
+            //             msg: '投资失败' + errMsg,
+            //             okText: '确定',
+            //             // cancelText: '重新登录',
+            //             ok: function () {
+            //                 window.location.reload();
+            //             },
+            //             cancel: function () {
+            //                 window.location.reload();
+            //             }
+            //         });
+            //     }
+            // });
         }
     }
     //显示返现金额
