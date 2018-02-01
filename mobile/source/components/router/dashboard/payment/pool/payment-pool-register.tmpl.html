@@ -28,7 +28,7 @@
 
         <form class="form-flatten form-horizontal"
               name="form"
-              ng-submit="self.open_payment_account(store.user_name, store.id_number, store.card_no, store.bank_name, store.card_phone, form.mobile_captcha.$viewValue)"
+              method="post"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
@@ -82,7 +82,7 @@
                             >
                             <div class="help-block"
                                  ng-show="form.id_number.$invalid && form.id_number.$dirty"
-                            >
+                            >   
                                 <span ng-show="form.id_number.$error.required">必须填写</span>
                                 <span ng-show="form.id_number.$viewValue && form.id_number.$error.id_number">请填写正确的15或18位身份证号码</span>
                             </div>
@@ -94,7 +94,7 @@
                         </div>
                 </div>
                 <div class="form-group merge"
-                     ng-class="{'has-error': form.card_no.$invalid && form.card_no.$dirty}"
+                     ng-class="{'has-error': form.card_no.$invalid && form.card_no.$dirty}" ng-if="lccbUserId!=-1"
                     >
                     <label>银行卡号</label>
                     <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.account">
@@ -124,6 +124,7 @@
                     </div>
                 </div>
                 <div class="form-group merge"
+                    ng-if="lccbUserId!=-1"
                      ng-class="{'has-error': form.bank_name.$invalid && form.bank_name.$dirty}" style="overflow: hidden;"
                     >
                     <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BCM','上海银行':'BOS','建设银行':'CCB','光大银行':'CEB','中信银行':'CITICBANK','招商银行':'CMB','民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGANBANK','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'CGBC','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
@@ -149,6 +150,7 @@
                     </div>
                 </div>
                 <div class="form-group merge"
+                     ng-if="lccbUserId!=-1"
                      ng-class="{'has-error': form.card_phone.$invalid && form.card_phone.$dirty}"
                 >
                     <label for="card_phone">银行预留手机号</label>
@@ -174,7 +176,7 @@
                     </div>
                 </div>
 
-                <div class="form-group merge mobile-captcha"
+                <!-- <div class="form-group merge mobile-captcha"
                      ng-class="{
                         'has-error': form.mobile_captcha.$invalid && form.mobile_captcha.$dirty,
                         init: !self.captcha.has_sent,
@@ -209,7 +211,7 @@
                     >
                         <span ng-show="form.mobile_captcha.$error.required">必须填写</span>
                     </div>
-                </div>
+                </div> -->
                 
             </div>
             <div class="form-group merge protocol"
@@ -226,7 +228,7 @@
             <div class="container" ng-if="!(lccbUserId!=0&&lccbUserId!=-1&&lccbAuth==true)">
                 <div class="form-group container">
                     <button type="submit" class="btn btn-theme btn-block btn-lg"
-                            ng-disabled="form.$invalid || self.submit_sending"
+                            ng-disabled="form.$invalid || self.submit_sending" ng-click="self.open_payment_account($event,store.user_name, store.id_number)"
                     >{{btnContent}}</button>
                 </div>
 
