@@ -25,7 +25,14 @@ module.exports = function (router, auth) {
     router.post('/api/v2/validate/lccbInvest/:userId', auth.pass());
     router.post('/api/v2/validate/lccbWithdraw/:userId', auth.pass());
     router.post('/api/v2/lccb/onlineBankDeposit/:userid', auth.pass());
-    
+    router.post('/api/v2/lccbweb/bindCard/:userid', auth.pass());
+    router.post('/api/v2/lccbweb/deposit/:userid', auth.pass());
+    router.post('/api/v2/lccbweb/onlineBankDeposit/:userid', auth.pass());
+    router.post('/api/v2/lccbweb/withdraw/:userid', auth.pass());
+    router.post('/api/v2/lccbweb/tender/:userid', auth.pass());
+    router.post('/api/v2/lccbweb/tenderUseRebate/:userid', auth.pass());
+
+
     
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());

@@ -8,7 +8,7 @@
     </div>
 
     <div class="account-form-wrapper">
-        <form action="#" class="form-horizontal" style="text-align:center;" autocomplete="off">
+        <form action="{{action}}" class="form-horizontal" style="text-align:center;" autocomplete="off" on-submit="open_submit" target="_blank" method="POST">
             <div class="">
                 <div class="" style="height:40px">
                     {{#if showErrorMessage}}
@@ -48,7 +48,7 @@
                     <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
                 </div>
             {{/if}}
-            <div class="userIdNumber">
+            <!-- <div class="userIdNumber">
                 <label for="bankNumber" class="">银行卡号</label>
                  <input type="text" class="check-name" id="bankNumber" name="bankNumber" value="{{bankNumber}}" on-blur="checkbankNumber"/>
                  {{#if showErrorbankNumber}}
@@ -90,7 +90,7 @@
                      {{ errormessageTxt }}
                  </div>
                  {{/if}}
-            </div>
+            </div> -->
             <p class="userIdNumber" style="text-align:left;line-height: 30px;">
                     <input type="checkbox" class="agree" checked id="agree" />
                     <span>我同意 <p style="display:inline-block;vertical-align:top;line-height:20px;padding:5px 0 10px 5px">

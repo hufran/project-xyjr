@@ -59,7 +59,7 @@ var ractive = new Ractive({
         })(),
         isBankCard: CC.user.bankCards.length,
         amountValue: 10000000,
-        action:cyberBankBaseUrl+CC.user.id,
+        action:'',
         showNum: 9,
         minAmount: 100,
         lccbId: CC.user ? CC.user.lccbUserId : ''
@@ -247,17 +247,13 @@ ractive.on('checkAmount',function(){
         inp.val(inp.val().replace(/\b(0+)/gi,""))
     }
 })
-ractive.on('recharge_submit', function (e){
-    
+ractive.on('recharge',function(e){
+    e.original.preventDefault();
+    console.log(e)
     var amount = this.get('amount');
     var actionName=this.get('action');
     var choose =$('#paynet').prop('checked');
     this.set('amountNew',amount);
-
-    if(!choose) {
-       e.original.preventDefault();
-    }
-
     this.set('msg', {
         BANK_NULL: false,
         AMOUNT_NULL: false,
@@ -267,89 +263,98 @@ ractive.on('recharge_submit', function (e){
     });
     if (amount === ''||parseFloat(amount)<=0) {
         console.log(amount=== '');
-        e.original.preventDefault();
         this.$amount.focus();
         this.set('msg.AMOUNT_NULL', true);
         return false;
-    }
-//    else if (amount > 10 ) {
-//        e.original.preventDefault();
-//        this.set('msg.AMOUNT_NOTENOUGH', true);
-//        this.$amount.focus();
-//        return false;
-//    }
-    else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
-        e.original.preventDefault();
+    }else if (!this.match(amount) || parseFloat(amount) > parseFloat(this.get('amountValue'))) {
         this.set('msg.AMOUNT_INVALID', true);
         this.$amount.focus();
         return false;
     }
+
     if (!this.get('isNormal')) {
         var code = this.get('bankCode');
         if (!code) {
-            e.original.preventDefault();
             this.set('msg.BANKCODE_NULL', true);
             return false;
         }
 
     }
-    // if (actionName=='/api/v2/lccb/onlineBankDeposit/'+CC.user.id &&amount!='') {
-    //         //amount = parseFloat(amount)*100;
-    //         amount = Math.round(amount*100);
-    //         this.set('amountNew',amount);
-    // };
 
     if(!choose){
-        if(CC.user.enterprise){
-            console.log('企业用户')
-            return;
-        }
-        var phoneNumber1 = CC.user.bankCards[0].account.bankMobile;
-        var phoneNumber = phoneNumber1.substr(0,3) + '****' + phoneNumber1.substr(-4)
-        
-        Message.create({
-            msg: '短信验证码已发送至',
-            okText: '下一步',
-            phone: phoneNumber,
-            transtype: '800002',
-            ok: function(a,b,c,d,e) { 
-                $('.dialog').hide();
-                $.post('/api/v2/lccb/deposit/'+ CC.user.userId,{
-                        bankcode: CC.user.bankCards[0].account.bank,
-                        cardnbr: CC.user.bankCards[0].account.account,
-                        transamt: amount,
-                        smsid: d,
-                        validatemsg : e
-                    },function(res) {
-                        console.log(res)
-                        CccOK.create({
-                            msg: res.msg,
-                            okText: '确定',
-                            ok: function () {
-                                window.location.reload();
-                            }
-                        });                    
-                    })
-                
+        //快捷        
+        $.ajax({
+            url: '/api/v2/lccbweb/deposit/'+ CC.user.id,
+            type: "POST",
+            data: {
+                userId: CC.user.id,
+                transamt: amount,
+                successUrl: window.location.href
             },
-            cancel: function() {
-
+            async: false,
+            success: function(res){
+                if(res.status ==0){
+                   ractive.set("action", res.data)
+                   $("form").submit()
+                   CccOK.create({
+                        msg: "请求成功",
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        }
+                    });                   
+               }else {
+                    CccOK.create({
+                        msg: "请求失败",
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        }
+                    });
+                }
             }
         })
+
     }else{
-        Confirm.create({
-            msg: '',
-            okText: '充值成功',
-            cancelText: '充值失败',
-            ok: function () {
-                window.location.reload();
+        //网银
+
+        $.ajax({
+            url: '/api/v2/lccbweb/onlineBankDeposit/'+CC.user.id,
+            type: "POST",
+            data: {
+                userId: CC.user.id,
+                transamt: amount,
+                bankcode: ractive.get('bankCode'),
+                successUrl: window.location.href
             },
-            cancel: function () {
-                window.location.reload();
+            async: false,
+            success: function(res){
+                if(res.status ==0){
+                   ractive.set("action", res.data)
+                   $("form").submit()
+                   CccOK.create({
+                        msg: "请求成功",
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        }
+                    });                   
+               }else {
+                    CccOK.create({
+                        msg: "请求失败",
+                        okText: '确定',
+                        ok: function () {
+                            window.location.reload();
+                        }
+                    });
+                }
             }
-        });
+        })
     }
-        
+
+})
+ractive.on('recharge_submit', function (e){
+   console.log("跳转")
 });
 
 ractive.on('changeMethod', function (event) {

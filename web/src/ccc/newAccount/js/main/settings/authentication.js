@@ -32,7 +32,8 @@ var ractive = new Ractive({
         bankMobile: '',
         accountName: '',
         lccbId: CC.user ? CC.user.lccbUserId : '',
-        authority: CC.user ? CC.user.lccbAuth : ''
+        authority: CC.user ? CC.user.lccbAuth : '',
+        action: ''
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
@@ -60,7 +61,7 @@ var ractive = new Ractive({
         })
     },
     oncomplete: function () {
-       SeverName() 
+       // SeverName() 
        if(ractive.get('bank')) {
           var bankcode = CC.user.bankCards[0].account.bank
           $(".bankpic").css('background-image','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')         
@@ -92,14 +93,25 @@ ractive.on('checkIdNumber',function(){
     var idNumber = this.get("idNumber");
     this.set('showErrorMessageId',false);
     if(this.get("authenticateInfo").idNumber){return}
-    utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
-        if (!bool) {
-            ractive.set({
-                showErrorMessageId: true,
-                errorMessageId: utils.errorMsg[error]
+        if(CC.user.enterprise){
+            if (!/^\d{5,20}$/.test(idNumber)) {        
+                ractive.set({
+                    showErrorMessageId: true,
+                    errorMessageId: "请输入正确的执照编号"
+                });
+            }else{
+                this.set('showErrorMessageId',false);
+            }
+        }else{
+            utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
+                if (!bool) {
+                    ractive.set({
+                        showErrorMessageId: true,
+                        errorMessageId: utils.errorMsg[error]
+                    });
+                }
             });
-        }
-    });
+        }   
 });
 
 ractive.on('checkbankNumber', function(){
@@ -178,24 +190,141 @@ $('select[name="bankName"]').on("change", function() {
 $('#agree').on('click', function() {
     $('.agree-error').html('');
 })
+//原有开户逻辑
+// ractive.on("register-account-submit", function () {   
+//     var that=this;
+    
+//     this.fire('checkName');
+//     this.fire('checkIdNumber');
+//     this.fire('checkbankNumber');
+//     this.fire('checkbankPhone');
+//     this.fire('checkmessageTxt');
+//     if ($('select[name="bankName"]').val()=='请选择开户银行') {
+//         ractive.set({
+//             showErrorbankName: true,
+//             errorbankName: '请选择开户银行'
+//         });
+//         return false;
+//     }else{
+//         ractive.set("showErrorbankName", false);
+//     }
+//     if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrorbankNumber') || this.get('showErrorbankPhone') || this.get('showErrormessageTxt')) {
+//         return false;
+//     }
+
+//     if (document.getElementById('agree').checked == true){
+//         $('.agree-error').html('');
+//     }else{
+//         $('.agree-error').html('请先同意开通银行存管协议');
+//         return;
+//     }
+
+//     if(!smsid){
+//         var error = 'SMSCAPTCHA_INVALID'        
+//         ractive.set({
+//             showErrormessageTxt: true,
+//             errormessageTxt: utils.errorMsg[error]
+//         });
+//         return
+//     }
+//     var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
+//     var idNumber = filterXSS(this.get("idNumber")) || this.get("authenticateInfo").idNumber;
+//     var bankNumber = filterXSS(this.get("bankNumber"));
+//     var bankName = filterXSS(this.get("bankName"));
+//     var bankPhone = filterXSS(this.get("bankPhone"));
+//     var messageTxt = filterXSS(this.get("messageTxt"));
+//     utils.formValidator.checkName(name, function (bool, error) {
+//         if (!bool) {
+//             ractive.set({
+//                 showErrorMessageName: true,
+//                 errorMessageName: utils.errorMsg[error]
+//             });
+//         } else {
+//             utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
+//                 if (!bool) {
+//                     ractive.set({
+//                         showErrorMessageId: true,
+//                         errorMessageId: utils.errorMsg[error]
+//                     });
+
+//                     return false;
+//                 }
+
+//                 var user = {
+//                     userId: CC.user.id,
+//                     realName: $.trim(name),
+//                     idNumber: $.trim(idNumber),
+//                     bankName: bankName,
+//                     cardNo: bankNumber,
+//                     cardPhone: bankPhone,
+//                     smsCaptcha: messageTxt,
+//                     smsid: smsid
+//                 };
+//                 var msg,link;
+//                 if (that.get('bank') && that.get('paymentPasswordHasSet')) {
+//                     msg = "恭喜您，认证成功！";
+//                 } else {
+//                     msg = "认证成功，请开通交易密码";
+//                     link = '/newAccount/settings/password';
+//                 }
+//                 accountService.authenticateUser(user,
+//                     function (res) {
+//                         console.log(res)
+//                         if (res.success) {
+//                             CccOk.create({
+//                                 msg: msg,
+//                                 okText: '现在开通',
+//                                 cancelText: '稍后再说',
+//                                 ok: function () {                                    
+//                                     if (link) {                                        
+//                                         window.location.href = link;
+//                                     } else {
+//                                         window.location.reload();
+//                                     }
+
+//                                 },
+//                                 cancel: function () {
+//                                     window.location.reload();
+//                                 },
+//                                 close:function(){
+//                                     window.location.reload();
+//                                 }
+//                             });
+//                         } else {
+//                           setTimeout(function(){
+//                             window.location.reload();
+//                           },5000);
+//                             if (!(res.error[0] && res.error[0].message)) {
+//                                 res.error[0].message = "银行存管开通失败";
+//                             }
+//                             CccOk.create({
+//                                 msg: res.error[0].message,
+//                                 okText: '确定',
+//                                 cancelText: '',
+//                                 ok: function () {
+//                                     window.location.reload();
+//                                 },
+//                                 cancel: function () {
+//                                     window.location.reload();
+//                                 },
+//                                 close:function(){
+//                                   window.location.reload();
+//                                 },
+//                             });
+//                         }
+//                     });
+//             });
+//         }
+//     });
+// });
 ractive.on("register-account-submit", function () {   
     var that=this;
     
     this.fire('checkName');
     this.fire('checkIdNumber');
-    this.fire('checkbankNumber');
-    this.fire('checkbankPhone');
-    this.fire('checkmessageTxt');
-    if ($('select[name="bankName"]').val()=='请选择开户银行') {
-        ractive.set({
-            showErrorbankName: true,
-            errorbankName: '请选择开户银行'
-        });
-        return false;
-    }else{
-        ractive.set("showErrorbankName", false);
-    }
-    if(this.get('showErrorMessageName') || this.get('showErrorMessageId') || this.get('showErrorbankNumber') || this.get('showErrorbankPhone') || this.get('showErrormessageTxt')) {
+
+
+    if(this.get('showErrorMessageName') || this.get('showErrorMessageId')) {
         return false;
     }
 
@@ -206,104 +335,23 @@ ractive.on("register-account-submit", function () {
         return;
     }
 
-    if(!smsid){
-        var error = 'SMSCAPTCHA_INVALID'        
-        ractive.set({
-            showErrormessageTxt: true,
-            errormessageTxt: utils.errorMsg[error]
-        });
-        return
-    }
+
     var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
     var idNumber = filterXSS(this.get("idNumber")) || this.get("authenticateInfo").idNumber;
-    var bankNumber = filterXSS(this.get("bankNumber"));
-    var bankName = filterXSS(this.get("bankName"));
-    var bankPhone = filterXSS(this.get("bankPhone"));
-    var messageTxt = filterXSS(this.get("messageTxt"));
-    utils.formValidator.checkName(name, function (bool, error) {
-        if (!bool) {
-            ractive.set({
-                showErrorMessageName: true,
-                errorMessageName: utils.errorMsg[error]
-            });
-        } else {
-            utils.formValidator.checkIdNumber(idNumber, function (bool, error) {
-                if (!bool) {
-                    ractive.set({
-                        showErrorMessageId: true,
-                        errorMessageId: utils.errorMsg[error]
-                    });
 
-                    return false;
-                }
-
-                var user = {
-                    userId: CC.user.id,
-                    realName: $.trim(name),
-                    idNumber: $.trim(idNumber),
-                    bankName: bankName,
-                    cardNo: bankNumber,
-                    cardPhone: bankPhone,
-                    smsCaptcha: messageTxt,
-                    smsid: smsid
-                };
-                var msg,link;
-                if (that.get('bank') && that.get('paymentPasswordHasSet')) {
-                    msg = "恭喜您，认证成功！";
-                } else {
-                    msg = "认证成功，请开通交易密码";
-                    link = '/newAccount/settings/password';
-                }
-                accountService.authenticateUser(user,
-                    function (res) {
-                        console.log(res)
-                        if (res.success) {
-                            CccOk.create({
-                                msg: msg,
-                                okText: '现在开通',
-                                cancelText: '稍后再说',
-                                ok: function () {                                    
-                                    if (link) {                                        
-                                        window.location.href = link;
-                                    } else {
-                                        window.location.reload();
-                                    }
-
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                },
-                                close:function(){
-                                    window.location.reload();
-                                }
-                            });
-                        } else {
-                          setTimeout(function(){
-                            window.location.reload();
-                          },5000);
-                            if (!(res.error[0] && res.error[0].message)) {
-                                res.error[0].message = "银行存管开通失败";
-                            }
-                            CccOk.create({
-                                msg: res.error[0].message,
-                                okText: '确定',
-                                cancelText: '',
-                                ok: function () {
-                                    window.location.reload();
-                                },
-                                cancel: function () {
-                                    window.location.reload();
-                                },
-                                close:function(){
-                                  window.location.reload();
-                                },
-                            });
-                        }
-                    });
-            });
-        }
-    });
+    var user = {
+        userId: CC.user.id,
+        name: $.trim(name),
+        idNumber: $.trim(idNumber),
+        successUrl: window.location.href
+    };
+    openBank(user)
 });
+
+ractive.on("open_submit",function(e){
+   e.original.preventDefault();
+   console.log("跳转？？？？")
+})
 
 
 // 继续开通
@@ -430,6 +478,7 @@ ractive.on('jihuo-submit', function (){
     }
     var mess = this.get("messageTxt");
     if(!this.get("lccbId")){
+        console.log("激活")
         $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
             smsid: smsid,
             smsCaptcha : mess
@@ -446,6 +495,7 @@ ractive.on('jihuo-submit', function (){
             });                    
         })
     } else {
+        console.log("授权")
         $.post('/api/v2/lccb/userAuth/'+ CC.user.userId,{
             smsid: smsid,
             validatemsg : mess
@@ -502,4 +552,48 @@ function SeverName(){
             ractive.set('banks', banks);
             console.log(banks)
         });
+}
+
+function openBank(user){
+    $.ajax({
+        url: '/api/v2/lccbweb/bindCard/'+CC.user.id,
+        type: "POST",
+        data: user,
+        async: false,
+        success: function(res){
+            if (res.status == 0) {
+                ractive.set('action', res.data);
+                $("form").submit()
+                CccOk.create({
+                    msg: "请求成功",
+                    okText: '确定',
+                    cancelText: '稍后再说',
+                    ok: function () {                                    
+                         window.location.reload();
+                    },
+                    cancel: function () {
+                        window.location.reload();
+                    },
+                    close:function(){
+                        window.location.reload();
+                    }
+                });
+            } else {
+                CccOk.create({
+                    msg: "请求失败",
+                    okText: '确定',
+                    cancelText: '',
+                    ok: function () {
+                        window.location.reload();
+                    },
+                    cancel: function () {
+                        window.location.reload();
+                    },
+                    close:function(){
+                      window.location.reload();
+                    },
+                });
+            }
+        }
+    })
 }
