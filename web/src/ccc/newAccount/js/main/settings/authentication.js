@@ -461,21 +461,23 @@ ractive.on('jihuo-submit', function (){
             $('.agree-error').html('请先同意开通银行存管协议');
             return;
         }
+
+        if(!smsid){
+            var error = 'SMSCAPTCHA_INVALID'        
+            ractive.set({
+                showErrormessageTxt: true,
+                errormessageTxt: utils.errorMsg[error]
+            });
+            return
+        }
+
+        this.fire('checkmessageTxt');
+        if (this.get("showErrormessageTxt")) {
+            return
+        }
     }
     
-    if(!smsid){
-        var error = 'SMSCAPTCHA_INVALID'        
-        ractive.set({
-            showErrormessageTxt: true,
-            errormessageTxt: utils.errorMsg[error]
-        });
-        return
-    }
-
-    this.fire('checkmessageTxt');
-    if (this.get("showErrormessageTxt")) {
-        return
-    }
+    
     var mess = this.get("messageTxt");
     if(!this.get("lccbId")){
         console.log("激活")
@@ -496,10 +498,13 @@ ractive.on('jihuo-submit', function (){
         })
     } else {
         console.log("授权")
-        $.post('/api/v2/lccb/userAuth/'+ CC.user.userId,{
-            smsid: smsid,
-            validatemsg : mess
+        $.post('/api/v2/lccbweb/userAuth/'+ CC.user.userId,{
+            successUrl: window.location.href
         },function(res) {
+            if(res.status ==0){
+                ractive.set('action2', res.data);
+                $("#form2").submit()
+            }
             CccOk.create({
                 msg: res.msg,
                 okText: '确定',
@@ -563,7 +568,7 @@ function openBank(user){
         success: function(res){
             if (res.status == 0) {
                 ractive.set('action', res.data);
-                $("form").submit()
+                $("#form1").submit()
                 CccOk.create({
                     msg: "请求成功",
                     okText: '确定',

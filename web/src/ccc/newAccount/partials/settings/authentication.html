@@ -8,7 +8,7 @@
     </div>
 
     <div class="account-form-wrapper">
-        <form action="{{action}}" class="form-horizontal" style="text-align:center;" autocomplete="off" on-submit="open_submit" target="_blank" method="POST">
+        <form id="form1" action="{{action}}" class="form-horizontal" style="text-align:center;" autocomplete="off" on-submit="open_submit" target="_blank" method="POST">
             <div class="">
                 <div class="" style="height:40px">
                     {{#if showErrorMessage}}
@@ -142,6 +142,7 @@
         <span class="value" style="width: 280px;">{{bankMobile.substr(0,3)}}****{{bankMobile.substr(-3)}}</span>
     </div>
     {{#if !lccbId || !authority}}
+    {{#if !lccbId}}
     <div class="account-info-row">
         <label for="messageTxt2" class="">短信验证码</label>
          <input type="text" class="check-name" id="messageTxt2" name="messageTxt2" value="{{messageTxt}}" on-blur="checkmessageTxt" style="width: 100px" />
@@ -153,7 +154,7 @@
          {{/if}}
     </div>
 
-    {{#if !lccbId}}
+    
     <p class="account-info-row" style="text-align:left;line-height: 30px;">
         <input type="checkbox" class="agree" checked id="agree" />
         <span>我同意 <p style="display:inline-block;vertical-align:top;line-height:20px;padding:5px 0 10px 5px">
@@ -162,7 +163,7 @@
         </span>
     </p>
     {{/if}} 
-
+    <form id="form2" action="{{action2}}" method="POST" target="_blank" style="display: none"></form>
     <p class="agree-error userIdNumber" style="color:red;margin-left: 350px;"></p>
     <div class="account-submit">
         <input type="button" value="{{buttonname}}" on-click="jihuo-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
