@@ -242,7 +242,8 @@ ractive.on('withDrawSubmit', function (e) {
                 type: "POST",
                 data: {
                     userId: "2130CE47-ADA8-43BE-9E8D-DDF94FAFA1A1",
-                    transamt: amount
+                    transamt: amount,
+                    successUrl: window.location.href
                 },
                 async: false,
                 success: function(res){
