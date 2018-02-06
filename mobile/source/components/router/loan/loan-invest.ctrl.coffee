@@ -24,18 +24,6 @@ do (_, angular, Math) ->
                 @$scope.minMoney = arrList[0]
                 @successUrl="https://www.718bank.com/h5/loan/"+@loan.id
 
-                @api.payment_pool_getLccbId(@user.info.id)
-                    .then (data) =>
-                        return @$q.reject(data) unless data.status is 0
-                        return data
-
-                    .then (data) =>
-                        @$scope.lccbAuth=data.data.lccbAuth
-                        if data.data.lccbId=="0"
-                            @$scope.btnContent="立即激活"
-                    .catch (data) =>
-                        @$window.alert "获取廊坊银行用户ID失败！"
-
                 console.log "user:",@user
 
                 
