@@ -304,7 +304,7 @@ do (_, angular, Math) ->
                 
                 if coupon != undefined and coupon.id == null
 
-                    #console.log 123
+                    console.log 123
                     (@api.payment_pool_lccb_rebeat @user.fund.userId,loan.id, amount,  @$scope.earning1,@successUrl
 
                         .then (data) =>
@@ -330,7 +330,7 @@ do (_, angular, Math) ->
                         #    @$scope.$on '$locationChangeSuccess', =>
                         #        @$window.location.reload()
 
-                        .then ({data})=>
+                        .then (data)=>
                             @$window.form.action=data;
                             do @$window.form.submit
 
@@ -371,7 +371,7 @@ do (_, angular, Math) ->
                         #    @$scope.$on '$locationChangeSuccess', =>
                         #        @$window.location.reload()
 
-                        .then ({data}) =>
+                        .then (data) =>
                             @$window.form.action=data;
                             do @$window.form.submit
 
