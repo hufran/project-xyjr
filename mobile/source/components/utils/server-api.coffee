@@ -582,10 +582,10 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
-            payment_pool_lccb_accredit:(userId,smsid,validatemsg)->
+            payment_pool_lccb_accredit:(userId,successUrl)->
                 @$http
-                    .post '/api/v2/lccb/userAuth/'+userId,
-                        _.compact {smsid,validatemsg}
+                    .post '/api/v2/lccbweb/userAuth/'+userId,
+                        _.compact {successUrl}
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
