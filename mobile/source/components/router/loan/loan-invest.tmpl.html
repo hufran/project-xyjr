@@ -72,10 +72,11 @@
 
     <form class="form-horizontal container form-invest"
           name="form"
+          method="POST" 
           autocapitalize="none"
           autocomplete="off"
           autocorrect="off"
-          ng-submit="self.submit($event)"
+        
     >
         <div class="form-group">
             <label class="col-xs-3">账户余额:</label>
@@ -177,7 +178,7 @@
         </div>
 
        <p class="action">
-            <button type="submit" class="btn btn-invest btn-lg btn-block"
+            <button type="submit" ng-click="self.submit($event)" class="btn btn-invest btn-lg btn-block"
                     ng-disabled="form.$invalid || self.submit_sending"
             >立即支付</button>
         </p>
