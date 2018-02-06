@@ -618,7 +618,8 @@ setTimeout((function () {
                     userId: CC.user.id,
                     loanId: filterXSS(investRactive.get('loan.id')),
                     amount:  filterXSS(num),
-                    rebateAmount: thisRebate
+                    rebateAmount: thisRebate,
+                    successUrl: window.location.href
                 },
                 async: false,
                 success: function(res){
@@ -722,7 +723,8 @@ setTimeout((function () {
                     userId: CC.user.id,
                     loanId: filterXSS(investRactive.get('loan.id')),
                     amount:  filterXSS(num),
-                    placementId: filterXSS(investRactive.get('coupon'))
+                    placementId: filterXSS(investRactive.get('coupon')),
+                    successUrl: window.location.href
                 },
                 async: false,
                 success: function(res){
