@@ -498,23 +498,48 @@ ractive.on('jihuo-submit', function (){
         })
     } else {
         console.log("授权")
-        $.post('/api/v2/lccbweb/userAuth/'+ CC.user.userId,{
-            successUrl: window.location.href
-        },function(res) {
-            if(res.status ==0){
-                ractive.set('action2', res.data);
-                $("#form2").submit()
-            }
-            CccOk.create({
-                msg: res.msg,
-                okText: '确定',
-                ok: function () {
-                    window.location.reload();
-                },
-                cancel: function() {
-                    window.location.reload();
+        $.ajax({
+            url: '/api/v2/lccbweb/userAuth/'+CC.user.id,
+            type: "POST",
+            data: {
+                successUrl: window.location.href
+            },
+            async: false,
+            success: function(res){
+                if (res.status == 0) {
+                    ractive.set('action2', res.data);
+                    $("#form2").submit()
+                    CccOk.create({
+                        msg: "请求成功",
+                        okText: '确定',
+                        cancelText: '稍后再说',
+                        ok: function () {                                    
+                             window.location.reload();
+                        },
+                        cancel: function () {
+                            window.location.reload();
+                        },
+                        close:function(){
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    CccOk.create({
+                        msg: "请求失败",
+                        okText: '确定',
+                        cancelText: '',
+                        ok: function () {
+                            window.location.reload();
+                        },
+                        cancel: function () {
+                            window.location.reload();
+                        },
+                        close:function(){
+                          window.location.reload();
+                        },
+                    });
                 }
-            });                    
+            }
         })
     }
     
