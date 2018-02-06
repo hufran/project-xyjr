@@ -609,7 +609,7 @@ setTimeout((function () {
 
     function Authpay(num, couponText) {
 
-        if ($("#couponSelection").find("option:selected").val().replace(/^\s*/g,"")=='返现券') {
+        if ($("#couponSelection").find("option:selected").text().replace(/^\s*/g,"")=='返现券') {
             var thisRebate=parseFloat(jQuery('#thisRebate').text()).toFixed(2);
             $.ajax({
                 url: '/api/v2/lccbweb/tenderUseRebate/'+CC.user.id,
@@ -627,8 +627,8 @@ setTimeout((function () {
                         investRactive.set('action', res.data);
                         $("#form").submit()
                         CccOk.create({
-                            msg: msg,
-                            okText: '请求成功',
+                            msg: "请求成功",
+                            okText: '确定',
                             ok: function () {                                    
                                 window.location.reload();
                             },
@@ -716,6 +716,7 @@ setTimeout((function () {
                     //alert(111);
         }//使用返现劵接口end
         else{
+            investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
             $.ajax({
                 url: '/api/v2/lccbweb/tender/'+CC.user.id,
                 type: "POST",
@@ -723,7 +724,7 @@ setTimeout((function () {
                     userId: CC.user.id,
                     loanId: filterXSS(investRactive.get('loan.id')),
                     amount:  filterXSS(num),
-                    placementId: filterXSS(investRactive.get('coupon')),
+                    placementId: filterXSS(investRactive.get('coupon')||""),
                     successUrl: window.location.href
                 },
                 async: false,
@@ -732,8 +733,8 @@ setTimeout((function () {
                         investRactive.set('action', res.data);
                         $("#form").submit()
                         CccOk.create({
-                            msg: msg,
-                            okText: '请求成功',
+                            msg: '请求成功',
+                            okText: '确定',
                             ok: function () {                                    
                                 window.location.reload();
                             },
@@ -757,7 +758,7 @@ setTimeout((function () {
                 }
             })
 
-            // investRactive.set('coupon',jQuery('#couponSelection').find("option:selected").val());
+            
             // $.post('/lianlianpay/tender', {
             //     amount : filterXSS(num),
             //     loanId : filterXSS(investRactive.get('loan.id')),
