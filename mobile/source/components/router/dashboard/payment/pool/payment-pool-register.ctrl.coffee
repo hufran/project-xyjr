@@ -170,34 +170,34 @@ do (_, angular) ->
                         @error.on = false
                     , @error.timeout
                     return
-                if parseInt(@$scope.lccbUserId)!=-1
-                    if typeof card_no!="undefined"
-                        card_no=filterXSS card_no
-                    else
-                        @error.on = true
-                        @error.message = '银行卡号不能为空！'
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
-                        return
-                    if typeof bank_name!="undefined"
-                        bank_name=filterXSS bank_name
-                    else
-                        @error.on = true
-                        @error.message = '请选择所属银行！'
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
-                        return
-                    if typeof card_phone!="undefined"
-                        card_phone=filterXSS card_phone
-                    else
-                        @error.on = true
-                        @error.message = '请输入手机号码！'
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
-                        return
+                #if parseInt(@$scope.lccbUserId)!=-1
+                #    if typeof card_no!="undefined"
+                #        card_no=filterXSS card_no
+                #    else
+                #        @error.on = true
+                #        @error.message = '银行卡号不能为空！'
+                #        @error.timer = @$timeout =>
+                #            @error.on = false
+                #        , @error.timeout
+                #        return
+                #    if typeof bank_name!="undefined"
+                #        bank_name=filterXSS bank_name
+                #    else
+                #        @error.on = true
+                #        @error.message = '请选择所属银行！'
+                #        @error.timer = @$timeout =>
+                #            @error.on = false
+                #        , @error.timeout
+                #        return
+                #    if typeof card_phone!="undefined"
+                #        card_phone=filterXSS card_phone
+                #    else
+                #        @error.on = true
+                #        @error.message = '请输入手机号码！'
+                #        @error.timer = @$timeout =>
+                #            @error.on = false
+                #        , @error.timeout
+                #        return
             
 
                 
