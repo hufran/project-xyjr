@@ -61,7 +61,7 @@ var ractive = new Ractive({
         })
     },
     oncomplete: function () {
-       // SeverName() 
+       SeverName() 
        if(ractive.get('bank')) {
           var bankcode = CC.user.bankCards[0].account.bank
           $(".bankpic").css('background-image','url(/ccc/newAccount/img/bankIcons/'+ bankcode + '.png)')         
