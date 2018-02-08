@@ -93,11 +93,11 @@
                           </div>
                         </div>
                 </div>
-                <!-- <div class="form-group merge"
+                <div class="form-group merge"
                      ng-class="{'has-error': form.card_no.$invalid && form.card_no.$dirty}" ng-if="lccbUserId!=-1"
                     >
                     <label>银行卡号</label>
-                    <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.account">
+                    <!-- <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.account">
                         <input id="card_no" class="form-control input-target input-lg" type="text"
                                name="card_no"
                                autocapitalize="none"
@@ -116,7 +116,7 @@
                             <span ng-show="form.card_no.$error.required">必须填写</span>
                             <span ng-show="(form.card_no.$error.pattern || form.card_no.$invalid) && form.card_no.$viewValue.length != 0">请填写正确的银行卡号</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.account" ng-click="self.jumpUrl()">
                       <div class="show-name" ng-init="store.card_no=user.bank_account.account" style="display: flex;justify-content:space-between;">
                         <span>{{user_account}}</span> <span class="glyphicon glyphicon-menu-right pull-right" ng-show="lccbUserId!=0&&lccbUserId!=-1"></span>
@@ -129,7 +129,7 @@
                     >
                     <input type="hidden" ng-init="bankLists={'中国农业银行':'ABC','中国银行':'BOC','交通银行':'BCM','上海银行':'BOS','建设银行':'CCB','光大银行':'CEB','中信银行':'CITICBANK','招商银行':'CMB','民生银行':'CMBC','广东发展银行':'GDB','中国工商银行':'ICBC','平安银行':'PINGANBANK','北京银行':'BCCB','兴业银行':'CIB','浙商银行':'CZB','广发银行':'CGBC','邮政储蓄银行':'PSBC','浦发银行':'SPDB'}" />
                     <label for="bank_name">所属银行</label>
-                    <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.bank">
+                    <!-- <div class="form-control-wrap" ng-if="!user.bank_account||!user.bank_account.bank">
                         <span ng-if="businessNull" class="{{bankLists[store.bank_name]}} ownedBank"></span>
                         <select ng-if="businessNull" name="bank_name" class="form-control input-sm"
                                 id="bank_name"
@@ -142,14 +142,14 @@
                         <div class="help-block" ng-show="form.bank_name.$invalid && form.bank_name.$dirty" ng-if="!store.bank_name" style="padding:16px 0 16px 10px;">
                             <span ng-show="form.card_no.$error.required">请选择开户银行</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-control-wrap" ng-if="user.bank_account&&user.bank_account.bank">
                       <div class="show-name" ng-init="store.bank_name=user.bank_account.bank">
                         {{banks[user.bank_account.bank]}} 
                       </div>
                     </div>
                 </div>
-                <div class="form-group merge"
+                <!-- <div class="form-group merge"
                      ng-if="lccbUserId!=-1"
                      ng-class="{'has-error': form.card_phone.$invalid && form.card_phone.$dirty}"
                 >
