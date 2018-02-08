@@ -1,7 +1,9 @@
 <div class = "account-userInfo-wrapper">
     <ul class="account-userInfo-tabs">
         <li on-click="changeTab" class="{{#if showBasic}} tab-active {{/if}} userInfo-tab" data-tab="basic">基本信息</li>
+        {{#if !isEnterprise}}
         <li on-click="changeTab" class="{{#if !showBasic}} tab-active {{/if}} userInfo-tab" data-tab="more">更多信息</li>
+        {{/if}}
     </ul>
     {{#if showBasic}}
     {{#if isEnterprise}}
@@ -23,6 +25,29 @@
                     <td class="align-center">
                         <span class="status">已认证</span>
                     </td>
+                </tr>
+                <tr>
+                    {{#if bankNumber}}
+                   <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;银行存管：
+                   </td>
+                    <td>
+                        <a style="color:#009ada" href="/newAccount/settings/authentication">查看详情</a>
+                    </td>
+                    <td class="align-center">
+                        <span class="status">已开通</span>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;银行存管：
+                    </td>
+                    <td>
+                        <span class="status-no">未开通!</span>
+                    </td>
+                    <td class="align-center">
+                        <a href="/newAccount/settings/authentication" class="btn" rel="nofollow" >去开通</a>
+                    </td>
+                    {{/if}}
                 </tr>
                 <!-- <tr>
                     {{#if paymentPasswordHasSet}}

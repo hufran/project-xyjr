@@ -1,4 +1,4 @@
-{{#if !user.enterprise}}
+<!-- {{#if !user.enterprise}} -->
 {{#if !banksabled}}
 <div style="width:1100px;position:relative;margin: 0 auto">
 	<a href="/newAccount/settings/authentication"><div class="bankcard-gray">
@@ -44,7 +44,7 @@
 	<div class="account-bg" on-click="guide"></div>
 	{{/if}} -->
 {{/if}}
-{{/if}}
+<!-- {{/if}} -->
 
 <div class="userinfowra">
 	<div class="infoContent">
@@ -93,7 +93,7 @@
 
 			<div class="name" style="width:500px;text-align:left;text-indent:45px;">
 
-				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
+				{{#if enterpriseName}}{{enterpriseName}}{{else}}{{userMobile}}{{/if}}
 			</div>
 			{{else}}
 			<div class="name">

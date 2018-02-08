@@ -29,6 +29,8 @@ var frozenAmount = CC.user.frozenAmount || 0;
 // 总资产
 var totalAmount = parseFloat(CC.user.availableAmount + dueInAmount + frozenAmount).toFixed(2);
 
+
+
 var homeRactive = new Ractive({
 	el: '.account-home-wrapper',
 	template: require('ccc/newAccount/partials/home.html'),
@@ -44,6 +46,15 @@ var homeRactive = new Ractive({
 		frozenAmount : parseFloat(frozenAmount).toFixed(2),
 		isEnterprise : CC.user.enterprise
 	},
+    oninit: function(){
+       $.get("/api/v2/corporation",function(res){
+            homeRactive.set("repayAmount", res.repayAmount)
+            homeRactive.set("totalLoanAmount", res.totalLoanAmount)
+            homeRactive.set("totalLoanCount", res.totalLoanCount)
+            homeRactive.set("enterpriseName", res.corporationUser.loginName)
+            homeRactive.set("userMobile", res.corporationUser.userMobile)
+       })
+    },
     parseData:function(){
 		var self = this;
         var investInterestAmount = self.get('investInterestAmount') + '';
@@ -212,6 +223,9 @@ var infoRactive = new Ractive({
 	
 	oninit: function () {
 		var safetyProgress = 25;
+        this.set("enterpriseName",homeRactive.get("enterpriseName"))
+        this.set("userMobile",homeRactive.get("userMobile"))
+        
 		accountService.getVipLevel(function (r) {
 			if(r.success && r.data) {
 				infoRactive.set('vip', r.data.level.name);
