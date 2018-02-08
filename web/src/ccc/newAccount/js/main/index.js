@@ -47,7 +47,7 @@ var homeRactive = new Ractive({
 		isEnterprise : CC.user.enterprise
 	},
     oninit: function(){
-       $.get("/api/v2/corporation",function(res){
+       $.get("/api/v2/corporation/"+CC.user.id,function(res){
             homeRactive.set("repayAmount", res.repayAmount)
             homeRactive.set("totalLoanAmount", res.totalLoanAmount)
             homeRactive.set("totalLoanCount", res.totalLoanCount)
@@ -225,7 +225,7 @@ var infoRactive = new Ractive({
 		var safetyProgress = 25;
         this.set("enterpriseName",homeRactive.get("enterpriseName"))
         this.set("userMobile",homeRactive.get("userMobile"))
-        
+
 		accountService.getVipLevel(function (r) {
 			if(r.success && r.data) {
 				infoRactive.set('vip', r.data.level.name);

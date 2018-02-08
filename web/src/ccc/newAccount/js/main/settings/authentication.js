@@ -33,7 +33,8 @@ var ractive = new Ractive({
         accountName: '',
         lccbId: CC.user ? CC.user.lccbUserId : '',
         authority: CC.user ? CC.user.lccbAuth : '',
-        action: ''
+        action: '',
+        isEnterPrise: CC.user.enterprise
     },
     oninit: function () {
         accountService.getUserInfo(function (res) {
