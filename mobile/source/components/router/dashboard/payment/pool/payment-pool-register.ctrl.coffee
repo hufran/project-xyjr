@@ -24,7 +24,7 @@ do (_, angular) ->
                 @$scope.user=@user
                 @cell_buffering = false
                 @cell_buffering_count = 120.119
-                @successUrl="https://www.718bank.com/h5/dashboard"
+                @successUrl=@$window.location.origin+"/h5/dashboard"
 
                 @api.payment_pool_getLccbId(@user.info.id)
                     .then (data) =>

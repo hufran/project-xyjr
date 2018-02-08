@@ -22,7 +22,7 @@ do (_, angular, Math) ->
                 arrList.sort(sortNumer)
                 @$scope.maxMoney = arrList[1]
                 @$scope.minMoney = arrList[0]
-                @successUrl="https://www.718bank.com/h5/loan/"+@loan.id
+                @successUrl=@$window.location.origin+"/h5/loan/"+@loan.id
 
                 console.log "user:",@user
 
