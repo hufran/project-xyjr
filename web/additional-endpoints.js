@@ -32,7 +32,7 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lccbweb/tender/:userid', auth.pass());
     router.post('/api/v2/lccbweb/tenderUseRebate/:userid', auth.pass());
     router.post('/api/v2/lccbweb/userAuth/:userid', auth.pass());
-    router.post('/api/v2/corporation/:userid', auth.pass());
+    router.get('/api/v2/corporation/:userid', auth.pass());
 
 
     
