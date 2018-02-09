@@ -51,7 +51,7 @@ var homeRactive = new Ractive({
             homeRactive.set("repayAmount", res.repayAmount)
             homeRactive.set("totalLoanAmount", res.totalLoanAmount)
             homeRactive.set("totalLoanCount", res.totalLoanCount)
-            homeRactive.set("enterpriseName", res.corporationUser.loginName)
+            homeRactive.set("enterpriseName", res.corporationUser.name)
             homeRactive.set("userMobile", res.corporationUser.userMobile)
        })
     },

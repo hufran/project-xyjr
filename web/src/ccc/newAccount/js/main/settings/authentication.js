@@ -60,6 +60,14 @@ var ractive = new Ractive({
                 ractive.set('authority', res.data.lccbAuth);                
             }
         })
+
+        $.get("/api/v2/corporation/"+CC.user.id,function(res){
+            homeRactive.set("authenticateInfo",{
+                name: res.user.name,
+                idNumber: res.user.busiCode,
+            })
+       })
+
     },
     oncomplete: function () {
        SeverName() 

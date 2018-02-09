@@ -18,8 +18,8 @@
                     {{/if}}
                 </div>
             </div>
-            {{#if !authenticateInfo.idNumber}}
-            <div class="trueName">
+            {{#if isEnterPrise}}
+            <!-- <div class="trueName">
                 <label for="trueName" class="">真实姓名</label>
                 <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName" maxlength="15"/>
                 {{#if showErrorMessageName}}
@@ -37,7 +37,15 @@
                      {{ errorMessageId }}
                  </div>
                  {{/if}}
-            </div>
+            </div> -->
+            <div class="userIdNumber">
+                    <label for="" class="text">公司名称：</label>
+                    <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+                </div>
+                <div class="userIdNumber">
+                    <label for="" class="text">社会信用代码：</label>
+                    <span class="value">{{authenticateInfo.idNumber}}</span>
+                </div>
             {{else}}
                 <div class="userIdNumber">
                     <label for="" class="text">真实姓名：</label>
