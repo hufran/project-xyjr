@@ -22,7 +22,7 @@ var ractive = new Ractive({
     data: {
         isQuickCheck: true,
         authenticateInfo: {
-            name: CC.user.name || '',
+            name: '',
             idNumber: ''
         },
         bank: banksabled.length? true:false,
@@ -37,36 +37,43 @@ var ractive = new Ractive({
         isEnterPrise: CC.user.enterprise
     },
     oninit: function () {
-        accountService.getUserInfo(function (res) {
-            ractive.set('authenticateInfo', {
-                name: res.user.name,
-                idNumber: res.user.idNumber,
+        if(CC.user.enterprise){
+            $.get("/api/v2/corporation/"+CC.user.id,function(res){
+                ractive.set("authenticateInfo",{
+                    name: res.corporationUser.name,
+                    idNumber: res.corporationUser.busiCode,
+                })
+           })
+        }else{
+            accountService.getUserInfo(function (res) {
+                ractive.set('authenticateInfo', {
+                    name: res.user.name,
+                    idNumber: res.user.idNumber,
+                });
+                if(ractive.get('bank')) {
+                    ractive.set('bankNumber', CC.user.bankCards[0].account.account)
+                    ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
+                }
             });
-            if(ractive.get('bank')) {
-                ractive.set('bankNumber', CC.user.bankCards[0].account.account)
-                ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
-            }
-        });
-
+        }
+    
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
                 if(res.data.lccbId == 0) {
                     ractive.set('lccbId', '');
                     ractive.set('buttonname', '立即激活');
                 }else{
-                    ractive.set('lccbId', res.data.lccbId);
-                    ractive.set('buttonname', '授权投资');
+                    if(CC.user.enterprise){
+                        ractive.set('lccbId', res.data.lccbId);
+                        ractive.set('buttonname', '更换银行卡');
+                    }else{
+                        ractive.set('lccbId', res.data.lccbId);
+                        ractive.set('buttonname', '授权投资');
+                    }                  
                 }
                 ractive.set('authority', res.data.lccbAuth);                
             }
         })
-
-        $.get("/api/v2/corporation/"+CC.user.id,function(res){
-            homeRactive.set("authenticateInfo",{
-                name: res.user.name,
-                idNumber: res.user.busiCode,
-            })
-       })
 
     },
     oncomplete: function () {
@@ -345,8 +352,12 @@ ractive.on("register-account-submit", function () {
     }
 
 
-    var name = filterXSS(this.get("name")) || this.get("authenticateInfo").name;
-    var idNumber = filterXSS(this.get("idNumber")) || this.get("authenticateInfo").idNumber;
+    // if(this.get("isEnterPrise")){
+        var name = this.get("authenticateInfo").name;
+        var idNumber = this.get("authenticateInfo").idNumber;
+    // }
+    
+    
 
     var user = {
         userId: CC.user.id,

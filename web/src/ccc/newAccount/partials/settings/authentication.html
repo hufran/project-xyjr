@@ -19,25 +19,7 @@
                 </div>
             </div>
             {{#if isEnterPrise}}
-            <!-- <div class="trueName">
-                <label for="trueName" class="">真实姓名</label>
-                <input type="text" class="check-name" name="name" id="trueName" value="{{ name }}" on-blur="checkName" maxlength="15"/>
-                {{#if showErrorMessageName}}
-                <div class="error-message nameAndId">
-                    {{ errorMessageName }}
-                </div>
-                {{/if}}
-            </div>
-
-            <div class="userIdNumber">
-                <label for="userIdNumber" class="">身份证号</label>
-                 <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{idNumber}}" on-blur="checkIdNumber"/>
-                 {{#if showErrorMessageId}}
-                 <div class="error-message nameAndId">
-                     {{ errorMessageId }}
-                 </div>
-                 {{/if}}
-            </div> -->
+            
             <div class="userIdNumber">
                     <label for="" class="text">公司名称：</label>
                     <span class="value">{{format.mask(authenticateInfo.name)}}</span>
@@ -47,6 +29,7 @@
                     <span class="value">{{authenticateInfo.idNumber}}</span>
                 </div>
             {{else}}
+                <!-- {{#if authenticateInfo.idNumber}}
                 <div class="userIdNumber">
                     <label for="" class="text">真实姓名：</label>
                     <span class="value">{{format.mask(authenticateInfo.name)}}</span>
@@ -55,6 +38,27 @@
                     <label for="" class="text">身份证号：</label>
                     <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
                 </div>
+                {{else}} -->
+                <div class="trueName">
+                    <label for="trueName" class="">真实姓名</label>
+                    <input type="text" class="check-name" name="name" id="trueName" value="{{ authenticateInfo.name }}" on-blur="checkName" maxlength="15"/>
+                    {{#if showErrorMessageName}}
+                    <div class="error-message nameAndId">
+                        {{ errorMessageName }}
+                    </div>
+                    {{/if}}
+                </div>
+
+                <div class="userIdNumber">
+                    <label for="userIdNumber" class="">身份证号</label>
+                     <input type="text" class="check-name" id="userIdNumber" name="idNumber" value="{{authenticateInfo.idNumber}}" on-blur="checkIdNumber"/>
+                     {{#if showErrorMessageId}}
+                     <div class="error-message nameAndId">
+                         {{ errorMessageId }}
+                     </div>
+                     {{/if}}
+                </div>
+                <!-- {{/if}} -->
             {{/if}}
             <p class="userIdNumber" style="text-align:left;line-height: 30px;">
                     <input type="checkbox" class="agree" checked id="agree" />
@@ -84,24 +88,43 @@
 </div>
 <div class="space-20"></div>
 <div class="account-opened-wrapper">
-
-    <div class="account-info-row">
-        <label for="" class="text">真实姓名：</label>
-        <span class="value">{{format.mask(authenticateInfo.name)}}</span>
-    </div>
-    <div class="account-info-row">
-        <label for="" class="text">身份证号：</label>
-        <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
-    </div>
-    <div class="account-info-row">
-        <label for="" class="text">银行卡号：</label>
-        <span class="value">{{bankNumber.substr(0,5)}}**********{{bankNumber.substr(-3)}}</span>
-    </div>
-    <div class="account-info-row">
-        <label for="" class="text">所属银行：</label>
-        <span class="bankpic"></span>
-        <span class="value" style="width: 250px;">{{accountName}}</span>
-    </div>
+    {{#if !isEnterPrise}}
+        <div class="account-info-row">
+            <label for="" class="text">真实姓名：</label>
+            <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+        </div>
+        <div class="account-info-row">
+            <label for="" class="text">身份证号：</label>
+            <span class="value">{{authenticateInfo.idNumber.substr(0,5)}}**********{{authenticateInfo.idNumber.substr(-3)}}</span>
+        </div>
+        <div class="account-info-row">
+            <label for="" class="text">银行卡号：</label>
+            <span class="value">{{bankNumber.substr(0,5)}}**********{{bankNumber.substr(-3)}}</span>
+        </div>
+        <div class="account-info-row">
+            <label for="" class="text">所属银行：</label>
+            <span class="bankpic"></span>
+            <span class="value" style="width: 250px;">{{accountName}}</span>
+        </div>
+    {{else}}
+        <div class="account-info-row">
+            <label for="" class="text">公司名称：</label>
+            <span class="value">{{format.mask(authenticateInfo.name)}}</span>
+        </div>
+        <div class="account-info-row">
+            <label for="" class="text">营业执照：</label>
+            <span class="value">{{authenticateInfo.idNumber}}</span>
+        </div>
+        <!-- <div class="account-info-row">
+            <label for="" class="text">银行卡号：</label>
+            <span class="value">{{bankNumber.substr(0,5)}}**********{{bankNumber.substr(-3)}}</span>
+        </div>
+        <div class="account-info-row">
+            <label for="" class="text">所属银行：</label>
+            <span class="bankpic"></span>
+            <span class="value" style="width: 250px;">{{accountName}}</span>
+        </div> -->
+    {{/if}}
     <!-- <div class="account-info-row">
         <label for="" class="text">银行预留手机号：</label>
         <span class="value" style="width: 280px;">{{bankMobile.substr(0,3)}}****{{bankMobile.substr(-3)}}</span>

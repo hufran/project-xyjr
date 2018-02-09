@@ -109,6 +109,17 @@
 					{{else}}
 					<li class="rzpa cmo"></li>
 					{{/if}}
+					{{#if user.name}}
+				<li>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:16px;left:30px;">点击查看银行存管</p>
+				</li>
+					{{else}}
+				<li>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:16px;left:30px;">点击查看银行存管</p>
+				</li>
+					{{/if}}
 				{{else}}
 					{{#if user.mobile}}
 					<li class="rzpa cmo-active"></li>

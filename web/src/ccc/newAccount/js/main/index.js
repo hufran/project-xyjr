@@ -207,7 +207,7 @@ var banksabled = _.filter(CC.user.bankCards, function (r) {
 });
 
 var infoRactive = new Ractive({
-	el: '#userinfo',
+	el: '#userinfo', 
 	template: require('ccc/newAccount/partials/home/userinfo.html'),
 	data: {
 		user: CC.user,
@@ -223,9 +223,12 @@ var infoRactive = new Ractive({
 	
 	oninit: function () {
 		var safetyProgress = 25;
-        this.set("enterpriseName",homeRactive.get("enterpriseName"))
-        this.set("userMobile",homeRactive.get("userMobile"))
-
+        // this.set("enterpriseName",homeRactive.get("enterpriseName"))
+        // this.set("userMobile",homeRactive.get("userMobile"))
+        $.get("/api/v2/corporation/"+CC.user.id,function(res){
+            infoRactive.set("enterpriseName", res.corporationUser.name)
+            infoRactive.set("userMobile", res.corporationUser.userMobile)
+       })
 		accountService.getVipLevel(function (r) {
 			if(r.success && r.data) {
 				infoRactive.set('vip', r.data.level.name);
