@@ -201,7 +201,7 @@ ractive.on('checkAmount',function(){
     inp.val(inp.val().replace(".","$#$").replace(/\./g,"").replace("$#$","."));
     inp.val(inp.val().replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'));
     if (inp.val().length>2&&inp.val().substr(1,1)!='.') {
-        inp.val(inp.val().replace(/\b(0+)/gi,""))
+        inp.val(inp.val().replace(/\b(0{2,})/gi,""))
     }
 })
 

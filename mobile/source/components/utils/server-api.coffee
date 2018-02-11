@@ -551,6 +551,24 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR 
 
+            payment_pool_lccb_register:(userId,name,idNumber,successUrl)->
+                @$http
+                    .post '/api/v2/lccbweb/bindCard/'+userId,{name,idNumber,successUrl}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_lccb_faster:(userId,transamt,successUrl)->
+                @$http
+                    .post '/api/v2/lccbweb/deposit/'+userId,{transamt,successUrl}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
+            payment_pool_lccb_withdraw:(userId,transamt,successUrl)->
+                @$http
+                    .post '/api/v2/lccbweb/withdraw/'+userId,{transamt,successUrl}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
             payment_pool_persionInit:(userId,smsid,smsCaptcha)->
                 @$http
                     .post '/api/v2/lccb/persionInit/'+userId,
@@ -564,24 +582,10 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
-            payment_pool_lccb_accredit:(userId,smsid,validatemsg)->
+            payment_pool_lccb_accredit:(userId,successUrl)->
                 @$http
-                    .post '/api/v2/lccb/userAuth/'+userId,
-                        _.compact {smsid,validatemsg}
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-
-            payment_pool_lccb_investValidate:(userId,paymentPassword)->
-                @$http
-                    .post '/api/v2/validate/lccbInvest/'+userId,
-                        _.compact {paymentPassword}
-                    .then TAKE_RESPONSE_DATA
-                    .catch TAKE_RESPONSE_ERROR
-            
-            payment_pool_lccb_withdrawValidate:(userId,paymentPassword)->
-                @$http
-                    .post '/api/v2/validate/lccbWithdraw/'+userId,
-                        _.compact {paymentPassword}
+                    .post '/api/v2/lccbweb/userAuth/'+userId,
+                        _.compact {successUrl}
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
@@ -630,6 +634,17 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_DATA
 
+            payment_pool_lccb_tender: (userId,loanId,amount=0,placementId,successUrl) ->
+                @$http
+                    .post "/api/v2/lccbweb/tender/#{userId}",{loanId,amount,placementId,successUrl}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
+
+            payment_pool_lccb_rebeat: (userId,loanId,amount=0,rebateAmount,successUrl) ->
+                @$http
+                    .post "/api/v2/lccbweb/tenderUseRebate/#{userId}",{loanId,amount,rebateAmount,successUrl}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_DATA
 
             get_available_bank_list: ->
 

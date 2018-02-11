@@ -22,18 +22,7 @@ do (_, angular, Math) ->
                 arrList.sort(sortNumer)
                 @$scope.maxMoney = arrList[1]
                 @$scope.minMoney = arrList[0]
-
-                @api.payment_pool_getLccbId(@user.info.id)
-                    .then (data) =>
-                        return @$q.reject(data) unless data.status is 0
-                        return data
-
-                    .then (data) =>
-                        @$scope.lccbAuth=data.data.lccbAuth
-                        if data.data.lccbId=="0"
-                            @$scope.btnContent="立即激活"
-                    .catch (data) =>
-                        @$window.alert "获取廊坊银行用户ID失败！"
+                @successUrl=@$window.location.origin+"/h5/loan/"+@loan.id
 
                 console.log "user:",@user
 
@@ -193,7 +182,7 @@ do (_, angular, Math) ->
                 do event.preventDefault  # submitting via AJAX
                 good_to_go = true
                 loan = @$scope.loan
-                {password} = @$scope.store
+                #{password} = @$scope.store
                 coupon = @$scope.store?.coupon
                 amount = @$scope.store.amount or 0
                 loan_minimum = loan.raw.loanRequest.investRule.minAmount
@@ -228,22 +217,11 @@ do (_, angular, Math) ->
 
 
                 return unless good_to_go
-                password=filterXSS password
+                #password=filterXSS password
                 amount = filterXSS amount.toString()
 
-                (@api.payment_pool_lccb_investValidate @user.fund.userId,password
-                    .then (data) =>
-                        return @$q.reject(data) unless data.data is true
-                        return data
-
-                    .then (data) =>
-                        if @$scope.lccbAuth==false
-                            @paymentPoint(loan,password,coupon,amount)
-                        else
-                            @invest(loan,password,coupon,amount)
-                    .catch (data) =>
-                        @mg_alert _.get data,"msg","系统繁忙，请稍后重试！"
-                )
+                @invest(loan,coupon,amount)
+                    
 
                
                 
@@ -317,17 +295,7 @@ do (_, angular, Math) ->
                             angular.extend $scope, {content}
                 }
 
-            invest: (loan,password,coupon,amount,mobile_captcha) ->
-
-                if @$scope.lccbAuth==false
-                    if typeof mobile_captcha =="undefined" || mobile_captcha==null || !(/^\d{6}$/.test mobile_captcha)
-                        @mg_alert "验证码不正确!"
-                        return
-                    if !@smsid
-                        @mg_alert "请获取验证码后在操作!"
-                        return
-                    
-                    return unless !!mobile_captcha and !!@smsid
+            invest: (loan,coupon,amount) ->
 
                 
 
@@ -336,29 +304,35 @@ do (_, angular, Math) ->
                 
                 if coupon != undefined and coupon.id == null
 
-                    #console.log 123
-                    (@api.payment_pool_rebeat loan.id, password, amount, @user.fund.userId, @$scope.earning1, @smsid, mobile_captcha
+                    console.log 123
+                    (@api.payment_pool_lccb_rebeat @user.fund.userId,loan.id, amount,  @$scope.earning1,@successUrl
 
-                        .then @api.process_response
+                        .then (data) =>
+                            return @$q.reject(data) unless data.status is 0
+                            return data
                         .then @api.TAKE_RESPONSE_DATA
 
-                        .then ({userShare, tenderResult}) =>
-                            return true unless userShare?.id
+                        #.then ({userShare, tenderResult}) =>
+                        #    return true unless userShare?.id
 
-                            @prompt_coupon_sharing(userShare.id).catch =>
-                                @$q.resolve false
+                        #    @prompt_coupon_sharing(userShare.id).catch =>
+                        #        @$q.resolve false
 
-                        .then (alert_success) =>
+                        #.then (alert_success) =>
 
-                            if alert_success
-                                @mg_alert '投标成功，资金被冻结'
-                                .result.finally =>
-                                    @$location.path "/loan/#{ @loan.id }"
+                        #    if alert_success
+                        #        @mg_alert '投标成功，资金被冻结'
+                        #        .result.finally =>
+                        #            @$location.path "/loan/#{ @loan.id }"
 
-                            @$location.path "/loan/#{ @loan.id }"
+                        #    @$location.path "/loan/#{ @loan.id }"
 
-                            @$scope.$on '$locationChangeSuccess', =>
-                                @$window.location.reload()
+                        #    @$scope.$on '$locationChangeSuccess', =>
+                        #        @$window.location.reload()
+
+                        .then (data)=>
+                            @$window.form.action=data;
+                            do @$window.form.submit
 
                         .catch (data) =>
                             message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
@@ -371,28 +345,35 @@ do (_, angular, Math) ->
                 else
 
 
-                    (@api.payment_pool_tender(loan.id, password, amount, coupon?.id, @smsid, mobile_captcha)
+                    (@api.payment_pool_lccb_tender(@user.fund.userId, loan.id, amount, coupon?.id,@successUrl)
 
-                        .then @api.process_response
+                        #.then @api.process_response
+                        .then (data) =>
+                            return @$q.reject(data) unless data.status is 0
+                            return data
                         .then @api.TAKE_RESPONSE_DATA
 
-                        .then ({userShare, tenderResult}) =>
-                            return true unless userShare?.id
+                        #.then ({userShare, tenderResult}) =>
+                        #    return true unless userShare?.id
 
-                            @prompt_coupon_sharing(userShare.id).catch =>
-                                @$q.resolve false
+                        #    @prompt_coupon_sharing(userShare.id).catch =>
+                        #        @$q.resolve false
 
-                        .then (alert_success) =>
+                        #.then (alert_success) =>
 
-                            if alert_success
-                                @mg_alert '投标成功，资金被冻结'
-                                    .result.finally =>
-                                        @$location.path "/loan/#{ @loan.id }"
+                        #    if alert_success
+                        #        @mg_alert '投标成功，资金被冻结'
+                        #            .result.finally =>
+                        #                @$location.path "/loan/#{ @loan.id }"
 
-                            @$location.path "/loan/#{ @loan.id }"
+                        #    @$location.path "/loan/#{ @loan.id }"
 
-                            @$scope.$on '$locationChangeSuccess', =>
-                                @$window.location.reload()
+                        #    @$scope.$on '$locationChangeSuccess', =>
+                        #        @$window.location.reload()
+
+                        .then (data) =>
+                            @$window.form.action=data;
+                            do @$window.form.submit
 
                         .catch (data) =>
                             message = _.get data, 'error[0].message', '系统繁忙，请稍后重试！'
@@ -402,98 +383,7 @@ do (_, angular, Math) ->
                             @submit_sending = false
                     )
                     
-                
-
-            paymentPoint:(loan,password,coupon,amount)->
-                payment=@$uibModal.open {
-                    size: 'sm'
-                    keyboard: false
-                    backdrop: 'static'
-                    windowClass: 'center ngt-share-coupon'
-                    animation: true
-                    templateUrl: 'ngt-pool-recharge.tmpl'
-
-                    controller: _.ai '$scope', ($scope) =>
-                        self=@
-                        angular.extend $scope, {
-                          bankNumber:@user.bank_account.bankMobile.substring(0,3)+"****"+@user.bank_account.bankMobile.substring(7),
-                          mobile_verification_code_has_sent:true,
-                          cell_buffering : false,
-                          cell_buffering_count : 120.119,
-                          get_verification_code: () ->
-                            $scope.mobile_verification_code_has_sent = true
-                            if self.timer
-                                self.$interval.cancel self.timer
-                                self.timer=null
-                                $scope.cell_buffering_count =120.119
-                                $scope.cell_buffering = false
-                            if !self.user.bank_account||!self.user.bank_account.bankMobile
-                                self.mg_alert '您需要开通银行存管才可操作！'
-                                self.$location
-                                    .replace()
-                                    .path "dashboard/payment/register"
-                                return
-                            else
-                                phonenumber=filterXSS self.user.bank_account.bankMobile
-
-                            if !self.user.bank_account||!self.user.bank_account.account || !self.user.bank_account.name
-                                self.mg_alert '您需要开通银行存管才可操作！'
-                                self.$location
-                                    .replace()
-                                    .path "dashboard/payment/register"
-                                return
-                            else
-                                cardnbr=filterXSS self.user.bank_account.account
-                                username=filterXSS  self.user.bank_account.name
-
-
-                            return unless !!phonenumber and !!cardnbr and !!self.user.bank_account and !!username
-
-                            transtype='800004'
-
-                            (self.api.payment_pool_send_captcha(self.user.info.id,transtype,phonenumber,cardnbr,username)
-
-                                .then (data) =>
-                                    $scope.cell_buffering=false
-                                    return self.$q.reject(data) unless data.status is 0
-                                    return data
-
-                                .then (data) =>
-                                    console.log "$scope.cell_buffering_count:",$scope.cell_buffering_count
-                                    self.smsid=data.data
-                                    self.timer = self.$interval =>
-                                      $scope.cell_buffering_count -= 1
-
-                                      if $scope.cell_buffering_count < 1
-                                          self.smsid=null
-                                          self.$interval.cancel self.timer
-                                          self.timer=null
-                                          $scope.cell_buffering_count += 1000 * ($scope.cell_buffering_count % 1)
-                                          $scope.cell_buffering = false
-                                    , 1000
-
-                                    $scope.cell_buffering = true
-                                    
-                                    $scope.mobile_verification_code_has_sent = false
-                                .catch (data) =>
-
-                                  key = _.get data, 'msg'
-                                  self.mg_alert "短信发送失败,"+key
-
-                                  $scope.mobile_verification_code_has_sent = false
-                            )
-                        }
-                        index=0
-                        if index==0
-                            $scope.cell_buffering=true
-                            do $scope.get_verification_code
-                            index=1
-                        
-                }
-                payment.result.catch (mobile_captcha) =>
-                    @invest(loan,password,coupon,amount,mobile_captcha)
-
-                  
+ 
 
 
 

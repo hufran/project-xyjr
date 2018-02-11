@@ -525,7 +525,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                     api.fetch_current_user()
                                         .then (user) ->
                                             return user if user.has_payment_account   and
-                                                           user.has_payment_password  and
                                                            user.has_bank_card and user.info and 
                                                            user.info.lccbUserId
 
@@ -543,13 +542,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                             back: 'dashboard'
                                                             next: 'dashboard/withdraw'
 
-                                                when user.has_payment_password isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/password'
-                                                        .search
-                                                            back: 'dashboard'
-                                                            next: 'dashboard/withdraw'
 
                                                 #when user.has_bank_card isnt true
                                                 #    $location
@@ -661,7 +653,6 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
 
                                         .then (user) ->
                                             return user if user.has_payment_account   and
-                                                           user.has_payment_password  and
                                                            user.has_bank_card and 
                                                            user.info and
                                                            user.info.lccbUserId
@@ -679,13 +670,13 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                                                             back: "loan/#{ $route.current.params.id }"
                                                             next: "loan/#{ $route.current.params.id }/invest"
 
-                                                when user.has_payment_password isnt true
-                                                    $location
-                                                        .replace()
-                                                        .path 'dashboard/payment/password'
-                                                        .search
-                                                            back: "loan/#{ $route.current.params.id }"
-                                                            next: "loan/#{ $route.current.params.id }/invest"
+                                                #when user.has_payment_password isnt true
+                                                #    $location
+                                                #        .replace()
+                                                #        .path 'dashboard/payment/password'
+                                                #        .search
+                                                #            back: "loan/#{ $route.current.params.id }"
+                                                #            next: "loan/#{ $route.current.params.id }/invest"
 
                                                 #when user.has_bank_card isnt true
                                                 #    $location
