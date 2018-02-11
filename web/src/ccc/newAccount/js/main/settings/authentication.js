@@ -530,7 +530,7 @@ ractive.on('jihuo-submit', function (){
                     ractive.set('action2', res.data);
                     $("#form2").submit()
                     CccOk.create({
-                        msg: "请求成功",
+                        msg: res.msg,
                         okText: '确定',
                         cancelText: '稍后再说',
                         ok: function () {                                    
@@ -545,7 +545,7 @@ ractive.on('jihuo-submit', function (){
                     });
                 } else {
                     CccOk.create({
-                        msg: "请求失败",
+                        msg: res.msg,
                         okText: '确定',
                         cancelText: '',
                         ok: function () {
