@@ -350,7 +350,7 @@ function c1(){
 		var a3 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").length-2));
 		slider[i] = a1+a2+a3+50;
 	}
-	if(parseFloat($("#swiper-container3,#swiper-container3 .swiper-wrapper").height()!=slider[i]){
+	if(parseFloat($("#swiper-container3,#swiper-container3 .swiper-wrapper").height())!=slider[i]){
 		$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[0]+"px");
 	}
 	$("#swiper-container3.swiper-container").css("overflow","hidden");
