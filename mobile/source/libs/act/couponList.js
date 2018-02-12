@@ -315,7 +315,7 @@ function publicTest(){
 		}
 	});
 	setTimeout(function(){mySwiper2.onResize(),mySwiper3.onResize();$("#swiper-container2 .swiper-wrapper").css("transform","translate3d(0px, 0px, 0px)")},500);
-	setTimeout(c1,500);
+	setTimeout(c1,1000);
 	function updateNavPosition(){
 		c1();
 		$('#swiper-container2 .active-nav').removeClass('active-nav');
