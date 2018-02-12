@@ -315,7 +315,7 @@ function publicTest(){
 		}
 	});
 	setTimeout(function(){mySwiper2.onResize(),mySwiper3.onResize();$("#swiper-container2 .swiper-wrapper").css("transform","translate3d(0px, 0px, 0px)")},500);
-
+	setTimeout(c1,500);
 	function updateNavPosition(){
 		c1();
 		$('#swiper-container2 .active-nav').removeClass('active-nav');
@@ -343,16 +343,15 @@ function publicTest(){
 //获取各个tab的高度记录
 var slider = [];
 function c1(){
+
 	var sliderLength = $("#swiper-container2 .swiper-wrapper .swiper-slide").length;
 	for(var i = 0;i<sliderLength;i++){
-		var a1 = parseFloat($("#swiper-container3 .slide-"+(i+1)).height());
-		var a2 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-top").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-top").length-2));
-		var a3 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").substring(0,$("#swiper-container3 .slide-"+(i+1)).css("padding-bottom").length-2));
+		var a1 = parseFloat($("#swiper-container3 .slide-"+(i+1)+" div").height());
+		var a2 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-top"));
+		var a3 = parseFloat($("#swiper-container3 .slide-"+(i+1)).css("padding-bottom"));
 		slider[i] = a1+a2+a3+50;
 	}
-	if(parseFloat($("#swiper-container3,#swiper-container3 .swiper-wrapper").height())!=slider[i]){
-		$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[0]+"px");
-	}
+	$("#swiper-container3,#swiper-container3 .swiper-wrapper").css("height",slider[0]+"px");
 	$("#swiper-container3.swiper-container").css("overflow","hidden");
 }
 

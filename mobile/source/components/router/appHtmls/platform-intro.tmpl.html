@@ -81,7 +81,8 @@
     </div>
 <div class="swiper-container" id="swiper-container3">
     <div class="swiper-wrapper">
-        <div class="swiper-slide slide" ng-repeat="data in informationDetail track by $index" ng-class="data.class" ng-bind-html="data.data">
+        <div class="swiper-slide slide" ng-repeat="data in informationDetail track by $index" ng-class="data.class">
+            <div ng-bind-html="data.data"></div>
         </div>
         
 
