@@ -69,7 +69,7 @@
     #swiper-container3 .platInfo td{border-left: 1px solid #eeefef;border-top: 1px solid #eeefef;padding:5px;}
     #swiper-container3 .platInfo a,#swiper-container3 .companyInfo a{color:#36A9CE;}
     #swiper-container3 .opertion,#swiper-container3 .platInfo,#swiper-container3 .companyInfo{text-align: center;border-right: 1px solid #eeefef;border-bottom: 1px solid #eeefef;}
-    #swiper-container3 .opertion td,#swiper-container3 .companyInfo td{text-align: center;padding:20px 0;border-left: 1px solid #eeefef;border-top: 1px solid #eeefef;}
+    #swiper-container3 .opertion td,#swiper-container3 .companyInfo td{text-align: center;padding:10px;border-left: 1px solid #eeefef;border-top: 1px solid #eeefef;}
 </style>
     <div class="swiper-container" id="swiper-container2">
         <div class="swiper-wrapper">
@@ -81,7 +81,7 @@
     </div>
 <div class="swiper-container" id="swiper-container3">
     <div class="swiper-wrapper">
-        <div class="swiper-slide slide" ng-repeat="(index,data) in informationDetail" ng-class="data.class" ng-bind-html="data.data">
+        <div class="swiper-slide slide" ng-repeat="data in informationDetail track by $index" ng-class="data.class" ng-bind-html="data.data">
         </div>
         
 
