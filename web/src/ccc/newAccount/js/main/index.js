@@ -630,6 +630,7 @@ infoRactive.on({
 
 infoRactive.on('guide',function(){
     $('.bankcard-gray').css('display','none');
+    $('.bankcard-gray1').css('display','none');
 	$('.account-bg').css('display','none');
 }
 );
