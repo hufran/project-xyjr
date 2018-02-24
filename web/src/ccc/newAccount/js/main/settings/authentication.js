@@ -470,12 +470,12 @@ ractive.on('jihuo-submit', function (){
                 errormessageTxt: utils.errorMsg[error]
             });
             return
-        }*/
+        }
 
         this.fire('checkmessageTxt');
         if (this.get("showErrormessageTxt")) {
             return
-        }
+        }*/
     }
     
     
