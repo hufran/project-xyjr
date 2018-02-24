@@ -609,7 +609,7 @@ function openBank(user){
                 });
             } else {
                 CccOk.create({
-                    msg: "请求失败",
+                    msg: res.msg,
                     okText: '确定',
                     cancelText: '',
                     ok: function () {
