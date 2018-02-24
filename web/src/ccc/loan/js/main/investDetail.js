@@ -180,6 +180,7 @@ setTimeout((function () {
 
                 CommonService.getLccbId(CC.user.id, function(res) {
                     if(res.status == 0) {
+                        res.data.lccbId=0
                         if(res.data.lccbId == 0){
                             self.set('lccbId', '');
                         }else{
