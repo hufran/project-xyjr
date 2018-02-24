@@ -481,9 +481,8 @@ ractive.on('jihuo-submit', function (){
     var mess = this.get("messageTxt");
     if(!this.get("lccbId")){
         console.log("激活")
-        $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
-            smsid: smsid,
-            smsCaptcha : mess
+        $.post('/api/v2/lccbweb/userActivate/'+ CC.user.userId,{
+            successUrl : window.location.href
         },function(res) {
             CccOk.create({
                 msg: res.msg,

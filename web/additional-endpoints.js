@@ -31,8 +31,8 @@ module.exports = function (router, auth) {
     router.post('/api/v2/lccbweb/withdraw/:userid', auth.pass());
     router.post('/api/v2/lccbweb/tender/:userid', auth.pass());
     router.post('/api/v2/lccbweb/tenderUseRebate/:userid', auth.pass());
-    router.post('/api/v2/lccbweb/userAuth/:userid', auth.pass());
-
+    router.post('/api/v2/lccbweb/userAuth/:userid', auth.user());
+    router.post('/api/v2/lccbweb/userActivate/:userid', auth.user());
 
     
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());

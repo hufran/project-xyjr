@@ -227,12 +227,13 @@ do (_, angular) ->
 
                 else if parseInt(@$scope.lccbUserId)==0
                     #存管激活
-                    @api.payment_pool_persionInit(@user.info.id,smsid,smsCaptcha)
+                    @api.payment_pool_lccb_userActivate(@user.info.id,@$window.location.href)
                         .then (data) =>
                             return @$q.reject(data) unless data.status is 0
                             return data
                         .then (data) =>
-                            @$window.location.href=@next_path
+                            @$window.form.action=data.data
+                            do @$window.form.submit
                         .catch (data) =>
                             @submit_sending = false
                             @$timeout.cancel @error.timer
