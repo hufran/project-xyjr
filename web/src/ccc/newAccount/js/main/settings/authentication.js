@@ -463,14 +463,14 @@ ractive.on('jihuo-submit', function (){
             return;
         }
 
-        if(!smsid){
+        /*if(!smsid){
             var error = 'SMSCAPTCHA_INVALID'        
             ractive.set({
                 showErrormessageTxt: true,
                 errormessageTxt: utils.errorMsg[error]
             });
             return
-        }
+        }*/
 
         this.fire('checkmessageTxt');
         if (this.get("showErrormessageTxt")) {
