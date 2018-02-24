@@ -2,13 +2,13 @@
 {{#if !banksabled}}
 <div style="width:1100px;position:relative;margin: 0 auto">
 	<a href="/newAccount/settings/authentication">
-		{{#if user.lccbUserId==-1}}
+		{{#if lccbId==-1}}
 		<div class="bankcard-gray">
 			<div class="box-main">
 		    	<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
 			</div>
 		</div>
-		{{elseif !user.lccbUserId}}
+		{{elseif !lccbId}}
 		<div class="bankcard-gray1">
 			<div class="box-main">
 		    	<img class="rightnow" src="/ccc/newAccount/img/rightnow1.png"/>
