@@ -82,20 +82,27 @@
                         </span>
 
                         {{/each}} {{/if}} -->
-                    {{#corBanks:index}}
-                        {{#if index
-                    < showNum}} <span class="bankItem {{bankCode}}" data-cc="{{bankCode}}" data-code="{{bankCode}}"
-                      on-click="selectBank">
-                        <span class="check"></span>
-                        </span>
-                        {{/if}} 
-                        {{#if index == showNum}}
-                        <span class="bankItem more" on-click="showAll"></span> 
+                        {{#if lccbId == -1}}
+                            <div class="noCardTip">您尚未开通银行存管，<a href="/newAccount/settings/authentication">立即开通</a></div>
+                        {{elseif !lccbId}}
+                            <div class="noCardTip">您尚未激活银行存管，<a href="/newAccount/settings/authentication">立即激活</a></div>
+                        {{else}}
+                            {{#corBanks:index}}
+                                {{#if index
+                            < showNum}} <span class="bankItem {{bankCode}}" data-cc="{{bankCode}}" data-code="{{bankCode}}"
+                              on-click="selectBank">
+                                <span class="check"></span>
+                                </span>
+                                {{/if}} 
+                                {{#if index == showNum}}
+                                <span class="bankItem more" on-click="showAll"></span> 
+                                {{/if}}
+                            {{/corBanks}}
                         {{/if}}
-                        {{/corBanks}}
+                    
                 </div>
 
-                <div class="fastbankwrap"><!--   -->
+                <div class="fastbankwrap" style="display:none"><!--   -->
                     <!-- {{#if !isEnterpriseUser}} -->
                        <!--  {{#if isBankCard > 0}} -->
                            {{#if lccbId == -1}}
