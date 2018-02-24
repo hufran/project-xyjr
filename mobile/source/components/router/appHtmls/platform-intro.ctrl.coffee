@@ -13,8 +13,8 @@ do (_, angular) ->
 #        filter_type = @$routeParams.type
         
         angular.extend @$scope, {
-        	informationList:['公司信息','治理信息','风控体系','运营信息','平台信息','审计报告','合规报告','信息安全','重大事件'],
-        	category:'XXPL',
+        	informationList:['联系我们','合作伙伴','团队介绍','保障机构','安全保障','平台介绍'],
+        	category:'INTRODUCTION',
         	informationDetail:[]
         }
         do @getInfo

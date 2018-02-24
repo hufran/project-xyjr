@@ -96,23 +96,23 @@
                 </div>
 
                 <div class="fastbankwrap" style="display:none;"><!--   -->
-                    {{#if !isEnterpriseUser}}
+                    <!-- {{#if !isEnterpriseUser}} -->
                        <!--  {{#if isBankCard > 0}} -->
-                           {{#if !lccbId}}
-                              <div class="noCardTip">您尚未激活银行存管，<a href="/newAccount/settings/authentication">立即激活</a></div>
-                            {{elseif lccbId == -1}}
+                           {{#if lccbId == -1}}
                                 <div class="noCardTip">您尚未开通银行存管，<a href="/newAccount/settings/authentication">立即开通</a></div>
-                            {{else}}
+                            {{elseif !lccbId}}
+                                <div class="noCardTip">您尚未激活银行存管，<a href="/newAccount/settings/authentication">立即激活</a></div>
+                            <!-- {{else}}
                                 <span class="bankItem {{bankName}}" data-cc="{{bankName}}" data-code="{{bankCode}}"
                               on-click="selectBank">
                                 <span class="check"></span>
-                                </span>                               
+                                </span>   -->                             
                             {{/if}}
                         <!-- {{else}} -->
                               <!-- <div class="noCardTip">您尚未开通银行存管，<a href="/newAccount/settings/authentication">立即开通</a></div> -->
                         <!-- {{/if}} -->
 
-                    {{/if}}
+                    <!-- {{/if}} -->
                 </div>
                 <input type="hidden" name="transamt" value="{{amountNew}}">
                 <!-- <input type="hidden" name="isEnterpriseUser" value="{{isEnterpriseUser}}"> -->
@@ -142,7 +142,7 @@
                 <div class="space space-30"></div>
                 
         </form>
-            <button  on-click="recharge" class="btn btn-warning btn-lg" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;font-size:16px;">确认充值</button>
+            <button disabled={!(lccbId&&lccbId!=-1)} on-click="recharge" class="btn btn-warning btn-lg" style="width:250px;height:44px;border:1px #f58220 solid;background-color:#f58220;position:relative;left:85px;font-size:16px;">确认充值</button>
         </div>
     </div>
 
