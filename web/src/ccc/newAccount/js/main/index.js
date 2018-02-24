@@ -245,7 +245,6 @@ var infoRactive = new Ractive({
 
         CommonService.getLccbId(CC.user.id, function(res) {
             if(res.status == 0) {
-            	res.data.lccbId=0
                 if(res.data.lccbId == 0) {
                     infoRactive.set('lccbId', '');
                 }else{
