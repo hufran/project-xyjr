@@ -569,6 +569,12 @@ do (_, angular, moment, Array) ->
                     .then TAKE_RESPONSE_DATA
                     .catch TAKE_RESPONSE_ERROR
 
+            payment_pool_lccb_userActivate:(userId,successUrl)->
+                @$http
+                    .post '/api/v2/lccbweb/userActivate/'+userId,{userId,successUrl}
+                    .then TAKE_RESPONSE_DATA
+                    .catch TAKE_RESPONSE_ERROR
+
             payment_pool_persionInit:(userId,smsid,smsCaptcha)->
                 @$http
                     .post '/api/v2/lccb/persionInit/'+userId,

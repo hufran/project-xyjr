@@ -638,7 +638,7 @@ setTimeout((function () {
                         });
                     } else {
                         CccOk.create({
-                            msg: "请求失败",
+                            msg: res.msg,
                             okText: '确定',
                             ok: function () {
                                 window.location.reload();
@@ -745,7 +745,7 @@ setTimeout((function () {
                     } else {
                         e.original.preventDefault();
                         CccOk.create({
-                            msg: "请求失败",
+                            msg: res.msg,
                             okText: '确定',
                             ok: function () {
                                 window.location.reload();

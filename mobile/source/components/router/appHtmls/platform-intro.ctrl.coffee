@@ -9,18 +9,15 @@ do (_, angular) ->
         @$window.scrollTo 0, 0
 #        console.log @$routeParams.id
 #        @test(@$routeParams.id,@$routeParams.token)
-        @test()
+        
 #        filter_type = @$routeParams.type
-
+        
         angular.extend @$scope, {
-#          filter_type
-#          userId: @$routeParams.id
-#          amount: @$routeParams.amount
-#          retUrl: @$routeParams.retUrl.toString()
-#          bankCode: @$routeParams.bankCode
-#          token:@$routeParams.token
-#          action1:'/api/v2/jdpay/onlineBankDeposit4Wap/'+@$routeParams.id
+        	informationList:['联系我们','合作伙伴','团队介绍','保障机构','安全保障','平台介绍'],
+        	category:'INTRODUCTION',
+        	informationDetail:[]
         }
+        do @getInfo
 
 
 
@@ -28,6 +25,14 @@ do (_, angular) ->
 #        @submitForm()
 #      test:(userId,token) ->
 #        isUsefulToken(userId,token);
+      getInfo: ->
+        for data,i in @$scope.informationList
+          @sendRequest(i)
+        @test()
+            
+      sendRequest: (index)->
+        @api.get_article(@$scope.category,encodeURI(@$scope.informationList[index])).then (data) =>
+          @$scope.informationDetail[index]={class:"slide-"+(index+1),data:data[0].content}
       test: ->
         publicTest();
 

@@ -298,7 +298,7 @@ table tbody tr td {
 	height: 100%;
 }
 
-.bankcard-gray{
+.bankcard-gray,.bankcard-gray1{
 
 	background-image: url(/ccc/newAccount/img/true-name.png);
 	background-repeat: no-repeat;
@@ -311,13 +311,16 @@ table tbody tr td {
 	left: 159px;
 	top: 21px;
 }
+.bankcard-gray1{
+	background-image: url(/ccc/newAccount/img/activate-name.png);
+}
 .rightnow {
 	position: absolute;
 	right: -20px;
 	bottom: 0;
 
 }
-.bankcard-gray a{
+.bankcard-gray a,.bankcard-gray1 a{
 	display: block;
 	position: absolute;
 	right: 0;

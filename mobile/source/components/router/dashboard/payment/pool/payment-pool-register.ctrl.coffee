@@ -24,7 +24,7 @@ do (_, angular) ->
                 @$scope.user=@user
                 @cell_buffering = false
                 @cell_buffering_count = 120.119
-                @successUrl="https://www.718bank.com/h5/dashboard"
+                @successUrl=@$window.location.origin+"/h5/dashboard"
 
                 @api.payment_pool_getLccbId(@user.info.id)
                     .then (data) =>
@@ -170,34 +170,34 @@ do (_, angular) ->
                         @error.on = false
                     , @error.timeout
                     return
-                if parseInt(@$scope.lccbUserId)!=-1
-                    if typeof card_no!="undefined"
-                        card_no=filterXSS card_no
-                    else
-                        @error.on = true
-                        @error.message = '银行卡号不能为空！'
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
-                        return
-                    if typeof bank_name!="undefined"
-                        bank_name=filterXSS bank_name
-                    else
-                        @error.on = true
-                        @error.message = '请选择所属银行！'
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
-                        return
-                    if typeof card_phone!="undefined"
-                        card_phone=filterXSS card_phone
-                    else
-                        @error.on = true
-                        @error.message = '请输入手机号码！'
-                        @error.timer = @$timeout =>
-                            @error.on = false
-                        , @error.timeout
-                        return
+                #if parseInt(@$scope.lccbUserId)!=-1
+                #    if typeof card_no!="undefined"
+                #        card_no=filterXSS card_no
+                #    else
+                #        @error.on = true
+                #        @error.message = '银行卡号不能为空！'
+                #        @error.timer = @$timeout =>
+                #            @error.on = false
+                #        , @error.timeout
+                #        return
+                #    if typeof bank_name!="undefined"
+                #        bank_name=filterXSS bank_name
+                #    else
+                #        @error.on = true
+                #        @error.message = '请选择所属银行！'
+                #        @error.timer = @$timeout =>
+                #            @error.on = false
+                #        , @error.timeout
+                #        return
+                #    if typeof card_phone!="undefined"
+                #        card_phone=filterXSS card_phone
+                #    else
+                #        @error.on = true
+                #        @error.message = '请输入手机号码！'
+                #        @error.timer = @$timeout =>
+                #            @error.on = false
+                #        , @error.timeout
+                #        return
             
 
                 
@@ -227,12 +227,13 @@ do (_, angular) ->
 
                 else if parseInt(@$scope.lccbUserId)==0
                     #存管激活
-                    @api.payment_pool_persionInit(@user.info.id,smsid,smsCaptcha)
+                    @api.payment_pool_lccb_userActivate(@user.info.id,@$window.location.href)
                         .then (data) =>
                             return @$q.reject(data) unless data.status is 0
                             return data
                         .then (data) =>
-                            @$window.location.href=@next_path
+                            @$window.form.action=data.data
+                            do @$window.form.submit
                         .catch (data) =>
                             @submit_sending = false
                             @$timeout.cancel @error.timer

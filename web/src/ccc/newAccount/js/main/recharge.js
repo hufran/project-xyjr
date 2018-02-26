@@ -305,7 +305,7 @@ ractive.on('recharge',function(e){
                     });                   
                }else {
                     CccOK.create({
-                        msg: "请求失败",
+                        msg: res.msg,
                         okText: '确定',
                         ok: function () {
                             window.location.reload();
@@ -341,7 +341,7 @@ ractive.on('recharge',function(e){
                     });                   
                }else {
                     CccOK.create({
-                        msg: "请求失败",
+                        msg: res.msg,
                         okText: '确定',
                         ok: function () {
                             window.location.reload();

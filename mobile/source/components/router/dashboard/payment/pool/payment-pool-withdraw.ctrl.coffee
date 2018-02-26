@@ -15,7 +15,7 @@ do (angular) ->
                 }
 
                 @submit_sending = false
-                @successUrl="https://www.718bank.com/h5/dashboard/funds"
+                @successUrl=@$window.location.origin+"/h5/dashboard/funds"
 
                 @api.payment_pool_banks().then (data) =>
                     @$scope.bank_account.bank = data[@$scope.bank_account.bank]

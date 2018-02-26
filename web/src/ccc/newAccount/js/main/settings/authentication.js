@@ -482,7 +482,7 @@ ractive.on('jihuo-submit', function (){
             return;
         }
 
-        if(!smsid){
+        /*if(!smsid){
             var error = 'SMSCAPTCHA_INVALID'        
             ractive.set({
                 showErrormessageTxt: true,
@@ -494,18 +494,31 @@ ractive.on('jihuo-submit', function (){
         this.fire('checkmessageTxt');
         if (this.get("showErrormessageTxt")) {
             return
-        }
+        }*/
     }
     
     
     var mess = this.get("messageTxt");
     if(!this.get("lccbId")){
         console.log("激活")
-        $.post('/api/v2/lccb/persionInit/'+ CC.user.userId,{
-            smsid: smsid,
-            smsCaptcha : mess
+        $.post('/api/v2/lccbweb/userActivate/'+ CC.user.userId,{
+            successUrl : window.location.href
         },function(res) {
-            CccOk.create({
+            if(res.status==0){
+                ractive.set('action2', res.data);
+                $("#form2").submit();
+                CccOk.create({
+                    msg: '激活操作成功',
+                    okText: '确定',
+                    ok: function () {
+                        window.location.reload();
+                    },
+                    cancel: function() {
+                        window.location.reload();
+                    }
+                });      
+            }else{
+               CccOk.create({
                 msg: res.msg,
                 okText: '确定',
                 ok: function () {
@@ -514,7 +527,9 @@ ractive.on('jihuo-submit', function (){
                 cancel: function() {
                     window.location.reload();
                 }
-            });                    
+            });       
+            }
+                          
         })
     } else {
         console.log("授权")
@@ -530,7 +545,7 @@ ractive.on('jihuo-submit', function (){
                     ractive.set('action2', res.data);
                     $("#form2").submit()
                     CccOk.create({
-                        msg: "请求成功",
+                        msg: res.msg,
                         okText: '确定',
                         cancelText: '稍后再说',
                         ok: function () {                                    
@@ -545,7 +560,7 @@ ractive.on('jihuo-submit', function (){
                     });
                 } else {
                     CccOk.create({
-                        msg: "请求失败",
+                        msg: res.msg,
                         okText: '确定',
                         cancelText: '',
                         ok: function () {
@@ -630,7 +645,7 @@ function openBank(user){
                 });
             } else {
                 CccOk.create({
-                    msg: "请求失败",
+                    msg: res.msg,
                     okText: '确定',
                     cancelText: '',
                     ok: function () {

@@ -1,11 +1,21 @@
 <!-- {{#if !user.enterprise}} -->
 {{#if !banksabled}}
 <div style="width:1100px;position:relative;margin: 0 auto">
-	<a href="/newAccount/settings/authentication"><div class="bankcard-gray">
-		<div class="box-main">
-	    	<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
+	<a href="/newAccount/settings/authentication">
+		{{#if lccbId == -1}}
+		<div class="bankcard-gray">
+			<div class="box-main">
+		    	<img class="rightnow" src="/ccc/newAccount/img/rightnow.png"/>
+			</div>
 		</div>
-	</div>
+		{{elseif !lccbId}}
+		<div class="bankcard-gray1">
+			<div class="box-main">
+		    	<img class="rightnow" src="/ccc/newAccount/img/rightnow1.png"/>
+			</div>
+		</div>
+		{{/if}}
+		
 	</a>
 </div>
 <div class="account-bg" on-click="guide"></div>
