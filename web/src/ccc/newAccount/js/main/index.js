@@ -247,7 +247,11 @@ var infoRactive = new Ractive({
             if(res.status == 0) {
                 if(res.data.lccbId == 0) {
                     infoRactive.set('lccbId', '');
+                    infoRactive.set('banksabled',true);
                 }else{
+                	if(res.data.lccbId == -1){
+                		infoRactive.set('banksabled',true);
+                	}
                     infoRactive.set('lccbId', res.data.lccbId);
                 }
             }
