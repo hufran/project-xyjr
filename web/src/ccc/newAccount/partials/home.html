@@ -11,8 +11,11 @@
 			<a href="/newAccount/recharge"><div class="home-recharge-btn">充值</div></a>
 			<!--<a href="javascript:alert('为了可以更好提升服务质量，优化支付流程，故我司将支付平台系统进行升级，届时您的充值、提现业务会受到影响，给您带来不便敬请谅解。');"><div class="home-recharge-btn">充值</div></a>-->
 		</div>
+		{{#if !isEnterprise}}
 		<div style="float: right;color: #009ada;margin-top: 8px;cursor: pointer;" on-click="showRisk">风险测评</div>
+		{{/if}}
 	</div>
+	{{#if !isEnterprise}}
 	<div class="home-top-container">
 		<div class="home-yesterday">
 			<div class="home-tab-info">昨日收益</div>
@@ -29,6 +32,24 @@
 
 		<div class="clearfix"></div>
 	</div>
+	{{else}}
+	<div class="home-top-container">
+		<div class="home-yesterday">
+			<div class="home-tab-info">当前待还金额</div>
+			<div class="home-tab-amount"><span class="money">{{repayAmount}}</span>&nbsp;元</div>
+		</div>
+		<div class="home-interest">
+			<div class="home-tab-info">累计借款金额</div>
+			<div class="home-tab-amount"><span class="money">{{totalLoanAmount}}</span>&nbsp;元</div>
+		</div>
+		<div class="home-total">
+			<div class="home-tab-info">累计借款次数<span class="wh tips-top"></span></div>
+			<div class="home-tab-amount"><span class="money">{{totalLoanCount}}</span>&nbsp;次</div>
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+	{{/if}}
 	<div class="clearfix"></div>
 	<div class="space-40"></div>
 </div>

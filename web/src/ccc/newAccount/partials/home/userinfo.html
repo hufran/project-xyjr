@@ -1,4 +1,4 @@
-{{#if !user.enterprise}}
+<!-- {{#if !user.enterprise}} -->
 {{#if !banksabled}}
 <div style="width:1100px;position:relative;margin: 0 auto">
 	<a href="/newAccount/settings/authentication">
@@ -54,7 +54,7 @@
 	<div class="account-bg" on-click="guide"></div>
 	{{/if}} -->
 {{/if}}
-{{/if}}
+<!-- {{/if}} -->
 
 <div class="userinfowra">
 	<div class="infoContent">
@@ -103,7 +103,7 @@
 
 			<div class="name" style="width:500px;text-align:left;text-indent:45px;">
 
-				{{#if user.name}}{{user.name}}{{else}}{{user.mobile}}{{/if}}
+				{{#if enterpriseName}}{{enterpriseName}}{{else}}{{userMobile}}{{/if}}
 			</div>
 			{{else}}
 			<div class="name">
@@ -118,6 +118,17 @@
 					<li class="rzpa cmo-active"></li>
 					{{else}}
 					<li class="rzpa cmo"></li>
+					{{/if}}
+					{{#if user.name}}
+				<li>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid-active" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:16px;left:30px;">点击查看银行存管</p>
+				</li>
+					{{else}}
+				<li>
+					<a href="/newAccount/settings/authentication" class="mouse-enter rzpa cid" id="mouse-enter" on-mouseover="showTip" on-mouseleave="hideTip" rel="nofollow" ></a>
+					<p class="info-tip" style="top:16px;left:30px;">点击查看银行存管</p>
+				</li>
 					{{/if}}
 				{{else}}
 					{{#if user.mobile}}
