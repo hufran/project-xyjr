@@ -43,6 +43,10 @@ var ractive = new Ractive({
                     name: res.corporationUser.name,
                     idNumber: res.corporationUser.busiCode,
                 })
+                if(ractive.get('bank')) {
+                    ractive.set('bankNumber', CC.user.bankCards[0].account.account)
+                    ractive.set('bankMobile', CC.user.bankCards[0].account.bankMobile)
+                }
            })
         }else{
             accountService.getUserInfo(function (res) {
