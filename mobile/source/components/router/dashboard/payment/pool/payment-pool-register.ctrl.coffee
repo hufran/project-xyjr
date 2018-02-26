@@ -3,8 +3,8 @@ do (_, angular) ->
 
     angular.module('controller').controller 'PaymentPoolRegisterCtrl',
 
-        _.ai '        banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval, @$uibModal', class
-            constructor: (banks,@user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval, @$uibModal) ->
+        _.ai '        banks, @user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval, @$uibModal, @$sce', class
+            constructor: (banks,@user, @api, @$scope, @$window, @$q, @$location, @$timeout, @$routeParams, @$interval, @$uibModal, @$sce) ->
 
                 @$window.scrollTo 0, 0
 
@@ -24,6 +24,7 @@ do (_, angular) ->
                 @$scope.user=@user
                 @cell_buffering = false
                 @cell_buffering_count = 120.119
+                @successUrl="https://www.718bank.com/h5/dashboard"
 
                 @api.payment_pool_getLccbId(@user.info.id)
                     .then (data) =>
@@ -102,9 +103,12 @@ do (_, angular) ->
                     username=filterXSS username
                 return unless !!phonenumber and !!cardnbr and !!username
                 
-                if parseInt(@$scope.lccbUserId)==-1||parseInt(@$scope.lccbUserId)==0
+                if parseInt(@$scope.lccbUserId)==-1
                     #开户
                     transtype='800001'
+                else if parseInt(@$scope.lccbUserId)==0
+                    #激活
+                    transtype='800031'
                 else 
                     #授权
                     transtype='800027'
@@ -144,8 +148,8 @@ do (_, angular) ->
                 
 
 
-            open_payment_account: (user_name, id_number, card_no, bank_name, card_phone, smsCaptcha) ->
-                
+            open_payment_account: (event,user_name, id_number) ->
+                event.preventDefault();
                 if typeof user_name != "undefined"
                     user_name = filterXSS user_name
                 else
@@ -166,77 +170,49 @@ do (_, angular) ->
                         @error.on = false
                     , @error.timeout
                     return
-                if typeof card_no!="undefined"
-                    card_no=filterXSS card_no
-                else
-                    @error.on = true
-                    @error.message = '银行卡号不能为空！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
-                    return
-                if typeof bank_name!="undefined"
-                    bank_name=filterXSS bank_name
-                else
-                    @error.on = true
-                    @error.message = '请选择所属银行！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
-                    return
-                if typeof card_phone!="undefined"
-                    card_phone=filterXSS card_phone
-                else
-                    @error.on = true
-                    @error.message = '请输入手机号码！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
-                    return
-                console.log "smsCaptcha:",smsCaptcha
-                if typeof smsCaptcha!="undefined"
-                    smsCaptcha=filterXSS smsCaptcha
-                else
-                    @error.on = true
-                    @error.message = '请输入验证码！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
-                    return
-
-                if @smsid
-                    smsid=@smsid
-                else
-
-                    @error.on = true
-                    @error.message = '请发送验证码后再重试！'
-                    @error.timer = @$timeout =>
-                        @error.on = false
-                    , @error.timeout
-                    return
+                if parseInt(@$scope.lccbUserId)!=-1
+                    if typeof card_no!="undefined"
+                        card_no=filterXSS card_no
+                    else
+                        @error.on = true
+                        @error.message = '银行卡号不能为空！'
+                        @error.timer = @$timeout =>
+                            @error.on = false
+                        , @error.timeout
+                        return
+                    if typeof bank_name!="undefined"
+                        bank_name=filterXSS bank_name
+                    else
+                        @error.on = true
+                        @error.message = '请选择所属银行！'
+                        @error.timer = @$timeout =>
+                            @error.on = false
+                        , @error.timeout
+                        return
+                    if typeof card_phone!="undefined"
+                        card_phone=filterXSS card_phone
+                    else
+                        @error.on = true
+                        @error.message = '请输入手机号码！'
+                        @error.timer = @$timeout =>
+                            @error.on = false
+                        , @error.timeout
+                        return
+            
 
                 
-                return unless !!user_name and !!id_number and !!card_no and !!bank_name and !!card_phone and !!smsCaptcha and !!smsid
+                return unless !!user_name and !!id_number
                 @submit_sending = true
 
                 if parseInt(@$scope.lccbUserId)==-1
                     #存管开户
-                    (@api.payment_pool_custody_bind(@user.info.id,user_name, id_number, bank_name, card_no, card_phone, smsCaptcha, smsid)
-
+                    (@api.payment_pool_lccb_register(@user.info.id,user_name,id_number,@successUrl)
                         .then (data) =>
-                            return @$q.reject(data) unless data.success is true
+                            return @$q.reject(data) unless data.status is 0
                             return data
-
                         .then (data) =>
-                            @user.info.name = user_name
-                            @user.info.idNumber = id_number
-                            @user.has_payment_account = true
-                            if @$scope.sourceId != undefined
-    #                           alert(wxChatUrl);
-                                @$window.location.href=wxChatUrl+"/lend/homeA"
-                            else
-                                @$window.location.href=@next_path
-
+                            @$window.form.action=data.data
+                            do @$window.form.submit
                         .catch (data) =>
                             @submit_sending = false
                             @$timeout.cancel @error.timer
@@ -248,6 +224,7 @@ do (_, angular) ->
                                 @error.on = false
                             , @error.timeout
                     )
+
                 else if parseInt(@$scope.lccbUserId)==0
                     #存管激活
                     @api.payment_pool_persionInit(@user.info.id,smsid,smsCaptcha)
@@ -270,13 +247,13 @@ do (_, angular) ->
 
                 else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth==false
                     #用户授权操作
-                    @api.payment_pool_lccb_accredit(@user.info.id,smsid,smsCaptcha)
+                    @api.payment_pool_lccb_accredit(@user.info.id,@successUrl)
                         .then (data)=>
                             return @$q.reject(data) unless data.status is 0
                             return data
                         .then (data) =>
-                            @$window.alert "用户授权成功！"
-                            @$window.location.href=@next_path
+                            @$window.form.action=data.data
+                            do @$window.form.submit
                         .catch (data) =>
                             @submit_sending = false
                             @$timeout.cancel @error.timer
