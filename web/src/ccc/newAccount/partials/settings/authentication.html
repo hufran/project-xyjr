@@ -141,7 +141,7 @@
     {{/if}} 
     <form id="form2" action="{{action2}}" method="POST" target="_blank" style="display: none"></form>
     <p class="agree-error userIdNumber" style="color:red;margin-left: 350px;"></p>
-    {{if !isEnterPrise || (isEnterPrise&&!lccbId)}}
+    {{#if !isEnterPrise || (isEnterPrise&&!lccbId)}}
     <div class="account-submit">
         <input type="button" value="{{buttonname}}" on-click="jihuo-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
     </div>
