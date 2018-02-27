@@ -131,18 +131,6 @@
     </div> -->
     {{#if !lccbId || !authority}}
      {{#if !lccbId}}
-    <!--<div class="account-info-row">
-        <label for="messageTxt2" class="">短信验证码</label>
-         <input type="text" class="check-name" id="messageTxt2" name="messageTxt2" value="{{messageTxt}}" on-blur="checkmessageTxt" style="width: 100px" />
-         <a href="javascript:;"  class="btn-blue getcaptcha" on-click="sendTelCode2">获取验证码</a>
-         {{#if showErrormessageTxt}}
-         <div class="error-message nameAndId">
-             {{ errormessageTxt }}
-         </div>
-         {{/if}}
-    </div> -->
-
-    
     <p class="account-info-row" style="text-align:left;line-height: 30px;">
         <input type="checkbox" class="agree" checked id="agree" />
         <span>我同意 <p style="display:inline-block;vertical-align:top;line-height:20px;padding:5px 0 10px 5px">
@@ -156,7 +144,7 @@
     <div class="account-submit">
         <input type="button" value="{{buttonname}}" on-click="jihuo-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
     </div>
-    {{/if}}
+
 </div>
 <div class="space-30"></div>
 <div style="background-color: #f4fcff;padding: 10px; margin: 0 auto;">

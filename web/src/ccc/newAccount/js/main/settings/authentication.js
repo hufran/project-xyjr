@@ -67,13 +67,8 @@ var ractive = new Ractive({
                     ractive.set('lccbId', '');
                     ractive.set('buttonname', '立即激活');
                 }else{
-                    if(CC.user.enterprise){
-                        ractive.set('lccbId', res.data.lccbId);
-                        ractive.set('buttonname', '更换银行卡');
-                    }else{
-                        ractive.set('lccbId', res.data.lccbId);
-                        ractive.set('buttonname', '授权投资');
-                    }                  
+                    ractive.set('lccbId', res.data.lccbId);
+                    ractive.set('buttonname', '授权投资');       
                 }
                 ractive.set('authority', res.data.lccbAuth);                
             }

@@ -7,6 +7,12 @@
         <!-- 您尚未开通银行存管，请联系客服开通后才可提现，客服电话：4001-718-718。 -->
             <a href="/newAccount/settings/authentication" style="color: #009ada">您尚未激活银行存管，现在去激活</a>
         </div>
+        {{elseif lccbId=='-1'}}
+        <div class="space-30"></div>
+        <div class="has-line" style="padding:30px 20px;">
+        <!-- 您尚未开通银行存管，请联系客服开通后才可提现，客服电话：4001-718-718。 -->
+            <a href="/newAccount/settings/authentication" style="color: #009ada">您尚未开通银行存管，现在去开通</a>
+        </div>
         {{else}}
     <div class="row">
         <div class="methodwr" style="text-indent:14px;">填写提现金额</div>

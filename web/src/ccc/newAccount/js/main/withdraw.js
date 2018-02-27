@@ -222,6 +222,7 @@ ractive.on('withDrawSubmit', function (e) {
 	else if (parseFloat(amount) > CC.user.availableAmount) {
 		this.set('submitMessage', this.get('msg.AMOUNT_POOR'));
 		this.$amount.focus();
+        e.original.preventDefault();
 	}
 	
 	else if (this.get('error')) {
@@ -236,7 +237,7 @@ ractive.on('withDrawSubmit', function (e) {
 		console.log('pass!=');
 
         var lccbUserId = ractive.get("lccbId");
-        if(lccbUserId != 0 && lccbUserId != -1) {
+        if(lccbUserId != '' && lccbUserId != -1) {
             $.ajax({
                 url: '/api/v2/lccbweb/withdraw/'+CC.user.id,
                 type: "POST",
