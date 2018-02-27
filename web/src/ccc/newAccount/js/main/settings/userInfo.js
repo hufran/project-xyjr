@@ -39,6 +39,10 @@ var ractive = new Ractive({
                     ractive.set('percent',percent);
                     ractive.set('levelText','中');
                 }
+                
+                if(CC.user.bankCards.length) {
+                    ractive.set('bankNumber', true);
+                }
             } else {
                 if (userinfo.user.idNumber) {
                     var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
