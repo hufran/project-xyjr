@@ -32,25 +32,8 @@
 			</ul>
 		{{/if}}
 	</li>
-	{{else}}
-		<li class="nav-li">
-		{{#if invest}}
-			<span class="icon-invest-active icon-my-invest-active"></span>
-		{{else}}
-			<span class="icon-invest icon-my-invest"></span>
-		{{/if}}
-		<span class="nav-text {{#if invest}}nav-text-active{{/if}}"><a href="/newAccount/invest/HOLDING">我的投资</a></span>
-		<span class='nav-toggle-btn {{showInvestToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showInvestToggleMenu" on-click="toggleMenu"></span>
-		<div class="clearfix"></div>
-		{{#if showInvestToggleMenu}}
-			<ul class="nav-toggle-menu">
-				<li class="{{#if HOLDING}}active{{/if}}"><a href="/newAccount/invest/HOLDING">计息中</a></li>
-				<li class="{{#if INHAND}}active{{/if}}"><a href="/newAccount/invest/INHAND">募集中</a></li>
-				<li class="{{#if CLEARED}}active{{/if}}"><a href="/newAccount/invest/CLEARED">已结清</a></li>
-			</ul>
-		{{/if}}
-	</li>
-        	<li class="nav-li">
+
+	<li class="nav-li">
 		{{#if loanRequest}}
 			<span class="icon-invest-active"></span>
 		{{else}}
@@ -69,6 +52,25 @@
 			</ul>
 		{{/if}}
 	</li>
+	{{else}}
+		<li class="nav-li">
+		{{#if invest}}
+			<span class="icon-invest-active icon-my-invest-active"></span>
+		{{else}}
+			<span class="icon-invest icon-my-invest"></span>
+		{{/if}}
+		<span class="nav-text {{#if invest}}nav-text-active{{/if}}"><a href="/newAccount/invest/HOLDING">我的投资</a></span>
+		<span class='nav-toggle-btn {{showInvestToggleMenu?"nav-toggle-btn-up":"nav-toggle-btn-down"}}' data-toggle="showInvestToggleMenu" on-click="toggleMenu"></span>
+		<div class="clearfix"></div>
+		{{#if showInvestToggleMenu}}
+			<ul class="nav-toggle-menu">
+				<li class="{{#if HOLDING}}active{{/if}}"><a href="/newAccount/invest/HOLDING">计息中</a></li>
+				<li class="{{#if INHAND}}active{{/if}}"><a href="/newAccount/invest/INHAND">募集中</a></li>
+				<li class="{{#if CLEARED}}active{{/if}}"><a href="/newAccount/invest/CLEARED">已结清</a></li>
+			</ul>
+		{{/if}}
+	</li>
+        	
 	{{/if}}
 	<li class="nav-li">
 		{{#if fund}}
@@ -145,7 +147,7 @@
 		{{/if}}
 		<span class="nav-text {{#if autobid}}nav-text-active{{/if}}"><a href="/newAccount/autobid">自动投标</a></span>
 	</li> -->
-	{{#if !isEnterprise}}
+	<!-- {{#if !isEnterprise}}
     <li class="nav-li">
 		{{#if assign}}
 			<span class="icon-message-active"></span>
@@ -154,6 +156,6 @@
 		{{/if}}
 		<span class="nav-text {{#if assign}}nav-text-active{{/if}}"><a href="/newAccount/assign">债权转让</a></span>
 	</li>
-	{{/if}}
+	{{/if}} -->
 </ul>
 <div class="clearfix"></div>
