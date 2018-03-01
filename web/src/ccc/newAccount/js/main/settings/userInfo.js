@@ -17,45 +17,50 @@ var ractive = new Ractive({
         idNumber: false,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
         email: false,
-        percent: 25,
+        percent: CC.user.enterprise?'50':'30',
         levelText:'弱',
         isEnterprise: CC.user.enterprise,
         bankNumber: false
     },
     init: function() {
-        var percent = 25;
+        
         var isEnterprise  = this.get('isEnterprise');
 
         accountService.getUserInfo(function (userinfo) {
             //基本信息
             if (isEnterprise) {
-               
-                if (CC.user.paymentPasswordHasSet) {
+                var percent = 50;
+                // if (CC.user.paymentPasswordHasSet) {
+                //     percent = 100;
+                //     ractive.set('percent',percent);
+                //     ractive.set('levelText','高');
+                // } else {
+                //     percent = 50;
+                //     ractive.set('percent',percent);
+                //     ractive.set('levelText','中');
+                // }
+                
+                if(CC.user.bankCards.length) {
                     percent = 100;
                     ractive.set('percent',percent);
                     ractive.set('levelText','高');
-                } else {
-                    percent = 50;
-                    ractive.set('percent',percent);
-                    ractive.set('levelText','中');
-                }
-                
-                if(CC.user.bankCards.length) {
                     ractive.set('bankNumber', true);
                 }
             } else {
+                var percent = 30;
                 if (userinfo.user.idNumber) {
                     var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
                     ractive.set('idNumber', idNumber);
-                    percent += 25;
+                    // percent += 25;
                 }
 
                 if(CC.user.bankCards.length) {
                     ractive.set('bankNumber', true);
+                    percent += 40;
                 }
-                if (CC.user.paymentPasswordHasSet) {
-                    percent += 25;
-                }
+                // if (CC.user.paymentPasswordHasSet) {
+                //     percent += 25;
+                // }
                 if (userinfo.user.email && userinfo.user.email != 'notavailable@qilerong.com' && userinfo.user.email != 'notavailable@creditcloud.com') {
                     var arr = userinfo.user.email.split('@');
                     var length = arr[0].length;
@@ -67,10 +72,10 @@ var ractive = new Ractive({
                         var email = arr[0].substring(0,1) + (new Array(length)).join('*') + "@" + arr[1];
                     }
                     ractive.set('email', email);
-                    percent += 25;
+                    percent += 30;
                 }
                 ractive.set('percent',percent);
-                if (percent > 25 && percent <= 75) {
+                if (percent > 30 && percent <= 70) {
                     ractive.set('levelText','中');
                 } else if (percent > 75) {
                     ractive.set('levelText','高');
