@@ -200,6 +200,11 @@ do (_, document, $script, angular, modules, APP_NAME = 'Gyro') ->
                         templateUrl: 'components/router/help/help.tmpl.html'
                     }
 
+                    .when '/helpCenter',{
+                        controller:'HelpCenterCtrl as self'
+                        templateUrl: 'components/router/help/helpCenter.tmpl.html'
+                    }
+
                     .when '/share-coupon/:id', {
                         controller: 'ShareCouponCtrl as self'
                         templateUrl: 'components/router/share-coupon/share-coupon.tmpl.html'
