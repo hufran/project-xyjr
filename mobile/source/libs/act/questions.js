@@ -169,6 +169,7 @@ function getMark(userId){
     $.ajax({
         type: "POST",
         url: "/api/v2/users/userQuestion/getMark/"+userId,
+        data:{loanId:''},
         async:false,
         success: function(res){
             if(res.status == 0){
