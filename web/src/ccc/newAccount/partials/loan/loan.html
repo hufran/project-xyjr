@@ -30,7 +30,7 @@
             {{#if status=="SETTLED"}}
                    <a class="btn btn-smaller btn-blue-light"
                 href="{{corporationUrl}}" target="_blank" rel="nofollow" on-click="sign">签约</a>
-            {{elseif status!="FINISHED" && status!="OPENED" && status!="FAILED"}}
+            {{elseif status!="FINISHED" && status!="OPENED" && status!="FAILED" && status!="SCHEDULED"}}
                 <a class="btn btn-smaller btn-blue-light"
                 href="" data-id="{{id}}" on-click="showPact">合同查看</a>
             {{/if}}
