@@ -124,29 +124,7 @@
                     </td>
                     {{/if}}
                 </tr>
-                <!-- <tr>
-                    {{#if paymentPasswordHasSet}}
-                    <td>
-                        <span class="glyphicon glyphicon-ok"></span> &nbsp;交易密码：
-                    </td>
-                    <td>
-                        <span>******</span>
-                    </td>
-                     <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn" rel="nofollow" >去修改</a>
-                    </td>
-                    {{else}}
-                    <td>
-                        <span class="glyphicon glyphicon-remove"></span> &nbsp;交易密码：
-                    </td>
-                    <td>
-                        <span class="status-no">未设置!</span>
-                    </td>
-                    <td class="align-center">
-                        <a href="/newAccount/settings/password" class="btn" rel="nofollow" >去设置</a>
-                    </td>
-                    {{/if}}
-                </tr> -->
+                
                 <tr>
                     {{#if email}}
                     <td>
@@ -167,6 +145,52 @@
                     </td>
                     <td class="align-center">
                         <a href="#" class="goRz btn" rel="nofollow" >去绑定</a>
+                    </td>
+                    {{/if}}
+                </tr>
+                <tr>
+                    {{#if priv}}
+                    <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;风险测评：
+                    </td>
+                    <td>
+                        <span style="color:#009ada;cursor: pointer;" on-click="showRisk">查看详情</span>
+                    </td>
+                     <td class="align-center">
+                        <span class="status">已测评</span>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;风险测评：
+                    </td>
+                    <td>
+                        <span class="status-no">未测评!</span>
+                    </td>
+                    <td class="align-center">
+                        <div  class="btn" rel="nofollow" on-click="showRisk">去测评</div>
+                    </td>
+                    {{/if}}
+                </tr>
+                <tr>
+                    {{#if authority}}
+                    <td>
+                        <span class="glyphicon glyphicon-ok"></span> &nbsp;授权设置：
+                    </td>
+                     <td>
+                        <a style="color:#009ada" href="/newAccount/settings/authentication">查看详情</a>
+                    </td>
+                    <td class="align-center">
+                        <span class="status">已授权</span>
+                    </td>
+                    {{else}}
+                    <td>
+                        <span class="glyphicon glyphicon-remove"></span> &nbsp;授权设置：
+                    </td>
+                    <td>
+                        <span class="status-no">未授权!</span>
+                    </td>
+                    <td class="align-center">
+                        <a href="/newAccount/settings/authentication" class="btn" rel="nofollow" >去授权</a>
                     </td>
                     {{/if}}
                 </tr>
