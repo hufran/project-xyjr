@@ -32,7 +32,7 @@ var ractive = new Ractive({
         accountService.getUserInfo(function (userinfo) {
             //基本信息
             oldmark = userinfo.user.priv;
-            this.set("priv",userinfo.user.priv)
+            ractive.set("priv",userinfo.user.priv)
             if (isEnterprise) {
                 var percent = 50;
                 // if (CC.user.paymentPasswordHasSet) {
