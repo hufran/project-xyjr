@@ -41,6 +41,8 @@ do (_, angular) ->
                             @$scope.btnContent="确认开通"
                         else if @$scope.lccbAuth==false
                             @$scope.btnContent="立即授权"
+                        else if @$scope.lccbAuth==true
+                            @$scope.btnContent="取消授权"
                     .catch (data) =>
                         @$window.alert "获取廊坊银行用户ID失败！"
 
@@ -268,8 +270,23 @@ do (_, angular) ->
 
                 else if parseInt(@$scope.lccbUserId)!=0&&parseInt(@$scope.lccbUserId)!=-1&&@$scope.lccbAuth==true
                     #取消授权操作
-                    @$window.alert "取消授权"
-                    @window.alert "暂未开通取消授权方法"
+                    @api.payment_pool_lccb_authCancel(@user.info.id,@successUrl)
+                        .then (data)=>
+                            return @$q.reject(data) unless data.status is 0
+                            return data
+                        .then (data) =>
+                            @$window.form.action=data.data
+                            do @$window.form.submit
+                        .catch (data) =>
+                            @submit_sending = false
+                            @$timeout.cancel @error.timer
+
+                            @error.on = true
+                            @error.message = _.get data, 'msg', '系统繁忙，请稍后重试！'
+
+                            @error.timer = @$timeout =>
+                                @error.on = false
+                            , @error.timeout
 
             agreement: (segment) ->
 
