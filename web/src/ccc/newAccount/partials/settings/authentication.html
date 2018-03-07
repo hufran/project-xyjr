@@ -73,9 +73,13 @@
             </div>
             <div style="background-color: #f4fcff;padding: 10px;width:700px;margin: 0 auto;text-align: left;margin-top: 50px;">
                 <p class="tips" style="color:#f58220">温馨提示：</p>
+                {{#if !isEnterPrise}}
                 <p class="tips">1、718金融用户须是年满18周岁的具有完全民事行为能力的自然人。</p>
                 <p class="tips">2、填写的姓名、身份证号码须一致。</p>
                 <p class="tips">3、开通银行存管过程遇到问题，请查看<a href="https://www.718bank.com/help/cash" target="_blank" style="color: #009ada">帮助中心</a>或联系客服：4001-718-718（工作日：8：30-17：30）。</p>
+                {{else}}
+                   <p class="tips">1、开通银行存管过程遇到问题，请查看联系客服：4001-718-718（工作日：8：30-17：30）。</p>
+                {{/if}}
             </div>
         </form>
     </div>
@@ -130,7 +134,7 @@
         <label for="" class="text">银行预留手机号：</label>
         <span class="value" style="width: 280px;">{{bankMobile.substr(0,3)}}****{{bankMobile.substr(-3)}}</span>
     </div> -->
-    {{#if !lccbId || !authority}}
+    <!-- {{#if !lccbId || !authority}} -->
      {{#if !lccbId}}
     <p class="account-info-row" style="text-align:left;line-height: 30px;">
         <input type="checkbox" class="agree" checked id="agree" />
@@ -147,14 +151,18 @@
         <input type="button" value="{{buttonname}}" on-click="jihuo-submit" class="btn info-submit" style="width:200px;height:40px;background:#009ada;border-color:#009ada;color:white;"  />
     </div>
     {{/if}}
-{{/if}}
+<!-- {{/if}} -->
 </div>
 <div class="space-30"></div>
 <div style="background-color: #f4fcff;padding: 10px; margin: 0 auto;">
     <p class="tips" style="color:#f58220">温馨提示：</p>
+    {{#if !isEnterPrise}}
     <p class="tips">1、718金融用户须是年满18周岁的具有完全民事行为能力的自然人。</p>
     <p class="tips">2、填写的姓名、身份证号码须一致。</p>
     <p class="tips">3、开通银行存管过程遇到问题，请查看<a href="https://www.718bank.com/help/cash" target="_blank" style="color: #009ada">帮助中心</a>或联系客服：4001-718-718（工作日：8：30-17：30）。</p>
+    {{else}}
+       <p class="tips">1、开通银行存管过程遇到问题，请查看联系客服：4001-718-718（工作日：8：30-17：30）。</p>
+    {{/if}}
 </div>
 {{/if}}
 <div id="deposit-agreement-wraper">
