@@ -10,7 +10,7 @@ do (_, angular) ->
 
         
         angular.extend @$scope, {
-        	informationList:['注册/登录','充值/提现','产品介绍','名词解释'],
+        	informationList:['注册/登录','资金存管','红包相关','信息变更','常见问题'],
         	category:'HELP',
         	informationDetail:[]
         }
