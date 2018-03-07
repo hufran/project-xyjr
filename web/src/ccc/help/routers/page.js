@@ -18,10 +18,10 @@ module.exports = function (router) {
 //            invest: '我要投资',
             // safety: '风控安全',
              login: '注册/登录',
-             cash:'充值/提现',
-             product: '产品介绍',
-             member:'会员/积分',
-             explain: '名词解释'
+             cash:'资金存管',
+             product: '红包相关',
+             member:'信息变更',
+             explain: '常见问题'
             // money: '投资理财',
             // law: '法律安全',
         };
@@ -30,10 +30,10 @@ module.exports = function (router) {
 //                invest: '我要投资',
             // safety: '风控安全',
              login: '注册/登录',
-             cash:'充值/提现',
-             product: '产品介绍',
-             member:'会员/积分',
-             explain: '名词解释'
+             cash:'资金存管',
+             product: '红包相关',
+             member:'信息变更',
+             explain: '常见问题'
             // money:'投资理财',
             // law:'法律安全',
 
@@ -44,16 +44,16 @@ module.exports = function (router) {
              text: '注册/登录',
              url: '/help/login'
          }, {
-             text: '充值/提现',
+             text: '资金存管',
              url: '/help/cash'
          }, {
-             text: '产品介绍',
+             text: '红包相关',
              url: '/help/product'
          }, {
-             text: '会员/积分',
+             text: '信息变更',
              url: '/help/member'
          }, {
-             text: '名词解释',
+             text: '常见问题',
              url: '/help/explain'
          } ];
 

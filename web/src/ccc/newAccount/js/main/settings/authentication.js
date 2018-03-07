@@ -538,7 +538,7 @@ ractive.on('jihuo-submit', function (){
     } else {
         console.log("授权")
         if(this.get("authority")){
-          var url='/api/v2/userAuthCancel/userAuth/'+CC.user.id
+          var url='/api/v2/lccbweb/userAuthCancel/'+CC.user.id
         }else{
           var url='/api/v2/lccbweb/userAuth/'+CC.user.id
         }
