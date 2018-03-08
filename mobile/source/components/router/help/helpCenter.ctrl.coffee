@@ -12,7 +12,8 @@ do (_, angular) ->
         angular.extend @$scope, {
         	informationList:['注册/登录','资金存管','红包相关','信息变更','常见问题'],
         	category:'HELP',
-        	informationDetail:[]
+        	informationDetail:[],
+          showTitle:@$routeParams.show
         }
         do @getInfo
 
