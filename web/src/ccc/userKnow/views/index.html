@@ -2,74 +2,105 @@
 <link rel="stylesheet" href="/ccc/userKnow/css/style.css">
 
 <div class="content">
-    <div class="content_main">
-        <div class="content_classify">
-            <h1>WHO</h1>
-            <h2>什么是新毅金融</h2>
-            <div class="what_bg">
-<!--                {{JSON.stringify(contents)}}-->
-                <p>
-                    {{{contents[0].content}}}
-<!--                    <span>新毅金融</span>是新毅控股旗下互联网金融战略平台，由安徽唯源金融信息服务有限公司运营。践行普惠金融，助力财富增值。 新毅金融致力于为中小微企业及个人提供<span>专业、透明、安心、稳盈</span>的互联网金融服务。-->
-                </p>
+<div class="bac">
+    <div class="content_classify float">
+            <div class="bac_left">
+                <div class="top">
+                    <img src="/ccc/userKnow/img/icon_title.png" alt="">
+                </div>
+                <div class="bottom">
+                    <div class="erweima">
+                        <img src="/ccc/global/img/app_ewm.png" alt="">
+                    </div>
+                    <div class="down">
+                        <div>
+                            <img src="/ccc/userKnow/img/download_android.png" alt="">
+                        </div>
+                        <div>
+                            <img src="/ccc/userKnow/img/download_ios.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bac_right">
+                <img src="/ccc/userKnow/img/iphone.png" alt="">
             </div>
         </div>
+</div>
+    
+    <div class="width100">     
         <div class="content_classify content_classify-process">
-            <h1>PROCESS</h1>
-            <h2>投资流程</h2>
-            <img class="process_bg" src="/ccc/userKnow/img/process_bg.png">
+            <h1>申请条件有哪些</h1>
+            <div class="line"></div>
+            <div class="parent">
+               <h2></h2>
+            </div>
+            
+            <div class="application">
+                <div class="left1 hover">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div>年龄要求</div>
+                        <div class="line"></div>
+                        <div>年龄需在22（含）至60（含）周岁之间</div>
+                    </div>
+                </div>
+                <div class="left2 hover">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div>经营证件</div>
+                        <div class="line"></div>
+                        <div>拥有烟草专门销售许可证的商户</div>
+                    </div>
+                </div>
+            </div>
+            <div class="application">
+                <div class="left3 hover">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div>经营时间</div>
+                        <div class="line"></div>
+                        <div>经营时间1年以上</div>
+                    </div>
+                </div>
+                <div class="left4  hover">
+                    <div class="left"></div>
+                    <div class="right">
+                        <div>所在区域</div>
+                        <div class="line"></div>
+                        <div>除西藏、新疆、青海、内蒙古外所在区域</div>
+                    </div>
+                </div>
+            </div>  
         </div>
+    </div>  
+    <div class="content_main">
         <div class="content_classify content_classify-financial">
-            <h1>Financial process</h1>
-            <h2>轻松四步，赚钱就这么容易</h2>
-            <img class="finacial_bg" src="/ccc/userKnow/img/finacial_bg.png">
-        </div>
-        <div class="content_classify content_classify-advantage">
-            <h1>ADVANTAGE</h1>
-            <h2>平台优势</h2>
-            <div class="article-content">
-                <!--{{& contents}}-->
-                <!--<div class="advantage">
-                    <div class="advantage-left">
-                        <h3 class="title"> {{{contents[1].title}}}</h3>
-                        <p class="content"> {{{contents[1].content}}}</p>
-                    </div>
-                    <img class="advantage-right" src="/ccc/userKnow/img/advantage-first.png"/>
-                </div>-->
-                <div class="advantage" name="systemsafety" id="systemsafety">
-                    <img class="advantage-right advantage-right-other" src="/ccc/userKnow/img/advantage-second.png"/>
-                    <div class="advantage-left advantage-left-other">
-                        <h3 class="title">{{{contents[2].title}}}</h3>
-                        <p class="content">{{{contents[2].content}}}</p>
-                    </div>
+            <h1>五步轻松搞定 &nbsp;极速放款</h1>
+            <div class="line"></div>
+            <div class="parent">
+               <h2></h2>
+            </div>
+            <div class="flex-box">
+                <div>
+                    <p>注册</p>
+                    <p>开户</p>
                 </div>
-                <!--<div class="advantage">
-                    <div class="advantage-left">
-                        <h3 class="title"> {{{contents[3].title}}}</h3>
-                        <p class="content"> {{{contents[3].content}}}</p>
-                    </div>
-                    <img class="advantage-right" src="/ccc/userKnow/img/advantage-third.png"/>
-                </div>-->
-                <div class="advantage" name="firmprotect" id="firmprotect">
-                    <div class="advantage-left">
-                        <h3 class="title">{{{contents[4].title}}}</h3>
-                        <p class="content">{{{contents[4].content}}}</p>
-                    </div>
-                    <img class="advantage-right" src="/ccc/userKnow/img/advantage-forth.png"/>
+                <div>
+                    <p>借款</p>
+                    <p>申请</p>
                 </div>
-                <div class="advantage" name="measure" id="measure">
-                    <img class="advantage-right advantage-right-other" src="/ccc/userKnow/img/advantage-fifth.png"/>
-                    <div class="advantage-left advantage-left-other" style="margin-left: 180px;">
-                        <h3 class="title"> {{{contents[5].title}}}</h3>
-                        <p class="content"> {{{contents[5].content}}}</p>
-                    </div>
+                <div>
+                    <p>快速</p>
+                    <p>审核</p>
                 </div>
-                <div class="advantage" name="prosource" id="prosource">
-                    <div class="advantage-left">
-                        <h3 class="title">{{{contents[6].title}}}</h3>
-                        <p class="content">{{{contents[6].content}}}</p>
-                    </div>
-                    <img class="advantage-right" src="/ccc/userKnow/img/advantage-sixth.png"/>
+                <div>
+                    <p>发标</p>
+                    <p>募集</p>
+                </div>
+                <div>
+                    <p>极速</p>
+                    <p>放款</p>
                 </div>
             </div>
         </div>
