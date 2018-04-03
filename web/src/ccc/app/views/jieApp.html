@@ -52,6 +52,7 @@
         function goAndroidDownload(){
             if (isWeiXin()){
                 // document.location.href = "http://sj.qq.com/myapp/detail.htm?apkName=com.xinyi.cf";
+                document.getElementById("img").style.display="block"
             }
             else{
                 document.location.href = "http://www.718bank.com/ccc/app/jiedai.apk";
@@ -61,9 +62,9 @@
 </head>
 <body>
 <div class="img" id="img">
-    <img src="/ccc/global/img/live_weixin.png" alt="">
+    <img src="/ccc/app/views/live_weixin.png" alt="">
 </div>
-<img src="/ccc/global/img/navLogo.png" alt="" class="login-logo">
+<img src="/ccc/global/img/navLogo.png" alt="" class="login-logo" style="width: 100%">
 <div class="download-prompt">
     请点击下载与手机系统相匹配的App
 </div>
