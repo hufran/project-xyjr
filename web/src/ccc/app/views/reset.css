@@ -52,6 +52,11 @@ table {
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 100px;
     display: none;
+    text-align: right;
+}
+.img img{
+    width: 85%;
+    margin-top: 20px;
+    margin-right: 10px;
 }
