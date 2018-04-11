@@ -7,6 +7,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/message/notifications/:page/:userId', auth.owner());
     router.get('/api/v2/cms/appBootPage', auth.pass());
     router.get('/api/v2/fdd/user/:userId/invest/:investId/contractUrl', auth.user());
+    router.get('/api/v2/fdd/loanRequest/:requestId/contract', auth.pass());
+
     //dada add
     // 支付相关
     router.post('/api/v2/lccb/sendMsg/:userId', auth.pass());
@@ -34,6 +36,8 @@ module.exports = function (router, auth) {
     router.get('/api/v2/corporation/:userid', auth.pass());
     router.post('/api/v2/lccbweb/userAuth/:userid', auth.user());
     router.post('/api/v2/lccbweb/userActivate/:userid', auth.user());
+    router.post('/api/v2/lccbweb/userAuthCancel/:userid', auth.user());
+    router.post('/api/v2/throne/findContractByRequestId/:requestId',auth.pass());
     
     router.post('/api/v2/lianlianpay/bindCard/:userId', auth.user());
     router.post('/api/v2/lianlianpay/deposit/:userId', auth.user());

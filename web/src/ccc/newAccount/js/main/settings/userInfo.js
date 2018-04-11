@@ -1,6 +1,7 @@
 "use strict";
 var accountService = require('ccc/newAccount/js/main/service/account').accountService;
 require('ccc/xss.min');
+var oldmark;
 var ractive = new Ractive({
     el: "#ractive-container",
     template: require('ccc/newAccount/partials/settings/userInfo.html'),
@@ -17,10 +18,12 @@ var ractive = new Ractive({
         idNumber: false,
         paymentPasswordHasSet : CC.user.paymentPasswordHasSet || false,
         email: false,
-        percent: CC.user.enterprise?'50':'30',
+        percent: CC.user.enterprise?'50':'20',
         levelText:'弱',
         isEnterprise: CC.user.enterprise,
-        bankNumber: false
+        bankNumber: false,
+        authority: CC.user.lccbAuth=='1'?true:false,
+        priv:CC.user.priv
     },
     init: function() {
         
@@ -28,6 +31,8 @@ var ractive = new Ractive({
 
         accountService.getUserInfo(function (userinfo) {
             //基本信息
+            oldmark = userinfo.user.priv;
+            ractive.set("priv",userinfo.user.priv)
             if (isEnterprise) {
                 var percent = 50;
                 // if (CC.user.paymentPasswordHasSet) {
@@ -47,7 +52,7 @@ var ractive = new Ractive({
                     ractive.set('bankNumber', true);
                 }
             } else {
-                var percent = 30;
+                var percent = 20;
                 if (userinfo.user.idNumber) {
                     var idNumber = formatNumber(userinfo.user.idNumber, 4, 4);
                     ractive.set('idNumber', idNumber);
@@ -56,11 +61,14 @@ var ractive = new Ractive({
 
                 if(CC.user.bankCards.length) {
                     ractive.set('bankNumber', true);
-                    percent += 40;
+                    percent += 20;
                 }
-                // if (CC.user.paymentPasswordHasSet) {
-                //     percent += 25;
-                // }
+                if (CC.user.lccbAuth=='1') {
+                    percent += 20;
+                }
+                if(userinfo.user.priv && userinfo.user.priv!='0'){
+                    percent += 20;
+                }
                 if (userinfo.user.email && userinfo.user.email != 'notavailable@qilerong.com' && userinfo.user.email != 'notavailable@creditcloud.com') {
                     var arr = userinfo.user.email.split('@');
                     var length = arr[0].length;
@@ -72,7 +80,7 @@ var ractive = new Ractive({
                         var email = arr[0].substring(0,1) + (new Array(length)).join('*') + "@" + arr[1];
                     }
                     ractive.set('email', email);
-                    percent += 30;
+                    percent += 20;
                 }
                 ractive.set('percent',percent);
                 if (percent > 30 && percent <= 70) {
@@ -122,6 +130,96 @@ ractive.on('changeTab', function (event) {
 ractive.on('updateInfo', function () {
     this.set('isSave', false);
 });
+
+ractive.on("showRisk",function(){
+    // 问卷start
+    console.log("oldmark:" + oldmark)
+    if(oldmark){
+        jQuery('.questionBox').removeClass('db').addClass('dn');
+        jQuery(document).scrollTop(0);
+        jQuery('.questionTit').addClass('result');
+        jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);        
+        if (oldmark>=10&&oldmark<=16) {
+            jQuery('.resultInfor span').html("一级（保守型）");
+        }else if(oldmark>=17&&oldmark<=23){
+            jQuery('.resultInfor span').html("二级（稳健型）");
+        }else if(oldmark>=24&&oldmark<=31){
+            jQuery('.resultInfor span').html("三级（平衡型）");
+        }else if(oldmark>=32&&oldmark<=38){
+            jQuery('.resultInfor span').html("四级（积极型）");
+        }else if(oldmark>=39&&oldmark<=45){
+            jQuery('.resultInfor span').html("五级（激进型）");
+        };
+    }
+    jQuery('.wenjuan').removeClass('dn').addClass('db');
+    jQuery('.radioW').click(function(){
+        var radioName=jQuery(this).siblings('input[type="radio"]').prop('name');
+        jQuery('input[name="'+radioName+'"]').prop('checked',false);
+        jQuery(this).siblings('input[type="radio"]').prop('checked',true);
+
+    })
+    jQuery('input.questionBtn').click(function(){
+        var r=true;
+        var mark=0;
+        for (var i = 1; i < 11; i++) {
+            if (jQuery('input[name="Q'+i+'"]:checked').val()==undefined) {
+                r=false;
+            }else{               
+                mark=mark+parseInt(jQuery('input[name="Q'+i+'"]:checked').attr('data-value'));
+            };
+            if (!r) {
+                jQuery('.questionTip').removeClass('dn').addClass('db');
+                return false;
+            }
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/api/v2/users/userQuestion',
+            data: {
+                userId:CC.user.userId,
+                mark:mark
+            },
+            success: function(){
+                jQuery('.questionBox').removeClass('db').addClass('dn');
+                jQuery(document).scrollTop(0);
+                jQuery('.questionTit').addClass('result');
+                jQuery('.resultInfor').removeClass('dn').addClass('db').css('height',document.body.clientHeight);
+                if (mark>=10&&mark<=16) {
+                    jQuery('.resultInfor span').html("一级（保守型）");
+                }else if(mark>=17&&mark<=23){
+                    jQuery('.resultInfor span').html("二级（稳健型）");
+                }else if(mark>=24&&mark<=31){
+                    jQuery('.resultInfor span').html("三级（平衡型）");
+                }else if(mark>=32&&mark<=38){
+                    jQuery('.resultInfor span').html("四级（积极型）");
+                }else if(mark>=39&&mark<=45){
+                    jQuery('.resultInfor span').html("五级（激进型）");
+                };
+                oldmark = mark;
+            }
+        });
+    })
+    jQuery('.returnWenjuan').click(function(){
+        jQuery('.questionTit').removeClass('result');
+        jQuery('.resultInfor').removeClass('db').addClass('dn');
+        jQuery('.questionBox input[type=radio]').prop('checked',false);
+        jQuery('.questionTip').removeClass('db').addClass('dn');
+        jQuery('.questionBox').removeClass('dn').addClass('db');
+    })
+    jQuery('.questionBtn.false').click(function(){
+        jQuery('.wenjuan').removeClass('db').addClass('dn');
+        jQuery('.questionBox input[type=radio]').prop('checked',false);
+        jQuery('.questionTip').removeClass('db').addClass('dn');
+        jQuery(document).scrollTop(0);
+    })
+    jQuery('.wenjuanClose').click(function(){
+        jQuery('.wenjuan').removeClass('db').addClass('dn');
+        jQuery('.questionBox input[type=radio]').prop('checked',false);
+        jQuery('.questionTip').removeClass('db').addClass('dn');
+        jQuery(document).scrollTop(0);
+    })
+// 问卷end
+})
 function formatNumber(number, left, right) {
     if (!number) {
         return '';

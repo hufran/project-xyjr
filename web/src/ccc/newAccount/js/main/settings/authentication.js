@@ -32,7 +32,7 @@ var ractive = new Ractive({
         bankMobile: '',
         accountName: '',
         lccbId: CC.user ? CC.user.lccbUserId : '',
-        authority: CC.user ? CC.user.lccbAuth : '',
+        authority: CC.user.lccbAuth=='1' ? true : false,
         action: '',
         isEnterPrise: CC.user.enterprise
     },
@@ -68,9 +68,14 @@ var ractive = new Ractive({
                     ractive.set('buttonname', '立即激活');
                 }else{
                     ractive.set('lccbId', res.data.lccbId);
-                    ractive.set('buttonname', '授权投资');       
+                       
                 }
-                ractive.set('authority', res.data.lccbAuth);                
+                ractive.set('authority', res.data.lccbAuth);
+                if(res.data.lccbAuth){
+                    ractive.set('buttonname', '取消授权');    
+                }else{
+                    ractive.set('buttonname', '授权投资');    
+                }                
             }
         })
 
@@ -532,8 +537,13 @@ ractive.on('jihuo-submit', function (){
         })
     } else {
         console.log("授权")
+        if(this.get("authority")){
+          var url='/api/v2/lccbweb/userAuthCancel/'+CC.user.id
+        }else{
+          var url='/api/v2/lccbweb/userAuth/'+CC.user.id
+        }
         $.ajax({
-            url: '/api/v2/lccbweb/userAuth/'+CC.user.id,
+            url: url,
             type: "POST",
             data: {
                 successUrl: window.location.href
