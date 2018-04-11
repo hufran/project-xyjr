@@ -1639,7 +1639,12 @@
     background: linear-gradient(to right, #3a6dfe, #41ccb4);
 }
 
-
+.none{
+    display: none;
+}
+.exclamation:hover .none{
+  display: block;
+}
 
 /*问卷 start*/
 .wenjuan{position: absolute;top: 0;background: #fff;margin: auto;left: 0;right: 0;z-index: 10001; background-color: rgb(234, 225, 206);}
