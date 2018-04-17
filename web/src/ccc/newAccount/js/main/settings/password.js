@@ -356,7 +356,7 @@ passwordRactive.on("submit-modify-password", function (event) {
 
       return false;
     }
-    CommonService.checkCaptcha(filterXSS(passwordRactive.get('captcha')), function (res) {
+    CommonService.checkCaptcha(passwordRactive.get('captcha'), function (res) {
         if (res.success) {
             if(currentPassword===newPassword){
                return showErrorIndex('showErrorMessaged','errorMessaged','新密码不能与原始密码相同');
