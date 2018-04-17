@@ -18,7 +18,7 @@ module.exports = function (router) {
             announcement:'PUBLICATION',
             timeoutann:'PUBLICATION',
             action:'NEWS',
-            imgaction:'NEWS',
+            // imgaction:'NEWS',
         };
         var nameMap = {
             introduction: '平台介绍',
@@ -37,7 +37,7 @@ module.exports = function (router) {
             announcement:'平台公告',
             timeoutann:'到期公告',
             action: '新闻资讯',
-            imgaction:'今日头条',
+            // imgaction:'今日头条',
         };
 
         var indexMap = {
@@ -50,7 +50,7 @@ module.exports = function (router) {
             announcement:'平台公告',
             timeoutann:'到期公告',
             action: '新闻资讯',
-            imgaction:'今日头条',
+            // imgaction:'今日头条',
         };
 
         var tabs = [{
@@ -82,10 +82,11 @@ module.exports = function (router) {
                     {
              text: '新闻资讯',
              url: '/aboutus/action'
-         }, {
-             text: '今日头条',
-             url: '/aboutus/imgaction'
-         },
+         }, 
+         // {
+         //     text: '今日头条',
+         //     url: '/aboutus/imgaction'
+         // },
 //          {
         //     text: '媒体报道',
         //     url: '/aboutus/media'

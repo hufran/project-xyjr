@@ -179,7 +179,12 @@
                         </p>
                         <p class="agree-error"></p>
                         <input type="submit" class="btn btn-warning invest-button" value="确认投资" />
-
+                        <p style="font-size: 12px;text-align: left;margin-top: 5px;">
+                        <span style="color: #c6c6c6">出借人适当性管理告知</span>
+                        <span class="glyphicon glyphicon-exclamation-sign exclamation" style="color:#c6c6c6;margin:0 4px;">
+                            <p class="none">作为网络借贷的出借人，应当具备投资风险意识，风险识别能力，拥有一定的金融产品投资经验并熟悉互联网金融。请您在出借前，确保了解借款项目的主要风险，同时确认具有相应的风险认知和承受能力，并自行承担出借可能产生的相关损失。</p>
+                        </span><a href="/agreement/mobile/regist?key=网络借贷风险和禁止性行为提示书及资金来源合法承诺书" style="color:#5b9dff" target="_blank">[风险提示]</a>
+                        </p>
                     </div>
 
                     {{#if errors.visible}}
@@ -208,6 +213,7 @@
                     <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}" autocomplete="off">
                 </div>
             </div>
+            <div class="clearfix"></div>
             <p class="totalInterest">最大可投<span>{{loan.rule.max}}</span>元，预计收益<span> {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}}</span>元</p>
             <a href="/login?url={{backUrl}}" class="loginBtn">
                             立即登录

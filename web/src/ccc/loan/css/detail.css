@@ -459,7 +459,7 @@
     font-size: 16px;
     color: #6b6b6b;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .do-invest-wrapper .status .leftMoney {
     margin-bottom: 5px;
@@ -1365,7 +1365,7 @@
     float: left;
 }
 #userBlock .calculatorBox {
-    overflow: hidden;
+    /*overflow: hidden;*/
     /*    margin-top: 30px;*/
     clear: both;
     margin-left: 30px;
@@ -1561,7 +1561,7 @@
     color: #f58220;
 }
 .box-large {
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-color: #f8f8f8;
 }
 .item-pic {
@@ -1639,7 +1639,22 @@
     background: linear-gradient(to right, #3a6dfe, #41ccb4);
 }
 
-
+.none{
+    display: none;
+    position: absolute;
+    background: #fff4e6; 
+    top: 15px;
+    color: #c69577;
+    width: 288px;
+    left: -125px;
+    line-height: 25px;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #c69577;
+}
+.exclamation:hover .none{
+    display: block; 
+}
 
 /*问卷 start*/
 .wenjuan{position: absolute;top: 0;background: #fff;margin: auto;left: 0;right: 0;z-index: 10001; background-color: rgb(234, 225, 206);}
