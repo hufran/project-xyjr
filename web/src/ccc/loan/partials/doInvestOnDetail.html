@@ -213,6 +213,7 @@
                     <input placeholder="请输入投资金额" type="text" value="{{ inputNum }}" autocomplete="off">
                 </div>
             </div>
+            <div class="clearfix"></div>
             <p class="totalInterest">最大可投<span>{{loan.rule.max}}</span>元，预计收益<span> {{(loan.durationdays/365 * (inputNum || 0) *loan.rate/100).toFixed(2)}}</span>元</p>
             <a href="/login?url={{backUrl}}" class="loginBtn">
                             立即登录
